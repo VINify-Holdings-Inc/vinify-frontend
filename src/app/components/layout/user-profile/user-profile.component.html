@@ -1,0 +1,126 @@
+<div class="Profile-Inner">
+  <h2 class="mb-4">User Profile</h2>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <!-- Profile Photo -->
+      <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-profile-inner">
+            <img
+            [src]="profile"
+            alt="Profile Photo"
+            class="img-thumbnail mb-3"
+            style="width: 150px; height: 150px; object-fit: cover;"
+          />
+          <input
+            type="file"
+            (change)="onFileSelected($event)"
+            class="form-control form-control-sm"
+            accept="image/*"
+          />
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- User Details -->
+      <div class="col-md-8">
+
+        <div class="card">
+          <div class="card-body">
+            <div class="profileFormInner container">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  formControlName="name"
+                  placeholder="Enter your name"
+                />
+                <div *ngIf="profileForm.controls['name'].touched && profileForm.controls['name'].invalid" class="text-danger">
+                  Name is required
+                </div>
+              </div>
+      
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  formControlName="email"
+                  placeholder="Enter your email"
+               
+                />
+                
+                <!-- <div *ngIf="profileForm.controls['email'].touched">
+                  <span class="text-danger" *ngIf="profileForm.controls['email']?.errors?.['required']">Email Id is required</span>
+                  <span class="text-danger" *ngIf="!profileForm.controls['email']?.errors?.['required'] && profileForm.controls['email']?.errors?.['email']">Enter a valid Email Id</span>
+             </div> -->
+              </div>
+      
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone"
+                  formControlName="phone"
+                  placeholder="Enter your phone"
+                />
+                <div *ngIf="profileForm.controls['phone'].touched && profileForm.controls['phone'].invalid" class="text-danger">
+                  Enter a valid phone number
+                </div>
+              </div>
+      
+              <div class="mb-3">
+                <label for="company" class="form-label">Company</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="company"
+                  formControlName="company"
+                  placeholder="Enter your company"
+                />
+              </div>
+      
+              <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  formControlName="title"
+                  placeholder="Enter your title"
+                />
+              </div>
+      
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea
+                  class="form-control"
+                  id="address"
+                  formControlName="address"
+                  rows="2"
+                  placeholder="Enter your address"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <button type="submit" class="btn btn-primary mt-3" [disabled]="profileForm.invalid || isLoading">Update Profile</button>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      
+
+      </div>
+    </div>
+  </form> 
+</div>
+
+
+<app-loader [IsLoading]="isLoading"></app-loader> 

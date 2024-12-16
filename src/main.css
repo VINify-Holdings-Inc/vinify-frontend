@@ -1,0 +1,2396 @@
+/*Defalut CSS start*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --bg-primary: #6366f0;
+  --text-white: #fff;
+}
+body,
+html {
+  font-family: "Noto Sans", sans-serif;
+  color: #47475d;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4 {
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.text-normal {
+  text-transform: none;
+}
+
+a {
+  color: #47475d !important;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0px;
+  list-style: none;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  overflow: auto;
+}
+
+.btn {
+  font-size: 14px;
+}
+
+.btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.btn-primary {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--bg-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--bg-primary);
+}
+
+.btn-primary:focus {
+  background-color: var(--bg-primary);
+}
+
+.btn-view {
+  background-color: #fd5152;
+  color: #fff;
+  border: 1px solid #fd5152;
+}
+
+.btn-view:hover {
+  color: #fff;
+}
+
+.bg-orange {
+  background-color: #ffefe7 !important;
+}
+
+.historyTab p {
+  color: #47475d;
+  font-weight: 600;
+}
+
+p.textLight {
+  color: #aa9fa6;
+  font-weight: normal;
+}
+
+.cardHeaderJustify {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card,
+.card-header {
+  background: #fff;
+  border-radius: 8px !important;
+  border-bottom: none;
+}
+
+.card {
+  display: inline-block;
+  position: relative;
+  border: none;
+  width: 100%;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
+  border-radius: 8px;
+  color: rgba(0, 0, 0, 0.87);
+  background: #fff;
+}
+
+.table > thead > tr > th {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  border: none;
+  border-style: none;
+  padding: 14px;
+}
+
+hr {
+  margin: 0;
+}
+
+.text-red {
+  color: #f04438 !important;
+}
+
+.card .card-content {
+  padding: 15px 20px;
+  position: relative;
+}
+
+.bg-navbar {
+  background-color: #fff !important;
+  box-shadow: 0 0 2rem 0 rgba(41, 48, 66, 0.1);
+}
+
+.card .card-header {
+  padding: 15px 15px 0;
+  align-items: center;
+}
+
+.card-area h6 {
+  color: #475467;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.cardBottomLine a {
+  font-size: 11px;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.pieChartGraph .card-title {
+  font-size: 18px;
+}
+
+p.smallAddIcon i {
+  line-height: 15px;
+  padding: 10px 5px;
+  border-radius: 5px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  margin-right: 5px;
+  border-radius: 10px;
+}
+
+.dot-success {
+  background-color: #17b26a;
+}
+
+.dot-purple {
+  background-color: #4b569d;
+}
+
+.dot-danger {
+  background-color: #b42318;
+}
+
+.textSuccess {
+  color: #12944c;
+  border: 1px solid #93e7af;
+  background-color: #e8faee;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > td {
+  white-space: nowrap;
+  font-size: 14px;
+  padding: 15px 15px;
+}
+.table > :not(caption) > * > *{
+  background: none !important;
+  box-shadow: none !important;
+}
+.table > thead > tr {
+  background-color: #f8f9fa;
+} 
+.table > tbody > tr:hover {
+  background-color: #edeaf9 !important;
+}
+.table > thead > tr > th {
+  border-bottom-width: 1px;
+  font-weight: 500;
+  padding: 15px 15px;
+  text-transform: capitalize;
+}
+.table tbody tr td.vinNumber {
+  color: #9e9e9e;
+}
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #e9ecef;
+  color: #1e2125;
+}
+.dropdown-menu {
+  padding: 0;
+}
+.lineHeight p {
+  line-height: 22px;
+}
+
+/*Defalut CSS end*/
+/*Navbar Design start*/
+ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
+  gap: 12px;
+}
+.navbar-nav > li.active {
+  color: #ffffff;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+.navbar button span {
+  color: #fff;
+}
+.top-navbar.headerSection {
+  width: 100%;
+  z-index: 99;
+  position: fixed;
+}
+.headerSection .navbar-nav > li > a {
+  color: #ffffff;
+}
+.headerSection .navbar .notification {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  display: block;
+  font-size: 9px;
+  border: 0px;
+  font-size: 10px;
+  background: #d9534f;
+  min-width: 15px;
+  text-align: center;
+  padding: 1px 5px;
+  height: 15px;
+  border-radius: 2px;
+  line-height: 14px;
+}
+
+.headerSection .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.headerSection .navbar-btn_track {
+  background-color: var(--bg-primary);
+  color: var(--text-white);
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--bg-primary);
+}
+
+.headerSection .navbar-btn_track:focus {
+  box-shadow: none;
+}
+
+.headerSection .navbar-btn_track:hover {
+  background-color: var(--bg-primary);
+  color: var(--text-white);
+}
+
+.headerSection .navbar-btn_track {
+  margin-right: 15px;
+  color: #fff !important;
+}
+
+.headerSection .navbar-nav > li.show .dropdown-menu {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.headerSection .navbar-nav .profile_dropdown li a,
+.headerSection .navbar-nav .profile_dropdown li button.logbtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 1rem;
+}
+
+.headerSection .navbar-nav .profile_dropdown li a i,
+.headerSection .navbar-nav .profile_dropdown li button.logbtn i {
+  padding: 0 10px 0 0;
+  color: #757575;
+  font-size: 1.5rem;
+}
+
+.headerSection .navbar-nav .notification-dropdown li a {
+  padding: 15px 20px;
+  border-top: 1px solid rgb(219, 218, 218);
+}
+
+.headerSection .navbar-nav .profile_dropdown .profileLine {
+  border-top: 1px solid rgb(219, 218, 218);
+}
+
+.headerSection .navbar-nav .profile_dropdown .profileName {
+  padding: 10px 0;
+}
+
+.headerSection .navbar-nav .profile_dropdown .profileName h5 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.headerSection .navbar-nav .profile_dropdown .profileName span.vin_label {
+  color: #81848d;
+}
+
+.headerSection .navbar-nav .profile_dropdown li span {
+  color: #000;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.titleLogo {
+  color: #374cf8;
+  font-weight: 700;
+}
+
+.headerSection .profile_dropdown {
+  width: 200px;
+  max-width: 200px;
+}
+
+.headerSection .notification-dropdown .alertCheck {
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  margin-right: 10px;
+  padding: 8px;
+}
+
+.headerSection .notification-dropdown .alertCheck i {
+  font-size: 20px;
+}
+
+.headerSection .check-circle {
+  color: #01d14a;
+  background-color: #e8f8ee;
+}
+
+.headerSection .uncheck-circle {
+  color: #db6b4f;
+  background-color: #fbedea;
+}
+
+.headerSection .notification-dropdown .notifications-points h5 {
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #000;
+}
+
+.headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
+  max-width: 406px;
+  width: 406px;
+  top: 46px;
+}
+
+.headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown h4 {
+  font-size: 16px;
+  margin: 0;
+  position: relative;
+  top: 5px;
+}
+
+.headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown p {
+  white-space: normal;
+  font-size: 12px;
+  text-transform: none;
+  line-height: 20px;
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+.headerSection .navbar-nav .notification-dropdown li .notifyHeading {
+  padding: 10px 15px;
+}
+
+.headerSection .notification-number {
+  background-color: #e2e0fa;
+  color: #6366f0;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 5px 15px;
+}
+
+.headerSection .notification-dot {
+  height: 10px;
+  width: 10px;
+  background-color: red;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  display: inline-block;
+  position: relative;
+  top: -10px;
+  left: -25px;
+}
+
+.headerSection button.navbar-btn_track::after {
+  content: "";
+  position: absolute;
+  height: 32px;
+  width: 2px;
+  right: 142px;
+  top: 22px;
+  background-color: #e4e4e4;
+}
+
+.headerSection .calendar-date {
+  color: #919191;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
+}
+
+.headerSection .calendar-date p {
+  margin: 0;
+}
+
+.headerSection .calendar-date i {
+  padding-right: 6px;
+  font-size: 18px;
+  display: flex;
+  position: relative;
+}
+
+.headerSection .calendar-date .update-time {
+  color: #000;
+  padding-left: 10px;
+  font-size: 12px;
+}
+
+.headerSection .calendar-date .d-flex.update-time {
+  color: #b8b8b8;
+}
+
+.dropdown-menu.dropdown-menu-end.VinTrackDiv.show {
+  width: 100vw;
+  position: fixed;
+  background: #0000;
+  left: -10px;
+  right: 0;
+  top: 60px;
+  height: 100%;
+}
+
+.custom-modal {
+  background: #000;
+  width: 100vw;
+  height: 100%;
+  opacity: 0.5;
+  z-index: 2;
+}
+
+.trackVinNumber {
+  z-index: 99999;
+  position: absolute;
+  width: 380px;
+  color: #fff;
+  top: 0;
+  right: 170px;
+  background: #fff;
+  padding: 30px 20px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.trackVinNumber .modalInput {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.VInNumberInput {
+  display: block;
+  width: 100%;
+}
+
+.trackVinNumber .modalInput input {
+  border: 1px solid #e1e1e1;
+  padding: 10px 20px;
+  padding-left: 40px;
+}
+
+.trackVinNumber .btn.btn-primary {
+  padding: 10px;
+  width: 140px;
+}
+
+.trackVinNumber .modalInput input:focus {
+  box-shadow: none;
+}
+
+.trackVinNumber .modalInput .vehicle_icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 0;
+  color: #b8b8b8;
+  font-size: 22px;
+}
+
+/*Navbar Design end*/
+/*Sidebar Design start*/
+/* #sidebar.sidebar-link,
+.body-overlay.sidebar-link {
+  transform: translatex(0%);
+  opacity: 1;
+  display: block;
+  visibility: visible;
+  z-index: 15;
+} */
+
+#sidebar {
+  position: fixed;
+  height: 100vh !important;
+  top: 72px;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  width: 240px;
+  overflow: auto;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  background: #fff !important;
+  border-right: 1px solid #dee2e6!important;
+}
+
+#sidebar::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+  background-color: #eee;
+  display: none;
+}
+
+#sidebar::-webkit-scrollbar-thumbs {
+  width: 5px;
+  border-radius: 10px;
+  background-color: #333;
+  display: none;
+}
+
+#sidebar:hover::-webkit-scrollbar {
+  display: block;
+}
+
+#sidebar:hover::-webkit-scrollbar-thumbs {
+  display: block;
+}
+
+#sidebar .logoHeader {
+  padding: 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eee;
+}
+
+.logoHeader {
+  padding: 1rem 1.5rem 1rem 0;
+}
+
+.logoHeader h3 {
+  color: #333;
+  font-size: 16px;
+  margin: 0px;
+  text-transform: uppercase;
+  transition: all 5 ease;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rightLoginSection .logoHeader h3 {
+	font-size: 1.8rem;
+	margin: 0 0 35px;
+}
+.rightLoginSection .headerText p {
+  color: #616161;
+}
+#sidebar.show-nav,
+.body-overlay.show-nav {
+  transform: translatex(0%);
+  opacity: 1;
+  display: block;
+  visibility: visible;
+  z-index: 15;
+}
+.logoHeader h3 img {
+  width: 30px;
+  margin-right: 10px;
+}
+
+#sidebar ul li {
+  padding: 2px 7px;
+}
+
+#sidebar ul li.active > a {
+  color: #333;
+  margin: 5px auto;
+  background-color: rgba(200, 200, 200, 0.2);
+}
+
+#sidebar.sidebar-link a.nav-link.active,
+#sidebar.sidebar-link a.nav-link.active i {
+  background: var(--bg-primary);
+  color: #fff !important;
+  display: flex;
+  align-items: center;
+}
+
+#sidebar a.nav-link.active {
+  background: var(--bg-primary);
+  color: #fff !important;
+}
+
+#sidebar a.nav-link.active i {
+  background: var(--bg-primary);
+  color: #fff !important;
+}
+
+.bg-alert-area {
+  background: var(--bg-primary);
+  color: #fff;
+  border-radius: 0 0px 7px 7px;
+}
+.recentlyAlert .card-body.bg-alert-area {
+  height: 173px;
+}
+#sidebar ul li a:hover {
+  color: #333;
+  margin: 5px auto;
+  background-color: rgba(200, 200, 200, 0.2);
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+}
+
+#sidebar ul li a {
+  padding: 5px 5px;
+  line-height: 30px;
+  border-radius: 8px;
+  font-size: 14px;
+  position: relative;
+  font-weight: 400;
+  display: block;
+  margin: 5px auto;
+  align-items: center;
+  color: #000 !important;
+}
+
+#sidebar ul li a i {
+  position: relative;
+  color: #000;
+  font-size: 22px;
+  margin: 5px 10px;
+}
+
+#sidebar.active ul li a {
+  padding: 5px 5px;
+  line-height: 30px;
+  border-radius: 8px;
+  font-size: 14px;
+  position: relative;
+  font-weight: 400;
+}
+
+#sidebar.active ul li a i {
+  font-size: 22px;
+}
+
+#sidebarCollapse {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  margin-right: 20px;
+  border: none;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.09);
+  outline: none;
+}
+
+button#sidebarCollapse {
+  margin-left: 30px;
+}
+
+button#sidebarCollapse i {
+  line-height: 40px;
+  height: 40px;
+  width: 40px;
+}
+
+#sidebar ul li {
+  padding: 0 10px 0 10px;
+}
+
+#sidebar ul li.active > a {
+  color: #333;
+  background-color: rgba(200, 200, 200, 0.2);
+}
+
+#sidebar ul li a:hover {
+  color: #333;
+  background-color: rgba(200, 200, 200, 0.2);
+}
+
+.dropdown-toggle.no-toggle-icon::after {
+  border: none !important;
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+}
+
+#sidebar ul li a span {
+  text-transform: capitalize;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/*============Dashboard Design start ===========*/
+#main-content {
+  padding: 20px 20px 0px 20px;
+  position: relative;
+  width: 100%;
+  margin-top: 72px;
+  min-height: 100vh;
+}
+#main-content.active {
+  width: calc(100% - 70px);
+  padding: 20px 20px 0px 20px;
+  position: relative;
+  float: right;
+  margin-top: 72px;
+}
+
+/* #main-content.main-content.active {
+  width: calc(100% - 70px);
+  padding: 20px 20px 0px 20px;
+  position: relative;
+  float: right;
+  margin-top: 72px;
+} */
+
+#content {
+  position: relative;
+  transition: all 0.3s;
+  background-color: #f5f7fa;
+}
+
+.card .card-header-text h4 {
+  margin-top: 0;
+  margin-bottom: 3px;
+  font-size: 19px;
+  font-weight: 400;
+  color: #222222;
+  text-decoration: none;
+}
+
+.registration-button-1 {
+  color: #4b569d !important;
+  border: 1px solid #dfe3fa;
+  background-color: #f6faf8;
+}
+
+.registration-button-2 {
+  color: #ed7a6d !important;
+  border: 1px solid #ffdfdc;
+  background-color: #ffdfdc;
+}
+
+.action-required-button {
+  color: #ae3e76 !important;
+  border: 1px solid #ffd4e4;
+  background-color: #fcf1f5;
+}
+
+.small-action-btn {
+  font-size: 11px;
+  padding: 3px 10px;
+  font-weight: 500;
+  border-radius: 15px;
+}
+
+h3.card-title.cardDashNum {
+  font-size: 22px;
+  margin-bottom: 0;
+  padding: 4px 0;
+}
+
+.card .card-header.bg-header-area {
+  background: #313590 !important;
+  color: #fff;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.card .card-header.bg-header-area h5 {
+  margin: 0;
+  padding-bottom: 15px;
+  font-size: 16px;
+}
+
+.card.rounded.recentlyAlert .card-area span.date-time {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.card.rounded.recentlyAlert .card-area h5 {
+  font-weight: 500;
+  color: #fff;
+}
+
+.card.rounded.recentlyAlert .card-area p {
+  font-weight: normal;
+  opacity: 0.8;
+}
+
+.card.rounded.recentlyAlert .text-white {
+  text-decoration: underline;
+}
+
+.graphSectionBtn .vinAlertGraph_area span.alert_percent,
+.vinAlertGraph_area span.alert_percent i {
+  color: red;
+  font-size: 12px;
+}
+
+.graphSectionBtn .vinAlertGraph_area .fraud_numbers {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.vinAlertGraph .barGraph img {
+  width: 100%;
+}
+.vinAlertGraph_area h6 {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.vinAlertGraph .card .card-body {
+  padding: 20px 30px;
+  min-height: 462px;
+}
+td.vinNumberUserdash {
+  cursor: pointer;
+}
+.vinAlertGraph button.btn.chat_btn {
+  padding: 5px 15px;
+  display: flex;
+  border: 1px solid rgb(227, 227, 227);
+  font-size: 12px;
+  align-items: center;
+  border-radius: 0 5px 5px 0;
+}
+
+.vinAlertGraph button.btn.chat_btn:focus {
+  box-shadow: none;
+}
+
+.vinAlertGraph button.btn.chat_btn.show_cart {
+  border-radius: 5px 0 0 5px;
+}
+
+.vinAlertGraph button.btn.chat_btn i {
+  color: #6e6e6e;
+  padding-right: 5px;
+}
+
+.vinAlertGraph button.btn.chat_btn.btn-lights {
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+}
+.vinAlertGraph button.btn.chat_btn.active {
+  background: #f2f3f5;
+}
+.pieChartGraph {
+  height: 100%;
+  position: relative;
+  min-height: 416px;
+}
+.barGraph img {
+  height: 313px;
+}
+
+.pieChartGraph .currentWeek {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.pieChartGraph .currentWeek p {
+  display: flex;
+  font-size: 12px;
+}
+
+.pieChartGraph .currentWeek p i {
+  padding-left: 0;
+  align-items: center;
+  display: flex;
+}
+
+.graphSectionBtn {
+  border: 1px solid #f3f3f3;
+  padding: 20px 20px;
+}
+.cardWrapper .card .card-body .actionBtn i {
+  color: #525e71;
+  font-size: 20px;
+  font-weight: 400;
+  margin: auto !important;
+}
+.month-calendar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  font-weight: 600;
+  padding: 5px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  line-height: 30px;
+  background: #fff;
+}
+.month-calendar i {
+  font-size: 20px;
+  padding-right: 5px;
+}
+.search_table input {
+  border: 1px solid #e1e1e1;
+  padding: 5px 10px;
+  border-radius: 5px;
+  line-height: 30px;
+}
+
+.search_table input::placeholder {
+  font-size: 13px;
+}
+
+.search_table input:focus {
+  box-shadow: none;
+}
+
+.search_table .search_icon {
+  position: absolute;
+  top: 11px;
+  left: 10px;
+  z-index: 0;
+  color: #000;
+}
+
+.search_table .search_icon::placeholder {
+  z-index: 999;
+  opacity: 1;
+}
+
+.search_table.ms-3.form-group.has-search {
+  /* width: 300px; */
+  max-width: 300px;
+}
+
+span.command_key {
+  position: absolute;
+  right: 12px;
+  top: 11px;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+
+span.command_key i {
+  font-size: 14px;
+}
+
+span.command_key .f_style {
+  color: #000;
+  font-size: 14px;
+}
+
+.has-search .form-control {
+  padding-left: 2.7rem;
+  padding-right: 4.2rem;
+}
+
+.check-details a {
+  color: #ed7481 !important;
+}
+
+.vinAlertGraph .card .card-header .chartBtn {
+  display: flex;
+}
+
+.vinAlertGraph .card .card-header.cardVinAlert {
+  display: flex;
+  gap: 15px;
+}
+
+.vinAlertGraph .card .card-header .MonthCard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 12px;
+}
+.legend-entry {
+  border-radius: 50%;
+}
+.legend-border {
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+}
+.pichartBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 90%;
+  gap: 20px;
+}
+
+.vinAlertGraph .card .cardVinAlert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-body.cardInnerDash {
+  padding: 8px 8px;
+}
+
+.fraudGraphArea {
+  padding: 5px 0 0;
+}
+
+/* pagination CSS Design Starts */
+.paginationArea {
+  border-top: 1px solid #e1e1e1;
+  padding: 10px 15px 0 15px;
+  justify-content: end;
+  display: flex;
+}
+
+.paginationArea li.page-item button.page-link {
+  padding: 5px 14px;
+  color: #000;
+  font-size: 14px !important;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.paginationArea li.page-item button.page-link:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.paginationArea li.page-item button.page-link.active {
+  color: #fff;
+  background-color: var(--bg-primary);
+  font-size: 14px !important;
+}
+
+.paginationArea li.page-item span.page-link {
+  color: #000;
+  padding: 5px 14px;
+  font-size: 14px !important;
+  background: transparent;
+  border: none;
+}
+
+/* pagination CSS and Dashboard Ends */
+
+/*Login Page Design start*/
+.loginTextSection h1 {
+  color: #fff;
+  font-size: 1.75rem;
+  text-align: center;
+}
+.mb-4.passwordFiled {
+  position: relative;
+}
+
+ul.pass-list {
+  border: 1px solid #9495ae;
+  padding: 8px !important;
+  box-sizing: border-box;
+  margin: 10px 0 0 !important;
+  position: absolute;
+  top: 56px;
+  width: 100%;
+  background: #fffffff2;
+  z-index: 9;
+}
+
+ul.pass-list li svg {
+  height: 12px;
+}
+
+.loginTopsection {
+  position: relative;
+  padding-top: 45px;
+  max-width: 535px;
+  margin: auto;
+}
+
+.leftLoginSection {
+  background: #6366f1;
+  min-height: 100vh;
+  height: auto;
+  overflow: hidden;
+}
+
+.leftLoginSection .innerLeftSection {
+  max-width: 525px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+.swal2-confirm.swal2-styled {
+  width: 120px !important;
+  background: #6366f0 !important;
+  border-color: #6366f0 !important;
+}
+.leftLoginSection .innerLeftSection .btnleftLogin button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.leftLoginSection .innerLeftSection .btn-compound .btnleftLogin button {
+  border: 0;
+  border-radius: 7px 0 0 7px;
+}
+
+.btnleftLogin {
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-compound {
+  max-width: 182px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 25px;
+  position: relative;
+  top: -35px;
+  text-align: right;
+}
+
+.leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent {
+  background: #7b7ff0;
+  color: #fff;
+  font-weight: normal;
+  padding: 10px 20px;
+}
+
+.leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent i {
+  font-weight: normal;
+}
+
+.leftLoginSection .borderLoginRight {
+  border-right: 1px solid #b1b1b1;
+}
+
+.leftLoginSection .loginCheck {
+  padding: 0 35px;
+}
+
+.leftLoginSection .loginTextSection p.spanLine {
+  font-weight: lighter;
+  color: #fff;
+  text-align: center;
+}
+
+.leftLoginSection .vehicleImage {
+  max-width: 100%;
+  position: absolute;
+  top: 50px;
+  right: 40px;
+}
+
+.loginTopsection {
+  position: relative;
+  padding-top: 45px;
+}
+
+.leftLoginSection .oneLeftButton button {
+  background-color: #d6fb3d;
+  max-width: 100%;
+  color: #000;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 7px;
+}
+
+.loginTextSection {
+  padding-top: 20px;
+}
+
+.loginTextSection h3 {
+  color: #fff;
+  text-align: center;
+}
+
+.leftLoginSection .loginTextSection p {
+  font-weight: normal;
+  line-height: 17px;
+}
+
+.leftLoginSection .loginTextSection .loginCheck i {
+  font-size: 35px;
+  font-weight: lighter;
+}
+
+.leftLoginSection .footerLogin p {
+  font-weight: normal;
+  text-align: center;
+  margin-top: 30px;
+  color: #fff;
+  font-size: 11px;
+}
+
+.leftLoginSection .vehicleImage img {
+  height: 330px;
+}
+
+.rightLoginSection {
+  max-width: 362px;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+
+.formInput::placeholder {
+  font-size: 14px;
+  background-color: #fff;
+  color: #a6a6aa;
+}
+
+.formInput#password {
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: #a6a6aa;
+}
+
+input.formInput:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #949393;
+  border-width: 2px;
+}
+textarea.formInput:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #949393;
+  border-width: 2px;
+}
+.formLabel {
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  color: #838383;
+  font-weight: 500;
+}
+
+.formInput {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #9495ae;
+  border-radius: 0;
+  margin-top: 6px;
+}
+
+.signin_btn button {
+  background-color: #6366f1;
+  border-radius: 25px;
+  border: none;
+  padding: 12px 0;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.signin_btn button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+p.errorMessage {
+  color: red;
+  text-transform: none;
+}
+
+.formInput.formError {
+  border-bottom: 1px solid red;
+}
+/* Login Page Design end */
+/* Vehicle Monitoring  Page Design start */
+.VehicleMonitoring .card .vehicleTitle h4.card-title {
+  font-size: 22px;
+}
+
+.topVehicleHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardInnerVehicle .card-header h6 {
+  color: #6e6e6e;
+}
+
+.cardWrapper .card-header .cardMainHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardSubHead {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.cardInnerVehicle .card-body span.BottomSpan {
+  padding: 10px 0 0 0;
+  color: #6e6e6e;
+}
+
+.cardHeaderStyle .exportReport button {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+.cardHeaderStyle .exportReport button i {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.cardHeaderStyle .exportReport button:hover {
+  background-color: var(--bg-primary);
+}
+
+.topVehicleHead .vehicleTitle p {
+  color: var(--bg-primary);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.vehicleMonitoring .tabVehicleSection ul li {
+  border: 1px solid #e1e1e1;
+}
+
+.tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link {
+  color: #000;
+  font-weight: 500;
+  border-radius: 0;
+}
+
+.tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link.active {
+  border-radius: 0;
+}
+
+.tabVehicleSection.cardHeaderJustify .nav-tabs {
+  border-bottom: none;
+}
+
+.tabVehicleSection.cardHeaderJustify .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: #fff;
+  background-color: var(--bg-primary);
+  border-color: var(--bg-primary);
+  border-bottom: none;
+  border-width: 1px;
+}
+
+.tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link {
+  padding: 5px 15px;
+  line-height: 30px;
+  font-size: 13px;
+}
+
+.tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link.active {
+  color: #fff;
+  border: 1px solid var(--bg-primary);
+}
+
+.tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+  border: 1px solid transparent;
+}
+
+.tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.firstTab {
+  border-radius: 5px 0 0 5px;
+}
+
+.tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.lastTab {
+  border-radius: 0 5px 5px 0;
+}
+
+.tabVehicleSection.cardHeaderJustify ul li.nav-item .nav-link {
+  border: 1px solid #ededed;
+}
+
+/*Vehicle Monitoring  Page Design end */
+/*Summary   Page Design starts*/
+.SummaryCardDetails .card .vehicleTitle h4.card-title {
+  font-size: 22px;
+}
+
+.summaryFilter {
+  gap: 10px;
+  cursor: pointer;
+}
+
+button.btn.filterSearch {
+  border: 1px solid #cfcfcf;
+  display: flex;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+button.btn.filterSearch:focus {
+  box-shadow: none;
+}
+
+button.btn.filterSearch i {
+  color: #cfcfcf;
+}
+
+i.material-symbols-outlined.arrow_key {
+  color: #201d1e;
+  font-weight: normal;
+  font-size: 16px;
+  padding-left: 5px;
+  top: 0;
+  position: relative;
+}
+
+.cardInnerVehicle {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 15px 15px;
+}
+
+.summaryCard .font-12 {
+  font-size: 12px;
+  color: #475467;
+  font-weight: 500;
+}
+.cardMonitor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.cardMonitor .filterSection {
+  gap: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.searchSummaryBtn {
+  position: relative;
+}
+
+.searchSummaryBtn input {
+  border: 1px solid #d8d8d8;
+  padding: 6px;
+  max-width: 40px;
+  border-radius: 5px;
+}
+
+.searchSummaryBtn i {
+  position: absolute;
+  right: 7px;
+  top: 5px;
+  color: #9f9f9f;
+}
+
+/*Summary   Page Design end*/
+/*Title Details   Page Design start*/
+.titleDetails {
+  background: none;
+  box-shadow: none;
+}
+
+.tabTitle {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.currentVehicleSection {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.CurrentDetails {
+  background-color: #f3f2f7;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.cardInnerVehicle .CurrentDetails h5 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cardInnerVehicle .CurrentDetails i.wheelColor {
+  color: rgb(117, 117, 117);
+}
+
+.cardInnerVehicle .CurrentDetails i {
+  color: var(--bg-primary);
+}
+
+.cardInnerVehicle .currentDate {
+  gap: 15px;
+}
+
+.txtRed {
+  font-size: 12px;
+  padding: 3px 10px;
+  font-weight: 500;
+  border-radius: 5px;
+  color: #b45651 !important;
+  background-color: #f0d1cf;
+  border: 1px solid #fcf1f5;
+  display: flex;
+  align-items: center;
+}
+
+#titleDetailsTab .accordion-item.tabItem {
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.accordion-button:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+h2.tabSummaryHead {
+  margin-bottom: 15px;
+}
+
+.accordion-button.tabSummaryButton {
+  padding: 20px 20px;
+}
+
+.accordion-button.tabSummaryButton:not(.collapsed) {
+  background-color: #fff;
+  color: #000;
+  box-shadow: none;
+}
+
+.accordion-body.tabSummaryBody {
+  padding: 0 1.25rem 1rem 1.25rem;
+}
+
+.historyTab {
+  background-color: #fdeee9;
+  padding: 10px;
+  border-radius: 5px;
+  max-height: 320px;
+  min-height: 250px;
+  margin-bottom: 20px;
+}
+
+.summaryTitleGap {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.wheelGrayBg i {
+  background-color: #c6c6c6;
+  color: #555555;
+}
+
+.wheelDangerBg i {
+  background-color: #f8ecec;
+  color: #d3545e;
+}
+
+.wheelPurpleBg i {
+  background-color: #e2e3ff;
+  color: #6367eb;
+}
+
+.wheelWarningBg i {
+  background-color: #fef6eb;
+  color: #f0a33a;
+}
+
+.wheelSuccessBg i {
+  background-color: #eefdf3;
+  color: #09bd50;
+}
+
+.wheelBlueBg i {
+  background-color: #ebf8ff;
+  color: #0d9ff7;
+}
+
+.upperHistoryBox {
+  gap: 16px;
+}
+
+.historyTab .upperSeller {
+  gap: 15px;
+}
+
+.historyTab .upperSeller .sellerName {
+  flex-grow: 3;
+}
+
+.flexHistory {
+  display: flex;
+}
+
+.titleHistoryArea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.historyTab .yearDetails {
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.historyTab .bodyTypeDetails {
+  gap: 20px;
+}
+
+.historyTab .signatureDetails {
+  gap: 12px;
+  justify-content: space-between;
+}
+
+/*Title Details   Page Design ends*/
+/*Additional Information   Page Design starts*/
+.cardInnerAddition {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cardAddInfo {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
+}
+
+.cardInnerAddition .subAddition.addGapInfo {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.cardInnerAddition .recallCardSection {
+  display: flex;
+  align-items: center;
+  gap: 200px;
+}
+
+.card.cardAddInfo .card-body {
+  padding: 15px 15px;
+}
+
+/*Additional Information   Page Design ends*/
+/* Import File  Page Design Starts*/
+
+#main-content.heightFile {
+  height: calc(100vh - 96px);
+}
+
+.file-upload-contain .customFileInput {
+  border: 1px dashed;
+  padding: 20px;
+}
+
+.customBtn button {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.file-upload-contain input {
+  height: 200px;
+  display: flex;
+  align-items: center;
+}
+
+/* Import File  Page Design ends*/
+.swal2-confirm.swal2-styled {
+  width: 120px !important;
+  background: #6366f0 !important;
+  border-color: #6366f0 !important;
+}
+/* Loader Image*/
+
+.loader-component {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  background: #000000a3;
+  left: 0;
+  top: 0;
+}
+.loader-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.spinner-border {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  vertical-align: text-bottom;
+  border: 0.25em solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner-border 0.75s linear infinite;
+  color: #d6fb3d;
+  cursor: none !important;
+}
+.loader-img img {
+  position: absolute;
+}
+@-webkit-keyframes spinner-border {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner-border {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* User Dashboard*/
+.card.Suspicious-kpi {
+  background: #fffeec;
+}
+.card.inProgress-kpi {
+  background: #e8eaff;
+}
+.cardBottomLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+.cardBottomLine .aroow-angle span {
+  font-size: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.card-area .userAuthorityBox {
+  display: flex;
+  justify-content: space-between;
+}
+.card-area p.authorityPara {
+  font-size: 12px;
+}
+.authorityThreeBtn button {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  border: none;
+  font-weight: 500;
+  padding: 3px 6px;
+  font-size: 11px;
+}
+.authorityThreeBtn button i {
+  font-size: 16px;
+  margin-right: 2px;
+}
+.authorityThreeBtn button.redbtn {
+  color: #b42318;
+}
+.authorityThreeBtn button.pinkbtn {
+  color: #f62096;
+}
+.vinRecordsNum {
+  border: 1px solid #eeeeee;
+  background: #ebebeb;
+  color: #475467;
+  border-radius: 15px;
+  padding: 2px 8px;
+  margin-left: 10px;
+}
+.clear-button {
+  padding: 3px 10px;
+  background: #f9fafb;
+  border: 1px solid #dfdfdf;
+}
+.progress-button {
+  padding: 3px 10px;
+}
+.d-flex.actionBtn {
+  align-items: center;
+  justify-content: flex-end;
+}
+.d-flex.actionBtn a {
+  background: #fff;
+  color: #525e71 !important;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  border-radius: 8px;
+}
+/*POPup on Table*/
+.vinPopout {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #00000030;
+  display: none;
+  left: 162px;
+  min-width: 300px;
+  position: absolute;
+  right: auto;
+  top: 12px;
+  z-index: 9999;
+}
+.vinPopout:after {
+  border-top: solid transparent 10px;
+  border-bottom: solid transparent 10px;
+  border-right: solid #fff 10px;
+  content: " ";
+  height: 0;
+  left: auto;
+  margin-left: -9px;
+  position: absolute;
+  width: 0;
+  top: 18px;
+}
+
+.table tbody tr td.vinNumberUserdash:hover .vinPopout {
+  display: block;
+}
+.vinnumber-top h3 {
+  color: #000;
+  font-size: 16px;
+}
+.vinPopout-Content {
+  color: #000;
+  font-size: 13px;
+  padding: 15px 20px;
+}
+.pop-tableContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+}
+.pop-tableContent-compound {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.vinnumber-top {
+  margin: 0 0 20px;
+}
+.tableChildren small {
+  display: block;
+  color: #8b8b8b;
+}
+.vinPopout a.orangeColor {
+  color: #ef684b !important;
+}
+.vin-popout-footer a span {
+  text-decoration: underline;
+}
+
+.vinPopout a {
+  text-decoration: underline;
+}
+.vin-popout-footer {
+  background: #f5f6f8;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.vin-popout-footer::after {
+  content: "";
+  height: 55px;
+  width: 2px;
+  background: #ffffff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.vin-popout-footer a {
+  align-items: center;
+  display: flex;
+  text-decoration: none;
+  padding: 15px 30px;
+}
+.vin-popout-footer a i {
+  margin-right: 5px;
+}
+td.vinNumberUserdash {
+  color: #000;
+  font-weight: 500;
+  position: relative;
+}
+.table > tbody > tr > td {
+  font-size: 13px;
+}
+.userdashbrdTable .table > tbody > tr > td {
+  padding: 20px 15px;
+}
+.UserCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+}
+.userSingleSearch {
+  display: flex;
+  align-items: center;
+}
+.month-calendar.userDashFilter {
+  border: 1px solid var(--bg-primary);
+  color: var(--bg-primary);
+}
+.table-light-Usertbl {
+  border-bottom: 1px solid #e1e1e1;
+}
+.paginationArea .pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  justify-content: space-between;
+  width: 100%;
+}
+.userdashbrdTable .table > tbody > tr:hover {
+  background-color: #f3f6ff !important;
+}
+.pop-tableContent.border-bottom {
+  padding: 0 0 10px;
+}
+.authorityThreeBtn {
+  justify-content: space-between;
+}
+.userdashbrdTable table tbody tr td {
+  border-top: 1px solid #f5f5f5;
+  vertical-align: middle;
+}
+table tbody tr td {
+  border-top: 1px solid #f5f5f5;
+  vertical-align: middle;
+}
+.userdashbrdTable .table-responsive {
+  min-height: 530px;
+}
+span.dot-green {
+  background: #17b26a;
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  margin-right: 5px;
+  border-radius: 10px;
+}
+span.dot-red {
+  background: #f04438;
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  margin-right: 5px;
+  border-radius: 10px;
+}
+.textWarning {
+  color: #c77441;
+  border: 1px solid #fee7a7;
+  background-color: #fffaeb;
+}
+.textRed {
+  color: #b42318;
+  border: 1px solid #fedad7;
+  background-color: #fef3f2;
+}
+/* Vehicle user UI CSS starts */
+.card.userVehicle {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  background: url("/assets/images/vin-detectionf.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+/* User Summary card CSS */
+span.cardNum {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.87);
+}
+.borderedHead {
+  border-right: 2px solid #fff;
+}
+span.wrapLine {
+  white-space: normal;
+  display: block;
+  max-width: 290px;
+  width: 100%;
+}
+tr.secondTitleHead > td {
+  font-weight: 500;
+}
+td p.subHeadRowData {
+  font-weight: 500;
+  font-size: 14px;
+}
+.headLines {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.headLines p {
+  color: #5a6f90;
+  font-weight: 500;
+}
+
+span.apexcharts-legend-marker::before {
+  content: "";
+  height: 16px;
+  width: 16px;
+  display: block;
+  position: absolute;
+  left: 0;
+  background: transparent;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.apexcharts-menu-icon {
+  display: none !important;
+}
+
+/* Frontend Terms of service page */
+
+.frontHead .LoginBtn {
+  background-color: var(--bg-primary);
+  padding: 6px 30px;
+  border-radius: 6px;
+  border: 1px solid var(--bg-primary);
+  color: #fff !important;
+  font-size: 16px;
+}
+
+.frontHead .LoginBtn:focus {
+  box-shadow: none;
+}
+
+.innerTermsBody .TermsContent p {
+  color: rgba(0, 0, 0, 0.87);
+}
+.my-30 {
+  margin: 30px 0;
+}
+.footer {
+  padding: 0;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 100%;
+}
+
+.footer-container {
+  margin: 0 auto;
+}
+.footer-contents {
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-contents ul {
+  gap: 1rem;
+  flex-direction: row;
+  display: flex;
+  margin: 0;
+  padding: 1.5rem 1.5rem 1.5rem 0;
+  list-style: none;
+  text-align: left;
+}
+
+.footer-contents p {
+  font-size: 14px;
+  color: #aaa;
+  margin: 0;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+/* contact us form section CSS */
+
+.contactForm-wrapper {
+  padding: 40px 0 0;
+  gap: 20px;
+}
+.contact-details .address {
+  margin: 0 0 35px;
+}
+.contactForm {
+  padding: 30px 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 0 10px #0000001a;
+}
+.contactForm textarea {
+  resize: none;
+}
+.contactForm .form-input,
+.form-text-area {
+  background-color: #f0f4f5;
+  height: 50px;
+  padding-left: 16px;
+}
+
+.contactForm .form-text-area {
+  background-color: #f0f4f5;
+  height: auto;
+  padding-left: 16px;
+}
+
+.contactForm .form-control::placeholder {
+  color: #aeb4b9;
+  font-weight: 500;
+  opacity: 1;
+}
+
+.contactForm .form-control:-ms-input-placeholder {
+  color: #aeb4b9;
+  font-weight: 500;
+}
+
+.contactForm .form-control::-ms-input-placeholder {
+  color: #aeb4b9;
+  font-weight: 500;
+}
+
+.contactForm .form-control:focus {
+  border: 1px solid var(--bg-primary);
+  box-shadow: none;
+}
+
+.contactForm .title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.contactForm .description {
+  color: #aeb4b9;
+  font-size: 14px;
+  text-align: center;
+}
+.address h5 {
+  display: flex;
+  align-items: center;
+}
+.addressInner {
+  display: flex;
+  gap: 15px;
+}
+.address .addressInner i {
+  color: var(--bg-primary);
+}
+.forgetPassword .forgetLink {
+  color: var(--bg-primary) !important;
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  margin-top: 25px;
+  text-transform: capitalize;
+}
+.FormHead {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.FormHead p {
+  color: #a6a6aa;
+  text-transform: none;
+  font-weight: normal;
+}
+.FormInnerContent .InnerForm {
+  padding: 30px 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 10px #0000001a;
+  margin: 10px auto;
+}
+.forgotModelbox .modal-dialog {
+  max-width: 600px;
+  width: 100%;
+}
+.forgotModelbox .FormInnerContentForgotForm {
+  padding: 20px 30px 40px;
+}
+.forgotModelbox .FormInnerContentForgotForm .logoHeader.loginLogoBottom {
+  margin: 0 0 35px;
+}
+.forgotModelbox .logoHeader h3 img {
+  width: 40px;
+  margin-right: 10px;
+}
+.forgotModelbox .FormInnerContentForgotForm h3 {
+  font-size: 22px;
+}
+.forgotModelbox .FormInnerContentForgotForm .FormHead {
+  margin: 0 0 80px;
+}
+
+/* / about us section CSS / */
+.conatctwrapper .container.main-Container {
+  min-height: calc(100vh - 195px);
+  height: 100%;
+}
+.checkandMatch{
+  position: relative;
+}
+.ul-aboutSection {
+  list-style-type: disc;
+  line-height: 35px;
+}
+.container.frontAboutUs {
+  margin: 30px auto;
+}
+.aboutContentPara p {
+  font-size: 14px;
+  line-height: 25px;
+}
+.aboutImg img {
+  border-radius: 20px;
+}
+.mainAboutHead {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.pieChartGraph .currentWeek::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background: #f3f3f3;
+  top: 55px;
+}
+
+/* selected button css */
+
+a.btn.selected {
+  background: #EBFE2E !important;
+  color: #000 !important;
+  border: 1px solid #EBFE2E !important;
+  font-weight: 600;
+}
+.line-30{
+  line-height: 30px;
+}
+
+/* for error css */
+.form-helper-error{
+  color: red;
+}
+/* privacy-pages css */
+.privacy-content{
+  text-align: justify;
+}
+.privacy-list{
+  list-style: disc;
+  margin-left: 15px;
+  line-height: 25px;
+}
+/* User-profile CSS */
+.card-profile-inner img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.card-profile-inner {
+  position: relative;
+}
+
+img {
+  content: attr(alt); /* Display the alt text */
+  font-size: 12px; /* Style the alt text */
+  color: #47475d;
+}
+
+

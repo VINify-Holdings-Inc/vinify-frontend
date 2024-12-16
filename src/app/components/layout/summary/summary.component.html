@@ -1,0 +1,51 @@
+<div class="SummaryCardDetails">
+    <!-- Vehicle Tab Start -->
+    <div class="card userVehicle">
+        <div class="card-left">
+            <div class="card-header">
+                <div class="cardHeaderStyle">
+                    <div class="topVehicleHead">
+                        <div class="vehicleTitle">
+                            <h4 class="card-title" id="tabTitle">Vehicle Summary</h4>
+                            <p>VIN - {{vin}} - {{model}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="tabVehicleSection cardHeaderJustify">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation"><button class="nav-link firstTab active"
+                                id="summary-tab" data-bs-toggle="tab" data-bs-target="#summaryTab" type="button"
+                                role="tab" aria-controls="summaryTab" aria-selected="true">Summary</button></li>
+                        <li class="nav-item" role="presentation"><button class="nav-link " id="details-tab"
+                                data-bs-toggle="tab" data-bs-target="#detailsTab" type="button" role="tab"
+                                aria-controls="detailsTab" aria-selected="false">Title Details</button></li>
+                        <li class="nav-item" role="presentation"><button class="nav-link lastTab " id="additional-tab"
+                                data-bs-toggle="tab" data-bs-target="#additionalTab" type="button" role="tab"
+                                aria-controls="additionalTab" aria-selected="false">Additional Information</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vehicle Tab End -->
+
+    <!-- Tab Content -->
+    <div class="tabBodySection">
+        <div class="tab-content" id="myTabContent">
+            <!-- Summary Tab Section -->
+            <div class="tab-pane fade show active" id="summaryTab" role="tabpanel">
+               <app-summary-inner></app-summary-inner>
+            </div>
+            <!-- Title Details Tab Section -->
+            <div class="tab-pane fade" id="detailsTab" role="tabpanel">
+                <app-summary-title></app-summary-title>
+            </div>
+            <!-- Additional Info Tab Section -->
+            <div class="tab-pane fade" id="additionalTab" role="tabpanel">
+                <app-summary-additional></app-summary-additional>
+            </div>
+        </div>
+    </div>
+</div>

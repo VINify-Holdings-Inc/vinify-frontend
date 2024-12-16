@@ -1,0 +1,847 @@
+@media only screen and (max-width: 1400px) {
+  /*====Login   Page Design start ==============*/
+  .leftLoginSection .vehicleImage img {
+    height: 270px;
+  }
+  .loginTopsection {
+    padding-top: 35px;
+    max-width: 492px;
+    position: relative;
+  }
+  .leftLoginSection .loginCheck {
+    padding: 0 39px;
+  }
+  .leftLoginSection .vehicleImage {
+    max-width: 100%;
+    position: absolute;
+    top: 35px;
+    right: 40px;
+  }
+  .btn-compound {
+    gap: 18px;
+    top: -35px;
+    max-width: 192px;
+  }
+  /*======== Dashbaord UI Page Design ===========*/
+  .card-body.cardInnerDash {
+    padding: 8px 8px;
+  }
+  .card-area h6 {
+    font-size: 12px;
+  }
+  .cardBottomLine a {
+    font-size: 12px;
+  }
+  /*====== Vehicle Monitoring  Page Design start ==========*/
+  .search_table.ms-3.form-group.has-search {
+    width: 200px;
+    max-width: 100%;
+  }
+  .month-calendar.vehicleMonthSearch span {
+    font-size: 10px;
+    line-height: 15px;
+  }
+  .month-calendar.vehicleMonthSearch i {
+    font-size: 18px;
+  }
+  .currentVehicleSection {
+    gap: 12px;
+  }
+  .historyTab p {
+    font-size: 12px;
+  }
+  .currentVehicleSection p {
+    font-size: 12px;
+  }
+  .CurrentDetails h5 {
+    font-size: 16px;
+  }
+  .tabVehicleSection.cardHeaderJustify ul li.nav-item .nav-link {
+    font-size: 12px;
+  }
+  .cardSubHead {
+    gap: 4px;
+  }
+  .month-calendar i {
+    font-size: 18px;
+    padding-right: 5px;
+  }
+  .month-calendar span {
+    font-size: 11px;
+    line-height: 15px;
+  }
+  .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
+    max-width: 400px;
+    width: 400px;
+  }
+  .headerSection .profile_dropdown {
+    width: 160px;
+    max-width: 160px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+
+  .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
+    max-width: 400px;
+    width: 400px;
+  }
+  .headerSection .profile_dropdown {
+    width: 160px;
+    max-width: 160px;
+  }
+  /*=======================================================
+      Login   Page Design start
+    ===============================================*/
+  .leftLoginSection .vehicleImage img {
+    height: 280px;
+  }
+  .loginTopsection {
+    max-width: 480px;
+    width: 100%;
+    margin: auto;
+  }
+  .leftLoginSection .vehicleImage {
+    right: 30px;
+  }
+  /*=======================================================
+      Vehicle Monitoring  Page Design starts
+    ===============================================*/
+  .graphSectionBtn .vinAlertGraph_area .fraud_numbers {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .vinAlertGraph_area h6 {
+    font-size: 12px;
+  }
+  /*=======================================================
+      Dashboard Page Design start
+    ===============================================*/
+  .card-area h6 {
+    font-size: 13px;
+  }
+  .graphSectionBtn {
+    border: 1px solid #f3f3f3;
+    padding: 20px 9px;
+  }
+  .card.rounded.recentlyAlert .card-area span.date-time {
+    font-size: 11px;
+  }
+  .card.rounded.recentlyAlert .text-white {
+    font-size: 12px;
+  }
+  .cardBottomLine a {
+    font-size: 9px;
+    font-weight: 600;
+  }
+  .btn-view {
+    font-size: 12px;
+  }
+  h3.card-title.cardDashNum {
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+  .card.rounded.recentlyAlert .card-area p {
+    font-size: 12px;
+  }
+  .card.rounded.recentlyAlert .card-area h5 {
+    font-size: 13px;
+  }
+  .pieChartGraph .currentWeek {
+    gap: 5px;
+  }
+  /*=======================================================
+      Vehicle Monitoring Page Design start
+========================================================*/
+  .VehicleMonitoring .tabVehicleSection.cardHeaderJustify {
+    flex-direction: column;
+    display: flex;
+    gap: 15px;
+  }
+  .search_table.ms-3.form-group.has-search {
+    width: 200px;
+    max-width: 100%;
+  }
+  .VehicleMonitoring .tabVehicleSection.cardHeaderJustify .nav-tabs {
+    order: 1;
+  }
+  .month-calendar.vehicleMonthSearch {
+    width: 50%;
+    line-height: 15px;
+  }
+  /*=======================================================
+    Summary  Page Design start
+===================================================*/
+  .SummaryCardDetails .card-body .tabVehicleSection.cardHeaderJustify {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .SummaryCardDetails .tabVehicleSection.cardHeaderJustify .nav-tabs {
+    order: 1;
+  }
+  .tabVehicleSection.cardHeaderJustify ul li.nav-item .nav-link {
+    font-size: 14px;
+  }
+  .month-calendar {
+    line-height: 15px;
+  }
+  .month-calendar.vehicleMonthSearch {
+    width: auto;
+  }
+  .cardSubHead {
+    gap: 15px;
+  }
+  .SummaryCardDetails .card-body .tabVehicleSection .month-calendar span {
+    line-height: 30px;
+  }
+}
+@media only screen and (max-width: 992px) {
+ 
+  /* login page UI end*/
+  .month-calendar.vehicleMonthSearch span {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .pt-4.barGraph {
+    height: auto;
+  }
+  /*=======================================================
+      Login   Page Design start
+    ===============================================*/
+  .leftLoginSection .loginCheck {
+    padding: 0 35px;
+  }
+  .rightLoginSection {
+    max-width: 362px;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    padding: 50px 0;
+  }
+  #main-content.active {
+    width: 100%;
+    padding: 20px 20px 0px 20px;
+    position: relative;
+    margin-top: 72px;
+    background-color: #f5f7fa;
+  }
+  #sidebar {
+    position: fixed;
+    top: 72px;
+    bottom: 0;
+    z-index: 10;
+    width: 240px;
+    transform: translatex(-100%);
+    transition: all 150ms linear;
+    box-shadow: none !important;
+  }
+  .leftLoginSection .vehicleImage {
+    top: 60px;
+    right: 2px;
+  }
+  .leftLoginSection .vehicleImage img {
+    height: 230px;
+  }
+  .btn-compound {
+    max-width: 164px;
+    gap: 10px;
+    top: -10px;
+  }
+  .loginTopsection {
+    max-width: 382px;
+    width: 100%;
+    margin: auto;
+  }
+  .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent,
+  .leftLoginSection .oneLeftButton button {
+    padding: 10px 10px;
+  }
+  /*=======================================================
+      Header Design start
+    ===============================================*/
+  ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
+    gap: 0px;
+  }
+  span.d-flex.update-time i {
+    font-size: 14px;
+  }
+  .headerSection .calendar-date {
+    margin-right: 14px;
+  }
+  .headerSection .navbar-btn_track {
+    margin-right: 14px;
+  }
+  .headerSection .calendar-date .update-time {
+    font-size: 11px;
+  }
+  .headerSection .navbar-btn_track {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+  a.btn.btn-primary.navbar-btn_track:after {
+    height: 30px;
+  }
+  a.nav-link.dropdown-toggle.no-toggle-icon i {
+    line-height: 35px;
+  }
+  .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
+    max-width: 350px;
+    width: 350px;
+  }
+  .headerSection .notification-dropdown .alertCheck {
+    padding: 5px;
+    margin-right: 15px;
+  }
+  .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown p {
+    font-size: 11px;
+    line-height: 18px;
+  }
+  .headerSection .notification-dropdown .notifications-points h5 {
+    font-size: 14px;
+  }
+  #sidebarCollapse {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+  }
+  button#sidebarCollapse i {
+    line-height: 35px;
+    font-size: 24px;
+  }
+  /*=======================================================
+      Dashboard Page Design start
+===============================================*/
+  .card-body.cardInnerDash {
+    padding: 10px;
+  }
+  .card-area h6 {
+    font-size: 13px;
+  }
+  .cardBottomLine a {
+    font-size: 9px;
+    font-weight: 600;
+  }
+  /*=======================================================
+      Vehicle Monitoring Page Design start
+===============================================*/
+  .search_table.ms-3.form-group.has-search {
+    width: 200px;
+    max-width: 100%;
+  }
+  .SummaryCardDetails .card-body .tabVehicleSection .month-calendar span {
+    line-height: 30px;
+  }
+  /*=======================================================
+      Summary Page Design start
+===============================================*/
+  .month-calendar span {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .card-body.cardInnerDash {
+    padding: 10px 10px;
+  }
+  button.btn.btn-view {
+    padding: 5px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .authorityThreeBtn {
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: start;
+  }
+  /*=======================================================
+      Sidebar  Design start
+    ===============================================*/
+  #sidebar.active {
+    width: 70px;
+    height: 100% !important;
+    position: fixed !important;
+    overflow: visible !important;
+    top: 72px !important;
+    z-index: 3;
+    float: left !important;
+    bottom: 0 !important;
+  }
+  #sidebar.active .sidebar-header h3 span {
+    display: none;
+    transition: all 0.5s ease;
+  }
+  #sidebar.active ul li a span {
+    display: none;
+    transition: all 0.5s ease;
+  }
+  #sidebar.active .dropdown-toggle::after {
+    display: none;
+    transition: all 0.5s ease;
+  }
+  #content {
+    width: calc(100% - 240px);
+    position: relative;
+    float: right;
+    transition: all 0.3s;
+  }
+  #content.active {
+    width: 100%;
+  }
+  #sidebar.active .menu {
+    position: absolute;
+    left: 81px;
+    background-color: white;
+    width: 180px;
+    height: auto;
+    margin: 5px 0;
+    top: 0;
+    border: 1px solid #dcd9d9;
+    z-index: 4;
+  }
+  .dropdown-menu {
+    border: 0;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%);
+    transform: translate(10px, 10px);
+  }
+}
+@media only screen and (max-width: 768px) {
+  .UserCardHeader.cardMainHead {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 15px;
+}
+  /* logo CSS */
+  span.titleLogo.logoMobile {
+    display: block;
+    font-size: 18px;
+  }
+  .headerSection .calendar-date {
+    display: none;
+  }
+  a.nav-link.dropdown-toggle.no-toggle-icon img {
+    height: 25px;
+    width: 25px;
+  }
+  span.titleLogo {
+    display: none;
+  }
+  button#sidebarCollapse {
+    margin-left: 0;
+  }
+  .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
+    top: 58px;
+  }
+  ul.dropdown-menu.dropdown-menu-end.profile_dropdown.show {
+    top: 54px;
+  }
+  .card.rounded.recentlyAlert .card-area span.date-time {
+    font-size: 11px;
+  }
+  button.btn.btn-view {
+    padding: 5px;
+  }
+  /*=======================================================
+      Login   Page Design start
+    ===============================================*/
+
+  .leftLoginSection .vehicleImage img {
+    height: 320px;
+  }
+  .btn-compound {
+    max-width: 200px;
+    gap: 20px;
+    top: 18px;
+  }
+  .leftLoginSection .loginCheck {
+    padding: 0 40px;
+  }
+  .loginTopsection {
+    max-width: 490px;
+    width: 100%;
+    margin: auto;
+    padding: 0;
+  }
+  .leftLoginSection {
+    min-height: unset;
+    order: 2;
+  }
+  .login-footerbtm {
+    margin: 105px 0 0;
+  }
+  .pieChartGraph {
+    height: auto;
+  }
+  .card.rounded.recentlyAlert .card-body {
+    padding: 10px;
+  }
+  .pt-4.barGraph {
+    height: auto;
+  }
+  .trackVinNumber {
+    right: 112px;
+  }
+  /*=======================================================
+   Dashboard UI Page Design start 
+   =======================================================*/
+
+  /*=======================================================
+      Vehicle Monitoring Page Design start
+    ===============================================*/
+  .VehicleMonitoring .card .vehicleTitle h4.card-title {
+    font-size: 16px;
+  }
+  .tabVehicleSection.cardHeaderJustify {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .tabVehicleSection.cardHeaderJustify .nav-tabs {
+    order: 2;
+  }
+  .search_table.form-group.has-search.position-relative {
+    width: 100%;
+  }
+  .cardSubHead {
+    width: 100%;
+    gap: 15px;
+  }
+  .SummaryCardDetails .card .vehicleTitle h4.card-title {
+    font-size: 16px;
+  }
+  .currentVehicleSection p {
+    font-size: 14px;
+  }
+  .SummaryCardDetails .card-body .tabVehicleSection .month-calendar span {
+    line-height: 30px;
+    font-size: 14px;
+  }
+  .currentVehicleSection p {
+    font-size: 14px;
+  }
+  .historyTab p {
+    font-size: 14px;
+  }
+
+  /* form CSS  */
+  .contactForm-wrapper {
+    flex-direction: column;
+  }
+  .footer-contents {
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 600px) {
+  /*  Login   Page Design start */
+  .btn-compound {
+    max-width: 180px;
+    gap: 10px;
+    top: 18px;
+  }
+  .leftLoginSection .vehicleImage {
+    top: 50px;
+    right: 0;
+  }
+  .leftLoginSection .vehicleImage img {
+    height: 270px;
+  }
+  .loginTopsection {
+    max-width: 430px;
+    width: 100%;
+    margin: auto;
+    padding: 0;
+  }
+  .leftLoginSection .innerLeftSection {
+    max-width: 525px;
+    gap: 20px;
+  }
+  .login-footerbtm {
+    margin: 85px 0 0;
+  }
+  .flexDirection {
+    flex-direction: column;
+    align-items: start;
+  }
+  /*=======================================================
+      Dashboard Page Design start
+    ===============================================*/
+  .cardWrapper .card-header .cardMainHead {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: start;
+  }
+  .tabVehicleSection.cardHeaderJustify {
+    flex-direction: column;
+    gap: 15px;
+  }
+  /*=======================================================
+      Vehicle Monitoring Page Design start
+    ===============================================*/
+  .topVehicleHead {
+    flex-direction: column;
+    display: flex;
+    gap: 15px;
+  }
+  /*=======================================================
+      Summary Page Design start
+    ===============================================*/
+  .cardHeaderJustify {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .summaryCard.cardHeaderJustify {
+    flex-direction: row;
+  }
+  .cardSubHead {
+    width: 100%;
+    gap: 15px;
+  }
+  .tabVehicleSection.cardHeaderJustify .nav-tabs {
+    gap: 10px;
+    justify-content: center;
+  }
+  .SummaryCardDetails .card .month-calendar span {
+    font-size: 12px;
+    line-height: 30px;
+  }
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link {
+    border-radius: 5px;
+  }
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.active {
+    border-radius: 5px;
+  }
+  .cardMonitor {
+    gap: 15px;
+  }
+  .currentVehicleSection {
+    flex-direction: column;
+  }
+  .currentVehicleSection p {
+    font-size: 14px;
+  }
+  .historyTab p {
+    font-size: 14px;
+  }
+  span.titleLogo {
+    display: none;
+  }
+  .headerSection .calendar-date {
+    display: none;
+  }
+  .headerSection .navbar-btn_track {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  .logoHeader h3 img {
+    width: 30px;
+  }
+  button#sidebarCollapse {
+    margin-left: 0;
+  }
+  a.nav-link.dropdown-toggle.no-toggle-icon img {
+    height: 25px;
+    width: 25px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .authorityThreeBtn {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  span.titleLogo {
+    display: none;
+  }
+  .headerSection .calendar-date {
+    display: none;
+  }
+  .headerSection .navbar-btn_track {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+  .logoHeader h3 img {
+    width: 25px;
+  }
+  button#sidebarCollapse {
+    margin-left: 0;
+  }
+  a.nav-link.dropdown-toggle.no-toggle-icon img {
+    height: 25px;
+    width: 25px;
+  }
+  .logoHeader {
+    padding: 0;
+  }
+  #sidebarCollapse {
+    background-color: #fff;
+  }
+  a.btn.btn-primary.navbar-btn_track:after {
+    display: none;
+  }
+  .main-content {
+    margin-top: 62px;
+  }
+  #main-content.active {
+    margin-top: 62px;
+  }
+  #main-content {
+    margin-top: 62px;
+  }
+  #sidebar {
+    top: 62px;
+  }
+  /*=======================================================
+      Login   Page Design start
+    ===============================================*/
+  .leftLoginSection .loginCheck {
+    padding: 0 10px;
+  }
+  .leftLoginSection .loginTextSection p {
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 17px;
+  }
+  .leftLoginSection .loginTextSection h1 {
+    font-size: 14px;
+  }
+  .leftLoginSection .vehicleImage img {
+    height: 155px;
+  }
+  .leftLoginSection .vehicleImage {
+    top: 60px;
+    right: 20px;
+  }
+  .btn-compound {
+    max-width: 135px;
+    gap: 10px;
+    top: 30px;
+    left: 15px;
+    font-size: 12px;
+  }
+  .leftLoginSection .oneLeftButton button {
+    padding: 4px 4px;
+  }
+  .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent {
+    padding: 4px 4px;
+  }
+  .rightLoginSection {
+    max-width: 290px;
+  }
+  .rightLoginSection .headerText p {
+    font-size: 12px;
+  }
+  .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent i {
+    font-weight: normal;
+    font-size: 16px;
+  }
+  button.btn-yellow.btnZero i {
+    font-weight: normal;
+    font-size: 16px;
+  }
+  .loginTopsection {
+    max-width: 310px;
+  }
+  .leftLoginSection .footerLogin p {
+    font-size: 11px;
+  }
+  .login-footerbtm {
+    margin: 40px 0 0;
+  }
+  /*=======================================================
+      Dashboard Page Design start
+    ===============================================*/
+  .vinAlertGraph .card .cardVinAlert {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 10px;
+  }
+  .graphHeading {
+    height: 20px;
+  }
+  /*=======================================================
+      Vehicle Monitoring Page Design start
+    ===============================================*/
+  .cardSubHead {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+  }
+  .month-calendar {
+    width: 100%;
+    line-height: 30px;
+  }
+  .tabVehicleSection.cardHeaderJustify .nav-tabs {
+    gap: 10px;
+    justify-content: center;
+  }
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.firstTab {
+    border-radius: 5px;
+  }
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.lastTab {
+    border-radius: 5px;
+  }
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link {
+    border-radius: 5px;
+  }
+  .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link.active {
+    border-radius: 5px;
+  }
+  .month-calendar.vehicleMonthSearch {
+    width: 100%;
+    line-height: 30px;
+  }
+  /*=======================================================
+      Summary Page Design start
+    ===============================================*/
+  .topVehicleHead {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .currentVehicleSection {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cardInnerVehicle .CurrentDetails h5 {
+    gap: 4px;
+  }
+  .month-calendar.vehicleMonthSearch span {
+    font-size: 13px;
+    line-height: 30px;
+  }
+  .month-calendar {
+    width: 100%;
+  }
+  .cardMonitor {
+    flex-direction: column;
+    align-items: start;
+    gap: 15px;
+  }
+  .month-calendar span {
+    font-size: 12px;
+    line-height: 30px;
+  }
+  .historyTab p {
+    font-size: 14px;
+  }
+  .currentVehicleSection p {
+    font-size: 14px;
+  }
+  .pt-4.barGraph {
+    height: auto;
+  }
+  .pieChartGraph {
+    height: auto;
+  }
+  .currentVehicleSection {
+    flex-direction: column;
+  }
+  /* form css */
+  .footer-contents p {
+    margin: 0 auto;
+  }
+}
+
+
+

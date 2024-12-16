@@ -1,0 +1,44 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main # Trigger the pipeline on push to the main branch
+
+jobs:
+  # Step 1: Set up the environment and install dependencies
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3 # Gets your repository's code
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Set Node.js version
+      - name: Install Dependencies
+        run: npm install # Installs dependencies
+
+  # Step 2: Run tests
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Run Tests
+        run: npm test # Runs your unit tests
+
+  # Step 3: Deploy the application
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Deploy to server
+        run: |
+          echo "Deploying..."
+          ssh user@yourserver.com "cd /path/to/app && git pull && npm install && pm2 restart app"
+        env:
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
