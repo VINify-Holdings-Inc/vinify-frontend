@@ -39,6 +39,6 @@ jobs:
       - name: Deploy to server
         run: |
           echo "Deploying..."
-          ssh user@yourserver.com "cd /path/to/app && git pull && npm install && pm2 restart app"
+          ssh user@mvmtechwagger.com "cd /path/to/app && git pull && npm install && pm2 restart app"
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
