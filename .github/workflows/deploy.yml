@@ -2,7 +2,7 @@ name: Deploy Angular Frontend
 
 on:
   push:
-     branches: [ $default-branch ]
+     branches: -main
      
 
 jobs:
