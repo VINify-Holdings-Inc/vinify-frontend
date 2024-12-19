@@ -1,9 +1,9 @@
-name: Deploy Angular Frontend
+name: MVMFrontend
 
 on:
   push:
-     branches: -main
-     
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -16,13 +16,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'  
+          node-version: '22'
 
       - name: Install Dependencies
         run: npm install
 
       - name: Build Angular Project
-        run: npm run build
+        run: ng build --configuration=production
 
       - name: Deploy to Server
         uses: appleboy/scp-action@master
@@ -31,4 +31,4 @@ jobs:
           username: YOUR_USERNAME            # Replace with your SSH username
           key: ${{ secrets.SSH_PRIVATE_KEY }} # SSH private key stored in GitHub Secrets
           source: dist/                      # Folder to deploy
-          target: /var/www/html/mvm          # Target folder on your server
+          target: /var/www/web               # Target folder on your server
