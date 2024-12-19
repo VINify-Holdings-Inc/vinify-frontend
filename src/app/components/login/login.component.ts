@@ -52,6 +52,7 @@ export class LoginComponent {
       this.router.navigate(['/dashboard']);
     }
   }
+  
 
   onSubmit() {
     if (this.loginForm.valid) {
