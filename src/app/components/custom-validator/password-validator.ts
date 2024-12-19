@@ -16,10 +16,13 @@ export function passwordValidator(): ValidatorFn {
     if (!/[0-9]/.test(value)) {
       errors.missingNumber = true;
     }
+    if (!/[a-z]/.test(value)) {
+      errors.missingLowercase = true;
+    }
     if (!/[!@#$%^&*]/.test(value)) {
       errors.missingSpecial = true;
     }
-    if (value.length < 6) {
+    if (value.length < 8) {
       errors.tooShort = true;
     }
 
