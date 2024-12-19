@@ -1,7 +1,19 @@
 @media only screen and (max-width: 1400px) {
+  /* .recentlyAlert.userUI .card-body.bg-alert-area {
+    padding: 8px 8px;
+} */
+.userAuthorityBox span {
+  font-size: 12px;
+}
   /*====Login   Page Design start ==============*/
   .leftLoginSection .vehicleImage img {
-    height: 270px;
+    height: 304px;
+  }
+  .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent{
+    font-size: 14px;
+  }
+  .leftLoginSection .oneLeftButton button{
+    font-size: 14px;
   }
   .loginTopsection {
     padding-top: 35px;
@@ -93,7 +105,7 @@
       Login   Page Design start
     ===============================================*/
   .leftLoginSection .vehicleImage img {
-    height: 280px;
+    height: 301px;
   }
   .loginTopsection {
     max-width: 480px;
@@ -235,11 +247,11 @@
     box-shadow: none !important;
   }
   .leftLoginSection .vehicleImage {
-    top: 60px;
-    right: 2px;
-  }
+    top: 55px;
+    right: -20px;
+}
   .leftLoginSection .vehicleImage img {
-    height: 230px;
+    height: 285px;
   }
   .btn-compound {
     max-width: 164px;
@@ -251,10 +263,9 @@
     width: 100%;
     margin: auto;
   }
-  .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent,
-  .leftLoginSection .oneLeftButton button {
-    padding: 10px 10px;
-  }
+  .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent, .leftLoginSection .oneLeftButton button {
+    padding: 6px 6px;
+}
   /*=======================================================
       Header Design start
     ===============================================*/
@@ -718,8 +729,10 @@
   }
   .leftLoginSection .oneLeftButton button {
     padding: 4px 4px;
+    font-size: 12px;
   }
   .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent {
+    font-size: 12px;
     padding: 4px 4px;
   }
   .rightLoginSection {

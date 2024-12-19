@@ -1,211 +1,71 @@
 <div class="row">
-    <div class="col-xl-8 col-lg-8 col-md-12">
+    <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="row dashboardDetailsBtn">
             <!-- Total Vehicle Monitors -->
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                <div class="card">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card" role="region" aria-labelledby="total-vehicle-monitors">
                     <div class="card-body cardInnerDash">
                         <div class="card-area">
-                            <h6>Total Vehicle Monitors</h6>
-                            <div>
-                                <h3 class="card-title cardDashNum">1,036,278</h3>
-                            </div>
+                            <h6 id="total-vehicle-monitors">Total Vehicle Monitors</h6>
                         </div>
-                        <div class="cardBottomLine">
-                            <a href="#">Check Details</a>
-                            <a href="#" class="aroow-angle">
-                                <span class="material-symbols-outlined">arrow_forward</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Urgent Alerts -->
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                <div class="card bg-orange">
-                    <div class="card-body cardInnerDash">
-                        <div class="card-area">
-                            <h6>Urgent Alerts</h6>
-                            <div>
-                                <h3 class="card-title cardDashNum">10</h3>
-                            </div>
+                        <div>
+                            <h3 class="card-title cardDashNum" aria-label="1,036,278 total vehicle monitors">1,036,278</h3>
                         </div>
                         <div class="cardBottomLine check-details">
-                            <a href="#">Check Details</a>
-                            <a href="#" class="aroow-angle">
-                                <span class="material-symbols-outlined">arrow_forward</span>
+                            <a href="#" aria-label="Check details about total vehicle monitors">Check Details</a>
+                            <a href="#" class="arrow-angle" aria-hidden="true">
+                                <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Suspicious Vehicles -->
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                <div class="card Suspicious-kpi">
+            
+            <!-- Urgent Alerts -->
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="card bg-pink" role="region" aria-labelledby="urgent-alerts">
                     <div class="card-body cardInnerDash">
                         <div class="card-area">
-                            <h6>Suspicious Vehicles</h6>
-                            <div>
-                                <h3 class="card-title cardDashNum">24</h3>
-                            </div>
+                            <h6 id="urgent-alerts">New Updates</h6>
                         </div>
-                        <div class="cardBottomLine">
-                            <a href="#">Check Summary</a>
-                            <a href="#" class="aroow-angle">
-                                <span class="material-symbols-outlined">arrow_forward</span>
+                        <div>
+                            <h3 class="card-title cardDashNum" aria-label="10 urgent alerts">800</h3>
+                        </div>
+                        <div class="cardBottomLine check-details color-check">
+                            <a href="#" aria-label="Check details about urgent alerts">Check Details</a>
+                            <a href="#" class="arrow-angle" aria-hidden="true">
+                                <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- In-progress Vehicles -->
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                <div class="card inProgress-kpi">
-                    <div class="card-body cardInnerDash">
+            
+            <!-- Recent Alerts -->
+            <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+                <div class="card rounded recentlyAlert userUI" role="region" aria-labelledby="recent-alert">
+                    <div class="card-header bg-header-area">
+                        <h5 id="recent-alert">Recent Alert</h5>
+                        <a href="#" class="view" aria-label="View all recent alerts">View All</a>
+                    </div>
+                    <div class="card-body bg-alert-area">
                         <div class="card-area">
-                            <h6>In-progress Vehicles</h6>
-                            <div>
-                                <h3 class="card-title cardDashNum">2,000</h3>
+                            <div class="userAuthorityBox">
+                                <p><span aria-label="Vehicle Identification Number">JH4KA8260MC000001</span></p>
+                                <span class="date-time" aria-label="Alert generated at 10:40 AM on Friday, December 10, 2024">10.40 AM, Fri 10 Dec 2024</span>
                             </div>
-                        </div>
-                        <div class="cardBottomLine">
-                            <a href="#">Check Details</a>
-                            <a href="#" class="aroow-angle">
-                                <span class="material-symbols-outlined">arrow_forward</span>
-                            </a>
+                            <h5>Suspected Theft Report Detected</h5>
+                            <p class="authorityPara">
+                                Theft detected for VIN XYZ123456 in Florida. Immediate action required.
+                            </p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- VIN Alerts -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="vinAlertGraph">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="cardVinAlert">
-                                <h4 class="card-title">VIN Alerts</h4>
-                                <div class="MonthCard">
-                                    <div class="d-flex">
-                                        Current Month
-                                        <i class="material-symbols-outlined mt-1 arrow_key">keyboard_arrow_down</i>
-                                    </div>
-                                    <div class="chartBtn">
-                                        <button type="button" [ngClass]="isChartSelected=='line' ? 'btn chat_btn show_cart bg-orange' : 'btn chat_btn show_cart '"  (click)="changeChart('line')">
-                                            <i class="material-symbols-outlined">show_chart</i>Line
-                                        </button>
-                                        <button type="button" [ngClass]="isChartSelected=='bar' ? 'btn chat_btn btn-lights bg-orange' : 'btn chat_btn btn-lights '" (click)="changeChart('bar')">
-                                            <i class="material-symbols-outlined">bar_chart</i>Bar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class='row'>
-                                <div class='col-xl-3 col-lg-3 col-md-3 col-sm-6 graphSectionBtn'>
-                                    <div class='vinAlertGraph_area'>
-                                        <div class='graphHeading'>
-                                            <h6>Customer Fraud Alerts</h6>
-                                        </div>
-                                        <div class='fraudGraphArea'>
-                                            <h4 class='fraud_numbers'>12,345<span class='alert_percent'>+6% <i class="material-symbols-outlined">arrow_upward</i></span></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='col-xl-3 col-lg-3 col-md-3 col-sm-6 graphSectionBtn'>
-                                    <div class='vinAlertGraph_area'>
-                                        <div class='graphHeading'>
-                                            <h6>Title Fraud Alerts</h6>
-                                        </div>
-                                        <div class='fraudGraphArea'>
-                                            <h4 class='fraud_numbers'>999<span class='alert_percent'>+2% <i class="material-symbols-outlined">arrow_upward</i></span></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='col-xl-3 col-lg-3 col-md-3 col-sm-6 graphSectionBtn' >
-                                    <div class='vinAlertGraph_area'>
-                                        <div class='graphHeading'>
-                                            <h6>Impound Alerts</h6>
-                                        </div>
-                                        <div class='fraudGraphArea'>
-                                            <h4 class='fraud_numbers'>3<span class='alert_percent'>+0.1%<i class="material-symbols-outlined">arrow_upward</i></span></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='col-xl-3 col-lg-3 col-md-3 col-sm-6 graphSectionBtn'>
-                                    <div class='vinAlertGraph_area'>
-                                        <div class='graphHeading'>
-                                            <h6>Theft Alerts</h6>
-                                        </div>
-                                        <div class='fraudGraphArea'>
-                                            <h4 class='fraud_numbers'>54<span class='alert_percent'>+3% <i class="material-symbols-outlined">arrow_upward</i></span></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-4 barGraph">
-                                @if(isChartSelected == 'bar'){
-                                     <app-bar-chart> </app-bar-chart>
-                                }
-                                @if(isChartSelected == 'line'){
-                                    <app-line-chart></app-line-chart>    
-                                }
-                              
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Right Sidebar -->
-    <div class="col-xl-4 col-lg-4 col-md-12">
-        <div class="card rounded recentlyAlert">
-            <div class="card-header bg-header-area">
-                <h5>Recent Alert</h5>
-            </div>
-            <div class="card-body bg-alert-area">
-                <div class="card-area">
-                    <div class="userAuthorityBox">
-                        <p>JH4KA8260MC000001</p>
-                        <span class="date-time">10.40 AM, Fri 10 June 2024</span>
-                    </div>
-                    <h5>Suspected theft report detected</h5>
-                    <p class="authorityPara">
-                        Theft detected for VIN XYZ123456 in Florida. Immediate action required.
-                    </p>
-                </div>
-                <div class="d-flex align-items-center my-3 authorityThreeBtn">
-                    <button type="button" class="redbtn">
-                        <i class="material-symbols-outlined">phone_in_talk</i>Contact Authorities
-                    </button>
-                    <button type="button" class="pinkbtn">
-                        <i class="material-symbols-outlined">search</i>Investigate
-                    </button>
-                    <button type="button" class="redbtn">
-                        <i class="material-symbols-outlined">monitor_weight</i>Details Monitor
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="pieChartGraph">
-                    <div class="currentWeek">
-                        <h4 class="card-title">Geo Distribution of Title Changes</h4>
-                        <p>
-                            Current Month
-                            <i class="material-symbols-outlined arrow_key">keyboard_arrow_down</i>
-                        </p>
-                    </div>
-                    <app-donut-chart></app-donut-chart>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <!-- User Table -->
  <app-user-table [tableData]="tableData" [page]="page" [totalPages]="totalPages" (handelPaginagtion)="handlePageChange($event)"></app-user-table>
  

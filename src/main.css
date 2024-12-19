@@ -1,9 +1,15 @@
 /*Defalut CSS start*/
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"); */
+
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
-  --bg-primary: #6366f0;
+  --bg-primary: #cf4b5f;
+  --text-primary: #cf4b5f;
+  --logo-colot: #434343;
   --text-white: #fff;
+
+  --font-family-1: ();
 }
 body,
 html {
@@ -39,7 +45,7 @@ p {
 }
 
 a {
-  color: #47475d !important;
+  color: #47475d;
   font-weight: 400;
   text-decoration: none;
 }
@@ -96,7 +102,10 @@ ol {
 .bg-orange {
   background-color: #ffefe7 !important;
 }
-
+.card.bg-pink{
+  background-color: #F6E1E4 !important;
+  border: 1px solid #F1CAD0;
+}
 .historyTab p {
   color: #47475d;
   font-weight: 600;
@@ -122,11 +131,11 @@ p.textLight {
 .card {
   display: inline-block;
   position: relative;
-  border: none;
+  border: 1px solid #ECEEF1;
   width: 100%;
   margin-bottom: 20px;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
-  border-radius: 8px;
+  box-shadow: 0px 5px 10px 0px #8D90AC1A;
+  border-radius: 12px;
   color: rgba(0, 0, 0, 0.87);
   background: #fff;
 }
@@ -173,7 +182,8 @@ hr {
 .card-area h6 {
   color: #475467;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 16px;
+  font-family: 'Inter';
 }
 
 .cardBottomLine a {
@@ -227,13 +237,13 @@ p.smallAddIcon i {
   font-size: 14px;
   padding: 15px 15px;
 }
-.table > :not(caption) > * > *{
+.table > :not(caption) > * > * {
   background: none !important;
   box-shadow: none !important;
 }
 .table > thead > tr {
   background-color: #f8f9fa;
-} 
+}
 .table > tbody > tr:hover {
   background-color: #edeaf9 !important;
 }
@@ -277,7 +287,7 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   position: fixed;
 }
 .headerSection .navbar-nav > li > a {
-  color: #ffffff;
+  color: #47475d;
 }
 .headerSection .navbar .notification {
   position: absolute;
@@ -296,6 +306,13 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   line-height: 14px;
 }
 
+button.btn.btn-custom {
+  background: var(--bg-primary);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--bg-primary);
+}
 .headerSection .navbar-nav > .active > a:focus {
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.08);
@@ -374,10 +391,13 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
 }
 
 .titleLogo {
-  color: #374cf8;
+  color: var(--logo-color);
   font-weight: 700;
+  font-family: 'Roboto';
 }
-
+.headerText h4 {
+  color: #383b56;
+}
 .headerSection .profile_dropdown {
   width: 200px;
   max-width: 200px;
@@ -588,7 +608,7 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   background: #fff !important;
-  border-right: 1px solid #dee2e6!important;
+  border-right: 1px solid #dee2e6 !important;
 }
 
 #sidebar::-webkit-scrollbar {
@@ -636,11 +656,11 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
 }
 
 .rightLoginSection .logoHeader h3 {
-	font-size: 1.8rem;
-	margin: 0 0 35px;
+  font-size: 1.8rem;
+  margin: 0 0 35px;
 }
 .rightLoginSection .headerText p {
-  color: #616161;
+  color: #6c737f;
 }
 #sidebar.show-nav,
 .body-overlay.show-nav {
@@ -690,6 +710,19 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
 }
 .recentlyAlert .card-body.bg-alert-area {
   height: 173px;
+}
+.card.rounded.recentlyAlert.userUI .card-area {
+  flex-direction: column;
+  display: flex;
+  gap: 8px;
+}
+.recentlyAlert.userUI .card-body.bg-alert-area {
+  height: auto;
+  background: linear-gradient(
+    180deg,
+    #933E59 0%,
+    #E05061 100%);
+  padding: 8px 24px;
 }
 #sidebar ul li a:hover {
   color: #333;
@@ -849,36 +882,47 @@ button#sidebarCollapse i {
 }
 
 h3.card-title.cardDashNum {
-  font-size: 22px;
-  margin-bottom: 0;
-  padding: 4px 0;
+  font-size: 36px;
+  margin: 0;
+  color: #201D1E;
+  font-weight: 700;
+  line-height: 28px;
+  font-family: 'Inter';
 }
-
+.userAuthorityBox span {
+  font-family: 'Inter';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: left;
+}
 .card .card-header.bg-header-area {
-  background: #313590 !important;
+  padding: 10px 24px;
+  background: #A5435C !important;
   color: #fff;
-  border-radius: 8px 8px 0 0 !important;
+  border-radius: 12px 12px 0 0 !important;
+  display: flex;
+  justify-content: space-between;
 }
-
 .card .card-header.bg-header-area h5 {
   margin: 0;
-  padding-bottom: 15px;
   font-size: 16px;
+  font-weight: 500;
+}
+.card .card-header.bg-header-area a.view{
+  text-decoration:underline;
+  color: #fff;
 }
 
 .card.rounded.recentlyAlert .card-area span.date-time {
   font-size: 12px;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 .card.rounded.recentlyAlert .card-area h5 {
   font-weight: 500;
   color: #fff;
-}
-
-.card.rounded.recentlyAlert .card-area p {
-  font-weight: normal;
-  opacity: 0.8;
+  margin: 0;
 }
 
 .card.rounded.recentlyAlert .text-white {
@@ -1051,7 +1095,15 @@ span.command_key .f_style {
 }
 
 .check-details a {
-  color: #ed7481 !important;
+  color: #475467;
+  font-family: 'Inter';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.check-details.color-check a{
+  color: var(--text-primary);
 }
 
 .vinAlertGraph .card .card-header .chartBtn {
@@ -1094,7 +1146,10 @@ span.command_key .f_style {
 }
 
 .card-body.cardInnerDash {
-  padding: 8px 8px;
+  display: flex;
+  padding: 12px 24px;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .fraudGraphArea {
@@ -1172,7 +1227,7 @@ ul.pass-list li svg {
 }
 
 .leftLoginSection {
-  background: #6366f1;
+  background: linear-gradient(180deg, #340e14 0%, #000000 100%);
   min-height: 100vh;
   height: auto;
   overflow: hidden;
@@ -1222,10 +1277,14 @@ ul.pass-list li svg {
 }
 
 .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent {
-  background: #7b7ff0;
-  color: #fff;
-  font-weight: normal;
-  padding: 10px 20px;
+  background: #fff;
+  color: #383b56;
+  font-weight: 500;
+  padding: 10px 10px;
+  font-family: "Barlow", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 18px;
 }
 
 .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent i {
@@ -1241,8 +1300,11 @@ ul.pass-list li svg {
 }
 
 .leftLoginSection .loginTextSection p.spanLine {
-  font-weight: lighter;
   color: #fff;
+  font-family:'Inter';
+  font-size: 16px;
+  font-weight: lighter;
+  line-height: 22px;
   text-align: center;
 }
 
@@ -1259,13 +1321,17 @@ ul.pass-list li svg {
 }
 
 .leftLoginSection .oneLeftButton button {
-  background-color: #d6fb3d;
+  background-color: #fff;
   max-width: 100%;
-  color: #000;
+  color: #383b56;
   font-weight: 600;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 8px !important;
+  font-family: 'Barlow';
+  font-size: 18px;
+  line-height: 24px;
+  text-align: left;
 }
 
 .loginTextSection {
@@ -1275,6 +1341,8 @@ ul.pass-list li svg {
 .loginTextSection h3 {
   color: #fff;
   text-align: center;
+  font-weight: 700;
+  line-height: 40px;
 }
 
 .leftLoginSection .loginTextSection p {
@@ -1296,7 +1364,7 @@ ul.pass-list li svg {
 }
 
 .leftLoginSection .vehicleImage img {
-  height: 330px;
+  height: 370px;
 }
 
 .rightLoginSection {
@@ -1309,7 +1377,7 @@ ul.pass-list li svg {
 .formInput::placeholder {
   font-size: 14px;
   background-color: #fff;
-  color: #a6a6aa;
+  color: #d5d5e2;
 }
 
 .formInput#password {
@@ -1321,7 +1389,7 @@ ul.pass-list li svg {
 input.formInput:focus {
   outline: none;
   box-shadow: none;
-  border-color: #949393;
+  border-color: var(--bg-primary);
   border-width: 2px;
 }
 textarea.formInput:focus {
@@ -1347,12 +1415,17 @@ textarea.formInput:focus {
 }
 
 .signin_btn button {
-  background-color: #6366f1;
-  border-radius: 25px;
-  border: none;
+  background-color: var(--bg-primary);
+  border-radius: 8px;
+  border: 1px solid var(--bg-primary);
   padding: 12px 0;
   margin-top: 10px;
   width: 100%;
+}
+.signin_btn button.btn.disabled,
+.btn:disabled {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--bg-primary);
 }
 
 .signin_btn button:focus {
@@ -1802,6 +1875,10 @@ h2.tabSummaryHead {
   justify-content: center;
   min-height: 100vh;
 }
+.loader-img img{
+  height: 50px;
+  width: 50px;
+}
 .spinner-border {
   display: inline-block;
   width: 120px;
@@ -1851,11 +1928,21 @@ h2.tabSummaryHead {
   right: 0;
 }
 .card-area .userAuthorityBox {
+  flex-wrap: wrap;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 .card-area p.authorityPara {
   font-size: 12px;
+font-family: 'Inter';
+font-size: 11px;
+font-weight: 400;
+line-height: 16px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
 }
 .authorityThreeBtn button {
   display: flex;
@@ -2321,7 +2408,7 @@ span.apexcharts-legend-marker::before {
   min-height: calc(100vh - 195px);
   height: 100%;
 }
-.checkandMatch{
+.checkandMatch {
   position: relative;
 }
 .ul-aboutSection {
@@ -2354,24 +2441,24 @@ span.apexcharts-legend-marker::before {
 /* selected button css */
 
 a.btn.selected {
-  background: #EBFE2E !important;
+  background: #ebfe2e !important;
   color: #000 !important;
-  border: 1px solid #EBFE2E !important;
+  border: 1px solid #ebfe2e !important;
   font-weight: 600;
 }
-.line-30{
+.line-30 {
   line-height: 30px;
 }
 
 /* for error css */
-.form-helper-error{
+.form-helper-error {
   color: red;
 }
 /* privacy-pages css */
-.privacy-content{
+.privacy-content {
   text-align: justify;
 }
-.privacy-list{
+.privacy-list {
   list-style: disc;
   margin-left: 15px;
   line-height: 25px;
@@ -2392,5 +2479,3 @@ img {
   font-size: 12px; /* Style the alt text */
   color: #47475d;
 }
-
-

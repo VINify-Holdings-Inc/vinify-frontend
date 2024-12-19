@@ -114,24 +114,23 @@
             />
 
                 <!-- General required error -->
-               <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']">
+              <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']">
                 <span class="text-danger">Password is required</span>
               </div>
 
-               <!-- Specific errors -->
+              <!-- Specific errors -->
               <div *ngIf="loginForm.controls['password'].errors?.['tooShort']">
-                <span class="text-danger"> - At least 6 characters long</span>
+                <span class="text-danger">Password must be at least 6 characters long</span>
               </div>
               <div *ngIf="loginForm.controls['password'].errors?.['missingUppercase']">
-                <span class="text-danger"> - At least one uppercase letter</span>
+                <span class="text-danger">Password must contain at least one uppercase letter</span>
               </div>
               <div *ngIf="loginForm.controls['password'].errors?.['missingNumber']">
-                <span class="text-danger"> - At least one number</span>
+                <span class="text-danger">Password must contain at least one number</span>
               </div>
               <div *ngIf="loginForm.controls['password'].errors?.['missingSpecial']">
-                <span class="text-danger"> - At least one special character </span>
+                <span class="text-danger">Password must contain at least one special character (e.g., !, #, $, etc.)</span>
               </div>
-
           </div>
 
           <!-- Sign In Button -->
