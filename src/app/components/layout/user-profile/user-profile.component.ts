@@ -76,7 +76,7 @@ export class UserProfileComponent implements OnInit {
       
     } else {
       this.profilePhoto = null;
-      this.profile = null;
+      this.profile = this.sessionService.getSessionData("profile")
     }
   }
 
