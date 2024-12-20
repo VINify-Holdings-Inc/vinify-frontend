@@ -856,5 +856,18 @@
   }
 }
 
+/* for error on login CSS */
 
-
+.errorBox {
+  box-shadow: 0px 4px 8px 0px #1018280D;
+  border: 1px solid #1018280D;
+  padding: 8px !important;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin: 10px 0 0 !important;
+  position: absolute;
+  top: 56px;
+  width: 100%;
+  background: #fffffff2;
+  z-index: 99999;
+}

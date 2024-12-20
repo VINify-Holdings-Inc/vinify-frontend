@@ -21,7 +21,7 @@ export class LoginComponent {
  
  
   logo: string = 'assets/images/logo.png';
-  vehicleImg: string = 'assets/images/loginVehicle.png';
+  vehicleImg: string = 'assets/images/login-bg.png';
 
   loginForm: FormGroup;
   isResInProgLogin :boolean=false; 
