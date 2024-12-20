@@ -114,23 +114,62 @@
             />
 
                 <!-- General required error -->
-              <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']">
+               <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']">
                 <span class="text-danger">Password is required</span>
               </div>
 
-              <!-- Specific errors -->
-              <div *ngIf="loginForm.controls['password'].errors?.['tooShort']">
-                <span class="text-danger">Password must be at least 6 characters long</span>
+               <!-- Specific errors -->
+              <!-- <div *ngIf="loginForm.controls['password'].errors?.['tooShort']">
+                <span class="text-danger"> - At least 8 characters long</span>
               </div>
               <div *ngIf="loginForm.controls['password'].errors?.['missingUppercase']">
-                <span class="text-danger">Password must contain at least one uppercase letter</span>
+                <span class="text-danger"> - At least one uppercase letter</span>
+              </div>
+              <div *ngIf="loginForm.controls['password'].errors?.['missingLowercase']">
+                <span class="text-danger"> - At least one lowercase letter</span>
               </div>
               <div *ngIf="loginForm.controls['password'].errors?.['missingNumber']">
-                <span class="text-danger">Password must contain at least one number</span>
+                <span class="text-danger"> - At least one number</span>
               </div>
               <div *ngIf="loginForm.controls['password'].errors?.['missingSpecial']">
-                <span class="text-danger">Password must contain at least one special character (e.g., !, #, $, etc.)</span>
+                <span class="text-danger"> - At least one special character </span>
+              </div> -->
+
+
+              <div class="errorBox" *ngIf="loginForm.controls['password'].value && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched) && loginForm.controls['password'].errors as errors">
+                <div>
+                  <span [class.text-danger]="errors['tooShort']" 
+                        [class.text-success]="!errors['tooShort']">
+                    {{ errors['tooShort'] ? '&#x274C;' : '&#x2714;' }} - At least 8 characters long
+                  </span>
+                </div>
+                <div>
+                  <span [class.text-danger]="errors['missingUppercase']" 
+                        [class.text-success]="!errors['missingUppercase']">
+                    {{ errors['missingUppercase'] ? '&#x274C;' : '&#x2714;' }} - At least one uppercase letter
+                  </span>
+                </div>
+                <div>
+                  <span [class.text-danger]="errors['missingLowercase']" 
+                        [class.text-success]="!errors['missingLowercase']">
+                    {{ errors['missingLowercase'] ? '&#x274C;' : '&#x2714;' }} - At least one lowercase letter
+                  </span>
+                </div>
+                <div>
+                  <span [class.text-danger]="errors['missingNumber']" 
+                        [class.text-success]="!errors['missingNumber']">
+                    {{ errors['missingNumber'] ? '&#x274C;' : '&#x2714;' }} - At least one number
+                  </span>
+                </div>
+                <div>
+                  <span [class.text-danger]="errors['missingSpecial']" 
+                        [class.text-success]="!errors['missingSpecial']">
+                    {{ errors['missingSpecial'] ? '&#x274C;' : '&#x2714;' }} - At least one special character
+                  </span>
+                </div>
               </div>
+              
+
           </div>
 
           <!-- Sign In Button -->

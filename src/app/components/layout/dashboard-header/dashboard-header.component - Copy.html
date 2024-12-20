@@ -1,9 +1,12 @@
 <header>
     <div class="top-navbar headerSection">
-        <nav class="navbar navbar-expand navbar-light bg-navbar header-Design">
+        <nav class="navbar navbar-expand navbar-light bg-navbar">
             <div class="container-fluid">
                 <div class="logoHeader">
-                        <img [src]="logo" class="img-fluid" alt="Logo" />
+                    <h3>
+                        <img src="assets/images/logo.png" class="img-fluid" alt="Logo" />
+                        <span class="titleLogo">Title Alarm</span>
+                    </h3>
                 </div>
                 <button type="button" id="sidebarCollapse" (click)="toggleSidebar()" class="d-flex justify-center align-item-center d-xl-block">
                     <i class="material-symbols-outlined text-dark">menu_open</i>
@@ -11,18 +14,16 @@
                 <div class="collapse navbar-collapse d-lg-block d-xl-block d-md-none" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto d-flex align-items-center headerRight">
                         <li class="nav-item calendar-date">
-                            <div class="d-flex align-items-center">
-                                <img src="assets/images/icons/calendar-full.svg" class="img-fluid" alt="settings" />
+                            <p class="d-flex">
                                 <span class="d-flex update-time">
-                                    Last Record Updated:
+                                    <i class="material-symbols-outlined">calendar_month</i> Last Record Updated:
                                 </span>
                                 <span class="update-time">Mar 16, 2021 - 09:35PM</span>
-                            </div>
+                            </p>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="btn btn-custom navbar-btn_track" data-bs-toggle="dropdown" aria-expanded="false">
                                 Track VIN Status
-                                <img src="assets/images/icons/down-arrow.svg" class="img-fluid" alt="settings"/>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end VinTrackDiv">
                                 <div class="custom-modal"></div>
@@ -38,13 +39,12 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <img src="assets/images/icons/setting.svg" class="img-fluid" alt="settings" />
+                            <i class="material-symbols-outlined">Settings</i>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle no-toggle-icon" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div class="notification-dot"><span>20</span></div>
-                                <img src="assets/images/icons/bell.svg" class="img-fluid" alt="notifications" />
-
+                                <i class="material-symbols-outlined">notifications</i>
+                                <div class="notification-dot"></div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end notification-dropdown">
                                 <li class="dropdown-item">

@@ -1,5 +1,5 @@
 import { CommonModule, JsonPipe } from '@angular/common';
-import { Component ,OnInit} from '@angular/core';
+import { Component ,OnInit,ChangeDetectorRef} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/api-service.service'; 
 import { SessionService } from '../../services/session.service'
@@ -21,7 +21,7 @@ export class LoginComponent {
  
  
   logo: string = 'assets/images/logo.png';
-  vehicleImg: string = 'assets/images/loginVehicle.png';
+  vehicleImg: string = 'assets/images/login-bg.png';
 
   loginForm: FormGroup;
   isResInProgLogin :boolean=false; 
@@ -30,6 +30,7 @@ export class LoginComponent {
               private authService: AuthService,
               private sessionService: SessionService,
               private router: Router,
+           //   private cdr: ChangeDetectorRef
                ) {
              
      this.loginForm = this.fb.group({
@@ -43,6 +44,10 @@ export class LoginComponent {
         ],
       ],
     });
+    // Watch for changes to the password field and trigger change detection
+    // this.loginForm.controls['password'].valueChanges.subscribe(() => {
+    //   this.cdr.detectChanges();
+    // });
   }
 
   ngOnInit(): void {
@@ -52,6 +57,8 @@ export class LoginComponent {
       this.router.navigate(['/dashboard']);
     }
   }
+  
+  
 
   onSubmit() {
     if (this.loginForm.valid) {
