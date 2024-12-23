@@ -1,9 +1,16 @@
 /*Defalut CSS start*/
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"); */
+
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
-  --bg-primary: #6366f0;
+  --bg-primary: #cf4b5f;
+  --text-primary: #cf4b5f;
+  --logo-colot: #475467;
   --text-white: #fff;
+
+  --font-family-1: ();
 }
 body,
 html {
@@ -39,7 +46,7 @@ p {
 }
 
 a {
-  color: #47475d !important;
+  color: #47475d;
   font-weight: 400;
   text-decoration: none;
 }
@@ -96,7 +103,10 @@ ol {
 .bg-orange {
   background-color: #ffefe7 !important;
 }
-
+.card.bg-pink {
+  background-color: #f6e1e4 !important;
+  border: 1px solid #f1cad0;
+}
 .historyTab p {
   color: #47475d;
   font-weight: 600;
@@ -122,11 +132,11 @@ p.textLight {
 .card {
   display: inline-block;
   position: relative;
-  border: none;
+  border: 1px solid #eceef1;
   width: 100%;
   margin-bottom: 20px;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
-  border-radius: 8px;
+  box-shadow: 0px 5px 10px 0px #8d90ac1a;
+  border-radius: 12px;
   color: rgba(0, 0, 0, 0.87);
   background: #fff;
 }
@@ -173,7 +183,8 @@ hr {
 .card-area h6 {
   color: #475467;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 16px;
+  font-family: "Inter";
 }
 
 .cardBottomLine a {
@@ -181,8 +192,13 @@ hr {
 }
 
 .card-title {
-  font-size: 18px;
   margin-bottom: 0;
+  font-family: "Inter";
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 38px;
+  text-align: left;
+  color: #101828;
 }
 
 .pieChartGraph .card-title {
@@ -227,13 +243,13 @@ p.smallAddIcon i {
   font-size: 14px;
   padding: 15px 15px;
 }
-.table > :not(caption) > * > *{
+.table > :not(caption) > * > * {
   background: none !important;
   box-shadow: none !important;
 }
 .table > thead > tr {
   background-color: #f8f9fa;
-} 
+}
 .table > tbody > tr:hover {
   background-color: #edeaf9 !important;
 }
@@ -277,7 +293,7 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   position: fixed;
 }
 .headerSection .navbar-nav > li > a {
-  color: #ffffff;
+  color: #47475d;
 }
 .headerSection .navbar .notification {
   position: absolute;
@@ -296,6 +312,13 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   line-height: 14px;
 }
 
+button.btn.btn-custom {
+  background: var(--bg-primary);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--bg-primary);
+}
 .headerSection .navbar-nav > .active > a:focus {
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.08);
@@ -304,9 +327,10 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
 .headerSection .navbar-btn_track {
   background-color: var(--bg-primary);
   color: var(--text-white);
-  padding: 6px 16px;
-  border-radius: 6px;
+  padding: 10px 14px;
+  border-radius: 8px;
   border: 1px solid var(--bg-primary);
+  height: 40px;
 }
 
 .headerSection .navbar-btn_track:focus {
@@ -374,10 +398,13 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
 }
 
 .titleLogo {
-  color: #374cf8;
+  color: var(--logo-color);
   font-weight: 700;
+  font-family: "Roboto";
 }
-
+.headerText h4 {
+  color: #383b56;
+}
 .headerSection .profile_dropdown {
   width: 200px;
   max-width: 200px;
@@ -444,17 +471,29 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   border-radius: 20px;
   padding: 5px 15px;
 }
-
-.headerSection .notification-dot {
-  height: 10px;
-  width: 10px;
-  background-color: red;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  display: inline-block;
+a.nav-link.dropdown-toggle.no-toggle-icon {
   position: relative;
-  top: -10px;
-  left: -25px;
+}
+.notification-dot span {
+  color: #fff;
+  font-size: 10px;
+}
+.calendar-svg {
+  display: flex;
+  gap: 4px;
+}
+.headerSection .notification-dot {
+  height: 12px;
+  width: 12px;
+  padding: 10px;
+  background-color: #cf4b5f;
+  border-radius: 50%;
+  display: flex;
+  position: absolute;
+  top: -6px;
+  right: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 .headerSection button.navbar-btn_track::after {
@@ -487,22 +526,36 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
 }
 
 .headerSection .calendar-date .update-time {
-  color: #000;
+  color: #201D1E;
   padding-left: 10px;
-  font-size: 12px;
+font-family: 'Inter';
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+text-align: left;
 }
 
 .headerSection .calendar-date .d-flex.update-time {
-  color: #b8b8b8;
+  color: #475467;
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
 }
-
+#sidebar ul li a img {
+  position: relative;
+  color: #000;
+  font-size: 22px;
+  margin: 5px 10px;
+}
 .dropdown-menu.dropdown-menu-end.VinTrackDiv.show {
   width: 100vw;
   position: fixed;
   background: #0000;
   left: -10px;
   right: 0;
-  top: 60px;
+  top: 65px;
   height: 100%;
 }
 
@@ -588,7 +641,7 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   background: #fff !important;
-  border-right: 1px solid #dee2e6!important;
+  border-right: 1px solid #dee2e6 !important;
 }
 
 #sidebar::-webkit-scrollbar {
@@ -618,29 +671,8 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   background-color: #ffffff;
   border-bottom: 1px solid #eee;
 }
-
-.logoHeader {
-  padding: 1rem 1.5rem 1rem 0;
-}
-
-.logoHeader h3 {
-  color: #333;
-  font-size: 16px;
-  margin: 0px;
-  text-transform: uppercase;
-  transition: all 5 ease;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.rightLoginSection .logoHeader h3 {
-	font-size: 1.8rem;
-	margin: 0 0 35px;
-}
 .rightLoginSection .headerText p {
-  color: #616161;
+  color: #6c737f;
 }
 #sidebar.show-nav,
 .body-overlay.show-nav {
@@ -650,15 +682,19 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   visibility: visible;
   z-index: 15;
 }
-.logoHeader h3 img {
-  width: 30px;
-  margin-right: 10px;
+.header-Design {
+  padding: 16px 24px;
+  border-bottom: 1px solid #eaecf0;
 }
-
+.logoHeader img {
+  width: 258px;
+}
+.logoHeader img {
+  width: 170px;
+}
 #sidebar ul li {
   padding: 2px 7px;
 }
-
 #sidebar ul li.active > a {
   color: #333;
   margin: 5px auto;
@@ -690,6 +726,16 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
 }
 .recentlyAlert .card-body.bg-alert-area {
   height: 173px;
+}
+.card.rounded.recentlyAlert.userUI .card-area {
+  flex-direction: column;
+  display: flex;
+  gap: 8px;
+}
+.recentlyAlert.userUI .card-body.bg-alert-area {
+  height: auto;
+  background: linear-gradient(180deg, #933e59 0%, #e05061 100%);
+  padding: 8px 24px;
 }
 #sidebar ul li a:hover {
   color: #333;
@@ -849,36 +895,47 @@ button#sidebarCollapse i {
 }
 
 h3.card-title.cardDashNum {
-  font-size: 22px;
-  margin-bottom: 0;
-  padding: 4px 0;
+  font-size: 36px;
+  margin: 0;
+  color: #201d1e;
+  font-weight: 700;
+  line-height: 28px;
+  font-family: "Inter";
 }
-
+.userAuthorityBox span {
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: left;
+}
 .card .card-header.bg-header-area {
-  background: #313590 !important;
+  padding: 10px 24px;
+  background: #a5435c !important;
   color: #fff;
-  border-radius: 8px 8px 0 0 !important;
+  border-radius: 12px 12px 0 0 !important;
+  display: flex;
+  justify-content: space-between;
 }
-
 .card .card-header.bg-header-area h5 {
   margin: 0;
-  padding-bottom: 15px;
   font-size: 16px;
+  font-weight: 500;
+}
+.card .card-header.bg-header-area a.view {
+  text-decoration: underline;
+  color: #fff;
 }
 
 .card.rounded.recentlyAlert .card-area span.date-time {
   font-size: 12px;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 .card.rounded.recentlyAlert .card-area h5 {
   font-weight: 500;
   color: #fff;
-}
-
-.card.rounded.recentlyAlert .card-area p {
-  font-weight: normal;
-  opacity: 0.8;
+  margin: 0;
 }
 
 .card.rounded.recentlyAlert .text-white {
@@ -981,14 +1038,15 @@ td.vinNumberUserdash {
 .month-calendar {
   display: flex;
   align-items: center;
-  border: 1px solid #e1e1e1;
-  border-radius: 5px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
   font-weight: 600;
-  padding: 5px 10px;
+  padding: 10px 14px;
   font-size: 13px;
   cursor: pointer;
   line-height: 30px;
   background: #fff;
+  box-shadow: 0px 1px 2px 0px #1018280d;
 }
 .month-calendar i {
   font-size: 20px;
@@ -1051,7 +1109,15 @@ span.command_key .f_style {
 }
 
 .check-details a {
-  color: #ed7481 !important;
+  color: #475467;
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.check-details.color-check a {
+  color: var(--text-primary);
 }
 
 .vinAlertGraph .card .card-header .chartBtn {
@@ -1094,7 +1160,10 @@ span.command_key .f_style {
 }
 
 .card-body.cardInnerDash {
-  padding: 8px 8px;
+  display: flex;
+  padding: 12px 24px;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .fraudGraphArea {
@@ -1139,6 +1208,29 @@ span.command_key .f_style {
 /* pagination CSS and Dashboard Ends */
 
 /*Login Page Design start*/
+.login-body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+.content-wrapper {
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.main-container {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-shadow: 0px 20px 76px 0px #8e90aa80;
+}
+
 .loginTextSection h1 {
   color: #fff;
   font-size: 1.75rem;
@@ -1172,19 +1264,49 @@ ul.pass-list li svg {
 }
 
 .leftLoginSection {
-  background: #6366f1;
+  position: relative;
+  background: linear-gradient(180deg, #340e14 0%, #000000 100%),
+    url("/assets/images/login-background-top.png");
   min-height: 100vh;
   height: auto;
   overflow: hidden;
 }
+form.FormAlign {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  padding: 0;
+}
+.backTopImg {
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+  height: 677px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url(/assets/images/login-background-top.png);
+}
+.backBottomImg {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+  height: 232px;
+  width: 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url(/assets/images/login-background-bottom.png);
+}
 
 .leftLoginSection .innerLeftSection {
-  max-width: 525px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  justify-content: space-between;
+  gap: 60px;
+  justify-content: space-evenly;
   padding: 20px 0;
 }
 .swal2-confirm.swal2-styled {
@@ -1192,17 +1314,53 @@ ul.pass-list li svg {
   background: #6366f0 !important;
   border-color: #6366f0 !important;
 }
-.leftLoginSection .innerLeftSection .btnleftLogin button {
+.leftLoginSection .innerLeftSection .btnleftLogin .btnIcons {
   display: flex;
   align-items: center;
   width: 100%;
 }
-
-.leftLoginSection .innerLeftSection .btn-compound .btnleftLogin button {
-  border: 0;
-  border-radius: 7px 0 0 7px;
+.btnIcons {
+  display: flex;
+  gap: 12px;
 }
-
+.btnIcons img {
+  width: 24px;
+}
+.btnIcons {
+  background: #fff;
+  color: #383b56;
+  font-weight: 500;
+  padding: 12px;
+  font-family: "Barlow", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 18px;
+}
+.btnIcons.btnZero p {
+  font-family: "Barlow";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+}
+.btnIcons.btnOne p {
+  font-family: "Barlow";
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+}
+.leftLoginSection
+  .innerLeftSection
+  .btn-compound
+  .btnleftLogin
+  .btnIcons.btnOne {
+  border-radius: 8px 0 0 8px;
+}
+.leftLoginSection .innerLeftSection .btn-compound .btnleftLogin .btnIcons {
+  border: 0;
+  border-radius: 8px;
+}
 .btnleftLogin {
   width: auto;
   display: flex;
@@ -1210,22 +1368,26 @@ ul.pass-list li svg {
 }
 
 .btn-compound {
-  max-width: 182px;
+  max-width: 191px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 40px;
   position: relative;
   top: -35px;
   text-align: right;
 }
 
 .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent {
-  background: #7b7ff0;
-  color: #fff;
-  font-weight: normal;
-  padding: 10px 20px;
+  background: #fff;
+  color: #383b56;
+  font-weight: 500;
+  padding: 10px 10px;
+  font-family: "Barlow", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 18px;
 }
 
 .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent i {
@@ -1241,16 +1403,19 @@ ul.pass-list li svg {
 }
 
 .leftLoginSection .loginTextSection p.spanLine {
-  font-weight: lighter;
   color: #fff;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: lighter;
+  line-height: 22px;
   text-align: center;
 }
 
 .leftLoginSection .vehicleImage {
   max-width: 100%;
   position: absolute;
-  top: 50px;
-  right: 40px;
+  top: 60px;
+  right: -3px;
 }
 
 .loginTopsection {
@@ -1259,13 +1424,17 @@ ul.pass-list li svg {
 }
 
 .leftLoginSection .oneLeftButton button {
-  background-color: #d6fb3d;
+  background-color: #fff;
   max-width: 100%;
-  color: #000;
+  color: #383b56;
   font-weight: 600;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 8px !important;
+  font-family: "Barlow";
+  font-size: 18px;
+  line-height: 24px;
+  text-align: left;
 }
 
 .loginTextSection {
@@ -1275,11 +1444,14 @@ ul.pass-list li svg {
 .loginTextSection h3 {
   color: #fff;
   text-align: center;
+  font-weight: 700;
+  line-height: 40px;
+  line-height: 28px;
 }
 
 .leftLoginSection .loginTextSection p {
   font-weight: normal;
-  line-height: 17px;
+  line-height: 20px;
 }
 
 .leftLoginSection .loginTextSection .loginCheck i {
@@ -1296,20 +1468,37 @@ ul.pass-list li svg {
 }
 
 .leftLoginSection .vehicleImage img {
-  height: 330px;
+  height: 410px;
 }
 
 .rightLoginSection {
-  max-width: 362px;
+  max-width: 360px;
   display: flex;
   margin: auto;
   justify-content: center;
 }
-
+.inner-LoginForm h4 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  text-align: center;
+  color: #383b56;
+}
+.inner-LoginForm p {
+  font-size: 14px;
+  margin-bottom: 24px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  color: #6c737f;
+}
+.loginTextSection {
+  position: relative;
+}
 .formInput::placeholder {
   font-size: 14px;
   background-color: #fff;
-  color: #a6a6aa;
+  color: #d5d5e2;
 }
 
 .formInput#password {
@@ -1321,7 +1510,7 @@ ul.pass-list li svg {
 input.formInput:focus {
   outline: none;
   box-shadow: none;
-  border-color: #949393;
+  border-color: var(--bg-primary);
   border-width: 2px;
 }
 textarea.formInput:focus {
@@ -1347,12 +1536,21 @@ textarea.formInput:focus {
 }
 
 .signin_btn button {
-  background-color: #6366f1;
-  border-radius: 25px;
-  border: none;
-  padding: 12px 0;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--bg-primary);
+  padding: 10px 32px;
   margin-top: 10px;
   width: 100%;
+  padding: 10px 32px 10px 32px;
+  gap: 8px;
+  border-radius: 8px;
+  opacity: 0px;
+}
+
+.signin_btn button.btn.disabled,
+.btn:disabled {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--bg-primary);
 }
 
 .signin_btn button:focus {
@@ -1802,6 +2000,10 @@ h2.tabSummaryHead {
   justify-content: center;
   min-height: 100vh;
 }
+.loader-img img {
+  height: 50px;
+  width: 50px;
+}
 .spinner-border {
   display: inline-block;
   width: 120px;
@@ -1851,11 +2053,20 @@ h2.tabSummaryHead {
   right: 0;
 }
 .card-area .userAuthorityBox {
+  flex-wrap: wrap;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 .card-area p.authorityPara {
   font-size: 12px;
+  font-family: "Inter";
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
 .authorityThreeBtn button {
   display: flex;
@@ -2006,8 +2217,16 @@ td.vinNumberUserdash {
 .table > tbody > tr > td {
   font-size: 13px;
 }
+thead.table-light-Usertbl tr {
+  background: #EDEDED ;
+}
 .userdashbrdTable .table > tbody > tr > td {
   padding: 20px 15px;
+  color: #475467;
+font-family: 'Inter';
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
 }
 .UserCardHeader {
   display: flex;
@@ -2043,7 +2262,7 @@ td.vinNumberUserdash {
   justify-content: space-between;
 }
 .userdashbrdTable table tbody tr td {
-  border-top: 1px solid #f5f5f5;
+  border-bottom: 1px solid #EAECF0;
   vertical-align: middle;
 }
 table tbody tr td {
@@ -2305,9 +2524,8 @@ span.apexcharts-legend-marker::before {
 .forgotModelbox .FormInnerContentForgotForm .logoHeader.loginLogoBottom {
   margin: 0 0 35px;
 }
-.forgotModelbox .logoHeader h3 img {
-  width: 40px;
-  margin-right: 10px;
+.forgotModelbox .logoHeader img {
+  width: 258px;
 }
 .forgotModelbox .FormInnerContentForgotForm h3 {
   font-size: 22px;
@@ -2321,7 +2539,7 @@ span.apexcharts-legend-marker::before {
   min-height: calc(100vh - 195px);
   height: 100%;
 }
-.checkandMatch{
+.checkandMatch {
   position: relative;
 }
 .ul-aboutSection {
@@ -2354,24 +2572,24 @@ span.apexcharts-legend-marker::before {
 /* selected button css */
 
 a.btn.selected {
-  background: #EBFE2E !important;
+  background: #ebfe2e !important;
   color: #000 !important;
-  border: 1px solid #EBFE2E !important;
+  border: 1px solid #ebfe2e !important;
   font-weight: 600;
 }
-.line-30{
+.line-30 {
   line-height: 30px;
 }
 
 /* for error css */
-.form-helper-error{
+.form-helper-error {
   color: red;
 }
 /* privacy-pages css */
-.privacy-content{
+.privacy-content {
   text-align: justify;
 }
-.privacy-list{
+.privacy-list {
   list-style: disc;
   margin-left: 15px;
   line-height: 25px;
@@ -2393,4 +2611,22 @@ img {
   color: #47475d;
 }
 
+.loginCheck.borderLoginRight p {
+  max-width: 105px;
+}
 
+/* for error on login CSS */
+
+.errorBox {
+  box-shadow: 0px 4px 8px 0px #1018280d;
+  border: 1px solid #1018280d;
+  padding: 8px !important;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin: 10px 0 0 !important;
+  position: absolute;
+  top: 56px;
+  width: 100%;
+  background: #fffffff2;
+  z-index: 99999;
+}

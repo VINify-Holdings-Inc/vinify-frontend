@@ -20,12 +20,8 @@ import { ForgetPasswordComponent } from '../forget-password/forget-password.comp
 export class LoginComponent {
  
  
-  logo: string = 'assets/images/ta-logo.png';
+  logo: string = 'assets/images/logo.png';
   vehicleImg: string = 'assets/images/login-bg.png';
-  gasImg: string = 'assets/images/icons/gas-station.png';
-  carImg: string = 'assets/images/icons/car.png';
-  settingImg: string = 'assets/images/icons/settings.png';
-  parkingImg: string = 'assets/images/icons/parking.png';
 
   loginForm: FormGroup;
   isResInProgLogin :boolean=false; 

@@ -1,0 +1,140 @@
+<div class="Profile-Inner">
+    <h2 class="mb-4">User Profile</h2>
+    <form [formGroup]="profileForm" >
+      <div class="row">
+        <!-- Profile Photo -->
+        <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+           <div><span><b> {{profileForm.controls['name'].value}} {{profileForm.controls['lname'].value}} </b></span></div>
+           
+           <div> <span> <u>{{profileForm.controls['email'].value}} </u></span></div>
+            <div class="card-profile-inner">
+              <img
+              [src]="profile"
+              alt="Profile Photo"
+              class="img-thumbnail mb-3"
+              style="width: 150px; height: 150px; object-fit: cover;"
+            />
+           
+            </div>
+          </div>
+        </div>
+        </div>
+  
+        <!-- User Details -->
+        <div class="col-md-8">
+  
+          <div class="card">
+            <div class="card-body">
+              <div class="profileFormInner container">
+                <div class="mb-3">
+                  <label for="name" class="form-label">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    formControlName="name"
+                  />
+                  
+                </div>
+  
+                <div class="mb-3">
+                  <label for="name" class="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lname"
+                    formControlName="lname"
+                    
+                  />
+                 
+                </div>
+        
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    formControlName="email"
+                  />
+                </div>
+        
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="phone"
+                    formControlName="phone"
+                   
+                  />
+                  
+                </div>
+        
+                <div class="mb-3">
+                  <label for="company" class="form-label">Company</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="company"
+                    formControlName="company"
+                   
+                  />
+                </div>
+        
+                <div class="mb-3">
+                  <label for="title" class="form-label">Title</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    formControlName="title"
+                   
+                  />
+                </div>
+        
+                <div class="mb-3">
+                  <label for="address" class="form-label">Address</label>
+                  <textarea
+                    class="form-control"
+                    id="address"
+                    formControlName="address"
+                    rows="2"
+                  
+                  ></textarea>
+                </div>
+                <div class="mb-4">
+                  <label for="password" class="formLabel">Password</label>
+                  <input
+                    [type]="eye?'text':'password'"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="*****"
+                    formControlName="password"
+                  />
+                  <span class=""><i *ngIf="!eye" class="material-symbols-outlined" (click)="showPwd()">visibility_off</i><i *ngIf="eye" (click)="showPwd()" class="material-symbols-outlined">visibility</i></span>
+                            
+                                  
+                </div>
+                
+                
+                <div class="mb-3">
+                  <button type="button" routerLink="/user-profile" class="btn btn-primary mt-3">Edit</button>
+                </div>
+              </div>
+  
+  
+            </div>
+          </div>
+        
+  
+        </div>
+      </div>
+    </form> 
+  </div>
+  
+  
+  <app-loader [IsLoading]="isLoading"></app-loader>
