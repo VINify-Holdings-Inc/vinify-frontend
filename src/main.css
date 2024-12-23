@@ -674,6 +674,7 @@ text-align: left;
 .rightLoginSection .headerText p {
   color: #6c737f;
 }
+
 #sidebar.show-nav,
 .body-overlay.show-nav {
   transform: translatex(0%);
@@ -1524,7 +1525,13 @@ textarea.formInput:focus {
   font-weight: 500;
   font-size: 12px;
 }
-
+.inner-LoginForm .mb-4 {
+	position: relative;
+}
+.inner-LoginForm .mb-4 .showError {
+	position: absolute;
+	top: 52px;
+}
 .formInput {
   width: 100%;
   border: none;

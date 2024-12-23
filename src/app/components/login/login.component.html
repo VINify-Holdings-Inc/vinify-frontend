@@ -120,28 +120,9 @@
                 />
     
                     <!-- General required error -->
-                   <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']">
+                   <div  class="showError" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']">
                     <span class="text-danger">Password is required</span>
-                  </div>
-    
-                   <!-- Specific errors -->
-                  <!-- <div *ngIf="loginForm.controls['password'].errors?.['tooShort']">
-                    <span class="text-danger"> - At least 8 characters long</span>
-                  </div>
-                  <div *ngIf="loginForm.controls['password'].errors?.['missingUppercase']">
-                    <span class="text-danger"> - At least one uppercase letter</span>
-                  </div>
-                  <div *ngIf="loginForm.controls['password'].errors?.['missingLowercase']">
-                    <span class="text-danger"> - At least one lowercase letter</span>
-                  </div>
-                  <div *ngIf="loginForm.controls['password'].errors?.['missingNumber']">
-                    <span class="text-danger"> - At least one number</span>
-                  </div>
-                  <div *ngIf="loginForm.controls['password'].errors?.['missingSpecial']">
-                    <span class="text-danger"> - At least one special character </span>
-                  </div> -->
-    
-    
+                  </div> 
                   <div class="errorBox" *ngIf="loginForm.controls['password'].value && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched) && loginForm.controls['password'].errors as errors">
                     <div>
                       <span [class.text-danger]="errors['tooShort']" 
