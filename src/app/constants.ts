@@ -1,5 +1,5 @@
 export const API_URL = {
-    URL: 'http://localhost:4800/api/',
+    URL: 'http://localhost:4800/api',
     IMAGE_URL: 'http://localhost:4800/api/uploads',
     
   };
