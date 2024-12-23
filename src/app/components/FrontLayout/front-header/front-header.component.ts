@@ -8,5 +8,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './front-header.component.css'
 })
 export class FrontHeaderComponent {
-  logo: string = 'assets/images/logo.png';
+  logo: string = 'assets/images/ta-logo.png';
 }

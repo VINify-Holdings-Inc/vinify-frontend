@@ -118,9 +118,9 @@
                   formControlName="password"
                   placeholder="......"
                 />
-                <span class=""><i *ngIf="!eye" class="material-symbols-outlined" (click)="showPwd()">visibility_off</i><i *ngIf="eye" (click)="showPwd()" class="material-symbols-outlined">visibility</i></span>
+                <span class="passwordEye"><i *ngIf="!eye" class="material-symbols-outlined" (click)="showPwd()">visibility_off</i><i *ngIf="eye" (click)="showPwd()" class="material-symbols-outlined">visibility</i></span>
                   
-                    <!-- General required error -->
+                    <!-- General required error msg-->
                    <div  class="showError" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']">
                     <span class="text-danger">Password is required</span>
                   </div> 

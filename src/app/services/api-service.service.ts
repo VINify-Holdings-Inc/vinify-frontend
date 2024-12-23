@@ -37,14 +37,7 @@ export class AuthService {
 
   updateProfile(data: FormData): Observable<any> {
     return this.http.put(`${this.baseUrl}/user-profile-update`, data);
-  }
-
-  
- 
-
-
-
-  
+  } 
 }
 
 @Injectable({
