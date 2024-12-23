@@ -73,6 +73,7 @@
             </div>
           </div>
         </div>
+<<<<<<< Updated upstream
     
         <!-- Right Section -->
         <div class="col-md-6 rightLoginSection">
@@ -81,6 +82,136 @@
               <div class="headerText text-center">
                 <div class="logoHeader loginLogoBottom">
                     <img [src]="logo" class="img-fluid" alt="Logo" />
+=======
+        <div class="login-footerbtm">
+          <div class="loginTextSection">
+            <h3>Safeguarding Your Vehicle Investments</h3>
+            <p class="spanLine">
+              Empowering Auto Manufactures to Monitor <br />
+              Vehicle Title Integrity and Prevent Fraud.
+            </p>
+            <div class="row text-white text-center mt-5">
+              <div class="col-md-4 col-sm-4 col-4 loginCheck borderLoginRight">
+                <i class="material-symbols-outlined">check_circle</i>
+                <p>Real-Time Title Monitoring</p>
+              </div>
+              <div class="col-md-4 col-sm-4 col-4 loginCheck borderLoginRight">
+                <i class="material-symbols-outlined">check_circle</i>
+                <p>Fraud Detection Alerts</p>
+              </div>
+              <div class="col-md-4 col-sm-4 col-4 loginCheck">
+                <i class="material-symbols-outlined">check_circle</i>
+                <p>Custom VIN Tracking</p>
+              </div>
+            </div>
+          </div>
+          <div class="footerLogin">
+            <p>Title Alert. &#169; 2024 All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="col-md-6 rightLoginSection">
+      <div class="row align-items-center">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="headerText mb-4 text-center">
+            <div class="logoHeader loginLogoBottom">
+              <h3>
+                <img [src]="logo" class="img-fluid" alt="Logo" />
+                <span class="titleLogo">Title Alarm</span>
+              </h3>
+            </div>
+            <h4>Log into Your Account</h4>
+            <p>Please enter your User ID and Password to login</p>
+          </div>
+
+          <!-- User ID Field -->
+          <div class="mb-4">
+            <label for="email" class="formLabel">User ID</label>
+            <input
+              type="text"
+              class="formInput"
+              id="email"
+              formControlName="email"
+              placeholder="abc@gmail.com"
+            />
+
+       
+            <div *ngIf="loginForm.controls['email'].touched">
+              <span class="text-danger" *ngIf=" loginForm.controls['email']?.errors?.['required']">User Email Id is required</span>
+            
+              <span class="text-danger" *ngIf="!loginForm.controls['email']?.errors?.['required'] && loginForm.controls['email']?.errors?.['email']">Enter a valid Email Id</span>
+            </div>
+          </div>
+      
+
+          <!-- Password Field -->
+          <div class="mb-4 passwordFiled">
+            <label for="password" class="formLabel">Password</label>
+            <input
+              type="password"
+              class="formInput"
+              id="password"
+              formControlName="password"
+              placeholder="******"
+            />
+
+                <!-- General required error -->
+               <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']">
+                <span class="text-danger">Password is required</span>
+              </div>
+
+               <!-- Specific errors -->
+              <!-- <div *ngIf="loginForm.controls['password'].errors?.['tooShort']">
+                <span class="text-danger"> - At least 8 characters long</span>
+              </div>
+              <div *ngIf="loginForm.controls['password'].errors?.['missingUppercase']">
+                <span class="text-danger"> - At least one uppercase letter</span>
+              </div>
+              <div *ngIf="loginForm.controls['password'].errors?.['missingLowercase']">
+                <span class="text-danger"> - At least one lowercase letter</span>
+              </div>
+              <div *ngIf="loginForm.controls['password'].errors?.['missingNumber']">
+                <span class="text-danger"> - At least one number</span>
+              </div>
+              <div *ngIf="loginForm.controls['password'].errors?.['missingSpecial']">
+                <span class="text-danger"> - At least one special character </span>
+              </div> -->
+
+
+              <div class="errorBox" *ngIf="loginForm.controls['password'].value && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched) && loginForm.controls['password'].errors as errors">
+                <div>
+                  <span [class.text-danger]="errors['tooShort']" 
+                        [class.text-success]="!errors['tooShort']">
+                    {{ errors['tooShort'] ? '&#x274C;' : '&#x2714;' }} - At least 8 characters long
+                  </span>
+                </div>
+                <div>
+                  <span [class.text-danger]="errors['missingUppercase']" 
+                        [class.text-success]="!errors['missingUppercase']">
+                    {{ errors['missingUppercase'] ? '&#x274C;' : '&#x2714;' }} - At least one uppercase letter
+                  </span>
+                </div>
+                <div>
+                  <span [class.text-danger]="errors['missingLowercase']" 
+                        [class.text-success]="!errors['missingLowercase']">
+                    {{ errors['missingLowercase'] ? '&#x274C;' : '&#x2714;' }} - At least one lowercase letter
+                  </span>
+                </div>
+                <div>
+                  <span [class.text-danger]="errors['missingNumber']" 
+                        [class.text-success]="!errors['missingNumber']">
+                    {{ errors['missingNumber'] ? '&#x274C;' : '&#x2714;' }} - At least one number
+                  </span>
+                </div>
+                <div>
+                  <span [class.text-danger]="errors['missingSpecial']" 
+                        [class.text-success]="!errors['missingSpecial']">
+                    {{ errors['missingSpecial'] ? '&#x274C;' : '&#x2714;' }} - At least one special character
+                  </span>
+>>>>>>> Stashed changes
                 </div>
               </div>
     
