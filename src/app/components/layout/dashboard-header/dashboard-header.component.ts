@@ -11,6 +11,8 @@ import { Subscription } from 'rxjs';
   styleUrl: './dashboard-header.component.css'
 })
 export class DashboardHeaderComponent implements OnInit , OnDestroy {
+  logo: string = 'assets/images/ta-logo.png';
+  notifications: string = 'assets/images/icons/bell.png';
   @Output() sidebarToggle = new EventEmitter<void>();
   private subscription!: Subscription; // To manage subscription lifecycle
   constructor(private sessionServies: SessionService, private router : Router,private profileService: ProfileService){

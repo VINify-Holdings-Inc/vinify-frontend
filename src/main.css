@@ -674,6 +674,7 @@ text-align: left;
 .rightLoginSection .headerText p {
   color: #6c737f;
 }
+
 #sidebar.show-nav,
 .body-overlay.show-nav {
   transform: translatex(0%);
@@ -689,9 +690,7 @@ text-align: left;
 .logoHeader img {
   width: 258px;
 }
-.logoHeader img {
-  width: 170px;
-}
+ 
 #sidebar ul li {
   padding: 2px 7px;
 }
@@ -1504,14 +1503,13 @@ form.FormAlign {
 .formInput#password {
   letter-spacing: 1px;
   font-weight: 600;
-  color: #a6a6aa;
 }
 
 input.formInput:focus {
   outline: none;
   box-shadow: none;
   border-color: var(--bg-primary);
-  border-width: 2px;
+  border-width: 1px;
 }
 textarea.formInput:focus {
   outline: none;
@@ -1523,16 +1521,26 @@ textarea.formInput:focus {
   width: 100%;
   border: none;
   border-radius: 0;
-  color: #838383;
+  color: #475467;
   font-weight: 500;
+  font-size: 12px;
 }
-
+.inner-LoginForm .mb-4 {
+	position: relative;
+}
+.inner-LoginForm .mb-4 .showError {
+	position: absolute;
+	top: 52px;
+}
 .formInput {
   width: 100%;
   border: none;
   border-bottom: 1px solid #9495ae;
   border-radius: 0;
   margin-top: 6px;
+  color: #475467;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .signin_btn button {
@@ -2603,9 +2611,7 @@ a.btn.selected {
 }
 .card-profile-inner {
   position: relative;
-}
-
- 
+} 
 
 .loginCheck.borderLoginRight p {
   max-width: 105px;

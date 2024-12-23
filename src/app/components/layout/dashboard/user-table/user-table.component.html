@@ -5,16 +5,21 @@
                 <h4 class="card-title">Summary VIN List & Alert Records</h4>
                 <div class="cardSubHead">
                     <div class="userSingleSearch">
-                        <i class="material-symbols-outlined">search</i>
+                        <img  src="assets/images/icons/search.svg" class="img-fluid"/>
                     </div>
                     <div class="month-calendar userDashFilter">
                         <i class="material-symbols-outlined">filter_list</i><span>All status</span>
+                        
                     </div>
-                    <div class="month-calendar vehicleMonthSearch">
-                        <i class="material-symbols-outlined">calendar_today</i><span>Jan 6, 2024 - Jun 13,2024</span>
+                    <div class="month-calendar vehicleMonthSearch calendar-svg">
+                        <img  src="assets/images/icons/calendar.svg" class="img-fluid"/>
+                        <p><span>Jan 6, 2024 - Jun 13,2024</span></p>
+                        
                     </div>
-                    <div class="month-calendar vehicleMonthSearch">
-                        <i class="material-symbols-outlined">cloud_download</i><span>Export Report </span>
+                    <div class="month-calendar vehicleMonthSearch calendar-svg">
+                        <!-- <i class="material-symbols-outlined">cloud_download</i> -->
+                        <img  src="assets/images/icons/pdf.svg" class="img-fluid"/>
+                        <span>Export Report </span>
                     </div>
                 </div>
             </div>
@@ -25,17 +30,83 @@
                         <table class="table table-hover">
                             <thead class="table-light-Usertbl">
                                 <tr>
-                                    <th>VINs <span class="vinRecordsNum">1,0362,78</span></th>
-                                    <th>Model</th>
+                                    <th>VINs</th>
+                                    <th>Year</th>
+                                    <th>Make</th>
                                     <th>Alert Date</th>
+                                    <th>State</th>
                                     <th>Details</th>
-                                    <th>Title Status</th>
-                                    <th>Car Status</th>
-                                    <th>Resolution Status</th>
-                                    <th class="text-end">Actions Required</th>
+                 
                                 </tr>
                             </thead>
-                            <tbody>
+<tbody>
+    <tr>
+        <td><span class="vinModelName"> JH4KA8260MC000001</span></td>
+        <td>2024</td>
+        <td>Toyota</td>
+        <td><span class="dor-red"></span>22 Jan 2024</td>
+        <td>AA</td>
+        <td><img src="assets/images/icons/passport.svg"/></td>
+    </tr>
+    <tr>
+        <td><span class="vinModelName"> JH4KA8260MC000001</span></td>
+        <td>2024</td>
+        <td>Toyota</td>
+        <td><span class="dor-red"></span>22 Jan 2024</td>
+        <td>AA</td>
+        <td><img src="assets/images/icons/passport.svg"/></td>
+    </tr>
+    <tr>
+        <td><span class="vinModelName"> JH4KA8260MC000001</span></td>
+        <td>2024</td>
+        <td>Toyota</td>
+        <td><span class="dor-red"></span>22 Jan 2024</td>
+        <td>AA</td>
+        <td><img src="assets/images/icons/passport.svg"/></td>
+    </tr>
+    <tr>
+        <td><span class="vinModelName"> JH4KA8260MC000001</span></td>
+        <td>2024</td>
+        <td>Toyota</td>
+        <td><span class="dor-red"></span>22 Jan 2024</td>
+        <td>AA</td>
+        <td><img src="assets/images/icons/passport.svg"/></td>
+    </tr>
+    <tr>
+        <td><span class="vinModelName"> JH4KA8260MC000001</span></td>
+        <td>2024</td>
+        <td>Toyota</td>
+        <td><span class="dor-red"></span>22 Jan 2024</td>
+        <td>AA</td>
+        <td><img src="assets/images/icons/passport.svg"/></td>
+    </tr>
+    <tr>
+        <td><span class="vinModelName"> JH4KA8260MC000001</span></td>
+        <td>2024</td>
+        <td>Toyota</td>
+        <td><span class="dor-red"></span>22 Jan 2024</td>
+        <td>AA</td>
+        <td><img src="assets/images/icons/passport.svg"/></td>
+    </tr>
+    <tr>
+        <td><span class="vinModelName"> JH4KA8260MC000001</span></td>
+        <td>2024</td>
+        <td>Toyota</td>
+        <td><span class="dor-red"></span>22 Jan 2024</td>
+        <td>AA</td>
+        <td><img src="assets/images/icons/passport.svg"/></td>
+    </tr>
+    <tr>
+        <td><span class="vinModelName"> JH4KA8260MC000001</span></td>
+        <td>2024</td>
+        <td>Toyota</td>
+        <td><span class="dor-red"></span>22 Jan 2024</td>
+        <td>AA</td>
+        <td><img src="assets/images/icons/passport.svg"/></td>
+    </tr>
+</tbody>
+
+                            <!-- <tbody>
                                 @if(tableData.length > 0){
                                 @for(item of tableData;track $index){
                                 <tr>
@@ -112,7 +183,7 @@
                                 </tr> 
                           }
                                
-                            </tbody>
+                            </tbody> -->
                         </table>
                     </div>
                     <div class="paginationArea">
