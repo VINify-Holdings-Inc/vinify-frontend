@@ -19,6 +19,7 @@ import { ForgetPasswordComponent } from '../forget-password/forget-password.comp
 })
 export class LoginComponent {
  
+  eye : boolean = false;
  
   logo: string = 'assets/images/ta-logo.png';
   vehicleImg: string = 'assets/images/login-bg.png';
@@ -34,7 +35,6 @@ export class LoginComponent {
               private authService: AuthService,
               private sessionService: SessionService,
               private router: Router,
-           //   private cdr: ChangeDetectorRef
                ) {
              
      this.loginForm = this.fb.group({
@@ -48,10 +48,7 @@ export class LoginComponent {
         ],
       ],
     });
-    // Watch for changes to the password field and trigger change detection
-    // this.loginForm.controls['password'].valueChanges.subscribe(() => {
-    //   this.cdr.detectChanges();
-    // });
+    
   }
 
   ngOnInit(): void {
@@ -116,6 +113,10 @@ export class LoginComponent {
         confirmButtonText: 'OK',
       });
     }
+  }
+
+  showPwd(){
+    this.eye=!this.eye;
   }
 
 }

@@ -13,7 +13,7 @@
                   <div class="btn-compound">
                     <div class="oneLeftButton btnleftLogin">
                       <div class="btnIcons btnZero">
-                        <!-- <i class="material-symbols-outlined me-2">ev_station</i> -->
+                        
                         <img [src]='gasImg' class="img-fluid" alt="Logo" />
                         <p>VIN Monitoring</p>
                       </div>
@@ -112,13 +112,14 @@
               <div class="mb-4 passwordFiled">
                 <label for="password" class="formLabel">Password</label>
                 <input
-                  type="password"
+                  [type]="eye?'text':'password'"
                   class="formInput"
                   id="password"
                   formControlName="password"
-                  placeholder="******"
+                  placeholder="......"
                 />
-    
+                <span class=""><i *ngIf="!eye" class="material-symbols-outlined" (click)="showPwd()">visibility_off</i><i *ngIf="eye" (click)="showPwd()" class="material-symbols-outlined">visibility</i></span>
+                  
                     <!-- General required error -->
                    <div  class="showError" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']">
                     <span class="text-danger">Password is required</span>

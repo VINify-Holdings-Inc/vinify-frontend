@@ -18,6 +18,8 @@ import {passwordValidator} from '../custom-validator/password-validator';
 export class ResetPasswordComponent {
   logo: string = 'assets/images/logo.png';
   token : string | null = null;
+  eye : boolean=false;
+  ceye : boolean=false;
   resetForm: FormGroup;
              constructor(private fb: FormBuilder,              
               private sessionService: SessionService,
@@ -116,5 +118,11 @@ export class ResetPasswordComponent {
                 }
               }
 
+  showPwd(){
+    this.eye=!this.eye;
+  }
+  showConfirmPwd(){
+    this.ceye=!this.ceye;
+  }          
 
 }
