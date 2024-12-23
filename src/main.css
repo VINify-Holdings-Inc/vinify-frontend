@@ -2605,11 +2605,7 @@ a.btn.selected {
   position: relative;
 }
 
-img {
-  content: attr(alt); /* Display the alt text */
-  font-size: 12px; /* Style the alt text */
-  color: #47475d;
-}
+ 
 
 .loginCheck.borderLoginRight p {
   max-width: 105px;
