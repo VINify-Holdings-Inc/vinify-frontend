@@ -4,17 +4,19 @@ import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular
 import {strictEmailValidator} from '../custom-validator/strict-email.validator';
 import { AuthService } from '../../services/api-service.service';
 import Swal from 'sweetalert2';
+import { LoaderComponent } from '../layout/common/loader/loader.component';
 declare var bootstrap: any; // Needed for Bootstrap Modal
 
 @Component({
   selector: 'app-forget-password',
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,LoaderComponent],
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.css'
 })
 export class ForgetPasswordComponent implements OnInit {
   forgetForm: FormGroup;
   isResInProg = false;
+  isLoading : boolean=false;
 
   constructor(private fb: FormBuilder, private authService: AuthService,) {
     this.forgetForm = this.fb.group({
@@ -25,13 +27,14 @@ export class ForgetPasswordComponent implements OnInit {
   ngOnInit(): void {}
 
   onForgetSubmit() {
-    //console.log('Password reset request successful:', this.forgetForm.value);
+    
     if (this.forgetForm.valid) {
+      this.isLoading=true;
       this.isResInProg=true;
       this.authService.forgetPassword(this.forgetForm.value).subscribe(
         (res) => {
           if(!res.error){
-             
+            this.isLoading=false;
              Swal.fire({
               title: 'Success!',
               text: res.message,
@@ -47,6 +50,7 @@ export class ForgetPasswordComponent implements OnInit {
             modalInstance.hide(); // Close the modal
           }else{
             this.isResInProg=false;
+            this.isLoading=false;
            
             Swal.fire({
               title: 'Error!',
@@ -58,7 +62,7 @@ export class ForgetPasswordComponent implements OnInit {
         },
         (err) => {
           this.isResInProg=false;
-           
+          this.isLoading=false; 
            Swal.fire({
             title: 'Error!',
             text: 'Password reset failed! Please try again.',

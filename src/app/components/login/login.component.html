@@ -116,7 +116,7 @@
                   class="formInput"
                   id="password"
                   formControlName="password"
-                  placeholder="......"
+                  placeholder="********"
                 />
                 <span class="passwordEye"><i *ngIf="!eye" class="material-symbols-outlined" (click)="showPwd()">visibility_off</i><i *ngIf="eye" (click)="showPwd()" class="material-symbols-outlined">visibility</i></span>
                   
@@ -175,7 +175,8 @@
         </div>
       </div>
     </div>
- 
+    <app-loader [IsLoading]="isLoading"></app-loader>
 <!-- Modal -->
 
 <app-forget-password></app-forget-password>
+

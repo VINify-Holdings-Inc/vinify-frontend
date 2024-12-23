@@ -8,10 +8,11 @@ import { FrontHeaderComponent } from '../FrontLayout/front-header/front-header.c
 import { FrontFooterComponent } from '../FrontLayout/front-footer/front-footer.component';
 import Swal from 'sweetalert2';
 import {passwordValidator} from '../custom-validator/password-validator';
+import { LoaderComponent } from '../layout/common/loader/loader.component';
 
 @Component({
   selector: 'app-reset-password',
-  imports: [ReactiveFormsModule, CommonModule,FrontHeaderComponent,FrontFooterComponent],
+  imports: [ReactiveFormsModule, CommonModule,FrontHeaderComponent,FrontFooterComponent,LoaderComponent],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.css'
 })
@@ -20,6 +21,7 @@ export class ResetPasswordComponent {
   token : string | null = null;
   eye : boolean=false;
   ceye : boolean=false;
+  isLoading : boolean=false;
   resetForm: FormGroup;
              constructor(private fb: FormBuilder,              
               private sessionService: SessionService,
@@ -54,10 +56,12 @@ export class ResetPasswordComponent {
               }
 
               onSubmit() {
+                
                 if (this.resetForm.valid) {
                   console.log("test",this.resetForm.value);
                   let formData  = this.resetForm.value;
                   if(formData.password == formData.confirmPassword){
+                    this.isLoading= true;
                     let resetdata = {
                       "password" : formData.password,
                       "token" :this.token 
@@ -65,8 +69,7 @@ export class ResetPasswordComponent {
                     }
                   this.authService.resetPwd(resetdata).subscribe(
                     (res:any) => {
-                      console.log('Login successful:', res);
-                     
+                      this.isLoading= false;                     
                       if(!res.error){
                         
                         Swal.fire({
@@ -77,7 +80,7 @@ export class ResetPasswordComponent {
                         });           
                         this.router.navigate(['/']);
                       }else{
-                       
+                        this.isLoading= false; 
                         Swal.fire({
                           title: 'Error!',
                           text: res.message,
@@ -87,8 +90,8 @@ export class ResetPasswordComponent {
                       }
                     },
                     (err) => {
-                     // console.error('failed:', err);
-                     
+                    
+                     this.isLoading= false; 
                       Swal.fire({
                         title: 'Error!',
                         text: 'Please try again.',
