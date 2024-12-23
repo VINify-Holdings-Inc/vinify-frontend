@@ -1502,7 +1502,6 @@ form.FormAlign {
 .formInput#password {
   letter-spacing: 1px;
   font-weight: 600;
-  color: #a6a6aa;
 }
 
 input.formInput:focus {
@@ -1521,8 +1520,9 @@ textarea.formInput:focus {
   width: 100%;
   border: none;
   border-radius: 0;
-  color: #838383;
+  color: #475467;
   font-weight: 500;
+  font-size: 12px;
 }
 
 .formInput {
@@ -1531,6 +1531,9 @@ textarea.formInput:focus {
   border-bottom: 1px solid #9495ae;
   border-radius: 0;
   margin-top: 6px;
+  color: #475467;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .signin_btn button {

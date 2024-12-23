@@ -100,7 +100,7 @@
                 />
     
            
-                <div *ngIf="loginForm.controls['email'].touched">
+                <div class="showError" *ngIf="loginForm.controls['email'].touched">
                   <span class="text-danger" *ngIf=" loginForm.controls['email']?.errors?.['required']">User Email Id is required</span>
                 
                   <span class="text-danger" *ngIf="!loginForm.controls['email']?.errors?.['required'] && loginForm.controls['email']?.errors?.['email']">Enter a valid Email Id</span>
