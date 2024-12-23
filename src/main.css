@@ -689,9 +689,7 @@ text-align: left;
 .logoHeader img {
   width: 258px;
 }
-.logoHeader img {
-  width: 170px;
-}
+ 
 #sidebar ul li {
   padding: 2px 7px;
 }
@@ -1511,7 +1509,7 @@ input.formInput:focus {
   outline: none;
   box-shadow: none;
   border-color: var(--bg-primary);
-  border-width: 2px;
+  border-width: 1px;
 }
 textarea.formInput:focus {
   outline: none;
@@ -2603,9 +2601,7 @@ a.btn.selected {
 }
 .card-profile-inner {
   position: relative;
-}
-
- 
+} 
 
 .loginCheck.borderLoginRight p {
   max-width: 105px;

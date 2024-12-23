@@ -15,8 +15,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsOfServicesComponent } from './components/terms-of-services/terms-of-services.component';
-import { UserProfileComponent } from './components/layout/user-profile/user-profile.component';
-
+import { UserProfileComponent } from './components/layout/user-profile/update-user-profile/user-profile.component';
+import {ViewUserProfileComponent} from './components/layout/user-profile/view-user-profile/view-user-profile.component';
 export const routes: Routes = [
   { 
     path: '', 
@@ -50,6 +50,7 @@ export const routes: Routes = [
       { path: 'summary-list', component: AdminSummaryComponent,canActivate: [AuthGuard]}, //admin-summary-list
       { path: 'csv-import', component:CsvImportComponent ,canActivate: [AuthGuard]}, //admin-summary-list
       { path: 'user-profile', component:UserProfileComponent ,canActivate: [AuthGuard]}, //user-profile
+      { path: 'view-user-profile', component:ViewUserProfileComponent ,canActivate: [AuthGuard]}, //user-profile
     ]
   },
   // This route is used for any invalid routes
