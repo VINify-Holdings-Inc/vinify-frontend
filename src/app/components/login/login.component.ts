@@ -9,18 +9,19 @@ import {passwordValidator} from '../custom-validator/password-validator';
 import { environment } from '../../../environments/environment';
 import Swal from 'sweetalert2';
 import { ForgetPasswordComponent } from '../forget-password/forget-password.component';
+import { LoaderComponent } from "../layout/common/loader/loader.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'], // Corrected typo: `styleUrl` -> `styleUrls`
-  imports: [ReactiveFormsModule, CommonModule,ForgetPasswordComponent],
+  imports: [ReactiveFormsModule, CommonModule, ForgetPasswordComponent, LoaderComponent],
 })
 export class LoginComponent {
  
   eye : boolean = false;
- 
+  isLoading : boolean=false;
   logo: string = 'assets/images/ta-logo.png';
   vehicleImg: string = 'assets/images/login-bg.png';
   gasImg: string = 'assets/images/icons/gas-station.png';
@@ -63,12 +64,14 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
+      this.isLoading =true;
       this.isResInProgLogin=true;
       this.authService.login(this.loginForm.value).subscribe(
         (res:any) => {
           console.log('Login successful:', res);
          
           if(!res.error){
+            this.isLoading =false;
             this.sessionService.setSessionData("email",res.data.email);
             this.sessionService.setSessionData("token",res.data.token);
             this.sessionService.setSessionData("memberId",res.data.memberId);
@@ -81,7 +84,7 @@ export class LoginComponent {
             this.router.navigate(['/dashboard']);
           }else{
             this.isResInProgLogin=false;
-           
+            this.isLoading =false;
             Swal.fire({
               title: 'Error!',
               text: res.message,
@@ -94,7 +97,7 @@ export class LoginComponent {
         (err) => {
        
           this.isResInProgLogin=false;
-         
+          this.isLoading =false;
           Swal.fire({
             title: 'Error!',
             text: 'Login failed! Please try again.',
