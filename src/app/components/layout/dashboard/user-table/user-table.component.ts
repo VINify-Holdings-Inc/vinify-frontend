@@ -1,27 +1,33 @@
 import { Component, Input,Output,EventEmitter } from '@angular/core';
 import { RouterLink,Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 
 @Component({
   selector: 'app-user-table',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.css'
 })
 export class UserTableComponent {
   constructor(private router: Router, 
               
-            ) {}
-
+            ) {
+              //console.log(this.tableData);
+            }
+  searchValue :string="";
   
   @Input() tableData :any[]=[];
   @Input() page :number=0;
   @Input() totalPages :number=0;
 
-@Output() handelPaginagtion = new EventEmitter <any>();
+  @Output() handelPaginagtion = new EventEmitter <any>();
+  @Output() handelSearch = new EventEmitter <any>();
+
 
 onClick(pages:any){
+  //console.log(this.totalPages);
  // console.log("hfhf",pages);
   this.handelPaginagtion.emit(pages);
 } 
@@ -31,6 +37,16 @@ redirectToOtherPage(vin:string,model:string) {
   this.router.navigateByUrl('/user-summary-list', { state: data });
 }
 
+getSearchVal(){
+  this.handelSearch.emit(this.searchValue);
+  
+}
+onType(value: string){
+  console.log(value);
+  if(value==""){
+    this.handelSearch.emit(value);
+  }
+}
 
 
 

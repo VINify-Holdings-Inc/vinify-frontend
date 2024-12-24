@@ -23,7 +23,9 @@ declare var bootstrap: any;
 export class DashboardComponent implements AfterViewInit,OnInit {
 
   constructor(private userData : userData,
-             private sessionService: SessionService,){}
+             private sessionService: SessionService,){
+             
+             }
 
 
   ngAfterViewInit(): void {
@@ -39,7 +41,7 @@ export class DashboardComponent implements AfterViewInit,OnInit {
     
   }
 
-  limit :number=5;
+  limit :number=10;
   page : number =1;
   totalPages : number=0;
   status : string="current";
@@ -47,15 +49,22 @@ export class DashboardComponent implements AfterViewInit,OnInit {
 
   isLoading : boolean=false;
 
-  getTableData(){
+  getTableData(vin=null){
+    
     this.isLoading= true;
-    const url = `page=${this.page}&limit=${this.limit}&status=${encodeURIComponent(JSON.stringify(this.status))}&member=${encodeURIComponent(JSON.stringify(this.member))}`;
+   // const url = `page=${this.page}&limit=${this.limit}&status=${encodeURIComponent(JSON.stringify(this.status))}&member=${encodeURIComponent(JSON.stringify(this.member))}`;
+    let url = `page=${this.page}&limit=${this.limit}&member=${(this.member)}`;
+    if(vin){
+      url = url+`&vin=${(vin)}`
+     }
+     
     this.userData.getCurrentVinDataForUser(url).subscribe(
       (res:any) => {
-         //  console.log(res)   
+          
         if(!res.error){
-          this.tableData=res?.items;
-          this.totalPages=res.totalPages;
+           //console.log('API Response:', res);
+          this.tableData=res?.data?.items||[];
+          this.totalPages= res?.data?.totalPages||0;
         }
         this.isLoading=false;
       },
@@ -73,6 +82,9 @@ export class DashboardComponent implements AfterViewInit,OnInit {
     this.page = newPage ;
     this.getTableData();
 };
+handelSearch(searchVal:any){
+  this.getTableData(searchVal);
+}
 
   isChartSelected : string ="line";
   changeChart (x:string) {

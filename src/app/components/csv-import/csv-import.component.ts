@@ -59,7 +59,7 @@ export class CsvImportComponent {
         }));
       });
 
-      console.log('All Sheets Data:', allSheetsData);
+    //  console.log('All Sheets Data:', allSheetsData);
 
       // Example: Assign data from specific sheets to `data` and `data1`
       const sheet1Headers = ['VIN', 'Title', 'Brand', 'Insurance', 'Junk&Salvage'];
@@ -110,8 +110,8 @@ export class CsvImportComponent {
         }
       });
 
-      console.log('Data:', this.data);
-      console.log('Data1:', this.data1);
+    //  console.log('Data:', this.data);
+    //  console.log('Data1:', this.data1);
     };
     reader.readAsArrayBuffer(file);
   }
@@ -119,21 +119,21 @@ export class CsvImportComponent {
   async handleSubmit() {
     try {
       if (this.data.length) {
-        console.log(this.data);
+      //  console.log(this.data);
        
         this.authService.insertData({ data: this.data }).subscribe((response: any) => {
           this.handleApiResponse(response);
         });
       }
       if (this.data1.length) {
-        console.log(this.data1);
+       // console.log(this.data1);
        
         this.authService.insertSheet2Data({ data: this.data1 }).subscribe((response: any) => {
           this.handleApiResponse(response);
         });
       }
     } catch (error) {
-      console.error('Error:', error);
+     // console.error('Error:', error);
       this.showToast('error', 'An unexpected error occurred. Please try again later.');
     }
   }
