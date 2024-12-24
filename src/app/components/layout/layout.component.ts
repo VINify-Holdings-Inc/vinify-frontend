@@ -10,9 +10,10 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './layout.component.css'
 })
 export class LayoutComponent {
-  isSidebarActive: boolean = true;
+  isSidebarActive: boolean = false;
 
   toggleSidebar() {
     this.isSidebarActive = !this.isSidebarActive;
+    console.log("test",this.isSidebarActive);
   }
 }

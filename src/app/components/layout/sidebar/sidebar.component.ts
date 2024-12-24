@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-  @Input() isSidebarActive: boolean = false;
+  @Input() isSidebarActive: boolean = true;
 }
