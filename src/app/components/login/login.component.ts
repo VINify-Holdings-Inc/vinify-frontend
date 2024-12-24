@@ -23,11 +23,12 @@ export class LoginComponent {
   eye : boolean = false;
   isLoading : boolean=false;
   logo: string = 'assets/images/ta-logo.png';
-  vehicleImg: string = 'assets/images/login-bg.png';
-  gasImg: string = 'assets/images/icons/gas-station.png';
-  carImg: string = 'assets/images/icons/car.png';
-  settingImg: string = 'assets/images/icons/settings.png';
-  parkingImg: string = 'assets/images/icons/parking.png';
+  vehicleImg: string = 'assets/images/login-bg.png'; 
+  gasImg: string = 'assets/images/icons/login-icon/gas-station.svg';
+  carImg: string = 'assets/images/icons/login-icon/car.svg';
+  settingImg: string = 'assets/images/icons/login-icon/setting.svg';
+  parkingImg: string = 'assets/images/icons/login-icon/parking.svg';
+  checkCircle: string = 'assets/images/icons/check-circle.svg';
 
   loginForm: FormGroup;
   isResInProgLogin :boolean=false; 
