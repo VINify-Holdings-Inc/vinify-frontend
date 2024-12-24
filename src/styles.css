@@ -393,7 +393,7 @@
       Sidebar  Design start
     ===============================================*/
   #sidebar.active {
-    width: 70px;
+    width: 100px;
     height: 100% !important;
     position: fixed !important;
     overflow: visible !important;

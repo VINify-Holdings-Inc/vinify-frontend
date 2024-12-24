@@ -818,12 +818,14 @@ text-align: left;
 }
 
 #sidebar.active ul li a {
-  padding: 5px 5px;
-  line-height: 30px;
-  border-radius: 8px;
-  font-size: 14px;
-  position: relative;
-  font-weight: 400;
+    padding: 5px 5px;
+    line-height: 30px;
+    border-radius: 8px;
+    font-size: 14px;
+    position: relative;
+    font-weight: 400;
+    height: 52px;
+    width: 52px;
 }
 
 #sidebar.active ul li a i {
@@ -891,7 +893,7 @@ header .logoHeader img {
   min-height: 100vh;
 }
 #main-content.active {
-  width: calc(100% - 70px);
+  width: calc(100% - 100px);
   padding: 20px 20px 0px 20px;
   position: relative;
   float: right;
