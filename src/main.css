@@ -103,10 +103,18 @@ ol {
 
 .btn-primary:hover {
   background-color: var(--bg-primary);
+  border: 1px solid var(--bg-primary);
 }
 
 .btn-primary:focus {
   background-color: var(--bg-primary);
+}
+.btn-primary:focus-visible {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--bg-primary);
+}
+.btn:first-child:active:focus-visible{
+  box-shadow: none;
 }
 
 .btn-view {
@@ -286,9 +294,12 @@ p.smallAddIcon i {
     text-transform: capitalize;
     font-size: 12px;
     color: #323B48;
+    background-color: #EDEDED !important;
+    border-right: 1px solid #f3f3f3;
 }
 .table > thead > tr > th:last-child {
     text-align: right;
+    border-right: none;
 }
 .userdashbrdTable .table > tbody > tr > td:last-child {
     text-align: right;
@@ -1360,6 +1371,12 @@ form.FormAlign {
   background: var(--bg-primary) !important;
   border-color: var(--bg-primary) !important;
 }
+.swal2-styled.swal2-confirm:focus{
+  box-shadow: none!important;
+}
+.swal2-styled.swal2-confirm:focus-visible{
+  outline: none !important;
+}
 .leftLoginSection .innerLeftSection .btnleftLogin .btnIcons {
   display: flex;
   align-items: center;
@@ -2069,11 +2086,7 @@ h2.tabSummaryHead {
 }
 
 /* Import File  Page Design ends*/
-.swal2-confirm.swal2-styled {
-  width: 120px !important;
-  background: #6366f0 !important;
-  border-color: #6366f0 !important;
-}
+
 /* Loader Image*/
 
 .loader-component {

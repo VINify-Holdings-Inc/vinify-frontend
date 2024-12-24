@@ -21,8 +21,9 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   profileData: any;
   userName : string="";
   profile : string ="";
-
+  
   toggleSidebar() {
+    
     this.sidebarToggle.emit();
   }
 
