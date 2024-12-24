@@ -1,12 +1,13 @@
 import { Component, Input,Output,EventEmitter } from '@angular/core';
 import { RouterLink,Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 
 @Component({
   selector: 'app-user-table',
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.css'
 })
@@ -24,7 +25,7 @@ export class UserTableComponent {
 
   @Output() handelPaginagtion = new EventEmitter <any>();
   @Output() handelSearch = new EventEmitter <any>();
-
+ searchHideShow :boolean =false;
 
 onClick(pages:any){
   //console.log(this.totalPages);
@@ -38,13 +39,19 @@ redirectToOtherPage(vin:string,model:string) {
 }
 
 getSearchVal(){
-  this.handelSearch.emit(this.searchValue);
+  if(this.searchValue==""){
+    this.searchHideShow = !this.searchHideShow;
+  }else{
+    this.handelSearch.emit(this.searchValue);
+  }
+  
   
 }
 onType(value: string){
-  console.log(value);
+ // console.log(value);
   if(value==""){
     this.handelSearch.emit(value);
+    this.searchHideShow = !this.searchHideShow;
   }
 }
 
