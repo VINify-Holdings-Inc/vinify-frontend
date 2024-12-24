@@ -214,6 +214,9 @@
   }
 }
 @media only screen and (max-width: 992px) {
+  .loginCheck p {
+    max-width: 90px;
+ }
   .btnIcons{
     padding: 6px;
   }
@@ -438,6 +441,9 @@
   }
 }
 @media only screen and (max-width: 768px) {
+  .loginCheck p {
+    max-width: 80px;
+ }
   .leftLoginSection .innerLeftSection {
     gap: 20px;
   }
@@ -572,6 +578,9 @@
   }
 }
 @media only screen and (max-width: 600px) {
+  .loginCheck p {
+    max-width: 80px;
+ }
   .leftLoginSection .innerLeftSection {
     gap: 20px;
   }

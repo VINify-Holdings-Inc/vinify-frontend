@@ -3,7 +3,7 @@
     min-height: 100vh;
     height: 100%;
     position: fixed;
-    z-index: 999;
+    z-index: 999999;
     background: #000000a3;
   }
   .loader-img {
@@ -22,7 +22,7 @@
     border-radius: 50%;
     -webkit-animation: spinner-border 0.75s linear infinite;
     animation: spinner-border 0.75s linear infinite;
-    color: #d6fb3d;
+    color: #881337;
     cursor: none !important;
   }
   .loader-img svg {

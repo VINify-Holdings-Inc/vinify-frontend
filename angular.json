@@ -23,8 +23,17 @@
             "assets": [
               {
                 "glob": "**/*",
+                "input": "./public/assets/images",
+                "output": "/assets/images"
+              },
+              {
+                "glob": "**/*",
+                "input": "./public/assets/fonts",
+                "output": "/assets/fonts"
+              },
+              {
+                "glob": "**/*",
                 "input": "./public"
-                
               }
             ],
             "styles": [
