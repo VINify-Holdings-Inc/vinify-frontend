@@ -262,7 +262,7 @@
     top: 72px;
     bottom: 0;
     z-index: 10;
-    width: 240px;
+    width: 264x;
     transform: translatex(-100%);
     transition: all 150ms linear;
     box-shadow: none !important;
@@ -415,13 +415,13 @@
     transition: all 0.5s ease;
   }
   #content {
-    width: calc(100% - 240px);
+    width: calc(100% - 100px);
     position: relative;
     float: right;
     transition: all 0.3s;
   }
   #content.active {
-    width: 100%;
+    width: calc(100% - 100px);
   }
   #sidebar.active .menu {
     position: absolute;
