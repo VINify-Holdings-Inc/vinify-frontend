@@ -15,7 +15,7 @@ export class UserTableComponent {
   constructor(private router: Router, 
               
             ) {
-              //console.log(this.tableData);
+             
             }
   searchValue :string="";
   
