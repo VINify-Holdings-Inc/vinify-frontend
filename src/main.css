@@ -194,7 +194,12 @@ tr {
 hr {
   margin: 0;
 }
-
+.frontHead nav {
+	min-height: 72px;
+}
+.passwordEye-container {
+  position: relative;
+}
 .text-red {
   color: #f04438 !important;
 }
