@@ -51,7 +51,7 @@ onType(value: string){
  // console.log(value);
   if(value==""){
     this.handelSearch.emit(value);
-    this.searchHideShow = !this.searchHideShow;
+    //this.searchHideShow = !this.searchHideShow;
   }
 }
 

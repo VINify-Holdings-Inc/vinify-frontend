@@ -1097,6 +1097,7 @@ td.vinNumberUserdash {
     line-height: 20px;
     background: #fff;
     box-shadow: 0px 1px 2px 0px #1018280d;
+    height: 40px;
 }
 .month-calendar i {
   font-size: 20px;
@@ -1219,7 +1220,19 @@ span.command_key .f_style {
 .fraudGraphArea {
   padding: 5px 0 0;
 }
-
+.userSingleSearch .VInNumberInput input {
+    padding: 10px 14px;
+    height: 40px;
+    border: 1px solid #d0d5dd;
+    box-shadow: none;
+    color: #47475d;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 8px;
+}
+.userSingleSearch img.img-fluid {
+    cursor: pointer;
+}
 /* pagination CSS Design Starts */
 .paginationArea {
   border-top: 1px solid #e1e1e1;
