@@ -683,11 +683,14 @@ text-align: left;
   bottom: 0;
   left: 0;
   z-index: 3;
-  width: 264px;
+  width: 240px;
   overflow: auto;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   background: #fff !important;
   border-right: 1px solid #dee2e6 !important;
-  box-shadow: 0 0px 10px 5px #8d90ac1a;
 }
 
 #sidebar::-webkit-scrollbar {
@@ -796,7 +799,7 @@ text-align: left;
 
 #sidebar ul li a {
   padding: 5px 5px;
-  line-height: 42px;
+  line-height: 30px;
   border-radius: 8px;
   font-size: 14px;
   position: relative;
@@ -830,24 +833,29 @@ text-align: left;
 }
 
 #sidebarCollapse {
-    width: 45px;
-    height: 45px;
-    text-align: center;
-    border: none;
-    color: #ffffff;
-    outline: none;
-    background: transparent;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  margin-right: 20px;
+  border: none;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.09);
+  outline: none;
 }
+
 button#sidebarCollapse {
   margin-left: 30px;
 }
 
 button#sidebarCollapse i {
   line-height: 40px;
+  height: 40px;
+  width: 40px;
 }
 
 #sidebar ul li {
-  padding: 0 24px;
+  padding: 0 10px 0 10px;
 }
 
 #sidebar ul li.active > a {
@@ -885,6 +893,7 @@ header .logoHeader img {
   min-height: 100vh;
 }
 #main-content.active {
+  width: calc(100% - 100px);
   padding: 20px 20px 0px 20px;
   position: relative;
   float: right;
