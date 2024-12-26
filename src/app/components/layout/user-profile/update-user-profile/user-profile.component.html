@@ -83,6 +83,8 @@
                   id="phone"
                   formControlName="phone"
                   placeholder="Enter your phone"
+                  pattern="^\d{10}$" 
+                  maxlength="10" minlength="10"  inputmode="numeric"
                 />
                 <div *ngIf="profileForm.controls['phone'].touched && profileForm.controls['phone'].invalid" class="text-danger">
                   Enter a valid phone number
