@@ -38,6 +38,12 @@ export class AuthService {
   updateProfile(data: FormData): Observable<any> {
     return this.http.put(`${this.baseUrl}/user-profile-update`, data);
   } 
+    
+  checkTokenData(data: any): Observable<any> {
+   
+    return this.http.post(`${this.baseUrl}/reset-token-check`, data);
+  }
+
 }
 
 @Injectable({

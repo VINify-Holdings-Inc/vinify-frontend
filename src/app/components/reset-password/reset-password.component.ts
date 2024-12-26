@@ -22,6 +22,8 @@ export class ResetPasswordComponent {
   eye : boolean=false;
   ceye : boolean=false;
   isLoading : boolean=false;
+  isValid :boolean=false;
+  message : string ="";
   resetForm: FormGroup;
              constructor(private fb: FormBuilder,              
               private sessionService: SessionService,
@@ -53,8 +55,35 @@ export class ResetPasswordComponent {
                   this.token=params.get('token');
                   //console.log('Token:', this.token);
                 });
+                this.checkToken();
               }
-
+            checkToken(){
+              this.isLoading= true;
+                  console.log(this.token);
+              this.authService.checkTokenData({"token":this.token}).subscribe(
+                (res:any) => {
+                  this.isLoading= false;                     
+                  if(!res.error){
+                    this.isValid=true;
+                    this.message="";
+                  }else{
+                  
+                    this.message=res.message;
+                   
+                  }
+                },
+                (err) => {
+                
+                 this.isLoading= false; 
+                  Swal.fire({
+                    title: 'Error!',
+                    text: 'Please try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                  });
+                }
+              );     
+            }  
               onSubmit() {
                 
                 if (this.resetForm.valid) {
