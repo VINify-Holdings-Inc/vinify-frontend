@@ -32,7 +32,8 @@ export class ContactComponent {
                   subject: ['', [Validators.required, ]],
                   message: ['', [Validators.required, ]],
                   email: ['', [Validators.required,strictEmailValidator() ]], 
-                  phone: ['', [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/) ]],
+                  phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+                 // phone: ['', [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/) ]],
                 //  phone: ['', [Validators.required, Validators.pattern('^(\\+1\\s?)?\\(?\\d{3}\\)?[-\\s]?\\d{3}[-\\s]?\\d{4}$') ]],
                 });
               }
