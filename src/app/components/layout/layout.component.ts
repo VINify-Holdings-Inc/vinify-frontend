@@ -14,6 +14,6 @@ export class LayoutComponent {
 
   toggleSidebar() {
     this.isSidebarActive = !this.isSidebarActive;
-    console.log("test",this.isSidebarActive);
+    
   }
 }

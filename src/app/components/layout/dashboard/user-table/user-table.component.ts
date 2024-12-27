@@ -28,9 +28,7 @@ export class UserTableComponent {
  searchHideShow :boolean =false;
 
 onClick(pages:any){
-  //console.log(this.totalPages);
- // console.log("hfhf",pages);
-  this.handelPaginagtion.emit(pages);
+   this.handelPaginagtion.emit(pages);
 } 
 
 redirectToOtherPage(vin:string,model:string) {
@@ -48,7 +46,6 @@ getSearchVal(){
   
 }
 onType(value: string){
- // console.log(value);
   if(value==""){
     this.handelSearch.emit(value);
     //this.searchHideShow = !this.searchHideShow;

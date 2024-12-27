@@ -53,13 +53,13 @@ export class ResetPasswordComponent {
                 }
                 this.activeRoute.paramMap.subscribe((params) => {
                   this.token=params.get('token');
-                  //console.log('Token:', this.token);
+                
                 });
                 this.checkToken();
               }
             checkToken(){
               this.isLoading= true;
-                 // console.log(this.token);
+                
               this.authService.checkTokenData({"token":this.token}).subscribe(
                 (res:any) => {
                   this.isLoading= false;                     
@@ -87,7 +87,7 @@ export class ResetPasswordComponent {
               onSubmit() {
                 
                 if (this.resetForm.valid) {
-                  console.log("test",this.resetForm.value);
+                 
                   let formData  = this.resetForm.value;
                   if(formData.password == formData.confirmPassword){
                     this.isLoading= true;

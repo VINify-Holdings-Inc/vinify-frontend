@@ -7,8 +7,7 @@ export function strictEmailValidator(): ValidatorFn {
 
     // Check if value matches the regex
     const isValidEmail = emailRegex.test(control.value);
-      //console.log("isValidEmail",isValidEmail);
-    // Return an error object if invalid, otherwise return null
+     // Return an error object if invalid, otherwise return null
     return isValidEmail ? null : { email: true };
   };
 }

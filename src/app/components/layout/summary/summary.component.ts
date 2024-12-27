@@ -19,7 +19,6 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() {
     this.receivedData = history.state; // Retrieve the state data
-    console.log('Received Data:', this.receivedData);
     this.vin=this.receivedData.vin;
     this.model=this.receivedData.model;
   }
