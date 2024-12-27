@@ -43,12 +43,12 @@ export class UserProfileComponent implements OnInit {
     this.profileForm = this.fb.group({
       name: ['', [Validators.required]],
       lname: [''],
-      email: [{ value: '', disabled: true }],
+      email: [{ value: '',disable:true }],
      // phone: ['', [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/)]],
-     phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+   //  phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
       company: [''],
       title: [''],
-      address: [''],
+   //   address: [''],
       password: [
         '',
         [passwordValidator()],
@@ -87,28 +87,53 @@ export class UserProfileComponent implements OnInit {
 
 }
 
-  loadUserData(): void {
-   
-    const sessionData = this.sessionService.getSessionData("data");
-    const sessionProfile = this.sessionService.getSessionData("profile");
+loadUserData(): void {
+  const sessionData = this.sessionService.getSessionData("data");
+  const sessionProfile = this.sessionService.getSessionData("profile");
+  
+  const mockUserData = {
+    name: '',
+    lname: '',
+    email: sessionData?.email || '',
+    secondaryEmailId:  '',
+    company: '',
+    title: '',
+    password: '',
+    profilePhoto: null,
+    profile: sessionProfile || null,
+  };
 
-    console.log(sessionData.password);
-    const mockUserData = {
-      name: sessionData.name || "",
-      lname: sessionData.lname || "",
-      email: sessionData.email || "",
-      phone: sessionData.phoneNumber || "",
-      company: sessionData.company || "",
-      title: sessionData.title || "",
-      address: sessionData.address || "",
-      password: sessionData.password || "",
-      profilePhoto:  null ,
-      profile: sessionProfile || null 
-    };
-
-    this.profileForm.patchValue(mockUserData);
-    this.profile = mockUserData.profile;
-  }
+  this.isLoading = true; // Ensure the loading state is set correctly
+  this.authService.getProfileData(sessionData?.email).subscribe(
+    (res: any) => {
+      this.isLoading = false;
+      if (!res.error) {
+        mockUserData.name = res?.data?.firstName || '';
+        mockUserData.lname = res?.data?.lastName || '';
+        mockUserData.company = res?.data?.companyId || '';
+        mockUserData.title = res?.data?.title || '';
+        mockUserData.password = res?.data?.password || '';
+        mockUserData.profile = sessionProfile || '';
+        mockUserData.secondaryEmailId=res?.data?.secondaryEmailId || "";
+       
+      }
+    },
+    (err) => {
+      this.isLoading = false;
+      Swal.fire({
+        title: 'Error!',
+        text: 'Please try again.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    },
+    () => {
+     
+      this.profileForm.patchValue(mockUserData);
+      this.profile = mockUserData.profile;
+    }
+  );
+}
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -164,13 +189,15 @@ export class UserProfileComponent implements OnInit {
         }
       }
       formData.append('userId', this.userId);
-      formData.append('name', this.profileForm.value.name);
-      formData.append('lname', this.profileForm.value.lname);
-      formData.append('phoneNumber', this.profileForm.value.phone);
-      formData.append('company', this.profileForm.value.company);
+      formData.append('firstName', this.profileForm.value.name);
+      formData.append('lastName', this.profileForm.value.lname);
+      formData.append('emailId', this.profileForm.value.email);
+      //formData.append('phoneNumber', this.profileForm.value.phone);
+      formData.append('companyId', this.profileForm.value.company);
       formData.append('title', this.profileForm.value.title);
-      formData.append('address', this.profileForm.value.address);
+      //formData.append('address', this.profileForm.value.address);
       if(this.isPasswordModified){
+        //console.log("isPassword");
         formData.append('password', this.profileForm.value.password);
       }
 

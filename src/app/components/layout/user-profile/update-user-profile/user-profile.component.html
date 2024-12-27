@@ -50,7 +50,7 @@
               <div class="mb-4 passwordFiled">
                 <label for="password" class="form-label">Password</label>
                 <input [type]="eye?'text':'password'" class="passwordFiled form-control modernInput" id="password" name="password"
-                  placeholder="*****" formControlName="password" />
+                  placeholder="********" formControlName="password" />
                 <span class="passEye"><i *ngIf="!eye" class="material-symbols-outlined"
                     (click)="showPwd()">visibility_off</i><i *ngIf="eye" (click)="showPwd()"
                     class="material-symbols-outlined">visibility</i></span>
@@ -101,6 +101,7 @@
                 <select 
                   class="form-select modernInput" 
                   id="company" 
+                  formControlName="company"
                   aria-label="Select company">
                   <option selected>abc techs</option>
                   <option value="1">One</option>
@@ -131,6 +132,7 @@
                 <select 
                   class="form-select modernInput" 
                   id="title" 
+                  formControlName="title"
                   aria-label="Select title">
                   <option selected>Write Here</option>
                   <option value="1">One</option>
@@ -144,7 +146,7 @@
               <div class="mb-4 passwordFiled">
                 <label for="confirmPassword" class="form-label">Confirm Password</label>
                 <input [type]="ceye?'text':'password'" class="form-control modernInput" id="confirmPassword" name="confirmPassword"
-                  placeholder="*******" formControlName="confirmPassword" />
+                  placeholder="********" formControlName="confirmPassword" />
                 <span class="passEye"><i *ngIf="!ceye" class="material-symbols-outlined"
                     (click)="showConfirmPwd()">visibility_off</i><i *ngIf="ceye" (click)="showConfirmPwd()"
                     class="material-symbols-outlined">visibility</i></span>
