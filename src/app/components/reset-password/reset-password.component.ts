@@ -59,7 +59,7 @@ export class ResetPasswordComponent {
               }
             checkToken(){
               this.isLoading= true;
-                  console.log(this.token);
+                 // console.log(this.token);
               this.authService.checkTokenData({"token":this.token}).subscribe(
                 (res:any) => {
                   this.isLoading= false;                     

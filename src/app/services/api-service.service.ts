@@ -44,6 +44,11 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/reset-token-check`, data);
   }
 
+  getProfileData(data: any): Observable<any> {
+   
+    return this.http.get(`${this.baseUrl}/user-profile/`+ data);
+  }
+
 }
 
 @Injectable({
