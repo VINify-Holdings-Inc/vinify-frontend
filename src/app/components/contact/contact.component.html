@@ -76,7 +76,7 @@
                         <label for="phone" class="formLabel">Phone Number</label>
                         <input type="tel" class="formInput" id="phone" placeholder="Enter Your Phone Number"
                             name="phone"   aria-describedby="phone-desc" formControlName="phone"  pattern="^\d{10}$" 
-                            maxlength="10" minlength="10"  inputmode="numeric">
+                            maxlength="10" minlength="10"  inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                           <div *ngIf="contactForm.controls['phone'].touched && contactForm.controls['phone']?.errors?.['required']">
                                 <span class="text-danger">Phone Number is required</span>
                           </div>
