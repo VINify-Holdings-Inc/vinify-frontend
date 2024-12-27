@@ -2723,7 +2723,40 @@ a.btn.selected {
 .card-profile-inner {
   position: relative;
 } 
-
-
-
+.errorLink {
+  max-width: 480px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  border: none;
+  background: #ffff;
+  box-shadow: 0 0 10px;
+  padding: 25px;
+  border-radius: 12px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.errorLink span.material-symbols-outlined {
+  font-size: 66px;
+  color: #cf4b5f;
+  margin: 0 0 35px;
+}
+.btnsremove {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+}
+.modal-content.customclosebtn button.btn-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 3;
+  box-shadow: none;
+}
+.modal-content.customclosebtn button.btn-close:focus-visible{
+  outline: none;
+}
 
