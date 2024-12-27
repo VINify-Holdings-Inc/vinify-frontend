@@ -2,38 +2,46 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 @font-face {
-  font-family: 'helvetica_bold';
-  src: url('/assets/fonts/helveticaneuebold-webfont.woff2') format('woff2'),
-       url('/assets/fonts/helveticaneuebold-webfont.woff') format('woff');
+  font-family: "helvetica bold";
+  src: url("/assets/fonts/helveticaneuebold-webfont.woff2") format("woff2"),
+    url("/assets/fonts/helveticaneuebold-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'helvetica_light';
-  src: url('/assets/fonts/helveticaneuelight-webfont.woff2') format('woff2'),
-       url('/assets/fonts/helveticaneuelight-webfont.woff') format('woff');
-  font-weight: 400;
+  font-family: "helvetica light";
+  src: url("/assets/fonts/helveticaneuelight-webfont.woff2") format("woff2"),
+    url("/assets/fonts/helveticaneuelight-webfont.woff") format("woff");
+  font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'helvetica_medium';
-  src: url('/assets/fonts/helveticaneuemedium-webfont.woff2') format('woff2'),
-       url('/assets/fonts/helveticaneuemedium-webfont.woff') format('woff');
+  font-family: "helvetica medium";
+  src: url("/assets/fonts/helveticaneuemedium-webfont.woff2") format("woff2"),
+    url("/assets/fonts/helveticaneuemedium-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
+@font-face {
+  font-family: "helvetica heavy";
+  src: url("/assets/fonts/helveticaneueheavy-webfont.woff2") format("woff2"),
+    url("/assets/fonts/helveticaneueheavy-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 :root {
   --bg-primary: #cf4b5f;
   --text-primary: #cf4b5f;
   --logo-colot: #475467;
   --text-white: #fff;
 
-  --font-family-1: ();
+  --font-family-1: (helvetica light);
 }
 body,
 html {
-  font-family: "Noto Sans", sans-serif;
+  /* font-family: "Noto Sans", sans-serif; */
+  font-family: "Inter";
   color: #47475d;
   margin: 0;
   padding: 0;
@@ -88,7 +96,12 @@ ol {
 }
 
 .btn {
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: "Inter";
   font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
 }
 
 .btn:focus {
@@ -113,26 +126,25 @@ ol {
   background-color: var(--bg-primary);
   border: 1px solid var(--bg-primary);
 }
-.btn:first-child:active:focus-visible{
+.btn:first-child:active:focus-visible {
   box-shadow: none;
 }
-
 .btn-view {
   background-color: #fd5152;
   color: #fff;
   border: 1px solid #fd5152;
 }
-
 .btn-view:hover {
   color: #fff;
 }
-.btn:active, .btn:first-child:active {
+.btn:active,
+.btn:first-child:active {
   background-color: var(--bg-primary);
   border: 1px solid var(--bg-primary);
 }
 
-.btn:focus-visible{
-  box-shadow: none
+.btn:focus-visible {
+  box-shadow: none;
 }
 .bg-orange {
   background-color: #ffefe7 !important;
@@ -159,7 +171,6 @@ p.textLight {
 .card,
 .card-header {
   background: #fff;
-  border-radius: 8px !important;
   border-bottom: none;
 }
 
@@ -194,12 +205,7 @@ tr {
 hr {
   margin: 0;
 }
-.frontHead nav {
-	min-height: 72px;
-}
-.passwordEye-container {
-  position: relative;
-}
+
 .text-red {
   color: #f04438 !important;
 }
@@ -293,21 +299,21 @@ p.smallAddIcon i {
   background-color: #edeaf9 !important;
 }
 .table > thead > tr > th {
-    border-bottom-width: 1px;
-    font-weight: 600;
-    padding: 13px 15px;
-    text-transform: capitalize;
-    font-size: 12px;
-    color: #323B48;
-    background-color: #EDEDED !important;
-    border-right: 1px solid #f3f3f3;
+  border-bottom-width: 1px;
+  font-weight: 600;
+  padding: 13px 15px;
+  text-transform: capitalize;
+  font-size: 12px;
+  color: #323b48;
+  background-color: #ededed !important;
+  border-right: 1px solid #f3f3f3;
 }
 .table > thead > tr > th:last-child {
-    text-align: right;
-    border-right: none;
+  text-align: right;
+  border-right: none;
 }
 .userdashbrdTable .table > tbody > tr > td:last-child {
-    text-align: right;
+  text-align: right;
 }
 .table tbody tr td.vinNumber {
   color: #9e9e9e;
@@ -327,7 +333,10 @@ p.smallAddIcon i {
 /*Defalut CSS end*/
 /*Navbar Design start*/
 ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
-  gap: 12px;
+  gap: 16px;
+}
+.headProfile {
+  width: 40px;
 }
 .navbar-nav > li.active {
   color: #ffffff;
@@ -376,16 +385,20 @@ button.btn.btn-custom {
 
 .headerSection .navbar-btn_track {
   background-color: var(--bg-primary);
-  color: var(--text-white);
-  padding: 10px 19px;
+  padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid var(--bg-primary);
+  border: 1px solid #d0d5dd;
   height: 40px;
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  box-shadow: 0px 1px 2px 0px #1018280d;
 }
 .headerSection .navbar-btn_track img {
-    position: relative;
-    left: 5px;
-    top: -1px;
+  position: relative;
+  left: 5px;
+  top: -1px;
 }
 .headerSection .navbar-btn_track:focus {
   box-shadow: none;
@@ -393,11 +406,9 @@ button.btn.btn-custom {
 
 .headerSection .navbar-btn_track:hover {
   background-color: var(--bg-primary);
-  color: var(--text-white);
 }
 
 .headerSection .navbar-btn_track {
-  margin-right: 15px;
   color: #fff !important;
 }
 
@@ -415,7 +426,10 @@ button.btn.btn-custom {
   padding: 10px 15px;
   font-size: 1rem;
 }
-
+.headerSection .navbar-nav .profile_dropdown li a.profile-link {
+  gap: 12px;
+  padding: 12px;
+}
 .headerSection .navbar-nav .profile_dropdown li a i,
 .headerSection .navbar-nav .profile_dropdown li button.logbtn i {
   padding: 0 10px 0 0;
@@ -432,23 +446,41 @@ button.btn.btn-custom {
   border-top: 1px solid rgb(219, 218, 218);
 }
 
-.headerSection .navbar-nav .profile_dropdown .profileName {
-  padding: 10px 0;
+.ProfileHead {
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
+.ProfileHead .ProfileComplete {
+  border: 1px solid #b9e6fe;
+  padding: 2px 10px;
+  background: #f0f9ff;
+  color: #026aa2;
+  border-radius: 16px;
+}
 .headerSection .navbar-nav .profile_dropdown .profileName h5 {
   margin: 0;
   font-size: 16px;
+  color: #101828;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
 }
-
-.headerSection .navbar-nav .profile_dropdown .profileName span.vin_label {
-  color: #81848d;
-}
-
 .headerSection .navbar-nav .profile_dropdown li span {
-  color: #000;
-  font-weight: 500;
+  font-family: "Inter";
   font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.headerSection .navbar-nav .profile_dropdown .profile-link span {
+  font-weight: 600;
+  font-size: 16px;
+  font-family: "Inter";
+  line-height: 20px;
+  color: #101828;
 }
 
 .titleLogo {
@@ -460,8 +492,12 @@ button.btn.btn-custom {
   color: #383b56;
 }
 .headerSection .profile_dropdown {
-  width: 200px;
-  max-width: 200px;
+  width: 336px;
+  max-width: 336px;
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid #eaecf0;
+  box-shadow: 0px 4px 6px -2px #10182808;
 }
 
 .headerSection .notification-dropdown .alertCheck {
@@ -495,7 +531,7 @@ button.btn.btn-custom {
 .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
   max-width: 406px;
   width: 406px;
-  top: 46px;
+  top: 42px;
 }
 
 .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown h4 {
@@ -565,7 +601,6 @@ a.nav-link.dropdown-toggle.no-toggle-icon {
   font-size: 12px;
   display: flex;
   align-items: center;
-  margin-right: 25px;
 }
 
 .headerSection .calendar-date p {
@@ -580,36 +615,25 @@ a.nav-link.dropdown-toggle.no-toggle-icon {
 }
 
 .headerSection .calendar-date .update-time {
-  color: #201D1E;
+  color: #201d1e;
   padding-left: 10px;
-font-family: 'Inter';
-font-size: 14px;
-font-weight: 400;
-line-height: 20px;
-text-align: left;
-}
-
-.headerSection .calendar-date .d-flex.update-time {
-  color: #475467;
   font-family: "Inter";
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  text-align: left;
 }
-#sidebar ul li a img {
-  position: relative;
-  color: #000;
-  font-size: 22px;
-  margin: 5px 10px;
+
+.headerSection .calendar-date .d-flex.update-time {
+  color: #475467;
 }
+
 .dropdown-menu.dropdown-menu-end.VinTrackDiv.show {
   width: 100vw;
   position: fixed;
   background: #0000;
   left: -10px;
   right: 0;
-  top: 65px;
+  top: 60px;
   height: 100%;
 }
 
@@ -705,7 +729,7 @@ text-align: left;
 #sidebar::-webkit-scrollbar-thumbs {
   width: 5px;
   border-radius: 10px;
-  background-color: #333;
+  background-color: #201d1e;
   display: none;
 }
 
@@ -735,29 +759,32 @@ text-align: left;
   z-index: 15;
 }
 .header-Design {
-    padding: 10px 24px;
-    border-bottom: 1px solid #eaecf0;
-    min-height: 72px;
+  padding: 10px 24px;
+  border-bottom: 1px solid #eaecf0;
+  min-height: 72px;
 }
 .logoHeader img {
   width: 258px;
 }
- 
+
 #sidebar ul li {
   padding: 2px 7px;
 }
 #sidebar ul li.active > a {
-  color: #333;
+  color: #201d1e;
   margin: 5px auto;
   background-color: rgba(200, 200, 200, 0.2);
 }
 
-#sidebar.sidebar-link a.nav-link.active,
-#sidebar.sidebar-link a.nav-link.active i {
+#sidebar.sidebar-link a.nav-link.active {
   background: var(--bg-primary);
   color: #fff !important;
   display: flex;
   align-items: center;
+}
+
+.sidebar-link .nav-item a.nav-link.active ul li a span {
+  color: #fff !important;
 }
 
 #sidebar a.nav-link.active {
@@ -784,13 +811,13 @@ text-align: left;
   gap: 8px;
 }
 .recentlyAlert.userUI .card-body.bg-alert-area {
-    height: auto;
-    background: linear-gradient(180deg, #933e59 0%, #e05061 100%);
-    padding: 9px 24px;
-    min-height: 94px;
+  height: auto;
+  background: linear-gradient(180deg, #933e59 0%, #e05061 100%);
+  padding: 9px 24px;
+  min-height: 94px;
 }
 #sidebar ul li a:hover {
-  color: #333;
+  color: #201d1e;
   margin: 5px auto;
   background-color: rgba(200, 200, 200, 0.2);
 }
@@ -802,7 +829,7 @@ text-align: left;
 #sidebar ul li a {
   padding: 5px 5px;
   line-height: 42px;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 14px;
   position: relative;
   font-weight: 400;
@@ -820,28 +847,37 @@ text-align: left;
 }
 
 #sidebar.active ul li a {
-    padding: 5px 5px;
-    line-height: 30px;
-    border-radius: 8px;
-    font-size: 14px;
-    position: relative;
-    font-weight: 400;
-    height: 52px;
-    width: 52px;
+  padding: 5px 5px;
+  line-height: 30px;
+  border-radius: 8px;
+  font-size: 14px;
+  position: relative;
+  font-weight: 400;
+  height: 52px;
+  width: 52px;
 }
-
-#sidebar.active ul li a i {
-  font-size: 22px;
+#sidebar ul li a img {
+  margin: 5px 12px;
 }
+/* #sidebar ul li a img {
+  display: flex;
+  margin: auto;
+} */
 
+#sidebar.sidebar-link a.nav-link.active img {
+  filter: invert(1);
+}
+#sidebar.sidebar-link a.nav-link.active span {
+  color: #fff !important;
+}
 #sidebarCollapse {
-    width: 45px;
-    height: 45px;
-    text-align: center;
-    border: none;
-    color: #ffffff;
-    outline: none;
-    background: transparent;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  border: none;
+  color: #ffffff;
+  outline: none;
+  background: transparent;
 }
 button#sidebarCollapse {
   margin-left: 30px;
@@ -856,12 +892,12 @@ button#sidebarCollapse i {
 }
 
 #sidebar ul li.active > a {
-  color: #333;
+  color: #201d1e;
   background-color: rgba(200, 200, 200, 0.2);
 }
 
 #sidebar ul li a:hover {
-  color: #333;
+  color: #201d1e;
   background-color: rgba(200, 200, 200, 0.2);
 }
 
@@ -877,9 +913,13 @@ button#sidebarCollapse i {
   text-transform: capitalize;
   display: inline-block;
   white-space: nowrap;
+  font-family: "helvetica light";
+  font-size: 16px;
+  font-weight: 400;
+  color: #201d1e;
 }
 header .logoHeader img {
-    width: 170px;
+  width: 170px;
 }
 /*============Dashboard Design start ===========*/
 #main-content {
@@ -961,7 +1001,7 @@ h3.card-title.cardDashNum {
 }
 .card .card-header.bg-header-area {
   padding: 10px 24px;
-  background: #A5435C !important;
+  background: #a5435c !important;
   color: #fff;
   border-radius: 12px 12px 0 0 !important;
   display: flex;
@@ -983,14 +1023,14 @@ h3.card-title.cardDashNum {
 }
 
 .card.rounded.recentlyAlert .card-area h5 {
-    font-weight: 500;
-    color: #fff;
-    margin: 0;
-    font-size: 18px;
-    font-family: 'Inter';
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  font-size: 18px;
+  font-family: "Inter";
 }
 .dashboardDetailsBtn .card {
-    min-height: 136px;
+  min-height: 136px;
 }
 
 .card.rounded.recentlyAlert .text-white {
@@ -1091,18 +1131,18 @@ td.vinNumberUserdash {
   margin: auto !important;
 }
 .month-calendar {
-    display: flex;
-    align-items: center;
-    border: 1px solid #d0d5dd;
-    border-radius: 8px;
-    font-weight: 600;
-    padding: 10px 14px;
-    font-size: 14px;
-    cursor: pointer;
-    line-height: 20px;
-    background: #fff;
-    box-shadow: 0px 1px 2px 0px #1018280d;
-    height: 40px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 20px;
+  background: #fff;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  height: 40px;
 }
 .month-calendar i {
   font-size: 20px;
@@ -1226,17 +1266,17 @@ span.command_key .f_style {
   padding: 5px 0 0;
 }
 .userSingleSearch .VInNumberInput input {
-    padding: 10px 14px;
-    height: 40px;
-    border: 1px solid #d0d5dd;
-    box-shadow: none;
-    color: #47475d;
-    font-weight: 600;
-    font-size: 14px;
-    border-radius: 8px;
+  padding: 10px 14px;
+  height: 40px;
+  border: 1px solid #d0d5dd;
+  box-shadow: none;
+  color: #47475d;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
 }
 .userSingleSearch img.img-fluid {
-    cursor: pointer;
+  cursor: pointer;
 }
 /* pagination CSS Design Starts */
 .paginationArea {
@@ -1247,12 +1287,12 @@ span.command_key .f_style {
 }
 
 .paginationArea li.page-item button.page-link {
-    padding: 5px 14px;
-    color: #344054;
-    font-size: 14px !important;
-    cursor: pointer;
-    border-radius: 8px;
-    font-weight: 600;
+  padding: 5px 14px;
+  color: #344054;
+  font-size: 14px !important;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 600;
 }
 .paginationArea li.page-item button.page-link:focus {
   outline: none;
@@ -1276,11 +1316,7 @@ span.command_key .f_style {
 /* pagination CSS and Dashboard Ends */
 
 /*Login Page Design start*/
-.login-body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
-}
+
 .content-wrapper {
   background-color: #fff;
   border-radius: 30px;
@@ -1304,7 +1340,7 @@ span.command_key .f_style {
   font-size: 1.75rem;
   text-align: center;
 }
-.mb-4.passwordFiled {
+.passwordFiled {
   position: relative;
 }
 
@@ -1371,6 +1407,7 @@ form.FormAlign {
 
 .leftLoginSection .innerLeftSection {
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -1382,10 +1419,10 @@ form.FormAlign {
   background: var(--bg-primary) !important;
   border-color: var(--bg-primary) !important;
 }
-.swal2-styled.swal2-confirm:focus{
-  box-shadow: none!important;
+.swal2-styled.swal2-confirm:focus {
+  box-shadow: none !important;
 }
-.swal2-styled.swal2-confirm:focus-visible{
+.swal2-styled.swal2-confirm:focus-visible {
   outline: none !important;
 }
 .leftLoginSection .innerLeftSection .btnleftLogin .btnIcons {
@@ -1481,7 +1518,7 @@ form.FormAlign {
 
 .leftLoginSection .loginTextSection p.spanLine {
   color: #fff;
-  font-family: "helvetica_light";
+  font-family: "helvetica light";
   font-size: 16px;
   font-weight: 300;
   line-height: 22px;
@@ -1520,7 +1557,7 @@ form.FormAlign {
   font-weight: 700;
   line-height: 40px;
   font-size: 30px;
-  font-family: "helvetica_medium";
+  font-family: "helvetica Medium";
   letter-spacing: 1px;
 }
 .loginCheck {
@@ -1531,14 +1568,14 @@ form.FormAlign {
   justify-content: center;
 }
 .leftLoginSection .loginTextSection p {
-font-size: 16px;
-line-height: 20px;
-text-align: center;
-font-family: 'helvetica_light';
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  font-family: "helvetica light";
 }
 .loginTextSection {
-	position: relative;
-	z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 .leftLoginSection .loginTextSection .loginCheck i {
   font-size: 35px;
@@ -1615,11 +1652,11 @@ textarea.formInput:focus {
   font-size: 12px;
 }
 .inner-LoginForm .mb-4 {
-	position: relative;
+  position: relative;
 }
 .inner-LoginForm .mb-4 .showError {
-	position: absolute;
-	top: 52px;
+  position: absolute;
+  top: 52px;
 }
 span.passwordEye {
   position: absolute;
@@ -1627,7 +1664,7 @@ span.passwordEye {
   bottom: 2px;
   cursor: pointer;
 }
-span.passwordEye i{
+span.passwordEye i {
   font-size: 16px;
 }
 .formInput {
@@ -1663,14 +1700,14 @@ span.passwordEye i{
   box-shadow: none;
 }
 p.errorMessage {
-  color: #CF4B5F;
+  color: #cf4b5f;
   text-transform: none;
 }
 .formInput.formError {
-  border-bottom: 1px solid #CF4B5F;
+  border-bottom: 1px solid #cf4b5f;
 }
-.text-Error{
-  color: #CF4B5F !important;
+.text-Error {
+  color: #cf4b5f !important;
 }
 /* errorBox on login CSS */
 .errorBox {
@@ -2334,18 +2371,18 @@ td.vinNumberUserdash {
   font-size: 13px;
 }
 thead.table-light-Usertbl tr {
-  background: #EDEDED ;
+  background: #ededed;
 }
 .userdashbrdTable .table > tbody > tr > td {
   padding: 25px 15px;
   color: #475467;
-font-family: 'Inter';
-font-size: 14px;
-font-weight: 400;
-line-height: 20px;
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
 }
 .table > tbody > tr > td .vinModelName {
-    color: #201D1E;
+  color: #201d1e;
 }
 .UserCardHeader {
   display: flex;
@@ -2381,7 +2418,7 @@ line-height: 20px;
   justify-content: space-between;
 }
 .userdashbrdTable table tbody tr td {
-  border-bottom: 1px solid #EAECF0;
+  border-bottom: 1px solid #eaecf0;
   vertical-align: middle;
 }
 table tbody tr td {
@@ -2473,16 +2510,31 @@ span.apexcharts-legend-marker::before {
 }
 
 /* Frontend Terms of service page */
-
+.frontHead nav {
+  min-height: 72px;
+}
+.frontHead .frontNav {
+  margin-left: 32px;
+}
 .frontHead .LoginBtn {
-  background-color: var(--bg-primary);
-  padding: 6px 30px;
-  border-radius: 6px;
-  border: 1px solid var(--bg-primary);
-  color: #fff !important;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px;
   font-size: 16px;
+  font-weight: 600;
+  font-family: "Inter";
 }
 
+.frontHead .LoginBtn.bg-LightBtn {
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: #475467;
+}
+.frontHead .LoginBtn.bg-darkBtn {
+  background-color: var(--bg-primary) !important;
+  border: 1px solid var(--bg-primary) !important;
+  color: #fff;
+}
 .frontHead .LoginBtn:focus {
   box-shadow: none;
 }
@@ -2634,8 +2686,8 @@ span.apexcharts-legend-marker::before {
   margin: 10px auto;
 }
 .forgotModelbox .modal-dialog {
-	max-width: 480px;
-	width: 100%;
+  max-width: 480px;
+  width: 100%;
 }
 .forgotModelbox .FormInnerContentForgotForm {
   padding: 20px 30px 40px;
@@ -2713,16 +2765,124 @@ a.btn.selected {
   margin-left: 15px;
   line-height: 25px;
 }
-/* User-profile CSS */
-.card-profile-inner img {
+/* User-profile CSS starts */
+.card.ProfileSection {
+  border-radius: 10px;
+}
+.profileImage {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin: auto;
+  gap: 20px;
+}
+.profileHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0px;
+}
+.card-Profileinner {
+  padding: 30px;
+}
+.card-Profileinner h1 {
+  font-family: "Inter";
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 38px;
+  color: #101828;
+}
+.profileImage .image{
+border-radius: 50%;
+height: 100px;
+width: 100px;
+}
+.nameSec h6 {
+  font-family: 'Inter';
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;  
+}
+.nameSec {
+font-family: 'Inter';
+font-size: 14px;
+font-weight: 500;
+line-height: 20px;
+color: #475467;
+}
+.FormInnerInput .form-label {
+  font-family: 'Inter';
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 20px;
+}
+.FormInnerInput .modernInput {
+  background-color: #F9F9F9;
+  border-radius: 8px;
+  font-family: 'Inter';
+  font-size: 16px;
+  font-weight: 500;
+  color: #475467;
+  border: none;
+  padding: 15px 15px;
+}
+.profileImage img.profileImg {
+  object-fit: cover;
+  height: 100px;
+  width: 100px;
+}
+span.passEye {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  cursor: pointer;
+}
+.IconEmail {
+  border-radius: 50%;
+  background-color: #FAEDEF;
+  height: 48px;
+  width: 48px;
+  line-height: 48px;
+  text-align: center;
+}
+.emailSec h4 {
+  font-family: 'Poppins';
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  color: #000;
+}
+.emailAddress .btnAdd {
+  background-color: #FAEDEF;
+  color: #CF4B5F;
+  font-family: 'Inter';
+font-size: 16px;
+font-weight: 400;
+}
+.emailName p{
+  font-family: 'Poppins';
+font-size: 16px;
+font-weight: 400;
+color: #000;
+}
+.emailName span {
+  font-family: 'Inter';
+  font-size: 16px;
+  font-weight: 400;
+  color: #475467;
+}
+.emailInner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+span.passEye i{
+  font-size: 18px;
+  color: #475467;
 }
 .card-profile-inner {
   position: relative;
-} 
+}
+/* User-profile CSS ends */
 .errorLink {
   max-width: 480px;
   width: 100%;
@@ -2756,7 +2916,6 @@ a.btn.selected {
   z-index: 3;
   box-shadow: none;
 }
-.modal-content.customclosebtn button.btn-close:focus-visible{
+.modal-content.customclosebtn button.btn-close:focus-visible {
   outline: none;
 }
-
