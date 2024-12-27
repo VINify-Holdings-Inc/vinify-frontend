@@ -18,6 +18,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './view-user-profile.component.css'
 })
 export class ViewUserProfileComponent implements OnInit {
+  SmsIcon: string = 'assets/images/icons/sms.svg';
   profileForm!: FormGroup;
   profilePhoto: string | ArrayBuffer | null = null;
   profile:string |null = null;
@@ -31,9 +32,10 @@ export class ViewUserProfileComponent implements OnInit {
       this.profileData = this.profileService.getInitialProfileData()                   
     }
 
-  isLoading: boolean = true;
+  isLoading: boolean = false;
 
   ngOnInit(): void {
+    
     this.userId = this.sessionService.getSessionData("memberId") || "";
 
       this.profileForm = this.fb.group({
