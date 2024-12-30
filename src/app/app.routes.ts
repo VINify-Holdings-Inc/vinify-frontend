@@ -45,12 +45,12 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent ,canActivate:[AuthGuard] },
       { path: 'user-vehicle-list', component: VehicleComponent,canActivate:[AuthGuard] },
       { path: 'user-summary-list', component: SummaryComponent,canActivate:[AuthGuard] },
-      { path: 'main-dashboard', component: AdminDashboardComponent,canActivate: [AuthGuard]}, //admin-dashboad
-      { path: 'vehicle-list', component: AdminVehicleComponent,canActivate: [AuthGuard]}, //admin-vehicle-list
-      { path: 'summary-list', component: AdminSummaryComponent,canActivate: [AuthGuard]}, //admin-summary-list
-      { path: 'csv-import', component:CsvImportComponent ,canActivate: [AuthGuard]}, //admin-summary-list
-      { path: 'user-profile', component:UserProfileComponent ,canActivate: [AuthGuard]}, //user-profile
-      { path: 'view-user-profile', component:ViewUserProfileComponent ,canActivate: [AuthGuard]}, //user-profile
+      { path: 'main-dashboard', component: AdminDashboardComponent,canActivate: [AuthGuard]}, 
+      { path: 'vehicle-list', component: AdminVehicleComponent,canActivate: [AuthGuard]},  
+      { path: 'summary-list', component: AdminSummaryComponent,canActivate: [AuthGuard]}, 
+      { path: 'csv-import', component:CsvImportComponent ,canActivate: [AuthGuard]},  
+      { path: 'user-profile', component:UserProfileComponent ,canActivate: [AuthGuard]},  
+      { path: 'view-user-profile', component:ViewUserProfileComponent ,canActivate: [AuthGuard]},  
     ]
   },
   // This route is used for any invalid routes

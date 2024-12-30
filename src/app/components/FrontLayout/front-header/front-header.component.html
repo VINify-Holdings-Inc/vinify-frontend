@@ -1,25 +1,48 @@
 <header>
     <div class="frontHead">
-        <nav class="navbar  navbar-expand navbar-light bg-navbar ">
+        <nav class="navbar  navbar-expand navbar-light">
             <div class="container">
                 <div class="logoHeader">
-                    <h3>
-                        <img [src]="logo" class="img-fluid" alt="Logo" />
-                         
-                    </h3>
+                       <a routerLink="#"><img [src]="logo" class="img-fluid" alt="Logo" /></a> 
                 </div>
-
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto d-flex align-items-center">
-                        <li class="nav-item me-4">
-                            <a routerLink="/about-us">About us</a>
-                        </li>
-                    </ul>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 frontNav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="#">Home</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle chevronIcon" routerLink="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Products <i class="material-symbols-outlined"> keyboard_arrow_down</i>
+                    </a>
+                    <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" routerLink="#">Product</a></li>
+                     </ul> -->
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle chevronIcon" routerLink="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Resources  <i class="material-symbols-outlined"> keyboard_arrow_down</i>
+                    </a>
+                    <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" routerLink="#">Resources</a></li>
+                    </ul> -->
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="#">Pricing</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
                     <div>
-                        <button type="button" class='LoginBtn' routerLink="/">Login</button>
+                        <button type="button" class='LoginBtn bg-LightBtn' routerLink="/">Log in</button>
                     </div>
-                </div>
+                    <div>
+                        <button type="button" class='LoginBtn bg-darkBtn' routerLink="/">Signup</button>
+                    </div>
+                </form>
+              </div>
             </div>
-        </nav>
+          </nav>
     </div>
 </header>
