@@ -26,6 +26,7 @@ export class UserProfileComponent implements OnInit {
   eye : boolean=false;
   ceye : boolean=false;
   isPasswordModified: boolean = false;
+  proPassword :string="";
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -62,8 +63,8 @@ export class UserProfileComponent implements OnInit {
     this.loadUserData();
     
      // Monitor password changes to dynamically set required validators
-    this.profileForm.controls['password'].valueChanges.subscribe((value) => {
-      if (value && !this.isPasswordModified) {
+    this.profileForm.controls['password'].valueChanges.subscribe((value) => { 
+      if (value && !this.isPasswordModified && this.proPassword!=value) {  
         this.isPasswordModified = true;
         this.profileForm.controls['password'].setValidators([
           Validators.required,
@@ -75,10 +76,11 @@ export class UserProfileComponent implements OnInit {
         this.profileForm.controls['password'].updateValueAndValidity({ emitEvent: false });
         this.profileForm.controls['confirmPassword'].updateValueAndValidity({ emitEvent: false });
       } else if (!value && this.isPasswordModified) {
+        
         this.isPasswordModified = false;
         this.profileForm.controls['password'].clearValidators();
         this.profileForm.controls['confirmPassword'].clearValidators();
-
+        this.profileForm.patchValue({ confirmPassword: '' });
         // Update validity without triggering another valueChanges event
         this.profileForm.controls['password'].updateValueAndValidity({ emitEvent: false });
         this.profileForm.controls['confirmPassword'].updateValueAndValidity({ emitEvent: false });
@@ -115,7 +117,7 @@ loadUserData(): void {
         mockUserData.password = res?.data?.password || '';
         mockUserData.profile = sessionProfile || '';
         mockUserData.secondaryEmailId=res?.data?.secondaryEmailId || "";
-       
+        this.proPassword=res?.data?.password || '';
       }
     },
     (err) => {
@@ -205,8 +207,7 @@ loadUserData(): void {
         const blob = new Blob([this.profilePhoto as ArrayBuffer], { type: 'image/jpeg' });
         formData.append('profile', blob, 'profile.jpg');
       }
-      
-     
+           
      // console.log('FormData payload:', formData);
 
       this.authService.updateProfile(formData).subscribe({
@@ -233,7 +234,7 @@ loadUserData(): void {
               confirmButtonText: 'OK',
             });
           }
-         // console.log('Server Response:', response);
+        
         },
         error: (error) => {
           this.isLoading = false;

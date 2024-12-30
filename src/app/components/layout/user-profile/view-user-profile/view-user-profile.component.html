@@ -156,12 +156,12 @@
                       aria-required="true" />
                       <div *ngIf="profileForm.controls['secondaryEmailId'].touched">
                         <span class="text-danger" *ngIf="profileForm.controls['secondaryEmailId'].errors?.['required']">Please enter a Email address</span>
-                        <span class="text-danger" *ngIf="!profileForm.controls['secondaryEmailId'].errors?.['required'] && profileForm.controls['secondaryEmailId'].errors?.['secondaryEmailId']">Please enter a valid email address</span>
+                        <span class="text-danger" *ngIf="!profileForm.controls['secondaryEmailId'].errors?.['required'] && profileForm.controls['secondaryEmailId'].errors?.['email']">Please enter a valid email address</span>
                       </div>
                       <button 
                         type="button" 
                         class="btn btnAdd" 
-                        aria-label="Save" (click)="handelSave()">
+                        aria-label="Save" (click)="handelSave()" [disabled]="profileForm.invalid">
                         Save
                       </button>
                   </div>

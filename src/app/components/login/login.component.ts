@@ -69,8 +69,7 @@ export class LoginComponent {
       this.isResInProgLogin=true;
       this.authService.login(this.loginForm.value).subscribe(
         (res:any) => {
-          console.log('Login successful:', res);
-         
+                  
           if(!res.error){
             this.isLoading =false;
             this.sessionService.setSessionData("email",res.data.email);

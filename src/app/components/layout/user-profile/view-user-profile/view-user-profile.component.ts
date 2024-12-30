@@ -28,7 +28,7 @@ export class ViewUserProfileComponent implements OnInit {
   profileData :any="";
   eye :boolean=false;
   showOther :boolean=false;
-  emailSecond:string="";
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -148,7 +148,7 @@ export class ViewUserProfileComponent implements OnInit {
                 confirmButtonText: 'OK',
               });
             }
-           // console.log('Server Response:', response);
+           
           },
           error: (error) => {
             this.isLoading = false;
@@ -158,7 +158,7 @@ export class ViewUserProfileComponent implements OnInit {
               icon: 'error',
               confirmButtonText: 'OK',
             });
-          //  console.error('Error:', error);
+     
           }
         });
       } else {

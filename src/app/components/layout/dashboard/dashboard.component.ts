@@ -62,14 +62,12 @@ export class DashboardComponent implements AfterViewInit,OnInit {
       (res:any) => {
           
         if(!res.error){
-           //console.log('API Response:', res);
           this.tableData=res?.data?.items||[];
           this.totalPages= res?.data?.totalPages||0;
         }
         this.isLoading=false;
       },
       (err) => {
-      //  console.error('failed:', err);
         this.isLoading=false;
       }
     );
@@ -78,7 +76,6 @@ export class DashboardComponent implements AfterViewInit,OnInit {
  
 
    handlePageChange(newPage:any){
-   // console.log(newPage);
     this.page = newPage ;
     this.getTableData();
 };

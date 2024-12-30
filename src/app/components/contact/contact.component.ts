@@ -44,7 +44,6 @@ export class ContactComponent {
                                  
                   this.authService.sendContactUsMessage(this.contactForm.value).subscribe(
                     (res:any) => {
-                      console.log('successful:', res);
                      
                       if(!res.error){
                          

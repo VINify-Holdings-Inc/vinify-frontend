@@ -10,7 +10,7 @@ export class SessionService {
 
   // Set data in sessionStorage
   setSessionData(key: string, data: any): void {
-    //console.log("yyy",key,data)
+    
     sessionStorage.setItem(key, JSON.stringify(data));
   }
 
