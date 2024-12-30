@@ -1,113 +1,113 @@
 <div class="conatctwrapper">
-<app-front-header></app-front-header>
-<div class="container main-Container frontAboutUs">
-    <div class="my-30">
-        <h2 class="text-center">Contact Us</h2>
-        <div class="contactForm-wrapper d-flex justify-content-center">
-            <div class="row">
-                <div class="contact-details">
-                    <div class="col-md-12">
-                        <div class="address">
-                            <div class="addressInner">
-                                <div>
-                                    <i class="material-symbols-outlined" aria-hidden="true">location_on</i>
-                                </div>
-                                <div class="content">
-                                    <h5>Location</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
-                                        gravida lorem vitae scelerisque. Maecenas commodo nisl id bibendum cursus.
-                                        Nullam ac nisi sapien.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="address">
-                            <div class="addressInner">
-                                <div>
-                                    <i class="material-symbols-outlined" aria-hidden="true">mail</i>
-                                </div>
-                                <div class="content">
-                                    <h5>Email</h5>
-                                    <p><a href="mailto:support@mvm.com">supportmvm.com</a></p>
+    <app-front-header></app-front-header>
+    <div class="container main-Container frontAboutUs">
+        <div class="my-30">
+            <h2 class="text-center">Contact Us</h2>
+            <div class="contactForm-wrapper d-flex justify-content-center">
+                <div class="row">
+                    <div class="contact-details">
+                        <div class="col-md-12">
+                            <div class="address">
+                                <div class="addressInner">
+                                    <div>
+                                        <i class="material-symbols-outlined" aria-hidden="true">location_on</i>
+                                    </div>
+                                    <div class="content">
+                                        <h5>Location</h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent placerat
+                                            gravida lorem vitae scelerisque. Maecenas commodo nisl id bibendum cursus.
+                                            Nullam ac nisi sapien.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="address">
-                            <div class="addressInner">
-                                <div>
-                                    <i class="material-symbols-outlined" aria-hidden="true">phone_in_talk</i>
+                        <div class="col-md-12">
+                            <div class="address">
+                                <div class="addressInner">
+                                    <div>
+                                        <i class="material-symbols-outlined" aria-hidden="true">mail</i>
+                                    </div>
+                                    <div class="content">
+                                        <h5>Email</h5>
+                                        <p><a href="mailto:support@mvm.com">supportmvm.com</a></p>
+                                    </div>
                                 </div>
-                                <div class="content">
-                                    <h5>Call</h5>
-                                    <p><a href="tel:+1212XXXXXXX">+1 212 XXX XXXX</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="address">
+                                <div class="addressInner">
+                                    <div>
+                                        <i class="material-symbols-outlined" aria-hidden="true">phone_in_talk</i>
+                                    </div>
+                                    <div class="content">
+                                        <h5>Call</h5>
+                                        <p><a href="tel:+1212XXXXXXX">+1 212 XXX XXXX</a></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <form [formGroup]="contactForm" class="contactForm" aria-labelledby="contactFormHeading"  (ngSubmit)="onSubmit()">
-                <fieldset>
-                    <legend id="contactFormHeading">Contact Form</legend>
-                    <div class="mb-4">
-                        <label for="name" class="formLabel">Name</label>
-                        <input type="text" class="formInput" id="name" placeholder="Enter Your Name" name="name" formControlName="name"
-                             minlength="2" maxlength="50" aria-describedby="name-desc">
+                <form [formGroup]="contactForm" class="contactForm" aria-labelledby="contactFormHeading"  (ngSubmit)="onSubmit()">
+                    <fieldset>
+                        <legend id="contactFormHeading">Contact Form</legend>
+                        <div class="mb-4">
+                            <label for="name" class="formLabel">Name</label>
+                            <input type="text" class="formInput" id="name" placeholder="Enter Your Name" name="name" formControlName="name"
+                                 minlength="2" maxlength="50" aria-describedby="name-desc">
+                           
+                            <div *ngIf="contactForm.controls['name'].touched && contactForm.controls['name']?.errors?.['required']">
+                                <span class="text-danger">Name is required</span>
+                              </div>
+                        </div>
+                         <div class="mb-4">
+                            <label for="email" class="formLabel">Email</label>
+                            <input type="email" class="formInput" id="email" placeholder="Enter Your Email" name="email" formControlName="email">
+                                <div *ngIf="contactForm.controls['email'].touched">
+                                     <span class="text-danger" *ngIf="contactForm.controls['email']?.errors?.['required']">Email Id is required</span>
+                                     <span class="text-danger" *ngIf="!contactForm.controls['email']?.errors?.['required'] && contactForm.controls['email']?.errors?.['email']">Enter a valid Email Id</span>
+                                </div>
+                                           
+                         </div>
+                                   
                        
-                        <div *ngIf="contactForm.controls['name'].touched && contactForm.controls['name']?.errors?.['required']">
-                            <span class="text-danger">Name is required</span>
-                          </div>
-                    </div>
-                     <div class="mb-4">
-                        <label for="email" class="formLabel">Email</label>
-                        <input type="email" class="formInput" id="email" placeholder="Enter Your Email" name="email" formControlName="email">
-                            <div *ngIf="contactForm.controls['email'].touched">
-                                 <span class="text-danger" *ngIf="contactForm.controls['email']?.errors?.['required']">Email Id is required</span>
-                                 <span class="text-danger" *ngIf="!contactForm.controls['email']?.errors?.['required'] && contactForm.controls['email']?.errors?.['email']">Enter a valid Email Id</span>
-                            </div>
-                                       
-                     </div>
-                               
-                   
-                    <div class="mb-4">
-                        <label for="phone" class="formLabel">Phone Number</label>
-                        <input type="tel" class="formInput" id="phone" placeholder="Enter Your Phone Number"
-                            name="phone"   aria-describedby="phone-desc" formControlName="phone"  pattern="^\d{10}$" 
-                            maxlength="10" minlength="10"  inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                          <div *ngIf="contactForm.controls['phone'].touched && contactForm.controls['phone']?.errors?.['required']">
-                                <span class="text-danger">Phone Number is required</span>
-                          </div>
-                          <div *ngIf="contactForm.controls['phone'].touched && contactForm.controls['phone']?.hasError('pattern')">
-                              <span class="text-danger">Enter a valid Phone Number</span>
-                          </div>
-                    </div>
-                    <div class="mb-4">
-                        <label for="subject" class="formLabel">Subject</label>
-                        <input type="text" class="formInput" id="subject" placeholder="Enter Subject" name="subject" formControlName="subject"
-                             minlength="2" maxlength="50"/>
-                            <div *ngIf="contactForm.controls['subject'].touched && contactForm.controls['subject']?.errors?.['required']">
-                            <span class="text-danger">Subject is required</span>
+                        <div class="mb-4">
+                            <label for="phone" class="formLabel">Phone Number</label>
+                            <input type="tel" class="formInput" id="phone" placeholder="Enter Your Phone Number"
+                                name="phone"   aria-describedby="phone-desc" formControlName="phone"  pattern="^\d{10}$" 
+                                maxlength="10" minlength="10"  inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                              <div *ngIf="contactForm.controls['phone'].touched && contactForm.controls['phone']?.errors?.['required']">
+                                    <span class="text-danger">Phone Number is required</span>
+                              </div>
+                              <div *ngIf="contactForm.controls['phone'].touched && contactForm.controls['phone']?.hasError('pattern')">
+                                  <span class="text-danger">Enter a valid Phone Number</span>
+                              </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="subject" class="formLabel">Subject</label>
+                            <input type="text" class="formInput" id="subject" placeholder="Enter Subject" name="subject" formControlName="subject"
+                                 minlength="2" maxlength="50"/>
+                                <div *ngIf="contactForm.controls['subject'].touched && contactForm.controls['subject']?.errors?.['required']">
+                                <span class="text-danger">Subject is required</span>
+                                </div>     
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="formLabel">Message</label>
+                            <textarea id="message" class="formInput" rows="5" placeholder="Enter Your Message"
+                                name="message" required formControlName="message"></textarea>
+                            <div *ngIf="contactForm.controls['message'].touched && contactForm.controls['message']?.errors?.['required']">
+                                <span class="text-danger">Message is required</span>
                             </div>     
-                    </div>
-                    <div class="mb-4">
-                        <label for="message" class="formLabel">Message</label>
-                        <textarea id="message" class="formInput" rows="5" placeholder="Enter Your Message"
-                            name="message" required formControlName="message"></textarea>
-                        <div *ngIf="contactForm.controls['message'].touched && contactForm.controls['message']?.errors?.['required']">
-                            <span class="text-danger">Message is required</span>
-                        </div>     
-                    </div>
-                    <div class="input-group signin_btn">
-                        <button type="submit" class="btn btn-lg btn-primary"  [disabled]="contactForm.invalid">Submit</button>
-                    </div>
-                </fieldset>
-            </form>
+                        </div>
+                        <div class="input-group signin_btn">
+                            <button type="submit" class="btn btn-lg btn-primary"  [disabled]="contactForm.invalid">Submit</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<app-loader [IsLoading]="isLoading"></app-loader>
-<app-front-footer></app-front-footer>
-</div>
+    <app-loader [IsLoading]="isLoading"></app-loader>
+    <app-front-footer></app-front-footer>
+    </div>

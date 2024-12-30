@@ -3,16 +3,19 @@ import { SessionService } from '../../../services/session.service';
 import { Router,RouterLink } from '@angular/router';
 import { ProfileService } from '../../../services/state-management';
 import { Subscription } from 'rxjs';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-dashboard-header',
-  imports: [RouterLink],
+  imports: [RouterLink,CommonModule],
   templateUrl: './dashboard-header.component.html',
   styleUrl: './dashboard-header.component.css'
 })
 export class DashboardHeaderComponent implements OnInit , OnDestroy {
+  searchIconToggle:boolean=true
   logo: string = 'assets/images/ta-logo.png';
   profileIcon: string = 'assets/images/icons/sub-profile.svg';
+  arrowIcon: string = 'assets/images/icons/down-arrow.svg';
+  searchIcon: string = 'assets/images/icons/vin-search.svg';
   logIcon: string = 'assets/images/icons/log-out.svg';
   notifications: string = 'assets/images/icons/bell.png';
   @Output() sidebarToggle = new EventEmitter<void>();
@@ -51,7 +54,10 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
      this.subscription.unsubscribe();
    }
  }
-
+ changeSearchIcon=()=>{
+    this.searchIconToggle=!this.searchIconToggle
+    //  alert(this.searchIconToggle)
+ }
 
 }
 

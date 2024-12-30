@@ -20,19 +20,18 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="btn btn-custom navbar-btn_track" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="#" class="btn btn-custom navbar-btn_track" (click)="changeSearchIcon()" data-bs-toggle="dropdown" aria-expanded="false">
                                 Track VIN Status
-                                <img src="assets/images/icons/down-arrow.svg" class="img-fluid" alt="settings"/>
+                                <img [src]="arrowIcon" *ngIf="searchIconToggle" class="img-fluid" alt="settings"/>
+                                <img [src]="searchIcon" *ngIf="!searchIconToggle" class="img-fluid" alt="search"/>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end VinTrackDiv">
                                 <div class="custom-modal"></div>
                                 <div class="trackVinNumber">
+                                    <h4>VIN Track</h4>
                                     <div class="modalInput form-group position-relative">
-                                        <span class="VInNumberInput">
-                                            <i class="material-symbols-outlined vehicle_icon">directions_car</i>
-                                            <input type="text" class="form-control" placeholder="Enter VIN" />
-                                        </span>
-                                        <button type="button" class="btn btn-custom">Check</button>
+                                            <input type="text" class="form-control" placeholder="Enter VIN number" />
+                                        <button type="button" class="btn btn-custom">Details</button>
                                     </div>
                                 </div>
                             </div>

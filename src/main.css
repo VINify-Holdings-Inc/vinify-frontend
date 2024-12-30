@@ -65,7 +65,11 @@ h6,
 }
 
 p {
-  margin-bottom: 0;
+margin-bottom: 0;
+font-family: 'Inter';
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
 }
 
 .text-normal {
@@ -374,9 +378,10 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
 button.btn.btn-custom {
   background: var(--bg-primary);
   color: #fff;
-  padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid var(--bg-primary);
+  border: 1px solid #D0D5DD;
+  max-width: 114px;
+  width: 100%;
 }
 .headerSection .navbar-nav > .active > a:focus {
   color: #ffffff;
@@ -644,36 +649,38 @@ a.nav-link.dropdown-toggle.no-toggle-icon {
   opacity: 0.5;
   z-index: 2;
 }
-
 .trackVinNumber {
   z-index: 99999;
   position: absolute;
-  width: 380px;
-  color: #fff;
+  max-width: 398px;
+  width: 100%;
   top: 0;
   right: 170px;
-  background: #fff;
-  padding: 30px 20px;
+  background-color: #fff;
+  padding: 24px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-
+.trackVinNumber h4{
+font-family: 'Inter';
+font-size: 16px;
+font-weight: 600;
+line-height: 24px;
+color: #1A1919;
+}
 .trackVinNumber .modalInput {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 20px;
+  gap: 8px;
+  padding-top: 8px;
 }
-
-.VInNumberInput {
-  display: block;
-  width: 100%;
-}
-
 .trackVinNumber .modalInput input {
-  border: 1px solid #e1e1e1;
-  padding: 10px 20px;
-  padding-left: 40px;
+  border: 1px solid #D0D5DD;
+  padding: 8px 12px;
+  border-radius: 8px;
+  max-width: 228px;
+  width: 100%;
 }
 
 .trackVinNumber .btn.btn-primary {
@@ -692,6 +699,10 @@ a.nav-link.dropdown-toggle.no-toggle-icon {
   z-index: 0;
   color: #b8b8b8;
   font-size: 22px;
+}
+ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
+  background-color: #F9FAFB;
+  border-radius: 8px;
 }
 
 /*Navbar Design end*/
@@ -2511,10 +2522,19 @@ span.apexcharts-legend-marker::before {
 
 /* Frontend Terms of service page */
 .frontHead nav {
-  min-height: 72px;
+  min-height: 80px;
+}
+.frontNav li a {
+  font-family: 'Inter';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #475467;
+  display: flex;
 }
 .frontHead .frontNav {
-  margin-left: 32px;
+  margin-left: 40px;
+  gap:32px;
 }
 .frontHead .LoginBtn {
   padding: 10px 16px;
@@ -2540,8 +2560,13 @@ span.apexcharts-legend-marker::before {
 }
 
 .innerTermsBody .TermsContent p {
-  color: rgba(0, 0, 0, 0.87);
+  color: #475467;
+  font-family: 'Inter';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
 }
+
 .my-30 {
   margin: 30px 0;
 }
@@ -2709,20 +2734,31 @@ span.apexcharts-legend-marker::before {
 .conatctwrapper .container.main-Container {
   min-height: calc(100vh - 195px);
   height: 100%;
+
 }
 .checkandMatch {
   position: relative;
 }
 .ul-aboutSection {
   list-style-type: disc;
-  line-height: 35px;
+  font-family: 'Inter';
+font-size: 16px;
+font-weight: 400;
+line-height: 35px;
+color: #475467;
 }
 .container.frontAboutUs {
-  margin: 30px auto;
+  margin: 50px auto;
+}
+.chevronIcon:after{
+  border:none;
 }
 .aboutContentPara p {
-  font-size: 14px;
-  line-height: 25px;
+font-family: 'Inter';
+font-size: 16px;
+font-weight: 400;
+line-height: 28px;
+color: #475467;
 }
 .aboutImg img {
   border-radius: 20px;
@@ -2760,6 +2796,7 @@ a.btn.selected {
 .privacy-content {
   text-align: justify;
 }
+
 .privacy-list {
   list-style: disc;
   margin-left: 15px;
@@ -2882,6 +2919,7 @@ span.passEye i{
 .card-profile-inner {
   position: relative;
 }
+
 /* User-profile CSS ends */
 .errorLink {
   max-width: 480px;
