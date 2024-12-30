@@ -4,9 +4,10 @@ import { Router,RouterLink } from '@angular/router';
 import { ProfileService } from '../../../services/state-management';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-dashboard-header',
-  imports: [RouterLink,CommonModule],
+  imports: [RouterLink,CommonModule,FormsModule],
   templateUrl: './dashboard-header.component.html',
   styleUrl: './dashboard-header.component.css'
 })
@@ -26,7 +27,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   profileData: any;
   userName : string="";
   profile : string ="";
-  
+  searchValue :string="";
   toggleSidebar() {
     
     this.sidebarToggle.emit();
@@ -58,6 +59,14 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
     this.searchIconToggle=!this.searchIconToggle
     //  alert(this.searchIconToggle)
  }
+
+ getSearchVal(){
+  if(this.searchValue!=""){
+    const data = { vin: this.searchValue }; // Data to send
+    this.router.navigateByUrl('/user-summary-list', { state: data });
+     
+  }
+}
 
 }
 

@@ -7,7 +7,7 @@
                     <div class="topVehicleHead">
                         <div class="vehicleTitle">
                             <h4 class="card-title" id="tabTitle">Vehicle Summary</h4>
-                            <p>VIN - {{vin}} - {{model}}</p>
+                            <p>VIN - {{vin}} {{model?"-":""}} {{  model}}</p>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
         <div class="tab-content" id="myTabContent">
             <!-- Summary Tab Section -->
             <div class="tab-pane fade show active" id="summaryTab" role="tabpanel">
-               <app-summary-inner></app-summary-inner>
+               <app-summary-inner  [tableData]="tableData" [page]="page" [totalPages]="totalPages" (handelPaginagtion)="handlePageChange($event)" (handelSearch)="handelSearch($event)"></app-summary-inner>
             </div>
             <!-- Title Details Tab Section -->
             <div class="tab-pane fade" id="detailsTab" role="tabpanel">
@@ -47,5 +47,6 @@
                 <app-summary-additional></app-summary-additional>
             </div>
         </div>
+        <app-loader [IsLoading]="isLoading"></app-loader>
     </div>
 </div>
