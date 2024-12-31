@@ -45,11 +45,13 @@
         </div>
         <div class="login-footerbtm">
           <div class="loginTextSection">
-            <h3>Safeguarding Your Vehicle Investments</h3>
-            <p class="spanLine">
-              Empowering Auto Manufactures to Monitor <br />
-              Vehicle Title Integrity and Prevent Fraud.
-            </p>
+            <div class="investmenHeading">
+              <h3>Safeguarding Your Vehicle Investments</h3>
+              <p class="spanLine">
+                Empowering Auto Manufactures to Monitor <br />
+                Vehicle Title Integrity and Prevent Fraud.
+              </p>
+            </div>
             
             <div class="row text-white text-center mt-5 pointArea">
               <div class="col-md-4 col-sm-4 col-4 loginCheck borderLoginRight">
@@ -66,11 +68,12 @@
               </div>
             </div>
           </div>
-          <div class="footerLogin">
-            <p>Title Alert. &#169; 2024 All Rights Reserved.</p>
-          </div>
+          
           <div class="backBottomImg"></div>
         </div>
+        <div class="footerLogin">
+            <p>Title Alert. &#169; 2024 All Rights Reserved.</p>
+          </div>
       </div>
     </div>
 
@@ -90,7 +93,7 @@
           
           <!-- User ID Field -->
           <div class="mb-4">
-            <label for="email" class="formLabel">User ID</label>
+            <label for="email" class="formLabel">User ID *</label>
             <input
               type="text"
               class="formInput"
@@ -110,7 +113,7 @@
 
           <!-- Password Field -->
           <div class="mb-4 passwordFiled">
-            <label for="password" class="formLabel">Password</label>
+            <label for="password" class="formLabel">Password *</label>
             <input
               [type]="eye?'text':'password'"
               class="formInput"

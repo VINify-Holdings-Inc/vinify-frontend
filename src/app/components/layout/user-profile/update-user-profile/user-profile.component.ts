@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import {ProfileService} from '../../../../services/state-management';
 import {passwordValidator} from '../../../custom-validator/password-validator';
 import { Router } from '@angular/router';  // Import Router
+import { strictEmailValidator } from '../../../custom-validator/strict-email.validator';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,7 +19,10 @@ import { Router } from '@angular/router';  // Import Router
   styleUrls:  ['./user-profile.component.css'],
 })
 export class UserProfileComponent implements OnInit {
+  SmsIcon: string = 'assets/images/icons/sms.svg';
+  userProf: string = 'assets/images/user.jpg';
   profileForm!: FormGroup;
+  profileFormEmail!: FormGroup;
   profilePhoto: string | ArrayBuffer | null = null;
   profile:string |null = null;
   userId: string = "";
@@ -27,6 +31,8 @@ export class UserProfileComponent implements OnInit {
   ceye : boolean=false;
   isPasswordModified: boolean = false;
   proPassword :string="";
+  showOther :boolean=false;
+  editMode :boolean=false;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -45,11 +51,10 @@ export class UserProfileComponent implements OnInit {
       name: ['', [Validators.required]],
       lname: [''],
       email: [{ value: '',disable:true }],
-     // phone: ['', [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/)]],
-   //  phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      //  phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
       company: [''],
       title: [''],
-   //   address: [''],
+      //address: [''],
       password: [
         '',
         [passwordValidator()],
@@ -58,6 +63,11 @@ export class UserProfileComponent implements OnInit {
 
     });
 
+    this.profileFormEmail= this.fb.group({
+    
+      secondaryEmailId: ['', [Validators.required, strictEmailValidator()]],
+
+    });
    
   
     this.loadUserData();
@@ -132,6 +142,8 @@ loadUserData(): void {
     () => {
      
       this.profileForm.patchValue(mockUserData);
+      this.profileFormEmail.patchValue(mockUserData);
+      
       this.profile = mockUserData.profile;
     }
   );
@@ -222,8 +234,10 @@ loadUserData(): void {
               icon: 'success',
               confirmButtonText: 'OK',
             });
+            this.editMode=false;
             this.isPasswordModified=false;
-            this.router.navigate(['/view-user-profile']);
+            this.isLoading = false;
+           // this.router.navigate(['/view-user-profile']);
           } else {
             this.isLoading = false;
            
@@ -264,5 +278,69 @@ loadUserData(): void {
     showConfirmPwd(){
       this.ceye=!this.ceye;
     }
+
+    handelOtherEmail(){
+      this.showOther=!this.showOther
+    }
+    handelSave(){
+        const secondaryEmailId = this.profileFormEmail.get('secondaryEmailId')?.value;
+        console.log("secondaryEmailId",secondaryEmailId);
+          if (secondaryEmailId) {
+            this.isLoading = true;
+            const formData = new FormData();
+                  
+            formData.append('userId', this.userId);
+            formData.append('secondaryEmailId', secondaryEmailId);
+             
+            this.authService.updateProfile(formData).subscribe({
+              next: (response) => {
+                if (!response.error) {
+                  this.isLoading = false;
+               
+                 
+                  Swal.fire({
+                    title: 'Success!',
+                    text: response.message,
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                  });
+               
+                } else {
+                  this.isLoading = false;
+                 
+                  Swal.fire({
+                    title: 'Error!',
+                    text: response.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                  });
+                }
+               
+              },
+              error: (error) => {
+                this.isLoading = false;
+                Swal.fire({
+                  title: 'Error!',
+                  text: 'Failed to update profile. Please try again.',
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                });
+         
+              }
+            });
+          } else {
+           
+            Swal.fire({
+              title: 'Error!',
+              text: 'Please fill out the required fields correctly.',
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+
+   editModeFun(data:boolean){
+    this.editMode=data;
+   }     
 
 }
