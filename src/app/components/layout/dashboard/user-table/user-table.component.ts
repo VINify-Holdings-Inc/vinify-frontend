@@ -12,6 +12,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './user-table.component.css'
 })
 export class UserTableComponent {
+  filerIcon: string = 'assets/images/icons/filter-lines.svg';
+  calendarIcon: string = 'assets/images/icons/calendar.svg';
+  pdfIcon: string = 'assets/images/icons/pdf.svg';
   constructor(private router: Router, 
               
             ) {

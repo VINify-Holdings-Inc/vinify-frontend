@@ -3,9 +3,10 @@
         <nav class="navbar navbar-expand navbar-light bg-navbar header-Design">
             <div class="container-fluid px-0">
                 <div class="logoHeader">
-                        <img [src]="logo" class="img-fluid" alt="Logo" />
+                    <img [src]="logo" class="img-fluid" alt="Logo" />
                 </div>
-                <button type="button" id="sidebarCollapse" (click)="toggleSidebar()" class="d-flex justify-center align-item-center d-xl-block">
+                <button type="button" id="sidebarCollapse" (click)="toggleSidebar()"
+                    class="d-flex justify-center align-item-center d-xl-block">
                     <i class="material-symbols-outlined text-dark">menu</i>
                 </button>
                 <div class="collapse navbar-collapse d-lg-block d-xl-block d-md-none" id="navbarSupportedContent">
@@ -20,18 +21,21 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="btn btn-custom navbar-btn_track" (click)="changeSearchIcon()" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="#" class="btn btn-custom navbar-btn_track" (click)="changeSearchIcon()"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Track VIN Status
-                                <img [src]="arrowIcon" *ngIf="searchIconToggle" class="img-fluid" alt="settings"/>
-                                <img [src]="searchIcon" *ngIf="!searchIconToggle" class="img-fluid" alt="search"/>
+                                <img [src]="arrowIcon" *ngIf="searchIconToggle" class="img-fluid" alt="settings" />
+                                <img [src]="searchIcon" *ngIf="!searchIconToggle" class="img-fluid" alt="search" />
                             </a>
                             <div class="dropdown-menu dropdown-menu-end VinTrackDiv">
                                 <div class="custom-modal"></div>
                                 <div class="trackVinNumber">
                                     <h4>VIN Track</h4>
                                     <div class="modalInput form-group position-relative">
-                                            <input type="text"  [(ngModel)]="searchValue"  class="form-control" placeholder="Enter VIN number" />
-                                        <button type="button" class="btn btn-custom" (click) = "getSearchVal()">Details</button>
+                                        <input type="text" [(ngModel)]="searchValue" class="form-control"
+                                            placeholder="Enter VIN number" />
+                                        <button type="button" class="btn btn-custom"
+                                            (click)="getSearchVal()">Details</button>
                                     </div>
                                 </div>
                             </div>
@@ -40,41 +44,130 @@
                             <img src="assets/images/icons/setting.svg" class="img-fluid" alt="settings" />
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle no-toggle-icon" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle no-toggle-icon" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 <div class="notification-dot"><span>20</span></div>
                                 <img src="assets/images/icons/bell.svg" class="img-fluid" alt="notifications" />
 
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end notification-dropdown">
-                                <li class="dropdown-item">
-                                    <div class="d-flex justify-content-between p-2">
-                                        <div class="card-title"><h4>Notifications</h4></div>
-                                        <div><p class="notification-number">2 new</p></div>
+                                <li class="dropdown-item notifyInner">
+                                    <div class="notifyBox">
+                                        <div class="headNotify">
+                                            <p>Notifications</p>
+                                            <span>20 new notifications</span>
+                                        </div>
+                                        <div>
+                                            <p class="notification-number">View All</p>
+                                        </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <div class="d-flex align-items-center">
-                                            <span class="check-circle alertCheck">
-                                                <i class="material-symbols-outlined">check</i>
-                                            </span>
-                                            <div class="notifications-points">
-                                                <h5>Alert Resolved</h5>
-                                                <p>Vehicle Reported Stolen</p>
+                                <li class="notifyInner">
+                                    <div class="notifyPoint">
+                                        <div class="notifyDot"><span class="red-dot"></span></div>
+                                        <div class="notifySubpoint">
+                                            <div class="notifySubHead">
+                                                <h6>In Customs</h6><span>18 Jan 2024</span>
                                             </div>
+                                            <p>Vehicle might be suspiciously found in customs Florida for VIN XYZ123456.
+                                            </p>
                                         </div>
-                                    </a>
+                                    </div>
                                 </li>
-                                <!-- Add additional notification items here -->
+                                <li class="notifyInner">
+                                    <div class="notifyPoint">
+                                        <div class="notifyDot"><span class="red-dot"></span></div>
+                                        <div class="notifySubpoint">
+                                            <div class="notifySubHead">
+                                                <h6>Theft Report</h6><span>18 Jan 2024</span>
+                                            </div>
+                                            <p>Theft detected for VIN XYZ123456 in Florida. Immediate action required.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="notifyInner">
+                                    <div class="notifyPoint">
+                                        <div class="notifyDot"><span class="red-dot"></span></div>
+                                        <div class="notifySubpoint">
+                                            <div class="notifySubHead">
+                                                <h6>Impounded</h6><span>18 Jan 2024</span>
+                                            </div>
+                                            <p>VIN XYZ123456 is taken into legal custody by California authorities due
+                                                to traffic vi</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="notifyInner">
+                                    <div class="notifyPoint">
+                                        <div class="notifyDot"><span class="red-dot"></span></div>
+                                        <div class="notifySubpoint">
+                                            <div class="notifySubHead">
+                                                <h6>Impounded</h6><span>18 Jan 2024</span>
+                                            </div>
+                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
+                                                viola</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="notifyInner">
+                                    <div class="notifyPoint">
+                                        <div class="notifyDot"><span class="red-dot"></span></div>
+                                        <div class="notifySubpoint">
+                                            <div class="notifySubHead">
+                                                <h6>Impounded</h6><span>18 Jan 2024</span>
+                                            </div>
+                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
+                                                viola</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="notifyInner">
+                                    <div class="notifyPoint">
+                                        <div class="notifyDot"><span class="red-dot"></span></div>
+                                        <div class="notifySubpoint">
+                                            <div class="notifySubHead">
+                                                <h6>Impounded</h6><span>18 Jan 2024</span>
+                                            </div>
+                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
+                                                viola</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="notifyInner">
+                                    <div class="notifyPoint">
+                                        <div class="notifyDot"><span class="red-dot"></span></div>
+                                        <div class="notifySubpoint">
+                                            <div class="notifySubHead">
+                                                <h6>Impounded</h6><span>18 Jan 2024</span>
+                                            </div>
+                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
+                                                viola</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="notifyInner">
+                                    <div class="notifyPoint">
+                                        <div class="notifyDot"><span class="red-dot"></span></div>
+                                        <div class="notifySubpoint">
+                                            <div class="notifySubHead">
+                                                <h6>Impounded</h6><span>18 Jan 2024</span>
+                                            </div>
+                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
+                                                viola</p>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle no-toggle-icon p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="#" class="nav-link dropdown-toggle no-toggle-icon p-0" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 <img [src]="profile" class="rounded-circle headProfile" alt="Profile" />
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end profile_dropdown">
                                 <li class="dropdown-item">
-                                   <div class="ProfileHead">
+                                    <div class="ProfileHead">
                                         <div class="profileName">
                                             <h5>{{userName}}</h5>
                                             <span class="vin_label">Marlynonami.co</span>
@@ -88,11 +181,12 @@
                                         <span>Profile</span>
                                     </a>
                                 </li>
-                           
+
                                 <li>
-                                    <a routerLink="#" type="button" class="dropdown-item logbtn profile-link" (click)="logout()" >
-                                        <img  [src]="logIcon" class="img-fluid" alt="icon"/>
-                                        <span >Log Out</span>
+                                    <a routerLink="#" type="button" class="dropdown-item logbtn profile-link"
+                                        (click)="logout()">
+                                        <img [src]="logIcon" class="img-fluid" alt="icon" />
+                                        <span>Log Out</span>
                                     </a>
                                 </li>
                             </ul>
