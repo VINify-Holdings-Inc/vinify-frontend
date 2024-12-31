@@ -54,6 +54,8 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if(tableData.length > 0){
+                                    @for(item of tableData;track $index){
                                 <tr>
                                     <td>22 Jan 2024</td>
                                     <td><div class="d-flex align-items-center"><span class="dot-success"></span>Car is active with no fraud report</div></td>
@@ -68,15 +70,22 @@
                                         </div>
                                     </td>
                                 </tr>
+                                }
+                            }
+                            @else{
+                                <tr>
+                                    <td colspan="9" class="text-center">No data found</td>
+                                </tr> 
+                            } 
                                 <!-- Repeat rows for other vehicle history records -->
                             </tbody>
                         </table>
                     </div>
                     <div class="paginationArea">
                         <ul class="pagination pagination-lg">
-                            <li class="page-item"><button class="page-link">Previous</button></li>
-                            <li class="page-item"><span class="page-link">1 of 1</span></li>
-                            <li class="page-item"><button class="page-link">Next</button></li>
+                            <li class="page-item"><button class="page-link"  (click)="onClick(page-1)" [disabled]="page==1">Previous</button></li>
+                            <li class="page-item"><span class="page-link">{{page}} of {{totalPages}}</span></li>
+                            <li class="page-item"><button class="page-link" (click)="onClick(page+1)" [disabled]="page==totalPages">Next</button></li>
                         </ul>
                     </div>
                 </div>

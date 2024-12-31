@@ -53,7 +53,7 @@
                 <fieldset>
                     <legend id="contactFormHeading">Contact Form</legend>
                     <div class="mb-4">
-                        <label for="name" class="formLabel">Name *</label>
+                        <label for="name" class="formLabel">Name</label>
                         <input type="text" class="formInput" id="name" placeholder="Enter Your Name" name="name" formControlName="name"
                              minlength="2" maxlength="50" aria-describedby="name-desc">
                        
@@ -62,7 +62,7 @@
                           </div>
                     </div>
                      <div class="mb-4">
-                        <label for="email" class="formLabel">Email *</label>
+                        <label for="email" class="formLabel">Email</label>
                         <input type="email" class="formInput" id="email" placeholder="Enter Your Email" name="email" formControlName="email">
                             <div *ngIf="contactForm.controls['email'].touched">
                                  <span class="text-danger" *ngIf="contactForm.controls['email']?.errors?.['required']">Email Id is required</span>
@@ -73,7 +73,7 @@
                                
                    
                     <div class="mb-4">
-                        <label for="phone" class="formLabel">Phone Number *</label>
+                        <label for="phone" class="formLabel">Phone Number</label>
                         <input type="tel" class="formInput" id="phone" placeholder="Enter Your Phone Number"
                             name="phone"   aria-describedby="phone-desc" formControlName="phone"  pattern="^\d{10}$" 
                             maxlength="10" minlength="10"  inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
@@ -85,7 +85,7 @@
                           </div>
                     </div>
                     <div class="mb-4">
-                        <label for="subject" class="formLabel">Subject *</label>
+                        <label for="subject" class="formLabel">Subject</label>
                         <input type="text" class="formInput" id="subject" placeholder="Enter Subject" name="subject" formControlName="subject"
                              minlength="2" maxlength="50"/>
                             <div *ngIf="contactForm.controls['subject'].touched && contactForm.controls['subject']?.errors?.['required']">
@@ -93,7 +93,7 @@
                             </div>     
                     </div>
                     <div class="mb-4">
-                        <label for="message" class="formLabel">Message *</label>
+                        <label for="message" class="formLabel">Message</label>
                         <textarea id="message" class="formInput" rows="5" placeholder="Enter Your Message"
                             name="message" required formControlName="message"></textarea>
                         <div *ngIf="contactForm.controls['message'].touched && contactForm.controls['message']?.errors?.['required']">
