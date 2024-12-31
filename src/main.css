@@ -1374,7 +1374,7 @@ ul.pass-list li svg {
 .loginTopsection {
   position: relative;
   padding-top: 45px;
-  max-width: 567px;
+  max-width: 535px;
   margin: auto;
 }
 
@@ -1398,12 +1398,10 @@ form.FormAlign {
   right: 0;
   margin: auto;
   position: absolute;
-  height: 130px;
-  background-size: 777px;
+  height: 677px;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-image: url(/assets/images/login-background-top.png);
-  background-position: -52px top;
-  max-width: 567px;
 }
 .backBottomImg {
   bottom: 0;
@@ -1411,21 +1409,21 @@ form.FormAlign {
   right: 0;
   margin: auto;
   position: absolute;
-  height: 240px;
+  height: 232px;
   width: 100%;
-  background-size: contain;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-image: url(/assets/images/login-background-bottom.png);
-  background-position: bottom;
-  max-width: 960px;
 }
+
 .leftLoginSection .innerLeftSection {
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 60px;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  padding: 20px 0;
 }
 .swal2-confirm.swal2-styled {
   width: 120px !important;
@@ -1499,9 +1497,9 @@ form.FormAlign {
   justify-content: flex-end;
   align-items: flex-end;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 40px;
   position: relative;
-  top: -18px;
+  top: -35px;
   text-align: right;
 }
 
@@ -1525,6 +1523,9 @@ form.FormAlign {
   height: 104px;
 }
 
+.leftLoginSection .loginCheck {
+  padding: 0 35px;
+}
 
 .leftLoginSection .loginTextSection p.spanLine {
   color: #fff;
@@ -1534,16 +1535,16 @@ form.FormAlign {
   line-height: 22px;
   text-align: center;
 }
+
 .leftLoginSection .vehicleImage {
   max-width: 100%;
   position: absolute;
-  top: 42px;
-  right: -4px;
+  top: 60px;
+  right: -3px;
 }
 .loginTopsection {
   position: relative;
-  padding-top: 25px;
-  left: -20px;
+  padding-top: 45px;
 }
 .leftLoginSection .oneLeftButton button {
   background-color: #fff;
@@ -1559,14 +1560,14 @@ form.FormAlign {
   text-align: left;
 }
 .loginTextSection {
-  padding-top: 0;
+  padding-top: 20px;
 }
 .loginTextSection h3 {
   color: #fff;
   text-align: center;
   font-weight: 700;
   line-height: 40px;
-  font-size: 31px;
+  font-size: 30px;
   font-family: "helvetica Medium";
   letter-spacing: 1px;
 }
@@ -1594,13 +1595,12 @@ form.FormAlign {
 .leftLoginSection .footerLogin p {
   font-weight: normal;
   text-align: center;
-  margin-top: 0;
+  margin-top: 30px;
   color: #fff;
   font-size: 11px;
-  padding: 0 0 10px;
 }
 .leftLoginSection .vehicleImage img {
-  height: 407px;
+  height: 410px;
 }
 .loginCheck img {
   width: 28px;
@@ -2956,9 +2956,4 @@ span.passEye i{
 }
 .modal-content.customclosebtn button.btn-close:focus-visible {
   outline: none;
-}
-.pointArea {
-  max-width: 500px;
-  margin: auto;
-  width: 100%;
 }
