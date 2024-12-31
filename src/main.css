@@ -8,6 +8,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "helvetica light";
   src: url("/assets/fonts/helveticaneuelight-webfont.woff2") format("woff2"),
@@ -15,6 +16,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "helvetica medium";
   src: url("/assets/fonts/helveticaneuemedium-webfont.woff2") format("woff2"),
@@ -30,6 +32,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 :root {
   --bg-primary: #cf4b5f;
   --text-primary: #cf4b5f;
@@ -38,6 +41,7 @@
 
   --font-family-1: (helvetica light);
 }
+
 body,
 html {
   /* font-family: "Noto Sans", sans-serif; */
@@ -65,11 +69,11 @@ h6,
 }
 
 p {
-margin-bottom: 0;
-font-family: 'Inter';
-font-size: 16px;
-font-weight: 400;
-line-height: 24px;
+  margin-bottom: 0;
+  font-family: 'Inter';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .text-normal {
@@ -126,21 +130,26 @@ ol {
 .btn-primary:focus {
   background-color: var(--bg-primary);
 }
+
 .btn-primary:focus-visible {
   background-color: var(--bg-primary);
   border: 1px solid var(--bg-primary);
 }
+
 .btn:first-child:active:focus-visible {
   box-shadow: none;
 }
+
 .btn-view {
   background-color: #fd5152;
   color: #fff;
   border: 1px solid #fd5152;
 }
+
 .btn-view:hover {
   color: #fff;
 }
+
 .btn:active,
 .btn:first-child:active {
   background-color: var(--bg-primary);
@@ -150,13 +159,16 @@ ol {
 .btn:focus-visible {
   box-shadow: none;
 }
+
 .bg-orange {
   background-color: #ffefe7 !important;
 }
+
 .card.bg-pink {
   background-color: #f6e1e4 !important;
   border: 1px solid #f1cad0;
 }
+
 .historyTab p {
   color: #47475d;
   font-weight: 600;
@@ -189,7 +201,7 @@ p.textLight {
   background: #fff;
 }
 
-.table > thead > tr > th {
+.table>thead>tr>th {
   font-size: 16px;
   font-weight: 400;
 }
@@ -234,6 +246,7 @@ hr {
   font-size: 16px;
   font-family: "Inter";
 }
+
 .card-title {
   margin-bottom: 0;
   font-family: "Inter";
@@ -241,14 +254,17 @@ hr {
   font-weight: 600;
   color: #101828;
 }
+
 .pieChartGraph .card-title {
   font-size: 18px;
 }
+
 p.smallAddIcon i {
   line-height: 15px;
   padding: 10px 5px;
   border-radius: 5px;
 }
+
 .dot {
   width: 8px;
   height: 8px;
@@ -275,23 +291,27 @@ p.smallAddIcon i {
   background-color: #e8faee;
 }
 
-.table > thead > tr > th,
-.table > tbody > tr > td {
+.table>thead>tr>th,
+.table>tbody>tr>td {
   white-space: nowrap;
   font-size: 14px;
   padding: 16px 24px;
 }
-.table > :not(caption) > * > * {
+
+.table> :not(caption)>*>* {
   background: none !important;
   box-shadow: none !important;
 }
-.table > thead > tr {
+
+.table>thead>tr {
   background-color: #f8f9fa;
 }
-.table > tbody > tr:hover {
+
+.table>tbody>tr:hover {
   background-color: #edeaf9 !important;
 }
-.table > thead > tr > th {
+
+.table>thead>tr>th {
   font-weight: 600;
   padding: 12px 24px;
   text-transform: capitalize;
@@ -299,27 +319,34 @@ p.smallAddIcon i {
   color: #323b48;
   background-color: #ededed !important;
 }
-.table thead{
-  border-radius: 12px!important;
+
+.table thead {
+  border-radius: 12px !important;
 }
-.table > thead > tr > th:last-child {
+
+.table>thead>tr>th:last-child {
   text-align: right;
   border-right: none;
 }
-.userdashbrdTable .table > tbody > tr > td:last-child {
+
+.userdashbrdTable .table>tbody>tr>td:last-child {
   text-align: right;
 }
+
 .table tbody tr td.vinNumber {
   color: #9e9e9e;
 }
+
 .dropdown-item.active,
 .dropdown-item:active {
   background-color: #e9ecef;
   color: #1e2125;
 }
+
 .dropdown-menu {
   padding: 0;
 }
+
 .lineHeight p {
   line-height: 22px;
 }
@@ -329,25 +356,31 @@ p.smallAddIcon i {
 ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   gap: 16px;
 }
+
 .headProfile {
   width: 40px;
 }
-.navbar-nav > li.active {
+
+.navbar-nav>li.active {
   color: #ffffff;
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.08);
 }
+
 .navbar button span {
   color: #fff;
 }
+
 .top-navbar.headerSection {
   width: 100%;
   z-index: 99;
   position: fixed;
 }
-.headerSection .navbar-nav > li > a {
+
+.headerSection .navbar-nav>li>a {
   color: #47475d;
 }
+
 .headerSection .navbar .notification {
   position: absolute;
   top: 5px;
@@ -373,39 +406,47 @@ button.btn.btn-custom {
   max-width: 114px;
   width: 100%;
 }
-.headerSection .navbar-nav > .active > a:focus {
+
+.headerSection .navbar-nav>.active>a:focus {
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.08);
 }
+
 .headNotify {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
+
 .notifyBox {
   display: flex;
   justify-content: space-between;
   padding: 12px 12px 0 12px;
 }
-.notifyInner:hover{
+
+.notifyInner:hover {
   background-color: #fff;
 }
-.headNotify p{
-font-size: 16px;
-font-weight: 600;
-line-height: 24px;
-color: #101828;
+
+.headNotify p {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #101828;
 }
-.headNotify span{
-font-family: 'Inter';
-font-size: 14px;
-font-weight: 400;
-line-height: 20px;
-color:#475467;
+
+.headNotify span {
+  font-family: 'Inter';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #475467;
 }
+
 li.dropdown-item.notifyInner {
   padding: 12px;
 }
+
 .headerSection .navbar-btn_track {
   background-color: var(--bg-primary);
   padding: 10px 14px;
@@ -418,11 +459,13 @@ li.dropdown-item.notifyInner {
   line-height: 20px;
   box-shadow: 0px 1px 2px 0px #1018280d;
 }
+
 .headerSection .navbar-btn_track img {
   position: relative;
   left: 5px;
   top: -1px;
 }
+
 .headerSection .navbar-btn_track:focus {
   box-shadow: none;
 }
@@ -435,7 +478,7 @@ li.dropdown-item.notifyInner {
   color: #fff !important;
 }
 
-.headerSection .navbar-nav > li.show .dropdown-menu {
+.headerSection .navbar-nav>li.show .dropdown-menu {
   transform: translate3d(0, 0, 0);
   opacity: 1;
   visibility: visible;
@@ -449,22 +492,26 @@ li.dropdown-item.notifyInner {
   padding: 10px 15px;
   font-size: 1rem;
 }
+
 .headerSection .navbar-nav .profile_dropdown li a.profile-link {
   gap: 12px;
   padding: 12px;
 }
+
 .headerSection .navbar-nav .profile_dropdown li a i,
 .headerSection .navbar-nav .profile_dropdown li button.logbtn i {
   padding: 0 10px 0 0;
   color: #757575;
   font-size: 1.5rem;
 }
+
 .ProfileHead {
   padding: 12px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .ProfileHead .ProfileComplete {
   border: 1px solid #b9e6fe;
   padding: 2px 10px;
@@ -472,6 +519,7 @@ li.dropdown-item.notifyInner {
   color: #026aa2;
   border-radius: 16px;
 }
+
 .headerSection .navbar-nav .profile_dropdown .profileName h5 {
   margin: 0;
   font-size: 16px;
@@ -481,6 +529,7 @@ li.dropdown-item.notifyInner {
   font-weight: 600;
   line-height: 24px;
 }
+
 .headerSection .navbar-nav .profile_dropdown li span {
   font-family: "Inter";
   font-size: 14px;
@@ -501,9 +550,11 @@ li.dropdown-item.notifyInner {
   font-weight: 700;
   font-family: "Roboto";
 }
+
 .headerText h4 {
   color: #383b56;
 }
+
 .headerSection .profile_dropdown {
   width: 336px;
   max-width: 336px;
@@ -512,6 +563,7 @@ li.dropdown-item.notifyInner {
   border: 1px solid #eaecf0;
   box-shadow: 0px 4px 6px -2px #10182808;
 }
+
 span.red-dot {
   height: 6px;
   width: 6px;
@@ -519,50 +571,61 @@ span.red-dot {
   background-color: #F04438;
   border-radius: 50%;
 }
+
 .notifyPoint {
   display: flex;
   gap: 15px;
   padding: 0 12px;
 }
+
 .notifySubpoint p {
-  word-break: break-all;
-  white-space: break-spaces;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   font-family: 'Inter';
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
   color: #475467;
 }
+.passwordFiled {
+  position: relative;
+}
+.passwordEye-container {
+  position: relative;
+}
 .notifySubHead {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .notifySubHead h6 {
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
-  color:#101828;
-}
-.notification-dropdown::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
+  color: #101828;
+  margin-bottom: 4px;
 }
 
-.notification-dropdown::-webkit-scrollbar
-{
-	width: 6px;
-	background-color: #F5F5F5;
+.notification-dropdown::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
 }
 
-.notification-dropdown::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color:#d6d6d6;
+.notification-dropdown::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+.notification-dropdown::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #d6d6d6;
 }
 
 .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
@@ -576,38 +639,41 @@ span.red-dot {
   border: 1px solid #EAECF0;
   box-shadow: 0px 4px 6px -2px #10182808, 0px 12px 16px -4px #10182814;
 }
-.notifyPoint{
+
+.notifyPoint {
   padding: 12px;
 }
-.notifySubpoint p{
-  width: 266px;
-  white-space: nowrap;
-  overflow: hidden; 
-  text-overflow: ellipsis; 
-}
-li.notifyInner{
+
+
+li.notifyInner {
   padding: 0 12px;
 }
-.tableDot{
+
+.tableDot {
   height: 8px;
-  width:8px;
+  width: 8px;
   border-radius: 50%;
   margin-right: 4px;
   display: inline-block;
 }
-.tableDot.redDot{
+
+.tableDot.redDot {
   background-color: #F04438;
 }
-.tableDot.grayDot{
+
+.tableDot.grayDot {
   background-color: #C4C4C4;
 }
-.notifyPoint:hover{
+
+.notifyPoint:hover {
   background-color: #FECDCA59;
   border-radius: 8px;
 }
+
 .headerSection .navbar-nav .notification-dropdown li .notifyHeading {
   padding: 10px 15px;
 }
+
 .headerSection .notification-number {
   font-weight: 700;
   border-radius: 20px;
@@ -624,10 +690,12 @@ li.notifyInner{
 a.nav-link.dropdown-toggle.no-toggle-icon {
   position: relative;
 }
+
 .notification-dot span {
   color: #fff;
   font-size: 10px;
 }
+
 .headerSection .notification-dot {
   height: 12px;
   width: 12px;
@@ -700,6 +768,7 @@ a.nav-link.dropdown-toggle.no-toggle-icon {
   opacity: 0.5;
   z-index: 2;
 }
+
 .trackVinNumber {
   z-index: 99999;
   position: absolute;
@@ -712,13 +781,15 @@ a.nav-link.dropdown-toggle.no-toggle-icon {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-.trackVinNumber h4{
-font-family: 'Inter';
-font-size: 16px;
-font-weight: 600;
-line-height: 24px;
-color: #1A1919;
+
+.trackVinNumber h4 {
+  font-family: 'Inter';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #1A1919;
 }
+
 .trackVinNumber .modalInput {
   display: flex;
   flex-direction: row;
@@ -726,6 +797,7 @@ color: #1A1919;
   gap: 8px;
   padding-top: 8px;
 }
+
 .trackVinNumber .modalInput input {
   border: 1px solid #D0D5DD;
   padding: 8px 12px;
@@ -751,6 +823,7 @@ color: #1A1919;
   color: #b8b8b8;
   font-size: 22px;
 }
+
 ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   background-color: #F9FAFB;
   border-radius: 8px;
@@ -808,6 +881,7 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   background-color: #ffffff;
   border-bottom: 1px solid #eee;
 }
+
 .rightLoginSection .headerText p {
   color: #6c737f;
 }
@@ -820,11 +894,13 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   visibility: visible;
   z-index: 15;
 }
+
 .header-Design {
   padding: 10px 24px;
   border-bottom: 1px solid #eaecf0;
   min-height: 72px;
 }
+
 .logoHeader img {
   width: 258px;
 }
@@ -832,7 +908,8 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
 #sidebar ul li {
   padding: 2px 7px;
 }
-#sidebar ul li.active > a {
+
+#sidebar ul li.active>a {
   color: #201d1e;
   margin: 5px auto;
   background-color: rgba(200, 200, 200, 0.2);
@@ -864,20 +941,24 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   color: #fff;
   border-radius: 0 0px 7px 7px;
 }
+
 .recentlyAlert .card-body.bg-alert-area {
   height: 173px;
 }
+
 .card.rounded.recentlyAlert.userUI .card-area {
   flex-direction: column;
   display: flex;
   gap: 8px;
 }
+
 .recentlyAlert.userUI .card-body.bg-alert-area {
   height: auto;
   background: linear-gradient(180deg, #933e59 0%, #e05061 100%);
   padding: 8px 24px;
   min-height: 94px;
 }
+
 #sidebar ul li a:hover {
   color: #201d1e;
   margin: 5px auto;
@@ -918,9 +999,11 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   height: 52px;
   width: 52px;
 }
+
 #sidebar ul li a img {
   margin: 5px 12px;
 }
+
 /* #sidebar ul li a img {
   display: flex;
   margin: auto;
@@ -929,9 +1012,11 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
 #sidebar.sidebar-link a.nav-link.active img {
   filter: invert(1);
 }
+
 #sidebar.sidebar-link a.nav-link.active span {
   color: #fff !important;
 }
+
 #sidebarCollapse {
   width: 45px;
   height: 45px;
@@ -941,6 +1026,7 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   outline: none;
   background: transparent;
 }
+
 button#sidebarCollapse {
   margin-left: 30px;
 }
@@ -953,7 +1039,7 @@ button#sidebarCollapse i {
   padding: 0 24px;
 }
 
-#sidebar ul li.active > a {
+#sidebar ul li.active>a {
   color: #201d1e;
   background-color: rgba(200, 200, 200, 0.2);
 }
@@ -980,9 +1066,11 @@ button#sidebarCollapse i {
   font-weight: 400;
   color: #201d1e;
 }
+
 header .logoHeader img {
   width: 170px;
 }
+
 /*============Dashboard Design start ===========*/
 #main-content {
   padding: 24px;
@@ -991,6 +1079,7 @@ header .logoHeader img {
   margin-top: 72px;
   min-height: 100vh;
 }
+
 #main-content.active {
   padding: 24px;
   position: relative;
@@ -1054,12 +1143,14 @@ h3.card-title.cardDashNum {
   line-height: 28px;
   font-family: "Inter";
 }
+
 .userAuthorityBox span {
   font-family: "Inter";
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
 }
+
 .card .card-header.bg-header-area {
   padding: 10px 24px;
   background: #a5435c !important;
@@ -1068,11 +1159,13 @@ h3.card-title.cardDashNum {
   display: flex;
   justify-content: space-between;
 }
+
 .card .card-header.bg-header-area h5 {
   margin: 0;
   font-size: 18px;
   font-weight: 500;
 }
+
 .card .card-header.bg-header-area a.view {
   text-decoration: underline;
   color: #fff;
@@ -1090,6 +1183,7 @@ h3.card-title.cardDashNum {
   font-size: 18px;
   font-family: "Inter";
 }
+
 .dashboardDetailsBtn .card {
   min-height: 136px;
 }
@@ -1113,6 +1207,7 @@ h3.card-title.cardDashNum {
 .vinAlertGraph .barGraph img {
   width: 100%;
 }
+
 .vinAlertGraph_area h6 {
   font-size: 12px;
   font-weight: 500;
@@ -1122,9 +1217,11 @@ h3.card-title.cardDashNum {
   padding: 20px 30px;
   min-height: 462px;
 }
+
 td.vinNumberUserdash {
   cursor: pointer;
 }
+
 .vinAlertGraph button.btn.chat_btn {
   padding: 5px 15px;
   display: flex;
@@ -1151,14 +1248,17 @@ td.vinNumberUserdash {
   border-left: none;
   border-radius: 0 5px 5px 0;
 }
+
 .vinAlertGraph button.btn.chat_btn.active {
   background: #f2f3f5;
 }
+
 .pieChartGraph {
   height: 100%;
   position: relative;
   min-height: 416px;
 }
+
 .barGraph img {
   height: 313px;
 }
@@ -1185,12 +1285,14 @@ td.vinNumberUserdash {
   border: 1px solid #f3f3f3;
   padding: 20px 20px;
 }
+
 .cardWrapper .card .card-body .actionBtn i {
   color: #525e71;
   font-size: 20px;
   font-weight: 400;
   margin: auto !important;
 }
+
 .month-calendar {
   display: flex;
   align-items: center;
@@ -1206,10 +1308,12 @@ td.vinNumberUserdash {
   height: 40px;
   gap: 4px;
 }
+
 .month-calendar i {
   font-size: 20px;
   padding-right: 2px;
 }
+
 .month-calendar.vehicleMonthSearch.calendar-svg p {
   font-family: 'Inter';
   font-size: 14px;
@@ -1217,6 +1321,7 @@ td.vinNumberUserdash {
   line-height: 20px;
   color: #344054;
 }
+
 .search_table input {
   border: 1px solid #e1e1e1;
   padding: 5px 10px;
@@ -1300,9 +1405,11 @@ span.command_key .f_style {
   gap: 20px;
   font-size: 12px;
 }
+
 .legend-entry {
   border-radius: 50%;
 }
+
 .legend-border {
   font-size: 13px;
   display: flex;
@@ -1310,6 +1417,7 @@ span.command_key .f_style {
   flex-direction: row;
   gap: 10px;
 }
+
 .pichartBox {
   display: flex;
   flex-direction: column;
@@ -1334,6 +1442,7 @@ span.command_key .f_style {
 .fraudGraphArea {
   padding: 5px 0 0;
 }
+
 .userSingleSearch .VInNumberInput input {
   padding: 10px 14px;
   height: 40px;
@@ -1344,9 +1453,11 @@ span.command_key .f_style {
   font-size: 14px;
   border-radius: 8px;
 }
+
 .userSingleSearch img.img-fluid {
   cursor: pointer;
 }
+
 /* pagination CSS Design Starts */
 .paginationArea {
   border-top: 1px solid #EAECF0;
@@ -1365,6 +1476,7 @@ span.command_key .f_style {
   border: 1px solid #D0D5DD;
   box-shadow: 0px 1px 2px 0px #1018280D;
 }
+
 .paginationArea li.page-item button.page-link:focus {
   outline: none;
   box-shadow: none;
@@ -1384,7 +1496,7 @@ span.command_key .f_style {
   font-family: 'Inter';
   font-size: 14px;
   font-weight: 500;
-line-height: 20px;
+  line-height: 20px;
 }
 
 .dropdownFilter .menuFilter {
@@ -1394,16 +1506,18 @@ line-height: 20px;
   padding: 12px;
   box-shadow: 0px 4px 6px -2px #10182808, 0px 12px 16px -4px #10182814;
 }
+
 .dropdownFilter .menuFilter li a {
   padding: 12px;
-font-family: 'Inter';
-font-size: 16px;
-font-weight: 600;
-line-height: 24px;
-color: #101828;
+  font-family: 'Inter';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #101828;
 }
-.dropdownFilter .menuFilter li a:hover{
-  background-color:#F9FAFB;
+
+.dropdownFilter .menuFilter li a:hover {
+  background-color: #F9FAFB;
   border-radius: 8px;
 }
 
@@ -1420,6 +1534,7 @@ color: #101828;
   display: flex;
   flex-wrap: wrap;
 }
+
 .main-container {
   display: flex;
   min-height: 100vh;
@@ -1434,6 +1549,7 @@ color: #101828;
   font-size: 1.75rem;
   text-align: center;
 }
+
 .passwordFiled {
   position: relative;
 }
@@ -1469,12 +1585,14 @@ ul.pass-list li svg {
   height: auto;
   overflow: hidden;
 }
+
 form.FormAlign {
   display: flex;
   flex-direction: column;
   gap: 56px;
   padding: 0;
 }
+
 .backTopImg {
   top: 0;
   left: 0;
@@ -1488,6 +1606,7 @@ form.FormAlign {
   background-position: -52px top;
   max-width: 567px;
 }
+
 .backBottomImg {
   bottom: 0;
   left: 0;
@@ -1511,29 +1630,36 @@ form.FormAlign {
   gap: 60px;
   justify-content: space-between;
 }
+
 .swal2-confirm.swal2-styled {
   width: 120px !important;
   background: var(--bg-primary) !important;
   border-color: var(--bg-primary) !important;
 }
+
 .swal2-styled.swal2-confirm:focus {
   box-shadow: none !important;
 }
+
 .swal2-styled.swal2-confirm:focus-visible {
   outline: none !important;
 }
+
 .leftLoginSection .innerLeftSection .btnleftLogin .btnIcons {
   display: flex;
   align-items: center;
   width: 100%;
 }
+
 .btnIcons {
   display: flex;
   gap: 12px;
 }
+
 .btnIcons img {
   width: 24px;
 }
+
 .btnIcons {
   background: #fff;
   color: #383b56;
@@ -1544,6 +1670,7 @@ form.FormAlign {
   font-style: normal;
   font-size: 18px;
 }
+
 .btnIcons.btnZero p {
   font-family: "Barlow";
   font-size: 18px;
@@ -1551,6 +1678,7 @@ form.FormAlign {
   line-height: 24px;
   text-align: left;
 }
+
 .btnIcons.btnOne p {
   font-family: "Barlow";
   font-size: 18px;
@@ -1558,25 +1686,26 @@ form.FormAlign {
   line-height: 24px;
   text-align: left;
 }
-.leftLoginSection
-  .innerLeftSection
-  .btn-compound
-  .btnleftLogin
-  .btnIcons.btnOne {
+
+.leftLoginSection .innerLeftSection .btn-compound .btnleftLogin .btnIcons.btnOne {
   border-radius: 8px 0 0 8px;
 }
+
 .leftLoginSection .innerLeftSection .btn-compound .btnleftLogin .btnIcons {
   border: 0;
   border-radius: 8px;
 }
+
 .btnleftLogin {
   width: auto;
   display: flex;
   justify-content: flex-end;
 }
+
 .loginCheck p {
   max-width: 120px;
 }
+
 .btn-compound {
   max-width: 191px;
   display: flex;
@@ -1588,6 +1717,7 @@ form.FormAlign {
   top: -18px;
   text-align: right;
 }
+
 .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent {
   background: #fff;
   color: #383b56;
@@ -1625,11 +1755,13 @@ form.FormAlign {
   top: 42px;
   right: -4px;
 }
+
 .loginTopsection {
   position: relative;
   padding-top: 25px;
   left: -20px;
 }
+
 .leftLoginSection .oneLeftButton button {
   background-color: #fff;
   max-width: 100%;
@@ -1643,9 +1775,11 @@ form.FormAlign {
   line-height: 24px;
   text-align: left;
 }
+
 .loginTextSection {
   padding-top: 0;
 }
+
 .loginTextSection h3 {
   color: #fff;
   text-align: center;
@@ -1655,6 +1789,7 @@ form.FormAlign {
   font-family: "helvetica Medium";
   letter-spacing: 1px;
 }
+
 .loginCheck {
   text-align: center;
   display: flex;
@@ -1662,20 +1797,24 @@ form.FormAlign {
   align-items: center;
   justify-content: center;
 }
+
 .leftLoginSection .loginTextSection p {
   font-size: 16px;
   line-height: 20px;
   text-align: center;
   font-family: "helvetica light";
 }
+
 .loginTextSection {
   position: relative;
   z-index: 1;
 }
+
 .leftLoginSection .loginTextSection .loginCheck i {
   font-size: 35px;
   font-weight: lighter;
 }
+
 .leftLoginSection .footerLogin p {
   font-weight: normal;
   text-align: center;
@@ -1684,20 +1823,24 @@ form.FormAlign {
   font-size: 11px;
   padding: 0 0 10px;
 }
+
 .leftLoginSection .vehicleImage img {
   height: 407px;
 }
+
 .loginCheck img {
   width: 28px;
   height: 28px;
   margin-bottom: 10px;
 }
+
 .rightLoginSection {
   max-width: 360px;
   display: flex;
   margin: auto;
   justify-content: center;
 }
+
 .inner-LoginForm h4 {
   font-size: 20px;
   font-weight: 700;
@@ -1705,6 +1848,7 @@ form.FormAlign {
   text-align: center;
   color: #383b56;
 }
+
 .inner-LoginForm p {
   font-size: 14px;
   margin-bottom: 24px;
@@ -1713,9 +1857,11 @@ form.FormAlign {
   text-align: center;
   color: #6c737f;
 }
+
 .loginTextSection {
   position: relative;
 }
+
 .formInput::placeholder {
   font-size: 14px;
   background-color: #fff;
@@ -1733,12 +1879,14 @@ input.formInput:focus {
   border-color: var(--bg-primary);
   border-width: 1px;
 }
+
 textarea.formInput:focus {
   outline: none;
   box-shadow: none;
   border-color: #949393;
   border-width: 2px;
 }
+
 .formLabel {
   width: 100%;
   border: none;
@@ -1747,22 +1895,27 @@ textarea.formInput:focus {
   font-weight: 500;
   font-size: 12px;
 }
+
 .inner-LoginForm .mb-4 {
   position: relative;
 }
+
 .inner-LoginForm .mb-4 .showError {
   position: absolute;
   top: 52px;
 }
+
 span.passwordEye {
   position: absolute;
   right: 0;
   bottom: 2px;
   cursor: pointer;
 }
+
 span.passwordEye i {
   font-size: 16px;
 }
+
 .formInput {
   width: 100%;
   border: none;
@@ -1791,20 +1944,25 @@ span.passwordEye i {
   background-color: var(--bg-primary);
   border: 1px solid var(--bg-primary);
 }
+
 .signin_btn button:focus {
   outline: none;
   box-shadow: none;
 }
+
 p.errorMessage {
   color: #cf4b5f;
   text-transform: none;
 }
+
 .formInput.formError {
   border-bottom: 1px solid #cf4b5f;
 }
+
 .text-Error {
   color: #cf4b5f !important;
 }
+
 /* errorBox on login CSS */
 .errorBox {
   box-shadow: 0px 4px 8px 0px #1018280d;
@@ -1819,6 +1977,7 @@ p.errorMessage {
   background: #fffffff2;
   z-index: 99999;
 }
+
 /* Login Page Design end */
 /* Vehicle Monitoring  Page Design start */
 .VehicleMonitoring .card .vehicleTitle h4.card-title {
@@ -1977,6 +2136,7 @@ i.material-symbols-outlined.arrow_key {
   color: #475467;
   font-weight: 500;
 }
+
 .cardMonitor {
   display: flex;
   justify-content: space-between;
@@ -2243,16 +2403,19 @@ h2.tabSummaryHead {
   left: 0;
   top: 0;
 }
+
 .loader-img {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
 }
+
 .loader-img img {
   height: 50px;
   width: 50px;
 }
+
 .spinner-border {
   display: inline-block;
   width: 120px;
@@ -2266,9 +2429,11 @@ h2.tabSummaryHead {
   color: #d6fb3d;
   cursor: none !important;
 }
+
 .loader-img img {
   position: absolute;
 }
+
 @-webkit-keyframes spinner-border {
   to {
     -webkit-transform: rotate(360deg);
@@ -2282,31 +2447,37 @@ h2.tabSummaryHead {
     transform: rotate(360deg);
   }
 }
+
 /* User Dashboard*/
 .card.Suspicious-kpi {
   background: #fffeec;
 }
+
 .card.inProgress-kpi {
   background: #e8eaff;
 }
+
 .cardBottomLine {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
 }
+
 .cardBottomLine .aroow-angle span {
   font-size: 20px;
   position: absolute;
   bottom: 0;
   right: 0;
 }
+
 .card-area .userAuthorityBox {
   flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .card-area p.authorityPara {
   font-size: 12px;
   font-family: "Inter";
@@ -2317,6 +2488,7 @@ h2.tabSummaryHead {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
+
 .authorityThreeBtn button {
   display: flex;
   align-items: center;
@@ -2326,16 +2498,20 @@ h2.tabSummaryHead {
   padding: 3px 6px;
   font-size: 11px;
 }
+
 .authorityThreeBtn button i {
   font-size: 16px;
   margin-right: 2px;
 }
+
 .authorityThreeBtn button.redbtn {
   color: #b42318;
 }
+
 .authorityThreeBtn button.pinkbtn {
   color: #f62096;
 }
+
 .vinRecordsNum {
   border: 1px solid #eeeeee;
   background: #ebebeb;
@@ -2344,18 +2520,22 @@ h2.tabSummaryHead {
   padding: 2px 8px;
   margin-left: 10px;
 }
+
 .clear-button {
   padding: 3px 10px;
   background: #f9fafb;
   border: 1px solid #dfdfdf;
 }
+
 .progress-button {
   padding: 3px 10px;
 }
+
 .d-flex.actionBtn {
   align-items: center;
   justify-content: flex-end;
 }
+
 .d-flex.actionBtn a {
   background: #fff;
   color: #525e71 !important;
@@ -2366,6 +2546,7 @@ h2.tabSummaryHead {
   margin: auto;
   border-radius: 8px;
 }
+
 /*POPup on Table*/
 .vinPopout {
   background: #fff;
@@ -2379,6 +2560,7 @@ h2.tabSummaryHead {
   top: 12px;
   z-index: 9999;
 }
+
 .vinPopout:after {
   border-top: solid transparent 10px;
   border-bottom: solid transparent 10px;
@@ -2395,15 +2577,18 @@ h2.tabSummaryHead {
 .table tbody tr td.vinNumberUserdash:hover .vinPopout {
   display: block;
 }
+
 .vinnumber-top h3 {
   color: #000;
   font-size: 16px;
 }
+
 .vinPopout-Content {
   color: #000;
   font-size: 13px;
   padding: 15px 20px;
 }
+
 .pop-tableContent {
   display: flex;
   flex-direction: row;
@@ -2411,21 +2596,26 @@ h2.tabSummaryHead {
   align-items: center;
   padding: 5px 0;
 }
+
 .pop-tableContent-compound {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
 .vinnumber-top {
   margin: 0 0 20px;
 }
+
 .tableChildren small {
   display: block;
   color: #8b8b8b;
 }
+
 .vinPopout a.orangeColor {
   color: #ef684b !important;
 }
+
 .vin-popout-footer a span {
   text-decoration: underline;
 }
@@ -2433,12 +2623,14 @@ h2.tabSummaryHead {
 .vinPopout a {
   text-decoration: underline;
 }
+
 .vin-popout-footer {
   background: #f5f6f8;
   display: flex;
   justify-content: space-between;
   position: relative;
 }
+
 .vin-popout-footer::after {
   content: "";
   height: 55px;
@@ -2449,38 +2641,47 @@ h2.tabSummaryHead {
   right: 0;
   margin: auto;
 }
+
 .vin-popout-footer a {
   align-items: center;
   display: flex;
   text-decoration: none;
   padding: 15px 30px;
 }
+
 .vin-popout-footer a i {
   margin-right: 5px;
 }
+
 td.vinNumberUserdash {
   color: #000;
   font-weight: 500;
   position: relative;
 }
-.table > tbody > tr > td {
+
+.table>tbody>tr>td {
   font-size: 13px;
 }
+
 thead.table-light-Usertbl tr {
   background: #ededed;
 }
-.table > thead > tr > th:first-child{
+
+.table>thead>tr>th:first-child {
   border-radius: 12px 0 0 0 !important;
 }
-.table > thead > tr > th:last-child{
+
+.table>thead>tr>th:last-child {
   border-radius: 0 12px 0 0 !important;
 }
-.userdashbrdTable .table > tbody > tr > td p{
-color: #201D1E;
-font-size: 14px;
-font-weight: 400;
+
+.userdashbrdTable .table>tbody>tr>td p {
+  color: #201D1E;
+  font-size: 14px;
+  font-weight: 400;
 }
-.userdashbrdTable .table > tbody > tr > td {
+
+.userdashbrdTable .table>tbody>tr>td {
   padding: 16px 25px;
   color: #475467;
   font-family: "Inter";
@@ -2488,28 +2689,34 @@ font-weight: 400;
   font-weight: 400;
   line-height: 20px;
 }
-.table > tbody > tr > td .vinModelName {
+
+.table>tbody>tr>td .vinModelName {
   color: #201d1e;
 }
+
 .UserCardHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
 }
+
 .userSingleSearch {
   display: flex;
   align-items: center;
 }
+
 .month-calendar.userDashFilter {
   position: relative;
   border: 1px solid #CF4B5F3B;
   color: var(--bg-primary);
   z-index: 3;
 }
+
 .table-light-Usertbl {
   border-bottom: 1px solid #e1e1e1;
 }
+
 .paginationArea .pagination {
   display: flex;
   padding-left: 0;
@@ -2517,26 +2724,33 @@ font-weight: 400;
   justify-content: space-between;
   width: 100%;
 }
-.userdashbrdTable .table > tbody > tr:hover {
+
+.userdashbrdTable .table>tbody>tr:hover {
   background-color: #F9FAFB !important;
 }
+
 .pop-tableContent.border-bottom {
   padding: 0 0 10px;
 }
+
 .authorityThreeBtn {
   justify-content: space-between;
 }
+
 .userdashbrdTable table tbody tr td {
   border-bottom: 1px solid #eaecf0;
   vertical-align: middle;
 }
+
 table tbody tr td {
   border-top: 1px solid #f5f5f5;
   vertical-align: middle;
 }
+
 .userdashbrdTable .table-responsive {
   min-height: 530px;
 }
+
 span.dot-green {
   background: #17b26a;
   width: 8px;
@@ -2545,6 +2759,7 @@ span.dot-green {
   margin-right: 5px;
   border-radius: 10px;
 }
+
 span.dot-red {
   background: #f04438;
   width: 8px;
@@ -2553,16 +2768,19 @@ span.dot-red {
   margin-right: 5px;
   border-radius: 10px;
 }
+
 .textWarning {
   color: #c77441;
   border: 1px solid #fee7a7;
   background-color: #fffaeb;
 }
+
 .textRed {
   color: #b42318;
   border: 1px solid #fedad7;
   background-color: #fef3f2;
 }
+
 /* Vehicle user UI CSS starts */
 .card.userVehicle {
   display: flex;
@@ -2571,32 +2789,39 @@ span.dot-red {
   background: url("/assets/images/vin-detectionf.jpg") no-repeat;
   background-size: 100% 100%;
 }
+
 /* User Summary card CSS */
 span.cardNum {
   font-weight: 600;
   color: rgba(0, 0, 0, 0.87);
 }
+
 .borderedHead {
   border-right: 2px solid #fff;
 }
+
 span.wrapLine {
   white-space: normal;
   display: block;
   max-width: 290px;
   width: 100%;
 }
-tr.secondTitleHead > td {
+
+tr.secondTitleHead>td {
   font-weight: 500;
 }
+
 td p.subHeadRowData {
   font-weight: 500;
   font-size: 14px;
 }
+
 .headLines {
   display: flex;
   align-items: center;
   gap: 15px;
 }
+
 .headLines p {
   color: #5a6f90;
   font-weight: 500;
@@ -2622,6 +2847,7 @@ span.apexcharts-legend-marker::before {
 .frontHead nav {
   min-height: 80px;
 }
+
 .frontNav li a {
   font-family: 'Inter';
   font-size: 16px;
@@ -2630,10 +2856,12 @@ span.apexcharts-legend-marker::before {
   color: #475467;
   display: flex;
 }
+
 .frontHead .frontNav {
   margin-left: 40px;
-  gap:32px;
+  gap: 32px;
 }
+
 .frontHead .LoginBtn {
   padding: 10px 16px;
   border-radius: 8px;
@@ -2648,11 +2876,13 @@ span.apexcharts-legend-marker::before {
   border: 1px solid #fff;
   color: #475467;
 }
+
 .frontHead .LoginBtn.bg-darkBtn {
   background-color: var(--bg-primary) !important;
   border: 1px solid var(--bg-primary) !important;
   color: #fff;
 }
+
 .frontHead .LoginBtn:focus {
   box-shadow: none;
 }
@@ -2668,6 +2898,7 @@ span.apexcharts-legend-marker::before {
 .my-30 {
   margin: 30px 0;
 }
+
 .footer {
   padding: 0;
   margin-top: 20px;
@@ -2679,6 +2910,7 @@ span.apexcharts-legend-marker::before {
 .footer-container {
   margin: 0 auto;
 }
+
 .footer-contents {
   -webkit-box-pack: justify;
   justify-content: space-between;
@@ -2712,9 +2944,11 @@ span.apexcharts-legend-marker::before {
   padding: 40px 0 0;
   gap: 20px;
 }
+
 .contact-details .address {
   margin: 0 0 35px;
 }
+
 .contactForm {
   padding: 30px 40px;
   background-color: #ffffff;
@@ -2723,9 +2957,11 @@ span.apexcharts-legend-marker::before {
   max-width: 700px;
   box-shadow: 0 0 10px #0000001a;
 }
+
 .contactForm textarea {
   resize: none;
 }
+
 .contactForm .form-input,
 .form-text-area {
   background-color: #f0f4f5;
@@ -2771,17 +3007,21 @@ span.apexcharts-legend-marker::before {
   font-size: 14px;
   text-align: center;
 }
+
 .address h5 {
   display: flex;
   align-items: center;
 }
+
 .addressInner {
   display: flex;
   gap: 15px;
 }
+
 .address .addressInner i {
   color: var(--bg-primary);
 }
+
 .forgetPassword .forgetLink {
   color: var(--bg-primary) !important;
   display: flex;
@@ -2790,15 +3030,18 @@ span.apexcharts-legend-marker::before {
   margin-top: 25px;
   text-transform: capitalize;
 }
+
 .FormHead {
   text-align: center;
   margin-bottom: 30px;
 }
+
 .FormHead p {
   color: #a6a6aa;
   text-transform: none;
   font-weight: normal;
 }
+
 .FormInnerContent .InnerForm {
   padding: 30px 40px;
   background-color: #ffffff;
@@ -2808,22 +3051,28 @@ span.apexcharts-legend-marker::before {
   box-shadow: 0 0 10px #0000001a;
   margin: 10px auto;
 }
+
 .forgotModelbox .modal-dialog {
   max-width: 480px;
   width: 100%;
 }
+
 .forgotModelbox .FormInnerContentForgotForm {
   padding: 20px 30px 40px;
 }
+
 .forgotModelbox .FormInnerContentForgotForm .logoHeader.loginLogoBottom {
   margin: 0 0 35px;
 }
+
 .forgotModelbox .logoHeader img {
   width: 258px;
 }
+
 .forgotModelbox .FormInnerContentForgotForm h3 {
   font-size: 22px;
 }
+
 .forgotModelbox .FormInnerContentForgotForm .FormHead {
   margin: 0 0 80px;
 }
@@ -2834,37 +3083,45 @@ span.apexcharts-legend-marker::before {
   height: 100%;
 
 }
+
 .checkandMatch {
   position: relative;
 }
+
 .ul-aboutSection {
   list-style-type: disc;
   font-family: 'Inter';
-font-size: 16px;
-font-weight: 400;
-line-height: 35px;
-color: #475467;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 35px;
+  color: #475467;
 }
+
 .container.frontAboutUs {
   margin: 50px auto;
 }
-.chevronIcon:after{
-  border:none;
+
+.chevronIcon:after {
+  border: none;
 }
+
 .aboutContentPara p {
-font-family: 'Inter';
-font-size: 16px;
-font-weight: 400;
-line-height: 28px;
-color: #475467;
+  font-family: 'Inter';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #475467;
 }
+
 .aboutImg img {
   border-radius: 20px;
 }
+
 .mainAboutHead {
   text-align: center;
   margin-bottom: 30px;
 }
+
 .pieChartGraph .currentWeek::after {
   content: "";
   position: absolute;
@@ -2882,6 +3139,7 @@ a.btn.selected {
   border: 1px solid #ebfe2e !important;
   font-weight: 600;
 }
+
 .line-30 {
   line-height: 30px;
 }
@@ -2890,6 +3148,7 @@ a.btn.selected {
 .form-helper-error {
   color: red;
 }
+
 /* privacy-pages css */
 .privacy-content {
   text-align: justify;
@@ -2900,24 +3159,29 @@ a.btn.selected {
   margin-left: 15px;
   line-height: 25px;
 }
+
 /* User-profile CSS starts */
 .card.ProfileSection {
   border-radius: 10px;
 }
+
 .profileImage {
   display: flex;
   align-items: center;
   gap: 20px;
 }
+
 .profileHead {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 0px;
 }
+
 .card-Profileinner {
   padding: 30px;
 }
+
 .card-Profileinner h1 {
   font-family: "Inter";
   font-size: 30px;
@@ -2925,24 +3189,28 @@ a.btn.selected {
   line-height: 38px;
   color: #101828;
 }
-.profileImage .image{
-border-radius: 50%;
-height: 100px;
-width: 100px;
+
+.profileImage .image {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
 }
+
 .nameSec h6 {
   font-family: 'Inter';
   font-size: 20px;
   font-weight: 500;
-  color: #000;  
+  color: #000;
 }
+
 .nameSec {
-font-family: 'Inter';
-font-size: 14px;
-font-weight: 500;
-line-height: 20px;
-color: #475467;
+  font-family: 'Inter';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #475467;
 }
+
 .FormInnerInput .form-label {
   font-family: 'Inter';
   font-size: 16px;
@@ -2950,6 +3218,7 @@ color: #475467;
   color: #000;
   margin-bottom: 20px;
 }
+
 .FormInnerInput .modernInput {
   background-color: #F9F9F9;
   border-radius: 8px;
@@ -2960,18 +3229,21 @@ color: #475467;
   border: none;
   padding: 15px 15px;
 }
+
 .profileImage img.profileImg {
   object-fit: cover;
   height: 100px;
   width: 100px;
   border-radius: 50%;
 }
+
 span.passEye {
   position: absolute;
   right: 15px;
   bottom: 10px;
   cursor: pointer;
 }
+
 .IconEmail {
   border-radius: 50%;
   background-color: #FAEDEF;
@@ -2980,6 +3252,7 @@ span.passEye {
   line-height: 48px;
   text-align: center;
 }
+
 .emailSec h4 {
   font-family: 'Poppins';
   font-size: 18px;
@@ -2987,34 +3260,40 @@ span.passEye {
   line-height: 27px;
   color: #000;
 }
+
 .emailAddress .btnAdd {
   background-color: #FAEDEF;
   color: #CF4B5F;
   font-family: 'Inter';
-font-size: 16px;
-font-weight: 400;
+  font-size: 16px;
+  font-weight: 400;
 }
-.emailName p{
+
+.emailName p {
   font-family: 'Poppins';
-font-size: 16px;
-font-weight: 400;
-color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
 }
+
 .emailName span {
   font-family: 'Inter';
   font-size: 16px;
   font-weight: 400;
   color: #475467;
 }
+
 .emailInner {
   display: flex;
   align-items: center;
   gap: 20px;
 }
-span.passEye i{
+
+span.passEye i {
   font-size: 18px;
   color: #475467;
 }
+
 .card-profile-inner {
   position: relative;
 }
@@ -3036,16 +3315,19 @@ span.passEye i{
   justify-content: center;
   align-items: center;
 }
+
 .errorLink span.material-symbols-outlined {
   font-size: 66px;
   color: #cf4b5f;
   margin: 0 0 35px;
 }
+
 .btnsremove {
   display: flex;
   align-items: baseline;
   justify-content: flex-end;
 }
+
 .modal-content.customclosebtn button.btn-close {
   position: absolute;
   right: 10px;
@@ -3053,11 +3335,19 @@ span.passEye i{
   z-index: 3;
   box-shadow: none;
 }
+
 .modal-content.customclosebtn button.btn-close:focus-visible {
   outline: none;
 }
+
 .pointArea {
   max-width: 500px;
   margin: auto;
   width: 100%;
+}
+
+/* update user edit btn */
+.profileBtn span button {
+  width: 100%;
+  min-width: 93px;
 }
