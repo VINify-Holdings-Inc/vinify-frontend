@@ -2,24 +2,37 @@
   <div class="card-Profileinner">
     <div class="row">
       <div class="col-md-10">
-        <h1 id="profileDetails">Update Profile</h1>
+             <h1 id="profileDetails" *ngIf="!editMode">Profile Details</h1>
+             <h1 id="profileDetails" *ngIf="editMode">Update Profile</h1>
         <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" aria-labelledby="profileFormDescription">
 
           <!-- Profile Photo -->
           <div class="profileHead">
             <div class="profileImage">
               <div class="image">
-                <img [src]="profile" alt="Profile Photo" class="profileImg" alt="Profile photo of" />
+                <img [src]="profile?profile:userProf" alt="Profile photo of {{profileForm.controls['name'].value}} {{profileForm.controls['lname'].value}}"
+                 class="profileImg" alt="Profile photo of" />
+              </div>
+              <div class="nameSec" *ngIf="!editMode">
+                <h6>{{profileForm.controls['name'].value}} {{profileForm.controls['lname'].value}}</h6>
+                <p><span>{{profileForm.controls['email'].value}}</span></p>
               </div>
 
-              <div class="nameSec">
+              <div class="nameSec" *ngIf="editMode">
                 <input type="file" (change)="onFileSelected($event)" class="form-control modernInput"
                   accept="image/*" />
               </div>
             </div>
             <div class="profileBtn">
+              <span  *ngIf="!editMode" >
+                  <button type="button"  routerLink="#" class="btn btn-primary" aria-label="Edit profile" (click)="editModeFun(true)">
+                  Edit
+                </button>
+            </span>
+            <span  *ngIf="editMode">
               <button type="submit" routerLink="#" class="btn btn-primary" aria-label="Update profile"
                 [disabled]="profileForm.invalid || isLoading">Update Profile</button>
+              </span>
             </div>
           </div>
 
@@ -96,18 +109,18 @@
 
               </div>
 
-              <div class="mb-4">
-                <label for="company" class="form-label">Company</label>
-                <select 
-                  class="form-select modernInput" 
-                  id="company" 
-                  formControlName="company"
-                  aria-label="Select company">
-                  <option selected>abc techs</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
+              <div class="mb-4 passwordFiled" *ngIf="editMode">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input [type]="ceye?'text':'password'" class="form-control modernInput" id="confirmPassword" name="confirmPassword"
+                  placeholder="********" formControlName="confirmPassword" />
+                <span class="passEye"><i *ngIf="!ceye" class="material-symbols-outlined"
+                    (click)="showConfirmPwd()">visibility_off</i><i *ngIf="ceye" (click)="showConfirmPwd()"
+                    class="material-symbols-outlined">visibility</i></span>
+                <div
+                  *ngIf="profileForm.controls['confirmPassword'].touched && profileForm.controls['confirmPassword']?.errors?.['required']">
+                  <span class="text-danger">Confirm Password is required</span>
+                </div>
+
               </div>
              
               
@@ -143,16 +156,68 @@
 
           
               
-              <div class="mb-4 passwordFiled">
-                <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input [type]="ceye?'text':'password'" class="form-control modernInput" id="confirmPassword" name="confirmPassword"
-                  placeholder="********" formControlName="confirmPassword" />
-                <span class="passEye"><i *ngIf="!ceye" class="material-symbols-outlined"
-                    (click)="showConfirmPwd()">visibility_off</i><i *ngIf="ceye" (click)="showConfirmPwd()"
-                    class="material-symbols-outlined">visibility</i></span>
-                <div
-                  *ngIf="profileForm.controls['confirmPassword'].touched && profileForm.controls['confirmPassword']?.errors?.['required']">
-                  <span class="text-danger">Confirm Password is required</span>
+             
+                
+              <div class="mb-4">
+                <label for="company" class="form-label">Company</label>
+                <select 
+                  class="form-select modernInput" 
+                  id="company" 
+                  formControlName="company"
+                  aria-label="Select company">
+                  <option selected>abc techs</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+
+
+            </div>
+          </div>
+        </form>
+        <form [formGroup]="profileFormEmail" (ngSubmit)="onSubmit()">
+          <div class="col-md-12" *ngIf="!editMode">
+            <div class="emailSec my-3">
+              <h4>My Email Address</h4>
+
+              <div class="emailInner my-4 d-flex align-items-center">
+                <div class="IconEmail">
+                  <img [src]="SmsIcon" alt="Email icon" />
+                </div>
+                <div class="emailName">
+                  <p>{{profileForm.controls['email'].value}}</p>
+                  <span>1 month ago</span>
+                </div>
+              </div>
+
+              <div class="emailAddress">
+                <button 
+                  type="button" 
+                  class="btn btnAdd" 
+                  aria-label="Add email address" (click)="handelOtherEmail()">
+                  + Add Email Address
+                </button>
+
+                <div class="col-md-6 mb-4 mt-2 d-flex justify-content-center align-items-center"   *ngIf="showOther">
+                  <label for="email" class="form-label d-flex justify-content-center align-items-center">Other Email</label>
+                  <input 
+                    type="email" 
+                    class="form-control modernInput me-2 " 
+                    id="email" 
+                   
+                    formControlName="secondaryEmailId" 
+                    aria-required="true" />
+                    <div *ngIf="profileFormEmail.controls['secondaryEmailId'].touched">
+                      <span class="text-danger" *ngIf="profileFormEmail.controls['secondaryEmailId'].errors?.['required']">Please enter a Email address</span>
+                      <span class="text-danger" *ngIf="!profileFormEmail.controls['secondaryEmailId'].errors?.['required'] && profileFormEmail.controls['secondaryEmailId'].errors?.['email']">Please enter a valid email address</span>
+                    </div>
+                    <button 
+                      type="button" 
+                      class="btn btnAdd" 
+                      aria-label="Save" (click)="handelSave()" [disabled]="profileFormEmail.invalid">
+                      Save
+                    </button>
                 </div>
 
               </div>
