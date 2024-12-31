@@ -14,7 +14,7 @@
                         <div class="cardBottomLine check-details">
                             <a routerLink="#" aria-label="Check details about total vehicle monitors">Check Details</a>
                             <a routerLink="#" class="arrow-angle" aria-hidden="true">
-                                <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+                                <img [src]="arrowIcon"  class="img-fluid" alt="icon"/>
                             </a>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                         <div class="cardBottomLine check-details color-check">
                             <a routerLink="#" aria-label="Check details about urgent alerts">Check Details</a>
                             <a routerLink="#" class="arrow-angle" aria-hidden="true">
-                                <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+                                <img [src]="arrowIcon2"  class="img-fluid" alt="icon"/>
                             </a>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
             <!-- Recent Alerts -->
             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
                 <div class="card rounded recentlyAlert userUI" role="region" aria-labelledby="recent-alert">
-                    <div class="card-header bg-header-area">
+                    <div class="card-header bg-header-area"> 
                         <h5 id="recent-alert">Recent Alert</h5>
                         <a routerLink="#" class="view" aria-label="View all recent alerts">View All</a>
                     </div>
@@ -54,7 +54,7 @@
                                 <p><span aria-label="Vehicle Identification Number">JH4KA8260MC000001</span></p>
                                 <span class="date-time" aria-label="Alert generated at 10:40 AM on Friday, December 10, 2024">10.40 AM, Fri 10 Dec 2024</span>
                             </div>
-                            <h5>Suspected Theft Report Detected</h5>
+                            <h5>Suspected theft report detected.</h5>
                             <p class="authorityPara">
                                 Theft detected for VIN XYZ123456 in Florida. Immediate action required.
                             </p>

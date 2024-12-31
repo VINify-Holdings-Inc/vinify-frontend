@@ -21,6 +21,8 @@ declare var bootstrap: any;
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements AfterViewInit,OnInit {
+  arrowIcon: string = 'assets/images/icons/kpi-arrow.svg';
+  arrowIcon2: string ='assets/images/icons/kpi-colorarrow.svg'
 
   constructor(private userData : userData,
              private sessionService: SessionService,){
