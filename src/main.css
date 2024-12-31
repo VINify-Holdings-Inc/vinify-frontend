@@ -183,10 +183,9 @@ p.textLight {
   position: relative;
   border: 1px solid #eceef1;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   box-shadow: 0px 5px 10px 0px #8d90ac1a;
   border-radius: 12px;
-  color: rgba(0, 0, 0, 0.87);
   background: #fff;
 }
 
@@ -235,31 +234,21 @@ hr {
   font-size: 16px;
   font-family: "Inter";
 }
-
-.cardBottomLine a {
-  font-size: 11px;
-}
-
 .card-title {
   margin-bottom: 0;
   font-family: "Inter";
   font-size: 24px;
   font-weight: 600;
-  line-height: 38px;
-  text-align: left;
   color: #101828;
 }
-
 .pieChartGraph .card-title {
   font-size: 18px;
 }
-
 p.smallAddIcon i {
   line-height: 15px;
   padding: 10px 5px;
   border-radius: 5px;
 }
-
 .dot {
   width: 8px;
   height: 8px;
@@ -290,7 +279,7 @@ p.smallAddIcon i {
 .table > tbody > tr > td {
   white-space: nowrap;
   font-size: 14px;
-  padding: 15px 15px;
+  padding: 16px 24px;
 }
 .table > :not(caption) > * > * {
   background: none !important;
@@ -303,14 +292,15 @@ p.smallAddIcon i {
   background-color: #edeaf9 !important;
 }
 .table > thead > tr > th {
-  border-bottom-width: 1px;
   font-weight: 600;
-  padding: 13px 15px;
+  padding: 12px 24px;
   text-transform: capitalize;
   font-size: 12px;
   color: #323b48;
   background-color: #ededed !important;
-  border-right: 1px solid #f3f3f3;
+}
+.table thead{
+  border-radius: 12px!important;
 }
 .table > thead > tr > th:last-child {
   text-align: right;
@@ -387,7 +377,35 @@ button.btn.btn-custom {
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.08);
 }
-
+.headNotify {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.notifyBox {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 12px 0 12px;
+}
+.notifyInner:hover{
+  background-color: #fff;
+}
+.headNotify p{
+font-size: 16px;
+font-weight: 600;
+line-height: 24px;
+color: #101828;
+}
+.headNotify span{
+font-family: 'Inter';
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+color:#475467;
+}
+li.dropdown-item.notifyInner {
+  padding: 12px;
+}
 .headerSection .navbar-btn_track {
   background-color: var(--bg-primary);
   padding: 10px 14px;
@@ -441,16 +459,6 @@ button.btn.btn-custom {
   color: #757575;
   font-size: 1.5rem;
 }
-
-.headerSection .navbar-nav .notification-dropdown li a {
-  padding: 15px 20px;
-  border-top: 1px solid rgb(219, 218, 218);
-}
-
-.headerSection .navbar-nav .profile_dropdown .profileLine {
-  border-top: 1px solid rgb(219, 218, 218);
-}
-
 .ProfileHead {
   padding: 12px 0;
   display: flex;
@@ -504,78 +512,121 @@ button.btn.btn-custom {
   border: 1px solid #eaecf0;
   box-shadow: 0px 4px 6px -2px #10182808;
 }
-
-.headerSection .notification-dropdown .alertCheck {
+span.red-dot {
+  height: 6px;
+  width: 6px;
+  display: block;
+  background-color: #F04438;
   border-radius: 50%;
-  text-align: center;
+}
+.notifyPoint {
   display: flex;
-  margin-right: 10px;
-  padding: 8px;
+  gap: 15px;
+  padding: 0 12px;
 }
-
-.headerSection .notification-dropdown .alertCheck i {
-  font-size: 20px;
-}
-
-.headerSection .check-circle {
-  color: #01d14a;
-  background-color: #e8f8ee;
-}
-
-.headerSection .uncheck-circle {
-  color: #db6b4f;
-  background-color: #fbedea;
-}
-
-.headerSection .notification-dropdown .notifications-points h5 {
-  margin-bottom: 0;
+.notifySubpoint p {
+  word-break: break-all;
+  white-space: break-spaces;
+  font-family: 'Inter';
   font-size: 14px;
-  color: #000;
+  font-weight: 400;
+  line-height: 20px;
+  color: #475467;
+}
+.notifySubHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.notifySubHead h6 {
+  font-family: 'Inter';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color:#101828;
+}
+.notification-dropdown::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.notification-dropdown::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+.notification-dropdown::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color:#d6d6d6;
 }
 
 .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
-  max-width: 406px;
-  width: 406px;
-  top: 42px;
+  max-width: 336px;
+  width: 336px;
+  top: 40px;
+  padding-bottom: 20px;
+  overflow-y: auto;
+  max-height: 480px;
+  border-radius: 12px;
+  border: 1px solid #EAECF0;
+  box-shadow: 0px 4px 6px -2px #10182808, 0px 12px 16px -4px #10182814;
 }
-
-.headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown h4 {
-  font-size: 16px;
-  margin: 0;
-  position: relative;
-  top: 5px;
+.notifyPoint{
+  padding: 12px;
 }
-
-.headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown p {
-  white-space: normal;
-  font-size: 12px;
-  text-transform: none;
-  line-height: 20px;
-  margin-bottom: 0;
-  font-weight: normal;
+.notifySubpoint p{
+  width: 266px;
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
-
+li.notifyInner{
+  padding: 0 12px;
+}
+.tableDot{
+  height: 8px;
+  width:8px;
+  border-radius: 50%;
+  margin-right: 4px;
+  display: inline-block;
+}
+.tableDot.redDot{
+  background-color: #F04438;
+}
+.tableDot.grayDot{
+  background-color: #C4C4C4;
+}
+.notifyPoint:hover{
+  background-color: #FECDCA59;
+  border-radius: 8px;
+}
 .headerSection .navbar-nav .notification-dropdown li .notifyHeading {
   padding: 10px 15px;
 }
-
 .headerSection .notification-number {
-  background-color: #e2e0fa;
-  color: #6366f0;
   font-weight: 700;
   border-radius: 20px;
-  padding: 5px 15px;
+  padding: 2px 10px;
+  background: #FEF3F2;
+  border: 1px solid #FECDCA;
+  font-family: 'Inter';
+  color: #B42318;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
 }
+
 a.nav-link.dropdown-toggle.no-toggle-icon {
   position: relative;
 }
 .notification-dot span {
   color: #fff;
   font-size: 10px;
-}
-.calendar-svg {
-  display: flex;
-  gap: 4px;
 }
 .headerSection .notification-dot {
   height: 12px;
@@ -824,7 +875,7 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
 .recentlyAlert.userUI .card-body.bg-alert-area {
   height: auto;
   background: linear-gradient(180deg, #933e59 0%, #e05061 100%);
-  padding: 9px 24px;
+  padding: 8px 24px;
   min-height: 94px;
 }
 #sidebar ul li a:hover {
@@ -934,14 +985,14 @@ header .logoHeader img {
 }
 /*============Dashboard Design start ===========*/
 #main-content {
-  padding: 20px 20px 0px 20px;
+  padding: 24px;
   position: relative;
   width: 100%;
   margin-top: 72px;
   min-height: 100vh;
 }
 #main-content.active {
-  padding: 20px 20px 0px 20px;
+  padding: 24px;
   position: relative;
   float: right;
   margin-top: 72px;
@@ -958,7 +1009,7 @@ header .logoHeader img {
 #content {
   position: relative;
   transition: all 0.3s;
-  background-color: #f5f7fa;
+  background-color: #F7F8F9;
 }
 
 .card .card-header-text h4 {
@@ -1008,7 +1059,6 @@ h3.card-title.cardDashNum {
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
-  text-align: left;
 }
 .card .card-header.bg-header-area {
   padding: 10px 24px;
@@ -1020,7 +1070,7 @@ h3.card-title.cardDashNum {
 }
 .card .card-header.bg-header-area h5 {
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
 }
 .card .card-header.bg-header-area a.view {
@@ -1154,10 +1204,18 @@ td.vinNumberUserdash {
   background: #fff;
   box-shadow: 0px 1px 2px 0px #1018280d;
   height: 40px;
+  gap: 4px;
 }
 .month-calendar i {
   font-size: 20px;
-  padding-right: 5px;
+  padding-right: 2px;
+}
+.month-calendar.vehicleMonthSearch.calendar-svg p {
+  font-family: 'Inter';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #344054;
 }
 .search_table input {
   border: 1px solid #e1e1e1;
@@ -1215,7 +1273,7 @@ span.command_key .f_style {
   padding-right: 4.2rem;
 }
 
-.check-details a {
+.cardBottomLine.check-details a {
   color: #475467;
   font-family: "Inter";
   font-size: 14px;
@@ -1270,7 +1328,7 @@ span.command_key .f_style {
   display: flex;
   padding: 12px 24px;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .fraudGraphArea {
@@ -1291,19 +1349,21 @@ span.command_key .f_style {
 }
 /* pagination CSS Design Starts */
 .paginationArea {
-  border-top: 1px solid #e1e1e1;
+  border-top: 1px solid #EAECF0;
   padding: 10px 15px 0 15px;
   justify-content: end;
   display: flex;
 }
 
 .paginationArea li.page-item button.page-link {
-  padding: 5px 14px;
+  padding: 8px 12px;
   color: #344054;
   font-size: 14px !important;
   cursor: pointer;
   border-radius: 8px;
   font-weight: 600;
+  border: 1px solid #D0D5DD;
+  box-shadow: 0px 1px 2px 0px #1018280D;
 }
 .paginationArea li.page-item button.page-link:focus {
   outline: none;
@@ -1317,11 +1377,34 @@ span.command_key .f_style {
 }
 
 .paginationArea li.page-item span.page-link {
-  color: #000;
-  padding: 5px 14px;
-  font-size: 14px !important;
+  color: #344054;
+  padding: 8px 12px;
   background: transparent;
   border: none;
+  font-family: 'Inter';
+  font-size: 14px;
+  font-weight: 500;
+line-height: 20px;
+}
+
+.dropdownFilter .menuFilter {
+  max-width: 159px;
+  width: 159px;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0px 4px 6px -2px #10182808, 0px 12px 16px -4px #10182814;
+}
+.dropdownFilter .menuFilter li a {
+  padding: 12px;
+font-family: 'Inter';
+font-size: 16px;
+font-weight: 600;
+line-height: 24px;
+color: #101828;
+}
+.dropdownFilter .menuFilter li a:hover{
+  background-color:#F9FAFB;
+  border-radius: 8px;
 }
 
 /* pagination CSS and Dashboard Ends */
@@ -1419,6 +1502,7 @@ form.FormAlign {
   background-position: bottom;
   max-width: 960px;
 }
+
 .leftLoginSection .innerLeftSection {
   height: 100%;
   width: 100%;
@@ -1504,7 +1588,6 @@ form.FormAlign {
   top: -18px;
   text-align: right;
 }
-
 .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent {
   background: #fff;
   color: #383b56;
@@ -1526,6 +1609,7 @@ form.FormAlign {
 }
 
 
+
 .leftLoginSection .loginTextSection p.spanLine {
   color: #fff;
   font-family: "helvetica light";
@@ -1534,6 +1618,7 @@ form.FormAlign {
   line-height: 22px;
   text-align: center;
 }
+
 .leftLoginSection .vehicleImage {
   max-width: 100%;
   position: absolute;
@@ -1758,7 +1843,7 @@ p.errorMessage {
 
 .cardSubHead {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   align-items: center;
 }
 
@@ -2384,8 +2469,19 @@ td.vinNumberUserdash {
 thead.table-light-Usertbl tr {
   background: #ededed;
 }
+.table > thead > tr > th:first-child{
+  border-radius: 12px 0 0 0 !important;
+}
+.table > thead > tr > th:last-child{
+  border-radius: 0 12px 0 0 !important;
+}
+.userdashbrdTable .table > tbody > tr > td p{
+color: #201D1E;
+font-size: 14px;
+font-weight: 400;
+}
 .userdashbrdTable .table > tbody > tr > td {
-  padding: 25px 15px;
+  padding: 16px 25px;
   color: #475467;
   font-family: "Inter";
   font-size: 14px;
@@ -2399,15 +2495,17 @@ thead.table-light-Usertbl tr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 10px;
+  margin-bottom: 24px;
 }
 .userSingleSearch {
   display: flex;
   align-items: center;
 }
 .month-calendar.userDashFilter {
-  border: 1px solid var(--bg-primary);
+  position: relative;
+  border: 1px solid #CF4B5F3B;
   color: var(--bg-primary);
+  z-index: 3;
 }
 .table-light-Usertbl {
   border-bottom: 1px solid #e1e1e1;
@@ -2420,7 +2518,7 @@ thead.table-light-Usertbl tr {
   width: 100%;
 }
 .userdashbrdTable .table > tbody > tr:hover {
-  background-color: #f3f6ff !important;
+  background-color: #F9FAFB !important;
 }
 .pop-tableContent.border-bottom {
   padding: 0 0 10px;
@@ -2866,6 +2964,7 @@ color: #475467;
   object-fit: cover;
   height: 100px;
   width: 100px;
+  border-radius: 50%;
 }
 span.passEye {
   position: absolute;

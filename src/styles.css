@@ -1,4 +1,7 @@
 @media only screen and (max-width: 2000px) {
+  .card-area p.authorityPara{
+    font-size: 11px;    
+}
 .backBottomImg { 
   height: 306px; 
   max-width: 960px;
@@ -8,33 +11,34 @@
 }
 }
 @media only screen and (max-width: 1600px) {
-.leftLoginSection .innerLeftSection {
-  padding: 20px 0 0;
-}
-.leftLoginSection .vehicleImage img{
-  height: 377px;
-}
-.loginTopsection {
-  max-width: 540px;
-}
-.backBottomImg {
-  height: 246px;
-  max-width: 890px;
-}
-.loginTextSection {
-  position: relative;
-  top: 45px;
-}
-
+  .card-area p.authorityPara{
+    font-size: 10px;    
+    }
+    .leftLoginSection .innerLeftSection {
+      padding: 20px 0 0;
+    }
+    .leftLoginSection .vehicleImage img{
+      height: 377px;
+    }
+    .loginTopsection {
+      max-width: 540px;
+    }
+    .backBottomImg {
+      height: 246px;
+      max-width: 890px;
+    }
+    .loginTextSection {
+      position: relative;
+      top: 45px;
+    }
 }
 @media only screen and (max-width: 1400px) {
+  .card-area p.authorityPara{
+  font-size: 9px;    
+  }
   .loginTextSection {
     padding-top: 20px;
   }
-
-  /* .recentlyAlert.userUI .card-body.bg-alert-area {
-    padding: 8px 8px;
-} */
   .userAuthorityBox span {
     font-size: 12px;
   }
@@ -68,12 +72,6 @@
     max-width: 192px;
   }
   /*======== Dashbaord UI Page Design ===========*/
-  .card-body.cardInnerDash {
-    padding: 8px 8px;
-  }
-  .card-area h6 {
-    font-size: 12px;
-  }
   .cardBottomLine a {
     font-size: 12px;
   }
@@ -82,10 +80,7 @@
     width: 200px;
     max-width: 100%;
   }
-  .month-calendar.vehicleMonthSearch span {
-    font-size: 10px;
-    line-height: 15px;
-  }
+
   .month-calendar.vehicleMonthSearch i {
     font-size: 18px;
   }
@@ -103,30 +98,9 @@
   }
   .tabVehicleSection.cardHeaderJustify ul li.nav-item .nav-link {
     font-size: 12px;
-  }
-  .cardSubHead {
-    gap: 4px;
-  }
-  .month-calendar i {
-    font-size: 18px;
-    padding-right: 5px;
-  }
-  .month-calendar span {
-    font-size: 11px;
-    line-height: 15px;
-  }
-  .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
-    max-width: 400px;
-    width: 400px;
-  }
-
-   
+  }  
 }
 @media only screen and (max-width: 1200px) {
-  .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
-    max-width: 400px;
-    width: 400px;
-  }
   .headerSection .profile_dropdown {
     width: 160px;
     max-width: 160px;
@@ -163,9 +137,7 @@
   /*=======================================================
       Dashboard Page Design start
     ===============================================*/
-  .card-area h6 {
-    font-size: 13px;
-  }
+
   .graphSectionBtn {
     border: 1px solid #f3f3f3;
     padding: 20px 9px;
@@ -283,10 +255,9 @@
   }
   #main-content.active {
     width: 100%;
-    padding: 20px 20px 0px 20px;
     position: relative;
     margin-top: 72px;
-    background-color: #f5f7fa;
+    background-color: #F7F8F9;
   }
   #sidebar {
     position: fixed;
@@ -382,9 +353,6 @@
 ===============================================*/
   .card-body.cardInnerDash {
     padding: 10px;
-  }
-  .card-area h6 {
-    font-size: 13px;
   }
   .cardBottomLine a {
     font-size: 9px;
@@ -911,13 +879,6 @@
   /*=======================================================
       Vehicle Monitoring Page Design start
     ===============================================*/
-  .cardSubHead {
-    display: flex;
-    gap: 15px;
-    flex-direction: column;
-    width: 100%;
-    align-items: start;
-  }
   .month-calendar {
     width: 100%;
     line-height: 30px;
