@@ -440,6 +440,10 @@
   }
 }
 @media only screen and (max-width: 768px) {
+  .pointArea {
+    padding-bottom: 48px;
+   }
+
   .profileHead {
     flex-direction: column;
     align-items: center;
