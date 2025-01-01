@@ -10,13 +10,13 @@ import { environment } from '../../../environments/environment';
 import Swal from 'sweetalert2';
 import { ForgetPasswordComponent } from '../forget-password/forget-password.component';
 import { LoaderComponent } from "../layout/common/loader/loader.component";
-
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'], // Corrected typo: `styleUrl` -> `styleUrls`
-  imports: [ReactiveFormsModule, CommonModule, ForgetPasswordComponent, LoaderComponent],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink,ForgetPasswordComponent, LoaderComponent],
 })
 export class LoginComponent {
  
