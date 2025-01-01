@@ -8,10 +8,12 @@ import { CommonModule } from '@angular/common';
 import { strictEmailValidator } from '../custom-validator/strict-email.validator';
 import { LoaderComponent } from '../layout/common/loader/loader.component';
 import Swal from 'sweetalert2';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-contact',
-  imports: [ReactiveFormsModule,CommonModule,FrontHeaderComponent,FrontFooterComponent,LoaderComponent],
+  imports: [ReactiveFormsModule,CommonModule,FrontHeaderComponent,FrontFooterComponent,LoaderComponent,NgxMaskDirective],
+  providers: [provideNgxMask()],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
@@ -33,7 +35,7 @@ export class ContactComponent {
                   message: ['', [Validators.required, ]],
                   email: ['', [Validators.required,strictEmailValidator() ]], 
                   phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
-                 /// phone: ['', [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/) ]],
+                   //phone: ['', [Validators.required, Validators.pattern(/^\(\d{3}\) \d{3}-\d{4}$/)]],
                 //  phone: ['', [Validators.required, Validators.pattern('^(\\+1\\s?)?\\(?\\d{3}\\)?[-\\s]?\\d{3}[-\\s]?\\d{4}$') ]],
                 });
               }
