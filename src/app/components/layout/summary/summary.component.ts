@@ -6,6 +6,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SessionService } from '../../../services/session.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-summary',
@@ -25,11 +26,22 @@ export class SummaryComponent implements OnInit {
     member :string="";
     ngOnInit() {
       this.member  = this.sessionService.getSessionData("memberId")
+      
+      /*
       this.receivedData = history.state; // Retrieve the state data
       this.vin=this.receivedData?.vin;
       this.model=this.receivedData?.model;
-
       this.getTableData(this.vin);
+      */
+
+      this.route.queryParams.subscribe((params) => {
+        this.vin = params['vin'] || '';
+        this.model=params['model'] || '';
+       // console.log('Query Params Changed: ', this.vin);
+        if (this.vin) {
+          this.getTableData(this.vin);
+        }
+      });
     }
 
  
@@ -45,19 +57,26 @@ export class SummaryComponent implements OnInit {
   getTableData(vin:any){
     
     this.isLoading= true;
-     let url = `page=${this.page}&limit=${this.limit}&member=${(this.member)}`;
-    if(vin){
-      url = url+`&vin=${(vin)}`
-     }
+     let url = `vin=${vin}&page=${this.page}&limit=${this.limit}&member=${(this.member)}`;
+    // if(vin){
+    //   url = url+`&vin=${(vin)}`
+    //  }
      
-    this.userData.getCurrentVinDataForUser(url).subscribe(
+    this.userData.searchVinDataForUser(url).subscribe(
       (res:any) => {
-          
+          this.isLoading=false; 
         if(!res.error){
           this.tableData=res?.data?.items||[];
           this.totalPages= res?.data?.totalPages||0;
+        }else{
+          Swal.fire({
+                  title: 'Error!',
+                  text: res.message,
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                })
         }
-        this.isLoading=false;
+       
       },
       (err) => {
         this.isLoading=false;

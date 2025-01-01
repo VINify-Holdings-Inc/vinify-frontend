@@ -33,14 +33,20 @@ export class AuthService {
 
   
   insertData(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/bulkInsertData`, data);
+    return this.http.post(`${this.baseUrl}/csv-import`, data,{
+      headers:this.getHeaders(),
+    });
   }
 
   insertSheet2Data(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/bulkInsertSheet2Data`, data);
+    return this.http.post(`${this.baseUrl}/csv-import-sheet2`, data,{
+      headers:this.getHeaders(),
+    });
   }
   sendContactUsMessage(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/contact-us`, data);
+    return this.http.post(`${this.baseUrl}/contact-us`, data,{
+      headers: this.getHeaders(),
+    });
   }
 
   updateProfile(data: FormData): Observable<any> {
@@ -54,7 +60,9 @@ export class AuthService {
 
   getProfileData(data: any): Observable<any> {
    
-    return this.http.get(`${this.baseUrl}/user-profile/`+ data);
+    return this.http.get(`${this.baseUrl}/user-profile/`+ data, {
+          headers: this.getHeaders(),
+        });
   }
 
   // getProfileData(data: any): Observable<any> {
@@ -81,7 +89,15 @@ export class userData {
   }
 
   getCurrentVinDataForUser(data: any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/csv-import-sheet2?`+ data);
+    return this.http.get(`${this.baseUrl}/csv-import-sheet2?`+ data, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  searchVinDataForUser(data: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/search-pop-vin?`+ data, {
+      headers: this.getHeaders(),
+    });
   }
 
     
