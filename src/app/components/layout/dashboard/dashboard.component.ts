@@ -1,4 +1,4 @@
-import { Component, AfterViewInit,OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { NgModel } from '@angular/forms';
@@ -14,20 +14,19 @@ declare var bootstrap: any;
 
 @Component({
   selector: 'app-dashboard',
-  standalone:true,
-  //imports: [BarChartComponent,LineChartComponent,PieChartComponent,UserTableComponent,CommonModule,LoaderComponent],
-  imports: [UserTableComponent,CommonModule,LoaderComponent],
+  standalone: true,
+  imports: [UserTableComponent, CommonModule, LoaderComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent implements AfterViewInit,OnInit {
+export class DashboardComponent implements AfterViewInit, OnInit {
   arrowIcon: string = 'assets/images/icons/kpi-arrow.svg';
-  arrowIcon2: string ='assets/images/icons/kpi-colorarrow.svg'
+  arrowIcon2: string = 'assets/images/icons/kpi-colorarrow.svg'
 
-  constructor(private userData : userData,
-             private sessionService: SessionService,){
-             
-             }
+  constructor(private userData: userData,
+    private sessionService: SessionService,) {
+
+  }
 
 
   ngAfterViewInit(): void {
@@ -36,58 +35,58 @@ export class DashboardComponent implements AfterViewInit,OnInit {
       new bootstrap.Tooltip(tooltipElem);
     });
   }
-  member :string="";
+  member: string = "";
   ngOnInit(): void {
-    this.member  = this.sessionService.getSessionData("memberId")
+    this.member = this.sessionService.getSessionData("memberId")
     this.getTableData();
-    
+
   }
 
-  limit :number=10;
-  page : number =1;
-  totalPages : number=0;
-  status : string="current";
-  tableData :any[]=[];
+  limit: number = 10;
+  page: number = 1;
+  totalPages: number = 0;
+  status: string = "current";
+  tableData: any[] = [];
 
-  isLoading : boolean=false;
+  isLoading: boolean = false;
 
-  getTableData(vin=null){
-    
-    this.isLoading= true;
-   // const url = `page=${this.page}&limit=${this.limit}&status=${encodeURIComponent(JSON.stringify(this.status))}&member=${encodeURIComponent(JSON.stringify(this.member))}`;
+  getTableData(vin = null) {
+
+    this.isLoading = true;
+    // const url = `page=${this.page}&limit=${this.limit}&status=${encodeURIComponent(JSON.stringify(this.status))}&member=${encodeURIComponent(JSON.stringify(this.member))}`;
     let url = `page=${this.page}&limit=${this.limit}&member=${(this.member)}`;
-    if(vin){
-      url = url+`&vin=${(vin)}`
-     }
-     
+    if (vin) {
+      url = url + `&vin=${(vin)}`
+    }
+
     this.userData.getCurrentVinDataForUser(url).subscribe(
-      (res:any) => {
-          
-        if(!res.error){
-          this.tableData=res?.data?.items||[];
-          this.totalPages= res?.data?.totalPages||0;
+      (res: any) => {
+
+        if (!res.error) {
+          this.tableData = res?.data?.items || [];
+          this.totalPages = res?.data?.totalPages || 0;
         }
-        this.isLoading=false;
+        this.isLoading = false;
       },
       (err) => {
-        this.isLoading=false;
+        this.isLoading = false;
       }
     );
   }
 
- 
 
-   handlePageChange(newPage:any){
-    this.page = newPage ;
+
+  handlePageChange(newPage: any) {
+    this.page = newPage;
     this.getTableData();
-};
-handelSearch(searchVal:any){
-  this.getTableData(searchVal);
-}
+  };
+  handelSearch(searchVal: any) {
+    this.getTableData(searchVal);
+  }
 
-  isChartSelected : string ="line";
-  changeChart (x:string) {
-    this.isChartSelected=x;
+  isChartSelected: string = "line";
+  changeChart(x: string) {
+    this.isChartSelected = x;
   }
 
 }
