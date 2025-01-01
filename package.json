@@ -21,6 +21,7 @@
     "apexcharts": "^4.1.0",
     "bootstrap": "^5.3.3",
     "ng-apexcharts": "^1.15.0",
+    "ngx-mask": "^19.0.6",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.6.13",
     "tslib": "^2.3.0",
