@@ -70,20 +70,7 @@
                             </div>
                                        
                      </div>
-                               
                    
-                    <!-- <div class="mb-4">
-                        <label for="phone" class="form-label">Phone Number</label>
-                        <input type="tel" class="formInput" id="phone" placeholder="Enter Your Phone Number"
-                            name="phone"   aria-describedby="phone-desc" formControlName="phone"  pattern="^\d{10}$" 
-                            maxlength="10" minlength="10"  inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                          <div *ngIf="contactForm.controls['phone'].touched && contactForm.controls['phone']?.errors?.['required']">
-                                <span class="text-danger">Phone Number is required</span>
-                          </div>
-                          <div *ngIf="contactForm.controls['phone'].touched && contactForm.controls['phone']?.hasError('pattern')">
-                              <span class="text-danger">Enter a valid Phone Number</span>
-                          </div>
-                    </div> -->
                     <div class="mb-4">
                         <label for="phone" class="form-label">Phone Number</label>
                         <input
@@ -103,7 +90,7 @@
                           <span class="text-danger">Enter a valid Phone Number</span>
                         </div>
                       </div>
-                     {{ this.contactForm.controls['phone'].value }}
+                 
                     <div class="mb-4">
                         <label for="subject" class="form-label">Subject</label>
                         <input type="text" class="formInput" id="subject" placeholder="Enter Subject" name="subject" formControlName="subject"
