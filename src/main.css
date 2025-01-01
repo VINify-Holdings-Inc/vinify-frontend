@@ -1851,7 +1851,20 @@ form.FormAlign {
   margin: auto;
   justify-content: center;
 }
-
+.setrelative{
+  position: relative;
+}
+.footersublink {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  width: auto;
+}
+.footersublink ul li {
+  display: inline-block;
+  padding: 0 20px;
+  font-size: 12px;
+}
 .inner-LoginForm h4 {
   font-size: 20px;
   font-weight: 700;
