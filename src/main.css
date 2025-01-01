@@ -10,6 +10,17 @@
 }
 
 @font-face {
+  font-family: "helvetica thin";
+  src: url("/assets/fonts/helveticaneuethin-webfont.woff2") format("woff2"),
+    url("/assets/fonts/helveticaneuethin-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: "helvetica ultrathin";
+  src: url("/assets/fonts/helveticaneueultralight-webfont.woff2") format("woff2"),
+    url("/assets/fonts/helveticaneueultralight-webfont.woff") format("woff");
+}
+
+@font-face {
   font-family: "helvetica light";
   src: url("/assets/fonts/helveticaneuelight-webfont.woff2") format("woff2"),
     url("/assets/fonts/helveticaneuelight-webfont.woff") format("woff");
@@ -1742,7 +1753,7 @@ form.FormAlign {
 
 .leftLoginSection .loginTextSection p.spanLine {
   color: #fff;
-  font-family: "helvetica light";
+  font-family: "helvetica thin";
   font-size: 16px;
   font-weight: 300;
   line-height: 22px;
