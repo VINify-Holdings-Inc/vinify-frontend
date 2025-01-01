@@ -65,7 +65,7 @@
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="formInput" id="email" placeholder="Enter Your Email" name="email" formControlName="email">
                             <div *ngIf="contactForm.controls['email'].touched">
-                                 <span class="text-danger" *ngIf="contactForm.controls['email']?.errors?.['required']">Email Id is required</span>
+                                 <span class="text-danger" *ngIf="contactForm.controls['email']?.errors?.['required']">Email is required</span>
                                  <span class="text-danger" *ngIf="!contactForm.controls['email']?.errors?.['required'] && contactForm.controls['email']?.errors?.['email']">Enter a valid Email Id</span>
                             </div>
                                        
