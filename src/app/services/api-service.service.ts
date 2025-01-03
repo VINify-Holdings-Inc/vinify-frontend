@@ -38,11 +38,13 @@ export class AuthService {
     });
   }
 
-  insertSheet2Data(data: any): Observable<any> {
+ /* insertSheet2Data(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/csv-import-sheet2`, data,{
       headers:this.getHeaders(),
     });
   }
+    */
+
   sendContactUsMessage(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/contact-us`, data,{
       headers: this.getHeaders(),

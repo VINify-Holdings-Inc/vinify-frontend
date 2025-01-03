@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { AuthService } from '../../services/api-service.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-csv-import',
   imports: [],
@@ -85,24 +85,24 @@ export class CsvImportComponent {
 
           if (isSheet1) {
             this.data = sheetData.map((item: any) => ({
-              VIN: item['VIN'] || '',
-              Title: item['Title'] || '',
-              Brand: item['Brand'] || '',
-              Insurance: item['Insurance'] || '',
-              Junk_Salvage: item['Junk&Salvage'] || '',
+              vin: item['VIN'] || '',
+              title: item['Title'] || '',
+              brand: item['Brand'] || '',
+              insurance: item['Insurance'] || '',
+              junkSalvage: item['Junk&Salvage'] || '',
             }));
           } else if (isSheet2) {
             this.data1 = sheetData.map((item: any) => ({
-              JSI_Info_set: item['JSI Info set'] || '',
-              Vin_id: item['VIN ID'] || '',
+              jsi: item['JSI Info set'] || '',
+              vinId: item['VIN ID'] || '',
               status: item['status'] || '',
-              VIN: item['VIN'] || '',
-              SOT: item['SOT'] || '',
-              Brand_Code: item['Brand Code'] || '',
-              Make: item['Make'] || '',
-              Model_Year: item['Model Year'] || '',
-              Title_Brand_Date: item['Title / Brand Date'] || '',
-              Member: item['Member'] || '',
+              vin: item['VIN'] || '',
+              state: item['SOT'] || '',
+              brand: item['Brand Code'] || '',
+              model: item['Make'] || '',
+              modelYear: item['Model Year'] || '',
+              titleBrandDate: item['Title / Brand Date'] || '',
+              member: item['Member'] || '',
             }));
           } else {
             console.warn(`Unrecognized format in sheet: ${sheetName}`);
@@ -118,20 +118,28 @@ export class CsvImportComponent {
 
   async handleSubmit() {
     try {
-      if (this.data.length) {
-      //  console.log(this.data);
-       
-        this.authService.insertData({ data: this.data }).subscribe((response: any) => {
+      if (this.data.length && this.data1.length) {
+           // console.log({ sheet1: this.data ,shhet2: this.data1  });
+     
+        this.authService.insertData({ sheet1: this.data ,shhet2: this.data1  }).subscribe((response: any) => {
           this.handleApiResponse(response);
         });
-      }
-      if (this.data1.length) {
-       // console.log(this.data1);
+      }else{
+            Swal.fire({
+              title: 'Error!',
+              text: `Error in sheet`,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            }); 
+          }
+      
+      // if (this.data1.length) {
+      //  // console.log(this.data1);
        
-        this.authService.insertSheet2Data({ data: this.data1 }).subscribe((response: any) => {
-          this.handleApiResponse(response);
-        });
-      }
+      //   this.authService.insertSheet2Data({ data: this.data1 }).subscribe((response: any) => {
+      //     this.handleApiResponse(response);
+      //   });
+      // }
     } catch (error) {
      // console.error('Error:', error);
       this.showToast('error', 'An unexpected error occurred. Please try again later.');
@@ -146,6 +154,12 @@ export class CsvImportComponent {
   }
 
   showToast(type: string, message: string) {
-    alert(`Type: ${type}, Message: ${message}`);
+    //alert(`Type: ${type}, Message: ${message}`);
+     Swal.fire({
+                        title: 'Success!',
+                        text: `${message}`,
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                      }); 
   }
 }
