@@ -121,7 +121,7 @@ export class CsvImportComponent {
       if (this.data.length && this.data1.length) {
            // console.log({ sheet1: this.data ,shhet2: this.data1  });
      
-        this.authService.insertData({ sheet1: this.data ,shhet2: this.data1  }).subscribe((response: any) => {
+        this.authService.insertData({ sheet1: this.data ,sheet2: this.data1  }).subscribe((response: any) => {
           this.handleApiResponse(response);
         });
       }else{
