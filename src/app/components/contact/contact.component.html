@@ -90,7 +90,7 @@
                           <span class="text-danger">Enter a valid Phone Number</span>
                         </div>
                       </div>
-                 
+                     {{ this.contactForm.controls['phone'].value }}
                     <div class="mb-4">
                         <label for="subject" class="form-label">Subject</label>
                         <input type="text" class="formInput" id="subject" placeholder="Enter Subject" name="subject" formControlName="subject"
