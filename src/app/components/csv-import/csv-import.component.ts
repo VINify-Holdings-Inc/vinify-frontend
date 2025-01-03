@@ -110,7 +110,7 @@ export class CsvImportComponent {
         }
       });
 
-    //  console.log('Data:', this.data);
+    
     //  console.log('Data1:', this.data1);
     };
     reader.readAsArrayBuffer(file);
