@@ -199,11 +199,13 @@
                   + Add Email Address
                 </button>
 
-                <div class="col-md-6 mb-4 mt-2 d-flex justify-content-center align-items-center"   *ngIf="showOther">
-                  <label for="email" class="form-label d-flex justify-content-center align-items-center">Other Email</label>
+                
+
+                <div class="col-md-6 mb-4 mt-2" *ngIf="showOther">
+                  <label for="email" class="form-label">Other Email</label>
                   <input 
                     type="email" 
-                    class="form-control modernInput me-2 " 
+                    class="form-control modernInput me-2 mb-2" 
                     id="email" 
                    
                     formControlName="secondaryEmailId" 
