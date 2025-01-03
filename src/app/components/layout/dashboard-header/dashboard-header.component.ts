@@ -90,11 +90,9 @@ getTableData() {
         }else{
           this.lastUpdateDate="";
         }
-       
       }
     },
-    (err) => {
-      
+    (err) => {    
     }
   );
 }
