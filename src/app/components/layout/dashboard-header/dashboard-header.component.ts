@@ -5,9 +5,11 @@ import { ProfileService } from '../../../services/state-management';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { userData } from '../../../services/api-service.service';
+import { DateFormatPipe } from '../../../pipes/date-format.pipe';
 @Component({
   selector: 'app-dashboard-header',
-  imports: [RouterLink,CommonModule,FormsModule],
+  imports: [RouterLink,CommonModule,FormsModule,DateFormatPipe],
   templateUrl: './dashboard-header.component.html',
   styleUrl: './dashboard-header.component.css'
 })
@@ -21,7 +23,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   notifications: string = 'assets/images/icons/bell.png';
   @Output() sidebarToggle = new EventEmitter<void>();
   private subscription!: Subscription; // To manage subscription lifecycle
-  constructor(private sessionServies: SessionService, private router : Router,private profileService: ProfileService){
+  constructor(private sessionServies: SessionService, private router : Router,private profileService: ProfileService,private userData: userData,){
     this.profileData = this.profileService.getInitialProfileData()                   
   }
   profileData: any;
@@ -39,6 +41,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   
  }
 
+ member: string = "";
 
  ngOnInit() {
   // Subscribe to the profile data observable
@@ -47,6 +50,8 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
     this.userName = data.name; // Dynamically update userName
     this.profile = data.profile; // Dynamically update profile
   });
+  this.member = this.sessionServies.getSessionData("memberId")
+  this.getTableData();
 }
 
  ngOnDestroy() {
@@ -62,16 +67,37 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
 
  getSearchVal(){
   if(this.searchValue!=""){
-    console.log(this.searchValue)
-    //const data = { vin: this.searchValue }; // Data to send
     const timestamp = new Date().getTime(); 
-   // this.router.navigateByUrl('/user-summary-list', { state: data });
-    this.router.navigate(['/user-summary-list'], { queryParams: { vin: this.searchValue, refresh: timestamp }}).then(() => {
+      this.router.navigate(['/user-summary-list'], { queryParams: { vin: this.searchValue, refresh: timestamp }}).then(() => {
       // You can trigger additional actions after navigation
-      console.log('Navigation complete');
+      //console.log('Navigation complete');
     });
   }
 }
+
+tableData :any[] =[];
+lastUpdateDate:string ="";
+getTableData() { 
+   let url = `page=1&limit=1&member=${(this.member)}`;
+  
+  this.userData.getCurrentVinDataForUser(url).subscribe(
+    (res: any) => {
+      if (!res.error) {
+        this.tableData = res?.data?.items || [];  
+        console.log("this",this.tableData);
+        if(res?.data?.items.length){
+          this.lastUpdateDate=res?.data?.items[0].updatedAt;
+        }else{
+          this.lastUpdateDate="";
+        }
+      }
+    },
+    (err) => {    
+    }
+  );
+}
+
+
 
 }
 
