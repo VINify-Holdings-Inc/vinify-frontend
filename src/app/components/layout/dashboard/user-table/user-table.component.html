@@ -21,6 +21,8 @@
                             <li><a class="dropdown-item" routerLink="#">Read</a></li>
                           </ul>
                     </div>
+                    
+                    
                     <div class="month-calendar vehicleMonthSearch calendar-svg">
                         <img alt="img" [src]="calendarIcon" class="img-fluid"/>
                         <p><span>Jan 6, 2024 – Jul 13, 2024</span></p>
@@ -54,10 +56,10 @@
                                     @for(item of tableData;track $index){
                                 <tr>
                                     <td><p><span class="vinModelName"> {{item?.vin}}</span></p></td>
-                                    <td>2024</td>
+                                    <td>{{ item?.modelYear | dateFormat: 'YYYY' }}</td>
                                     <td>{{item?.model}}</td>
-                                    <td><span class="tableDot redDot"></span>22 Jan 2024</td>
-                                    <td>AA</td>
+                                    <td><span class="tableDot redDot"></span>{{ item?.alertDate | dateFormat: 'DD MM YYYY' }}</td>
+                                    <td>{{item?.state}}</td>
                                     <td><img alt="img" src="assets/images/icons/passport.svg"/></td>
                                 </tr>
                                   }

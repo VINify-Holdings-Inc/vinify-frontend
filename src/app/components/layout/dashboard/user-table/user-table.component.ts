@@ -2,12 +2,13 @@ import { Component, Input,Output,EventEmitter } from '@angular/core';
 import { RouterLink,Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 
 
 
 @Component({
   selector: 'app-user-table',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,DateFormatPipe],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.css'
 })
@@ -15,7 +16,7 @@ export class UserTableComponent {
   filerIcon: string = 'assets/images/icons/filter-lines.svg';
   calendarIcon: string = 'assets/images/icons/calendar.svg';
   pdfIcon: string = 'assets/images/icons/pdf.svg';
-  constructor(private router: Router, 
+  constructor(private router: Router,
               
             ) {
              

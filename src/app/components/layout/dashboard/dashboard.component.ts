@@ -47,6 +47,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   totalPages: number = 0;
   status: string = "current";
   tableData: any[] = [];
+  totalItems:any="";
 
   isLoading: boolean = false;
 
@@ -65,6 +66,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
         if (!res.error) {
           this.tableData = res?.data?.items || [];
           this.totalPages = res?.data?.totalPages || 0;
+          this.totalItems = res?.data?.totalItems || 0;
         }
         this.isLoading = false;
       },
