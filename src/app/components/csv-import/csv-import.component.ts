@@ -147,19 +147,28 @@ export class CsvImportComponent {
   }
 
   handleApiResponse(response: any) {
-    const { type, message } = response;
-    this.showToast(type, message);
+    const { error, message } = response;
+    this.showToast(error, message);
     this.btnDisabled = false;
     if (this.fileInput) this.fileInput.nativeElement.value = '';
   }
 
-  showToast(type: string, message: string) {
+  showToast(error: string, message: string) {
     //alert(`Type: ${type}, Message: ${message}`);
-     Swal.fire({
-                        title: 'Success!',
+    if(!error){
+                Swal.fire({
+                      title: 'Success!',
+                      text: `${message}`,
+                      icon: 'success',
+                      confirmButtonText: 'OK',
+                    }); 
+                    }else{
+                      Swal.fire({
+                        title: 'Erorr!',
                         text: `${message}`,
-                        icon: 'success',
+                        icon: 'error',
                         confirmButtonText: 'OK',
                       }); 
+                    }                 
   }
 }

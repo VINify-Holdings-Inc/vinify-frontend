@@ -37,6 +37,13 @@ export class DateFormatPipe implements PipeTransform {
             hour12: true,
           };
           return date.toLocaleDateString('en-US', optionsWithTime);
+
+        case 'DD MMM YYYY':
+          const dayShort = date.getDate().toString().padStart(2, '0');
+          const monthShort = date.toLocaleString('en-US', { month: 'short' });
+          const yearShort = date.getFullYear();
+          return `${dayShort} ${monthShort} ${yearShort}`;
+        
     
       default:
         return date.toISOString();

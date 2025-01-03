@@ -2004,7 +2004,13 @@ p.errorMessage {
   background: #fffffff2;
   z-index: 99999;
 }
-
+.passwordFiled.profile-pagepswd .errorBox {
+  top: 95px;
+}
+.confrimp-profilepaswd {
+  position: absolute;
+  bottom: -25px;
+}
 /* Login Page Design end */
 /* Vehicle Monitoring  Page Design start */
 .VehicleMonitoring .card .vehicleTitle h4.card-title {
