@@ -440,7 +440,7 @@ button.btn.btn-custom {
 }
 
 .headNotify p {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 24px;
   color: #101828;
@@ -448,7 +448,7 @@ button.btn.btn-custom {
 
 .headNotify span {
   font-family: 'Inter';
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 20px;
   color: #475467;
@@ -596,7 +596,7 @@ span.red-dot {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   font-family: 'Inter';
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 20px;
   color: #475467;
@@ -615,13 +615,15 @@ span.red-dot {
 
 .notifySubHead h6 {
   font-family: "Inter";
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 24px;
   color: #101828;
   margin-bottom: 4px;
 }
-
+.notifySubHead span {
+  font-size: 12px;
+}
 .notification-dropdown::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
@@ -693,13 +695,14 @@ li.notifyInner {
   border: 1px solid #FECDCA;
   font-family: 'Inter';
   color: #B42318;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 20px;
 }
 
 a.nav-link.dropdown-toggle.no-toggle-icon {
   position: relative;
+  cursor: pointer;
 }
 
 .notification-dot span {
@@ -3278,23 +3281,24 @@ span.passEye {
 }
 
 .emailSec h4 {
-  font-family: 'Poppins';
+  font-family: 'Inter';
   font-size: 18px;
   font-weight: 500;
   line-height: 27px;
   color: #000;
 }
 
-.emailAddress .btnAdd {
+.emailAddress .btnAdd, .emailAddress .btnAdd:active {
   background-color: #FAEDEF;
   color: #CF4B5F;
   font-family: 'Inter';
   font-size: 16px;
   font-weight: 400;
+  border-color: transparent;
 }
 
 .emailName p {
-  font-family: 'Poppins';
+  font-family: 'Inter';
   font-size: 16px;
   font-weight: 400;
   color: #000;
