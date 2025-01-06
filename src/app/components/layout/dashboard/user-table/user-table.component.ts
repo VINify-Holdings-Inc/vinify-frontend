@@ -16,11 +16,7 @@ export class UserTableComponent {
   filerIcon: string = 'assets/images/icons/filter-lines.svg';
   calendarIcon: string = 'assets/images/icons/calendar.svg';
   pdfIcon: string = 'assets/images/icons/pdf.svg';
-  constructor(private router: Router,
-              
-            ) {
-             
-            }
+  constructor(private router: Router, ) {}
   searchValue :string="";
   
   @Input() tableData :any[]=[];
@@ -45,9 +41,7 @@ getSearchVal(){
     this.searchHideShow = !this.searchHideShow;
   }else{
     this.handelSearch.emit(this.searchValue);
-  }
-  
-  
+  }  
 }
 onType(value: string){
   if(value==""){
@@ -55,6 +49,16 @@ onType(value: string){
     //this.searchHideShow = !this.searchHideShow;
   }
 }
+getVinDetails(vin:any,model:any){
+ 
+    const timestamp = new Date().getTime(); 
+      this.router.navigate(['/title-details'], { queryParams: { vin: vin,model:model, refresh: timestamp }}).then(() => {
+      // You can trigger additional actions after navigation
+      //console.log('Navigation complete');
+    });
+  
+}
+
 
 
 

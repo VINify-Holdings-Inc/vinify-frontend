@@ -2,14 +2,14 @@
     <div class="col-lg-12 col-md-12 mb-4">
         <div class="cardWrapper">
             <div class="UserCardHeader cardMainHead">
-                <h4 class="card-title">Summary VIN List & Alert Records</h4>
+                <h4 class="card-title">VIN Title Detail Records <span class="titleColor">(2000)</span></h4>
                 <div class="cardSubHead">
                    
                     <div class="userSingleSearch">
-                        <span class="VInNumberInput" *ngIf="searchHideShow">
-                            <input type="text"  [(ngModel)]="searchValue"  (ngModelChange)="onType(searchValue)"   class="form-control" placeholder="Search VIN" />
+                        <span class="VInNumberInput" >
+                            <input type="text"  class="form-control" placeholder="Search VIN" />
                         </span>
-                        <img alt="img"  src="assets/images/icons/search.svg" class="img-fluid" (click) = "getSearchVal()"/>
+                        <img alt="img"  src="assets/images/icons/search.svg" class="img-fluid" />
                     </div>
                     <div class="month-calendar userDashFilter calendar-svg dropdownFilter" type="button" id="alertMenu" data-bs-toggle="dropdown" aria-expanded="false">
                         <img alt="img" [src]="filerIcon" class="img-fluid"/>
@@ -42,35 +42,28 @@
                         <table class="table table-hover">
                             <thead class="table-light-Usertbl">
                                 <tr>
-                                    <th>VINs</th>
-                                    <th>Year</th>
-                                    <th>Make</th>
-                                    <th>Alert Date</th>
+                                    <th>No</th>
+                                    <th>Title</th>
+                                    <th>VIN Number</th>
                                     <th>State</th>
-                                    <th>Details</th>
+                                    <th>Brand Code</th>
+                                    <th>Make</th>
+                                    <th>Make Year</th>
+                                    <th>Title/Brand</th>
                  
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(tableData.length > 0){
-                                    @for(item of tableData;track $index){
                                 <tr>
-                                    <td><p><span class="vinModelName"> {{item?.vin}}</span></p></td>
-                                    <td>{{ item?.modelYear | dateFormat: 'YYYY' }}</td>
-                                    <td>{{item?.model}}</td>
-                                    <td><span class="tableDot redDot"></span>{{ item?.alertDate | dateFormat: 'DD MMM YYYY' }}</td>
-                                    <td>{{item?.state}}</td>
-                                    <td><img alt="Details" src="assets/images/icons/passport.svg" title="Details" (click)="getVinDetails(item?.vin,item?.model)" /></td>
+                                    <td>1</td>
+                                    <td><p>History</p></td>
+                                    <td><p><span class="vinModelName">1FTCF15N5HLA06223</span></p></td>
+                                    <td>AA</td>
+                                    <td>-</td>
+                                    <td>Chev</td>
+                                    <td>2001</td>
+                                    <td>2021-05-01</td>
                                 </tr>
-                                  }
-                                }
-                                @else{
-                                    <tr>
-                                        <td colspan="9" class="text-center">No data found</td>
-                                    </tr> 
-                                } 
-    
-                                
                             </tbody>
 
                         </table>
@@ -78,13 +71,13 @@
                     <div class="paginationArea">
                         <ul class="pagination pagination-lg">
                             <li class="page-item">
-                                <button type="button" class="page-link" (click)="onClick(page-1)" [disabled]="page==1" >Previous</button>
+                                <button type="button" class="page-link"  >Previous</button>
                             </li>
                             <li class="page-item">
-                                <span class="page-link">Page {{page}} of {{totalPages}}</span>
+                                <span class="page-link">Page 1 of 1</span>
                             </li>
                             <li class="page-item">
-                                <button type="button" class="page-link" (click)="onClick(page+1)" [disabled]="page==totalPages" >Next</button>
+                                <button type="button" class="page-link"  >Next</button>
                             </li>
                         </ul>
                     </div>

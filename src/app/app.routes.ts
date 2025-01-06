@@ -16,6 +16,7 @@ import { AboutComponent } from './components/about/about.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsOfServicesComponent } from './components/terms-of-services/terms-of-services.component';
 import { UserProfileComponent } from './components/layout/user-profile/update-user-profile/user-profile.component';
+import { TitleDetailsMainComponent } from './components/layout/title-details-main/title-details-main.component';
 
 export const routes: Routes = [
   { 
@@ -50,6 +51,7 @@ export const routes: Routes = [
       { path: 'summary-list', component: AdminSummaryComponent,canActivate: [AuthGuard]}, 
       { path: 'csv-import', component:CsvImportComponent ,canActivate: [AuthGuard]},  
       { path: 'user-profile', component:UserProfileComponent ,canActivate: [AuthGuard]},  
+      { path: 'title-details', component:TitleDetailsMainComponent ,canActivate: [AuthGuard]},  
        
     ]
   },

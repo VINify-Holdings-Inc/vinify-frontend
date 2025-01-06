@@ -1,7 +1,5 @@
-import { Component, OnInit  } from '@angular/core';
-import { SummaryTitleComponent } from "./summary-title/summary-title.component";
-import { SummaryInnerComponent } from "./summary-inner/summary-inner.component";
-import { SummaryAdditionalComponent } from './summary-additional/summary-additional.component';
+import { Component } from '@angular/core';
+import {TitleTabComponent} from './title-tab/title-tab.component'
 import { Router,ActivatedRoute } from '@angular/router';
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
@@ -9,31 +7,23 @@ import { SessionService } from '../../../services/session.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-summary',
-  imports: [SummaryTitleComponent, SummaryInnerComponent,SummaryAdditionalComponent,LoaderComponent],
-  templateUrl: './summary.component.html',
-  styleUrl: './summary.component.css'
+  selector: 'app-title-details-main',
+  imports: [TitleTabComponent,LoaderComponent],
+  templateUrl: './title-details-main.component.html',
+  styleUrl: './title-details-main.component.css'
 })
-export class SummaryComponent implements OnInit {
+export class TitleDetailsMainComponent {
   receivedData: any;
   vin:string="";
   model:string="";
  
-
-
   constructor(private router: Router ,private route : ActivatedRoute,private userData : userData,
     private sessionService: SessionService,) {}
-    member :string="";
+
+ member :string="";
     ngOnInit() {
       this.member  = this.sessionService.getSessionData("memberId")
-      
-      /*
-      this.receivedData = history.state; // Retrieve the state data
-      this.vin=this.receivedData?.vin;
-      this.model=this.receivedData?.model;
-      this.getTableData(this.vin);
-      */
-
+     
       this.route.queryParams.subscribe((params) => {
         this.vin = params['vin'] || '';
         this.model=params['model'] || '';
@@ -91,6 +81,5 @@ handelSearch(searchVal:any){
   this.getTableData(searchVal);
 }
 
+
 }
-
-

@@ -1137,9 +1137,9 @@ header .logoHeader img {
 }
 
 .action-required-button {
-  color: #ae3e76 !important;
-  border: 1px solid #ffd4e4;
-  background-color: #fcf1f5;
+  color: #C11574 !important;
+  border: 1px solid #FCCEEE;
+  background-color: #FDF2FA;
 }
 
 .small-action-btn {
@@ -2020,7 +2020,6 @@ p.errorMessage {
 .topVehicleHead {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .cardInnerVehicle .card-header h6 {
@@ -2060,20 +2059,16 @@ p.errorMessage {
   background-color: var(--bg-primary);
 }
 
-.topVehicleHead .vehicleTitle p {
-  color: var(--bg-primary);
-  font-weight: 600;
-  font-size: 14px;
-}
+
 
 .vehicleMonitoring .tabVehicleSection ul li {
   border: 1px solid #e1e1e1;
 }
 
 .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link {
-  color: #000;
-  font-weight: 500;
+  color: #344054;
   border-radius: 0;
+  font-weight: 600;
 }
 
 .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link.active {
@@ -2094,9 +2089,9 @@ p.errorMessage {
 }
 
 .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link {
-  padding: 5px 15px;
+  padding: 8px 16px;
   line-height: 30px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link.active {
@@ -2118,7 +2113,10 @@ p.errorMessage {
 }
 
 .tabVehicleSection.cardHeaderJustify ul li.nav-item .nav-link {
-  border: 1px solid #ededed;
+  border: 1px solid #D0D5DD;
+}
+.tabVehicleSection.cardHeaderJustify ul li.nav-item .nav-link:focus {
+  border: 1px solid #D0D5DD;
 }
 
 /*Vehicle Monitoring  Page Design end */
@@ -2157,15 +2155,8 @@ i.material-symbols-outlined.arrow_key {
   position: relative;
 }
 
-.cardInnerVehicle {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 15px 15px;
-}
-
 .summaryCard .font-12 {
-  font-size: 12px;
+  font-size: 14px;
   color: #475467;
   font-weight: 500;
 }
@@ -2803,9 +2794,9 @@ span.dot-red {
 }
 
 .textWarning {
-  color: #c77441;
-  border: 1px solid #fee7a7;
-  background-color: #fffaeb;
+  color: #B54708;
+  border: 1px solid #FEDF89;
+  background-color: #FFFAEB;
 }
 
 .textRed {
@@ -2826,7 +2817,7 @@ span.dot-red {
 /* User Summary card CSS */
 span.cardNum {
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.87);
+  color: #101828;
 }
 
 .borderedHead {
@@ -3369,19 +3360,67 @@ span.passEye i {
   z-index: 3;
   box-shadow: none;
 }
-
 .modal-content.customclosebtn button.btn-close:focus-visible {
   outline: none;
 }
-
 .pointArea {
   max-width: 500px;
   margin: auto;
   width: 100%;
 }
-
 /* update user edit btn */
 .profileBtn span button {
   width: 100%;
   min-width: 93px;
+}
+
+
+/* Title Details CSS */
+.titleColor{
+  color: var(--bg-primary);
+}
+.InnerTitleCard {
+  padding: 20px;
+  height: 218px;
+  max-height: 100%;
+}
+.vehicleTitle .card-title{
+font-family: 'Inter';
+font-size: 30px;
+font-weight: 600;
+line-height: 38px;
+color: #101828;
+}
+.vehicleTitle p{
+font-family: 'Inter';
+font-size: 20px;
+font-weight: 600;
+line-height: 24px;
+color: var(--bg-primary);
+padding: 10px 0;
+}
+.InnerTitleCard .tabVehicleSection.cardHeaderJustify {
+  padding-top: 49px;
+}
+.cardInnerVehicle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  max-height: 100%;
+  height: 96px;
+}
+.tabVehicleSection.cardHeaderJustify .TitleTab li button {
+  max-width: 100%;
+  padding: 8px 16px;
+  line-height: 20px;
+}
+.InnerTitleCard .tabVehicleSection.cardHeaderJustify ul li {
+  display: flex;
+  flex-direction: column;
+  width: 33.3%;
+}
+.InnerTitleCard .tabVehicleSection.cardHeaderJustify .nav-tabs {
+  border-bottom: none;
+  width: 100%;
 }
