@@ -46,7 +46,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.sessionService.getSessionData("memberId") || "";
-
+    
     this.profileForm = this.fb.group({
       name: ['', [Validators.required]],
       lname: [''],
@@ -54,14 +54,25 @@ export class UserProfileComponent implements OnInit {
       //  phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
       company: [''],
       title: [''],
-      //address: [''],
       password: [
         '',
         [passwordValidator()],
       ],
       confirmPassword: [''],
-
-    });
+    });  
+/*
+    this.profileForm = this.fb.group({
+      name: [{ value: '',disable:true }, [Validators.required]],
+      lname: [{ value: '',disable:true }],
+      email: [{ value: '',disable:true }],
+      company: [{ value: '',disable:true }],
+      title: [{ value: '',disable:true }],
+      password: [
+        { value: '',disable:true },
+        [passwordValidator()],
+      ],
+      confirmPassword: [''],
+    }); */
 
     this.profileFormEmail= this.fb.group({
     
@@ -96,6 +107,8 @@ export class UserProfileComponent implements OnInit {
         this.profileForm.controls['confirmPassword'].updateValueAndValidity({ emitEvent: false });
       }
   });
+
+  this.toggleFields(false);
 
 }
 
@@ -227,7 +240,7 @@ loadUserData(): void {
           if (!response.error) {
             this.isLoading = false;
             this.updateSessionData(response?.data);
-           
+            this.toggleFields(false);
             Swal.fire({
               title: 'Success!',
               text: response.message,
@@ -339,8 +352,29 @@ loadUserData(): void {
           }
         }
 
-   editModeFun(data:boolean){
+       
+
+   toggleFields(data:boolean): void {
+     if (data) {
+      this.profileForm.controls['email'].disable();
+      this.profileForm.controls['name'].enable();
+      this.profileForm.controls['lname'].enable(); 
+      this.profileForm.controls['title'].enable(); 
+      this.profileForm.controls['company'].enable();
+      this.profileForm.controls['password'].enable(); 
+    } else {
+      this.profileForm.controls['email'].disable();
+      this.profileForm.controls['name'].disable();
+      this.profileForm.controls['lname'].disable(); 
+      this.profileForm.controls['title'].disable(); 
+      this.profileForm.controls['company'].disable();
+      this.profileForm.controls['password'].disable(); 
+    }
+  }
+
+  editModeFun(data:boolean){
     this.editMode=data;
-   }     
+    this.toggleFields(data);
+   } 
 
 }
