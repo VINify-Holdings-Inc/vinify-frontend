@@ -52,7 +52,7 @@ export const routes: Routes = [
       { path: 'csv-import', component:CsvImportComponent ,canActivate: [AuthGuard]},  
       { path: 'user-profile', component:UserProfileComponent ,canActivate: [AuthGuard]},  
       { path: 'title-details', component:TitleDetailsMainComponent ,canActivate: [AuthGuard]},  
-       
+      { path: 'user-profile', component:UserProfileComponent ,canActivate: [AuthGuard]} 
     ]
   },
   // This route is used for any invalid routes
