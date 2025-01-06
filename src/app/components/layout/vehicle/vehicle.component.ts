@@ -38,7 +38,7 @@ export class VehicleComponent implements AfterViewInit{
   status: string = "current";
   tableData: any[] = [];
   totalItems:any="";
-  tableName:string = "Summary List"; 
+  tableName:string = "Summary VIN"; 
   isLoading: boolean = false;
 
   getTableData(vin = null) {
