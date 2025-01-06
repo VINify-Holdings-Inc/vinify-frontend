@@ -80,7 +80,6 @@ export class UserProfileComponent implements OnInit {
 
     });
    
-  
     this.loadUserData();
     
      // Monitor password changes to dynamically set required validators
