@@ -32,7 +32,7 @@
                                 <div class="trackVinNumber">
                                     <h4>VIN Track</h4>
                                     <div class="modalInput form-group position-relative">
-                                        <input type="text" [(ngModel)]="searchValue" class="form-control" placeholder="Enter VIN number" />
+                                        <input type="text" [(ngModel)]="searchValue"  (keydown.enter)="getSearchVal()" class="form-control" placeholder="Enter VIN Number" />
                                         <button type="button" class="btn btn-custom"
                                             (click)="getSearchVal()">Details</button>
                                     </div>
@@ -169,7 +169,7 @@
                                     <div class="ProfileHead">
                                         <div class="profileName">
                                             <h5>{{userName}}</h5>
-                                            <span class="vin_label">{{userEmail}}</span>
+                                            <span class="vin_label"  [title]="userEmail">{{userEmail}}</span>
                                         </div>
                                         <div><span class="ProfileComplete">{{profileComplete}}% Complete</span></div>
                                     </div>

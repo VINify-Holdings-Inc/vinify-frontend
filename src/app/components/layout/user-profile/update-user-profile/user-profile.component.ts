@@ -119,7 +119,8 @@ loadUserData(): void {
   const mockUserData = {
     name: '',
     lname: '',
-    email: sessionData?.email || '',
+    email: '',
+    //email: sessionData?.email || '',
     secondaryEmailId:  '',
     company: '',
     title: '',
@@ -136,6 +137,7 @@ loadUserData(): void {
         mockUserData.name = res?.data?.firstName || '';
         mockUserData.lname = res?.data?.lastName || '';
         mockUserData.company = res?.data?.companyId || '';
+        mockUserData.email = res?.data?.emailId || '';
         mockUserData.title = res?.data?.title || '';
         mockUserData.password = res?.data?.password || '';
         mockUserData.profile = sessionProfile || '';
@@ -180,7 +182,7 @@ loadUserData(): void {
   }
 
   updateSessionData(data:any):void{
-
+    console.log("data",data);
     let sessionData= this.sessionService.getSessionData("data"); 
    
     let updatedData = {...sessionData,...data}
@@ -189,10 +191,10 @@ loadUserData(): void {
        delete updatedData.userId;
        delete updatedData.id;
    
-     this.sessionService.setSessionData("name",data.name)
+     this.sessionService.setSessionData("name",data?.firstName + " " + data?.lastName)
      this.sessionService.setSessionData("profile",`${environment.img_url}/${data.profile}`)
     this.sessionService.setSessionData("data",updatedData)
-     let new_data ={"name":data.name,"profile":`${environment.img_url}/${data.profile}`,"profileComplete":data.profileComplete}
+     let new_data ={"name":data?.firstName + " " + data?.lastName,"profile":`${environment.img_url}/${data.profile}`,"profileComplete":data.profileComplete}
     this.profileService.updateProfileData({...this.profileData,...new_data});
   }
 
