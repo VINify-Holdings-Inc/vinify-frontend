@@ -24,12 +24,16 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   @Output() sidebarToggle = new EventEmitter<void>();
   private subscription!: Subscription; // To manage subscription lifecycle
   constructor(private sessionServies: SessionService, private router : Router,private profileService: ProfileService,private userData: userData,){
-    this.profileData = this.profileService.getInitialProfileData()                   
+    this.profileData = this.profileService.getInitialProfileData()  ;
+    this.userEmail=JSON.parse(localStorage.getItem("profileData")||"")?.email;
+    
   }
   profileData: any;
   userName : string="";
   profile : string ="";
   searchValue :string="";
+  userEmail:string="";
+  profileComplete:string="";
   toggleSidebar() { 
     this.sidebarToggle.emit();
   }
@@ -49,6 +53,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
     this.profileData = data; // Update local variable when data changes
     this.userName = data.name; // Dynamically update userName
     this.profile = data.profile; // Dynamically update profile
+    this.profileComplete = data.profileComplete; // Dynamically update profile
   });
   this.member = this.sessionServies.getSessionData("memberId")
   this.getTableData();

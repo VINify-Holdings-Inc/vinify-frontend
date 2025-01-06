@@ -13,7 +13,7 @@ export class ProfileService {
   // Initialize data from localStorage
   public getInitialProfileData() {
     const data = localStorage.getItem('profileData');
-    return data ? JSON.parse(data) : { name: '', profilePic: '' };
+    return data ? JSON.parse(data) : { name: '', profilePic: '',profileComplete:"" };
   }
 
   // Update the profile data
