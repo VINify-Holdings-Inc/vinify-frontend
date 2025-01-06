@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { UserTableComponent } from '../dashboard/user-table/user-table.component';
 @Component({
   selector: 'app-vehicle',
-  imports: [ CommonModule,UserTableComponent,LoaderComponent],
+  imports: [CommonModule,UserTableComponent,LoaderComponent],
   templateUrl: './vehicle.component.html',
   styleUrl: './vehicle.component.css'
 })
@@ -44,7 +44,7 @@ export class VehicleComponent implements AfterViewInit{
   getTableData(vin = null) {
 
     this.isLoading = true;
-     let url = `page=${this.page}&limit=${this.limit}&member=${(this.member)}`;
+    let url = `page=${this.page}&limit=${this.limit}&member=${(this.member)}`;
     if (vin) {
       url = url + `&vin=${(vin)}`
     }

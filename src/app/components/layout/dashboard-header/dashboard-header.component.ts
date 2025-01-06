@@ -73,7 +73,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
  getSearchVal(){
   if(this.searchValue!=""){
     const timestamp = new Date().getTime(); 
-      this.router.navigate(['/user-summary-list'], { queryParams: { vin: this.searchValue, refresh: timestamp }}).then(() => {
+      this.router.navigate(['/title-details'], { queryParams: { vin: this.searchValue, refresh: timestamp }}).then(() => {
       // You can trigger additional actions after navigation
       //console.log('Navigation complete');
     });

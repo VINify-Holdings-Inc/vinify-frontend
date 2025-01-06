@@ -32,10 +32,25 @@ export class TitleDetailsMainComponent {
           this.getTableData(this.vin);
         }
       });
+       //  this.initializeTabs();
     }
-
- 
+   /*
+    initializeTabs() {
+      // Wait for DOM content to load before querying elements
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabParam = urlParams.get('tab'); // e.g., ?tab=detailsTab
+      const targetTab = tabParam || window.location.hash.substring(1); // Fallback to hash
   
+      if (targetTab) {
+        const tabTrigger = document.querySelector(`[data-bs-target="#${targetTab}"]`);
+        if (tabTrigger) {
+          // Use Bootstrap's Tab API to show the target tab
+          const tab = new (window as any).bootstrap.Tab(tabTrigger);
+          tab.show();
+        }
+      }
+    }   */
+     
   limit :number=10;
   page : number =1;
   totalPages : number=0;
@@ -70,6 +85,7 @@ export class TitleDetailsMainComponent {
       }
     );
   }
+
 
  
 
