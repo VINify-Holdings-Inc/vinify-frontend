@@ -48,7 +48,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   status: string = "current";
   tableData: any[] = [];
   totalItems:any="";
-
+  tableName:string = "Summary VIN List & Alert Records"; 
   isLoading: boolean = false;
 
   getTableData(vin = null) {

@@ -22,6 +22,7 @@ export class UserTableComponent {
   @Input() tableData :any[]=[];
   @Input() page :number=0;
   @Input() totalPages :number=0;
+  @Input() tableName : string ="";
 
   @Output() handelPaginagtion = new EventEmitter <any>();
   @Output() handelSearch = new EventEmitter <any>();

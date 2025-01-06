@@ -1,4 +1,4 @@
 <div class="VehicleMonitoring">
-    <app-user-table  [tableData]="tableData" [page]="page" [totalPages]="totalPages" (handelPaginagtion)="handlePageChange($event)" (handelSearch)="handelSearch($event)"></app-user-table>
-                    
+    <app-user-table  [tableData]="tableData" [page]="page" [totalPages]="totalPages" (handelPaginagtion)="handlePageChange($event)" (handelSearch)="handelSearch($event)" [tableName]="tableName"></app-user-table>
+    <app-loader [IsLoading]="isLoading"></app-loader>               
 </div>
