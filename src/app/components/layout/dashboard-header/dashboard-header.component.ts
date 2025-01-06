@@ -84,7 +84,7 @@ getTableData() {
     (res: any) => {
       if (!res.error) {
         this.tableData = res?.data?.items || [];  
-        console.log("this",this.tableData);
+        //console.log("this",this.tableData);
         if(res?.data?.items.length){
           this.lastUpdateDate=res?.data?.items[0].updatedAt;
         }else{
