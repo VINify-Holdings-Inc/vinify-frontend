@@ -60,8 +60,12 @@
                                     <td>{{item?.model}}</td>
                                     <td><span class="tableDot redDot"></span>{{ item?.alertDate | dateFormat: 'DD MMM YYYY' }}</td>
                                     <td>{{item?.state}}</td>
-                                    <td><img alt="Details" src="assets/images/icons/passport.svg" title="Details" (click)="getVinDetails(item?.vin,item?.model)" /></td>
-                                </tr>
+                                    <td>
+                                      <span class="cursor-detail-img"> 
+                                        <img alt="Details" src="assets/images/icons/passport.svg" title="Details" (click)="getVinDetails(item?.vin,item?.model)" />
+                                    </span>
+                                    </td> 
+                                    </tr>
                                   }
                                 }
                                 @else{
