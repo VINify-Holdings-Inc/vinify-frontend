@@ -194,7 +194,6 @@ loadUserData(): void {
     this.sessionService.setSessionData("data",updatedData)
      let new_data ={"name":data.name,"profile":`${environment.img_url}/${data.profile}`,"profileComplete":data.profileComplete}
     this.profileService.updateProfileData({...this.profileData,...new_data});
-
   }
 
   onSubmit(): void {
