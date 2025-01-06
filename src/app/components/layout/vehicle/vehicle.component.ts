@@ -1,5 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+ 
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SessionService, } from '../../../services/session.service';
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { UserTableComponent } from '../dashboard/user-table/user-table.component';
 @Component({
   selector: 'app-vehicle',
-  imports: [RouterLink,CommonModule,UserTableComponent,LoaderComponent],
+  imports: [ CommonModule,UserTableComponent,LoaderComponent],
   templateUrl: './vehicle.component.html',
   styleUrl: './vehicle.component.css'
 })
@@ -38,14 +38,13 @@ export class VehicleComponent implements AfterViewInit{
   status: string = "current";
   tableData: any[] = [];
   totalItems:any="";
-  tableName:string = "Summary List"; 
+  tableName:string = "Summary VIN"; 
   isLoading: boolean = false;
 
   getTableData(vin = null) {
 
     this.isLoading = true;
-    // const url = `page=${this.page}&limit=${this.limit}&status=${encodeURIComponent(JSON.stringify(this.status))}&member=${encodeURIComponent(JSON.stringify(this.member))}`;
-    let url = `page=${this.page}&limit=${this.limit}&member=${(this.member)}`;
+     let url = `page=${this.page}&limit=${this.limit}&member=${(this.member)}`;
     if (vin) {
       url = url + `&vin=${(vin)}`
     }
