@@ -30,13 +30,13 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   userName : string="";
   profile : string ="";
   searchValue :string="";
-  toggleSidebar() {
-    
+  toggleSidebar() { 
     this.sidebarToggle.emit();
   }
 
  logout(){
   this.sessionServies.clearSession();
+  localStorage.clear();
   this.router.navigate(['']);
   
  }
