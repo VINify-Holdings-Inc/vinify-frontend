@@ -28,15 +28,23 @@ export class DateFormatPipe implements PipeTransform {
         };
         return date.toLocaleDateString('en-US', options);
       case 'MMM DD, YYYY - h:mm A':
-          const optionsWithTime: Intl.DateTimeFormatOptions = {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true,
-          };
-          return date.toLocaleDateString('en-US', optionsWithTime);
+        const optionsWithDate: Intl.DateTimeFormatOptions = {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        };
+        const optionsWithTime: Intl.DateTimeFormatOptions = {
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true,
+        };
+      
+        // Format date and time separately
+        const datePart = date.toLocaleDateString('en-US', optionsWithDate);
+        const timePart = date.toLocaleTimeString('en-US', optionsWithTime);
+      
+        // Combine with custom separator
+        return `${datePart} - ${timePart}`;
 
         case 'DD MMM YYYY':
           const dayShort = date.getDate().toString().padStart(2, '0');
