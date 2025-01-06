@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { UserTableComponent } from '../dashboard/user-table/user-table.component';
 @Component({
   selector: 'app-vehicle',
-  imports: [RouterLink,CommonModule,UserTableComponent,LoaderComponent],
+  imports: [CommonModule,UserTableComponent,LoaderComponent],
   templateUrl: './vehicle.component.html',
   styleUrl: './vehicle.component.css'
 })
