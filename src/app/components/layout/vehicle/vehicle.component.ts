@@ -1,5 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+ 
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SessionService, } from '../../../services/session.service';
@@ -44,7 +44,6 @@ export class VehicleComponent implements AfterViewInit{
   getTableData(vin = null) {
 
     this.isLoading = true;
-    // const url = `page=${this.page}&limit=${this.limit}&status=${encodeURIComponent(JSON.stringify(this.status))}&member=${encodeURIComponent(JSON.stringify(this.member))}`;
     let url = `page=${this.page}&limit=${this.limit}&member=${(this.member)}`;
     if (vin) {
       url = url + `&vin=${(vin)}`

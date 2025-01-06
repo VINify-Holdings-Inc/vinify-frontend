@@ -3339,10 +3339,11 @@ padding: 10px 0;
 }
 .cursor-detail-img{
     cursor: pointer !important;
-}
+} 
 
 .profileName {
   width: 158px;
-  white-space: break-spaces;
-  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
