@@ -1,62 +1,15 @@
 /*Defalut CSS start*/
-@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-
-@font-face {
-  font-family: "helvetica bold";
-  src: url("/assets/fonts/helveticaneuebold-webfont.woff2") format("woff2"),
-    url("/assets/fonts/helveticaneuebold-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "helvetica thin";
-  src: url("/assets/fonts/helveticaneuethin-webfont.woff2") format("woff2"),
-    url("/assets/fonts/helveticaneuethin-webfont.woff") format("woff");
-}
-@font-face {
-  font-family: "helvetica ultrathin";
-  src: url("/assets/fonts/helveticaneueultralight-webfont.woff2") format("woff2"),
-    url("/assets/fonts/helveticaneueultralight-webfont.woff") format("woff");
-}
-
-@font-face {
-  font-family: "helvetica light";
-  src: url("/assets/fonts/helveticaneuelight-webfont.woff2") format("woff2"),
-    url("/assets/fonts/helveticaneuelight-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "helvetica medium";
-  src: url("/assets/fonts/helveticaneuemedium-webfont.woff2") format("woff2"),
-    url("/assets/fonts/helveticaneuemedium-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "helvetica heavy";
-  src: url("/assets/fonts/helveticaneueheavy-webfont.woff2") format("woff2"),
-    url("/assets/fonts/helveticaneueheavy-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
 :root {
   --bg-primary: #cf4b5f;
   --text-primary: #cf4b5f;
   --logo-colot: #475467;
   --text-white: #fff;
-
-  --font-family-1: (helvetica light);
 }
 
 body,
 html {
   /* font-family: "Noto Sans", sans-serif; */
-  font-family: "Inter";
+  font-family: 'Century Gothic Paneuropean', sans-serif;
   color: #47475d;
   margin: 0;
   padding: 0;
@@ -81,12 +34,13 @@ h6,
 
 p {
   margin-bottom: 0;
-  font-family: 'Inter';
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
 }
-
+select {
+  font-family: 'Century Gothic Paneuropean', sans-serif;
+}
 .text-normal {
   text-transform: none;
 }
@@ -117,7 +71,6 @@ ol {
 .btn {
   border-radius: 8px;
   padding: 10px 14px;
-  font-family: "Inter";
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -255,13 +208,11 @@ hr {
   color: #475467;
   font-weight: 500;
   font-size: 16px;
-  font-family: "Inter";
 }
 
 .card-title {
   margin-bottom: 0;
-  font-family: "Inter";
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
   color: #101828;
 }
@@ -447,7 +398,7 @@ button.btn.btn-custom {
 }
 
 .headNotify span {
-  font-family: 'Inter';
+  
   font-size: 13px;
   font-weight: 400;
   line-height: 20px;
@@ -464,7 +415,6 @@ li.dropdown-item.notifyInner {
   border-radius: 8px;
   border: 1px solid #d0d5dd;
   height: 40px;
-  font-family: "Inter";
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -535,14 +485,14 @@ li.dropdown-item.notifyInner {
   margin: 0;
   font-size: 16px;
   color: #101828;
-  font-family: "Inter";
+  
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
 }
 
 .headerSection .navbar-nav .profile_dropdown li span {
-  font-family: "Inter";
+  
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -551,7 +501,7 @@ li.dropdown-item.notifyInner {
 .headerSection .navbar-nav .profile_dropdown .profile-link span {
   font-weight: 600;
   font-size: 16px;
-  font-family: "Inter";
+  
   line-height: 20px;
   color: #101828;
 }
@@ -595,7 +545,7 @@ span.red-dot {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-family: 'Inter';
+  
   font-size: 13px;
   font-weight: 400;
   line-height: 20px;
@@ -614,7 +564,7 @@ span.red-dot {
 }
 
 .notifySubHead h6 {
-  font-family: "Inter";
+  
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
@@ -693,7 +643,7 @@ li.notifyInner {
   padding: 2px 10px;
   background: #FEF3F2;
   border: 1px solid #FECDCA;
-  font-family: 'Inter';
+  
   color: #B42318;
   font-size: 12px;
   font-weight: 500;
@@ -755,12 +705,13 @@ a.nav-link.dropdown-toggle.no-toggle-icon {
 .headerSection .calendar-date .update-time {
   color: #201d1e;
   padding-left: 10px;
-  font-family: "Inter";
   font-size: 14px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 24px;
 }
-
+.headerSection .calendar-date .update-time:last-child {
+  font-weight: 600;
+}
 .headerSection .calendar-date .d-flex.update-time {
   color: #475467;
 }
@@ -789,7 +740,7 @@ a.nav-link.dropdown-toggle.no-toggle-icon {
   max-width: 398px;
   width: 100%;
   top: 0;
-  right: 170px;
+  right: 138px;
   background-color: #fff;
   padding: 24px;
   border-bottom-left-radius: 8px;
@@ -797,7 +748,6 @@ a.nav-link.dropdown-toggle.no-toggle-icon {
 }
 
 .trackVinNumber h4 {
-  font-family: 'Inter';
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -965,6 +915,10 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   display: flex;
   gap: 8px;
 }
+.card.rounded.recentlyAlert.userUI {
+  border-radius: 12px !important;
+  overflow: hidden;
+}
 
 .recentlyAlert.userUI .card-body.bg-alert-area {
   height: auto;
@@ -989,18 +943,11 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   border-radius: 10px;
   font-size: 14px;
   position: relative;
-  font-weight: 400;
+  font-weight: 600;
   display: block;
   margin: 5px auto;
   align-items: center;
-  color: #000 !important;
-}
-
-#sidebar ul li a i {
-  position: relative;
-  color: #000;
-  font-size: 22px;
-  margin: 5px 10px;
+  color: #201D1E !important;
 }
 
 #sidebar.active ul li a {
@@ -1009,7 +956,7 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   border-radius: 8px;
   font-size: 14px;
   position: relative;
-  font-weight: 400;
+  font-weight: 600;
   height: 52px;
   width: 52px;
 }
@@ -1071,15 +1018,7 @@ button#sidebarCollapse i {
   padding: 20px 0;
 }
 
-#sidebar ul li a span {
-  text-transform: capitalize;
-  display: inline-block;
-  white-space: nowrap;
-  font-family: "helvetica light";
-  font-size: 16px;
-  font-weight: 400;
-  color: #201d1e;
-}
+
 
 header .logoHeader img {
   width: 170px;
@@ -1154,12 +1093,11 @@ h3.card-title.cardDashNum {
   margin: 0;
   color: #201d1e;
   font-weight: 700;
-  line-height: 28px;
-  font-family: "Inter";
+  line-height: 28px;  
 }
 
 .userAuthorityBox span {
-  font-family: "Inter";
+  
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
@@ -1195,7 +1133,6 @@ h3.card-title.cardDashNum {
   color: #fff;
   margin: 0;
   font-size: 18px;
-  font-family: "Inter";
 }
 
 .dashboardDetailsBtn .card {
@@ -1329,7 +1266,6 @@ td.vinNumberUserdash {
 }
 
 .month-calendar.vehicleMonthSearch.calendar-svg p {
-  font-family: 'Inter';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -1394,7 +1330,6 @@ span.command_key .f_style {
 
 .cardBottomLine.check-details a {
   color: #475467;
-  font-family: "Inter";
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -1507,7 +1442,6 @@ span.command_key .f_style {
   padding: 8px 12px;
   background: transparent;
   border: none;
-  font-family: 'Inter';
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -1523,8 +1457,7 @@ span.command_key .f_style {
 
 .dropdownFilter .menuFilter li a {
   padding: 12px;
-  font-family: 'Inter';
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 24px;
   color: #101828;
@@ -1676,27 +1609,23 @@ form.FormAlign {
 
 .btnIcons {
   background: #fff;
-  color: #383b56;
-  font-weight: 500;
+  color: #383b56; 
   padding: 12px;
-  font-family: "Barlow", sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   font-style: normal;
   font-size: 18px;
 }
 
 .btnIcons.btnZero p {
-  font-family: "Barlow";
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   text-align: left;
 }
 
 .btnIcons.btnOne p {
-  font-family: "Barlow";
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
   line-height: 24px;
   text-align: left;
 }
@@ -1751,18 +1680,12 @@ form.FormAlign {
   border-right: 1px solid rgba(255, 255, 255, 0.3);
   height: 104px;
 }
-
-
-
 .leftLoginSection .loginTextSection p.spanLine {
   color: #fff;
-  font-family: "helvetica thin";
-  font-size: 16px;
-  font-weight: 300;
+  font-size: 14px;
   line-height: 22px;
   text-align: center;
 }
-
 .leftLoginSection .vehicleImage {
   max-width: 100%;
   position: absolute;
@@ -1800,7 +1723,6 @@ form.FormAlign {
   font-weight: 700;
   line-height: 40px;
   font-size: 31px;
-  font-family: "helvetica Medium";
   letter-spacing: 1px;
 }
 
@@ -1813,12 +1735,10 @@ form.FormAlign {
 }
 
 .leftLoginSection .loginTextSection p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 20px;
   text-align: center;
-  font-family: "helvetica light";
 }
-
 .loginTextSection {
   position: relative;
   z-index: 1;
@@ -2004,13 +1924,7 @@ p.errorMessage {
   background: #fffffff2;
   z-index: 99999;
 }
-.passwordFiled.profile-pagepswd .errorBox {
-  top: 95px;
-}
-.confrimp-profilepaswd {
-  position: absolute;
-  bottom: -25px;
-}
+
 /* Login Page Design end */
 /* Vehicle Monitoring  Page Design start */
 .VehicleMonitoring .card .vehicleTitle h4.card-title {
@@ -2504,7 +2418,7 @@ h2.tabSummaryHead {
 
 .card-area p.authorityPara {
   font-size: 12px;
-  font-family: "Inter";
+  
   font-size: 11px;
   font-weight: 400;
   line-height: 16px;
@@ -2705,10 +2619,9 @@ thead.table-light-Usertbl tr {
   font-weight: 400;
 }
 
-.userdashbrdTable .table>tbody>tr>td {
+.userdashbrdTable .table > tbody > tr > td {
   padding: 16px 25px;
   color: #475467;
-  font-family: "Inter";
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -2873,7 +2786,7 @@ span.apexcharts-legend-marker::before {
 }
 
 .frontNav li a {
-  font-family: 'Inter';
+  
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -2892,7 +2805,7 @@ span.apexcharts-legend-marker::before {
   border: 1px;
   font-size: 16px;
   font-weight: 600;
-  font-family: "Inter";
+  
 }
 
 .frontHead .LoginBtn.bg-LightBtn {
@@ -2913,7 +2826,7 @@ span.apexcharts-legend-marker::before {
 
 .innerTermsBody .TermsContent p {
   color: #475467;
-  font-family: 'Inter';
+  
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -3114,7 +3027,7 @@ span.apexcharts-legend-marker::before {
 
 .ul-aboutSection {
   list-style-type: disc;
-  font-family: 'Inter';
+  
   font-size: 16px;
   font-weight: 400;
   line-height: 35px;
@@ -3130,7 +3043,7 @@ span.apexcharts-legend-marker::before {
 }
 
 .aboutContentPara p {
-  font-family: 'Inter';
+  
   font-size: 16px;
   font-weight: 400;
   line-height: 28px;
@@ -3207,7 +3120,7 @@ a.btn.selected {
 }
 
 .card-Profileinner h1 {
-  font-family: "Inter";
+  
   font-size: 30px;
   font-weight: 600;
   line-height: 38px;
@@ -3221,14 +3134,14 @@ a.btn.selected {
 }
 
 .nameSec h6 {
-  font-family: 'Inter';
+  
   font-size: 20px;
   font-weight: 500;
   color: #000;
 }
 
 .nameSec {
-  font-family: 'Inter';
+  
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -3236,7 +3149,7 @@ a.btn.selected {
 }
 
 .FormInnerInput .form-label {
-  font-family: 'Inter';
+  
   font-size: 16px;
   font-weight: 400;
   color: #000;
@@ -3246,7 +3159,7 @@ a.btn.selected {
 .FormInnerInput .modernInput {
   background-color: #F9F9F9;
   border-radius: 8px;
-  font-family: 'Inter';
+  
   font-size: 16px;
   font-weight: 500;
   color: #475467;
@@ -3278,7 +3191,7 @@ span.passEye {
 }
 
 .emailSec h4 {
-  font-family: 'Inter';
+  
   font-size: 18px;
   font-weight: 500;
   line-height: 27px;
@@ -3288,21 +3201,21 @@ span.passEye {
 .emailAddress .btnAdd, .emailAddress .btnAdd:active {
   background-color: #FAEDEF;
   color: #CF4B5F;
-  font-family: 'Inter';
+  
   font-size: 16px;
   font-weight: 400;
   border-color: transparent;
 }
 
 .emailName p {
-  font-family: 'Inter';
+  
   font-size: 16px;
   font-weight: 400;
   color: #000;
 }
 
 .emailName span {
-  font-family: 'Inter';
+  
   font-size: 16px;
   font-weight: 400;
   color: #475467;
@@ -3371,7 +3284,7 @@ span.passEye i {
 /* update user edit btn */
 .profileBtn span button {
   width: 100%;
-  min-width: 93px;
+  min-width: 125px;
 }
 
 
@@ -3385,14 +3298,14 @@ span.passEye i {
   max-height: 100%;
 }
 .vehicleTitle .card-title{
-font-family: 'Inter';
+
 font-size: 30px;
 font-weight: 600;
 line-height: 38px;
 color: #101828;
 }
 .vehicleTitle p{
-font-family: 'Inter';
+
 font-size: 20px;
 font-weight: 600;
 line-height: 24px;
@@ -3423,4 +3336,7 @@ padding: 10px 0;
 .InnerTitleCard .tabVehicleSection.cardHeaderJustify .nav-tabs {
   border-bottom: none;
   width: 100%;
+}
+.cursor-detail-img{
+    cursor: pointer !important;
 }
