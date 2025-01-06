@@ -60,7 +60,7 @@
                   placeholder="Enter your email" />
               </div>
 
-              <div class="mb-4 passwordFiled">
+              <div class="mb-4 passwordFiled profile-pagepswd">
                 <label for="password" class="form-label">Password</label>
                 <input [type]="eye?'text':'password'" class="passwordFiled form-control modernInput" id="password" name="password"
                   placeholder="********" formControlName="password" />
@@ -69,13 +69,13 @@
                     class="material-symbols-outlined">visibility</i></span>
 
                 <!-- General required error -->
-                <div
+                <div class=""
                   *ngIf="profileForm.controls['password'].touched && profileForm.controls['password'].errors?.['required']">
                   <span class="text-danger">Password is required</span>
                 </div>
 
                 <!-- Specific errors -->
-                <div class=""
+                <div class="errorBox"
                   *ngIf="profileForm.controls['password'].value && (profileForm.controls['password'].dirty || profileForm.controls['password'].touched) && profileForm.controls['password'].errors as errors">
                   <div>
                     <span [class.text-danger]="errors['tooShort']" [class.text-success]="!errors['tooShort']">
@@ -116,7 +116,7 @@
                 <span class="passEye"><i *ngIf="!ceye" class="material-symbols-outlined"
                     (click)="showConfirmPwd()">visibility_off</i><i *ngIf="ceye" (click)="showConfirmPwd()"
                     class="material-symbols-outlined">visibility</i></span>
-                <div
+                <div class="confrimp-profilepaswd"
                   *ngIf="profileForm.controls['confirmPassword'].touched && profileForm.controls['confirmPassword']?.errors?.['required']">
                   <span class="text-danger">Confirm Password is required</span>
                 </div>
