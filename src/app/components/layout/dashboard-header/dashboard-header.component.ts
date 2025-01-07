@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter,OnInit, OnDestroy } from '@angular/core';
+import { Component, Output, EventEmitter,OnInit, OnDestroy,ElementRef } from '@angular/core';
 import { SessionService } from '../../../services/session.service';
 import { Router,RouterLink } from '@angular/router';
 import { ProfileService } from '../../../services/state-management';
@@ -23,7 +23,9 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   notifications: string = 'assets/images/icons/bell.png';
   @Output() sidebarToggle = new EventEmitter<void>();
   private subscription!: Subscription; // To manage subscription lifecycle
-  constructor(private sessionServies: SessionService, private router : Router,private profileService: ProfileService,private userData: userData,){
+  constructor(private sessionServies: SessionService, private router : Router,
+              private profileService: ProfileService,private userData: userData,
+              private elementRef: ElementRef,){
     this.profileData = this.profileService.getInitialProfileData()  ;
     this.userEmail=JSON.parse(localStorage.getItem("profileData")||"")?.email;
     
@@ -53,7 +55,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
     this.profileData = data; // Update local variable when data changes
     this.userName = data.name; // Dynamically update userName
     this.profile = data.profile; // Dynamically update profile
-    this.profileComplete = data.profileComplete; // Dynamically update profile
+    this.profileComplete = data.profileComplete; 
   });
   this.member = this.sessionServies.getSessionData("memberId")
   this.getTableData();
@@ -103,7 +105,14 @@ getTableData() {
   );
 }
 
+onEnterKey(dropdownMenu: HTMLElement) {
+  this.getSearchVal(); 
+  this.closeDropdown(dropdownMenu);
+}
 
+closeDropdown(dropdownMenu: HTMLElement) {
+  dropdownMenu.classList.remove('show'); 
+}
 
 }
 

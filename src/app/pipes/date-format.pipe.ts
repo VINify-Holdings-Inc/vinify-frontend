@@ -9,7 +9,7 @@ export class DateFormatPipe implements PipeTransform {
     if (!value) return '';
 
     const date = value instanceof Date ? value : new Date(value);
-
+    const now = new Date();
     switch (format) {
       case 'DD MM YYYY':
         const day = date.getDate().toString().padStart(2, '0');
@@ -51,7 +51,23 @@ export class DateFormatPipe implements PipeTransform {
           const monthShort = date.toLocaleString('en-US', { month: 'short' });
           const yearShort = date.getFullYear();
           return `${dayShort} ${monthShort} ${yearShort}`;
-        
+          case 'relative': {
+            // Calculate months difference
+            const createdYear = date.getFullYear();
+            const createdMonth = date.getMonth();
+            const currentYear = now.getFullYear();
+            const currentMonth = now.getMonth();
+    
+            if (createdYear === currentYear && createdMonth === currentMonth) {
+              return 'This month';
+            }
+    
+            const monthsDifference =
+              (currentYear - createdYear) * 12 + (currentMonth - createdMonth);
+    
+            if (monthsDifference === 1) return '1 month ago';
+            return `${monthsDifference} months ago`;
+          }
     
       default:
         return date.toISOString();

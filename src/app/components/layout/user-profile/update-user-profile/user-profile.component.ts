@@ -10,11 +10,12 @@ import {ProfileService} from '../../../../services/state-management';
 import {passwordValidator} from '../../../custom-validator/password-validator';
 import { Router } from '@angular/router';  // Import Router
 import { strictEmailValidator } from '../../../custom-validator/strict-email.validator';
+import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, LoaderComponent],
+  imports: [CommonModule, ReactiveFormsModule, LoaderComponent,DateFormatPipe],
   templateUrl: './user-profile.component.html',
   styleUrls:  ['./user-profile.component.css'],
 })
@@ -33,6 +34,7 @@ export class UserProfileComponent implements OnInit {
   proPassword :string="";
   showOther :boolean=false;
   editMode :boolean=false;
+  createdAt:string="";
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -46,6 +48,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.sessionService.getSessionData("memberId") || "";
+    this.createdAt = this.sessionService.getSessionData("data").createdAt || "";
     
     this.profileForm = this.fb.group({
       name: ['', [Validators.required]],
