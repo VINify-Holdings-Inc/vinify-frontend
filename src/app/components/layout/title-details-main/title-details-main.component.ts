@@ -56,7 +56,7 @@ export class TitleDetailsMainComponent {
   totalPages : number=0;
   status : string="current";
   tableData :any[]=[];
-
+  totalData :number = 0;
   isLoading : boolean=false;
 
   getTableData(vin:any){
@@ -71,6 +71,9 @@ export class TitleDetailsMainComponent {
         if(!res.error){
           this.tableData=res?.data?.items||[];
           this.totalPages= res?.data?.totalPages||0;
+          this.totalData= res?.data?.totalItems;
+          this.vin=res?.data?.items[0].vin;
+          this.model=res?.data?.items[0].model;
         }else{
           Swal.fire({
                   title: 'Error!',
@@ -87,16 +90,13 @@ export class TitleDetailsMainComponent {
     );
   }
 
-
- 
-
    handlePageChange(newPage:any){
     this.page = newPage ;
     this.getTableData(this.vin);
-};
-handelSearch(searchVal:any){
-  this.getTableData(searchVal);
-}
+    }
+  handelSearch(searchVal:any){
+    this.getTableData(searchVal);
+   }
 
 
 }

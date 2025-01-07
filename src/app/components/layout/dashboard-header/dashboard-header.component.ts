@@ -76,11 +76,11 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
 
  getSearchVal(){
   if(this.searchValue!=""){
-    const timestamp = new Date().getTime(); 
     this.getVinSearch(this.searchValue);
-    /*  this.router.navigate(['/title-details'], { queryParams: { vin: this.searchValue, refresh: timestamp }}).then(() => {
-        this.searchValue="";
-    }); */
+      /* const timestamp = new Date().getTime(); 
+        this.router.navigate(['/title-details'], { queryParams: { vin: this.searchValue, refresh: timestamp }}).then(() => {
+          this.searchValue="";
+      }); */
   }
 }
 
@@ -125,8 +125,10 @@ getVinSearch(vin:any){
        // console.log("data",res?.data);
           this.isLoading=false; 
           this.searchValue="";
+          this.searchIconToggle=!this.searchIconToggle
         if(!res.error){
            if(res?.data?.totalItems>0){
+            this
                 const timestamp = new Date().getTime(); 
                     this.router.navigate(['/title-details'], { queryParams: { vin: vin, refresh: timestamp }}).then(() => {
                     this.searchValue="";
