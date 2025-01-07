@@ -57,6 +57,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
     this.profileData = data; // Update local variable when data changes
     this.userName = data.name; // Dynamically update userName
     this.profile = data.profile; // Dynamically update profile
+    console.log("data",data.profileComplete);
     this.profileComplete = data.profileComplete; 
   });
   this.member = this.sessionServies.getSessionData("memberId")

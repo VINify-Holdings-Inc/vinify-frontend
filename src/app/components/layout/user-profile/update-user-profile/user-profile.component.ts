@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../../services/api-service.service';
 import { SessionService } from '../../../../services/session.service';
@@ -40,6 +40,7 @@ export class UserProfileComponent implements OnInit {
     private authService: AuthService,
     private sessionService: SessionService,
     private profileService: ProfileService,
+    private cdr: ChangeDetectorRef,
     private router: Router,){
               this.profileData = this.profileService.getInitialProfileData()                   
     }
@@ -198,6 +199,7 @@ loadUserData(): void {
     this.sessionService.setSessionData("data",updatedData)
      let new_data ={"name":data?.firstName + " " + data?.lastName,"profile":`${environment.img_url}/${data.profile}`,"profileComplete":data.profileComplete}
     this.profileService.updateProfileData({...this.profileData,...new_data});
+    this.cdr.detectChanges();
   }
 
   onSubmit(): void {
