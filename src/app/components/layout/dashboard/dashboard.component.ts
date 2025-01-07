@@ -101,7 +101,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
       (res: any) => {
 
         if (!res.error) {
-          this.totalItems = res?.data?.uniqueVinCount || [];
+          this.totalItems = res?.data?.uniqueVinCount || 0;
           }
         this.isLoading = false;
       },
