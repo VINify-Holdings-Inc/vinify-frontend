@@ -1,5 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
- 
+import { Component, AfterViewInit } from '@angular/core'; 
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SessionService, } from '../../../services/session.service';
