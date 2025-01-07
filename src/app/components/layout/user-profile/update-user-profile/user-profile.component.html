@@ -43,7 +43,7 @@
               <div class="mb-4">
                 <label for="name" class="form-label">First Name</label>
                 <input type="text" class="form-control modernInput" id="name" formControlName="name"
-                  placeholder="Enter your name"  />
+                  placeholder="Enter your name" tabindex="1" />
                 <!-- <div *ngIf="profileForm.controls['name'].touched && profileForm.controls['name'].invalid"
                   class="text-danger">
                   Name is required
@@ -54,7 +54,7 @@
               <div class="mb-4">
                 <label for="name" class="form-label">Last Name</label>
                 <input type="text" class="form-control modernInput" id="lname" formControlName="lname"
-                  placeholder="Enter your Last name"  />
+                  placeholder="Enter your Last name" tabindex="2" />
                 <!-- <div *ngIf="profileForm.controls['lname'].touched && profileForm.controls['lname'].invalid" class="text-danger">
                  Last Name is required
                 </div> -->
@@ -67,14 +67,14 @@
               <div class="mb-4">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control modernInput" id="email" formControlName="email"
-                  placeholder="Enter your email"  />
+                  placeholder="Enter your email" tabindex="3" />
               </div>
              </div>
               <div class="col-md-6">
                 <div class="mb-4 passwordFiled profile-pagepswd">
                   <label for="password" class="form-label">Password</label>
                   <input [type]="eye?'text':'password'" class="passwordFiled form-control modernInput" id="password" name="password"
-                    placeholder="********" formControlName="password" />
+                    placeholder="********" formControlName="password" tabindex="4"/>
                   <span class="passEye"><i *ngIf="!eye" class="material-symbols-outlined"
                       (click)="showPwd()">visibility_off</i><i *ngIf="eye" (click)="showPwd()"
                       class="material-symbols-outlined">visibility</i></span>
@@ -126,7 +126,7 @@
             <div class="mb-4 passwordFiled" *ngIf="editMode">
               <label for="confirmPassword" class="form-label">Confirm Password</label>
               <input [type]="ceye?'text':'password'" class="form-control modernInput" id="confirmPassword" name="confirmPassword"
-                placeholder="********" formControlName="confirmPassword" />
+                placeholder="********" formControlName="confirmPassword" tabindex="5"/>
               <span class="passEye"><i *ngIf="!ceye" class="material-symbols-outlined"
                   (click)="showConfirmPwd()">visibility_off</i><i *ngIf="ceye" (click)="showConfirmPwd()"
                   class="material-symbols-outlined">visibility</i></span>
@@ -140,6 +140,7 @@
               <select 
                 class="form-select modernInput" 
                 id="company" 
+                tabindex="7"
                 formControlName="company"
                 aria-label="Select company">
                 <option selected>abc techs</option>
@@ -156,6 +157,7 @@
               <select 
                 class="form-select modernInput" 
                 id="title" 
+                tabindex="6"
                 formControlName="title"
                 aria-label="Select title"
                 >
@@ -203,8 +205,8 @@
                    
                     formControlName="secondaryEmailId" 
                     aria-required="true" />
-                    <div *ngIf="profileFormEmail.controls['secondaryEmailId'].touched">
-                      <span class="text-danger" *ngIf="profileFormEmail.controls['secondaryEmailId'].errors?.['required']">Please enter a Email Address</span>
+                    <div class="additional-email-error" *ngIf="profileFormEmail.controls['secondaryEmailId'].touched">
+                      <span class="text-danger" *ngIf="profileFormEmail.controls['secondaryEmailId'].errors?.['required']">Please Enter a Email Address</span>
                       <span class="text-danger" *ngIf="!profileFormEmail.controls['secondaryEmailId'].errors?.['required'] && profileFormEmail.controls['secondaryEmailId'].errors?.['email']">Please enter a valid email address</span>
                     </div>
                     <button 
