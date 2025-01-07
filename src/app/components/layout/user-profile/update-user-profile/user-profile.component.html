@@ -187,7 +187,7 @@
                 </div>
                 <div class="emailName">
                   <p>{{profileForm.controls['email'].value}}</p>
-                  <span>1 month ago</span>
+                  <span>{{ createdAt | dateFormat: 'relative' }}</span>
                 </div>
               </div>
 
