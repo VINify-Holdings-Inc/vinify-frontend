@@ -3349,3 +3349,6 @@ padding: 10px 0;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.closeDropDown{
+  display: none !important;
+}
