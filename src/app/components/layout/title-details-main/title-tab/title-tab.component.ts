@@ -1,11 +1,12 @@
 import {  Component, AfterViewInit, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 
 
 @Component({
   selector: 'app-title-tab',
-  imports: [CommonModule],
+  imports: [CommonModule,DateFormatPipe],
   templateUrl: './title-tab.component.html',
   styleUrl: './title-tab.component.css'
 })

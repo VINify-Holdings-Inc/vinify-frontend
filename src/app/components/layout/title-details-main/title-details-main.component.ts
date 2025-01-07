@@ -64,7 +64,7 @@ export class TitleDetailsMainComponent {
     this.isLoading= true;
      let url = `vin=${vin}&page=${this.page}&limit=${this.limit}&member=${(this.member)}`;
         
-    this.userData.searchVinDataForUser(url).subscribe(
+     this.userData.searchVinDataForUser(url).subscribe(
       (res:any) => {
         console.log("data",res?.data);
           this.isLoading=false; 
@@ -82,7 +82,6 @@ export class TitleDetailsMainComponent {
                   confirmButtonText: 'OK',
                 })
         }
-       
       },
       (err) => {
         this.isLoading=false;

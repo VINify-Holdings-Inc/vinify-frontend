@@ -53,16 +53,31 @@
                                 </tr>
                             </thead>
                             <tbody>
+                               
+                            </tbody>
+                            <tbody>
+                                @if(tableData.length > 0){
+                                    @for(item of tableData;track $index){
                                 <tr>
-                                    <td>1</td>
-                                    <td><p>History</p></td>
-                                    <td><p><span class="vinModelName">1FTCF15N5HLA06223</span></p></td>
-                                    <td>AA</td>
+                                    <td>{{$index+1}}</td>
+                                    <td>{{item?.status  }}</td>
+                                    <td><p><span class="vinModelName"> {{item?.vin}}</span></p></td>
+                                    <td>{{item?.state}}</td>
                                     <td>-</td>
-                                    <td>Chev</td>
-                                    <td>2001</td>
-                                    <td>2021-05-01</td>
-                                </tr>
+                                    <td>{{item?.model}}</td>
+                                    <td>{{item?.modelYear | dateFormat: 'YYYY'}}</td>
+                                    <td>{{ item?.titleBrandDate | dateFormat: 'DD MMM YYYY' }}</td>
+                                     
+                                    </tr> 
+                                  }
+                                }
+                                @else{
+                                    <tr>
+                                        <td colspan="9" class="text-center">No data found</td>
+                                    </tr> 
+                                } 
+    
+                                
                             </tbody>
 
                         </table>
