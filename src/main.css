@@ -320,8 +320,10 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
 }
 
 .headProfile {
+  object-fit: cover;
   height: 40px;
   width: 40px;
+  border-radius: 50%;
 }
 
 .navbar-nav>li.active {
@@ -411,6 +413,7 @@ li.dropdown-item.notifyInner {
 }
 
 .headerSection .navbar-btn_track {
+  width: 162px;
   background-color: var(--bg-primary);
   padding: 10px 14px;
   border-radius: 8px;
@@ -420,6 +423,11 @@ li.dropdown-item.notifyInner {
   font-weight: 600;
   line-height: 20px;
   box-shadow: 0px 1px 2px 0px #1018280d;
+}
+
+.btn.btn-custom.navbar-btn_track:active,  .btn.btn-custom.navbar-btn_track:first-child:active{
+  border: 1px solid #d0d5dd;
+
 }
 
 .headerSection .navbar-btn_track img {
@@ -2006,11 +2014,10 @@ p.errorMessage {
 }
 
 .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link {
-  padding: 8px 16px;
-  line-height: 30px;
+  padding: 4px 16px;
+  line-height: 31px;
   font-size: 14px;
 }
-
 .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link.active {
   color: #fff;
   border: 1px solid var(--bg-primary);
@@ -3137,9 +3144,8 @@ a.btn.selected {
 }
 
 .nameSec h6 {
-  
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   color: #000;
 }
 
@@ -3161,12 +3167,19 @@ a.btn.selected {
 
 .FormInnerInput .modernInput {
   background-color: #F9F9F9;
-  border-radius: 8px;  
+  border-radius: 8px;
   font-size: 16px;
   font-weight: 500;
   color: #475467;
-  border: none;
-  padding: 14px 15px;
+  padding: 13px 15px;
+  border: 1px solid transparent;
+}
+.edit-profile-fields .FormInnerInput .modernInput{
+  background-color: transparent;
+  border: 1px solid #eceef1;
+}
+.edit-profile-fields .FormInnerInput input#email {
+  cursor: no-drop;
 }
 .FormInnerInput .modernInput:focus{
   box-shadow: none;
@@ -3196,10 +3209,9 @@ span.passEye {
 }
 
 .emailSec h4 {
-  
   font-size: 18px;
-  font-weight: 500;
-  line-height: 27px;
+  font-weight: 600;
+  line-height: 33px;
   color: #000;
 }
 
@@ -3289,7 +3301,7 @@ span.passEye i {
 /* update user edit btn */
 .profileBtn span button {
   width: 100%;
-  min-width: 125px;
+  min-width: 93px;
 }
 
 
@@ -3318,7 +3330,7 @@ color: var(--bg-primary);
 padding: 10px 0;
 }
 .InnerTitleCard .tabVehicleSection.cardHeaderJustify {
-  padding-top: 49px;
+  padding-top: 56px;
 }
 .cardInnerVehicle {
   display: flex;
