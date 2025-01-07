@@ -66,6 +66,7 @@ export class TitleDetailsMainComponent {
         
     this.userData.searchVinDataForUser(url).subscribe(
       (res:any) => {
+        console.log("data",res?.data);
           this.isLoading=false; 
         if(!res.error){
           this.tableData=res?.data?.items||[];
