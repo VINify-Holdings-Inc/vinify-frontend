@@ -88,7 +88,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
 tableData :any[] =[];
 lastUpdateDate:string ="";
 getTableData() { 
-   let url = `page=1&limit=1&member=${(this.member)}`;
+   let url = `page=1&limit=1`;
   
   this.userData.getCurrentVinDataForUser(url).subscribe(
     (res: any) => {
@@ -119,7 +119,7 @@ isLoading:boolean=false;
 getVinSearch(vin:any){
     
     this.isLoading= true;
-     let url = `vin=${vin}&page=1&limit=1&member=${(this.member)}`;
+     let url = `vin=${vin}&page=1&limit=1`;
         
     this.userData.searchVinDataForUser(url).subscribe(
       (res:any) => {

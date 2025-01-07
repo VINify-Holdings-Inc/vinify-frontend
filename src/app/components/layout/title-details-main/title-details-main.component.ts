@@ -62,7 +62,7 @@ export class TitleDetailsMainComponent {
   getTableData(vin:any){
     
     this.isLoading= true;
-     let url = `vin=${vin}&page=${this.page}&limit=${this.limit}&member=${(this.member)}`;
+     let url = `vin=${vin}&page=${this.page}&limit=${this.limit}`;
         
      this.userData.searchVinDataForUser(url).subscribe(
       (res:any) => {
