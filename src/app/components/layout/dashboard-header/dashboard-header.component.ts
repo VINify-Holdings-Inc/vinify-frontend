@@ -7,9 +7,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { userData } from '../../../services/api-service.service';
 import { DateFormatPipe } from '../../../pipes/date-format.pipe';
+import Swal from 'sweetalert2';
+import { LoaderComponent } from '../common/loader/loader.component';
 @Component({
   selector: 'app-dashboard-header',
-  imports: [RouterLink,CommonModule,FormsModule,DateFormatPipe],
+  imports: [RouterLink,CommonModule,FormsModule,DateFormatPipe,LoaderComponent],
   templateUrl: './dashboard-header.component.html',
   styleUrl: './dashboard-header.component.css'
 })
@@ -75,11 +77,10 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
  getSearchVal(){
   if(this.searchValue!=""){
     const timestamp = new Date().getTime(); 
-      this.router.navigate(['/title-details'], { queryParams: { vin: this.searchValue, refresh: timestamp }}).then(() => {
+    this.getVinSearch(this.searchValue);
+    /*  this.router.navigate(['/title-details'], { queryParams: { vin: this.searchValue, refresh: timestamp }}).then(() => {
         this.searchValue="";
-      // You can trigger additional actions after navigation
-      //console.log('Navigation complete');
-    });
+    }); */
   }
 }
 
@@ -113,6 +114,40 @@ onEnterKey(dropdownMenu: HTMLElement) {
 closeDropdown(dropdownMenu: HTMLElement) {
   dropdownMenu.classList.remove('show'); 
 }
+isLoading:boolean=false;
+getVinSearch(vin:any){
+    
+    this.isLoading= true;
+     let url = `vin=${vin}&page=1&limit=1&member=${(this.member)}`;
+        
+    this.userData.searchVinDataForUser(url).subscribe(
+      (res:any) => {
+       // console.log("data",res?.data);
+          this.isLoading=false; 
+          this.searchValue="";
+        if(!res.error){
+           if(res?.data?.totalItems>0){
+                const timestamp = new Date().getTime(); 
+                    this.router.navigate(['/title-details'], { queryParams: { vin: vin, refresh: timestamp }}).then(() => {
+                    this.searchValue="";
+                    });
+           }
+        }else{
+          
+          Swal.fire({
+                  title: 'Error!',
+                  text: res.message,
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                })
+        }
+       
+      },
+      (err) => {
+        this.isLoading=false;
+      }
+    );
+  }
 
 }
 
