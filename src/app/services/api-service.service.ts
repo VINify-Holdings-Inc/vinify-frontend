@@ -66,6 +66,8 @@ export class AuthService {
           headers: this.getHeaders(),
         });
   }
+  
+  
 
   // getProfileData(data: any): Observable<any> {
   //   return this.http.get(`${this.baseUrl}/user-profile/${data}`, {
@@ -100,6 +102,12 @@ export class userData {
     return this.http.get(`${this.baseUrl}/search-pop-vin?`+ data, {
       headers: this.getHeaders(),
     });
+  }
+  getKPIData(): Observable<any> {
+   
+    return this.http.get(`${this.baseUrl}/kpi-data`, {
+          headers: this.getHeaders(),
+        });
   }
 
     

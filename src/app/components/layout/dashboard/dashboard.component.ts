@@ -39,6 +39,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     this.member = this.sessionService.getSessionData("memberId")
     this.getTableData();
+    this.getKPIData();
 
   }
 
@@ -47,7 +48,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   totalPages: number = 0;
   status: string = "current";
   tableData: any[] = [];
-  totalItems:any="";
+  totalItems:any=0;
   tableName:string = "Summary VIN List & Alert Records"; 
   isLoading: boolean = false;
 
@@ -66,7 +67,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
         if (!res.error) {
           this.tableData = res?.data?.items || [];
           this.totalPages = res?.data?.totalPages || 0;
-          this.totalItems = res?.data?.totalItems || 0;
+         // this.totalItems = res?.data?.totalItems || 0;
         }
         this.isLoading = false;
       },
@@ -89,6 +90,25 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   isChartSelected: string = "line";
   changeChart(x: string) {
     this.isChartSelected = x;
+  }
+
+  getKPIData() {
+
+    this.isLoading = true;
+   
+
+    this.userData.getKPIData().subscribe(
+      (res: any) => {
+
+        if (!res.error) {
+          this.totalItems = res?.data?.uniqueVinCount || [];
+          }
+        this.isLoading = false;
+      },
+      (err) => {
+        this.isLoading = false;
+      }
+    );
   }
 
 }
