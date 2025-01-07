@@ -7,7 +7,7 @@
                    
                     <div class="userSingleSearch">
                         <span class="VInNumberInput" *ngIf="searchHideShow">
-                            <input type="text"  [(ngModel)]="searchValue"  (ngModelChange)="onType(searchValue)"   class="form-control" placeholder="Search VIN" />
+                            <input type="text"  [(ngModel)]="searchValue"  (keydown.enter)="getSearchVal()"  (ngModelChange)="onType(searchValue)"   class="form-control" placeholder="Search VIN Number" />
                         </span>
                         <img alt="img"  src="assets/images/icons/search.svg" class="img-fluid" (click) = "getSearchVal()"/>
                     </div>

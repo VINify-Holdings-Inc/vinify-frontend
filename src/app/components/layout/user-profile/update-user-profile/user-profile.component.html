@@ -14,8 +14,8 @@
                  class="profileImg" alt="Profile photo of" />
               </div>
               <div class="nameSec" *ngIf="!editMode">
-                <h6>{{profileForm.controls['name'].value}} {{profileForm.controls['lname'].value}}</h6>
-                <p><span>{{profileForm.controls['email'].value}}</span></p>
+                <h6>{{profileForm.controls['name'].value || ""}} {{profileForm.controls['lname'].value ||""}}</h6>
+                <p><span>{{profileForm.controls['email'].value || ""}}</span></p>
               </div>
 
               <div class="nameSec" *ngIf="editMode">
@@ -31,7 +31,7 @@
             </span>
             <span  *ngIf="editMode">
               <button type="submit" routerLink="#" class="btn btn-primary" aria-label="Update profile"
-                [disabled]="profileForm.invalid || isLoading">Update Profile</button>
+                [disabled]="profileForm.invalid || isLoading">Update</button>
               </span>
             </div>
           </div>
@@ -211,7 +211,7 @@
                     formControlName="secondaryEmailId" 
                     aria-required="true" />
                     <div *ngIf="profileFormEmail.controls['secondaryEmailId'].touched">
-                      <span class="text-danger" *ngIf="profileFormEmail.controls['secondaryEmailId'].errors?.['required']">Please enter a Email address</span>
+                      <span class="text-danger" *ngIf="profileFormEmail.controls['secondaryEmailId'].errors?.['required']">Please enter a Email Address</span>
                       <span class="text-danger" *ngIf="!profileFormEmail.controls['secondaryEmailId'].errors?.['required'] && profileFormEmail.controls['secondaryEmailId'].errors?.['email']">Please enter a valid email address</span>
                     </div>
                     <button 
