@@ -3375,6 +3375,7 @@ padding: 10px 0;
   opacity: 0.5;
   top: 0;
   display: none;
+  z-index: 1;
 }
 .profile-areamodal .show .checkmodal {
   display: block;
