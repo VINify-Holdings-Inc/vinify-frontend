@@ -45,12 +45,12 @@
                         <!-- <li class="nav-item dropdown">
                             <img src="assets/images/icons/setting.svg" class="img-fluid" alt="settings" />
                         </li> -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle no-toggle-icon" data-bs-toggle="dropdown"
+                        <li class="nav-item dropdown profile-areamodal">
+                            <a class="nav-link dropdown-toggle no-toggle-icon " data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <div class="notification-dot"><span>20</span></div>
                                 <img src="assets/images/icons/bell.svg" class="img-fluid" alt="notifications" />
-
+                                <div class="checkmodal"></div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end notification-dropdown">
                                 <li class="dropdown-item notifyInner">
@@ -162,11 +162,13 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown profile-areamodal">
                             <a href="#" class="nav-link dropdown-toggle no-toggle-icon p-0" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <img [src]="profile" class="rounded-circle headProfile" alt="Profile" />
+                                <div class="checkmodal"></div>
                             </a>
+                            
                             <ul class="dropdown-menu dropdown-menu-end profile_dropdown">
                                 <li class="dropdown-item">
                                     <div class="ProfileHead">

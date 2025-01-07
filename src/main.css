@@ -320,6 +320,7 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
 }
 
 .headProfile {
+  height: 40px;
   width: 40px;
 }
 
@@ -601,6 +602,8 @@ span.red-dot {
   border-radius: 12px;
   border: 1px solid #EAECF0;
   box-shadow: 0px 4px 6px -2px #10182808, 0px 12px 16px -4px #10182814;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .notifyPoint {
@@ -3351,4 +3354,17 @@ padding: 10px 0;
 }
 .closeDropDown{
   display: none !important;
+}
+.profile-areamodal .checkmodal {
+  background: #000;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  opacity: 0.5;
+  top: 0;
+  display: none;
+}
+.profile-areamodal .show .checkmodal {
+  display: block;
 }
