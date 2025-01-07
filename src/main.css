@@ -165,7 +165,7 @@ p.textLight {
   background: #fff;
 }
 
-.table>thead>tr>th {
+.table > thead > tr > th {
   font-size: 16px;
   font-weight: 400;
 }
@@ -253,7 +253,7 @@ p.smallAddIcon i {
   background-color: #e8faee;
 }
 
-.table>thead>tr>th,
+.table > thead > tr > th,
 .table>tbody>tr>td {
   white-space: nowrap;
   font-size: 14px;
@@ -273,20 +273,21 @@ p.smallAddIcon i {
   background-color: #edeaf9 !important;
 }
 
-.table>thead>tr>th {
+.table > thead > tr > th {
   font-weight: 600;
   padding: 12px 24px;
   text-transform: capitalize;
   font-size: 12px;
   color: #323b48;
   background-color: #ededed !important;
+  border-right: 1px solid #fff;
 }
 
 .table thead {
   border-radius: 12px !important;
 }
 
-.table>thead>tr>th:last-child {
+.table > thead > tr > th:last-child {
   text-align: right;
   border-right: none;
 }
@@ -751,7 +752,7 @@ a.nav-link.dropdown-toggle.no-toggle-icon {
   max-width: 398px;
   width: 100%;
   top: 0;
-  right: 138px;
+  right: 156px;
   background-color: #fff;
   padding: 24px;
   border-bottom-left-radius: 8px;
@@ -2615,11 +2616,11 @@ thead.table-light-Usertbl tr {
   background: #ededed;
 }
 
-.table>thead>tr>th:first-child {
+.table > thead > tr > th:first-child {
   border-radius: 12px 0 0 0 !important;
 }
 
-.table>thead>tr>th:last-child {
+.table > thead > tr > th:last-child {
   border-radius: 0 12px 0 0 !important;
 }
 
