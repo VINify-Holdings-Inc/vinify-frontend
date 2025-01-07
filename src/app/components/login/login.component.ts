@@ -75,11 +75,11 @@ export class LoginComponent {
             this.sessionService.setSessionData("email",res.data.email);
             this.sessionService.setSessionData("token",res.data.token);
             this.sessionService.setSessionData("memberId",res.data.memberId);
-            this.sessionService.setSessionData("name",res.data.name);
+            this.sessionService.setSessionData("name",res.data?.firstName +" "+ res.data?.lastName);
             this.sessionService.setSessionData("profile",res.data.profile ? `${environment.img_url}/${res.data.profile}` :"assets/images/user.jpg");
             
             this.sessionService.setSessionData("data",res.data);
-            localStorage.setItem('profileData', JSON.stringify({"name":res.data.name,"email":res.data.email,"profileComplete":res.data.profileComplete,"profile":res.data.profile ? `${environment.img_url}/${res.data.profile}` :"assets/images/user.jpg"}));
+            localStorage.setItem('profileData', JSON.stringify({"name":res.data?.firstName+ " "+res.data?.lastName ,"email":res.data.email,"profileComplete":res.data.profileComplete,"profile":res.data.profile ? `${environment.img_url}/${res.data.profile}` :"assets/images/user.jpg"}));
             this.isResInProgLogin=false;
             this.router.navigate(['/dashboard']);
           }else{
