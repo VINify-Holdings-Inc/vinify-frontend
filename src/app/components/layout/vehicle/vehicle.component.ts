@@ -43,7 +43,7 @@ export class VehicleComponent implements AfterViewInit{
   getTableData(vin = null) {
 
     this.isLoading = true;
-    let url = `page=${this.page}&limit=${this.limit}&member=${(this.member)}`;
+    let url = `page=${this.page}&limit=${this.limit}`;
     if (vin) {
       url = url + `&vin=${(vin)}`
     }
