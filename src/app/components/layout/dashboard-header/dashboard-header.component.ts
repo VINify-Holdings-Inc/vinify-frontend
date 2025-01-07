@@ -5,7 +5,7 @@ import { ProfileService } from '../../../services/state-management';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { userData } from '../../../services/api-service.service';
+import { userData,AuthService } from '../../../services/api-service.service';
 import { DateFormatPipe } from '../../../pipes/date-format.pipe';
 import Swal from 'sweetalert2';
 import { LoaderComponent } from '../common/loader/loader.component';
@@ -27,7 +27,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   private subscription!: Subscription; // To manage subscription lifecycle
   constructor(private sessionServies: SessionService, private router : Router,
               private profileService: ProfileService,private userData: userData,
-              private elementRef: ElementRef,){
+              private authService: AuthService, private elementRef: ElementRef,){
     this.profileData = this.profileService.getInitialProfileData()  ;
     this.userEmail=JSON.parse(localStorage.getItem("profileData")||"")?.email;
     
@@ -62,6 +62,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   });
   this.member = this.sessionServies.getSessionData("memberId")
   this.getTableData();
+  this.getProfileData();
 }
 
  ngOnDestroy() {
@@ -151,6 +152,25 @@ getVinSearch(vin:any){
       }
     );
   }
+
+  getProfileData() {
+    this.authService.getProfileData(this.userEmail).subscribe(
+      (res: any) => {
+
+        if (!res.error) {
+             
+              this.userName = res.data.firstName + " " +  res.data.lastName; 
+              this.profile = "https://mvmapi.techwagger.com/api/uploads/"+res.data.profile; 
+              this.profileComplete =  res.data.profileComplete; 
+          }
+      },
+      (err) => {
+
+      }
+    );
+  }
+
+
 
 }
 
