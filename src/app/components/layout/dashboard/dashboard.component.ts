@@ -40,7 +40,6 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.member = this.sessionService.getSessionData("memberId")
     if(this.vin==""){this.getTableData();}
     this.getKPIData();
-
   }
   vin :string= "";
   limit: number = 10;
