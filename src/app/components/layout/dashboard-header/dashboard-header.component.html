@@ -23,7 +23,7 @@
                         <li class="nav-item dropdown">
                             <a href="#" class="btn btn-custom navbar-btn_track" (click)="changeSearchIcon()"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Track VIN Status
+                                New VIN Report
                                 <img [src]="arrowIcon" *ngIf="searchIconToggle" class="img-fluid" alt="settings" />
                                 <img [src]="searchIcon" *ngIf="!searchIconToggle" class="img-fluid" alt="search" />
                             </a>
@@ -180,7 +180,7 @@
                                             <h5>{{userName}}</h5>
                                             <span class="vin_label"  [title]="userEmail">{{userEmail}}</span>
                                         </div>
-                                        <div><span class="ProfileComplete">{{profileComplete}}% Complete</span></div>
+                                        <!-- <div><span class="ProfileComplete">{{profileComplete}}% Complete</span></div> -->
                                     </div>
                                 </li>
                                 <li>

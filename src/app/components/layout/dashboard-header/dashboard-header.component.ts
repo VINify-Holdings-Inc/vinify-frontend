@@ -37,7 +37,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   profile : string ="";
   searchValue :string="";
   userEmail:string="";
-  profileComplete:string="";
+  //profileComplete:string="";
   toggleSidebar() { 
     this.sidebarToggle.emit();
   }
@@ -57,8 +57,8 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
     this.profileData = data; // Update local variable when data changes
     this.userName = data.name; // Dynamically update userName
     this.profile = data.profile; // Dynamically update profile
-    console.log("data",data.profileComplete);
-    this.profileComplete = data.profileComplete; 
+   // console.log("data",data.profileComplete);
+    // this.profileComplete = data.profileComplete; 
   });
   this.member = this.sessionServies.getSessionData("memberId")
   this.getTableData();
@@ -161,7 +161,7 @@ getVinSearch(vin:any){
              
               this.userName = res.data.firstName + " " +  res.data.lastName; 
               this.profile = "https://mvmapi.techwagger.com/api/uploads/"+res.data.profile; 
-              this.profileComplete =  res.data.profileComplete; 
+            //  this.profileComplete =  res.data.profileComplete; 
           }
       },
       (err) => {
