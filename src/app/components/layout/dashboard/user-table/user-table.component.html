@@ -88,7 +88,7 @@
                                 <span class="page-link">Page {{page}} of {{totalPages}}</span>
                             </li>
                             <li class="page-item">
-                                <button type="button" class="page-link" (click)="onClick(page+1)" [disabled]="page==totalPages" >Next</button>
+                                <button type="button" class="page-link" (click)="onClick(page+1)" [disabled]="page==totalPages || page>totalPages" >Next</button>
                             </li>
                         </ul>
                     </div>

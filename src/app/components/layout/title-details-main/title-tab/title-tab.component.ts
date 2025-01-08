@@ -6,7 +6,7 @@ import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 
 @Component({
   selector: 'app-title-tab',
-  imports: [CommonModule,DateFormatPipe],
+  imports: [CommonModule,DateFormatPipe,FormsModule],
   templateUrl: './title-tab.component.html',
   styleUrl: './title-tab.component.css'
 })
@@ -18,7 +18,7 @@ export class TitleTabComponent implements OnInit{
 
         totalRecords:any=0;
         searchValue :string="";
-        
+        sn : number =0;
         @Input() tableData :any[]=[];
         @Input() page :number=0;
         @Input() totalPages :number=0;
@@ -34,6 +34,8 @@ export class TitleTabComponent implements OnInit{
 
       onClick(pages:any){
          this.handelPaginagtion.emit(pages);
+         this.sn=(pages-1)*10;
+         this.getValifExist();
       } 
       
        
@@ -42,10 +44,16 @@ export class TitleTabComponent implements OnInit{
           this.searchHideShow = !this.searchHideShow;
         }else{
           this.handelSearch.emit(this.searchValue);
+          this.handelPaginagtion.emit(1);
+          this.sn=0;
         }
-        
-        
       }
+
+        getValifExist(){
+          if(this.searchValue!=""){
+            this.handelSearch.emit(this.searchValue);
+          }
+        }
       onType(value: string){
         if(value==""){
           this.handelSearch.emit(value);

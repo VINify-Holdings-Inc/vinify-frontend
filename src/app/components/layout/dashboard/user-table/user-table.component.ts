@@ -30,6 +30,7 @@ export class UserTableComponent {
 
 onClick(pages:any){
    this.handelPaginagtion.emit(pages);
+   this.getValifExist();
 } 
 
 redirectToOtherPage(vin:string,model:string) {
@@ -40,9 +41,16 @@ redirectToOtherPage(vin:string,model:string) {
 getSearchVal(){
   if(this.searchValue==""){
     this.searchHideShow = !this.searchHideShow;
+   
   }else{
     this.handelSearch.emit(this.searchValue);
+    this.handelPaginagtion.emit(1);
   }  
+}
+getValifExist(){
+  if(this.searchValue!=""){
+    this.handelSearch.emit(this.searchValue);
+  }
 }
 onType(value: string){
   if(value==""){

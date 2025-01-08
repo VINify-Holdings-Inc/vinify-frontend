@@ -7,7 +7,7 @@
                    
                     <div class="userSingleSearch">
                         <span class="VInNumberInput" *ngIf="searchHideShow" >
-                            <input type="text"   (keydown.enter)="getSearchVal()"  (ngModelChange)="onType(searchValue)"  class="form-control" placeholder="Search VIN Number" />
+                            <input type="text" [(ngModel)]="searchValue"  (keydown.enter)="getSearchVal()"  (ngModelChange)="onType(searchValue)"  class="form-control" placeholder="Search VIN Number" />
                         </span>
                         <img alt="img"  src="assets/images/icons/search.svg" class="img-fluid" (click) = "getSearchVal()" />
                     </div>
@@ -59,11 +59,11 @@
                                 @if(tableData.length > 0){
                                     @for(item of tableData;track $index){
                                 <tr>
-                                    <td>{{$index+1}}</td>
+                                    <td>{{$index+1+sn}}</td>
                                     <td>{{item?.status  }}</td>
                                     <td><p><span class="vinModelName"> {{item?.vin}}</span></p></td>
                                     <td>{{item?.state}}</td>
-                                    <td>-</td>
+                                    <td>{{item?.brand?item?.brand:"-"}}</td>
                                     <td>{{item?.model}}</td>
                                     <td>{{item?.modelYear | dateFormat: 'YYYY'}}</td>
                                     <td>{{ item?.titleBrandDate | dateFormat: 'DD MMM YYYY' }}</td>
@@ -85,13 +85,13 @@
                     <div class="paginationArea">
                         <ul class="pagination pagination-lg">
                             <li class="page-item">
-                                <button type="button" class="page-link"  >Previous</button>
+                                <button type="button" class="page-link" (click)="onClick(page-1)" [disabled]="page==1" >Previous</button>
                             </li>
                             <li class="page-item">
-                                <span class="page-link">Page 1 of 1</span>
+                                <span class="page-link">Page {{page}} of {{totalPages}}</span>
                             </li>
                             <li class="page-item">
-                                <button type="button" class="page-link"  >Next</button>
+                                <button type="button" class="page-link" (click)="onClick(page+1)" [disabled]="page==totalPages || page>totalPages" >Next</button>
                             </li>
                         </ul>
                     </div>

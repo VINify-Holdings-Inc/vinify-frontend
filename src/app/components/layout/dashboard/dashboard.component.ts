@@ -38,11 +38,11 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   member: string = "";
   ngOnInit(): void {
     this.member = this.sessionService.getSessionData("memberId")
-    this.getTableData();
+    if(this.vin==""){this.getTableData();}
     this.getKPIData();
 
   }
-
+  vin :string= "";
   limit: number = 10;
   page: number = 1;
   totalPages: number = 0;
@@ -57,8 +57,8 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.isLoading = true;
     // const url = `page=${this.page}&limit=${this.limit}&status=${encodeURIComponent(JSON.stringify(this.status))}&member=${encodeURIComponent(JSON.stringify(this.member))}`;
     let url = `page=${this.page}&limit=${this.limit}`;
-    if (vin) {
-      url = url + `&vin=${(vin)}`
+    if (this.vin) {
+      url = url + `&vin=${(this.vin)}`
     }
 
     this.userData.getCurrentVinDataForUser(url).subscribe(
@@ -84,6 +84,8 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.getTableData();
   };
   handelSearch(searchVal: any) {
+   // console.log("searchVal",searchVal);
+    this.vin=searchVal;
     this.getTableData(searchVal);
   }
 
@@ -93,13 +95,10 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   }
 
   getKPIData() {
-
-    this.isLoading = true;
-   
+    this.isLoading = true;  
 
     this.userData.getKPIData().subscribe(
       (res: any) => {
-
         if (!res.error) {
           this.totalItems = res?.data?.uniqueVinCount || 0;
           }
