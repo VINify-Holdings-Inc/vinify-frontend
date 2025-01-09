@@ -67,61 +67,90 @@
               <div class="mb-4">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control modernInput" id="email" formControlName="email"
-                  placeholder="Enter your email" tabindex="3" />
+                  placeholder="Enter your Email" tabindex="3" />
               </div>
              </div>
-              <div class="col-md-6">
-                <div class="mb-4 passwordFiled profile-pagepswd">
-                  <label for="password" class="form-label">Password</label>
-                  <input [type]="eye?'text':'password'" class="passwordFiled form-control modernInput" id="password" name="password"
-                    placeholder="********" formControlName="password" tabindex="4"/>
-                  <span class="passEye"><i *ngIf="!eye" class="material-symbols-outlined"
-                      (click)="showPwd()">visibility_off</i><i *ngIf="eye" (click)="showPwd()"
-                      class="material-symbols-outlined">visibility</i></span>
-  
-                  <!-- General required error -->
-                  <div class=""
-                    *ngIf="profileForm.controls['password'].touched && profileForm.controls['password'].errors?.['required']">
-                    <span class="text-danger">Password is required</span>
-                  </div>
-  
-                  <!-- Specific errors -->
-                  <div class="errorBox"
-                    *ngIf="profileForm.controls['password'].value && (profileForm.controls['password'].dirty || profileForm.controls['password'].touched) && profileForm.controls['password'].errors as errors">
-                    <div>
-                      <span [class.text-danger]="errors['tooShort']" [class.text-success]="!errors['tooShort']">
-                        {{ errors['tooShort'] ? '&#x2715;' : '&#x2714;' }} - At least 8 characters long
-                      </span>
-                    </div>
-                    <div>
-                      <span [class.text-danger]="errors['missingUppercase']"
-                        [class.text-success]="!errors['missingUppercase']">
-                        {{ errors['missingUppercase'] ? '&#x2715;' : '&#x2714;' }} - At least one uppercase letter
-                      </span>
-                    </div>
-                    <div>
-                      <span [class.text-danger]="errors['missingLowercase']"
-                        [class.text-success]="!errors['missingLowercase']">
-                        {{ errors['missingLowercase'] ? '&#x2715;' : '&#x2714;' }} - At least one lowercase letter
-                      </span>
-                    </div>
-                    <div>
-                      <span [class.text-danger]="errors['missingNumber']" [class.text-success]="!errors['missingNumber']">
-                        {{ errors['missingNumber'] ? '&#x2715;' : '&#x2714;' }} - At least one number
-                      </span>
-                    </div>
-                    <div>
-                      <span [class.text-danger]="errors['missingSpecial']"
-                        [class.text-success]="!errors['missingSpecial']">
-                        {{ errors['missingSpecial'] ? '&#x2715;' : '&#x2714;' }} - At least one special character
-                      </span>
-                    </div>
-                  </div>
-  
+             <div class="col-md-6">
+              <div class="mb-4">
+                <label for="phone" class="form-label">Phone Number</label>
+                       <input tabindex="3"
+                          type="tel"
+                          class="form-control modernInput"
+                          id="phone"
+                          placeholder="(123) 456-7890"
+                          name="phone"
+                          formControlName="phone"
+                          mask="(000) 000-0000"
+                          aria-describedby="phone-desc"
+                        />
+                        <div *ngIf="profileForm.controls['phone'].touched && profileForm.controls['phone']?.errors?.['required']">
+                          <span class="text-danger">Phone Number is required</span>
+                        </div>
+                        <div *ngIf="profileForm.controls['phone'].touched && profileForm.controls['phone']?.hasError('pattern')">
+                          <span class="text-danger">Enter a valid Phone Number</span>
+                        </div>
                 </div>
-              </div>
+             </div>
+              
           </div>
           <div class="row FormInnerInput">
+            <div class="col-md-6">
+              <div class="mb-4 passwordFiled profile-pagepswd">
+                <label for="password" class="form-label">Password</label>
+                <input [type]="eye?'text':'password'" class="passwordFiled form-control modernInput" id="password" name="password"
+                  placeholder="********" formControlName="password" tabindex="4"/>
+                <span class="passEye"><i *ngIf="!eye" class="material-symbols-outlined"
+                    (click)="showPwd()">visibility_off</i><i *ngIf="eye" (click)="showPwd()"
+                    class="material-symbols-outlined">visibility</i></span>
+
+                <!-- General required error -->
+                <div class=""
+                  *ngIf="profileForm.controls['password'].touched && profileForm.controls['password'].errors?.['required']">
+                  <span class="text-danger">Password is required</span>
+                </div>
+
+                <!-- Specific errors -->
+                <div class="errorBox"
+                  *ngIf="profileForm.controls['password'].value && (profileForm.controls['password'].dirty || profileForm.controls['password'].touched) && profileForm.controls['password'].errors as errors">
+                  <div>
+                    <span [class.text-danger]="errors['tooShort']" [class.text-success]="!errors['tooShort']">
+                      {{ errors['tooShort'] ? '&#x2715;' : '&#x2714;' }} - At least 8 characters long
+                    </span>
+                  </div>
+                  <div>
+                    <span [class.text-danger]="errors['missingUppercase']"
+                      [class.text-success]="!errors['missingUppercase']">
+                      {{ errors['missingUppercase'] ? '&#x2715;' : '&#x2714;' }} - At least one uppercase letter
+                    </span>
+                  </div>
+                  <div>
+                    <span [class.text-danger]="errors['missingLowercase']"
+                      [class.text-success]="!errors['missingLowercase']">
+                      {{ errors['missingLowercase'] ? '&#x2715;' : '&#x2714;' }} - At least one lowercase letter
+                    </span>
+                  </div>
+                  <div>
+                    <span [class.text-danger]="errors['missingNumber']" [class.text-success]="!errors['missingNumber']">
+                      {{ errors['missingNumber'] ? '&#x2715;' : '&#x2714;' }} - At least one number
+                    </span>
+                  </div>
+                  <div>
+                    <span [class.text-danger]="errors['missingSpecial']"
+                      [class.text-success]="!errors['missingSpecial']">
+                      {{ errors['missingSpecial'] ? '&#x2715;' : '&#x2714;' }} - At least one special character
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+              
+                <div class="mb-4">
+                  <label for="title" class="form-label">Title</label>
+                  <input type="text" class="form-control modernInput" id="title" formControlName="title"
+                      placeholder="Enter Title" tabindex="6" />
+                </div>
+              
+            </div>
           <div class="col-md-6">
             <div class="mb-4 passwordFiled" *ngIf="editMode">
               <label for="confirmPassword" class="form-label">Confirm Password</label>
@@ -137,41 +166,14 @@
             </div>
             <div class="mb-4">
               <label for="company" class="form-label">Company</label>
-              <select 
-                class="form-select modernInput" 
-                id="company" 
-                tabindex="7"
-                formControlName="company"
-                aria-label="Select company">
-                <option selected>abc techs</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+              <input type="text" class="form-control modernInput" id="company" formControlName="company"
+                  placeholder="Enter Company" tabindex="7" />
             </div>
           </div>
-         
-          <div class="col-md-6">
-            <div class="mb-4">
-              <label for="title" class="form-label">Title</label>
-              <select 
-                class="form-select modernInput" 
-                id="title" 
-                tabindex="6"
-                formControlName="title"
-                aria-label="Select title"
-                >
-                <option selected>Write Here</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
-            
-          </div>
-            </div>
+         </div>
+          
         </form>
-        <form [formGroup]="profileFormEmail" (ngSubmit)="onSubmit()">
+        <!-- <form [formGroup]="profileFormEmail" (ngSubmit)="onSubmit()">
           <div class="col-md-12" *ngIf="!editMode">
             <div class="emailSec my-3">
               <h4>My Email Address</h4>
@@ -220,7 +222,7 @@
               </div>
             </div>
           </div>
-        </form>
+        </form> -->
       </div>
       <div class="col-md-2"></div>
     </div>

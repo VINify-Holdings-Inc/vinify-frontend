@@ -14,7 +14,8 @@ import Swal from 'sweetalert2';
 })
 export class TitleDetailsMainComponent {
   receivedData: any;
-  vin:string="";
+  paramVin:string="";
+  preserveVin:string="";
   model:string="";
  
   constructor(private router: Router ,private route : ActivatedRoute,private userData : userData,
@@ -25,11 +26,12 @@ export class TitleDetailsMainComponent {
       this.member  = this.sessionService.getSessionData("memberId")
      
       this.route.queryParams.subscribe((params) => {
-        this.vin = params['vin'] || '';
+        this.paramVin = params['vin'] || '';
+        this.preserveVin = params['vin'] || '';
         this.model=params['model'] || '';
-       // console.log('Query Params Changed: ', this.vin);
-        if (this.vin) {
-          this.getTableData(this.vin);
+       // console.log('Query Params Changed: ', this.paramVin);
+        if (this.paramVin) {
+          this.getTableData(this.paramVin);
         }
       });
        //  this.initializeTabs();
@@ -62,8 +64,13 @@ export class TitleDetailsMainComponent {
   getTableData(vin:any){
     
     this.isLoading= true;
-     let url = `vin=${vin}&page=${this.page}&limit=${this.limit}`;
-        
+     let url = `page=${this.page}&limit=${this.limit}`;
+     if(vin){
+       url=url+`&vin=${vin}`
+     }else{
+        url=url+`&vin=${this.preserveVin}`
+     }   
+
      this.userData.searchVinDataForUser(url).subscribe(
       (res:any) => {
         console.log("data",res?.data);
@@ -72,7 +79,7 @@ export class TitleDetailsMainComponent {
           this.tableData=res?.data?.items||[];
           this.totalPages= res?.data?.totalPages||0;
           this.totalData= res?.data?.totalItems;
-          this.vin=res?.data?.items[0].vin;
+          this.paramVin=res?.data?.items[0].vin;
           this.model=res?.data?.items[0].model;
         }else{
           Swal.fire({
@@ -91,7 +98,7 @@ export class TitleDetailsMainComponent {
 
    handlePageChange(newPage:any){
     this.page = newPage ;
-    this.getTableData(this.vin);
+    this.getTableData(this.paramVin);
     }
   handelSearch(searchVal:any){
     this.getTableData(searchVal);

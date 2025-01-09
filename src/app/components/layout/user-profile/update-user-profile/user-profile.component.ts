@@ -11,11 +11,14 @@ import {passwordValidator} from '../../../custom-validator/password-validator';
 import { Router } from '@angular/router';  // Import Router
 import { strictEmailValidator } from '../../../custom-validator/strict-email.validator';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, LoaderComponent,DateFormatPipe],
+ // imports: [CommonModule, ReactiveFormsModule, LoaderComponent,DateFormatPipe],
+  imports: [CommonModule, ReactiveFormsModule, LoaderComponent,NgxMaskDirective,],
+  providers: [provideNgxMask()],
   templateUrl: './user-profile.component.html',
   styleUrls:  ['./user-profile.component.css'],
 })
@@ -55,7 +58,7 @@ export class UserProfileComponent implements OnInit {
       name: ['', [Validators.required]],
       lname: [''],
       email: [''],
-      //  phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+        phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
       company: [''],
       title: [''],
       password: [
@@ -126,6 +129,7 @@ loadUserData(): void {
     //email: sessionData?.email || '',
     secondaryEmailId:  '',
     company: '',
+    phone: '',
     title: '',
     password: '',
     profilePhoto: null,
@@ -140,6 +144,7 @@ loadUserData(): void {
         mockUserData.name = res?.data?.firstName || '';
         mockUserData.lname = res?.data?.lastName || '';
         mockUserData.company = res?.data?.companyId || '';
+        mockUserData.phone = res?.data?.phoneNumber || '';
         mockUserData.email = res?.data?.emailId || '';
         mockUserData.title = res?.data?.title || '';
         mockUserData.password = res?.data?.password || '';
@@ -190,16 +195,17 @@ loadUserData(): void {
    
     let updatedData = {...sessionData,...data}
         updatedData = {...updatedData,profile:`${environment.img_url}/${data.profile}`}
-       delete updatedData.emailId;
-       delete updatedData.userId;
-       delete updatedData.id;
+        delete updatedData.emailId;
+        delete updatedData.userId;
+        delete updatedData.id;
    
-     this.sessionService.setSessionData("name",data?.firstName + " " + data?.lastName)
-     this.sessionService.setSessionData("profile",`${environment.img_url}/${data.profile}`)
-    this.sessionService.setSessionData("data",updatedData)
-     let new_data ={"name":data?.firstName + " " + data?.lastName,"profile":`${environment.img_url}/${data.profile}`,"profileComplete":data.profileComplete}
-    this.profileService.updateProfileData({...this.profileData,...new_data});
-    this.cdr.detectChanges();
+      this.sessionService.setSessionData("name",data?.firstName + " " + data?.lastName)
+      this.sessionService.setSessionData("profile",`${environment.img_url}/${data.profile}`)
+      this.sessionService.setSessionData("data",updatedData)
+      //let new_data ={"name":data?.firstName + " " + data?.lastName,"profile":`${environment.img_url}/${data.profile}`,"profileComplete":data.profileComplete}
+      let new_data ={"name":data?.firstName + " " + data?.lastName,"profile":`${environment.img_url}/${data.profile}`}
+      this.profileService.updateProfileData({...this.profileData,...new_data});
+      this.cdr.detectChanges();
   }
 
   onSubmit(): void {
@@ -224,7 +230,7 @@ loadUserData(): void {
       formData.append('firstName', this.profileForm.value.name);
       formData.append('lastName', this.profileForm.value.lname);
       formData.append('emailId', this.profileForm.value.email);
-      //formData.append('phoneNumber', this.profileForm.value.phone);
+      formData.append('phoneNumber', this.profileForm.value.phone);
       formData.append('companyId', this.profileForm.value.company);
       formData.append('title', this.profileForm.value.title);
       //formData.append('address', this.profileForm.value.address);
@@ -363,6 +369,7 @@ loadUserData(): void {
      if (data) {
       this.profileForm.controls['email'].disable();
       this.profileForm.controls['name'].enable();
+      this.profileForm.controls['phone'].enable();
       this.profileForm.controls['lname'].enable(); 
       this.profileForm.controls['title'].enable(); 
       this.profileForm.controls['company'].enable();
@@ -370,6 +377,7 @@ loadUserData(): void {
     } else {
       this.profileForm.controls['email'].disable();
       this.profileForm.controls['name'].disable();
+      this.profileForm.controls['phone'].disable();
       this.profileForm.controls['lname'].disable(); 
       this.profileForm.controls['title'].disable(); 
       this.profileForm.controls['company'].disable();

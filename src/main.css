@@ -3365,7 +3365,7 @@ padding: 10px 0;
 } 
 
 .profileName {
-  width: 158px;
+  /* width: 158px; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
