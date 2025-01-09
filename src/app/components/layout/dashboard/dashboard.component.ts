@@ -60,7 +60,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
       url = url + `&vin=${(this.vin)}`
     }
 
-    this.userData.getCurrentVinDataForUser(url).subscribe(
+    this.userData.getCurrentVinData(url).subscribe(
       (res: any) => {
 
         if (!res.error) {
