@@ -1,5 +1,5 @@
 import { Component, Input,Output,EventEmitter } from '@angular/core';
-import { RouterLink,Router } from '@angular/router';
+import { Router,NavigationEnd } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
@@ -21,7 +21,15 @@ export class UserTableComponent {
   filerIcon: string = 'assets/images/icons/filter-lines.svg';
   calendarIcon: string = 'assets/images/icons/calendar.svg';
   pdfIcon: string = 'assets/images/icons/pdf.svg';
-  constructor(private router: Router,private pdfService: CreatePDFService,private userData: userData,) {}
+  disableExport: boolean = false;
+  constructor(private router: Router,private pdfService: CreatePDFService,private userData: userData,) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+       
+        this.disableExport = this.router.url === '/user-vehicle-list';
+      }
+    });
+  }
   searchValue :string="";
   
   @Input() tableData :any[]=[];
