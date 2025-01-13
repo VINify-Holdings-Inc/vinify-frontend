@@ -46,7 +46,12 @@
             ],
             "allowedCommonJsDependencies": [
                     "sweetalert2",
-                    "apexcharts"
+                    "apexcharts",
+                    "canvg",
+                    "jspdf-autotable",
+                    "html2canvas",
+                    "raf",
+                    "rgbcolor"
                   ]
             
                  
