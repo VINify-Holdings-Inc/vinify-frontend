@@ -42,7 +42,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.getKPIData();
   }
   vin :string= "";
-  limit: number = 100;
+  limit: number = 10;
   page: number = 1;
   totalPages: number = 0;
   status: string = "current";
