@@ -109,6 +109,11 @@ export class userData {
           headers: this.getHeaders(),
         });
   }
-
+  getCurrentVinData(data: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/dashboard-vin-summary?`+ data, {
+      headers: this.getHeaders(),
+    });
+  }
+  
     
 }

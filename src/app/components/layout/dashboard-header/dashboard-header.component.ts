@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter,OnInit, OnDestroy,ElementRef } from '@angular/core';
+import { Component, Output, EventEmitter,OnInit, OnDestroy } from '@angular/core';
 import { SessionService } from '../../../services/session.service';
 import { Router,RouterLink } from '@angular/router';
 import { ProfileService } from '../../../services/state-management';
@@ -9,6 +9,7 @@ import { userData,AuthService } from '../../../services/api-service.service';
 import { DateFormatPipe } from '../../../pipes/date-format.pipe';
 import Swal from 'sweetalert2';
 import { LoaderComponent } from '../common/loader/loader.component';
+import { SoapService } from '../../../services/soap.service';
 @Component({
   selector: 'app-dashboard-header',
   imports: [RouterLink,CommonModule,FormsModule,DateFormatPipe,LoaderComponent],
@@ -27,7 +28,8 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   private subscription!: Subscription; // To manage subscription lifecycle
   constructor(private sessionServies: SessionService, private router : Router,
               private profileService: ProfileService,private userData: userData,
-              private authService: AuthService, private elementRef: ElementRef,){
+              private authService: AuthService,
+              private soapService: SoapService){
     this.profileData = this.profileService.getInitialProfileData()  ;
     this.userEmail=JSON.parse(localStorage.getItem("profileData")||"")?.email;
     
@@ -170,7 +172,18 @@ getVinSearch(vin:any){
     );
   }
 
-
+  callSoapService() {
+    this.soapService.sendSoapRequest().subscribe(
+      (res) => {
+        console.log('SOAP Response:', res);
+       
+      },
+      (err) => {
+        console.error('SOAP Request Error:', err);
+        
+      }
+    );
+  }
 
 }
 

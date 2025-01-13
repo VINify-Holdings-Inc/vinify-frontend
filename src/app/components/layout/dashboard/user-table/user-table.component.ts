@@ -3,6 +3,8 @@ import { RouterLink,Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
+import { CreatePDFService } from '../../../../services/create-pdf.service';
+import { PDF_SETTINGS } from '../../../../constants';
 
 
 
@@ -16,7 +18,7 @@ export class UserTableComponent {
   filerIcon: string = 'assets/images/icons/filter-lines.svg';
   calendarIcon: string = 'assets/images/icons/calendar.svg';
   pdfIcon: string = 'assets/images/icons/pdf.svg';
-  constructor(private router: Router, ) {}
+  constructor(private router: Router,private pdfService: CreatePDFService) {}
   searchValue :string="";
   
   @Input() tableData :any[]=[];
@@ -32,6 +34,18 @@ onClick(pages:any){
    this.handelPaginagtion.emit(pages);
    this.getValifExist();
 } 
+
+selectAll = false;
+
+toggleSelectAll() {
+  this.tableData.forEach((item) => {
+    item.selected = this.selectAll;
+  });
+}
+
+updateSelectAll() {
+  this.selectAll = this.tableData.every((item) => item.selected);
+}
 
 redirectToOtherPage(vin:string,model:string) {
   const data = { vin: vin, model: model }; // Data to send
@@ -68,7 +82,14 @@ getVinDetails(vin:any,model:any){
   
 }
 
-
+exportToPDF() {
+  this.pdfService.generatePDF(
+    PDF_SETTINGS.COMPANY_NAME,
+    PDF_SETTINGS.LOGO_URL,
+    this.tableData,
+    'Vin-data.pdf'
+  );
+}
 
 
 }

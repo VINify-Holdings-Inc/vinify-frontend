@@ -42,7 +42,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.getKPIData();
   }
   vin :string= "";
-  limit: number = 10;
+  limit: number = 100;
   page: number = 1;
   totalPages: number = 0;
   status: string = "current";
@@ -60,6 +60,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
       url = url + `&vin=${(this.vin)}`
     }
 
+    //this.userData.getCurrentVinData(url).subscribe(
     this.userData.getCurrentVinDataForUser(url).subscribe(
       (res: any) => {
 

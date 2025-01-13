@@ -8,3 +8,9 @@ export const API_URL = {
     APP_NAME: 'My Angular App',
     VERSION: '1.0.0',
   };
+
+  export const PDF_SETTINGS ={
+    COMPANY_NAME : 'MVM',
+    LOGO_URL : 'assets/images/logo.png',
+    DISCLAIMER : 'This is a disclaimer text.', 
+  }

@@ -28,11 +28,25 @@
                         <p><span>Jan 6, 2024 – Jul 13, 2024</span></p>
                         
                     </div>
-                    <div class="month-calendar vehicleMonthSearch calendar-svg">
-                        <img alt="img"  [src]="pdfIcon" class="img-fluid"/>
-                        <span>Export PDF </span>
-                        <i class="material-symbols-outlined">keyboard_arrow_down</i>
-                    </div>
+                    <div class="">
+                        <button
+                          class="month-calendar vehicleMonthSearch calendar-svg dropdownFilter"
+                          type="button"
+                          id="exportPdfMenu"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <img alt="PDF Icon" [src]="pdfIcon" class="img-fluid" />
+                          <span>Export PDF</span>
+                          <i class="material-symbols-outlined">keyboard_arrow_down</i>
+                        </button>
+                        <ul class="dropdown-menu menuFilter" aria-labelledby="exportPdfMenu">
+                          <li><a class="dropdown-item" routerLink="#" (click)="exportToPDF()">All VINS</a></li>
+                          <li><a class="dropdown-item" routerLink="#">Specific VINS</a></li>
+                          <li><a class="dropdown-item" routerLink="#">Updated VINS</a></li>
+                        </ul>
+                      </div>
+
                 </div>
             </div>
         
@@ -42,6 +56,13 @@
                         <table class="table table-hover">
                             <thead class="table-light-Usertbl">
                                 <tr>
+                                    <!-- <th>
+                                        <input
+                                          type="checkbox"
+                                          [(ngModel)]="selectAll"
+                                          (change)="toggleSelectAll()"
+                                          aria-label="Select All"
+                                    /></th> -->
                                     <th>VINs</th>
                                     <th>Year</th>
                                     <th>Make</th>
@@ -55,6 +76,15 @@
                                 @if(tableData.length > 0){
                                     @for(item of tableData;track $index){
                                 <tr>
+                                    <!-- <td>
+                                        <input
+                                        type="checkbox"
+                                        [(ngModel)]="item.selected"
+                                        (change)="updateSelectAll()"
+                                        title="Select"
+                                        
+                                        />
+                                     </td> -->
                                     <td><p><span class="vinModelName"> {{item?.vin}}</span></p></td>
                                     <td>{{ item?.modelYear | dateFormat: 'YYYY' }}</td>
                                     <td>{{item?.model}}</td>
