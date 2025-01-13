@@ -1,0 +1,14 @@
+{
+    "/Authentication/*": {
+      "target": "https://authentication-rest-cert.aamva.org",
+      "secure": true,
+      "ssl": {
+        "cert": "./certs/TAAMVAcert-file.pem",
+        "key": "./certs/TAAAMVA.pem",
+        "ca": "./certs/ca.pem"
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  
