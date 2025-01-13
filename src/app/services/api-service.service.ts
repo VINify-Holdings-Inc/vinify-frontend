@@ -104,7 +104,6 @@ export class userData {
     });
   }
   getKPIData(): Observable<any> {
-   
     return this.http.get(`${this.baseUrl}/kpi-data`, {
           headers: this.getHeaders(),
         });
@@ -113,6 +112,13 @@ export class userData {
     return this.http.get(`${this.baseUrl}/dashboard-vin-summary?`+ data, {
       headers: this.getHeaders(),
     });
+  }
+
+  getPdfData(url:any,data:any): Observable<any> {
+    let datas={vins:data}
+    return this.http.post(`${this.baseUrl}/export-pdf?`+url,datas,{
+          headers: this.getHeaders(),
+        });
   }
   
     

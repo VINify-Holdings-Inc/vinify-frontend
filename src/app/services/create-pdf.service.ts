@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable'; // Correct import
+import 'jspdf-autotable'; // Correct import for autoTable plugin
 import { disclaimer } from './disclaimer';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class CreatePDFService {
     img.src = logoUrl;
 
     img.onload = () => {
-      const logoWidth = 40; // Adjust width
+      const logoWidth = 15; // Adjust width
       const logoHeight = 15; // Adjust height
       doc.addImage(img, 'PNG', 10, 10, logoWidth, logoHeight);
 
@@ -30,46 +30,10 @@ export class CreatePDFService {
       doc.setFont('helvetica', 'bold');
       doc.text('Vehicle History Report', 60, 15);
 
-      doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
-      doc.text('VIN: 1FAHP2E82HG133621', 60, 25);
-
-      // Draw Header Background (Optional)
-      // const headerHeight = 20;
-      // doc.setFillColor(242, 246, 255); // Light Blue
-      // doc.rect(0, 0, doc.internal.pageSize.width, headerHeight, 'F');
-
-      // Vehicle Specifications Section
-      doc.setFontSize(12);
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(0);
-      doc.text('Vehicle Specifications', 10, 40);
-
-      (doc as any).autoTable({
-        startY: 45,
-        theme: 'grid',
-        head: [],
-        body: [
-          ['VIN', '1FAHP2E82HG133621'],
-          ['Year', '2017'],
-          ['Make', 'Ford'],
-          ['Model', 'Taurus'],
-          ['Fuel Type', 'Gasoline'],
-        ],
-        didDrawPage: (data: any) => {
-          // Add header to every page if table spans multiple pages
-          if (data.pageNumber > 1) {
-            doc.addImage(img, 'PNG', 10, 10, logoWidth, logoHeight);
-            doc.setFontSize(16);
-            doc.text('Vehicle History Report', 60, 15);
-          }
-        },
-      });
-
       // Title Records Section
       doc.setFontSize(12);
       doc.setFont('helvetica', 'bold');
-      doc.text('Title Records', 10, (doc as any).lastAutoTable.finalY + 10);
+      doc.text('Title Records', 10, 30);
 
       // Add Dynamic Table Data
       const tableColumn = ['Date', 'State', 'Status', 'Year', 'Make', 'VIN'];
@@ -83,40 +47,50 @@ export class CreatePDFService {
       ]);
 
       (doc as any).autoTable({
-        startY: (doc as any).lastAutoTable.finalY + 25, // Continue after last table
+        startY: 35, // Starting position for the table
         theme: 'grid',
         head: [tableColumn],
         body: tableRows,
+        margin: { top: 28 },
         didDrawPage: (data: any) => {
-          // Add a header to every page if table spans multiple pages
           if (data.pageNumber > 1) {
+            // Add the header with logo and title on subsequent pages
             doc.addImage(img, 'PNG', 10, 10, logoWidth, logoHeight);
             doc.setFontSize(16);
-            doc.text('Vehicle History Report', 60, 15);
-
-            // Ensure the new table starts from y: 20 on the new page
-            doc.setFontSize(12);
             doc.setFont('helvetica', 'bold');
-            doc.text('Title Records', 10, 20); // Reset the title position for the new page
+            doc.text('Vehicle History Report', 60, 15);
           }
         },
       });
 
-      // Disclaimer Section (Ensure it doesn't overflow to the next page)
-      const finalY = (doc as any).lastAutoTable.finalY + 20;
-      const remainingSpace = doc.internal.pageSize.height - finalY;
+      // Disclaimer Section (Ensure it spans multiple pages if necessary)
+      const finalY = (doc as any).lastAutoTable.finalY + 20; // Position after the last table
+      let yPosition = finalY;
+      const pageHeight = doc.internal.pageSize.height;
+      const pageWidth = doc.internal.pageSize.width;
+      const footerHeight = 20; // Reserve 20 units for the footer
 
-      if (remainingSpace < 20) {
-        doc.addPage(); // Add a new page if there's not enough space for disclaimer
-      }
+      // Split the disclaimer into lines that fit the page width
+      const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth - 20);
 
-      const disclaimerLines = doc.splitTextToSize(disclaimer, doc.internal.pageSize.width - 20);
-      const yPosition = remainingSpace < 20 ? 20 : finalY;
-
+      // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
       doc.setFontSize(10);
       doc.setFont('helvetica', 'italic');
       doc.setTextColor(100);
-      doc.text(disclaimerLines, 10, yPosition);
+
+      for (let i = 0; i < disclaimerLines.length; i++) {
+        const lineHeight = 5; // Approximate line height
+        const remainingSpace = pageHeight - yPosition - footerHeight;
+
+        if (remainingSpace < lineHeight) {
+          // Start a new page if remaining space is insufficient
+          doc.addPage();
+          yPosition = 20; // Reset yPosition to the top margin
+        }
+
+        doc.text(disclaimerLines[i], 10, yPosition); // Add line
+        yPosition += lineHeight; // Increment yPosition for the next line
+      }
 
       // Save PDF
       doc.save(fileName);
