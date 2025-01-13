@@ -59,7 +59,7 @@ export class CsvImportComponent {
         }));
       });
 
-    //  console.log('All Sheets Data:', allSheetsData);
+      console.log('All Sheets Data:', allSheetsData);
 
       // Example: Assign data from specific sheets to `data` and `data1`
       const sheet1Headers = ['VIN', 'Title', 'Brand', 'Insurance', 'Junk&Salvage'];
@@ -82,7 +82,7 @@ export class CsvImportComponent {
           const headers = Object.keys(sheetData[0]);
           const isSheet1 = sheet1Headers.every((header) => headers.includes(header));
           const isSheet2 = sheet2Headers.every((header) => headers.includes(header));
-
+        console.log("isSheet2",isSheet2);
           if (isSheet1) {
             this.data = sheetData.map((item: any) => ({
               vin: item['VIN'] || '',
@@ -104,6 +104,7 @@ export class CsvImportComponent {
               titleBrandDate: item['Title / Brand Date'] || '',
               member: item['Member'] || '',
             }));
+            console.log("test4-",sheetData);
           } else {
             console.warn(`Unrecognized format in sheet: ${sheetName}`);
           }
@@ -117,9 +118,9 @@ export class CsvImportComponent {
   }
 
   async handleSubmit() {
-    try {
+    try {  console.log({ sheet1: this.data ,shhet2: this.data1  });
       if (this.data.length && this.data1.length) {
-           // console.log({ sheet1: this.data ,shhet2: this.data1  });
+            console.log({ sheet1: this.data ,shhet2: this.data1  });
      
         this.authService.insertData({ sheet1: this.data ,sheet2: this.data1  }).subscribe((response: any) => {
           this.handleApiResponse(response);
