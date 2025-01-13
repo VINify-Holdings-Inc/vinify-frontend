@@ -3387,3 +3387,7 @@ padding: 10px 0;
 .profile-areamodal .show .checkmodal {
   display: block;
 }
+
+.button-cursor{
+  cursor: pointer !important;
+}
