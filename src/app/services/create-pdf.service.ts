@@ -36,7 +36,7 @@ export class CreatePDFService {
       doc.text('Title Records', 10, 30);
 
       // Add Dynamic Table Data
-      const tableColumn = ['VIN','Year', 'Make','Date', 'State', 'Status'  ];
+      const tableColumn = ['VINs','Year', 'Make','Alert Date', 'State', 'Status'  ];
       const tableRows = tableData.map((item) => [
         item.vin,
         item.modelYear,

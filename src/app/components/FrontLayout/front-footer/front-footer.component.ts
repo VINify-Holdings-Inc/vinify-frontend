@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-
 
 @Component({
   selector: 'app-front-footer',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './front-footer.component.html',
   styleUrl: './front-footer.component.css'
 })
