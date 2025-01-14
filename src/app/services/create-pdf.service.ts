@@ -36,14 +36,15 @@ export class CreatePDFService {
       doc.text('Title Records', 10, 30);
 
       // Add Dynamic Table Data
-      const tableColumn = ['Date', 'State', 'Status', 'Year', 'Make', 'VIN'];
+      const tableColumn = ['VIN','Year', 'Make','Date', 'State', 'Status'  ];
       const tableRows = tableData.map((item) => [
+        item.vin,
+        item.modelYear,
+        item.model,
         item.alertDate,
         item.state,
         item.status,
-        item.modelYear,
-        item.model,
-        item.vin,
+         
       ]);
 
       (doc as any).autoTable({
@@ -71,8 +72,8 @@ export class CreatePDFService {
       const footerHeight = 20; // Reserve 20 units for the footer
 
       // Split the disclaimer into lines that fit the page width
-      const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth - 20);
-
+      const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 30);
+      console.log("pageWidth",pageWidth);
       // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
       doc.setFontSize(10);
       doc.setFont('helvetica', 'italic');
@@ -88,7 +89,8 @@ export class CreatePDFService {
           yPosition = 20; // Reset yPosition to the top margin
         }
 
-        doc.text(disclaimerLines[i], 10, yPosition); // Add line
+       // doc.text(disclaimerLines[i], 10, yPosition); // Add line
+        doc.text(disclaimerLines[i], 10, yPosition, { align: 'left' });
         yPosition += lineHeight; // Increment yPosition for the next line
       }
 
