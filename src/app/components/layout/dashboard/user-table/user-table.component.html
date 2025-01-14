@@ -43,9 +43,9 @@
                         </button>
                         <ul class="dropdown-menu menuFilter" aria-labelledby="exportPdfMenu">
 
-                          <li><a class="dropdown-item button-cursor" routerLink="#" (click)="exportToPDF('all')">All VINS</a></li>
-                          <li><a class="dropdown-item button-cursor" routerLink="#" (click)="exportToPDF('single')">Specific VINS</a></li>
-                          <li><a class="dropdown-item button-cursor" routerLink="#" (click)="exportToPDF('updated')">Updated VINS</a></li>
+                          <li><a class="dropdown-item button-cursor" routerLink="#" (click)="exportToPDF('all')">All VINs</a></li>
+                          <li><a class="dropdown-item button-cursor" routerLink="#" (click)="exportToPDF('single')">Specific VINs</a></li>
+                          <li><a class="dropdown-item button-cursor" routerLink="#" (click)="exportToPDF('updated')">Updated VINs</a></li>
 
                         </ul>
                       </div>
@@ -91,7 +91,8 @@
                                     <td><p><span class="vinModelName"> {{item?.vin}}</span></p></td>
                                     <td>{{ item?.modelYear | dateFormat: 'YYYY' }}</td>
                                     <td>{{item?.model}}</td>
-                                    <td><span class="tableDot redDot"></span>{{ item?.alertDate | dateFormat: 'DD MMM YYYY' }}</td>
+                                    <!-- redDot we have to use this class -->
+                                    <td><span class="tableDot "></span>{{ item?.alertDate | dateFormat: 'DD MMM YYYY' }}</td> 
                                     <td>{{item?.state}}</td>
                                     <td >
                                       <span class="cursor-detail-img"> 

@@ -142,11 +142,13 @@ getVinSearch(vin:any){
         }else{
           
           Swal.fire({
-                  title: 'Error!',
-                  text: res.message,
-                  icon: 'error',
-                  confirmButtonText: 'OK',
-                })
+            title: 'Error!',
+            text: res.message,
+            icon: 'error',
+            showCancelButton: true, // Enables the cancel button
+            confirmButtonText: 'Yes', // Text for the confirm button
+            cancelButtonText: 'No',  // Text for the cancel button
+          })
         }
        
       },

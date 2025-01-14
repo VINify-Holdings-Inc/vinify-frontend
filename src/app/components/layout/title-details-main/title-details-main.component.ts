@@ -53,7 +53,7 @@ export class TitleDetailsMainComponent {
       }
     }   */
      
-  limit :number=10;
+  limit :number=8;
   page : number =1;
   totalPages : number=0;
   status : string="current";

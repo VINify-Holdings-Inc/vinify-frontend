@@ -3391,3 +3391,17 @@ padding: 10px 0;
 .button-cursor{
   cursor: pointer !important;
 }
+
+
+body.swal2-shown.swal2-height-auto .top-navbar.headerSection {
+  padding-right: 17px;
+}
+ .table > tbody > tr:last-child > td {
+  border: none;
+}
+ table.table.table-hover {
+  margin: 0;
+}
+.swal2-styled.swal2-cancel {
+  min-width: 120px!important;
+}

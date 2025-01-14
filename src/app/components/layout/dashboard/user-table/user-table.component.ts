@@ -126,7 +126,7 @@ onType(value: string){
 getVinDetails(vin:any,model:any){
  
     const timestamp = new Date().getTime(); 
-      this.router.navigate(['/title-details'], { queryParams: { vin: vin,model:model, refresh: timestamp }}).then(() => {
+      this.router.navigate(['/title-details'], { queryParams: { vin: vin.trim(),model:model, refresh: timestamp }}).then(() => {
       
     });
   
@@ -152,7 +152,7 @@ getTableData(dataType:any) {
        this.isLoading = false;
                  Swal.fire({
                    title: 'Error!',
-                   text: 'Please select VINS ',
+                   text: 'Please select VINs',
                    icon: 'error',
                    confirmButtonText: 'OK',
                  });
