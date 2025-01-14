@@ -126,7 +126,7 @@ onType(value: string){
 getVinDetails(vin:any,model:any){
  
     const timestamp = new Date().getTime(); 
-      this.router.navigate(['/title-details'], { queryParams: { vin: vin,model:model, refresh: timestamp }}).then(() => {
+      this.router.navigate(['/title-details'], { queryParams: { vin: vin.trim(),model:model, refresh: timestamp }}).then(() => {
       
     });
   
