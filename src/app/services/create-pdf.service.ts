@@ -20,20 +20,20 @@ export class CreatePDFService {
     img.src = logoUrl;
 
     img.onload = () => {
-      const logoWidth = 15; // Adjust width
-      const logoHeight = 15; // Adjust height
-      doc.addImage(img, 'PNG', 10, 10, logoWidth, logoHeight);
+      const logoWidth = 37; // Adjust width
+      const logoHeight = 7; // Adjust height
+      doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
 
       // Add Title
       doc.setFontSize(16);
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
-      doc.text('Vehicle History Report', 60, 15);
+      doc.text('Vehicle History Report', 70, 20);
 
       // Title Records Section
-      doc.setFontSize(12);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Title Records', 10, 30);
+      // doc.setFontSize(12);
+      // doc.setFont('helvetica', 'bold');
+      // doc.text('Title Records', 10, 30);
 
       // Add Dynamic Table Data
       const tableColumn = ['VINs','Year', 'Make','Alert Date', 'State', 'Status'  ];
