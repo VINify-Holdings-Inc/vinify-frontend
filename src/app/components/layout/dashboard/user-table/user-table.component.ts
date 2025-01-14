@@ -26,7 +26,14 @@ export class UserTableComponent {
    
   }
   searchValue :string="";
-  
+   // totalNoOfData :any=[];
+  vins:[] =[]; 
+  selectAll = false;
+  isLoading: boolean = false;
+  //selectedVins: string[] = [];
+  selectedVins: { vin: string; alertDate: string }[] = [];
+  checkAll:any=null;
+
   @Input() tableData :any[]=[];
   @Input() page :number=0;
   @Input() totalPages :number=0;
@@ -39,63 +46,44 @@ export class UserTableComponent {
 onClick(pages:any){
    this.handelPaginagtion.emit(pages);
    this.getValifExist();
+   this.selectAll=false;
+   this.selectedVins = [];
 } 
- // totalNoOfData :any=[];
-vins:[] =[]; 
-selectAll = false;
-isLoading: boolean = false;
-//selectedVins: string[] = [];
-selectedVins: { vin: string; model: string }[] = [];
-checkAll:any=null;
 
+/*
 toggleSelectAll() {
-  //console.log("testing data");
-  // Toggle the selectAll state
-  //this.selectAll = !this.selectAll;
-
-  // Update the selected state for all rows in tableData
+ 
   this.tableData.forEach((item) => (item.selected = this.selectAll));
-
   // If selectAll is true, add all VINs to selectedVins; otherwise, clear it
   this.selectedVins = this.selectAll
     ? this.tableData.map((item) => item.vin)
     : [];
-    this.checkAll = this.selectAll ? 'all' : null;
-}
-
-updateSelectAll() {
-  // Update the selectedVins array based on selected rows
-  this.selectedVins = this.tableData
-    .filter((item) => item.selected)
-    .map((item) => item.vin);
-
-  // Update the "Select All" state based on the selected rows
-  this.selectAll = this.selectedVins.length === this.tableData.length;
-}
-/*
-onCheckboxChange(item: any) {
-  // Update the selected state of the row
-  if (item.selected) {
-    this.selectedVins.push(item.vin);
-  } else {
-    const index = this.selectedVins.indexOf(item.vin);
-    if (index > -1) {
-      this.selectedVins.splice(index, 1);
-    }
-  }
-  this.selectAll = this.selectedVins.length === this.tableData.length;
-  this.checkAll = this.selectAll ? 'all' : null;
+   // this.checkAll = this.selectAll ? 'all' : null;
 } */
+
+toggleSelectAll() {
+  this.tableData.forEach((item) => (item.selected = this.selectAll));
+
+  if (this.selectAll) {
+    this.selectedVins = this.tableData.map((item) => ({
+      vin: item.vin,
+      alertDate: item.alertDate,
+    }));
+  } else {
+    this.selectedVins = [];
+  }
+}
+
 
   onCheckboxChange(item: any) {
     // Check if the item is selected
     if (item.selected) {
       // Add the object to the selectedVins array
-      this.selectedVins.push({ vin: item.vin, model: item.model });
+      this.selectedVins.push({ vin: item.vin, alertDate: item.alertDate });
     } else {
       // Remove the object from the selectedVins array
       const index = this.selectedVins.findIndex(
-        (vinObj) => vinObj.vin === item.vin && vinObj.model === item.model
+        (vinObj) => vinObj.vin === item.vin && vinObj.alertDate === item.alertDate
       );
       if (index > -1) {
         this.selectedVins.splice(index, 1);
@@ -104,9 +92,8 @@ onCheckboxChange(item: any) {
   
     // Update the "Select All" state based on individual selections
     this.selectAll = this.selectedVins.length === this.tableData.length;
-  
-    // Update checkAll state if needed
-    this.checkAll = this.selectAll ? 'all' : null;
+
+   // this.checkAll = this.selectAll ? 'all' : null;
   }
   
 
@@ -140,20 +127,19 @@ getVinDetails(vin:any,model:any){
  
     const timestamp = new Date().getTime(); 
       this.router.navigate(['/title-details'], { queryParams: { vin: vin,model:model, refresh: timestamp }}).then(() => {
-      // You can trigger additional actions after navigation
-      //console.log('Navigation complete');
+      
     });
   
 }
 
 exportToPDF(type:any) {
-  console.log("this.checkAll",this.checkAll);
-  if(type=='single'&& this.checkAll=='all'){
-    this.getTableData('all');
-  }else{
-    this.getTableData(type);
-  }    
- 
+
+  // if(type=='single'&& this.checkAll=='all'){
+  //   this.getTableData('all');
+  // }else{
+  //   this.getTableData(type);
+  // }    
+  this.getTableData(type);
  
 }
 
@@ -178,7 +164,6 @@ getTableData(dataType:any) {
   this.userData.getPdfData(url,this.selectedVins).subscribe(
     (res: any) => {
       if (!res.error) {
-        //this.totalNoOfData = res?.data?.items || [];
         this.pdfService.generatePDF(
           PDF_SETTINGS.COMPANY_NAME,
           PDF_SETTINGS.LOGO_URL,
