@@ -12,7 +12,7 @@ import { LoaderComponent } from '../common/loader/loader.component';
 import { SoapService } from '../../../services/soap.service';
 @Component({
   selector: 'app-dashboard-header',
-  imports: [RouterLink,CommonModule,FormsModule,DateFormatPipe,LoaderComponent],
+  imports: [CommonModule,FormsModule,DateFormatPipe,LoaderComponent],
   templateUrl: './dashboard-header.component.html',
   styleUrl: './dashboard-header.component.css'
 })
@@ -52,18 +52,20 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
  }
 
  member: string = "";
-
+ tableData :any[] =[];
+ lastUpdateDate:string ="";
  ngOnInit() {
   // Subscribe to the profile data observable
   this.subscription = this.profileService.profileData$.subscribe((data) => {
     this.profileData = data; // Update local variable when data changes
     this.userName = data.name; // Dynamically update userName
     this.profile = data.profile; // Dynamically update profile
-   // console.log("data",data.profileComplete);
+    this.lastUpdateDate = this.sessionServies.getSessionData("data").createdAt || "";
+    console.log("data",data);
     // this.profileComplete = data.profileComplete; 
   });
   this.member = this.sessionServies.getSessionData("memberId")
-  this.getTableData();
+ // this.getTableData();
   this.getProfileData();
 }
 
@@ -88,27 +90,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   }
 }
 
-tableData :any[] =[];
-lastUpdateDate:string ="";
-getTableData() { 
-   let url = `page=1&limit=1`;
-  
-  this.userData.getCurrentVinDataForUser(url).subscribe(
-    (res: any) => {
-      if (!res.error) {
-        this.tableData = res?.data?.items || [];  
-        //console.log("this",this.tableData);
-        if(res?.data?.items.length){
-          this.lastUpdateDate=res?.data?.items[0].updatedAt;
-        }else{
-          this.lastUpdateDate="";
-        }
-      }
-    },
-    (err) => {    
-    }
-  );
-}
+
 
 onEnterKey(dropdownMenu: HTMLElement) {
   this.getSearchVal(); 

@@ -1,5 +1,5 @@
 import { Component, Input,Output,EventEmitter } from '@angular/core';
-import { Router,NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
@@ -21,14 +21,9 @@ export class UserTableComponent {
   filerIcon: string = 'assets/images/icons/filter-lines.svg';
   calendarIcon: string = 'assets/images/icons/calendar.svg';
   pdfIcon: string = 'assets/images/icons/pdf.svg';
-  disableExport: boolean = false;
+
   constructor(private router: Router,private pdfService: CreatePDFService,private userData: userData,) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-       
-        this.disableExport = this.router.url === '/user-vehicle-list';
-      }
-    });
+   
   }
   searchValue :string="";
   
@@ -49,11 +44,14 @@ onClick(pages:any){
 vins:[] =[]; 
 selectAll = false;
 isLoading: boolean = false;
-selectedVins: string[] = [];
+//selectedVins: string[] = [];
+selectedVins: { vin: string; model: string }[] = [];
+checkAll:any=null;
 
 toggleSelectAll() {
+  //console.log("testing data");
   // Toggle the selectAll state
-  this.selectAll = !this.selectAll;
+  //this.selectAll = !this.selectAll;
 
   // Update the selected state for all rows in tableData
   this.tableData.forEach((item) => (item.selected = this.selectAll));
@@ -62,6 +60,7 @@ toggleSelectAll() {
   this.selectedVins = this.selectAll
     ? this.tableData.map((item) => item.vin)
     : [];
+    this.checkAll = this.selectAll ? 'all' : null;
 }
 
 updateSelectAll() {
@@ -73,7 +72,7 @@ updateSelectAll() {
   // Update the "Select All" state based on the selected rows
   this.selectAll = this.selectedVins.length === this.tableData.length;
 }
-
+/*
 onCheckboxChange(item: any) {
   // Update the selected state of the row
   if (item.selected) {
@@ -84,10 +83,32 @@ onCheckboxChange(item: any) {
       this.selectedVins.splice(index, 1);
     }
   }
-
-  // Update the "Select All" state based on individual selections
   this.selectAll = this.selectedVins.length === this.tableData.length;
-}
+  this.checkAll = this.selectAll ? 'all' : null;
+} */
+
+  onCheckboxChange(item: any) {
+    // Check if the item is selected
+    if (item.selected) {
+      // Add the object to the selectedVins array
+      this.selectedVins.push({ vin: item.vin, model: item.model });
+    } else {
+      // Remove the object from the selectedVins array
+      const index = this.selectedVins.findIndex(
+        (vinObj) => vinObj.vin === item.vin && vinObj.model === item.model
+      );
+      if (index > -1) {
+        this.selectedVins.splice(index, 1);
+      }
+    }
+  
+    // Update the "Select All" state based on individual selections
+    this.selectAll = this.selectedVins.length === this.tableData.length;
+  
+    // Update checkAll state if needed
+    this.checkAll = this.selectAll ? 'all' : null;
+  }
+  
 
 
 redirectToOtherPage(vin:string,model:string) {
@@ -126,8 +147,13 @@ getVinDetails(vin:any,model:any){
 }
 
 exportToPDF(type:any) {
-      
-  this.getTableData(type);
+  console.log("this.checkAll",this.checkAll);
+  if(type=='single'&& this.checkAll=='all'){
+    this.getTableData('all');
+  }else{
+    this.getTableData(type);
+  }    
+ 
  
 }
 
