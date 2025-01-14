@@ -60,13 +60,13 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
     this.profileData = data; // Update local variable when data changes
     this.userName = data.name; // Dynamically update userName
     this.profile = data.profile; // Dynamically update profile
-    this.lastUpdateDate = this.sessionServies.getSessionData("data").createdAt || "";
-    console.log("data",data);
+   // this.lastUpdateDate = this.sessionServies.getSessionData("data").createdAt || "";
+    //console.log("data",data);
     // this.profileComplete = data.profileComplete; 
   });
   this.member = this.sessionServies.getSessionData("memberId")
- // this.getTableData();
   this.getProfileData();
+  this.getTableData();
 }
 
  ngOnDestroy() {
@@ -90,6 +90,25 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   }
 }
 
+getTableData() { 
+  let url = `page=1&limit=1`;
+ 
+ this.userData.getCurrentVinDataForUser(url).subscribe(
+   (res: any) => {
+     if (!res.error) {
+       this.tableData = res?.data?.items || [];  
+       //console.log("this",this.tableData);
+       if(res?.data?.items.length){
+         this.lastUpdateDate=res?.data?.items[0].updatedAt;
+       }else{
+         this.lastUpdateDate="";
+       }
+     }
+   },
+   (err) => {    
+   }
+ );
+}
 
 
 onEnterKey(dropdownMenu: HTMLElement) {

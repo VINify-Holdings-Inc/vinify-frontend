@@ -73,10 +73,10 @@ export class CreatePDFService {
 
       // Split the disclaimer into lines that fit the page width
       const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 30);
-      console.log("pageWidth",pageWidth);
+      //console.log("pageWidth",pageWidth);
       // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
       doc.setFontSize(10);
-      doc.setFont('helvetica', 'italic');
+      doc.setFont('helvetica', 'normal');
       doc.setTextColor(100);
 
       for (let i = 0; i < disclaimerLines.length; i++) {
