@@ -74,7 +74,7 @@ export class CreatePDFService {
       const footerHeight = 20; // Reserve 20 units for the footer
 
       // Split the disclaimer into lines that fit the page width
-      const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 30);
+      const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 100);
       //console.log("pageWidth",pageWidth);
       // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
       doc.setFontSize(10);
