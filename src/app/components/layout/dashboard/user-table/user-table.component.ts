@@ -152,7 +152,7 @@ getTableData(dataType:any) {
        this.isLoading = false;
                  Swal.fire({
                    title: 'Error!',
-                   text: 'Please select VINS ',
+                   text: 'Please select VINs',
                    icon: 'error',
                    confirmButtonText: 'OK',
                  });
