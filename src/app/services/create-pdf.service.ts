@@ -54,27 +54,37 @@ export class CreatePDFService {
         theme: 'grid',
         head: [tableColumn],
         body: tableRows,
+        headStyles: {
+          fillColor: [207, 75, 95], // Set header background color to red (RGB)
+          //textColor: [255, 255, 255], // Optional: Set header text color to white
+        },
         margin: { top: 28 },
         didDrawPage: (data: any) => {
           if (data.pageNumber > 1) {
             // Add the header with logo and title on subsequent pages
-            doc.addImage(img, 'PNG', 10, 10, logoWidth, logoHeight);
+            const logoWidth = 37; // Adjust width
+            const logoHeight = 7; // Adjust height
+            doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
+      
+            // Add Title
             doc.setFontSize(16);
+            doc.setTextColor(40);
             doc.setFont('helvetica', 'bold');
-            doc.text('Vehicle History Report', 60, 15);
+            doc.text('Vehicle History Report', 70, 20);
+      
           }
         },
       });
 
       // Disclaimer Section (Ensure it spans multiple pages if necessary)
-      const finalY = (doc as any).lastAutoTable.finalY + 20; // Position after the last table
+      const finalY = (doc as any).lastAutoTable.finalY + 10; // Position after the last table
       let yPosition = finalY;
       const pageHeight = doc.internal.pageSize.height;
       const pageWidth = doc.internal.pageSize.width;
       const footerHeight = 20; // Reserve 20 units for the footer
 
       // Split the disclaimer into lines that fit the page width
-      const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 100);
+      const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 105);
       //console.log("pageWidth",pageWidth);
       // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
       doc.setFontSize(10);
@@ -92,7 +102,7 @@ export class CreatePDFService {
         }
 
        // doc.text(disclaimerLines[i], 10, yPosition); // Add line
-        doc.text(disclaimerLines[i], 10, yPosition, { align: 'left' });
+        doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
         yPosition += lineHeight; // Increment yPosition for the next line
       }
 
