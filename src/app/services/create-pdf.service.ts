@@ -61,20 +61,20 @@ export class CreatePDFService {
             doc.addImage(img, 'PNG', 10, 10, logoWidth, logoHeight);
             doc.setFontSize(16);
             doc.setFont('helvetica', 'bold');
-            doc.text('Vehicle History Report', 60, 15);
+            doc.text('Vehicle History Report', 70, 20);
           }
         },
       });
 
       // Disclaimer Section (Ensure it spans multiple pages if necessary)
-      const finalY = (doc as any).lastAutoTable.finalY + 20; // Position after the last table
+      const finalY = (doc as any).lastAutoTable.finalY + 10; // Position after the last table
       let yPosition = finalY;
       const pageHeight = doc.internal.pageSize.height;
       const pageWidth = doc.internal.pageSize.width;
       const footerHeight = 20; // Reserve 20 units for the footer
 
       // Split the disclaimer into lines that fit the page width
-      const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 100);
+      const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 105);
       //console.log("pageWidth",pageWidth);
       // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
       doc.setFontSize(10);
@@ -92,7 +92,7 @@ export class CreatePDFService {
         }
 
        // doc.text(disclaimerLines[i], 10, yPosition); // Add line
-        doc.text(disclaimerLines[i], 10, yPosition, { align: 'left' });
+        doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
         yPosition += lineHeight; // Increment yPosition for the next line
       }
 
