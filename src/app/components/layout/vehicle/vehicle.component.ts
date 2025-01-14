@@ -31,7 +31,7 @@ export class VehicleComponent implements AfterViewInit{
 
   }
 
-  limit: number = 10;
+  limit: number = 9;
   page: number = 1;
   totalPages: number = 0;
   status: string = "current";
