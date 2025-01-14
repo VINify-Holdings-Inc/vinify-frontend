@@ -143,6 +143,14 @@ exportToPDF(type:any) {
  
 }
 
+exportToPDFUdate(type:any) { 
+  Swal.fire({
+    title: 'Info!',
+    text: 'No Updated VINs',
+    icon: 'info',
+    confirmButtonText: 'OK',
+  });
+}
 
 getTableData(dataType:any) {
   this.isLoading = true;
@@ -151,13 +159,13 @@ getTableData(dataType:any) {
      if(this.selectedVins.length==0){
        this.isLoading = false;
                  Swal.fire({
-                   title: 'Error!',
+                  title: 'Info!',
                    text: 'Please select VINs',
-                   icon: 'error',
+                   icon: 'info',
                    confirmButtonText: 'OK',
                  });
      
-     } 
+     }   
    
   }
 
