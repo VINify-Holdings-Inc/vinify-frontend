@@ -2700,9 +2700,7 @@ table tbody tr td {
   vertical-align: middle;
 }
 
-.userdashbrdTable .table-responsive {
-  min-height: 530px;
-}
+
 
 span.dot-green {
   background: #17b26a;
@@ -3404,4 +3402,9 @@ body.swal2-shown.swal2-height-auto .top-navbar.headerSection {
 }
 .swal2-styled.swal2-cancel {
   min-width: 120px!important;
+}
+
+.swal2-icon.swal2-info{
+  border-color:var(--bg-primary) !important;
+  color:var(--bg-primary) !important;
 }

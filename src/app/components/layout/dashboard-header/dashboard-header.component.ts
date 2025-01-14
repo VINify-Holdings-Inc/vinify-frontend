@@ -12,7 +12,7 @@ import { LoaderComponent } from '../common/loader/loader.component';
 import { SoapService } from '../../../services/soap.service';
 @Component({
   selector: 'app-dashboard-header',
-  imports: [CommonModule,FormsModule,DateFormatPipe,LoaderComponent],
+  imports: [CommonModule,FormsModule,DateFormatPipe,LoaderComponent,RouterLink],
   templateUrl: './dashboard-header.component.html',
   styleUrl: './dashboard-header.component.css'
 })
@@ -142,15 +142,14 @@ getVinSearch(vin:any){
         }else{
           
           Swal.fire({
-            title: 'Error!',
+            title: 'Action!',
             text: res.message,
-            icon: 'error',
+            icon: 'info',
             showCancelButton: true, // Enables the cancel button
             confirmButtonText: 'Yes', // Text for the confirm button
             cancelButtonText: 'No',  // Text for the cancel button
           })
-        }
-       
+        } 
       },
       (err) => {
         this.isLoading=false;
