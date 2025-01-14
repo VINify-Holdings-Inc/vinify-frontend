@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // Correct import for autoTable plugin
 import { disclaimer } from './disclaimer';
+import {DateFormatPipe} from '../pipes/date-format.pipe'
 
 @Injectable({
   providedIn: 'root', // Makes this service globally available
 })
 export class CreatePDFService {
+  constructor(private dateFormate:DateFormatPipe){}
   generatePDF(
     companyName: string,
     logoUrl: string,
@@ -41,7 +43,7 @@ export class CreatePDFService {
         item.vin,
         item.modelYear,
         item.model,
-        item.alertDate,
+        this.dateFormate.transform(item.alertDate, 'DD MMM YYYY') || 'N/A', 
         item.state,
         item.status,
          
