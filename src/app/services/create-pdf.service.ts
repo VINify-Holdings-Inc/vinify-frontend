@@ -54,14 +54,24 @@ export class CreatePDFService {
         theme: 'grid',
         head: [tableColumn],
         body: tableRows,
+        headStyles: {
+          fillColor: [207, 75, 95], // Set header background color to red (RGB)
+          //textColor: [255, 255, 255], // Optional: Set header text color to white
+        },
         margin: { top: 28 },
         didDrawPage: (data: any) => {
           if (data.pageNumber > 1) {
             // Add the header with logo and title on subsequent pages
-            doc.addImage(img, 'PNG', 10, 10, logoWidth, logoHeight);
+            const logoWidth = 37; // Adjust width
+            const logoHeight = 7; // Adjust height
+            doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
+      
+            // Add Title
             doc.setFontSize(16);
+            doc.setTextColor(40);
             doc.setFont('helvetica', 'bold');
             doc.text('Vehicle History Report', 70, 20);
+      
           }
         },
       });
