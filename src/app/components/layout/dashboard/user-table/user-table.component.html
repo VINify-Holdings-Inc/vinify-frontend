@@ -104,12 +104,13 @@
                                     />
                                  </td>
                                 <td>
-                                    <p><span class="vinModelName"> {{item?.vin}}</span></p>
+                                    <p><span class="vinModelName">
+                                         {{item?.vin}}</span></p>
                                 </td>
                                 <td>{{ item?.modelYear | dateFormat: 'YYYY' }}</td>
                                 <td>{{item?.model}}</td>
                                 <!-- redDot we have to use this class -->
-                                <td><span class="tableDot "></span>{{ item?.alertDate | dateFormat: 'DD MMM YYYY' }}
+                                <td>{{ item?.alertDate | dateFormat: 'DD MMM YYYY' }}
                                 </td>
                                 <td>{{item?.state}}</td>
                                 <td>
@@ -173,7 +174,8 @@
                                         />
                                      </td> -->
                                     <td>
-                                        <p><span class="vinModelName"> {{item?.vin}}</span></p>
+                                        <p><span class="vinModelName">
+                                            <span class="tableDot grayDot"></span> {{item?.vin}}</span></p>
                                     </td>
                                     <td>{{ item?.modelYear | dateFormat: 'YYYY' }}</td>
                                     <td>{{item?.model}}</td>
