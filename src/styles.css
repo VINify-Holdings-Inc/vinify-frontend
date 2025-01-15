@@ -1,46 +1,46 @@
 @media only screen and (max-width: 2000px) {
-  .card-area p.authorityPara{
-    font-size: 11px;    
-}
-.backBottomImg { 
-  height: 306px; 
-  max-width: 960px;
-}
-.leftLoginSection .innerLeftSection {
-  padding: 60px 0 0;
-}
+  .card-area p.authorityPara {
+    font-size: 11px;
+  }
+  .backBottomImg {
+    height: 306px;
+    max-width: 960px;
+  }
+  .leftLoginSection .innerLeftSection {
+    padding: 60px 0 0;
+  }
 }
 @media only screen and (max-width: 1600px) {
-  .card-area p.authorityPara{
-    font-size: 10px;    
-    }
-    .leftLoginSection .innerLeftSection {
-      padding: 20px 0 0;
-    }
-    .leftLoginSection .vehicleImage img{
-      height: 377px;
-    }
-    .loginTopsection {
-      max-width: 540px;
-    }
-    .backBottomImg {
-      height: 246px;
-      max-width: 890px;
-    }
-    .loginTextSection {
-      position: relative;
-      top: 45px;
-    }
-}
-@media only screen and (max-width: 1400px) {
-  .card-area p.authorityPara{
-  font-size: 9px;    
+  .card-area p.authorityPara {
+    font-size: 10px;
+  }
+  .leftLoginSection .innerLeftSection {
+    padding: 20px 0 0;
+  }
+  .leftLoginSection .vehicleImage img {
+    height: 377px;
+  }
+  .loginTopsection {
+    max-width: 540px;
+  }
+  .backBottomImg {
+    height: 246px;
+    max-width: 890px;
   }
   .loginTextSection {
-    padding-top: 20px;
+    position: relative;
+    top: 65px;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .card-area p.authorityPara {
+    font-size: 9px;
   }
   .userAuthorityBox span {
     font-size: 12px;
+  }
+  .footerLogin {
+    padding-top: 20px;
   }
   /*====Login   Page Design start ==============*/
   .leftLoginSection .vehicleImage img {
@@ -57,19 +57,16 @@
     max-width: 492px;
     position: relative;
   }
-  .leftLoginSection .loginCheck {
-    padding: 0 39px;
-  }
   .leftLoginSection .vehicleImage {
-    max-width: 100%;
-    position: absolute;
-    top: 40px;
-    right: 27px;
+    top: 75px;
+    right: 0;
   }
   .btn-compound {
-    gap: 18px;
-    top: -35px;
-    max-width: 192px;
+    gap: 25px;
+    top: 0;
+  }
+  .loginTextSection h3 {
+    font-size: 26px;
   }
   /*======== Dashbaord UI Page Design ===========*/
   .cardBottomLine a {
@@ -98,7 +95,7 @@
   }
   .tabVehicleSection.cardHeaderJustify ul li.nav-item .nav-link {
     font-size: 12px;
-  }  
+  }
 }
 @media only screen and (max-width: 1200px) {
   .headerSection .profile_dropdown {
@@ -108,22 +105,24 @@
   /*=======================================================
       Login   Page Design start
     ===============================================*/
-    .loginTextSection h3{
-      font-size: 22px;
-      line-height: 30px;
-    }
+  .loginTextSection h3 {
+    font-size: 22px;
+  }
   .leftLoginSection .vehicleImage img {
-    height: 315px;
+    height: 300px;
   }
   .loginTopsection {
     max-width: 480px;
     width: 100%;
     margin: auto;
   }
+  .btn-compound {
+    max-width: 205px;
+  }
   .leftLoginSection .vehicleImage {
-    right: 19px;
-    top: 42px;
-}
+    right: -8px;
+    top: 78px;
+  }
   /*=======================================================
       Vehicle Monitoring  Page Design starts
     ===============================================*/
@@ -214,16 +213,11 @@
   }
 }
 @media only screen and (max-width: 992px) {
-  .loginCheck p {
-    max-width: 90px;
- }
-  .btnIcons{
+  .btnIcons {
     padding: 6px;
+    gap: 6px;
   }
-  .btnIcons.btnZero p{
-    font-size: 14px;
-  }
-  .btnIcons.btnOne p{
+  .btnIcons.btnZero p,.btnIcons.btnOne p {
     font-size: 14px;
   }
   .logoHeader img {
@@ -240,12 +234,6 @@
   /*=======================================================
       Login   Page Design start
     ===============================================*/
-    .loginTextSection h3{
-      font-size: 22px;
-    }
-  .leftLoginSection .loginCheck {
-    padding: 0 35px;
-  }
   .rightLoginSection {
     max-width: 362px;
     display: flex;
@@ -257,7 +245,7 @@
     width: 100%;
     position: relative;
     margin-top: 72px;
-    background-color: #F7F8F9;
+    background-color: #f7f8f9;
   }
   #sidebar {
     position: fixed;
@@ -270,22 +258,28 @@
     box-shadow: none !important;
   }
   .leftLoginSection .vehicleImage {
-    top: 54px;
-    right: 24px;
-}
+    top: 74px;
+    right: 5px;
+  }
   .leftLoginSection .vehicleImage img {
-    height: 224px;
+    height: 200px;
+  }
+  .loginTextSection h3 {
+    font-size: 22px;
+    line-height: 28px;
   }
   .loginTextSection {
-    padding-top: 45px;
-}
-.leftLoginSection .loginTextSection p {
-  font-size: 12px;
-}
+    padding-top: 0;
+    top: 15px;
+  }
+  .leftLoginSection .loginTextSection p {
+    font-size: 12px;
+    line-height: 16px;
+  }
   .btn-compound {
-    max-width: 164px;
-    gap: 10px;
-    top: -10px;
+    max-width: 185px;
+    gap: 15px;
+    top: 0;
   }
   .loginTopsection {
     max-width: 382px;
@@ -440,31 +434,27 @@
   }
 }
 @media only screen and (max-width: 768px) {
-  .pointArea {
-    padding-bottom: 48px;
-   }
-
+  .backTopImg {
+    height: 130px;
+    background-size: 614px;
+    background-position: 2px top;
+    max-width: 550px;
+}
   .profileHead {
     flex-direction: column;
     align-items: center;
   }
-
   .profileImg {
     max-width: 80px;
     max-height: 80px;
   }
-
   .btnAdd {
     width: 100%;
   }
-
   .emailInner {
     flex-wrap: wrap;
     text-align: center;
   }
-  .loginCheck p {
-    max-width: 80px;
- }
   .leftLoginSection .innerLeftSection {
     gap: 20px;
   }
@@ -508,23 +498,23 @@
   /*=======================================================
       Login   Page Design start
     ===============================================*/
-    .loginTextSection h3{
-      font-size: 22px;
-    }
+  .loginTextSection h3 {
+    font-size: 22px;
+  }
+  .btnIcons {
+    padding: 10px;
+  }
   .leftLoginSection .vehicleImage img {
-    height: 340px;
+    height: 290px;
   }
   .leftLoginSection .vehicleImage {
-    top: 38px;
-    right: 11px;
-}
+    top: 60px;
+    right: 27px;
+  }
   .btn-compound {
     max-width: 200px;
     gap: 20px;
     top: 18px;
-  }
-  .leftLoginSection .loginCheck {
-    padding: 0 40px;
   }
   .loginTopsection {
     max-width: 490px;
@@ -551,10 +541,6 @@
   .trackVinNumber {
     right: 112px;
   }
-  /*=======================================================
-   Dashboard UI Page Design start 
-   =======================================================*/
-
   /*=======================================================
       Vehicle Monitoring Page Design start
     ===============================================*/
@@ -591,7 +577,6 @@
   .historyTab p {
     font-size: 14px;
   }
-
   /* form CSS  */
   .contactForm-wrapper {
     flex-direction: column;
@@ -599,39 +584,41 @@
   .footer-contents {
     justify-content: center;
   }
+  .footersublink {
+    margin: 10px auto;
+    width: auto;
+    position: unset;
+    text-align: center;
+}
+  .footersublink ul li {
+    padding: 0 15px;
+  }
 }
 @media only screen and (max-width: 600px) {
-  .loginCheck p {
-    max-width: 80px;
- }
   .leftLoginSection .innerLeftSection {
     gap: 20px;
   }
   /*  Login   Page Design start */
-  .loginTextSection h3{
+  .loginTextSection h3 {
     font-size: 22px;
   }
-  .btnIcons.btnOne p {
-    font-size: 16px;
-  }
-  .btnIcons.btnZero p{
-    font-size: 16px;
+  .btnIcons.btnOne p, .btnIcons.btnZero p{
+    font-size: 14px;
   }
 
   .logoHeader img {
     width: 200px;
   }
   .btn-compound {
-    max-width: 180px;
-    gap: 10px;
+    max-width: 185px;
     top: 18px;
   }
   .leftLoginSection .vehicleImage {
-    top: 32px;
+    top: 58px;
     right: -1px;
   }
   .leftLoginSection .vehicleImage img {
-    height: 306px;
+    height: 270px;
   }
   .loginTopsection {
     max-width: 430px;
@@ -736,12 +723,12 @@
   .leftLoginSection .innerLeftSection {
     gap: 20px;
   }
-  .backBottomImg{
+  .backBottomImg {
     height: 150px;
   }
   .loginTextSection h3 {
     line-height: 24px;
-    font-size: 22px;
+    font-size: 20px;
   }
   .authorityThreeBtn {
     justify-content: space-between;
@@ -793,56 +780,55 @@
   .logoHeader img {
     width: 150px;
   }
-  .btnIcons.btnZero p {
-    font-size: 12px;
-  }
-  .btnIcons.btnOne p {
+  .btnIcons.btnZero p,.btnIcons.btnOne p {
     font-size: 12px;
   }
   .btnIcons img {
     width: 16px;
   }
-  .btnIcons {
-    padding: 2px 6px;
-  }
-  .leftLoginSection .loginCheck {
-    padding: 0 10px;
-  }
+  .loginTextSection {
+    top: 25px;
+}
   .leftLoginSection .loginTextSection p {
     font-weight: normal;
-    font-size: 11px;
-    line-height: 17px;
+    font-size: 10px;
+    line-height: 16px;
   }
   .leftLoginSection .loginTextSection h1 {
     font-size: 14px;
   }
   .leftLoginSection .vehicleImage img {
-    height: 185px;
+    height: 170px;
   }
   .leftLoginSection .vehicleImage {
-    top: 52px;
-    right: 8px;
+    top: 55px;
+    right: -5px;
   }
+  .btnIcons {
+    padding: 3px 6px;
+  }
+  .leftLoginSection .loginTextSection .loginCheck i {
+    font-size: 26px;
+}
   .leftLoginSection .loginTextSection p.spanLine {
-    font-size: 14px;
+    font-size: 12px;
   }
+  .leftLoginSection .borderLoginRight {
+    height: auto;
+}
+.loginCheck p {
+  max-width: 90px;
+}
+
   .inner-LoginForm p {
     font-size: 12px;
   }
   .btn-compound {
-    max-width: 135px;
+    max-width: 145px;
     gap: 10px;
     top: 30px;
     left: 15px;
     font-size: 12px;
-  }
-  .leftLoginSection .oneLeftButton button {
-    padding: 4px 4px;
-    font-size: 12px;
-  }
-  .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent {
-    font-size: 12px;
-    padding: 4px 4px;
   }
   .rightLoginSection {
     max-width: 290px;
