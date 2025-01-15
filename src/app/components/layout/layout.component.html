@@ -1,6 +1,6 @@
+<!--top header -->
+<app-dashboard-header (sidebarToggle)="toggleSidebar()" class="sticky-top"></app-dashboard-header>
 <div class="wrapper">
-    <!--top header -->
-    <app-dashboard-header (sidebarToggle)="toggleSidebar()"></app-dashboard-header>
     <div id="content" [class.active] = "!isSidebarActive">
         <!-- sidebar -->
         <app-sidebar [isSidebarActive]="isSidebarActive"></app-sidebar> 
