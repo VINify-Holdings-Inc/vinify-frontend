@@ -337,11 +337,11 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   color: #fff;
 }
 
-.top-navbar.headerSection {
+/* .top-navbar.headerSection {
   width: 100%;
   z-index: 99;
   position: fixed;
-}
+} */
 
 .headerSection .navbar-nav>li>a {
   color: #47475d;
@@ -632,7 +632,7 @@ li.notifyInner {
   width: 8px;
   border-radius: 50%;
   margin-right: 4px;
-  display: inline-block;
+  display: none;
 }
 
 .tableDot.redDot {
@@ -1044,7 +1044,7 @@ header .logoHeader img {
   padding: 24px;
   position: relative;
   width: 100%;
-  margin-top: 72px;
+  margin-top: 0;
   min-height: 100vh;
 }
 
@@ -1052,7 +1052,7 @@ header .logoHeader img {
   padding: 24px;
   position: relative;
   float: right;
-  margin-top: 72px;
+  margin-top: 0;
 }
 
 /* #main-content.main-content.active {
@@ -1699,7 +1699,7 @@ form.FormAlign {
 }
 .leftLoginSection .loginTextSection p.spanLine {
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 22px;
   text-align: center;
 }
