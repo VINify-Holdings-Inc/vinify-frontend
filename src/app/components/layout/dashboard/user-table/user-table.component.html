@@ -1,58 +1,142 @@
+
 <div class="row">
     <div class="col-lg-12 col-md-12 mb-4">
         <div class="cardWrapper">
             <div class="UserCardHeader cardMainHead">
                 <h4 class="card-title">{{tableName}}</h4>
                 <div class="cardSubHead">
-                   
+
                     <div class="userSingleSearch">
                         <span class="VInNumberInput" *ngIf="searchHideShow">
-                            <input type="text"  [(ngModel)]="searchValue"  (keydown.enter)="getSearchVal()"  (ngModelChange)="onType(searchValue)"   class="form-control" placeholder="Search VIN Number" />
+                            <input type="text" [(ngModel)]="searchValue" (keydown.enter)="getSearchVal()"
+                                (ngModelChange)="onType(searchValue)" class="form-control"
+                                placeholder="Search VIN Number" />
                         </span>
-                        <img alt="img"  src="assets/images/icons/search.svg" class="img-fluid" (click) = "getSearchVal()"/>
+                        <img alt="img" src="assets/images/icons/search.svg" class="img-fluid"
+                            (click)="getSearchVal()" />
                     </div>
-                    <div class="month-calendar userDashFilter calendar-svg dropdownFilter" type="button" id="alertMenu" data-bs-toggle="dropdown" >
-                        <img alt="img" [src]="filerIcon" class="img-fluid"/>
+                    <div class="month-calendar userDashFilter calendar-svg dropdownFilter" type="button" id="alertMenu"
+                        data-bs-toggle="dropdown">
+                        <img alt="img" [src]="filerIcon" class="img-fluid" />
                         <span>All Alerts</span>
 
                         <ul class="dropdown-menu menuFilter" aria-labelledby="alertMenu">
                             <li><a class="dropdown-item" routerLink="#">All Alerts</a></li>
                             <li><a class="dropdown-item" routerLink="#">Under</a></li>
                             <li><a class="dropdown-item" routerLink="#">Read</a></li>
-                          </ul>
+                        </ul>
                     </div>
-                    
-                    
+
+
                     <div class="month-calendar vehicleMonthSearch calendar-svg">
-                        <img alt="img" [src]="calendarIcon" class="img-fluid"/>
+                        <img alt="img" [src]="calendarIcon" class="img-fluid" />
                         <p><span>Jan 6, 2025 – Jul 13, 2025</span></p>
-                        
+
                     </div>
-                    <div class="" >
-                        <button
-                         
-                          class="month-calendar vehicleMonthSearch calendar-svg dropdownFilter"
-                          type="button"
-                          id="exportPdfMenu"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          <img alt="PDF Icon" [src]="pdfIcon" class="img-fluid" />
-                          <span>Export PDF</span>
-                          <i class="material-symbols-outlined">keyboard_arrow_down</i>
+                    <div class="">
+                        <button class="month-calendar vehicleMonthSearch calendar-svg dropdownFilter" type="button"
+                            id="exportPdfMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img alt="PDF Icon" [src]="pdfIcon" class="img-fluid" />
+                            <span>Export PDF</span>
+                            <i class="material-symbols-outlined">keyboard_arrow_down</i>
                         </button>
                         <ul class="dropdown-menu menuFilter" aria-labelledby="exportPdfMenu">
 
-                          <li><a class="dropdown-item button-cursor" routerLink="#" (click)="exportToPDF('all')">All VINs</a></li>
-                          <li><a class="dropdown-item button-cursor" routerLink="#" (click)="exportToPDF('single')">Specific VINs</a></li>
-                          <li><a class="dropdown-item button-cursor" routerLink="#" (click)="exportToPDFUdate('updated')">Updated VINs</a></li>
+                            <li><a class="dropdown-item button-cursor" routerLink="#" (click)="exportToPDF('all')">All
+                                    VINs</a></li>
+                            <!-- (click)="exportToPDF('single')" -->
+                            <li><a class="dropdown-item button-cursor" routerLink="#" 
+                                data-bs-toggle="modal" data-bs-target="#VinModal">Specific VINs</a>
+                                <!-- <app-vin-modal></app-vin-modal> -->
+                            </li>
+                            <li><a class="dropdown-item button-cursor" routerLink="#"
+                                    (click)="exportToPDFUdate('updated')">Updated VINs</a></li>
 
                         </ul>
-                      </div>
+                    </div>
 
                 </div>
             </div>
-        
+
+            <!-- Button trigger modal -->
+  
+  <!-- Modal -->
+  
+  <div class="modal fade" id="VinModal" tabindex="-1" aria-labelledby="VinModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header vinmodal-Head">
+          <h1 class="modal-title fs-5" id="VinModalLabel">VIN Data</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body VinInnerScroll">
+            <div class="card-body px-0 userdashbrdTable pt-0">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light-Usertbl">
+                            <tr>
+                                <th>
+                                    <input
+                                      type="checkbox"
+                                      [(ngModel)]="selectAll"
+                                      (change)="toggleSelectAll()"
+                                      aria-label="Select All"
+                                /></th>
+                                <th>VINs</th>
+                                <th>Year</th>
+                                <th>Make</th>
+                                <th>Alert Date</th>
+                                <th>State</th>
+                                <th>Details</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(tableData.length > 0){
+                            @for(item of tableData;track $index){
+                            <tr (click)="getVinDetails(item?.vin,item?.model)" class="button-cursor">
+                                <td>
+                                    <input
+                                    type="checkbox"
+                                    [(ngModel)]="item.selected"
+                                    (change)="onCheckboxChange(item)"
+                                    title="Select"
+                                    />
+                                 </td>
+                                <td>
+                                    <p><span class="vinModelName"> {{item?.vin}}</span></p>
+                                </td>
+                                <td>{{ item?.modelYear | dateFormat: 'YYYY' }}</td>
+                                <td>{{item?.model}}</td>
+                                <!-- redDot we have to use this class -->
+                                <td><span class="tableDot "></span>{{ item?.alertDate | dateFormat: 'DD MMM YYYY' }}
+                                </td>
+                                <td>{{item?.state}}</td>
+                                <td>
+                                    <span class="cursor-detail-img">
+                                        <img alt="Details" src="assets/images/icons/passport.svg" title="Details" />
+                                    </span>
+                                </td>
+                            </tr>
+                            }
+                            }
+                            @else{
+                            <tr>
+                                <td colspan="9" class="text-center">No data found</td>
+                            </tr>
+                            }
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal End -->
             <div class="card">
                 <div class="card-body px-0 userdashbrdTable pt-0">
                     <div class="table-responsive">
@@ -72,12 +156,12 @@
                                     <th>Alert Date</th>
                                     <th>State</th>
                                     <th>Details</th>
-                 
+
                                 </tr>
                             </thead>
                             <tbody>
                                 @if(tableData.length > 0){
-                                    @for(item of tableData;track $index){
+                                @for(item of tableData;track $index){
                                 <tr (click)="getVinDetails(item?.vin,item?.model)" class="button-cursor">
                                     <!-- <td>
                                         <input
@@ -88,27 +172,30 @@
                                         
                                         />
                                      </td> -->
-                                    <td><p><span class="vinModelName"> {{item?.vin}}</span></p></td>
+                                    <td>
+                                        <p><span class="vinModelName"> {{item?.vin}}</span></p>
+                                    </td>
                                     <td>{{ item?.modelYear | dateFormat: 'YYYY' }}</td>
                                     <td>{{item?.model}}</td>
                                     <!-- redDot we have to use this class -->
-                                    <td><span class="tableDot "></span>{{ item?.alertDate | dateFormat: 'DD MMM YYYY' }}</td> 
+                                    <td><span class="tableDot "></span>{{ item?.alertDate | dateFormat: 'DD MMM YYYY' }}
+                                    </td>
                                     <td>{{item?.state}}</td>
-                                    <td >
-                                      <span class="cursor-detail-img"> 
-                                        <img alt="Details" src="assets/images/icons/passport.svg" title="Details"  />
-                                    </span>
-                                    </td> 
-                                    </tr>
-                                  }
+                                    <td>
+                                        <span class="cursor-detail-img">
+                                            <img alt="Details" src="assets/images/icons/passport.svg" title="Details" />
+                                        </span>
+                                    </td>
+                                </tr>
+                                }
                                 }
                                 @else{
-                                    <tr>
-                                        <td colspan="9" class="text-center">No data found</td>
-                                    </tr> 
-                                } 
-    
-                                
+                                <tr>
+                                    <td colspan="9" class="text-center">No data found</td>
+                                </tr>
+                                }
+
+
                             </tbody>
 
                         </table>
@@ -116,20 +203,22 @@
                     <div class="paginationArea">
                         <ul class="pagination pagination-lg">
                             <li class="page-item">
-                                <button type="button" class="page-link" (click)="onClick(page-1)" [disabled]="page==1" >Previous</button>
+                                <button type="button" class="page-link" (click)="onClick(page-1)"
+                                    [disabled]="page==1">Previous</button>
                             </li>
                             <li class="page-item">
                                 <span class="page-link">Page {{page}} of {{totalPages}}</span>
                             </li>
                             <li class="page-item">
-                                <button type="button" class="page-link" (click)="onClick(page+1)" [disabled]="page==totalPages || page>totalPages" >Next</button>
+                                <button type="button" class="page-link" (click)="onClick(page+1)"
+                                    [disabled]="page==totalPages || page>totalPages">Next</button>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Tooltip Component -->
         <!-- <app-tooltip id="my-tooltip"></app-tooltip> -->
         <app-loader [IsLoading]="isLoading"></app-loader>

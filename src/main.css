@@ -3408,3 +3408,26 @@ body.swal2-shown.swal2-height-auto .top-navbar.headerSection {
   border-color:var(--bg-primary) !important;
   color:var(--bg-primary) !important;
 }
+
+
+/* VinModal CSS */
+
+.VinInnerScroll{
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.VinInnerScroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  background-color: #F5F5F5;
+}
+.VinInnerScroll::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+}
+.VinInnerScroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #d6d6d6;
+}
