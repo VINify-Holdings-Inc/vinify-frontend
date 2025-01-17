@@ -632,7 +632,7 @@ li.notifyInner {
   width: 8px;
   border-radius: 50%;
   margin-right: 4px;
-  display: none;
+  display: inline-block;
 }
 
 .tableDot.redDot {

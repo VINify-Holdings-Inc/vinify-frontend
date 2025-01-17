@@ -1,4 +1,4 @@
-import { Component, Input,Output,EventEmitter,ViewChild } from '@angular/core';
+import { Component, Input,Output,EventEmitter,ViewChild, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -28,7 +28,8 @@ export class UserTableComponent {
   pdfIcon: string = 'assets/images/icons/pdf.svg';
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort; 
+  //@ViewChild(MatSort) sort!: MatSort; 
+
 
   constructor(private router: Router,private pdfService: CreatePDFService,private userData: userData,) {
    
@@ -41,7 +42,6 @@ export class UserTableComponent {
   //selectedVins: string[] = [];
   selectedVins: { vin: string; alertDate: string }[] = [];
   checkAll:any=null;
-  currentPage = 1;
   displayedColumns: string[] = ['vin', 'year', 'make', 'alertDate','state','details'];
 
 
@@ -56,20 +56,25 @@ export class UserTableComponent {
   @Output() handelPaginagtion = new EventEmitter <any>();
   @Output() handelSearch = new EventEmitter <any>();
  searchHideShow :boolean =false;
+ 
+ ngOnChanges(changes: SimpleChanges) {
+  if (changes['totalPages']) {
+    this.updateVisiblePages();  // Trigger pagination update when totalPages changes
+  }
 
- ngAfterViewInit() {
-   
-   this.paginator.page.subscribe(() =>{
-    this.handelPaginagtion.emit(this.paginator.pageIndex + 1);
-    this.getValifExist();
-   });
-  // this.sort.sortChange.subscribe(() => {
-  //   this.paginator.pageIndex = 0;
-    
-  // });
+  // Optionally, update table data if `tableData` changes
+  // if (changes['tableData']) {
+  //   this.updateTableData();
+  // }
 }
 
+ ngAfterViewInit() {
+  this.updateVisiblePages();
+}
 
+  currentPage: number = 1; // Current active page
+  visiblePages: number[] = []; // Pages to display in the pagination UI
+  maxVisiblePages: number = 4; // Max number of pages to display at once
 
 onClick(pages:any){
    this.handelPaginagtion.emit(pages);
@@ -162,23 +167,50 @@ getTableData(dataType:any) {
 }
 
 
+
 goToPage(page: number) {
+  if (page < 1 || page > this.totalPages) return; // Ensure page is within range
   this.currentPage = page;
-  this.onClick(page);
+  this.handelPaginagtion.emit(page);
+  this.updateVisiblePages();
 }
 
 nextPage() {
   if (this.currentPage < this.totalPages) {
     this.currentPage++;
-    this.onClick(this.currentPage);
+    this.goToPage(this.currentPage);
   }
 }
 
 previousPage() {
   if (this.currentPage > 1) {
     this.currentPage--;
-    this.onClick(this.currentPage);
+    this.goToPage(this.currentPage);
   }
+}
+
+updateVisiblePages() {
+
+  const visible: number[] = [];
+     console.log("visible",this.totalPages)
+  const start = Math.max(1, this.currentPage - Math.floor(this.maxVisiblePages / 2));
+  const end = Math.min(this.totalPages, start + this.maxVisiblePages - 1);
+  //const end = 4;
+
+  for (let i = start; i <= end; i++) {
+    visible.push(i);
+  }
+  console.log("visible2",visible,start,end)
+
+  if (start > 1) visible.unshift(1); // Ensure first page is visible
+  if (start > 2) visible.splice(1, 0, -1); // Add "..." after the first page
+
+  if (end < this.totalPages) visible.push(this.totalPages); // Ensure last page is visible
+  if (end < this.totalPages - 1) visible.splice(visible.length - 1, 0, -1); // Add "..." before the last page
+
+  this.visiblePages = visible;
+  this.getValifExist();
+  
 }
 
 
