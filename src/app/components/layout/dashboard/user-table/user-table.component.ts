@@ -1,4 +1,4 @@
-import { Component, Input,Output,EventEmitter } from '@angular/core';
+import { Component, Input,Output,EventEmitter,ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -9,11 +9,16 @@ import { userData } from '../../../../services/api-service.service';
 import { LoaderComponent } from '../../common/loader/loader.component';
 import Swal from 'sweetalert2';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+
 
 
 @Component({
   selector: 'app-user-table',
-  imports: [FormsModule,CommonModule,DateFormatPipe,LoaderComponent],
+  imports: [FormsModule,CommonModule,DateFormatPipe,LoaderComponent,MatTableModule, MatPaginatorModule, MatSortModule],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.css'
 })
@@ -21,6 +26,9 @@ export class UserTableComponent {
   filerIcon: string = 'assets/images/icons/filter-lines.svg';
   calendarIcon: string = 'assets/images/icons/calendar.svg';
   pdfIcon: string = 'assets/images/icons/pdf.svg';
+  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort; 
 
   constructor(private router: Router,private pdfService: CreatePDFService,private userData: userData,) {
    
@@ -33,69 +41,41 @@ export class UserTableComponent {
   //selectedVins: string[] = [];
   selectedVins: { vin: string; alertDate: string }[] = [];
   checkAll:any=null;
+  currentPage = 1;
+  displayedColumns: string[] = ['vin', 'year', 'make', 'alertDate','state','details'];
+
+
+
 
   @Input() tableData :any[]=[];
   @Input() page :number=0;
   @Input() totalPages :number=0;
   @Input() tableName : string ="";
+  @Input() totalItems : number =0;
 
   @Output() handelPaginagtion = new EventEmitter <any>();
   @Output() handelSearch = new EventEmitter <any>();
  searchHideShow :boolean =false;
 
-onClick(pages:any){
-   this.handelPaginagtion.emit(pages);
-   this.getValifExist();
-   this.selectAll=false;
-   this.selectedVins = [];
-} 
-
-/*
-toggleSelectAll() {
- 
-  this.tableData.forEach((item) => (item.selected = this.selectAll));
-  // If selectAll is true, add all VINs to selectedVins; otherwise, clear it
-  this.selectedVins = this.selectAll
-    ? this.tableData.map((item) => item.vin)
-    : [];
-   // this.checkAll = this.selectAll ? 'all' : null;
-} */
-
-toggleSelectAll() {
-  this.tableData.forEach((item) => (item.selected = this.selectAll));
-
-  if (this.selectAll) {
-    this.selectedVins = this.tableData.map((item) => ({
-      vin: item.vin,
-      alertDate: item.alertDate,
-    }));
-  } else {
-    this.selectedVins = [];
-  }
+ ngAfterViewInit() {
+   
+   this.paginator.page.subscribe(() =>{
+    this.handelPaginagtion.emit(this.paginator.pageIndex + 1);
+    this.getValifExist();
+   });
+  // this.sort.sortChange.subscribe(() => {
+  //   this.paginator.pageIndex = 0;
+    
+  // });
 }
 
 
-  onCheckboxChange(item: any) {
-    // Check if the item is selected
-    if (item.selected) {
-      // Add the object to the selectedVins array
-      this.selectedVins.push({ vin: item.vin, alertDate: item.alertDate });
-    } else {
-      // Remove the object from the selectedVins array
-      const index = this.selectedVins.findIndex(
-        (vinObj) => vinObj.vin === item.vin && vinObj.alertDate === item.alertDate
-      );
-      if (index > -1) {
-        this.selectedVins.splice(index, 1);
-      }
-    }
-  
-    // Update the "Select All" state based on individual selections
-    this.selectAll = this.selectedVins.length === this.tableData.length;
 
-   // this.checkAll = this.selectAll ? 'all' : null;
-  }
-  
+onClick(pages:any){
+   this.handelPaginagtion.emit(pages);
+   this.getValifExist();
+   this.selectedVins = [];
+} 
 
 
 redirectToOtherPage(vin:string,model:string) {
@@ -133,14 +113,8 @@ getVinDetails(vin:any,model:any){
 }
 
 exportToPDF(type:any) {
-
-  // if(type=='single'&& this.checkAll=='all'){
-  //   this.getTableData('all');
-  // }else{
-  //   this.getTableData(type);
-  // }    
+  
   this.getTableData(type);
- 
 }
 
 exportToPDFUdate(type:any) { 
@@ -186,6 +160,27 @@ getTableData(dataType:any) {
     }
   );
 }
+
+
+goToPage(page: number) {
+  this.currentPage = page;
+  this.onClick(page);
+}
+
+nextPage() {
+  if (this.currentPage < this.totalPages) {
+    this.currentPage++;
+    this.onClick(this.currentPage);
+  }
+}
+
+previousPage() {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+    this.onClick(this.currentPage);
+  }
+}
+
 
 
 }

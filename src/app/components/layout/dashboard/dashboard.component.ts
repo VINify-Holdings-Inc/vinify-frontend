@@ -67,7 +67,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
         if (!res.error) {
           this.tableData = res?.data?.items || [];
           this.totalPages = res?.data?.totalPages || 0;
-         // this.totalItems = res?.data?.totalItems || 0;
+          this.totalItems = res?.data?.totalRecords || 0;
         }
         this.isLoading = false;
       },

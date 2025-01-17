@@ -4,8 +4,7 @@
       "secure": true,
       "ssl": {
         "cert": "./certs/TAAMVAcert-file.pem",
-        "key": "./certs/TAAAMVA.pem",
-        "ca": "./certs/ca.pem"
+        "key": "./certs/TAAMVAcert.pem"
       },
       "changeOrigin": true,
       "logLevel": "debug"
