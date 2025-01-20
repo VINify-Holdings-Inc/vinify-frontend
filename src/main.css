@@ -395,7 +395,7 @@ button.btn.btn-custom {
 }
 
 .headNotify p {
-  font-size: 14px;
+  font-size: 14px !important;
   font-weight: 600;
   line-height: 24px;
   color: #101828;
@@ -414,15 +414,11 @@ li.dropdown-item.notifyInner {
 }
 
 .headerSection .navbar-btn_track {
+  padding: 8px 14px;
   width: 162px;
+  min-height: 40px;
   background-color: var(--bg-primary);
-  padding: 10px 14px;
-  border-radius: 8px;
   border: 1px solid #d0d5dd;
-  height: 40px;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
   box-shadow: 0px 1px 2px 0px #1018280d;
 }
 
@@ -632,7 +628,7 @@ li.notifyInner {
   width: 8px;
   border-radius: 50%;
   margin-right: 4px;
-  display: inline-block;
+  display: none;
 }
 
 .tableDot.redDot {
@@ -665,7 +661,7 @@ li.notifyInner {
   line-height: 20px;
 }
 
-a.nav-link.dropdown-toggle.no-toggle-icon {
+a.nav-link.no-toggle-icon {
   position: relative;
   cursor: pointer;
 }
@@ -699,22 +695,8 @@ a.nav-link.dropdown-toggle.no-toggle-icon {
   background-color: #e4e4e4;
 }
 
-.headerSection .calendar-date {
-  color: #919191;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-}
-
 .headerSection .calendar-date p {
   margin: 0;
-}
-
-.headerSection .calendar-date i {
-  padding-right: 6px;
-  font-size: 18px;
-  display: flex;
-  position: relative;
 }
 
 .headerSection .calendar-date .update-time {
@@ -825,7 +807,7 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   top: 72px;
   bottom: 0;
   left: 0;
-  z-index: 3;
+  z-index: 5;
   width: 264px;
   overflow: auto;
   background: #fff !important;
@@ -1097,10 +1079,10 @@ header .logoHeader img {
 }
 
 .small-action-btn {
-  font-size: 11px;
-  padding: 3px 10px;
+  font-size: 12px;
+  padding: 2px 8px;
   font-weight: 500;
-  border-radius: 15px;
+  border-radius: 16px;
 }
 
 h3.card-title.cardDashNum {
@@ -1967,6 +1949,7 @@ p.errorMessage {
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .cardInnerVehicle .card-body span.BottomSpan {
@@ -2650,8 +2633,11 @@ thead.table-light-Usertbl tr {
 .UserCardHeader {
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
   align-items: center;
   margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .userSingleSearch {
@@ -2676,6 +2662,13 @@ thead.table-light-Usertbl tr {
   list-style: none;
   justify-content: space-between;
   width: 100%;
+}
+a.nav-link.no-toggle-icon.noticon {
+  background: #F9FAFB;
+  border-radius: 6px;
+  padding: 8px;
+  width: 40px;
+  text-align: center;
 }
 
 .userdashbrdTable .table>tbody>tr:hover {
@@ -3339,6 +3332,7 @@ padding: 10px 0;
 .cardInnerVehicle {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 8px;
   padding: 24px;
   max-height: 100%;
@@ -3430,4 +3424,9 @@ body.swal2-shown.swal2-height-auto .top-navbar.headerSection {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
   background-color: #d6d6d6;
+}
+
+a.m-logo img {
+  width: 30px !important;
+  display: none;
 }

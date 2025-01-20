@@ -33,8 +33,12 @@
   }
 }
 @media only screen and (max-width: 1400px) {
+  .cardInnerVehicle {
+    justify-content: center;
+    padding: 14px 10px;
+  }
   .card-area p.authorityPara {
-    font-size: 9px;
+    font-size: 8px;
   }
   .userAuthorityBox span {
     font-size: 12px;
@@ -42,7 +46,6 @@
   .footerLogin {
     padding-top: 20px;
   }
-  /*====Login   Page Design start ==============*/
   .leftLoginSection .vehicleImage img {
     height: 320px;
   }
@@ -68,16 +71,23 @@
   .loginTextSection h3 {
     font-size: 26px;
   }
-  /*======== Dashbaord UI Page Design ===========*/
   .cardBottomLine a {
     font-size: 12px;
   }
-  /*====== Vehicle Monitoring  Page Design start ==========*/
   .search_table.ms-3.form-group.has-search {
     width: 200px;
     max-width: 100%;
   }
-
+  .month-calendar img {
+    width: 16px;
+  }
+  .userSingleSearch .VInNumberInput input {
+    padding: 10px;
+  }
+  .month-calendar {
+    font-size: 12px;
+    padding: 10px;
+  }
   .month-calendar.vehicleMonthSearch i {
     font-size: 18px;
   }
@@ -94,10 +104,21 @@
     font-size: 16px;
   }
   .tabVehicleSection.cardHeaderJustify ul li.nav-item .nav-link {
-    font-size: 12px;
+    font-size: 11px;
+  }
+  .summaryCard .font-12{
+    font-size: 13px;
   }
 }
 @media only screen and (max-width: 1200px) {
+.backTopImg {
+  background-size: 686px;
+  background-position: -47px top;
+  max-width: 567px;
+}
+  .InnerTitleCard .tabVehicleSection.cardHeaderJustify ul li{
+    width: 33.3%;
+  }
   .headerSection .profile_dropdown {
     width: 160px;
     max-width: 160px;
@@ -123,9 +144,6 @@
     right: -8px;
     top: 78px;
   }
-  /*=======================================================
-      Vehicle Monitoring  Page Design starts
-    ===============================================*/
   .graphSectionBtn .vinAlertGraph_area .fraud_numbers {
     font-weight: 600;
     font-size: 14px;
@@ -155,7 +173,7 @@
     font-size: 12px;
   }
   h3.card-title.cardDashNum {
-    font-size: 18px;
+    font-size: 30px;
     margin-bottom: 0;
   }
   .card.rounded.recentlyAlert .card-area p {
@@ -179,13 +197,6 @@
     width: 200px;
     max-width: 100%;
   }
-  .VehicleMonitoring .tabVehicleSection.cardHeaderJustify .nav-tabs {
-    order: 1;
-  }
-  .month-calendar.vehicleMonthSearch {
-    width: 50%;
-    line-height: 15px;
-  }
   /*=======================================================
     Summary  Page Design start
 ===================================================*/
@@ -193,31 +204,49 @@
     flex-direction: column;
     gap: 15px;
   }
-  .SummaryCardDetails .tabVehicleSection.cardHeaderJustify .nav-tabs {
-    order: 1;
-  }
-  .tabVehicleSection.cardHeaderJustify ul li.nav-item .nav-link {
-    font-size: 14px;
-  }
-  .month-calendar {
-    line-height: 15px;
-  }
-  .month-calendar.vehicleMonthSearch {
-    width: auto;
-  }
   .cardSubHead {
     gap: 15px;
   }
-  .SummaryCardDetails .card-body .tabVehicleSection .month-calendar span {
-    line-height: 30px;
+  .cardInnerVehicle {
+    justify-content: center;
+    padding: 14px;
+  }
+  .UserCardHeader {
+    align-items: start;
+    flex-direction: column;
   }
 }
 @media only screen and (max-width: 992px) {
+  .backTopImg {
+    background-size: 454px;
+    background-position: -8px top;
+    max-width: 567px;
+}
+  .InnerTitleCard .tabVehicleSection.cardHeaderJustify{
+    padding-top: 10px;
+  }
+  .vehicleTitle .card-title{
+    font-size: 26px;
+  }
+  .InnerTitleCard .tabVehicleSection.cardHeaderJustify ul li{
+    width: 33.3%;
+  }
+  a.m-logo img {
+    width: 32px !important;
+    display: block;
+  }
+  a.l-logo img{
+    display: none;
+  }
+  #sidebar.active ul li a {
+    width: 100%;
+  }
   .btnIcons {
     padding: 6px;
     gap: 6px;
   }
-  .btnIcons.btnZero p,.btnIcons.btnOne p {
+  .btnIcons.btnZero p,
+  .btnIcons.btnOne p {
     font-size: 14px;
   }
   .logoHeader img {
@@ -226,7 +255,6 @@
   /* login page UI end*/
   .month-calendar.vehicleMonthSearch span {
     font-size: 12px;
-    line-height: 15px;
   }
   .pt-4.barGraph {
     height: auto;
@@ -235,7 +263,7 @@
       Login   Page Design start
     ===============================================*/
   .rightLoginSection {
-    max-width: 362px;
+    max-width: 100%;
     display: flex;
     margin: auto;
     justify-content: center;
@@ -244,7 +272,7 @@
   #main-content.active {
     width: 100%;
     position: relative;
-    margin-top: 72px;
+    margin-top: 0;
     background-color: #f7f8f9;
   }
   #sidebar {
@@ -286,6 +314,9 @@
     width: 100%;
     margin: auto;
   }
+  .dropdown-menu.dropdown-menu-end.VinTrackDiv.show{
+    top:70px;
+  }
   .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent,
   .leftLoginSection .oneLeftButton button {
     padding: 6px 6px;
@@ -293,29 +324,20 @@
   /*=======================================================
       Header Design start good
     ===============================================*/
-  ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
-    gap: 0px;
-  }
   span.d-flex.update-time i {
     font-size: 14px;
   }
-  .headerSection .calendar-date {
-    margin-right: 14px;
-  }
-  .headerSection .navbar-btn_track {
-    margin-right: 14px;
+  button#sidebarCollapse{
+    margin-left: 0;
   }
   .headerSection .calendar-date .update-time {
     font-size: 11px;
   }
-  .headerSection .navbar-btn_track {
-    font-size: 12px;
-    padding: 5px 8px;
-  }
+
   a.btn.btn-primary.navbar-btn_track:after {
     height: 30px;
   }
-  a.nav-link.dropdown-toggle.no-toggle-icon i {
+  a.nav-link.no-toggle-icon i {
     line-height: 35px;
   }
   .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
@@ -327,7 +349,7 @@
     margin-right: 15px;
   }
   .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown p {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 18px;
   }
   .headerSection .notification-dropdown .notifications-points h5 {
@@ -345,9 +367,6 @@
   /*=======================================================
       Dashboard Page Design start
 ===============================================*/
-  .card-body.cardInnerDash {
-    padding: 10px;
-  }
   .cardBottomLine a {
     font-size: 9px;
     font-weight: 600;
@@ -359,21 +378,28 @@
     width: 200px;
     max-width: 100%;
   }
-  .SummaryCardDetails .card-body .tabVehicleSection .month-calendar span {
-    line-height: 30px;
-  }
   /*=======================================================
       Summary Page Design start
 ===============================================*/
   .month-calendar span {
     font-size: 12px;
-    line-height: 15px;
   }
-  .card-body.cardInnerDash {
-    padding: 10px 10px;
-  }
+
   button.btn.btn-view {
     padding: 5px;
+  }
+  .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
+    top: 52px;
+  }
+  li.nav-item.calendar-date img {
+    width: 16px;
+  }
+  .UserCardHeader {
+    align-items: start;
+    flex-direction: column;
+  }
+  button#sidebarCollapse {
+    margin-left: 16px;
   }
 }
 @media only screen and (min-width: 992px) {
@@ -434,12 +460,28 @@
   }
 }
 @media only screen and (max-width: 768px) {
+
+  button#sidebarCollapse {
+    margin-left: 10px;
+  }
+  .InnerTitleCard{
+    height: auto;
+  }
+  .cardInnerVehicle {
+    justify-content: center;
+    padding: 14px;
+  }
+  .dropdown-menu.dropdown-menu-end.VinTrackDiv.show {
+    left: 0;
+    right: 0;
+    top: 70px;
+  }
   .backTopImg {
     height: 130px;
     background-size: 614px;
     background-position: 2px top;
     max-width: 550px;
-}
+  }
   .profileHead {
     flex-direction: column;
     align-items: center;
@@ -458,13 +500,6 @@
   .leftLoginSection .innerLeftSection {
     gap: 20px;
   }
-  .UserCardHeader.cardMainHead {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    gap: 15px;
-  }
   /* logo CSS */
   span.titleLogo.logoMobile {
     display: block;
@@ -473,21 +508,19 @@
   .headerSection .calendar-date {
     display: none;
   }
-  a.nav-link.dropdown-toggle.no-toggle-icon img {
-    height: 25px;
-    width: 25px;
+  a.nav-link.no-toggle-icon.noticon img{
+    height: 20px;
+    width: 20px;
+  }
+  a.nav-link.no-toggle-icon img {
+    height: 35px;
+    width: 35px;
   }
   span.titleLogo {
     display: none;
   }
-  button#sidebarCollapse {
-    margin-left: 0;
-  }
-  .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
-    top: 58px;
-  }
   ul.dropdown-menu.dropdown-menu-end.profile_dropdown.show {
-    top: 54px;
+    top: 48px;
   }
   .card.rounded.recentlyAlert .card-area span.date-time {
     font-size: 11px;
@@ -551,24 +584,17 @@
     flex-direction: column;
     gap: 15px;
   }
-  .tabVehicleSection.cardHeaderJustify .nav-tabs {
-    order: 2;
-  }
   .search_table.form-group.has-search.position-relative {
     width: 100%;
   }
   .cardSubHead {
     width: 100%;
-    gap: 15px;
+    gap: 5px;
   }
   .SummaryCardDetails .card .vehicleTitle h4.card-title {
     font-size: 16px;
   }
   .currentVehicleSection p {
-    font-size: 14px;
-  }
-  .SummaryCardDetails .card-body .tabVehicleSection .month-calendar span {
-    line-height: 30px;
     font-size: 14px;
   }
   .currentVehicleSection p {
@@ -587,14 +613,28 @@
   .footersublink {
     margin: 10px auto;
     width: auto;
+    max-width: 100%;
     position: unset;
     text-align: center;
-}
+  }
   .footersublink ul li {
     padding: 0 15px;
   }
 }
 @media only screen and (max-width: 600px) {
+  .backTopImg {
+    background-position: -23px top;
+}
+
+  /* .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.firstTab,
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.lastTab,
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link,
+  .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link.active {
+    border-radius: 5px ;
+  } */
+  ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
+    gap: 10px;
+  }
   .leftLoginSection .innerLeftSection {
     gap: 20px;
   }
@@ -602,7 +642,8 @@
   .loginTextSection h3 {
     font-size: 22px;
   }
-  .btnIcons.btnOne p, .btnIcons.btnZero p{
+  .btnIcons.btnOne p,
+  .btnIcons.btnZero p {
     font-size: 14px;
   }
 
@@ -668,24 +709,23 @@
   .summaryCard.cardHeaderJustify {
     flex-direction: row;
   }
-  .cardSubHead {
-    width: 100%;
-    gap: 15px;
+  .InnerTitleCard .tabVehicleSection.cardHeaderJustify ul li{
+    width: auto;
   }
   .tabVehicleSection.cardHeaderJustify .nav-tabs {
-    gap: 10px;
+    gap: 0;
     justify-content: center;
   }
-  .SummaryCardDetails .card .month-calendar span {
-    font-size: 12px;
-    line-height: 30px;
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.lastTab{
+    border-radius: 0 5px 5px 0;
   }
-  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link {
-    border-radius: 5px;
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.firstTab, .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.active{
+    border-radius:  5px 0 0 5px;
   }
-  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.active {
-    border-radius: 5px;
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link{
+    border-radius: 0;
   }
+ 
   .cardMonitor {
     gap: 15px;
   }
@@ -704,27 +744,22 @@
   .headerSection .calendar-date {
     display: none;
   }
-  .headerSection .navbar-btn_track {
-    font-size: 12px;
-    padding: 5px 10px;
+
+  .logoHeader img {
+    width: 150px !important;
   }
-  .logoHeader h3 img {
-    width: 30px;
-  }
-  button#sidebarCollapse {
-    margin-left: 0;
-  }
-  a.nav-link.dropdown-toggle.no-toggle-icon img {
-    height: 25px;
-    width: 25px;
-  }
+  .trackVinNumber {
+    right: 25px;
+}
+
 }
 @media only screen and (max-width: 480px) {
+  .backTopImg {
+    background-size: 400px;
+    background-position: -18px top;
+}
   .leftLoginSection .innerLeftSection {
     gap: 20px;
-  }
-  .backBottomImg {
-    height: 150px;
   }
   .loginTextSection h3 {
     line-height: 24px;
@@ -741,23 +776,8 @@
   .headerSection .calendar-date {
     display: none;
   }
-  .headerSection .navbar-btn_track {
-    font-size: 10px;
-    padding: 5px 8px;
-  }
-
-  button#sidebarCollapse {
-    margin-left: 0;
-  }
-  a.nav-link.dropdown-toggle.no-toggle-icon img {
-    height: 25px;
-    width: 25px;
-  }
   .logoHeader {
     padding: 0;
-  }
-  #sidebarCollapse {
-    background-color: #fff;
   }
   a.btn.btn-primary.navbar-btn_track:after {
     display: none;
@@ -765,22 +785,14 @@
   .main-content {
     margin-top: 62px;
   }
-  #main-content.active {
-    margin-top: 62px;
-  }
-  #main-content {
-    margin-top: 62px;
-  }
-  #sidebar {
-    top: 62px;
-  }
   /*=======================================================
       Login   Page Design start
     ===============================================*/
   .logoHeader img {
-    width: 150px;
+    width: 150px !important;
   }
-  .btnIcons.btnZero p,.btnIcons.btnOne p {
+  .btnIcons.btnZero p,
+  .btnIcons.btnOne p {
     font-size: 12px;
   }
   .btnIcons img {
@@ -788,7 +800,7 @@
   }
   .loginTextSection {
     top: 25px;
-}
+  }
   .leftLoginSection .loginTextSection p {
     font-weight: normal;
     font-size: 10px;
@@ -809,17 +821,16 @@
   }
   .leftLoginSection .loginTextSection .loginCheck i {
     font-size: 26px;
-}
+  }
   .leftLoginSection .loginTextSection p.spanLine {
     font-size: 12px;
   }
   .leftLoginSection .borderLoginRight {
     height: auto;
-}
-.loginCheck p {
-  max-width: 90px;
-}
-
+  }
+  .loginCheck p {
+    max-width: 90px;
+  }
   .inner-LoginForm p {
     font-size: 12px;
   }
@@ -869,33 +880,16 @@
   /*=======================================================
       Vehicle Monitoring Page Design start
     ===============================================*/
-  .month-calendar {
-    width: 100%;
-    line-height: 30px;
-  }
   .tabVehicleSection.cardHeaderJustify .nav-tabs {
     gap: 10px;
     justify-content: center;
   }
-  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.firstTab {
-    border-radius: 5px;
-  }
-  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.lastTab {
-    border-radius: 5px;
-  }
-  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link {
-    border-radius: 5px;
-  }
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.firstTab,
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.lastTab,
+  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link,
   .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link.active {
-    border-radius: 5px;
+    border-radius: 5px ;
   }
-  .month-calendar.vehicleMonthSearch {
-    width: 100%;
-    line-height: 30px;
-  }
-  /*=======================================================
-      Summary Page Design start
-    ===============================================*/
   .topVehicleHead {
     flex-direction: column;
     gap: 10px;
@@ -907,21 +901,10 @@
   .cardInnerVehicle .CurrentDetails h5 {
     gap: 4px;
   }
-  .month-calendar.vehicleMonthSearch span {
-    font-size: 13px;
-    line-height: 30px;
-  }
-  .month-calendar {
-    width: 100%;
-  }
   .cardMonitor {
     flex-direction: column;
     align-items: start;
     gap: 15px;
-  }
-  .month-calendar span {
-    font-size: 12px;
-    line-height: 30px;
   }
   .historyTab p {
     font-size: 14px;
@@ -929,9 +912,7 @@
   .currentVehicleSection p {
     font-size: 14px;
   }
-  .pt-4.barGraph {
-    height: auto;
-  }
+  .pt-4.barGraph,
   .pieChartGraph {
     height: auto;
   }
@@ -942,7 +923,29 @@
   .footer-contents p {
     margin: 0 auto;
   }
-}
+  .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
+    top: 53px;
+    right: -55px;
+    max-width: 300px;
+    font-size: 14px;
+  }
+  .paginationArea li.page-item span.page-link {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+  .card.rounded.recentlyAlert .card-area p {
+    font-size: 10px;
+  }
+  .card.rounded.recentlyAlert .card-area h5 {
+    font-size: 14px;
+  }
+  .headerSection .notification-dot {
+    height: 12px;
+    width: 12px;
+    padding: 10px;
+  }
+  .headerSection .navbar-btn_track {
+    display: none;
+  }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+}
