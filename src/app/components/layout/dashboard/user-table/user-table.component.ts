@@ -192,7 +192,7 @@ previousPage() {
 updateVisiblePages() {
 
   const visible: number[] = [];
-     console.log("visible",this.totalPages)
+     
   const start = Math.max(1, this.currentPage - Math.floor(this.maxVisiblePages / 2));
   const end = Math.min(this.totalPages, start + this.maxVisiblePages - 1);
   //const end = 4;
@@ -200,7 +200,6 @@ updateVisiblePages() {
   for (let i = start; i <= end; i++) {
     visible.push(i);
   }
-  console.log("visible2",visible,start,end)
 
   if (start > 1) visible.unshift(1); // Ensure first page is visible
   if (start > 2) visible.splice(1, 0, -1); // Add "..." after the first page
