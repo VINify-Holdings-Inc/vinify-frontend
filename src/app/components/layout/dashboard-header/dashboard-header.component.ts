@@ -19,6 +19,7 @@ import { SoapService } from '../../../services/soap.service';
 export class DashboardHeaderComponent implements OnInit , OnDestroy {
   searchIconToggle:boolean=true
   logo: string = 'assets/images/ta-logo.png';
+  mlogo: string = 'assets/images/logo.png';
   profileIcon: string = 'assets/images/icons/sub-profile.svg';
   arrowIcon: string = 'assets/images/icons/down-arrow.svg';
   searchIcon: string = 'assets/images/icons/vin-search.svg';
