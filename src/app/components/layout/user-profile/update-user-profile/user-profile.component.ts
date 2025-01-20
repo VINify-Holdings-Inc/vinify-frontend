@@ -58,7 +58,7 @@ export class UserProfileComponent implements OnInit {
       name: ['', [Validators.required]],
       lname: [''],
       email: [''],
-        phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+        phone: ['', [Validators.pattern(/^[0-9]{10}$/)]],
       company: [''],
       title: [''],
       password: [
