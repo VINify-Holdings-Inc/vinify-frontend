@@ -635,11 +635,13 @@ li.notifyInner {
 }
 
 .tableDot {
-  height: 8px;
-  width: 8px;
+  height: 6px;
+  width: 6px;
   border-radius: 50%;
   margin-right: 4px;
-  display: none;
+  display: inline-block;
+  position: relative;
+  top: -2px;
 }
 
 .tableDot.redDot {
@@ -1255,10 +1257,10 @@ td.vinNumberUserdash {
 .month-calendar {
   display: flex;
   align-items: center;
-  border: 1px solid #d0d5dd;
-  border-radius: 8px;
+  border: 1px solid #d0d5dd !important;
+  border-radius: 8px !important;
   font-weight: 600;
-  padding: 10px 14px;
+  padding: 10px 14px !important;
   font-size: 14px;
   cursor: pointer;
   line-height: 20px;
@@ -1267,7 +1269,9 @@ td.vinNumberUserdash {
   height: 40px;
   gap: 4px;
 }
-
+.month-calendar:hover{
+  background-color: #fff !important;
+}
 .month-calendar i {
   font-size: 20px;
   padding-right: 2px;
@@ -2638,10 +2642,12 @@ thead.table-light-Usertbl tr {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
+}
+.boxTable{
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  max-width: 100px;
+  width: 274px;
 }
 
 .table>tbody>tr>td .vinModelName {
@@ -3464,14 +3470,6 @@ a.m-logo img {
   display: none;
 }
 
-.gray-dot{
-  padding: 16px 24px;
-  color: #475467 !important;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 100px;
+.userdashbrdTable tr {
+  cursor: pointer;
 }
