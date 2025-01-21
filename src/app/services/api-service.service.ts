@@ -120,6 +120,12 @@ export class userData {
           headers: this.getHeaders(),
         });
   }
+
+  getCurrentUpdatedVinData(data: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/dashboard-vin-summary-updated?`+ data, {
+      headers: this.getHeaders(),
+    });
+  }
   
     
 }

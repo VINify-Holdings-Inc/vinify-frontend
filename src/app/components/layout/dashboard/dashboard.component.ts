@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { NgModel } from '@angular/forms';
@@ -24,7 +24,8 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   arrowIcon2: string = 'assets/images/icons/kpi-colorarrow.svg'
 
   constructor(private userData: userData,
-    private sessionService: SessionService,) {
+    private sessionService: SessionService,
+    private cdr: ChangeDetectorRef) {
 
   }
 
@@ -48,10 +49,15 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   status: string = "current";
   tableData: any[] = [];
   totalItems:any=0;
+  updatedTotalItems:any=0;
+  totalItemsKpi:any=0;
   tableName:string = "Summary VIN List & Alert Records"; 
   isLoading: boolean = false;
+  serchKpiType :any="total";
 
-  getTableData(vin = null) {
+
+   
+   getTableData(vin = null) {
 
     this.isLoading = true;
     // const url = `page=${this.page}&limit=${this.limit}&status=${encodeURIComponent(JSON.stringify(this.status))}&member=${encodeURIComponent(JSON.stringify(this.member))}`;
@@ -59,7 +65,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     if (this.vin) {
       url = url + `&vin=${(this.vin)}`
     }
-
+   if(this.serchKpiType=='total'){
     this.userData.getCurrentVinData(url).subscribe(
     //this.userData.getCurrentVinDataForUser(url).subscribe(
       (res: any) => {
@@ -76,8 +82,26 @@ export class DashboardComponent implements AfterViewInit, OnInit {
       }
     );
   }
+    else{
+      this.userData.getCurrentUpdatedVinData(url).subscribe(
+        (res: any) => {
+  
+          if (!res.error) {
+            this.tableData = res?.data?.items || [];
+            this.totalPages = res?.data?.totalPages || 0;
+            this.totalItems = res?.data?.totalRecords || 0;
+          }
+          this.isLoading = false;
+        },
+        (err) => {
+          this.isLoading = false;
+        }
+      );
+    }
+  }
 
 
+  
 
   handlePageChange(newPage: any) {
     this.page = newPage;
@@ -100,7 +124,8 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.userData.getKPIData().subscribe(
       (res: any) => {
         if (!res.error) {
-          this.totalItems = res?.data?.uniqueVinCount || 0;
+          this.totalItemsKpi = res?.data?.uniqueVinCount || 0;
+          this.updatedTotalItems = res?.data?.totalUpdatedData || 0;
           }
         this.isLoading = false;
       },
@@ -109,5 +134,16 @@ export class DashboardComponent implements AfterViewInit, OnInit {
       }
     );
   }
+
+  setKpiData(type:any){
+     this.serchKpiType=type;
+     this.limit = 9;
+     this.page = 1;
+     this.totalPages= 0;
+     this.getTableData();
+     console.log(type);
+     this.cdr.detectChanges();
+  }
+  
 
 }

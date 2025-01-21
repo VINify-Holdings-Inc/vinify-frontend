@@ -9,11 +9,11 @@
                             <h6 id="total-vehicle-monitors">Total Vehicle Monitors</h6>
                         </div>
                         <div>
-                            <h3 class="card-title cardDashNum" aria-label="1,036,278 total vehicle monitors">{{totalItems}}</h3>
+                            <h3 class="card-title cardDashNum" aria-label="1,036,278 total vehicle monitors">{{totalItemsKpi}}</h3>
                         </div>
-                        <div class="cardBottomLine check-details">
+                        <div class="cardBottomLine check-details" >
                             <a routerLink="#" aria-label="Check details about total vehicle monitors">Check Details</a>
-                            <a routerLink="#" class="arrow-angle" aria-hidden="true">
+                            <a routerLink="#" class="arrow-angle" aria-hidden="true" (click)="setKpiData('total')">
                                 <img [src]="arrowIcon"  class="img-fluid" alt="icon"/>
                             </a>
                         </div>
@@ -29,11 +29,11 @@
                             <h6 id="urgent-alerts">New Updates</h6>
                         </div>
                         <div>
-                            <h3 class="card-title cardDashNum" aria-label="10 urgent alerts">0</h3>
+                            <h3 class="card-title cardDashNum" aria-label="10 urgent alerts">{{updatedTotalItems}}</h3>
                         </div>
-                        <div class="cardBottomLine check-details color-check">
-                            <a routerLink="#" aria-label="Check details about urgent alerts">Check Details</a>
-                            <a routerLink="#" class="arrow-angle" aria-hidden="true">
+                        <div class="cardBottomLine check-details color-check" >
+                            <a routerLink="#" aria-label="Check details about urgent alerts"   >Check Details</a>
+                            <a routerLink="#" class="arrow-angle" aria-hidden="true" (click)="setKpiData('update')">
                                 <img [src]="arrowIcon2"  class="img-fluid" alt="icon"/>
                             </a>
                         </div>
