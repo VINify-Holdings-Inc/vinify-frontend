@@ -59,7 +59,7 @@ export class TitleTabComponent implements OnInit{
         if(this.searchValue==""){
           this.searchHideShow = !this.searchHideShow;
         }else{
-          this.handelSearch.emit(this.searchValue);
+          this.handelSearch.emit(this.searchValue.trim());
           this.handelPaginagtion.emit(1);
           this.sn=0;
         }
@@ -67,12 +67,12 @@ export class TitleTabComponent implements OnInit{
 
         getValifExist(){
           if(this.searchValue!=""){
-            this.handelSearch.emit(this.searchValue);
+            this.handelSearch.emit(this.searchValue.trim());
           }
         }
       onType(value: string){
         if(value==""){
-          this.handelSearch.emit(value);
+          this.handelSearch.emit(value.trim());
           //this.searchHideShow = !this.searchHideShow;
         }
       }
