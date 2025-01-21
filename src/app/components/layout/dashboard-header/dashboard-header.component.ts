@@ -83,7 +83,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
 
  getSearchVal(){
   if(this.searchValue!=""){
-    this.getVinSearch(this.searchValue);
+    this.getVinSearch(this.searchValue.trim());
       /* const timestamp = new Date().getTime(); 
         this.router.navigate(['/title-details'], { queryParams: { vin: this.searchValue, refresh: timestamp }}).then(() => {
           this.searchValue="";
