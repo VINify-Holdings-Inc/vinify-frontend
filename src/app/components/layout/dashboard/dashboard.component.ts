@@ -22,7 +22,7 @@ declare var bootstrap: any;
 export class DashboardComponent implements AfterViewInit, OnInit {
   arrowIcon: string = 'assets/images/icons/kpi-arrow.svg';
   arrowIcon2: string = 'assets/images/icons/kpi-colorarrow.svg'
-
+  dashboardCardActive:any="total";
   constructor(private userData: userData,
     private sessionService: SessionService,
     private cdr: ChangeDetectorRef) {
@@ -145,5 +145,8 @@ export class DashboardComponent implements AfterViewInit, OnInit {
      this.cdr.detectChanges();
   }
   
+  changeDashboardActiveCard=(paranemtName:any)=>{ 
+    this.dashboardCardActive = paranemtName;
+  }
 
 }

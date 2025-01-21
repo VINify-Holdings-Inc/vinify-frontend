@@ -1145,10 +1145,6 @@ h3.card-title.cardDashNum {
   font-size: 18px;
 }
 
-.dashboardDetailsBtn .card {
-  min-height: 136px;
-}
-
 .card.rounded.recentlyAlert .text-white {
   text-decoration: underline;
 }
@@ -1398,8 +1394,19 @@ span.command_key .f_style {
   padding: 12px 24px;
   flex-direction: column;
   gap: 16px;
+  border-radius: 12px;
 }
-
+.dashboardDetailsBtn .card{
+  min-height: 136px;
+}
+.card-body.cardInnerDash.dashcard {
+  cursor: pointer;
+}
+.card.cardActive{
+  border: 1px solid var(--bg-primary);
+  /* box-shadow: 0px 5px 10px 0px #8d90ac1a; */
+  box-shadow: 0px 5px 10px 0px  #f6e1e4;
+}
 .fraudGraphArea {
   padding: 5px 0 0;
 }
