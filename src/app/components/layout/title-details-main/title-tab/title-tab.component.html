@@ -35,68 +35,83 @@
                     </div>
                 </div>
             </div>
+          
             <div class="card">
                 <div class="card-body px-0 userdashbrdTable pt-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class="table-light-Usertbl">
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Title</th>
-                                    <th width="274">VIN Number</th>
-                                    <th width="274">State</th>
-                                    <th width="274">Brand Code</th>
-                                    <th width="150">Make</th>
-                                    <th width="70">Make Year</th>
-                                    <th width="70">Title/Brand Date</th>
-                 
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
-                            </tbody>
-                            <tbody>
-                                @if(tableData.length > 0){
-                                    @for(item of tableData;track $index){
-                                <tr>
-                                    <td>{{$index+1+sn}}</td>
-                                    <td>{{item?.status  }}</td>
-                                    <td><p><span class="vinModelName"> {{item?.vin}}</span></p></td>
-                                    <td><p class="boxTable">{{item?.state}}</p></td>
-                                    <td>{{item?.brand?item?.brand:"-"}}</td>
-                                    <td>{{item?.model}}</td>
-                                    <td>{{item?.modelYear | dateFormat: 'YYYY'}}</td>
-                                    <td>{{ item?.titleBrandDate | dateFormat: 'DD MMM YYYY' }}</td>
-                                     
-                                    </tr> 
-                                  }
-                                }
-                                @else{
-                                    <tr>
-                                        <td colspan="9" class="text-center">No data found</td>
-                                    </tr> 
-                                } 
-    
-                                
-                            </tbody>
+                  <div class="table-responsive">
+                    <table mat-table [dataSource]="tableData" class="table mat-elevation-z8 " matSort>
+                        <!-- SNo ->   mat-sort-header   -->
+                   
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef> Status </th>
+                        <td mat-cell *matCellDef="let element">  {{ element.status }} </td>
+                      </ng-container> 
 
-                        </table>
+                      <!-- vin Column sort ->   mat-sort-header   -->
+                      <ng-container matColumnDef="vin">
+                        <th mat-header-cell *matHeaderCellDef> VINs </th>
+                        <td mat-cell *matCellDef="let element"><span class="vinModelName">{{ element.vin }} </span></td>
+                      </ng-container>
+        
+                      <!-- Name modelYear -->
+                      <ng-container matColumnDef="state">
+                        <th mat-header-cell *matHeaderCellDef> State </th>
+                        <td mat-cell *matCellDef="let element">{{ element?.state }} </td>
+                      </ng-container>
+        
+                      <!-- model Column -->
+                      <ng-container matColumnDef="brand">
+                        <th mat-header-cell *matHeaderCellDef> Brand Code </th>
+                        <td mat-cell *matCellDef="let element"> {{element?.brand?element?.brand:"-"}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="model">
+                        <th mat-header-cell *matHeaderCellDef> Make </th>
+                        <td mat-cell *matCellDef="let element"> {{ element?.model }} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="modelYear">
+                        <th mat-header-cell *matHeaderCellDef> Make Year </th>
+                        <td mat-cell *matCellDef="let element"> {{ element?.modelYear | dateFormat: 'YYYY' }} </td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="titleBrandDate">
+                        <th mat-header-cell *matHeaderCellDef> Title/Brand Date </th>
+                        <td mat-cell *matCellDef="let element"> {{ element?.titleBrandDate | dateFormat: 'DD MMM YYYY' }} </td>
+                      </ng-container>
+        
+                     
+        
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;" >
+                      </tr>
+                    </table>
+                  </div>
+                  
+                  <div class="paginationArea">
+                    <div class="pagination pagination-container">
+                      <div>
+                        <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+                      </div>
+        
+                      <div class="paginationNumber">
+                        <!-- Page Numbers -->
+                        <ng-container *ngFor="let page of visiblePages">
+                          <ng-container *ngIf="page === -1">
+                            <span>...</span>
+                          </ng-container>
+                          <ng-container *ngIf="page !== -1">
+                            <button (click)="goToPage(page)" [class.active]="page === currentPage" class="currentPage">
+                              {{ page }}
+                            </button>
+                          </ng-container>
+                        </ng-container>
+                      </div>
+                      <div>
+                        <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+                      </div>
                     </div>
-                    <div class="paginationArea">
-                        <ul class="pagination pagination-lg">
-                            <li class="page-item">
-                                <button type="button" class="page-link" (click)="onClick(page-1)" [disabled]="page==1" >Previous</button>
-                            </li>
-                            <li class="page-item">
-                                <span class="page-link">Page {{page}} of {{totalPages}}</span>
-                            </li>
-                            <li class="page-item">
-                                <button type="button" class="page-link" (click)="onClick(page+1)" [disabled]="page==totalPages || page>totalPages" >Next</button>
-                            </li>
-                        </ul>
-                    </div>
+                  </div>
                 </div>
-            </div>
+              </div>
         </div>
         
         <!-- Tooltip Component -->

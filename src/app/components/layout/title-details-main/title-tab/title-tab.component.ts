@@ -1,12 +1,16 @@
-import {  Component, AfterViewInit, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import {  Component, AfterViewInit, Input, Output, EventEmitter, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-title-tab',
-  imports: [CommonModule,DateFormatPipe,FormsModule],
+  imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule],
   templateUrl: './title-tab.component.html',
   styleUrl: './title-tab.component.css'
 })
@@ -28,6 +32,18 @@ export class TitleTabComponent implements OnInit{
         @Output() handelSearch = new EventEmitter <any>();
        searchHideShow :boolean =false;
         
+       currentPage: number = 1; // Current active page
+       visiblePages: number[] = []; // Pages to display in the pagination UI
+       maxVisiblePages: number = 4; // Max number of pages to display at once
+     
+       displayedColumns: string[] = ['status','vin', 'state','brand', 'model','modelYear','titleBrandDate'];
+
+       ngOnChanges(changes: SimpleChanges) {
+         if (changes['totalPages']) {
+           this.updateVisiblePages();  // Trigger pagination update when totalPages changes
+         }
+        }
+
        ngOnInit() {
         this.totalRecords=this.tableData;
         }
@@ -60,7 +76,53 @@ export class TitleTabComponent implements OnInit{
           //this.searchHideShow = !this.searchHideShow;
         }
       }
+      
 
+      
+
+goToPage(page: number) {
+  if (page < 1 || page > this.totalPages) return; // Ensure page is within range
+  this.currentPage = page;
+  this.handelPaginagtion.emit(page);
+  this.updateVisiblePages();
+}
+
+nextPage() {
+  if (this.currentPage < this.totalPages) {
+    this.currentPage++;
+    this.goToPage(this.currentPage);
+  }
+}
+
+previousPage() {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+    this.goToPage(this.currentPage);
+  }
+}
+
+    updateVisiblePages() {
+
+      const visible: number[] = [];
+        
+      const start = Math.max(1, this.currentPage - Math.floor(this.maxVisiblePages / 2));
+      const end = Math.min(this.totalPages, start + this.maxVisiblePages - 1);
+      //const end = 4;
+
+      for (let i = start; i <= end; i++) {
+        visible.push(i);
+      }
+
+      if (start > 1) visible.unshift(1); // Ensure first page is visible
+      if (start > 2) visible.splice(1, 0, -1); // Add "..." after the first page
+
+      if (end < this.totalPages) visible.push(this.totalPages); // Ensure last page is visible
+      if (end < this.totalPages - 1) visible.splice(visible.length - 1, 0, -1); // Add "..." before the last page
+
+      this.visiblePages = visible;
+      this.getValifExist();
+      
+    }
 
 
 }
