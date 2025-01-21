@@ -59,6 +59,7 @@ export class UserTableComponent {
  
  ngOnChanges(changes: SimpleChanges) {
   if (changes['totalPages']) {
+    this.currentPage=this.page;   //set data
     this.updateVisiblePages();  // Trigger pagination update when totalPages changes
   }
 
@@ -69,6 +70,8 @@ export class UserTableComponent {
 }
 
  ngAfterViewInit() {
+  // console.log("page test",this.currentPage,this.page)
+  this.currentPage=this.page;
   this.updateVisiblePages();
 }
 
@@ -200,7 +203,7 @@ previousPage() {
 }
 
 updateVisiblePages() {
-
+  //  console.log("test",this.currentPage,this.page);
   const visible: number[] = [];
      
   const start = Math.max(1, this.currentPage - Math.floor(this.maxVisiblePages / 2));
