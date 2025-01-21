@@ -3434,9 +3434,7 @@ padding: 10px 0;
 }
 
 
-body.swal2-shown.swal2-height-auto .top-navbar.headerSection {
-  padding-right: 17px;
-}
+ 
  .table > tbody > tr:last-child > td {
   border: none;
 }
