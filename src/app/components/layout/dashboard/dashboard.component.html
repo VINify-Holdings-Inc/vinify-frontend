@@ -3,8 +3,9 @@
         <div class="row dashboardDetailsBtn">
             <!-- Total Vehicle Monitors -->
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                <div class="card" role="region" aria-labelledby="total-vehicle-monitors">
-                    <div class="card-body cardInnerDash">
+                
+                <div [ngClass]="{'cardActive': dashboardCardActive === 'total'}" class="card cardActive" role="region" aria-labelledby="total-vehicle-monitors" (click)="changeDashboardActiveCard('total')">
+                    <div class="card-body cardInnerDash dashcard" (click)="setKpiData('total')">
                         <div class="card-area">
                             <h6 id="total-vehicle-monitors">Total Vehicle Monitors</h6>
                         </div>
@@ -13,7 +14,7 @@
                         </div>
                         <div class="cardBottomLine check-details" >
                             <a routerLink="#" aria-label="Check details about total vehicle monitors">Check Details</a>
-                            <a routerLink="#" class="arrow-angle" aria-hidden="true" (click)="setKpiData('total')">
+                            <a routerLink="#" class="arrow-angle" aria-hidden="true" >
                                 <img [src]="arrowIcon"  class="img-fluid" alt="icon"/>
                             </a>
                         </div>
@@ -23,8 +24,8 @@
             
             <!-- Urgent Alerts -->
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                <div class="card bg-pink" role="region" aria-labelledby="urgent-alerts">
-                    <div class="card-body cardInnerDash">
+                <div class="card bg-pink" [ngClass]="{'cardActive': dashboardCardActive === 'updated'}"  role="region" aria-labelledby="urgent-alerts" (click)="changeDashboardActiveCard('updated')">
+                    <div class="card-body cardInnerDash dashcard" (click)="setKpiData('update')">
                         <div class="card-area">
                             <h6 id="urgent-alerts">New Updates</h6>
                         </div>
@@ -33,7 +34,7 @@
                         </div>
                         <div class="cardBottomLine check-details color-check" >
                             <a routerLink="#" aria-label="Check details about urgent alerts"   >Check Details</a>
-                            <a routerLink="#" class="arrow-angle" aria-hidden="true" (click)="setKpiData('update')">
+                            <a routerLink="#" class="arrow-angle" aria-hidden="true" >
                                 <img [src]="arrowIcon2"  class="img-fluid" alt="icon"/>
                             </a>
                         </div>
