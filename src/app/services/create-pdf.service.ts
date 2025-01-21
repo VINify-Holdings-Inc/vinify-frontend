@@ -43,7 +43,7 @@ export class CreatePDFService {
         item.vin,
         item.modelYear,
         item.model,
-        this.dateFormate.transform(item.alertDate, 'DD MMM YYYY') || 'N/A', 
+        this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') || 'N/A', 
         item.state,
         item.status,
          
