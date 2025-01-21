@@ -14,7 +14,6 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-
 @Component({
   selector: 'app-user-table',
   imports: [FormsModule,CommonModule,DateFormatPipe,LoaderComponent,MatTableModule, MatPaginatorModule, MatSortModule],
