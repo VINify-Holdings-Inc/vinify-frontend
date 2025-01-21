@@ -134,11 +134,7 @@ exportToPDF(type:any) {
 exportToPDFSIngle(type:any) { 
   Swal.fire({
     title: 'Info!',
-<<<<<<< HEAD
     text: 'Work In Progress.',
-=======
-    text: 'No VINs Selected.',
->>>>>>> f0361c70097c4db0b09eb90d22482ab1c5bf879a
     icon: 'info',
     confirmButtonText: 'OK',
   });
