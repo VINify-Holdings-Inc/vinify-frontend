@@ -52,6 +52,7 @@ export class UserTableComponent {
   @Input() totalPages :number=0;
   @Input() tableName : string ="";
   @Input() totalItems : number =0;
+  @Input() resetData : boolean =false;
 
   @Output() handelPaginagtion = new EventEmitter <any>();
   @Output() handelSearch = new EventEmitter <any>();
@@ -62,7 +63,11 @@ export class UserTableComponent {
     this.currentPage=this.page;   //set data
     this.updateVisiblePages();  // Trigger pagination update when totalPages changes
   }
-
+  if(changes['resetData']){
+    
+    this.searchValue="";
+    this.onType("");
+  }
   // Optionally, update table data if `tableData` changes
   // if (changes['tableData']) {
   //   this.updateTableData();
@@ -91,7 +96,7 @@ redirectToOtherPage(vin:string,model:string) {
   this.router.navigateByUrl('/user-summary-list', { state: data });
 }
 
-getSearchVal(){
+getSearchVal(){ 
   if(this.searchValue==""){
     this.searchHideShow = !this.searchHideShow;
    
@@ -106,6 +111,7 @@ getValifExist(){
   }
 }
 onType(value: string){
+ 
   if(value==""){
     this.handelSearch.emit(value.trim());
     //this.searchHideShow = !this.searchHideShow;
@@ -128,7 +134,11 @@ exportToPDF(type:any) {
 exportToPDFSIngle(type:any) { 
   Swal.fire({
     title: 'Info!',
+<<<<<<< HEAD
     text: 'Work In Progress.',
+=======
+    text: 'No VINs Selected.',
+>>>>>>> f0361c70097c4db0b09eb90d22482ab1c5bf879a
     icon: 'info',
     confirmButtonText: 'OK',
   });
