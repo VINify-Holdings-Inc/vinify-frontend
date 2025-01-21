@@ -122,6 +122,16 @@ exportToPDF(type:any) {
   this.getTableData(type);
 }
 
+exportToPDFSIngle(type:any) { 
+  Swal.fire({
+    title: 'Info!',
+    text: 'No VINs Selected.',
+    icon: 'info',
+    confirmButtonText: 'OK',
+  });
+}
+
+
 exportToPDFUdate(type:any) { 
   Swal.fire({
     title: 'Info!',
