@@ -54,7 +54,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   tableName:string = "Summary VIN List & Alert Records"; 
   isLoading: boolean = false;
   serchKpiType :any="total";
-
+  resetData:boolean=false;
 
    
    getTableData(vin = null) {
@@ -141,10 +141,10 @@ export class DashboardComponent implements AfterViewInit, OnInit {
      this.page = 1;
      this.totalPages= 0;
      this.getTableData();
-     console.log(type);
+     this.resetData =!this.resetData;
      this.cdr.detectChanges();
   }
-  
+   
   changeDashboardActiveCard=(paranemtName:any)=>{ 
     this.dashboardCardActive = paranemtName;
   }
