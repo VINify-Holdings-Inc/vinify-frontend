@@ -89,6 +89,9 @@
                       <tr mat-row *matRowDef="let row; columns: displayedColumns;" >
                       </tr>
                     </table>
+                    <div *ngIf="tableData.length === 0" class="no-data-message text-center">
+                        No data found
+                      </div>
                   </div>
                   
                   <div class="paginationArea">
