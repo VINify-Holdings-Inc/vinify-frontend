@@ -42,7 +42,7 @@ export class UserTableComponent {
   //selectedVins: string[] = [];
   selectedVins: { vin: string; alertDate: string }[] = [];
   checkAll:any=null;
-  displayedColumns: string[] = ['vin', 'year', 'make', 'alertDate','state','details'];
+  displayedColumns: string[] = ['vin', 'year', 'make', 'titleBrandDate','state','details'];
 
 
 
