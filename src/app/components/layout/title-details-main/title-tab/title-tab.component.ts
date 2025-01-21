@@ -36,7 +36,7 @@ export class TitleTabComponent implements OnInit{
        visiblePages: number[] = []; // Pages to display in the pagination UI
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
-       displayedColumns: string[] = ['status','vin', 'state','brand', 'model','modelYear','titleBrandDate'];
+       displayedColumns: string[] = ['index','status','vin', 'state','brand', 'model','modelYear','titleBrandDate'];
 
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
@@ -59,7 +59,7 @@ export class TitleTabComponent implements OnInit{
         if(this.searchValue==""){
           this.searchHideShow = !this.searchHideShow;
         }else{
-          this.handelSearch.emit(this.searchValue);
+          this.handelSearch.emit(this.searchValue.trim());
           this.handelPaginagtion.emit(1);
           this.sn=0;
         }
@@ -67,12 +67,12 @@ export class TitleTabComponent implements OnInit{
 
         getValifExist(){
           if(this.searchValue!=""){
-            this.handelSearch.emit(this.searchValue);
+            this.handelSearch.emit(this.searchValue.trim());
           }
         }
       onType(value: string){
         if(value==""){
-          this.handelSearch.emit(value);
+          this.handelSearch.emit(value.trim());
           //this.searchHideShow = !this.searchHideShow;
         }
       }
@@ -85,6 +85,7 @@ goToPage(page: number) {
   this.currentPage = page;
   this.handelPaginagtion.emit(page);
   this.updateVisiblePages();
+ 
 }
 
 nextPage() {
@@ -121,6 +122,7 @@ previousPage() {
 
       this.visiblePages = visible;
       this.getValifExist();
+    
       
     }
 

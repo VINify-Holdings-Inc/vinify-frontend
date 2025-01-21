@@ -96,18 +96,18 @@ getSearchVal(){
     this.searchHideShow = !this.searchHideShow;
    
   }else{
-    this.handelSearch.emit(this.searchValue);
+    this.handelSearch.emit(this.searchValue.trim());
     this.handelPaginagtion.emit(1);
   }  
 }
 getValifExist(){
   if(this.searchValue!=""){
-    this.handelSearch.emit(this.searchValue);
+    this.handelSearch.emit(this.searchValue.trim());
   }
 }
 onType(value: string){
   if(value==""){
-    this.handelSearch.emit(value);
+    this.handelSearch.emit(value.trim());
     //this.searchHideShow = !this.searchHideShow;
   }
 }
