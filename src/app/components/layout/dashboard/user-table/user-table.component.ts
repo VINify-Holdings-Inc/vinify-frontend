@@ -134,7 +134,7 @@ exportToPDF(type:any) {
 exportToPDFSIngle(type:any) { 
   Swal.fire({
     title: 'Info!',
-    text: 'Work In Progress.',
+    text: 'Work in Progress',
     icon: 'info',
     confirmButtonText: 'OK',
   });
