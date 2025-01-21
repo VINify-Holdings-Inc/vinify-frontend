@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // Correct import for autoTable plugin
 import { disclaimer } from './disclaimer';
-import {DateFormatPipe} from '../pipes/date-format.pipe'
+import { DateFormatPipe } from '../pipes/date-format.pipe'
 
 @Injectable({
   providedIn: 'root', // Makes this service globally available
 })
 export class CreatePDFService {
-  constructor(private dateFormate:DateFormatPipe){}
+  constructor(private dateFormate: DateFormatPipe) { }
   generatePDF(
     companyName: string,
     logoUrl: string,
@@ -38,15 +38,15 @@ export class CreatePDFService {
       // doc.text('Title Records', 10, 30);
 
       // Add Dynamic Table Data
-      const tableColumn = ['VINs','Year', 'Make','Alert Date', 'State', 'Status'  ];
+      const tableColumn = ['VINs', 'Year', 'Make', 'Alert Date', 'State', 'Status'];
       const tableRows = tableData.map((item) => [
         item.vin,
         item.modelYear,
         item.model,
-        this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') || 'N/A', 
-        item.state,
+        (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : 'N/A'),
+        item.state ? item.state : "N/A",
         item.status,
-         
+
       ]);
 
       (doc as any).autoTable({
@@ -65,13 +65,13 @@ export class CreatePDFService {
             const logoWidth = 37; // Adjust width
             const logoHeight = 7; // Adjust height
             doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
-      
+
             // Add Title
             doc.setFontSize(16);
             doc.setTextColor(40);
             doc.setFont('helvetica', 'bold');
             doc.text('Vehicle History Report', 70, 20);
-      
+
           }
         },
       });
@@ -101,7 +101,7 @@ export class CreatePDFService {
           yPosition = 20; // Reset yPosition to the top margin
         }
 
-       // doc.text(disclaimerLines[i], 10, yPosition); // Add line
+        // doc.text(disclaimerLines[i], 10, yPosition); // Add line
         doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
         yPosition += lineHeight; // Increment yPosition for the next line
       }
