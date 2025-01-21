@@ -22,12 +22,12 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="btn btn-custom navbar-btn_track" (click)="changeSearchIcon()"
+                            <span class="btn btn-custom navbar-btn_track" (click)="changeSearchIcon()"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 New VIN Report
                                 <img [src]="arrowIcon" *ngIf="searchIconToggle" class="img-fluid" alt="settings" />
                                 <img [src]="searchIcon" *ngIf="!searchIconToggle" class="img-fluid" alt="search" />
-                            </a>
+                            </span>
                             <div class="dropdown-menu dropdown-menu-end VinTrackDiv" #dropdownMenu>
                                 <div class="custom-modal"></div>
                                 <div class="trackVinNumber">
