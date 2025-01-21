@@ -2708,6 +2708,9 @@ thead.table-light-Usertbl tr {
 }
 .paginationNumber button.currentPage.active{
   background-color: var(--bg-primary);
+  color: #fff !important;
+  outline: none !important;
+  border: none !important;
 }
 a.nav-link.no-toggle-icon.noticon {
   background: #F9FAFB;
