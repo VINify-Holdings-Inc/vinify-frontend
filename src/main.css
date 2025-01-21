@@ -286,6 +286,17 @@ p.smallAddIcon i {
 .table thead {
   border-radius: 12px !important;
 }
+.table > thead > tr, .table > tbody > tr{
+  font-family: 'Century Gothic Paneuropean', sans-serif;
+  height: auto;
+  border-bottom: 1px solid #EDEDED !important;
+}
+.table > thead > tr > th{
+  border-bottom: 1px solid #EDEDED !important;
+}
+.mat-mdc-table{
+  background-color: transparent !important;
+}
 
 .table > thead > tr > th:last-child {
   text-align: right;
@@ -1407,9 +1418,12 @@ span.command_key .f_style {
 /* pagination CSS Design Starts */
 .paginationArea {
   border-top: 1px solid #EAECF0;
-  padding: 10px 15px 0 15px;
+  padding: 12px 24px;
   justify-content: end;
   display: flex;
+}
+.card-body.px-0.userdashbrdTable.pt-0 {
+  padding: 0;
 }
 
 .paginationArea li.page-item button.page-link {
@@ -2619,11 +2633,15 @@ thead.table-light-Usertbl tr {
 }
 
 .userdashbrdTable .table > tbody > tr > td {
-  padding: 16px 25px;
+  padding: 16px 24px;
   color: #475467;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100px;
 }
 
 .table>tbody>tr>td .vinModelName {
@@ -2660,8 +2678,23 @@ thead.table-light-Usertbl tr {
   display: flex;
   padding-left: 0;
   list-style: none;
-  justify-content: space-between;
+  justify-content: space-between !important;
   width: 100%;
+  flex-wrap: wrap;
+}
+.paginationArea .pagination button{
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #D0D5DD;
+  color: #344054;
+}
+.paginationNumber button.currentPage {
+  border: none !important;
+  margin: 0 5px;
+  padding: 5px 10px !important;
+}
+.paginationNumber button.currentPage.active{
+  background-color: var(--bg-primary);
 }
 a.nav-link.no-toggle-icon.noticon {
   background: #F9FAFB;
