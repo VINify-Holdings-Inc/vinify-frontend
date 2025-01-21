@@ -90,6 +90,8 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
         this.router.navigate(['/title-details'], { queryParams: { vin: this.searchValue, refresh: timestamp }}).then(() => {
           this.searchValue="";
       }); */
+  }else{
+    this.searchValue="";
   }
 }
 

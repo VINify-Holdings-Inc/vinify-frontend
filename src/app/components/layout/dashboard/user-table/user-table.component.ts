@@ -97,7 +97,6 @@ redirectToOtherPage(vin:string,model:string) {
 getSearchVal(){ 
   if(this.searchValue==""){
     this.searchHideShow = !this.searchHideShow;
-   
   }else{
     this.handelSearch.emit(this.searchValue.trim());
     this.handelPaginagtion.emit(1);
