@@ -1428,7 +1428,7 @@ span.command_key .f_style {
 
 /* pagination CSS Design Starts */
 .paginationArea {
-  border-top: 1px solid #EAECF0;
+  border-top: none;
   padding: 12px 24px;
   justify-content: end;
   display: flex;
@@ -3480,4 +3480,8 @@ a.m-logo img {
 
 .userdashbrdTable tr {
   cursor: pointer;
+}
+
+table {
+  margin-bottom: 0 !important;
 }
