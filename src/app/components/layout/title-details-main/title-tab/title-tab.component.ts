@@ -30,7 +30,7 @@ export class TitleTabComponent implements OnInit{
       
         @Output() handelPaginagtion = new EventEmitter <any>();
         @Output() handelSearch = new EventEmitter <any>();
-       searchHideShow :boolean =false;
+       
         
        currentPage: number = 1; // Current active page
        visiblePages: number[] = []; // Pages to display in the pagination UI
@@ -55,28 +55,23 @@ export class TitleTabComponent implements OnInit{
       } 
       
        
-      // getSearchVal(){
-      //   if(this.searchValue==""){
-      //     this.searchHideShow = !this.searchHideShow;
-      //   }else{
-      //     this.handelSearch.emit(this.searchValue.trim());
-      //     this.handelPaginagtion.emit(1);
-      //     this.sn=0;
-      //   }
-      // }
-
-      getSearchVal() {
-        const trimmedValue = this.searchValue?.trim(); 
-        if (!trimmedValue) {
-          this.searchHideShow = !this.searchHideShow;
+      getSearchVal(){
+        if(this.searchValue==""){
           this.searchValue="";
-        } else {
-          this.handelSearch.emit(trimmedValue);
-          this.handelPaginagtion.emit(1);
-          this.sn=0;
+         
+        }else{
+          if(this.searchValue.trim().length === 0){
+            this.searchValue="";
+          }else{
+            this.handelSearch.emit(this.searchValue.trim());
+            this.handelPaginagtion.emit(1);
+            this.sn=0;
+          }
+          
         }
       }
 
+      
         getValifExist(){
           if(this.searchValue!=""){
             this.handelSearch.emit(this.searchValue.trim());
@@ -85,7 +80,7 @@ export class TitleTabComponent implements OnInit{
       onType(value: string){
         if(value==""){
           this.handelSearch.emit(value.trim());
-          //this.searchHideShow = !this.searchHideShow;
+          
         }
       }
       

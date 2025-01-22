@@ -6,7 +6,7 @@
           <div class="cardSubHead">
   
             <div class="userSingleSearch">
-              <span class="VInNumberInput" *ngIf="searchHideShow">
+              <span class="VInNumberInput" >
                 <input type="text" [(ngModel)]="searchValue" (keydown.enter)="getSearchVal()"
                   (ngModelChange)="onType(searchValue)" class="form-control" placeholder="Search VIN Number" />
               </span>
