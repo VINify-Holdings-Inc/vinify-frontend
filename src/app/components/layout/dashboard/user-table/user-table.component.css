@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  font-family: Arial, sans-serif;
 }
 
 button {
@@ -32,11 +31,12 @@ button:hover:not(:disabled):not(.active) {
   background-color: #f0f0f0;
 }
 
-span {
+.space{
+  position: absolute;
+  left: 125px;
+  color: #475467;
   font-size: 14px;
-  color: #888;
 }
-
 @media (max-width: 768px) {
   .pagination-container {
     gap: 5px;
@@ -48,6 +48,3 @@ span {
   }
 }
 
-.space{
-  margin-left: -650px;
-}
