@@ -51,10 +51,9 @@ export class UserTableComponent {
   @Input() tableName : string ="";
   @Input() totalItems : number =0;
   @Input() resetData : boolean =false;
-
+  @Input() limit :number=0;
   @Output() handelPaginagtion = new EventEmitter <any>();
   @Output() handelSearch = new EventEmitter <any>();
- searchHideShow :boolean =false;
  
  ngOnChanges(changes: SimpleChanges) {
   if (changes['totalPages']) {
@@ -94,27 +93,21 @@ redirectToOtherPage(vin:string,model:string) {
   this.router.navigateByUrl('/user-summary-list', { state: data });
 }
 
-// getSearchVal(){ 
-//   if(this.searchValue==""){
-//     this.searchHideShow = !this.searchHideShow;
-//   }else{
-//     this.handelSearch.emit(this.searchValue.trim());
-//     this.handelPaginagtion.emit(1);
-//   }  
-// }
 
-getSearchVal() {
-  const trimmedValue = this.searchValue?.trim(); 
-  if (!trimmedValue) {
-    this.searchHideShow = !this.searchHideShow;
+getSearchVal(){
+  if(this.searchValue==""){
     this.searchValue="";
-  } else {
-    this.handelSearch.emit(trimmedValue);
-    this.handelPaginagtion.emit(1);
+  }else{
+    if(this.searchValue.trim().length === 0){
+      this.searchValue="";
+    }else{
+      this.handelSearch.emit(this.searchValue.trim());
+      this.handelPaginagtion.emit(1);
+     
+    }
+    
   }
 }
-
-
 
 
 getValifExist(){
@@ -126,7 +119,7 @@ onType(value: string){
  
   if(value==""){
     this.handelSearch.emit(value.trim());
-    //this.searchHideShow = !this.searchHideShow;
+   
   }
 }
 getVinDetails(vin:any,model:any){

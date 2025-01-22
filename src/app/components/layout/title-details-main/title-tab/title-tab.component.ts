@@ -26,17 +26,17 @@ export class TitleTabComponent implements OnInit{
         @Input() tableData :any[]=[];
         @Input() page :number=0;
         @Input() totalPages :number=0;
-        @Input() totalData :number=0
-      
+        @Input() totalData :number=0;
+        @Input() limit:number=0;
         @Output() handelPaginagtion = new EventEmitter <any>();
         @Output() handelSearch = new EventEmitter <any>();
-       searchHideShow :boolean =false;
+       
         
        currentPage: number = 1; // Current active page
        visiblePages: number[] = []; // Pages to display in the pagination UI
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
-       displayedColumns: string[] = ['index','status','vin', 'state','brand', 'model','modelYear','titleBrandDate'];
+       displayedColumns: string[] = ['status','vin', 'state','brand', 'model','modelYear','titleBrandDate'];
 
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
@@ -49,34 +49,29 @@ export class TitleTabComponent implements OnInit{
         }
 
       onClick(pages:any){
-         this.handelPaginagtion.emit(pages);
+         this.handelPaginagtion.emit({"page":pages,"search":this.searchValue.trim()});
          this.sn=(pages-1)*10;
          this.getValifExist();
       } 
       
        
-      // getSearchVal(){
-      //   if(this.searchValue==""){
-      //     this.searchHideShow = !this.searchHideShow;
-      //   }else{
-      //     this.handelSearch.emit(this.searchValue.trim());
-      //     this.handelPaginagtion.emit(1);
-      //     this.sn=0;
-      //   }
-      // }
-
-      getSearchVal() {
-        const trimmedValue = this.searchValue?.trim(); 
-        if (!trimmedValue) {
-          this.searchHideShow = !this.searchHideShow;
+      getSearchVal(){
+        if(this.searchValue==""){
           this.searchValue="";
-        } else {
-          this.handelSearch.emit(trimmedValue);
-          this.handelPaginagtion.emit(1);
-          this.sn=0;
+         
+        }else{
+          if(this.searchValue.trim().length === 0){
+            this.searchValue="";
+          }else{
+            this.handelSearch.emit(this.searchValue.trim());
+            this.handelPaginagtion.emit({"page":1,"search":this.searchValue.trim()});
+            this.sn=0;
+          }
+          
         }
       }
 
+      
         getValifExist(){
           if(this.searchValue!=""){
             this.handelSearch.emit(this.searchValue.trim());
@@ -85,7 +80,7 @@ export class TitleTabComponent implements OnInit{
       onType(value: string){
         if(value==""){
           this.handelSearch.emit(value.trim());
-          //this.searchHideShow = !this.searchHideShow;
+          
         }
       }
       
@@ -95,7 +90,7 @@ export class TitleTabComponent implements OnInit{
 goToPage(page: number) {
   if (page < 1 || page > this.totalPages) return; // Ensure page is within range
   this.currentPage = page;
-  this.handelPaginagtion.emit(page);
+  this.handelPaginagtion.emit({"page":page,"search":this.searchValue.trim()});
   this.updateVisiblePages();
  
 }
