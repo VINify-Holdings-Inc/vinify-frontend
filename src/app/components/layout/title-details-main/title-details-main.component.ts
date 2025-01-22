@@ -5,10 +5,11 @@ import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SessionService } from '../../../services/session.service';
 import Swal from 'sweetalert2';
+import { TitleComparisonComponent } from './title-comparison/title-comparison.component';
 
 @Component({
   selector: 'app-title-details-main',
-  imports: [TitleTabComponent,LoaderComponent],
+  imports: [TitleTabComponent,TitleComparisonComponent,LoaderComponent],
   templateUrl: './title-details-main.component.html',
   styleUrl: './title-details-main.component.css'
 })

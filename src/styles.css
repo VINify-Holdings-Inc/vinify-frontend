@@ -719,9 +719,6 @@
   .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.lastTab{
     border-radius: 0 5px 5px 0;
   }
-  .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.firstTab, .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.active{
-    border-radius:  5px 0 0 5px;
-  }
   .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link{
     border-radius: 0;
   }
