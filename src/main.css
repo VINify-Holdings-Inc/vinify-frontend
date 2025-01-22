@@ -1410,7 +1410,6 @@ span.command_key .f_style {
 .fraudGraphArea {
   padding: 5px 0 0;
 }
-
 .userSingleSearch .VInNumberInput input {
   padding: 10px 14px;
   height: 40px;
@@ -1420,8 +1419,16 @@ span.command_key .f_style {
   font-weight: 600;
   font-size: 14px;
   border-radius: 8px;
+  text-align: left;
+  padding-left: 40px;
 }
-
+.VInNumberInput {
+  position: relative;
+  max-width: 195px;
+}
+.VInNumberInput img {
+  position: absolute;
+}
 .userSingleSearch img.img-fluid {
   cursor: pointer;
 }
