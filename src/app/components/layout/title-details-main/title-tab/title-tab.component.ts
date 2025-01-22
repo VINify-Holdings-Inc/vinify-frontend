@@ -26,8 +26,8 @@ export class TitleTabComponent implements OnInit{
         @Input() tableData :any[]=[];
         @Input() page :number=0;
         @Input() totalPages :number=0;
-        @Input() totalData :number=0
-      
+        @Input() totalData :number=0;
+        @Input() limit:number=0;
         @Output() handelPaginagtion = new EventEmitter <any>();
         @Output() handelSearch = new EventEmitter <any>();
        
@@ -36,7 +36,7 @@ export class TitleTabComponent implements OnInit{
        visiblePages: number[] = []; // Pages to display in the pagination UI
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
-       displayedColumns: string[] = ['index','status','vin', 'state','brand', 'model','modelYear','titleBrandDate'];
+       displayedColumns: string[] = ['status','vin', 'state','brand', 'model','modelYear','titleBrandDate'];
 
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
@@ -49,7 +49,7 @@ export class TitleTabComponent implements OnInit{
         }
 
       onClick(pages:any){
-         this.handelPaginagtion.emit(pages);
+         this.handelPaginagtion.emit({"page":pages,"search":this.searchValue.trim()});
          this.sn=(pages-1)*10;
          this.getValifExist();
       } 
@@ -64,7 +64,7 @@ export class TitleTabComponent implements OnInit{
             this.searchValue="";
           }else{
             this.handelSearch.emit(this.searchValue.trim());
-            this.handelPaginagtion.emit(1);
+            this.handelPaginagtion.emit({"page":1,"search":this.searchValue.trim()});
             this.sn=0;
           }
           
@@ -90,7 +90,7 @@ export class TitleTabComponent implements OnInit{
 goToPage(page: number) {
   if (page < 1 || page > this.totalPages) return; // Ensure page is within range
   this.currentPage = page;
-  this.handelPaginagtion.emit(page);
+  this.handelPaginagtion.emit({"page":page,"search":this.searchValue.trim()});
   this.updateVisiblePages();
  
 }

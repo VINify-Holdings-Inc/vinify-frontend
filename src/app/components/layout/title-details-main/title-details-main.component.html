@@ -110,7 +110,7 @@
             </div>
             <!-- Title Details Tab Section -->
             <div class="tab-pane fade show active" id="detailsTab" role="tabpanel">
-               <app-title-tab [tableData]="tableData" [page]="page" [totalPages]="totalPages" [totalData]="totalData" (handelPaginagtion)="handlePageChange($event)" (handelSearch)="handelSearch($event)"></app-title-tab>
+               <app-title-tab [tableData]="tableData" [page]="page" [totalPages]="totalPages" [totalData]="totalData" (handelPaginagtion)="handlePageChange($event)" (handelSearch)="handelSearch($event)" [limit]="limit"></app-title-tab>
             </div>
             <!-- Additional Info Tab Section -->
             <div class="tab-pane fade" id="additionalTab" role="tabpanel">

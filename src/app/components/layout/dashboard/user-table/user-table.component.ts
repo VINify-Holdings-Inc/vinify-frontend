@@ -51,7 +51,7 @@ export class UserTableComponent {
   @Input() tableName : string ="";
   @Input() totalItems : number =0;
   @Input() resetData : boolean =false;
-
+  @Input() limit :number=0;
   @Output() handelPaginagtion = new EventEmitter <any>();
   @Output() handelSearch = new EventEmitter <any>();
  
