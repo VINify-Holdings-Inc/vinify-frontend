@@ -29,7 +29,7 @@ export class TitleDetailsMainComponent {
         this.paramVin = params['vin'] || '';
         this.preserveVin = params['vin'] || '';
         this.model=params['model'] || '';
-       // console.log('Query Params Changed: ', this.paramVin);
+        console.log('Query Params Changed: ', this.paramVin);
         if (this.paramVin) {
           this.getTableData(this.paramVin);
         }
@@ -78,17 +78,25 @@ export class TitleDetailsMainComponent {
         if(!res.error){
           this.tableData=res?.data?.items||[];
           this.totalPages= res?.data?.totalPages||0;
-          this.totalData= res?.data?.totalItems;
+          this.totalData= res?.data?.totalItems||0;
           this.paramVin=res?.data?.items[0].vin;
           this.model=res?.data?.items[0].model;
         }else{
-          Swal.fire({
-                  title: 'Error!',
-                  text: res.message,
-                  icon: 'error',
-                  confirmButtonText: 'OK',
-                })
+          this.tableData=res?.data?.items||[];
+          this.totalPages= res?.data?.totalPages||0;
+          this.totalData= res?.data?.totalItems||0;
+          this.paramVin=res?.data?.items[0].vin||"";
+          this.model=res?.data?.items[0].model||"";
         }
+        // else{
+        //   Swal.fire({
+        //           title: 'Error!',
+        //           text: res.message,
+        //           icon: 'error',
+        //           confirmButtonText: 'OK',
+        //         })
+        // }
+
       },
       (err) => {
         this.isLoading=false;
@@ -97,10 +105,16 @@ export class TitleDetailsMainComponent {
   }
 
    handlePageChange(newPage:any){
-    this.page = newPage ;
-    this.getTableData(this.paramVin);
+    this.page = newPage.page ;
+     if(newPage.search==""){
+      this.getTableData(this.paramVin);
+     }else{
+      this.getTableData(newPage.search);
+     }
+    
     }
   handelSearch(searchVal:any){
+    console.log("ser");
     this.getTableData(searchVal);
    }
 

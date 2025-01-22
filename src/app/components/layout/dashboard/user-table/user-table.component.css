@@ -47,3 +47,7 @@ span {
     font-size: 12px;
   }
 }
+
+.space{
+  margin-left: -650px;
+}
