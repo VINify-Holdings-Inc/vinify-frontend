@@ -14,8 +14,6 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-
-
 @Component({
   selector: 'app-user-table',
   imports: [FormsModule,CommonModule,DateFormatPipe,LoaderComponent,MatTableModule, MatPaginatorModule, MatSortModule],
@@ -96,15 +94,29 @@ redirectToOtherPage(vin:string,model:string) {
   this.router.navigateByUrl('/user-summary-list', { state: data });
 }
 
-getSearchVal(){ 
-  if(this.searchValue==""){
+// getSearchVal(){ 
+//   if(this.searchValue==""){
+//     this.searchHideShow = !this.searchHideShow;
+//   }else{
+//     this.handelSearch.emit(this.searchValue.trim());
+//     this.handelPaginagtion.emit(1);
+//   }  
+// }
+
+getSearchVal() {
+  const trimmedValue = this.searchValue?.trim(); 
+  if (!trimmedValue) {
     this.searchHideShow = !this.searchHideShow;
-   
-  }else{
-    this.handelSearch.emit(this.searchValue.trim());
+    this.searchValue="";
+  } else {
+    this.handelSearch.emit(trimmedValue);
     this.handelPaginagtion.emit(1);
-  }  
+  }
 }
+
+
+
+
 getValifExist(){
   if(this.searchValue!=""){
     this.handelSearch.emit(this.searchValue.trim());
@@ -134,7 +146,7 @@ exportToPDF(type:any) {
 exportToPDFSIngle(type:any) { 
   Swal.fire({
     title: 'Info!',
-    text: 'Work In Progress.',
+    text: 'Work in Progress',
     icon: 'info',
     confirmButtonText: 'OK',
   });

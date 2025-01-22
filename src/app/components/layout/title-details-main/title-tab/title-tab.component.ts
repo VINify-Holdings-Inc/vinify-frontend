@@ -55,11 +55,23 @@ export class TitleTabComponent implements OnInit{
       } 
       
        
-      getSearchVal(){
-        if(this.searchValue==""){
+      // getSearchVal(){
+      //   if(this.searchValue==""){
+      //     this.searchHideShow = !this.searchHideShow;
+      //   }else{
+      //     this.handelSearch.emit(this.searchValue.trim());
+      //     this.handelPaginagtion.emit(1);
+      //     this.sn=0;
+      //   }
+      // }
+
+      getSearchVal() {
+        const trimmedValue = this.searchValue?.trim(); 
+        if (!trimmedValue) {
           this.searchHideShow = !this.searchHideShow;
-        }else{
-          this.handelSearch.emit(this.searchValue.trim());
+          this.searchValue="";
+        } else {
+          this.handelSearch.emit(trimmedValue);
           this.handelPaginagtion.emit(1);
           this.sn=0;
         }
