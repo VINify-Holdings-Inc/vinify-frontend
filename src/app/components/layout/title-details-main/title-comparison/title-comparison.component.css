@@ -4,8 +4,9 @@
   justify-content: space-between;
   width: 100%;
   margin-right: 15px;
+  flex-wrap: wrap;
 }
-.currentBgTab {
+.radiusBgTab {
   border-radius: 12px;
 }
 .updatedHead .textUpdate {
