@@ -1,0 +1,4 @@
+
+<app-alert-table [tableData]="tableData" [page]="page" [totalPages]="totalPages"  [limit]="limit" [totalItems]="totalItems" (handelPaginagtion)="handlePageChange($event)" (handelSearch)="handelSearch($event)" ></app-alert-table>
+<!-- <app-alert-table [tableData]="tableData" [page]="page" [totalPages]="totalPages" [totalItems]="totalItems" (handelPaginagtion)="handlePageChange($event)" (handelSearch)="handelSearch($event)" [tableName]="tableName" [resetData]="resetData" [limit]="limit"></app-alert-table> -->
+<app-loader [IsLoading]="isLoading"></app-loader>
