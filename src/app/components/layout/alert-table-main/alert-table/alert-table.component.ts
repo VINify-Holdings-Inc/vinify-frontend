@@ -33,7 +33,8 @@ export class AlertTableComponent implements OnInit{
         @Input() totalItems : number =0;
         @Output() handelPaginagtion = new EventEmitter <any>();
         @Output() handelSearch = new EventEmitter <any>();
-       
+        @Output() handelAlertFil = new EventEmitter <any>();
+        alert:any=null;
         
        currentPage: number = 1; // Current active page
        visiblePages: number[] = []; // Pages to display in the pagination UI
@@ -48,7 +49,7 @@ export class AlertTableComponent implements OnInit{
         }
 
        ngOnInit() {
-        console.log(this.tableData);
+       // console.log(this.tableData);
         this.totalRecords=this.tableData;
         }
 
@@ -133,9 +134,10 @@ previousPage() {
 
       this.visiblePages = visible;
       this.getValifExist();
-    
-      
+         
     }
-
+   alertFilter(data:any){
+    this.handelAlertFil.emit(data);
+   } 
 
 }
