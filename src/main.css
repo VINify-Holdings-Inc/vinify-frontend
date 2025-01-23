@@ -1131,6 +1131,7 @@ h3.card-title.cardDashNum {
 .card .card-header.bg-header-area a.view {
   text-decoration: underline;
   color: #fff;
+  cursor: pointer;
 }
 
 .card.rounded.recentlyAlert .card-area span.date-time {
@@ -3439,8 +3440,6 @@ padding: 10px 0;
 .button-cursor{
   cursor: pointer !important;
 }
-
-
  
  .table > tbody > tr:last-child > td {
   border: none;
