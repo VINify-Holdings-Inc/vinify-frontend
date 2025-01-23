@@ -101,7 +101,7 @@ redirectToOtherPage(vin:string,model:string) {
 
 
 getSearchVal(){
- console.log("search-us",this.searchValue)
+ //console.log("search-us",this.searchValue)
   if(this.searchValue==""){
     this.searchValue="";
   }else{
@@ -119,7 +119,7 @@ getSearchVal(){
 
 
 onType(value: string){
-  console.log("onType");
+  //console.log("onType");
   if(value==""){
     this.handelSearch.emit(value.trim());
    
@@ -240,7 +240,7 @@ updateVisiblePages() {
 }
 
 getValifExist(){
-  console.log("getValifExist");
+  //console.log("getValifExist");
   if(this.searchValue!=""){
     this.handelSearch.emit(this.searchValue.trim());
   }
