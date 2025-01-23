@@ -76,7 +76,7 @@ export class UserTableComponent implements AfterViewInit, OnChanges{
     // Trigger change detection manually to avoid ExpressionChangedAfterItHasBeenCheckedError
     this.cdr.detectChanges();
   }
-
+  
   ngAfterViewInit() {
     this.currentPage = this.page;
     this.updateVisiblePages();

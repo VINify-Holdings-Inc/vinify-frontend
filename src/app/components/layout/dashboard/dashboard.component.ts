@@ -114,7 +114,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     
   };
   handelSearch(searchVal: any) {
-    console.log("searchVal",searchVal);
+    //console.log("searchVal",searchVal);
     this.vin=searchVal;
     if(searchVal=="" ||searchVal==null){
       this.getTableData();
