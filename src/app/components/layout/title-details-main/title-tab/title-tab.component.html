@@ -62,13 +62,13 @@
                       <!-- Name modelYear -->
                       <ng-container matColumnDef="state">
                         <th mat-header-cell *matHeaderCellDef width="220"> State </th>
-                        <td mat-cell *matCellDef="let element">{{ element?.state }} </td>
+                        <td mat-cell *matCellDef="let element">{{ element?.state ? element?.state : "-"}} </td>
                       </ng-container>
         
                       <!-- model  Column -->
-                      <ng-container matColumnDef="brand">
+                      <ng-container matColumnDef="brand"> 
                         <th mat-header-cell *matHeaderCellDef width="380"> Brand Name </th>
-                        <td mat-cell *matCellDef="let element"> <p class="boxTable">{{element?.brand?element?.brand:"-"}}</p> </td>
+                        <td mat-cell *matCellDef="let element" ><p class="boxTable" (click)="getBrandDetails(element?.brand)"> {{element?.brand ? element?.brand?.split(' - ')[0]:"-"}} </p></td>
                       </ng-container>
                       <ng-container matColumnDef="model" width="80">
                         <th mat-header-cell *matHeaderCellDef> Make </th>

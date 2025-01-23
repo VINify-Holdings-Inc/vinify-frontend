@@ -42,7 +42,6 @@ export class DataTableComponent implements OnInit, AfterViewInit {
     console.log(this.sort);     // Should not be undefined
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-   
   }
   
   
