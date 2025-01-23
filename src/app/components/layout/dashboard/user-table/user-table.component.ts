@@ -1,4 +1,12 @@
-import { Component, Input,Output,EventEmitter,ViewChild, SimpleChanges } from '@angular/core';
+import {Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  SimpleChanges,
+  ChangeDetectorRef,
+  AfterViewInit,
+  OnChanges, } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -20,7 +28,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.css'
 })
-export class UserTableComponent {
+export class UserTableComponent implements AfterViewInit, OnChanges{
   filerIcon: string = 'assets/images/icons/filter-lines.svg';
   calendarIcon: string = 'assets/images/icons/calendar.svg';
   pdfIcon: string = 'assets/images/icons/pdf.svg';
@@ -29,7 +37,7 @@ export class UserTableComponent {
   //@ViewChild(MatSort) sort!: MatSort; 
 
 
-  constructor(private router: Router,private pdfService: CreatePDFService,private userData: userData,) {
+  constructor(private router: Router,private pdfService: CreatePDFService,private userData: userData,private cdr: ChangeDetectorRef) {
    
   }
   searchValue :string="";
@@ -55,34 +63,32 @@ export class UserTableComponent {
   @Output() handelPaginagtion = new EventEmitter <any>();
   @Output() handelSearch = new EventEmitter <any>();
  
- ngOnChanges(changes: SimpleChanges) {
-  if (changes['totalPages']) {
-    this.currentPage=this.page;   //set data
-    this.updateVisiblePages();  // Trigger pagination update when totalPages changes
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['resetData']) {
+      this.searchValue = '';
+      this.onType('');
+      this.updateVisiblePages();
+    }
+    if (changes['page'] || changes['totalPages']) {
+      this.currentPage = this.page;
+      this.updateVisiblePages();
+    }
+    // Trigger change detection manually to avoid ExpressionChangedAfterItHasBeenCheckedError
+    this.cdr.detectChanges();
   }
-  if(changes['resetData']){
-    
-    this.searchValue="";
-    this.onType("");
+  
+  ngAfterViewInit() {
+    this.currentPage = this.page;
+    this.updateVisiblePages();
+    this.cdr.detectChanges(); // Manually detect changes post view initialization
   }
-  // Optionally, update table data if `tableData` changes
-  // if (changes['tableData']) {
-  //   this.updateTableData();
-  // }
-}
-
- ngAfterViewInit() {
-  // console.log("page test",this.currentPage,this.page)
-  this.currentPage=this.page;
-  this.updateVisiblePages();
-}
 
   currentPage: number = 1; // Current active page
   visiblePages: number[] = []; // Pages to display in the pagination UI
   maxVisiblePages: number = 4; // Max number of pages to display at once
 
 onClick(pages:any){
-   this.handelPaginagtion.emit(pages);
+   this.handelPaginagtion.emit({"page":pages,"search":this.searchValue});
    this.getValifExist();
    this.selectedVins = [];
 } 
@@ -95,6 +101,7 @@ redirectToOtherPage(vin:string,model:string) {
 
 
 getSearchVal(){
+ console.log("search-us",this.searchValue)
   if(this.searchValue==""){
     this.searchValue="";
   }else{
@@ -102,7 +109,7 @@ getSearchVal(){
       this.searchValue="";
     }else{
       this.handelSearch.emit(this.searchValue.trim());
-      this.handelPaginagtion.emit(1);
+      this.handelPaginagtion.emit({"page":1,"search":this.searchValue});
      
     }
     
@@ -110,13 +117,9 @@ getSearchVal(){
 }
 
 
-getValifExist(){
-  if(this.searchValue!=""){
-    this.handelSearch.emit(this.searchValue.trim());
-  }
-}
+
 onType(value: string){
- 
+  console.log("onType");
   if(value==""){
     this.handelSearch.emit(value.trim());
    
@@ -195,7 +198,7 @@ getTableData(dataType:any) {
 goToPage(page: number) {
   if (page < 1 || page > this.totalPages) return; // Ensure page is within range
   this.currentPage = page;
-  this.handelPaginagtion.emit(page);
+  this.handelPaginagtion.emit({"page":page,"search":this.searchValue});
   this.updateVisiblePages();
 }
 
@@ -236,6 +239,11 @@ updateVisiblePages() {
   
 }
 
-
+getValifExist(){
+  console.log("getValifExist");
+  if(this.searchValue!=""){
+    this.handelSearch.emit(this.searchValue.trim());
+  }
+}
 
 }

@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-title-tab',
@@ -133,5 +134,16 @@ previousPage() {
       
     }
 
+    getBrandDetails(data:any){
+      if(data !=null )
+      Swal.fire({
+                  title: 'Info!',
+                  text: data,
+                  icon: 'info',
+                  showCancelButton: false, // Enables the cancel button
+                  confirmButtonText: 'OK', // Text for the confirm button
+                 
+                })
+    }
 
 }
