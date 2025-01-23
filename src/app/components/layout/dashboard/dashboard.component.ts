@@ -58,7 +58,8 @@ export class DashboardComponent implements AfterViewInit, OnInit {
 
    
    getTableData(vin = null) {
-
+    console.log("vin",vin);
+    this.tableData=[];
     this.isLoading = true;
     // const url = `page=${this.page}&limit=${this.limit}&status=${encodeURIComponent(JSON.stringify(this.status))}&member=${encodeURIComponent(JSON.stringify(this.member))}`;
     let url = `page=${this.page}&limit=${this.limit}`;
@@ -67,7 +68,6 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     }
    if(this.serchKpiType=='total'){
     this.userData.getCurrentVinData(url).subscribe(
-    //this.userData.getCurrentVinDataForUser(url).subscribe(
       (res: any) => {
 
         if (!res.error) {
@@ -104,13 +104,24 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   
 
   handlePageChange(newPage: any) {
-    this.page = newPage;
-    this.getTableData();
+    console.log("pagination",newPage);
+    this.page = newPage.page;
+    if(newPage.search=="" ||newPage.search==null){
+      this.getTableData();
+    }else{
+      this.getTableData(newPage.search);
+    }
+    
   };
   handelSearch(searchVal: any) {
-   // console.log("searchVal",searchVal);
+    console.log("searchVal",searchVal);
     this.vin=searchVal;
-    this.getTableData(searchVal);
+    if(searchVal=="" ||searchVal==null){
+      this.getTableData();
+    }else{
+      this.getTableData(searchVal);
+    }
+    //this.getTableData(searchVal);
   }
 
   isChartSelected: string = "line";
