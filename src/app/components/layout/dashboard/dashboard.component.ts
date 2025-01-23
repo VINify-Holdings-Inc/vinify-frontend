@@ -58,7 +58,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
 
    
    getTableData(vin = null) {
-    console.log("vin",vin);
+    //console.log("vin",vin);
     this.tableData=[];
     this.isLoading = true;
     // const url = `page=${this.page}&limit=${this.limit}&status=${encodeURIComponent(JSON.stringify(this.status))}&member=${encodeURIComponent(JSON.stringify(this.member))}`;
@@ -104,7 +104,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   
 
   handlePageChange(newPage: any) {
-    console.log("pagination",newPage);
+    //console.log("pagination",newPage);
     this.page = newPage.page;
     if(newPage.search=="" ||newPage.search==null){
       this.getTableData();
@@ -151,6 +151,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
      this.limit = 9;
      this.page = 1;
      this.totalPages= 0;
+     this.vin="";
      this.getTableData();
      this.resetData =!this.resetData;
      this.cdr.detectChanges();
