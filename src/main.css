@@ -2658,17 +2658,15 @@ thead.table-light-Usertbl tr {
   font-weight: 400;
   line-height: 20px;
 }
-/* .boxTable{
+.boxTable{
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  width: 274px;
-} */
-
+  width: 380px;
+}
 .table>tbody>tr>td .vinModelName {
   color: #201d1e;
 }
-
 .UserCardHeader {
   display: flex;
   justify-content: space-between;
