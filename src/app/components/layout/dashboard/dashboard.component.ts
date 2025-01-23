@@ -15,7 +15,7 @@ declare var bootstrap: any;
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [UserTableComponent, CommonModule, LoaderComponent],
+  imports: [UserTableComponent,RouterLink,CommonModule, LoaderComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
