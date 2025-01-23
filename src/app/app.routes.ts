@@ -17,6 +17,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { TermsOfServicesComponent } from './components/terms-of-services/terms-of-services.component';
 import { UserProfileComponent } from './components/layout/user-profile/update-user-profile/user-profile.component';
 import { TitleDetailsMainComponent } from './components/layout/title-details-main/title-details-main.component';
+import { AlertTableComponent } from './components/layout/dashboard/alert-table/alert-table.component';
 
 export const routes: Routes = [
   { 
@@ -44,6 +45,7 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent ,canActivate:[AuthGuard] },
+      { path: 'alert-list', component: AlertTableComponent,canActivate:[AuthGuard] },
       { path: 'user-vehicle-list', component: VehicleComponent,canActivate:[AuthGuard] },
       { path: 'user-summary-list', component: SummaryComponent,canActivate:[AuthGuard] },
       { path: 'main-dashboard', component: AdminDashboardComponent,canActivate: [AuthGuard]}, 
