@@ -127,5 +127,10 @@ export class userData {
     });
   }
   
+  getNewAlertData(data: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/new-alerts?`+ data, {
+      headers: this.getHeaders(),
+    });
+  }
     
 }

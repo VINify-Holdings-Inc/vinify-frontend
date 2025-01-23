@@ -30,6 +30,7 @@ export class AlertTableComponent implements OnInit{
         @Input() totalPages :number=0;
         @Input() totalData :number=0;
         @Input() limit:number=0;
+        @Input() totalItems : number =0;
         @Output() handelPaginagtion = new EventEmitter <any>();
         @Output() handelSearch = new EventEmitter <any>();
        
@@ -38,7 +39,7 @@ export class AlertTableComponent implements OnInit{
        visiblePages: number[] = []; // Pages to display in the pagination UI
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
-       displayedColumns: string[] = ['alertdate','vins','year','make','state','details','details'];
+       displayedColumns: string[] = [ 'titleBrandDate', 'vin','year', 'make', 'state','detailsData', 'details'];
 
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
@@ -47,6 +48,7 @@ export class AlertTableComponent implements OnInit{
         }
 
        ngOnInit() {
+        console.log(this.tableData);
         this.totalRecords=this.tableData;
         }
 
