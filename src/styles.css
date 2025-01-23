@@ -401,6 +401,13 @@
   button#sidebarCollapse {
     margin-left: 16px;
   }
+  /* title comparison style */
+  .tabMainCurrentHead{
+    gap: 10px;
+    flex-direction: column;
+    align-items: start !important;
+    justify-content: start;
+  }
 }
 @media only screen and (min-width: 992px) {
   .authorityThreeBtn {
