@@ -3504,3 +3504,16 @@ table {
 span.alertLink {
   color: var(--bg-primary);
 }
+
+.userdashbrdTable .table>tbody>tr>td.mat-column-brand p::before {
+  content: "?";
+  background: #cf4b5f;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  font-size: 12px;
+  text-align: center;
+  line-height: 18px;
+  color: #fff;
+  border-radius: 2px;
+}
