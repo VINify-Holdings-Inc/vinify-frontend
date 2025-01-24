@@ -83,6 +83,32 @@ export class DateFormatPipe implements PipeTransform {
 
         return `${monthsDifference} months ago`;
       }
+      case 'h:mm A, ddd DD MMM YYYY': {
+        const timeOptions: Intl.DateTimeFormatOptions = {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+        };
+        const dayOptions: Intl.DateTimeFormatOptions = {
+            weekday: 'short',
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+        };
+    
+        // Get time in the desired format (e.g., 10.40 AM)
+        const timePart = date.toLocaleTimeString('en-US', timeOptions).replace(':', '.');
+    
+        // Get date in the desired format (e.g., Tue Jan 21 2025)
+        const dayPart = date.toLocaleDateString('en-US', dayOptions);
+        
+        // Remove the extra comma from the date part
+        let formattedDate = dayPart.replace(',', '');
+        let formattedDate1 = formattedDate.replace(',', '');
+          // console.log("formattedDate",formattedDate1)
+        // Return the formatted string
+        return `${timePart}, ${formattedDate1}`;
+    }
 
       default:
         return date.toISOString(); // Default ISO string format

@@ -17,13 +17,12 @@
                         <span>All Alerts</span>
 
                         <ul class="dropdown-menu menuFilter" aria-labelledby="alertMenu">
-                            <li><a class="dropdown-item" routerLink="#">All Alerts</a></li>
-                            <li><a class="dropdown-item" routerLink="#">Unread</a></li>
-                            <li><a class="dropdown-item" routerLink="#">Read</a></li>
-                          </ul>
+                          <li><a class="dropdown-item" routerLink="#" (click)="alertFilter(null)">All Alerts</a></li>
+                          <li><a class="dropdown-item" routerLink="#" (click)="alertFilter(false)">Unread</a></li>
+                          <li><a class="dropdown-item" routerLink="#"(click)="alertFilter(true)">Read</a></li>
+                        </ul>
                     </div>
-                    
-                    
+                                        
                     <div class="month-calendar vehicleMonthSearch calendar-svg">
                         <img alt="img" [src]="calendarIcon" class="img-fluid"/>
                         <p><span>Jan 6, 2025 – Jul 13, 2025</span></p>

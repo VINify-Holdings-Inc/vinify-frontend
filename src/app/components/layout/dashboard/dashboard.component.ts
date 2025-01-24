@@ -2,20 +2,21 @@ import { Component, AfterViewInit, OnInit, SimpleChanges, ChangeDetectorRef } fr
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { NgModel } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { RouterLink } from '@angular/router';
 import { UserTableComponent } from './user-table/user-table.component';
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SessionService } from '../../../services/session.service';
+import { DateFormatPipe } from '../../../pipes/date-format.pipe';
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [UserTableComponent,RouterLink,CommonModule, LoaderComponent],
+  imports: [UserTableComponent,RouterLink,CommonModule, LoaderComponent,DateFormatPipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -55,9 +56,10 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   isLoading: boolean = false;
   serchKpiType :any="total";
   resetData:boolean=false;
-
+  isRead:any=null;
+  resentAlert:any=[];
    
-   getTableData(vin = null) {
+   getTableData(vin:any = null) {
     //console.log("vin",vin);
     this.tableData=[];
     this.isLoading = true;
@@ -65,6 +67,9 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     let url = `page=${this.page}&limit=${this.limit}`;
     if (this.vin) {
       url = url + `&vin=${(this.vin)}`
+    }
+    if(this.isRead!=null){
+      url = url + `&isRead=${(this.isRead)}`
     }
    if(this.serchKpiType=='total'){
     this.userData.getCurrentVinData(url).subscribe(
@@ -137,6 +142,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
         if (!res.error) {
           this.totalItemsKpi = res?.data?.uniqueVinCount || 0;
           this.updatedTotalItems = res?.data?.totalUpdatedData || 0;
+          this.resentAlert = res?.data?.RecentAlert[0] || [];
           }
         this.isLoading = false;
       },
@@ -152,6 +158,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
      this.page = 1;
      this.totalPages= 0;
      this.vin="";
+     this.isRead=null;
      this.getTableData();
      this.resetData =!this.resetData;
      this.cdr.detectChanges();
@@ -160,5 +167,9 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   changeDashboardActiveCard=(paranemtName:any)=>{ 
     this.dashboardCardActive = paranemtName;
   }
+  handelAlertFil(data:any){
+    this.isRead=data;
+    this.getTableData(this.vin);
+}
 
 }
