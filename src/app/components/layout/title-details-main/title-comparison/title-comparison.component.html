@@ -41,7 +41,7 @@
                                             <div class="col-md-4 col-sm-4">
                                                 <div class="statusBody">
                                                     <p class="tdHead">Brand</p>
-                                                    <p class="tdBody">{{item.brand ? item.brand : "-"}}</p>
+                                                    <p class="tdBody">{{item.brand ? item?.brand?.split(' - ')[0]: "-"}}</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8">
@@ -50,6 +50,7 @@
                                                     <p class="tdBody">{{item.model ? item.model : "-"}}</p>
                                                 </div>
                                             </div>
+                                            
                                             <div class="col-md-4 col-sm-4">
                                                 <div class="statusBody pbt-0">
                                                     <p class="tdHead">Model</p>
@@ -115,7 +116,7 @@
                                             <div class="col-md-4 col-sm-4">
                                                 <div class="statusBody">
                                                     <p class="tdHead">Brand</p>
-                                                    <p class="tdBody">{{item.brand ? item.brand : "-"}}</p>
+                                                    <p class="tdBody">{{item.brand ? item?.brand?.split(' - ')[0]: "-"}}</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8">
