@@ -24,20 +24,23 @@ export class AlertTableMainComponent {
   totalItemsKpi:any=0;
   tableName:string = "New Alerts"; 
   isLoading: boolean = false;
-
+  isRead:any=null;
 
   ngOnInit(): void {
    
     this.getTableData();
    
   }
-  getTableData(vin=null) {
+  getTableData(vin:any=null) {
   
     this.tableData=[];
     this.isLoading = true;
     let url = `page=${this.page}&limit=${this.limit}`;
     if (this.vin) {
       url = url + `&vin=${(this.vin)}`
+    }
+    if(this.isRead!=null){
+      url = url + `&isRead=${(this.isRead)}`
     }
    
      
@@ -58,7 +61,7 @@ export class AlertTableMainComponent {
   
   }
   handlePageChange(newPage: any) {
-    console.log("pagination",newPage);
+    //console.log("pagination",newPage);
     this.page = newPage.page;
     if(newPage.search=="" ||newPage.search==null){
       this.getTableData();
@@ -75,5 +78,9 @@ export class AlertTableMainComponent {
       this.getTableData(searchVal);
     }
     //this.getTableData(searchVal);
+  }
+  handelAlertFil(data:any){
+      this.isRead=data;
+      this.getTableData(this.vin);
   }
 }
