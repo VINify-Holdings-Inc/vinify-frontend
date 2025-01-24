@@ -1,5 +1,5 @@
 import { Component, Input ,OnInit} from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,11 +9,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements OnInit {
+  constructor(private router: Router) {}
+
   localData:any=localStorage.getItem("singleVin")
  storageData:any= JSON.parse(this.localData)
-    timestamp = new Date().getTime(); 
-    strUrl: any = `/title-details?vin=${encodeURIComponent(this?.storageData?.vin.trim())}&model=${encodeURIComponent(this?.storageData?.model.trim())}&refresh=${this.timestamp}`;
-
+ 
   ngOnInit(): void {
      
   }
@@ -25,5 +25,15 @@ export class SidebarComponent implements OnInit {
   icon6: string = 'assets/images/icons/sidebar-icon/support.svg';
   @Input() isSidebarActive: boolean = true;
 
+  routerNavigation() {
+    const timestamp = new Date().getTime();
+    this.router.navigate(['/title-details'], {
+      queryParams: {
+        vin: this?.storageData?.vin || '',
+        model: this?.storageData?.model || '',
+        refresh: timestamp
+      }
+    });
+  }
  
 }
