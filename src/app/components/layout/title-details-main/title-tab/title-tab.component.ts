@@ -31,7 +31,8 @@ export class TitleTabComponent implements OnInit{
         @Input() limit:number=0;
         @Output() handelPaginagtion = new EventEmitter <any>();
         @Output() handelSearch = new EventEmitter <any>();
-       
+        @Output() handelAlertFil = new EventEmitter <any>();
+        alert:any=null;
         
        currentPage: number = 1; // Current active page
        visiblePages: number[] = []; // Pages to display in the pagination UI
@@ -145,5 +146,8 @@ previousPage() {
                  
                 })
     }
+    alertFilter(data:any){
+      this.handelAlertFil.emit(data);
+     } 
 
 }

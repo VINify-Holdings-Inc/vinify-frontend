@@ -62,7 +62,8 @@ export class UserTableComponent implements AfterViewInit, OnChanges{
   @Input() limit :number=0;
   @Output() handelPaginagtion = new EventEmitter <any>();
   @Output() handelSearch = new EventEmitter <any>();
- 
+  @Output() handelAlertFil = new EventEmitter <any>();
+  alert:any=null;
   ngOnChanges(changes: SimpleChanges) {
     if (changes['resetData']) {
       this.searchValue = '';
@@ -245,5 +246,8 @@ getValifExist(){
     this.handelSearch.emit(this.searchValue.trim());
   }
 }
+alertFilter(data:any){
+  this.handelAlertFil.emit(data);
+ }
 
 }

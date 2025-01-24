@@ -18,7 +18,7 @@ export class TitleDetailsMainComponent {
   paramVin:string="";
   preserveVin:string="";
   model:string="";
- 
+  isRead:any=null;
   constructor(private router: Router ,private route : ActivatedRoute,private userData : userData,
     private sessionService: SessionService,) {}
 
@@ -62,7 +62,7 @@ export class TitleDetailsMainComponent {
   totalData :number = 0;
   isLoading : boolean=false;
 
-  getTableData(vin:any){
+  getTableData(vin:any=null){
     
     this.isLoading= true;
      let url = `page=${this.page}&limit=${this.limit}`;
@@ -70,7 +70,10 @@ export class TitleDetailsMainComponent {
        url=url+`&vin=${vin}`
      }else{
         url=url+`&vin=${this.preserveVin}`
-     }   
+     }  
+     if(this.isRead!=null){
+      url = url + `&isRead=${(this.isRead)}`
+    } 
 
      this.userData.searchVinDataForUser(url).subscribe(
       (res:any) => {
@@ -89,14 +92,7 @@ export class TitleDetailsMainComponent {
           this.paramVin=res?.data?.items[0].vin||"";
           this.model=res?.data?.items[0].model||"";
         }
-        // else{
-        //   Swal.fire({
-        //           title: 'Error!',
-        //           text: res.message,
-        //           icon: 'error',
-        //           confirmButtonText: 'OK',
-        //         })
-        // }
+        
 
       },
       (err) => {
@@ -115,9 +111,13 @@ export class TitleDetailsMainComponent {
     
     }
   handelSearch(searchVal:any){
-    console.log("ser");
+    //console.log("ser");
     this.getTableData(searchVal);
    }
 
+   handelAlertFil(data:any){
+    this.isRead=data;
+    this.getTableData(this.paramVin);
+}
 
 }

@@ -132,5 +132,11 @@ export class userData {
       headers: this.getHeaders(),
     });
   }
-    
+   
+  getVinHistoryData(data: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/title-detail-history?`+ data, {
+      headers: this.getHeaders(),
+    });
+  }
+
 }

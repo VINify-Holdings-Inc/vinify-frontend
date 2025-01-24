@@ -19,9 +19,9 @@
               <span>All Alerts</span>
   
               <ul class="dropdown-menu menuFilter" aria-labelledby="alertMenu">
-                <li><a class="dropdown-item" routerLink="#">All Alerts</a></li>
-                <li><a class="dropdown-item" routerLink="#">Unread</a></li>
-                <li><a class="dropdown-item" routerLink="#">Read</a></li>
+                <li><a class="dropdown-item" routerLink="#" (click)="alertFilter(null)">All Alerts</a></li>
+                <li><a class="dropdown-item" routerLink="#" (click)="alertFilter(false)">Unread</a></li>
+                <li><a class="dropdown-item" routerLink="#"(click)="alertFilter(true)">Read</a></li>
               </ul>
             </div>
    
