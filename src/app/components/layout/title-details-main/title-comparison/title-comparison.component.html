@@ -3,64 +3,64 @@
         <!-- current tab status -->
         <div class="cardWrapper">
             <div class="accordion" id="accordionfirst">
-                @if(tableDataCurrent.length > 0){
-                   
-                <div class="accordion-item card radiusBgTab" *ngFor="let item of tableDataCurrent; let index = index">
-                    <div class="TabTitleStatus">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="collapse" aria-expanded="true"  [attr.data-bs-target]="'#' + index"
-                                [attr.aria-controls]="'collapse' + index">
-                                <div class="tabMainCurrentHead">
-                                    <div class="mainCurrentHead">
-                                        <h5>Current Vehicle Title Details</h5>
+                <div *ngIf="tableDataCurrent.length > 0">
+                    <div *ngFor="let item of tableDataCurrent; let index = index" class="accordion-item card radiusBgTab">
+                        <div class="TabTitleStatus">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
+                                    [attr.data-bs-target]="'#collapse' + index"
+                                    [attr.aria-expanded]="index === 0 ? 'true' : 'false'"
+                                    [attr.aria-controls]="'collapse' + index">
+                                    <div class="tabMainCurrentHead">
+                                        <div class="mainCurrentHead">
+                                            <h5>Current Vehicle Title Details</h5>
+                                        </div>
+                                        <div class="updatedHead">
+                                            <p class="textUpdate">Last Updated</p>
+                                            <p class="updateDate">{{ item.createdAt | dateFormat:"MMM DD YYYY"}}</p>
+                                        </div>
                                     </div>
-                                    <div class="updatedHead">
-                                        <p class="textUpdate">Last Updated</p>
-                                        <p class="updateDate">{{ item.createdAt | dateFormat:"MMM DD YYYY"}}</p>
-                                    </div>
-                                </div>
-                            </button>
-                        </h2>
-                        <div [attr.id]="index" class="accordion-collapse collapse show" data-bs-parent="#accordionfirst">
-                            <div class="accordion-body currentTabInnerBg currentBg">
-                                <div class="innerTabCurrent">
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="statusBody">
-                                                <p class="tdHead">Status</p>
-                                                <p class="tdBody">{{item.status?item.status:"-"}}</p>
+                                </button>
+                            </h2>
+                            <div [id]="'collapse' + index" class="accordion-collapse collapse" [ngClass]="{'show': index === 0}" data-bs-parent="#accordionfirst">
+                                <div class="accordion-body currentTabInnerBg currentBg">
+                                    <div class="innerTabCurrent">
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="statusBody">
+                                                    <p class="tdHead">Status</p>
+                                                    <p class="tdBody">{{item.status ? item.status : "-"}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-8 col-sm-8">
-                                            <div class="statusBody">
-                                                <p class="tdHead">State</p>
-                                                <p class="tdBody">{{item.state?item.state:"-"}}</p>
+                                            <div class="col-md-8 col-sm-8">
+                                                <div class="statusBody">
+                                                    <p class="tdHead">State</p>
+                                                    <p class="tdBody">{{item.state ? item.state : "-"}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="statusBody">
-                                                <p class="tdHead">Brand</p>
-                                                <p class="tdBody">{{item.brand?item.brand:"-"}}</p>
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="statusBody">
+                                                    <p class="tdHead">Brand</p>
+                                                    <p class="tdBody">{{item.brand ? item.brand : "-"}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-8 col-sm-8">
-                                            <div class="statusBody">
-                                                <p class="tdHead">Make</p>
-                                                <p class="tdBody">{{item.model?item.model:"-"}}</p>
+                                            <div class="col-md-8 col-sm-8">
+                                                <div class="statusBody">
+                                                    <p class="tdHead">Make</p>
+                                                    <p class="tdBody">{{item.model ? item.model : "-"}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="statusBody pbt-0">
-                                                <p class="tdHead">Model</p>
-                                                <p class="tdBody">{{item.modelYear?item.modelYear:"-"}}</p>
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="statusBody pbt-0">
+                                                    <p class="tdHead">Model</p>
+                                                    <p class="tdBody">{{item.modelYear ? item.modelYear : "-"}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-8 col-sm-8">
-                                            <div class="statusBody pbt-0">
-                                                <p class="tdHead">Title Alert Date</p>
-                                                <p class="tdBody">{{item.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
+                                            <div class="col-md-8 col-sm-8">
+                                                <div class="statusBody pbt-0">
+                                                    <p class="tdHead">Title Alert Date</p>
+                                                    <p class="tdBody">{{item.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -69,78 +69,72 @@
                         </div>
                     </div>
                 </div>
-            }
-        
-           
-
-             
-
             </div>
         </div>
     </div>
-    
+
     <div class="col-xl-6 col-md-6">
         <!-- history tab status -->
         <div class="cardWrapper">
             <div class="accordion" id="accordionSecond">
-                @if(tableDataHistory.length > 0){  
-                <div class="accordion-item card radiusBgTab" *ngFor="let item of tableDataHistory; let index = index">
-                    <div class="TabTitleStatus">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapsethree" aria-expanded="true" aria-controls="collapsethree"  [attr.data-bs-target]="'#' + index"
-                                [attr.aria-controls]="'collapse' + index">
-                                <div class="tabMainCurrentHead">
-                                    <div class="mainCurrentHead">
-                                        <h5>Title History</h5>
+                <div *ngIf="tableDataHistory.length > 0">
+                    <div *ngFor="let item of tableDataHistory; let index = index" class="accordion-item card radiusBgTab">
+                        <div class="TabTitleStatus">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
+                                    [attr.data-bs-target]="'#collapsethree' + index"
+                                    [attr.aria-expanded]="index === 0 ? 'true' : 'false'"
+                                    [attr.aria-controls]="'collapsethree' + index">
+                                    <div class="tabMainCurrentHead">
+                                        <div class="mainCurrentHead">
+                                            <h5>Title History</h5>
+                                        </div>
+                                        <div class="updatedHead">
+                                            <p class="textUpdate">Last Updated</p>
+                                            <p class="updateDate">{{ item.createdAt | dateFormat:"MMM DD YYYY"}}</p>
+                                        </div>
                                     </div>
-                                    <div class="updatedHead">
-                                        <p class="textUpdate">Last Updated</p>
-                                        <p class="updateDate">{{ item.createdAt | dateFormat:"MMM DD YYYY"}}</p>
-                                    </div>
-                                </div>
-                            </button>
-                        </h2>
-                        <div id="collapsethree" class="accordion-collapse collapse show"
-                            data-bs-parent="#accordionSecond">
-                            <div class="accordion-body currentTabInnerBg lastBg">
-                                <div class="innerTabCurrent">
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-4 ">
-                                            <div class="statusBody">
-                                                <p class="tdHead">Status</p>
-                                                <p class="tdBody">{{item.status?item.status:"-"}}</p>
+                                </button>
+                            </h2>
+                            <div [id]="'collapsethree' + index" class="accordion-collapse collapse" [ngClass]="{'show': index === 0}" data-bs-parent="#accordionSecond">
+                                <div class="accordion-body currentTabInnerBg lastBg">
+                                    <div class="innerTabCurrent">
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="statusBody">
+                                                    <p class="tdHead">Status</p>
+                                                    <p class="tdBody">{{item.status ? item.status : "-"}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-8 col-sm-8">
-                                            <div class="statusBody">
-                                                <p class="tdHead">State</p>
-                                                <p class="tdBody">{{item.state?item.state:"-"}}</p>
+                                            <div class="col-md-8 col-sm-8">
+                                                <div class="statusBody">
+                                                    <p class="tdHead">State</p>
+                                                    <p class="tdBody">{{item.state ? item.state : "-"}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="statusBody">
-                                                <p class="tdHead">Brand</p>
-                                                <p class="tdBody">{{item.brand?item.brand:"-"}}</p>
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="statusBody">
+                                                    <p class="tdHead">Brand</p>
+                                                    <p class="tdBody">{{item.brand ? item.brand : "-"}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-8 col-sm-8">
-                                            <div class="statusBody">
-                                                <p class="tdHead">Make</p>
-                                                <p class="tdBody">{{item.model?item.model:"-"}}</p>
+                                            <div class="col-md-8 col-sm-8">
+                                                <div class="statusBody">
+                                                    <p class="tdHead">Make</p>
+                                                    <p class="tdBody">{{item.model ? item.model : "-"}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="statusBody pbt-0">
-                                                <p class="tdHead">Model</p>
-                                                <p class="tdBody">{{item.modelYear?item.modelYear:"-"}}</p>
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="statusBody pbt-0">
+                                                    <p class="tdHead">Model</p>
+                                                    <p class="tdBody">{{item.modelYear ? item.modelYear : "-"}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-8 col-sm-8">
-                                            <div class="statusBody pbt-0">
-                                                <p class="tdHead">Title Alert Date</p>
-                                                <p class="tdBody">{{item.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
+                                            <div class="col-md-8 col-sm-8">
+                                                <div class="statusBody pbt-0">
+                                                    <p class="tdHead">Title Alert Date</p>
+                                                    <p class="tdBody">{{item.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -149,11 +143,9 @@
                         </div>
                     </div>
                 </div>
-                
-                }
-               
             </div>
         </div>
     </div>
 </div>
+
 <app-loader [IsLoading]="isLoading"></app-loader>
