@@ -4,7 +4,7 @@
         <div class="cardWrapper">
             <div class="accordion" id="accordionfirst">
                 <div *ngIf="tableDataCurrent.length > 0">
-                    <div *ngFor="let item of tableDataCurrent; let index = index" class="accordion-item card radiusBgTab">
+                    <div *ngFor="let item of tableDataCurrent; let index = index" [ngClass]="item?.isOld ? 'accordion-item card radiusBgTab' : 'accordion-item card radiusBgTab most-recent-alert'">
                         <div class="TabTitleStatus">
                             <h2 class="accordion-header">
                                 <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
