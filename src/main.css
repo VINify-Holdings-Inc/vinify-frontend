@@ -1140,10 +1140,11 @@ h3.card-title.cardDashNum {
 }
 
 .card.rounded.recentlyAlert .card-area h5 {
-  font-weight: 500;
-  color: #fff;
-  margin: 0;
-  font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    margin: 0;
+    font-size: 18px;
+    min-height: 21.6px;
 }
 
 .card.rounded.recentlyAlert .text-white {
@@ -2442,10 +2443,11 @@ h2.tabSummaryHead {
 }
 
 .card-area .userAuthorityBox {
-  flex-wrap: wrap;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 24px;
 }
 
 .card-area p.authorityPara {
