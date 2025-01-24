@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
+import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +9,12 @@ import { LoginComponent } from './components/login/login.component';
 })
 export class AppComponent {
   title = 'mvm';
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
 }

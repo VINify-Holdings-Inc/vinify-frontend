@@ -3489,3 +3489,16 @@ a.m-logo img {
 table {
   margin-bottom: 0 !important;
 }
+
+.accordion-item.card.radiusBgTab.most-recent-alert {
+  background-color: #ffedec !important;
+}
+.accordion-item.card.radiusBgTab.most-recent-alert h2.accordion-header button {
+  background: #ffedec !important;
+  border-bottom: 1px solid #ffffff80;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+span.alertLink {
+  color: var(--bg-primary);
+}
