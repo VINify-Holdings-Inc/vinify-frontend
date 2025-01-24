@@ -1,0 +1,133 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { userData } from '../../../../services/api-service.service';
+import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { MatCheckboxModule } from '@angular/material/checkbox'; // Import MatCheckboxModule
+import Swal from 'sweetalert2';
+import {PDF_SETTINGS} from '../../../../constants'
+import { CreatePDFService } from '../../../../services/create-pdf.service';
+import { LoaderComponent } from '../../common/loader/loader.component';
+
+@Component({
+  selector: 'app-single-vin',
+  imports: [CommonModule, DateFormatPipe, MatTableModule, FormsModule, MatCheckboxModule,LoaderComponent],
+  templateUrl: './single-vin.component.html',
+  styleUrls: ['./single-vin.component.css'],
+})
+export class SingleVinComponent implements OnInit {
+  constructor(private userData: userData,private pdfService: CreatePDFService,) {}
+
+  tableData: any[] = [];
+  isLoading: boolean = false;
+  vin: any = '';
+  limit = 100000;
+  page = 1;
+  checkall:any="single";
+  selectedVins: string[] = [];
+  displayedColumns: string[] = ['select', 'vin', 'year', 'make', 'titleBrandDate', 'state'];
+
+  ngOnInit() {
+    this.getTableData();
+  }
+
+  getTableData(vin: any = null) {
+    this.isLoading = true;
+    let url = `page=${this.page}&limit=${this.limit}`;
+    if (this.vin) {
+      url = url + `&vin=${this.vin}`;
+    }
+
+    this.userData.getCurrentVinData(url).subscribe(
+      (res: any) => {
+        if (!res.error) {
+          const data = res?.data?.items || [];
+          // Add isSelected property to each row for checkbox
+          data.forEach((item: any) => (item.isSelected = false));
+          this.tableData = (data);
+        }
+        this.isLoading = false;
+      },
+      (err) => {
+        this.isLoading = false;
+      }
+    );
+  }
+
+  toggleSelectAll(event: any): void {
+    const isChecked = event.checked;
+    this.tableData.forEach((row) => (row.isSelected = isChecked));
+    if(isChecked){
+      this.checkall='all';
+      this.selectedVins=[]
+    }else{
+      this.checkall='single';
+    }
+  }
+
+  onRowSelectionChange(item: any): void {
+    //console.log('Row selection changed:', item);
+    if (item.isSelected) {
+      this.selectedVins.push(item.vin);
+    } else {
+      const index = this.selectedVins.indexOf(item.vin);
+      if (index > -1) {
+        this.selectedVins.splice(index, 1);
+      }
+    }
+    console.log(this.selectedVins);
+  }
+
+  isAllSelected(): boolean {
+    return this.tableData.every((row) => row.isSelected);
+  }
+
+  isIndeterminate(): boolean {
+    const selected = this.tableData.filter((row) => row.isSelected).length;
+    return selected > 0 && selected < this.tableData.length;
+  }
+
+getPDFData() {
+  this.isLoading = true;
+  let url = `type=${this.checkall}`;
+  if(this.checkall=="single"){
+     if(this.selectedVins.length==0){
+       this.isLoading = false;
+                 Swal.fire({
+                  title: 'Info!',
+                   text: 'Please select VINs',
+                   icon: 'info',
+                   confirmButtonText: 'OK',
+                 });
+                 return;
+     }   
+   
+  }
+  this.userData.getPdfData(url,this.selectedVins).subscribe(
+    (res: any) => {
+      if (!res.error) {
+        this.pdfService.generatePDF(
+          PDF_SETTINGS.COMPANY_NAME,
+          PDF_SETTINGS.LOGO_URL,
+          res?.data?.items || [],
+          'Vin-data.pdf'
+        );
+      }
+      this.isLoading = false;
+    },
+    (err) => {
+      this.isLoading = false;
+    }
+  );
+}
+
+closeData(){
+  this.checkall="single";
+  this.selectedVins = [];
+}
+
+}
