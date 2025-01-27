@@ -39,7 +39,7 @@
       </div>
 
       <div class="card">
-        <div class="card-body px-0 userdashbrdTable pt-0">
+        <div class="card-body px-0 userdashbrdTable vSUmmarytable pt-0">
           <div class="table-responsive">
             <table mat-table [dataSource]="tableData" class="table mat-elevation-z8 " matSort>
               <!-- SNo ->   mat-sort-header   -->
@@ -70,9 +70,9 @@
               <ng-container matColumnDef="brand">
 
                 <th mat-header-cell *matHeaderCellDef width="380"> Brand Name </th>
-                <td mat-cell *matCellDef="let element">
+                <td mat-cell *matCellDef="let element"  (click)="getBrandDetails(element?.brand)">
                   <span class="question-Icon" *ngIf="element?.brand?.length > 0"
-                    (click)="getBrandDetails(element?.brand)"><i class="material-symbols-outlined ques">question_mark
+                   ><i class="material-symbols-outlined ques">info_i
                     </i></span>
 
                   {{element?.brand ? element?.brand?.split(' - ')[0]:"-"}}
