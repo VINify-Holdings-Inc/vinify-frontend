@@ -3517,3 +3517,25 @@ span.alertLink {
   color: #fff;
   border-radius: 2px;
 }
+
+
+
+
+
+
+.modalExport{
+  margin-left: auto;
+  }
+  .userdashbrdTable.reportTable table > thead > tr > th:last-child{
+      text-align: left !important;
+  }
+  .userdashbrdTable.reportTable table > tbody > tr > td:last-child{
+      text-align: left !important;
+  }
+  .modalClose{
+      margin: 0 10px !important;
+  }
+  .reportTable .table > thead{
+      vertical-align: middle !important;
+  }
+  

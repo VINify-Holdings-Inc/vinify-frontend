@@ -1,4 +1,4 @@
 .cxt{
-    overflow: scroll;
+    overflow-y: auto;
     height: 600px;
 }
