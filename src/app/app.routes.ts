@@ -18,7 +18,7 @@ import { TermsOfServicesComponent } from './components/terms-of-services/terms-o
 import { UserProfileComponent } from './components/layout/user-profile/update-user-profile/user-profile.component';
 import { TitleDetailsMainComponent } from './components/layout/title-details-main/title-details-main.component';
 import { AlertTableMainComponent } from './components/layout/alert-table-main/alert-table-main.component';
-
+import {NotificationComponent} from './components/layout/notification/notification.component';
 export const routes: Routes = [
   { 
     path: '', 
@@ -54,7 +54,8 @@ export const routes: Routes = [
       { path: 'csv-import', component:CsvImportComponent ,canActivate: [AuthGuard]},  
       { path: 'user-profile', component:UserProfileComponent ,canActivate: [AuthGuard]},  
       { path: 'title-details', component:TitleDetailsMainComponent ,canActivate: [AuthGuard]},  
-      { path: 'user-profile', component:UserProfileComponent ,canActivate: [AuthGuard]} 
+      { path: 'user-profile', component:UserProfileComponent ,canActivate: [AuthGuard]} ,
+      { path: 'notification', component:NotificationComponent ,canActivate: [AuthGuard]} 
     ]
   },
   // This route is used for any invalid routes

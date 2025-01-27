@@ -52,7 +52,7 @@
                         <li class="nav-item dropdown profile-areamodal">
                             <a class="nav-link no-toggle-icon noticon" data-bs-toggle="dropdown"
                                >
-                                <div class="notification-dot"><span>20</span></div>
+                                <div class="notification-dot"><span>{{alertCount}}</span></div>
                                 <img src="assets/images/icons/bell.svg" class="img-fluid" alt="notifications" />
                                 <div class="checkmodal"></div>
                             </a>
@@ -63,10 +63,14 @@
                                     <div class="notifyBox">
                                         <div class="headNotify">
                                             <p>Notifications</p>
-                                            <span>20 new notifications</span>
+                                            <span>{{alertCount}} new notifications</span>
                                         </div>
                                         <div>
-                                            <p class="notification-number">View All</p>
+                                            <!-- <p class="notification-number">View All</p> -->
+                                            <a routerLink="/notification" routerLinkActive="active" class="notification-number">
+                                                
+                                                View All
+                                            </a>
                                         </div>
                                     </div>
                                 </li>

@@ -10,13 +10,14 @@ import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SessionService } from '../../../services/session.service';
 import { DateFormatPipe } from '../../../pipes/date-format.pipe';
+import { SingleVinComponent } from './single-vin/single-vin.component';
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [UserTableComponent,RouterLink,CommonModule, LoaderComponent,DateFormatPipe],
+  imports: [UserTableComponent,RouterLink,CommonModule, LoaderComponent,DateFormatPipe,SingleVinComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
