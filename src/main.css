@@ -92,7 +92,8 @@ ol {
 }
 
 .btn-primary:focus {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-primary) !important;
+  border: 1px solid var(--bg-primary) !important;
 }
 
 .btn-primary:focus-visible {
@@ -3505,37 +3506,74 @@ span.alertLink {
   color: var(--bg-primary);
 }
 
-.userdashbrdTable .table>tbody>tr>td.mat-column-brand p::before {
-  content: "?";
-  background: #cf4b5f;
+
+
+span.question-Icon {
+  color: #fff;
   width: 18px;
   height: 18px;
   display: inline-block;
-  font-size: 12px;
-  text-align: center;
-  line-height: 18px;
-  color: #fff;
+  background-color: var(--bg-primary);
+  line-height: 20px;
   border-radius: 2px;
+  text-align: center;
 }
 
+span.question-Icon .ques{
+  font-size: 14px;
+}
 
+/* Dashboard icon CSS */
 
-
-
-
+.extralarge-mod {
+  width: 100%;
+  min-width: 1200px;
+}
+.cxt{
+  margin-bottom: 0 !important;
+}
 .modalExport{
   margin-left: auto;
   }
-  .userdashbrdTable.reportTable table > thead > tr > th:last-child{
+  .userdashbrdTable.reportTable table > thead > tr > th:last-child, .userdashbrdTable.reportTable table > tbody > tr > td:last-child{
       text-align: left !important;
+      border-radius: 0 !important;
   }
-  .userdashbrdTable.reportTable table > tbody > tr > td:last-child{
-      text-align: left !important;
-  }
+ 
   .modalClose{
       margin: 0 10px !important;
+      filter: invert(1);
+      background-color: gray;
+      padding: 12px !important;
+  }
+  .modalClose:hover{
+    background-color: gray !important;
+    padding: 12px;
   }
   .reportTable .table > thead{
       vertical-align: middle !important;
+  }
+  th.checkBoxModal{
+    padding: 0 24px !important;
+  }
+  .userdashbrdTable.reportTable{
+    overflow-y: auto;
+    height: 600px;
+  }
+
+
+  .userdashbrdTable.reportTable::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+    background-color: #F5F5F5;
+  }
+  .userdashbrdTable.reportTable::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+  }
+  .userdashbrdTable.reportTable::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #d6d6d6;
   }
   

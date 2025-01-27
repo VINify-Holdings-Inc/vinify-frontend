@@ -1,12 +1,13 @@
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-dialog modal-xl modal-dialog-centered extralarge-mod">
       <div class="modal-content">
         <div class="modal-header modalTblHead">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Specific VINs</h1>
           <button type="button" class="btn btn-primary modalExport" (click) = "getPDFData()">Export PDF</button>
-          <button type="button" class="btn-close modalClose" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn btn-close modalClose" data-bs-dismiss="modal" aria-label="Close">
+          </button>
         </div>
         <div class="modal-body">
             <div class="card cxt">
@@ -15,7 +16,7 @@
                         <table mat-table [dataSource]="tableData" class="table mat-elevation-z8" matSort>
                           <!-- Checkbox Column -->
                           <ng-container matColumnDef="select">
-                            <th mat-header-cell *matHeaderCellDef classs="checkBoxModal">
+                            <th mat-header-cell *matHeaderCellDef class="checkBoxModal">
                               <mat-checkbox
                                 (change)="toggleSelectAll($event)"
                                 [checked]="isAllSelected()"
