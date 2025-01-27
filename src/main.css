@@ -3592,3 +3592,6 @@ span.question-Icon .ques{
 .userdashbrdTable.vSUmmarytable tr td.mat-column-brand {
 	cursor: pointer;
 }
+.userSingleSearch.importbox {
+  margin-left: 15px;
+}
