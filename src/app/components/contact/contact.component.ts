@@ -61,6 +61,10 @@ export class ContactComponent {
  
                         Swal.fire({
                           title: 'Success!',
+                          showClass: {
+                            popup: 'animated fadeInDown faster',
+                            icon: 'animated heartBeat delay-1s'
+                          },
                           text: res.message,
                           icon: 'success',
                           confirmButtonText: 'OK',
@@ -71,6 +75,10 @@ export class ContactComponent {
                      
                         Swal.fire({
                           title: 'Error!',
+                          showClass: {
+                            popup: 'animated fadeInDown faster',
+                            icon: 'animated heartBeat delay-1s'
+                          },
                           text: res.message,
                           icon: 'error',
                           confirmButtonText: 'OK',
@@ -83,6 +91,10 @@ export class ContactComponent {
 
                       Swal.fire({
                         title: 'Error!',
+                        showClass: {
+                          popup: 'animated fadeInDown faster',
+                          icon: 'animated heartBeat delay-1s'
+                        },
                         text: 'Please try again.',
                         icon: 'error',
                         confirmButtonText: 'OK',
@@ -93,6 +105,10 @@ export class ContactComponent {
                 } else {
                   Swal.fire({
                     title: 'Error!',
+                    showClass: {
+                      popup: 'animated fadeInDown faster',
+                      icon: 'animated heartBeat delay-1s'
+                    },
                     text: 'Please fill out the form correctly.',
                     icon: 'error',
                     confirmButtonText: 'OK',

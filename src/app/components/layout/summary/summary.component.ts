@@ -68,6 +68,10 @@ export class SummaryComponent implements OnInit {
         }else{
           Swal.fire({
                   title: 'Error!',
+                  showClass: {
+                    popup: 'animated fadeInDown faster',
+                    icon: 'animated heartBeat delay-1s'
+                  },
                   text: res.message,
                   icon: 'error',
                   confirmButtonText: 'OK',

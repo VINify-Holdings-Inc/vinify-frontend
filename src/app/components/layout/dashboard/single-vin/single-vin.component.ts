@@ -125,6 +125,10 @@ getPDFData() {
        this.isLoading = false;
                  Swal.fire({
                   title: 'Info!',
+                  showClass: {
+                    popup: 'animated fadeInDown faster',
+                    icon: 'animated heartBeat delay-1s'
+                  },
                    text: 'Please select VINs',
                    icon: 'info',
                    confirmButtonText: 'OK',

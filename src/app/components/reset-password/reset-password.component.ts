@@ -77,6 +77,10 @@ export class ResetPasswordComponent {
                  this.isLoading= false; 
                   Swal.fire({
                     title: 'Error!',
+                    showClass: {
+                      popup: 'animated fadeInDown faster',
+                      icon: 'animated heartBeat delay-1s'
+                    },
                     text: 'Please try again.',
                     icon: 'error',
                     confirmButtonText: 'OK',
@@ -103,6 +107,10 @@ export class ResetPasswordComponent {
                         
                         Swal.fire({
                           title: 'Success!',
+                          showClass: {
+                            popup: 'animated fadeInDown faster',
+                            icon: 'animated heartBeat delay-1s'
+                          },
                           text: res.message,
                           icon: 'success',
                           confirmButtonText: 'OK',
@@ -113,6 +121,10 @@ export class ResetPasswordComponent {
                         Swal.fire({
                           title: 'Error!',
                           text: res.message,
+                          showClass: {
+                            popup: 'animated fadeInDown faster',
+                            icon: 'animated heartBeat delay-1s'
+                          },
                           icon: 'error',
                           confirmButtonText: 'OK',
                         }); 
@@ -124,6 +136,10 @@ export class ResetPasswordComponent {
                       Swal.fire({
                         title: 'Error!',
                         text: 'Please try again.',
+                        showClass: {
+                          popup: 'animated fadeInDown faster',
+                          icon: 'animated heartBeat delay-1s'
+                        },
                         icon: 'error',
                         confirmButtonText: 'OK',
                       });
@@ -134,6 +150,10 @@ export class ResetPasswordComponent {
                    
                     Swal.fire({
                       title: 'Error!',
+                      showClass: {
+                        popup: 'animated fadeInDown faster',
+                        icon: 'animated heartBeat delay-1s'
+                      },
                       text: 'Password and confirm password do not match.',
                       icon: 'error',
                       confirmButtonText: 'OK',
@@ -144,6 +164,10 @@ export class ResetPasswordComponent {
                   Swal.fire({
                     title: 'Error!',
                     text: 'Please fill out the form correctly.',
+                    showClass: {
+                      popup: 'animated fadeInDown faster',
+                      icon: 'animated heartBeat delay-1s'
+                    },
                     icon: 'error',
                     confirmButtonText: 'OK',
                   });

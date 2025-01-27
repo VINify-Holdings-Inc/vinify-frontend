@@ -143,6 +143,10 @@ exportToPDF(type:any) {
 exportToPDFSIngle(type:any) { 
   Swal.fire({
     title: 'Info!',
+    showClass: {
+      popup: 'animated fadeInDown faster',
+      icon: 'animated heartBeat delay-1s'
+    },
     text: 'Work in Progress',
     icon: 'info',
     confirmButtonText: 'OK',
@@ -154,6 +158,10 @@ exportToPDFUdate(type:any) {
   Swal.fire({
     title: 'Info!',
     text: 'No Updated VINs',
+    showClass: {
+      popup: 'animated fadeInDown faster',
+      icon: 'animated heartBeat delay-1s'
+    },
     icon: 'info',
     confirmButtonText: 'OK',
   });
@@ -167,6 +175,10 @@ getTableData(dataType:any) {
        this.isLoading = false;
                  Swal.fire({
                   title: 'Info!',
+                  showClass: {
+                    popup: 'animated fadeInDown faster',
+                    icon: 'animated heartBeat delay-1s'
+                  },
                    text: 'Please select VINs',
                    icon: 'info',
                    confirmButtonText: 'OK',

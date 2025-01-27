@@ -89,6 +89,10 @@ export class LoginComponent {
             this.isLoading =false;
             Swal.fire({
               title: 'Error!',
+              showClass: {
+                popup: 'animated fadeInDown faster',
+                icon: 'animated heartBeat delay-1s'
+              },
               text: res.message,
               icon: 'error',
               confirmButtonText: 'OK',
@@ -102,6 +106,10 @@ export class LoginComponent {
           this.isLoading =false;
           Swal.fire({
             title: 'Error!',
+            showClass: {
+              popup: 'animated fadeInDown faster',
+              icon: 'animated heartBeat delay-1s'
+            },
             text: 'Login failed! Please try again.',
             icon: 'error',
             confirmButtonText: 'OK',
@@ -115,6 +123,10 @@ export class LoginComponent {
         title: 'Error!',
         text: 'Please fill out the form correctly.',
         icon: 'error',
+        showClass: {
+          popup: 'animated fadeInDown faster',
+          icon: 'animated heartBeat delay-1s'
+        },
         confirmButtonText: 'OK',
       });
     }

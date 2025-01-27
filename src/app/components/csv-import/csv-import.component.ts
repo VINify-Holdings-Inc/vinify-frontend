@@ -128,6 +128,10 @@ export class CsvImportComponent {
       }else{
             Swal.fire({
               title: 'Error!',
+              showClass: {
+                popup: 'animated fadeInDown faster',
+                icon: 'animated heartBeat delay-1s'
+              },
               text: `Error in sheet`,
               icon: 'error',
               confirmButtonText: 'OK',
@@ -160,12 +164,20 @@ export class CsvImportComponent {
                 Swal.fire({
                       title: 'Success!',
                       text: `${message}`,
+                      showClass: {
+                        popup: 'animated fadeInDown faster',
+                        icon: 'animated heartBeat delay-1s'
+                      },
                       icon: 'success',
                       confirmButtonText: 'OK',
                     }); 
                     }else{
                       Swal.fire({
                         title: 'Erorr!',
+                        showClass: {
+                          popup: 'animated fadeInDown faster',
+                          icon: 'animated heartBeat delay-1s'
+                        },
                         text: `${message}`,
                         icon: 'error',
                         confirmButtonText: 'OK',
