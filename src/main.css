@@ -3493,14 +3493,17 @@ table {
   margin-bottom: 0 !important;
 }
 
-.accordion-item.card.radiusBgTab.most-recent-alert {
-  background-color: #ffedec !important;
-}
+
 .accordion-item.card.radiusBgTab.most-recent-alert h2.accordion-header button {
-  background: #ffedec !important;
-  border-bottom: 1px solid #ffffff80;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+    background: #cf4b5f !important;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.most-recent-alert .mainCurrentHead h5 {
+    color: #fff !important;
+}
+.most-recent-alert .updatedHead p {
+    color: #fff !important;
 }
 span.alertLink {
   color: var(--bg-primary);
@@ -3594,4 +3597,8 @@ span.question-Icon .ques{
 }
 .userSingleSearch.importbox {
   margin-left: 15px;
+}
+
+.most-recent-alert button.accordion-button.tabtitleBtn:after {
+    filter: invert(1);
 }
