@@ -123,7 +123,9 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     //console.log("searchVal",searchVal);
     this.vin=searchVal;
     if(searchVal=="" ||searchVal==null){
+      this.isRead=null;
       this.getTableData();
+      
     }else{
       this.getTableData(searchVal);
     }

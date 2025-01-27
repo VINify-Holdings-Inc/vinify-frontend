@@ -75,6 +75,7 @@ export class NotificationComponent {
     this.vin=searchVal;
     if(searchVal=="" ||searchVal==null){
       this.getTableData();
+      this.isRead=null;
     }else{
       this.getTableData(searchVal);
     }
