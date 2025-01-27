@@ -57,7 +57,7 @@
                                 <div class="checkmodal"></div>
                             </a>
                             
-                            <ul class="dropdown-menu dropdown-menu-end notification-dropdown">
+                            <ul class="dropdown-menu dropdown-menu-end notification-dropdown" >
                                 
                                 <li class="dropdown-item notifyInner">
                                     <div class="notifyBox">
@@ -74,102 +74,20 @@
                                         </div>
                                     </div>
                                 </li>
+                                @for(item of notificationData;track $index){
                                 <li class="notifyInner">
                                     <div class="notifyPoint">
                                         <div class="notifyDot"><span class="red-dot"></span></div>
                                         <div class="notifySubpoint">
                                             <div class="notifySubHead">
-                                                <h6>In Customs</h6><span>18 Jan 2024</span>
+                                                <h6>In Customs</h6><span>{{item.createdAt| dateFormat: "DD MMM YYYY"}}</span>
                                             </div>
-                                            <p>Vehicle might be suspiciously found in customs Florida for VIN XYZ123456.
+                                            <p>Vehicle might be suspiciously  for VIN {{item.vin}}.
                                             </p>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Theft Report</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>Theft detected for VIN XYZ123456 in Florida. Immediate action required.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Impounded</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>VIN XYZ123456 is taken into legal custody by California authorities due
-                                                to traffic vi</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Impounded</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
-                                                viola</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Impounded</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
-                                                viola</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Impounded</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
-                                                viola</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Impounded</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
-                                                viola</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Impounded</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
-                                                viola</p>
-                                        </div>
-                                    </div>
-                                </li>
+                                }
                                 
                             </ul>
                             

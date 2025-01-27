@@ -56,6 +56,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
  tableData :any[] =[];
  lastUpdateDate:string ="";
  alertCount : number =0;
+ notificationData: any[]=[];
  ngOnInit() {
   // Subscribe to the profile data observable
   this.subscription = this.profileService.profileData$.subscribe((data) => {
@@ -70,6 +71,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   this.getProfileData();
   this.getTableData();
   this.showAlertCountData();
+  this.getNotificationData();
 }
 
  ngOnDestroy() {
@@ -209,6 +211,22 @@ showAlertCountData() {
    }
  );
 }
+
+getNotificationData() { 
+  let url = `page=1&limit=9&isRead=false`;
+ 
+ this.userData.getCurrentVinData(url).subscribe(
+   (res: any) => {
+     if (!res.error) {
+       this.notificationData = res?.data?.items || [];  
+           
+     }
+   },
+   (err) => {    
+   }
+ );
+}
+
 
 
 }
