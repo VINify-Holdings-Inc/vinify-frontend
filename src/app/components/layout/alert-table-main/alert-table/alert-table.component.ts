@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alert-table',
@@ -17,6 +18,9 @@ import { MatTableDataSource } from '@angular/material/table';
 
 
 export class AlertTableComponent implements OnInit{
+
+  constructor(private router: Router) {}
+  
     filerIcon: string = 'assets/images/icons/filter-lines.svg';
     calendarIcon: string = 'assets/images/icons/calendar.svg';
     pdfIcon: string = 'assets/images/icons/pdf.svg';
@@ -41,6 +45,7 @@ export class AlertTableComponent implements OnInit{
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
        displayedColumns: string[] = [ 'titleBrandDate', 'vin','year', 'make', 'state','detailsData', 'details'];
+ 
 
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
@@ -139,5 +144,17 @@ previousPage() {
    alertFilter(data:any){
     this.handelAlertFil.emit(data);
    } 
+
+   VegiclePageRedirect=(vin:any)=>{ 
+    
+    const timestamp = new Date().getTime();
+    this.router.navigate(['/title-details'], {
+      queryParams: {
+        vin:  vin?.vin || '',
+        model:  vin?.model || '',
+        refresh: timestamp
+      }
+    });
+  }
 
 }
