@@ -5,6 +5,15 @@
       <div class="modal-content">
         <div class="modal-header modalTblHead">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Specific VINs</h1>
+            <div class="userSingleSearch pull-right" >
+                <span class="VInNumberInput">
+                    <img alt="img" src="assets/images/icons/search.svg" class="img-fluid"
+                        (click)="getSearchVal()" />
+                    <input type="text" [(ngModel)]="searchValue" (keydown.enter)="getSearchVal()"
+                        (ngModelChange)="onType(searchValue)" class="form-control"
+                        placeholder="Search VIN Number" />
+                </span>
+            </div>
           <button type="button" class="btn btn-primary modalExport" (click) = "getPDFData()">Export PDF</button>
           <button type="button" class="btn btn-close modalClose" data-bs-dismiss="modal" aria-label="Close">
           </button>
@@ -12,6 +21,7 @@
         <div class="modal-body">
             <div class="card cxt">
                 <div class="card-body px-0 userdashbrdTable reportTable pt-0">
+                   
                     <div class="table-responsive">
                         <table mat-table [dataSource]="tableData" class="table mat-elevation-z8" matSort>
                           <!-- Checkbox Column -->
