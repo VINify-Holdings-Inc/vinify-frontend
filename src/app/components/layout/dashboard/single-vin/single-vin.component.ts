@@ -25,10 +25,10 @@ export class SingleVinComponent implements OnInit {
   tableData: any[] = [];
   isLoading: boolean = false;
   vin: any = '';
-  limit = 100000;
+  limit = 1000000;
   page = 1;
   checkall:any="single";
-  selectedVins: string[] = [];
+  selectedVins: any[] = [];
   displayedColumns: string[] = ['select', 'vin', 'year', 'make', 'titleBrandDate', 'state'];
 
   ngOnInit() {
@@ -69,15 +69,41 @@ export class SingleVinComponent implements OnInit {
     }
   }
 
+  // onRowSelectionChange(item: any): void {
+  //   //console.log('Row selection changed:', item);
+  //   if (item.isSelected) {
+  //     this.selectedVins.push({"vins":item.vin,"titleBrandDate":item.titleBrandDate});
+  //   } else {
+  //     const index = this.selectedVins.indexOf(item.vins.vin);
+  //     if (index > -1) {
+  //       this.selectedVins.splice(index, 1);
+  //     }
+  //   }
+  //   console.log(this.selectedVins);
+  // }
+
   onRowSelectionChange(item: any): void {
-    //console.log('Row selection changed:', item);
     if (item.isSelected) {
-      this.selectedVins.push(item.vin);
-    } else {
-      const index = this.selectedVins.indexOf(item.vin);
-      if (index > -1) {
-        this.selectedVins.splice(index, 1);
+      // Add the selected item to the array
+      const vinExists = this.selectedVins.some(
+        (selected) =>
+          selected.vin === item.vin &&
+          selected.titleBrandDate === item.titleBrandDate
+      );
+  
+      if (!vinExists) {
+        this.selectedVins.push({
+          vin: item.vin,
+          titleBrandDate: item.titleBrandDate,
+        });
       }
+    } else {
+      // Remove the item from the array
+      this.selectedVins = this.selectedVins.filter(
+        (selected) =>
+          selected.vin !== item.vin ||
+          selected.titleBrandDate !== item.titleBrandDate
+      );
     }
     console.log(this.selectedVins);
   }

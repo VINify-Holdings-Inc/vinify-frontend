@@ -138,5 +138,10 @@ export class userData {
       headers: this.getHeaders(),
     });
   }
+  getUnreadCount(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/total-unread-alert`, {
+      headers: this.getHeaders(),
+    });
+  } 
 
 }
