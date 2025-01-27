@@ -154,6 +154,10 @@ getVinSearch(vin:any){
           Swal.fire({
             title: 'Action!',
             text: res.message,
+            showClass: {
+              popup: 'animated fadeInDown faster',
+              icon: 'animated heartBeat delay-1s'
+            },
             icon: 'info',
             showCancelButton: true, // Enables the cancel button
             confirmButtonText: 'Yes', // Text for the confirm button

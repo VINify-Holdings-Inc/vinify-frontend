@@ -157,6 +157,10 @@ loadUserData(): void {
       this.isLoading = false;
       Swal.fire({
         title: 'Error!',
+        showClass: {
+          popup: 'animated fadeInDown faster',
+          icon: 'animated heartBeat delay-1s'
+        },
         text: 'Please try again.',
         icon: 'error',
         confirmButtonText: 'OK',
@@ -218,6 +222,10 @@ loadUserData(): void {
         if(this.profileForm.value.password !== this.profileForm.value.confirmPassword){
            Swal.fire({
                       title: 'Error!',
+                      showClass: {
+                        popup: 'animated fadeInDown faster',
+                        icon: 'animated heartBeat delay-1s'
+                      },
                       text: 'Password and confirm password do not match.',
                       icon: 'error',
                       confirmButtonText: 'OK',
@@ -254,6 +262,10 @@ loadUserData(): void {
             this.toggleFields(false);
             Swal.fire({
               title: 'Success!',
+              showClass: {
+                popup: 'animated fadeInDown faster',
+                icon: 'animated heartBeat delay-1s'
+              },
               text: response.message,
               icon: 'success',
               confirmButtonText: 'OK',
@@ -267,6 +279,10 @@ loadUserData(): void {
            
             Swal.fire({
               title: 'Error!',
+              showClass: {
+                popup: 'animated fadeInDown faster',
+                icon: 'animated heartBeat delay-1s'
+              },
               text: response.message,
               icon: 'error',
               confirmButtonText: 'OK',
@@ -278,6 +294,10 @@ loadUserData(): void {
           this.isLoading = false;
           Swal.fire({
             title: 'Error!',
+            showClass: {
+              popup: 'animated fadeInDown faster',
+              icon: 'animated heartBeat delay-1s'
+            },
             text: 'Failed to update profile. Please try again.',
             icon: 'error',
             confirmButtonText: 'OK',
@@ -289,6 +309,10 @@ loadUserData(): void {
      
       Swal.fire({
         title: 'Error!',
+        showClass: {
+          popup: 'animated fadeInDown faster',
+          icon: 'animated heartBeat delay-1s'
+        },
         text: 'Please fill out the required fields correctly.',
         icon: 'error',
         confirmButtonText: 'OK',
@@ -324,6 +348,10 @@ loadUserData(): void {
                  
                   Swal.fire({
                     title: 'Success!',
+                    showClass: {
+                      popup: 'animated fadeInDown faster',
+                      icon: 'animated heartBeat delay-1s'
+                    },
                     text: response.message,
                     icon: 'success',
                     confirmButtonText: 'OK',
@@ -334,6 +362,10 @@ loadUserData(): void {
                  
                   Swal.fire({
                     title: 'Error!',
+                     showClass: {
+                      popup: 'animated fadeInDown faster',
+                      icon: 'animated heartBeat delay-1s'
+                    },
                     text: response.message,
                     icon: 'error',
                     confirmButtonText: 'OK',
@@ -345,6 +377,10 @@ loadUserData(): void {
                 this.isLoading = false;
                 Swal.fire({
                   title: 'Error!',
+                  showClass: {
+                    popup: 'animated fadeInDown faster',
+                    icon: 'animated heartBeat delay-1s'
+                  },
                   text: 'Failed to update profile. Please try again.',
                   icon: 'error',
                   confirmButtonText: 'OK',
@@ -356,6 +392,10 @@ loadUserData(): void {
            
             Swal.fire({
               title: 'Error!',
+              showClass: {
+                popup: 'animated fadeInDown faster',
+                icon: 'animated heartBeat delay-1s'
+              },
               text: 'Please fill out the required fields correctly.',
               icon: 'error',
               confirmButtonText: 'OK',

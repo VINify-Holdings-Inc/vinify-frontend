@@ -60,10 +60,13 @@ export class SingleVinComponent implements OnInit {
 
   toggleSelectAll(event: any): void {
     const isChecked = event.checked;
-    this.tableData.forEach((row) => (row.isSelected = isChecked));
+    this.tableData.forEach((row) => {
+      row.isSelected = isChecked;
+      this.selectedVins.push({"vin":row.vin,"titleBrandDate":row.titleBrandDate});
+    });
     if(isChecked){
       this.checkall='all';
-      this.selectedVins=[]
+      //this.selectedVins=[]
     }else{
       this.checkall='single';
     }
@@ -72,7 +75,7 @@ export class SingleVinComponent implements OnInit {
   // onRowSelectionChange(item: any): void {
   //   //console.log('Row selection changed:', item);
   //   if (item.isSelected) {
-  //     this.selectedVins.push({"vins":item.vin,"titleBrandDate":item.titleBrandDate});
+  //     this.selectedVins.push({"vin":item.vin,"titleBrandDate":item.titleBrandDate});
   //   } else {
   //     const index = this.selectedVins.indexOf(item.vins.vin);
   //     if (index > -1) {
@@ -105,7 +108,8 @@ export class SingleVinComponent implements OnInit {
           selected.titleBrandDate !== item.titleBrandDate
       );
     }
-    console.log(this.selectedVins);
+    this.checkall='single';
+    console.log(this.selectedVins,item.isSelected);
   }
 
   isAllSelected(): boolean {
@@ -125,6 +129,10 @@ getPDFData() {
        this.isLoading = false;
                  Swal.fire({
                   title: 'Info!',
+                  showClass: {
+                    popup: 'animated fadeInDown faster',
+                    icon: 'animated heartBeat delay-1s'
+                  },
                    text: 'Please select VINs',
                    icon: 'info',
                    confirmButtonText: 'OK',

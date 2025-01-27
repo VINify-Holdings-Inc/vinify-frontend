@@ -141,6 +141,10 @@ previousPage() {
                   title: 'Info!',
                   text: data,
                   icon: 'info',
+                  showClass: {
+                    popup: 'animated fadeInDown faster',
+                    icon: 'animated heartBeat delay-1s'
+                  },
                   showCancelButton: false, // Enables the cancel button
                   confirmButtonText: 'OK', // Text for the confirm button
                  

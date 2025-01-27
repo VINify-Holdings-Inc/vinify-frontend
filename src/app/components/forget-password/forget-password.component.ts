@@ -37,6 +37,10 @@ export class ForgetPasswordComponent implements OnInit {
             this.isLoading=false;
              Swal.fire({
               title: 'Success!',
+              showClass: {
+                popup: 'animated fadeInDown faster',
+                icon: 'animated heartBeat delay-1s'
+              },
               text: res.message,
               icon: 'success',
               confirmButtonText: 'OK',
@@ -54,6 +58,10 @@ export class ForgetPasswordComponent implements OnInit {
            
             Swal.fire({
               title: 'Error!',
+              showClass: {
+                popup: 'animated fadeInDown faster',
+                icon: 'animated heartBeat delay-1s'
+              },
               text: res.message,
               icon: 'error',
               confirmButtonText: 'OK',
@@ -65,6 +73,10 @@ export class ForgetPasswordComponent implements OnInit {
           this.isLoading=false; 
            Swal.fire({
             title: 'Error!',
+            showClass: {
+              popup: 'animated fadeInDown faster',
+              icon: 'animated heartBeat delay-1s'
+            },
             text: 'Password reset failed! Please try again.',
             icon: 'error',
             confirmButtonText: 'OK',
@@ -75,6 +87,10 @@ export class ForgetPasswordComponent implements OnInit {
       
           Swal.fire({
             title: 'Error!',
+            showClass: {
+              popup: 'animated fadeInDown faster',
+              icon: 'animated heartBeat delay-1s'
+            },
             text: 'Please provide a valid email.',
             icon: 'error',
             confirmButtonText: 'OK',
