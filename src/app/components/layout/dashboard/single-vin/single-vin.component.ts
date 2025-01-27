@@ -30,7 +30,7 @@ export class SingleVinComponent implements OnInit {
   checkall:any="single";
   selectedVins: any[] = [];
   displayedColumns: string[] = ['select', 'vin', 'year', 'make', 'titleBrandDate', 'state'];
-
+  searchValue :string="";
   ngOnInit() {
     this.getTableData();
   }
@@ -158,6 +158,32 @@ getPDFData() {
 closeData(){
   this.checkall="single";
   this.selectedVins = [];
+}
+getSearchVal(){
+  if(this.searchValue==""){
+    this.searchValue="";
+    this.vin="";
+   
+  }else{
+    if(this.searchValue.trim().length === 0){
+      this.searchValue="";
+    }else{
+      this.handelSearch(this.searchValue.trim());
+    
+    }
+    
+  }
+}
+
+onType(value: string){
+  if(value==""){
+    this.handelSearch(value.trim());
+    
+  }
+}
+handelSearch(vin:any){
+  this.vin=vin
+  this.getTableData()
 }
 
 }
