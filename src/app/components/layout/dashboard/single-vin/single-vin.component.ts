@@ -131,7 +131,7 @@ getPDFData() {
      }   
    
   }
-  if (this.searchValue !== '') {
+  if (this.searchValue.trim() !== '') {
     this.checkall="single"
     this.selectedVins = this.selectedVins.filter((item) =>
       item.vin.includes(this.searchValue)
@@ -186,10 +186,14 @@ handelSearch(vin:any){
   this.getTableData()
 }
 clearAll(){
+  //console.log("test");
   this.vin="";
   this.selectedVins=[];
   this.searchValue="";
   this.checkall="single";
+  this.tableData.forEach((row) => {
+    row.isSelected = false;
+  });
 }
 
 }
