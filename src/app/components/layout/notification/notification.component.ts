@@ -82,7 +82,8 @@ export class NotificationComponent {
     //this.getTableData(searchVal);
   }
   handelAlertFil(data:any){
+      this.vin="";
       this.isRead=data;
-      this.getTableData(this.vin);
+      this.getTableData();
   }
 }
