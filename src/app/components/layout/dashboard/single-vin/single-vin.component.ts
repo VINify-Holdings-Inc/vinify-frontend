@@ -113,7 +113,7 @@ export class SingleVinComponent implements OnInit {
 
 getPDFData() {
   this.isLoading = true;
-  let url = `type=${this.checkall}`;
+ 
   if(this.checkall=="single"){
      if(this.selectedVins.length==0){
        this.isLoading = false;
@@ -132,11 +132,12 @@ getPDFData() {
    
   }
   if (this.searchValue !== '') {
+    this.checkall="single"
     this.selectedVins = this.selectedVins.filter((item) =>
       item.vin.includes(this.searchValue)
     );
   }
-
+  let url = `type=${this.checkall}`;
 
   this.userData.getPdfData(url,this.selectedVins).subscribe(
     (res: any) => {
@@ -170,9 +171,7 @@ getSearchVal(){
       this.searchValue="";
     }else{
       this.handelSearch(this.searchValue.trim());
-    
     }
-    
   }
 }
 
