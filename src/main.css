@@ -3493,7 +3493,12 @@ table {
   margin-bottom: 0 !important;
 }
 
-
+#sidebar ul li.helpicon img {
+    width: 20px;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 50%;
+}
 .accordion-item.card.radiusBgTab.most-recent-alert h2.accordion-header button {
     background: #cf4b5f !important;
     border-bottom-left-radius: 0;
