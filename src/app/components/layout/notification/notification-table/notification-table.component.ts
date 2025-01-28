@@ -137,6 +137,7 @@ previousPage() {
          
     }
    alertFilter(data:any){
+    this.searchValue="";
     this.handelAlertFil.emit(data);
    } 
 

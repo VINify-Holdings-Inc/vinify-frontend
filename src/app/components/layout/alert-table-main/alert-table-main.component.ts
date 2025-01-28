@@ -73,6 +73,7 @@ export class AlertTableMainComponent {
     //console.log("searchVal",searchVal);
     this.vin=searchVal;
     if(searchVal=="" ||searchVal==null){
+      this.isRead=null;
       this.getTableData();
     }else{
       this.getTableData(searchVal);
@@ -80,7 +81,8 @@ export class AlertTableMainComponent {
     //this.getTableData(searchVal);
   }
   handelAlertFil(data:any){
+     this.vin="";
       this.isRead=data;
-      this.getTableData(this.vin);
+      this.getTableData();
   }
 }
