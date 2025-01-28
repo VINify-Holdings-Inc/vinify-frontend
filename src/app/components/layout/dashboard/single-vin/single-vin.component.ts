@@ -72,18 +72,8 @@ export class SingleVinComponent implements OnInit {
     }
   }
 
-  // onRowSelectionChange(item: any): void {
-  //   //console.log('Row selection changed:', item);
-  //   if (item.isSelected) {
-  //     this.selectedVins.push({"vin":item.vin,"titleBrandDate":item.titleBrandDate});
-  //   } else {
-  //     const index = this.selectedVins.indexOf(item.vins.vin);
-  //     if (index > -1) {
-  //       this.selectedVins.splice(index, 1);
-  //     }
-  //   }
-  //   console.log(this.selectedVins);
-  // }
+
+  
 
   onRowSelectionChange(item: any): void {
     if (item.isSelected) {
@@ -123,7 +113,7 @@ export class SingleVinComponent implements OnInit {
 
 getPDFData() {
   this.isLoading = true;
-  let url = `type=${this.checkall}`;
+ 
   if(this.checkall=="single"){
      if(this.selectedVins.length==0){
        this.isLoading = false;
@@ -141,6 +131,14 @@ getPDFData() {
      }   
    
   }
+  if (this.searchValue !== '') {
+    this.checkall="single"
+    this.selectedVins = this.selectedVins.filter((item) =>
+      item.vin.includes(this.searchValue)
+    );
+  }
+  let url = `type=${this.checkall}`;
+
   this.userData.getPdfData(url,this.selectedVins).subscribe(
     (res: any) => {
       if (!res.error) {
@@ -173,9 +171,7 @@ getSearchVal(){
       this.searchValue="";
     }else{
       this.handelSearch(this.searchValue.trim());
-    
     }
-    
   }
 }
 
@@ -188,6 +184,12 @@ onType(value: string){
 handelSearch(vin:any){
   this.vin=vin
   this.getTableData()
+}
+clearAll(){
+  this.vin="";
+  this.selectedVins=[];
+  this.searchValue="";
+  this.checkall="single";
 }
 
 }

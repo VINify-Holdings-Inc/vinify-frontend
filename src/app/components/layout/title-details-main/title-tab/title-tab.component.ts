@@ -8,6 +8,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
+import { userData } from '../../../../services/api-service.service';
 
 @Component({
   selector: 'app-title-tab',
@@ -39,7 +40,7 @@ export class TitleTabComponent implements OnInit{
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
        displayedColumns: string[] = ['status','vin', 'state','brand', 'model','modelYear','titleBrandDate'];
-
+        constructor(private userData : userData){}
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
            this.updateVisiblePages();  // Trigger pagination update when totalPages changes
@@ -153,6 +154,21 @@ previousPage() {
     alertFilter(data:any){
       this.searchValue="";
       this.handelAlertFil.emit(data);
-     } 
+     }
+
+    updateAlertStatus(data:any){
+      let datas = `id=${data.id}`
+     this.userData.updateSeenAlertData(datas).subscribe(
+       (res:any) => {
+          console.log("data",res?.data);
+         if(!res.error){
+           
+         }     
+       },
+       (err) => {
+        
+       }
+     );
+   } 
 
 }
