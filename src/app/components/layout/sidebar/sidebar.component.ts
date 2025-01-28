@@ -10,12 +10,10 @@ import { CommonModule } from '@angular/common';
 })
 export class SidebarComponent implements OnInit {
   constructor(private router: Router) {}
-
-  localData:any=localStorage.getItem("singleVin")
- storageData:any= JSON.parse(this.localData)
+  localData:any=""
+  storageData:any=""
  
-  ngOnInit(): void {
-     
+  ngOnInit(): void { 
   }
   icon1: string = 'assets/images/icons/sidebar-icon/dashboard.svg';
   icon2: string = 'assets/images/icons/sidebar-icon/vehicle.svg';
@@ -26,8 +24,10 @@ export class SidebarComponent implements OnInit {
   icon7: string = 'assets/images/icons/sidebar-icon/information.png';
   helpPdf: any = 'assets/helpdoc/NMVTIS_help_doc.pdf';
   @Input() isSidebarActive: boolean = true;
-
-  routerNavigation() {
+  
+  routerNavigation() { 
+    this.localData=localStorage.getItem("singleVin")
+    this.storageData= JSON.parse(this.localData)
     const timestamp = new Date().getTime();
     this.router.navigate(['/title-details'], {
       queryParams: {
@@ -39,3 +39,7 @@ export class SidebarComponent implements OnInit {
   }
  
 }
+
+
+
+// https://mvmapi.techwagger.com/api/dashboard-vin-summary?page=1&limit
