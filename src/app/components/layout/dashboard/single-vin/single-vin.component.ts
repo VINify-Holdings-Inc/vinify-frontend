@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener,ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { userData } from '../../../../services/api-service.service';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
@@ -20,8 +20,8 @@ import { LoaderComponent } from '../../common/loader/loader.component';
   styleUrls: ['./single-vin.component.css'],
 })
 export class SingleVinComponent implements OnInit {
-  constructor(private userData: userData,private pdfService: CreatePDFService,) {}
-
+  constructor(private userData: userData,private pdfService: CreatePDFService,private elementRef: ElementRef) {}
+  isModalOpen = true;
   tableData: any[] = [];
   isLoading: boolean = false;
   vin: any = '';
@@ -136,6 +136,21 @@ getPDFData() {
     this.selectedVins = this.selectedVins.filter((item) =>
       item.vin.includes(this.searchValue)
     );
+    if(this.selectedVins.length==0){
+      this.isLoading = false;
+                Swal.fire({
+                 title: 'Info!',
+                 showClass: {
+                   popup: 'animated fadeInDown faster',
+                   icon: 'animated heartBeat delay-1s'
+                 },
+                  text: 'Please select VINs',
+                  icon: 'info',
+                  confirmButtonText: 'OK',
+                });
+                return;
+    } 
+
   }
   let url = `type=${this.checkall}`;
 
@@ -194,6 +209,26 @@ clearAll(){
   this.tableData.forEach((row) => {
     row.isSelected = false;
   });
+}
+
+
+handleOutsideClick() {
+   this.isModalOpen = false; // Close the modal
+   this.clearAll();
+}
+
+// Listen for clicks on the document
+@HostListener('document:click', ['$event'])
+onDocumentClick(event: MouseEvent): void {
+  const clickedInside = this.elementRef.nativeElement.contains(event.target);
+  if (!clickedInside) {
+    this.handleOutsideClick();
+  }
+}
+
+// Example function to open the modal
+openModal(): void {
+  this.isModalOpen = true;
 }
 
 }
