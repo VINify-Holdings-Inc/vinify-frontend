@@ -97,7 +97,7 @@ export class DateFormatPipe implements PipeTransform {
         };
     
         // Get time in the desired format (e.g., 10.40 AM)
-        const timePart = date.toLocaleTimeString('en-US', timeOptions).replace(':', '.');
+        const timePart = date.toLocaleTimeString('en-US', timeOptions);
     
         // Get date in the desired format (e.g., Tue Jan 21 2025)
         const dayPart = date.toLocaleDateString('en-US', dayOptions);
