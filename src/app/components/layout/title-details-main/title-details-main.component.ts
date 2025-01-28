@@ -120,4 +120,5 @@ export class TitleDetailsMainComponent {
     this.getTableData(this.paramVin);
 }
 
+
 }

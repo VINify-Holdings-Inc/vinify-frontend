@@ -144,4 +144,10 @@ export class userData {
     });
   } 
 
+  updateSeenAlertData(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/seen-alert?`+ data, {
+      headers: this.getHeaders(),
+    });
+  }
+
 }

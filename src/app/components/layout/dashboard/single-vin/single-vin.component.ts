@@ -72,18 +72,8 @@ export class SingleVinComponent implements OnInit {
     }
   }
 
-  // onRowSelectionChange(item: any): void {
-  //   //console.log('Row selection changed:', item);
-  //   if (item.isSelected) {
-  //     this.selectedVins.push({"vin":item.vin,"titleBrandDate":item.titleBrandDate});
-  //   } else {
-  //     const index = this.selectedVins.indexOf(item.vins.vin);
-  //     if (index > -1) {
-  //       this.selectedVins.splice(index, 1);
-  //     }
-  //   }
-  //   console.log(this.selectedVins);
-  // }
+
+  
 
   onRowSelectionChange(item: any): void {
     if (item.isSelected) {
@@ -141,6 +131,13 @@ getPDFData() {
      }   
    
   }
+  if (this.searchValue !== '') {
+    this.selectedVins = this.selectedVins.filter((item) =>
+      item.vin.includes(this.searchValue)
+    );
+  }
+
+
   this.userData.getPdfData(url,this.selectedVins).subscribe(
     (res: any) => {
       if (!res.error) {
@@ -188,6 +185,12 @@ onType(value: string){
 handelSearch(vin:any){
   this.vin=vin
   this.getTableData()
+}
+clearAll(){
+  this.vin="";
+  this.selectedVins=[];
+  this.searchValue="";
+  this.checkall="single";
 }
 
 }
