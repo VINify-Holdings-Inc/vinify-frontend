@@ -3607,3 +3607,8 @@ span.question-Icon .ques{
 .most-recent-alert button.accordion-button.tabtitleBtn:after {
     filter: invert(1);
 }
+.userdashbrdTable.reportTable .table > thead > tr > th:last-child {
+    border-radius: 0 12px 0 0 !important;
+}
+
+ 
