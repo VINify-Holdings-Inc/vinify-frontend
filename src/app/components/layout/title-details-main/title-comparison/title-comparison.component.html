@@ -4,7 +4,8 @@
         <div class="cardWrapper">
             <div class="accordion" id="accordionfirst">
                 <div *ngIf="tableDataCurrent.length > 0">
-                    <div *ngFor="let item of tableDataCurrent; let index = index" [ngClass]="item?.isOld ? 'accordion-item card radiusBgTab' : 'accordion-item card radiusBgTab most-recent-alert'">
+                    <div *ngFor="let item of tableDataCurrent; let index = index"
+                        [ngClass]="item?.isOld ? 'accordion-item card radiusBgTab' : 'accordion-item card radiusBgTab most-recent-alert'">
                         <div class="TabTitleStatus">
                             <h2 class="accordion-header">
                                 <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
@@ -22,7 +23,8 @@
                                     </div>
                                 </button>
                             </h2>
-                            <div [id]="'collapse' + index" class="accordion-collapse collapse" [ngClass]="{'show': index === 0}" data-bs-parent="#accordionfirst">
+                            <div [id]="'collapse' + index" class="accordion-collapse collapse"
+                                [ngClass]="{'show': index === 0}" data-bs-parent="#accordionfirst">
                                 <div class="accordion-body currentTabInnerBg currentBg">
                                     <div class="innerTabCurrent">
                                         <div class="row">
@@ -41,13 +43,22 @@
                                             <div class="col-md-4 col-sm-4">
                                                 <div class="statusBody">
                                                     <p class="tdHead">Brand</p>
-                                                    <p class="tdBody">{{item.brand ? item?.brand?.split(' - ')[0]: "-"}}</p>
+                                                    <p class="tdBody">{{item.brand ? item?.brand?.split(' - ')[0]: "-"}}
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8">
                                                 <div class="statusBody">
                                                     <p class="tdHead">Make</p>
-                                                    <p class="tdBody">{{item.model ? item.model : "-"}}</p>
+                                                    <span [ngClass]="item.isModel ? 't red tableDot' : ''"></span> 
+                                                        <p class="tdBody">
+                                                        {{ item.model ? item.model : '-' }}
+                                                    </p>
+
+                                                    <!-- <span _ngcontent-ng-c2087600287="" class="tableDot redDot grayDot"></span>
+                                                    <p [ngClass]="item.isModel ? 'redDot tdBody' : 'tdBody'">
+                                                        {{ item.model ? item.model : '-' }}
+                                                      </p> -->
                                                 </div>
                                             </div>
 
@@ -60,7 +71,8 @@
                                             <div class="col-md-8 col-sm-8">
                                                 <div class="statusBody pbt-0">
                                                     <p class="tdHead">Title Alert Date</p>
-                                                    <p class="tdBody">{{item.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
+                                                    <p class="tdBody">{{item.titleBrandDate | dateFormat:"DD MMM YYYY"}}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -71,7 +83,9 @@
                     </div>
                 </div>
                 <div *ngIf="tableDataCurrent.length == 0">
-                    <span class="title-center"><h5>No data found</h5></span>
+                    <span class="title-center">
+                        <h5>No data found</h5>
+                    </span>
                 </div>
             </div>
         </div>
@@ -82,7 +96,8 @@
         <div class="cardWrapper">
             <div class="accordion" id="accordionSecond">
                 <div *ngIf="tableDataHistory.length > 0">
-                    <div *ngFor="let item of tableDataHistory; let index = index" class="accordion-item card radiusBgTab">
+                    <div *ngFor="let item of tableDataHistory; let index = index"
+                        class="accordion-item card radiusBgTab">
                         <div class="TabTitleStatus">
                             <h2 class="accordion-header">
                                 <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
@@ -100,7 +115,8 @@
                                     </div>
                                 </button>
                             </h2>
-                            <div [id]="'collapsethree' + index" class="accordion-collapse collapse" [ngClass]="{'show': index === 0}" data-bs-parent="#accordionSecond">
+                            <div [id]="'collapsethree' + index" class="accordion-collapse collapse"
+                                [ngClass]="{'show': index === 0}" data-bs-parent="#accordionSecond">
                                 <div class="accordion-body currentTabInnerBg lastBg">
                                     <div class="innerTabCurrent">
                                         <div class="row">
@@ -119,7 +135,8 @@
                                             <div class="col-md-4 col-sm-4">
                                                 <div class="statusBody">
                                                     <p class="tdHead">Brand</p>
-                                                    <p class="tdBody">{{item.brand ? item?.brand?.split(' - ')[0]: "-"}}</p>
+                                                    <p class="tdBody">{{item.brand ? item?.brand?.split(' - ')[0]: "-"}}
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div class="col-md-8 col-sm-8">
@@ -137,7 +154,8 @@
                                             <div class="col-md-8 col-sm-8">
                                                 <div class="statusBody pbt-0">
                                                     <p class="tdHead">Title Alert Date</p>
-                                                    <p class="tdBody">{{item.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
+                                                    <p class="tdBody">{{item.titleBrandDate | dateFormat:"DD MMM YYYY"}}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -148,7 +166,9 @@
                     </div>
                 </div>
                 <div *ngIf="tableDataHistory.length == 0">
-                    <span class="title-center"><h5>No data found</h5></span>
+                    <span class="title-center">
+                        <h5>No data found</h5>
+                    </span>
                 </div>
             </div>
         </div>

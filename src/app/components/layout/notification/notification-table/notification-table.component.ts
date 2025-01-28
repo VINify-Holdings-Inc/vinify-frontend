@@ -2,7 +2,7 @@ import {  Component, AfterViewInit, Input, Output, EventEmitter, OnInit, SimpleC
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
-
+import { Router } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -17,6 +17,8 @@ import { MatTableDataSource } from '@angular/material/table';
 
 
 export class NotificationTableComponent implements OnInit{
+
+  constructor(private router: Router) {}
     filerIcon: string = 'assets/images/icons/filter-lines.svg';
     calendarIcon: string = 'assets/images/icons/calendar.svg';
     pdfIcon: string = 'assets/images/icons/pdf.svg';
@@ -141,4 +143,16 @@ previousPage() {
     this.handelAlertFil.emit(data);
    } 
 
+
+   VegiclePageRedirect=(vin:any)=>{ 
+    
+    const timestamp = new Date().getTime();
+    this.router.navigate(['/title-details'], {
+      queryParams: {
+        vin:  vin?.vin || '',
+        model:  vin?.model || '',
+        refresh: timestamp
+      }
+    });
+  }
 }
