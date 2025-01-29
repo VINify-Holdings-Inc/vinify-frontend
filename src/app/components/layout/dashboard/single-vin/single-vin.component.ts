@@ -206,9 +206,12 @@ clearAll(){
   this.selectedVins=[];
   this.searchValue="";
   this.checkall="single";
-  this.tableData.forEach((row) => {
-    row.isSelected = false;
-  });
+
+  // this.tableData.forEach((row) => {
+  //   row.isSelected = false;
+  // });
+  this.getTableDataAfetrClose();
+
 }
 
 
@@ -229,6 +232,26 @@ onDocumentClick(event: MouseEvent): void {
 // Example function to open the modal
 openModal(): void {
   this.isModalOpen = true;
+}
+
+getTableDataAfetrClose(vin: any = null) {
+  let url = `page=${this.page}&limit=${this.limit}`;
+  if (this.vin) {
+    url = url + `&vin=${this.vin}`;
+  }
+  this.userData.getCurrentVinData(url).subscribe(
+    (res: any) => {
+      if (!res.error) {
+        const data = res?.data?.items || [];
+        // Add isSelected property to each row for checkbox
+        data.forEach((item: any) => (item.isSelected = false));
+        this.tableData = (data);
+      }
+    },
+    (err) => {
+    
+    }
+  );
 }
 
 }
