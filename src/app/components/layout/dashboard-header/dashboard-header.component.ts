@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter,OnInit, OnDestroy } from '@angular/core';
 import { SessionService } from '../../../services/session.service';
 import { Router,RouterLink } from '@angular/router';
-import { ProfileService } from '../../../services/state-management';
+import { NotificationService, ProfileService } from '../../../services/state-management';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -30,7 +30,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   constructor(private sessionServies: SessionService, private router : Router,
               private profileService: ProfileService,private userData: userData,
               private authService: AuthService,
-              private soapService: SoapService){
+              private soapService: SoapService,private notificationService: NotificationService){
     this.profileData = this.profileService.getInitialProfileData()  ;
     this.userEmail=JSON.parse(localStorage.getItem("profileData")||"")?.email;
     
@@ -40,6 +40,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   profile : string ="";
   searchValue :string="";
   userEmail:string="";
+  unreadCount = 0;
   //profileComplete:string="";
   toggleSidebar() { 
     this.sidebarToggle.emit();
@@ -72,6 +73,9 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   this.getTableData();
   this.showAlertCountData();
   this.getNotificationData();
+  this.notificationService.unreadCount$.subscribe(count => {
+    this.unreadCount = count; // Update count in the UI
+  });
 }
 
  ngOnDestroy() {
@@ -206,9 +210,10 @@ showAlertCountData() {
    this.userData.getUnreadCount().subscribe(
    (res: any) => {
      if (!res.error) {
-      
-      // console.log("this",res?.data.totalNotificationCount);
       this.alertCount=res?.data?.totalNotificationCount||0
+      this.notificationService.setUnreadCount(
+        res?.data?.totalNotificationCount||0
+      ); 
      }
    },
    (err) => {    

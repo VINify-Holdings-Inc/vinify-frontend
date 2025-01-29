@@ -5,6 +5,7 @@ import { LoaderComponent } from '../common/loader/loader.component';
 import { NotificationTableComponent } from './notification-table/notification-table.component';
 
 
+
 @Component({
   selector: 'app-notification',
   imports: [NotificationTableComponent,LoaderComponent],
@@ -45,7 +46,7 @@ export class NotificationComponent {
     }
    
      
-    this.userData.getCurrentVinData(url).subscribe(
+    this.userData.getUnreadNotificationData(url).subscribe(
       (res: any) => {
         if (!res.error) {
           this.tableData = res?.data?.items || [];
