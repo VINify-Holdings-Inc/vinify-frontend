@@ -214,6 +214,7 @@ showAlertCountData() {
       this.notificationService.setUnreadCount(
         res?.data?.totalNotificationCount||0
       ); 
+      this.lastUpdateDate= res?.data?.lastUpdatedDate||""    
      }
    },
    (err) => {    
@@ -228,7 +229,7 @@ getNotificationData() {
    (res: any) => {
      if (!res.error) {
        this.notificationData = res?.data?.items || [];  
-           
+      
      }
    },
    (err) => {    
