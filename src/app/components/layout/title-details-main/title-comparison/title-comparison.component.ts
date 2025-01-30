@@ -1,4 +1,4 @@
-import { Component,OnInit, } from '@angular/core';
+import { Component,EventEmitter,OnInit, Output, } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { userData } from '../../../../services/api-service.service';
 import { LoaderComponent } from '../../common/loader/loader.component';
@@ -22,7 +22,7 @@ export class TitleComparisonComponent implements OnInit {
   totalDataCurrent :number = 0;
   isLoading : boolean=false;
   paramVin:string="";
-
+  @Output() handelTitleChange = new EventEmitter <any>();
   ngOnInit() {
     console.log("test");
    
@@ -57,7 +57,7 @@ export class TitleComparisonComponent implements OnInit {
 
           this.tableDataCurrent=res?.data?.current?.items||[];
           this.totalDataCurrent= res?.data?.current?.totalRecords||0;
-         
+          this.handelTitleChange.emit({"totalRecord":res?.data?.current?.totalRecords||0,"lastUpdate":res?.data?.current?.items[0]?.createdAt||""});
         }     
 
       },
