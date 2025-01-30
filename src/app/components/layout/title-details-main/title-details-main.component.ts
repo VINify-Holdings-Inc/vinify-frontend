@@ -6,10 +6,11 @@ import { LoaderComponent } from '../common/loader/loader.component';
 import { SessionService } from '../../../services/session.service';
 import Swal from 'sweetalert2';
 import { TitleComparisonComponent } from './title-comparison/title-comparison.component';
+import { DateFormatPipe } from '../../../pipes/date-format.pipe';
 
 @Component({
   selector: 'app-title-details-main',
-  imports: [TitleTabComponent,TitleComparisonComponent,LoaderComponent],
+  imports: [TitleTabComponent,TitleComparisonComponent,LoaderComponent,DateFormatPipe],
   templateUrl: './title-details-main.component.html',
   styleUrl: './title-details-main.component.css'
 })
@@ -19,6 +20,11 @@ export class TitleDetailsMainComponent {
   preserveVin:string="";
   model:string="";
   isRead:any=null;
+  titleChange:any=0;
+  lastTitleChangeUpdated :any="2024-05-24";
+  customChange:any=0;
+  impoundChange:any=0;
+  theftChange:any=0;
   constructor(private router: Router ,private route : ActivatedRoute,private userData : userData,
     private sessionService: SessionService,) {}
 
@@ -118,6 +124,10 @@ export class TitleDetailsMainComponent {
    handelAlertFil(data:any){
     this.isRead=data;
     this.getTableData(this.paramVin);
+}
+handelTitleChange(data:any){
+  this.titleChange=data.totalRecord;
+  this.lastTitleChangeUpdated=data.lastUpdate;
 }
 
 

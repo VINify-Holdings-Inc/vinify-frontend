@@ -33,6 +33,7 @@ export class TitleTabComponent implements OnInit{
         @Output() handelPaginagtion = new EventEmitter <any>();
         @Output() handelSearch = new EventEmitter <any>();
         @Output() handelAlertFil = new EventEmitter <any>();
+               
         alert:any=null;
         
        currentPage: number = 1; // Current active page

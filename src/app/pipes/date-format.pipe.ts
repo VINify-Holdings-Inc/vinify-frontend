@@ -109,6 +109,14 @@ export class DateFormatPipe implements PipeTransform {
         // Return the formatted string
         return `${timePart}, ${formattedDate1}`;
     }
+    case 'DD MMM - HH:mm:ss': {
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = date.toLocaleString('en-US', { month: 'short' });
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      const seconds = date.getSeconds().toString().padStart(2, '0');
+      return `${day} ${month} - ${hours}:${minutes}:${seconds}`;
+  }
 
       default:
         return date.toISOString(); // Default ISO string format
