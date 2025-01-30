@@ -223,11 +223,12 @@ showAlertCountData() {
 }
 
 getNotificationData() { 
-  let url = `page=1&limit=9&isRead=false`;
+  let url = `page=1&limit=10`;
  
- this.userData.getCurrentVinData(url).subscribe(
+ this.userData.getNewAlertData(url).subscribe(
    (res: any) => {
      if (!res.error) {
+      console.log('ff',res?.data);
        this.notificationData = res?.data?.items || [];  
       
      }
