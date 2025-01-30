@@ -149,5 +149,10 @@ export class userData {
       headers: this.getHeaders(),
     });
   }
+  getUnreadNotificationData(data: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/unread-notification?`+ data, {
+      headers: this.getHeaders(),
+    });
+  }
 
 }

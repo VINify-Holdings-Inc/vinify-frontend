@@ -7,6 +7,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { userData } from '../../../../services/api-service.service';
+import { NotificationService } from '../../../../services/state-management';
 
 @Component({
   selector: 'app-notification-table',
@@ -18,7 +20,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 export class NotificationTableComponent implements OnInit{
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private userData: userData,private notificationService: NotificationService) {}
     filerIcon: string = 'assets/images/icons/filter-lines.svg';
     calendarIcon: string = 'assets/images/icons/calendar.svg';
     pdfIcon: string = 'assets/images/icons/pdf.svg';
@@ -143,9 +145,24 @@ previousPage() {
     this.handelAlertFil.emit(data);
    } 
 
+   updateAlertStatus(data:any){
+    let datas = `id=${data.id}`
+   this.userData.updateSeenAlertData(datas).subscribe(
+     (res:any) => {
+        console.log("data",res?.data);
+       if(!res.error){
+        this.notificationService.decrementUnreadCount(); 
+       }     
+     },
+     (err) => {
+      
+     }
+   );
+  }
 
    VegiclePageRedirect=(vin:any)=>{ 
-    
+    this.updateAlertStatus(vin);
+
     const timestamp = new Date().getTime();
     this.router.navigate(['/title-details'], {
       queryParams: {
@@ -155,4 +172,8 @@ previousPage() {
       }
     });
   }
+
+
+ 
+
 }

@@ -155,7 +155,7 @@ previousPage() {
       this.searchValue="";
       this.handelAlertFil.emit(data);
      }
-
+  /*
     updateAlertStatus(data:any){
       let datas = `id=${data.id}`
      this.userData.updateSeenAlertData(datas).subscribe(
@@ -169,6 +169,6 @@ previousPage() {
         
        }
      );
-   } 
+   } */
 
 }
