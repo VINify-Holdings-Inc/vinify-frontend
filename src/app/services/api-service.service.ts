@@ -93,7 +93,7 @@ export class userData {
   }
 
   getCurrentVinDataForUser(data: any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/csv-import-sheet2?`+ data, {
+    return this.http.get(`${this.baseUrl}/dashboard-vin-summary?`+ data, {
       headers: this.getHeaders(),
     });
   }
