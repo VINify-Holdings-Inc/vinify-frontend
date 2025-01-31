@@ -92,6 +92,17 @@
                   <th mat-header-cell *matHeaderCellDef width="220"> State </th>
                   <td mat-cell *matCellDef="let element" title={{element?.state}}><p class="boxTable"> {{element?.state? element?.state: "-"}} </p></td>
                 </ng-container>
+                <ng-container matColumnDef="brand">
+
+                  <th mat-header-cell *matHeaderCellDef width="380"> Brand Name </th>
+                  <td mat-cell *matCellDef="let element"  (mouseenter)="getBrandDetails(element?.brand)" >
+                    <span class="question-Icon" *ngIf="element?.brand?.length > 0"
+                     ><i class="material-symbols-outlined ques">info_i
+                      </i></span>
+  
+                    {{element?.brand ? element?.brand?.split(' - ')[0]:"-"}}
+                  </td>
+                </ng-container>
   
                 <ng-container matColumnDef="details">
   
