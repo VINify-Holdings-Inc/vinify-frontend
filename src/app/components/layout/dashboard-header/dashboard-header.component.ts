@@ -41,11 +41,12 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   searchValue :string="";
   userEmail:string="";
   unreadCount = 0;
+  soapToken:any="";
   //profileComplete:string="";
   toggleSidebar() { 
     this.sidebarToggle.emit();
   }
-
+ 
  logout(){
   this.sessionServies.clearSession();
   localStorage.clear();
@@ -166,7 +167,18 @@ getVinSearch(vin:any){
             showCancelButton: true, // Enables the cancel button
             confirmButtonText: 'Yes', // Text for the confirm button
             cancelButtonText: 'No',  // Text for the cancel button
-          })
+          }).then((result) => {
+            if (result.isConfirmed) {
+             
+             this.callSoapServiceAuth().then((success) => {
+              if (success) {
+                   this.getVinSearchDataFromSoap(this.soapToken,vin);
+              } else {
+                console.log("Failed to retrieve SOAP Token.");
+              }
+            });
+            }
+          });
         } 
       },
       (err) => {
@@ -192,18 +204,77 @@ getVinSearch(vin:any){
     );
   }
 
-  callSoapService() {
-    this.soapService.sendSoapRequest().subscribe(
-      (res) => {
-        console.log('SOAP Response:', res);
-       
-      },
-      (err) => {
-        console.error('SOAP Request Error:', err);
-        
+  callSoapServiceAuth(): Promise<boolean> {
+    return new Promise((resolve) => {
+      if (this.getVariable('tk') == null || this.getVariable('tk') == "") {
+        console.log("this.getVariable('tk')", this.getVariable('tk'));
+  
+        this.soapService.getToken().subscribe(
+          (res) => {
+            if (!res.error) {
+              let token = res.data?.encValue;
+              this.setVariable('tk', token);
+              this.soapToken = token;
+              resolve(true);
+            } else {
+              resolve(false);
+            }
+          },
+          (err) => {
+            console.error('SOAP Request Error:', err);
+            resolve(false);
+          }
+        );
+      } else {
+        this.soapToken = this.getVariable('tk');
+        resolve(this.soapToken != null && this.soapToken != "");
       }
-    );
+    });
   }
+
+setVariable(key:any, value:any, ttl = 30 * 60 * 1000) {
+  const expiry = Date.now() + ttl;
+  localStorage.setItem(key, JSON.stringify({ value, expiry }));
+}
+
+getVariable(key:any) {
+  const itemStr = localStorage.getItem(key);
+  if (!itemStr) {
+      return null; // Return null if the item doesn't exist
+  }
+
+  try {
+      const item = JSON.parse(itemStr);
+      if (!item || !item.expiry || Date.now() > item.expiry) {
+          localStorage.removeItem(key);
+          return null;
+      }
+      return item.value;
+  } catch (error) {
+      console.error("Error parsing JSON from localStorage:", error);
+      localStorage.removeItem(key); // Remove the corrupted data
+      return null;
+  }
+}
+getVinSearchDataFromSoap(tk:any,vin:any): Promise<boolean>{
+  return new Promise((resolve) => {
+   let data= {"token":tk,"vin":vin,"gap":"MY"}
+  this.soapService.getVinData(data).subscribe(
+    (res) => {
+      if (!res.error) {
+          console.log("xml",res.data)
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    },
+    (err) => {
+      console.error('SOAP Request Error:', err);
+      resolve(false);
+    }
+  );
+  });
+}
 
   
 showAlertCountData() { 
