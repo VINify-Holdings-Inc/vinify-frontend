@@ -112,7 +112,7 @@ getTableData() {
        this.tableData = res?.data?.items || [];  
        //console.log("this",this.tableData);
        if(res?.data?.items.length){
-         this.lastUpdateDate=res?.data?.items[0].updatedAt;
+      //   this.lastUpdateDate=res?.data?.items[0].updatedAt;
          localStorage.setItem("singleVin",JSON.stringify(res?.data?.items[0]))
        }else{
          this.lastUpdateDate="";
@@ -238,6 +238,11 @@ getNotificationData() {
  );
 }
 
+getAllNotification(){
+  this.router.navigate(['/notification']).then(() => {
+      
+  });
+}
 
 }
 
