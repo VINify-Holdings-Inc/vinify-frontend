@@ -38,13 +38,14 @@ export class CreatePDFService {
       // doc.text('Title Records', 10, 30);
 
       // Add Dynamic Table Data
-      const tableColumn = ['VINs', 'Year', 'Make', 'Alert Date', 'State', 'Status'];
+      const tableColumn = ['VINs', 'Year', 'Make', 'Alert Date', 'State','Brand Name', 'Status'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : "-",
         item.modelYear ? item.modelYear :"-",
         item.model ? item.model : "-",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
         item.state ? item.state : "-",
+        item?.brand ? item?.brand?.split(' - ')[0]:"-",
         item.status ? item.status :"-",
 
       ]);
