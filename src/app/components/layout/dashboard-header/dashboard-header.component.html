@@ -75,102 +75,25 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="notifyInner">
+                               
+                                @for(item of notificationData;track $index){
+                                <li class="notifyInner" (click)="getAllNotification()">
                                     <div class="notifyPoint">
                                         <div class="notifyDot"><span class="red-dot"></span></div>
                                         <div class="notifySubpoint">
                                             <div class="notifySubHead">
-                                                <h6>In Customs</h6><span>18 Jan 2024</span>
+                                                <h6>Title Changes</h6><span>{{ item.createdAt | dateFormat: "DD MMM YYYY"}}</span>
                                             </div>
-                                            <p>Vehicle might be suspiciously found in customs Florida for VIN XYZ123456.
+                                            <p> 
+                                                {{item.brand?item?.brand?.split(' - ')[0]:'-' }}
+                                            </p>
+                                            <p> 
+                                                customs for VIN {{item.vin}}.
                                             </p>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Theft Report</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>Theft detected for VIN XYZ123456 in Florida. Immediate action required.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Impounded</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>VIN XYZ123456 is taken into legal custody by California authorities due
-                                                to traffic vi</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Impounded</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
-                                                viola</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Impounded</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
-                                                viola</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Impounded</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
-                                                viola</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Impounded</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
-                                                viola</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notifyInner">
-                                    <div class="notifyPoint">
-                                        <div class="notifyDot"><span class="red-dot"></span></div>
-                                        <div class="notifySubpoint">
-                                            <div class="notifySubHead">
-                                                <h6>Impounded</h6><span>18 Jan 2024</span>
-                                            </div>
-                                            <p>VIN XYZ123456 seized due to violation at Miami authorities due to traffic
-                                                viola</p>
-                                        </div>
-                                    </div>
-                                </li>
+                                 }
                                 
                             </ul>
                             
