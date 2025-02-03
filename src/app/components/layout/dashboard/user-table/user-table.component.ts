@@ -48,7 +48,7 @@ export class UserTableComponent implements AfterViewInit, OnChanges{
   //selectedVins: string[] = [];
   selectedVins: { vin: string; alertDate: string }[] = [];
   checkAll:any=null;
-  displayedColumns: string[] = ['vin', 'year', 'make', 'titleBrandDate','state','details'];
+  displayedColumns: string[] = ['vin', 'year', 'make', 'titleBrandDate','state','brand','details'];
 
 
 
@@ -263,4 +263,21 @@ alertFilter(data:any){
   this.handelAlertFil.emit(data);
  }
 
+  getBrandDetails(data:any){
+       if(data !=null )
+         Swal.fire({
+                   title: 'Info!',
+                   text: data,
+                   icon: 'info',
+                  
+                   showClass: {
+                     popup: 'animated fadeInDown faster',
+                     icon: 'animated heartBeat delay-1s'
+                   },
+                   showCancelButton: false, // Enables the cancel button
+                   confirmButtonText: 'OK', // Text for the confirm button
+                  
+                 })
+     }
+   
 }

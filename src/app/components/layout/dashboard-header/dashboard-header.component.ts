@@ -41,11 +41,12 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   searchValue :string="";
   userEmail:string="";
   unreadCount = 0;
+  soapToken:any="";
   //profileComplete:string="";
   toggleSidebar() { 
     this.sidebarToggle.emit();
   }
-
+ 
  logout(){
   this.sessionServies.clearSession();
   localStorage.clear();
@@ -112,7 +113,7 @@ getTableData() {
        this.tableData = res?.data?.items || [];  
        //console.log("this",this.tableData);
        if(res?.data?.items.length){
-         this.lastUpdateDate=res?.data?.items[0].updatedAt;
+      //   this.lastUpdateDate=res?.data?.items[0].updatedAt;
          localStorage.setItem("singleVin",JSON.stringify(res?.data?.items[0]))
        }else{
          this.lastUpdateDate="";
@@ -166,7 +167,57 @@ getVinSearch(vin:any){
             showCancelButton: true, // Enables the cancel button
             confirmButtonText: 'Yes', // Text for the confirm button
             cancelButtonText: 'No',  // Text for the cancel button
-          })
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.isLoading=true;
+             this.callSoapServiceAuth().then((success) => {
+              if (success) {
+                   this.getVinSearchDataFromSoap(this.soapToken,vin).then((resp) => {
+                     this.isLoading=false;
+                      if(resp.type){
+                            // xml data 
+                            Swal.fire({
+                              title: 'XML data!',
+                              showClass: {
+                                popup: 'animated fadeInDown faster',
+                                icon: 'animated heartBeat delay-1s'
+                              },
+                              text: JSON.stringify(resp.xml),
+                              icon: 'success',
+                              confirmButtonText: 'OK',
+                            });
+                      }else{
+                          Swal.fire({
+                            title: 'Error!',
+                            showClass: {
+                              popup: 'animated fadeInDown faster',
+                              icon: 'animated heartBeat delay-1s'
+                            },
+                            text: "Error is occurred while fetching Vin Details",
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                          });
+                      }
+                      
+                   })
+              } else {
+                    this.isLoading=false;
+                        Swal.fire({
+                              title: 'Error!',
+                              showClass: {
+                                popup: 'animated fadeInDown faster',
+                                icon: 'animated heartBeat delay-1s'
+                              },
+                              text: "Sever is down",
+                              icon: 'error',
+                              confirmButtonText: 'OK',
+                            }); 
+
+                console.log("Failed to retrieve SOAP Token.");
+              }
+            });
+            }
+          });
         } 
       },
       (err) => {
@@ -192,18 +243,79 @@ getVinSearch(vin:any){
     );
   }
 
-  callSoapService() {
-    this.soapService.sendSoapRequest().subscribe(
+  callSoapServiceAuth(): Promise<boolean> {
+    return new Promise((resolve) => {
+      if (this.getVariable('tk') == null || this.getVariable('tk') == "") {
+        console.log("this.getVariable('tk')", this.getVariable('tk'));
+  
+        this.soapService.getToken().subscribe(
+          (res) => {
+            if (!res.error) {
+              let token = res.data?.encValue;
+              this.setVariable('tk', token);
+              this.soapToken = token;
+              resolve(true);
+            } else {
+              resolve(false);
+            }
+          },
+          (err) => {
+            console.error('SOAP Request Error:', err);
+            resolve(false);
+          }
+        );
+      } else {
+        this.soapToken = this.getVariable('tk');
+        resolve(this.soapToken != null && this.soapToken != "");
+      }
+    });
+  }
+
+setVariable(key:any, value:any, ttl = 30 * 60 * 1000) {
+  const expiry = Date.now() + ttl;
+  localStorage.setItem(key, JSON.stringify({ value, expiry }));
+}
+
+getVariable(key:any) {
+  const itemStr = localStorage.getItem(key);
+  if (!itemStr) {
+      return null; // Return null if the item doesn't exist
+  }
+
+  try {
+      const item = JSON.parse(itemStr);
+      if (!item || !item.expiry || Date.now() > item.expiry) {
+          localStorage.removeItem(key);
+          return null;
+      }
+      return item.value;
+  } catch (error) {
+      console.error("Error parsing JSON from localStorage:", error);
+      localStorage.removeItem(key); // Remove the corrupted data
+      return null;
+  }
+}
+getVinSearchDataFromSoap(tk: any, vin: any): Promise<{ type: boolean; xml?: any }> {
+  return new Promise((resolve) => {
+    const data = { token: tk, vin: vin };
+
+    this.soapService.getVinData(data).subscribe(
       (res) => {
-        console.log('SOAP Response:', res);
-       
+        if (!res.error) {
+              console.log("XML Response:", res.data);
+          resolve({ type: true, xml: res.data });
+        } else {
+              console.error("SOAP Error:", res.error);
+          resolve({ type: false });
+        }
       },
       (err) => {
-        console.error('SOAP Request Error:', err);
-        
+            console.error("SOAP Request Error:", err);
+        resolve({ type: false });
       }
     );
-  }
+  });
+}
 
   
 showAlertCountData() { 
@@ -214,6 +326,7 @@ showAlertCountData() {
       this.notificationService.setUnreadCount(
         res?.data?.totalNotificationCount||0
       ); 
+      this.lastUpdateDate= res?.data?.lastUpdatedDate||""    
      }
    },
    (err) => {    
@@ -222,13 +335,14 @@ showAlertCountData() {
 }
 
 getNotificationData() { 
-  let url = `page=1&limit=9&isRead=false`;
+  let url = `page=1&limit=5`;
  
- this.userData.getCurrentVinData(url).subscribe(
+ this.userData.getTopTenNotification(url).subscribe(
    (res: any) => {
      if (!res.error) {
+      console.log('ff',res?.data);
        this.notificationData = res?.data?.items || [];  
-           
+      
      }
    },
    (err) => {    
@@ -236,7 +350,11 @@ getNotificationData() {
  );
 }
 
-
+getAllNotification(){
+  this.router.navigate(['/notification']).then(() => {
+      
+  });
+}
 
 }
 

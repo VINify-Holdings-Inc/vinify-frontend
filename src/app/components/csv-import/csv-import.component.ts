@@ -1,7 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import * as XLSX from 'xlsx';
-import { AuthService } from '../../services/api-service.service';
+import { AuthService, userData } from '../../services/api-service.service';
 import Swal from 'sweetalert2';
+import { NotificationService } from '../../services/state-management';
 @Component({
   selector: 'app-csv-import',
   imports: [],
@@ -19,7 +20,7 @@ export class CsvImportComponent {
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,private userData:userData,private notificationService: NotificationService) {}
 
   toggleSidebar() {
     this.sidebarActive = !this.sidebarActive;
@@ -161,6 +162,7 @@ export class CsvImportComponent {
   showToast(error: string, message: string) {
     //alert(`Type: ${type}, Message: ${message}`);
     if(!error){
+      this.showAlertCountData();
                 Swal.fire({
                       title: 'Success!',
                       text: `${message}`,
@@ -171,6 +173,7 @@ export class CsvImportComponent {
                       icon: 'success',
                       confirmButtonText: 'OK',
                     }); 
+
                     }else{
                       Swal.fire({
                         title: 'Erorr!',
@@ -184,4 +187,19 @@ export class CsvImportComponent {
                       }); 
                     }                 
   }
+  showAlertCountData() { 
+    this.userData.getUnreadCount().subscribe(
+    (res: any) => {
+      if (!res.error) {
+      
+       this.notificationService.setUnreadCount(
+         res?.data?.totalNotificationCount||0
+       ); 
+       
+      }
+    },
+    (err) => {    
+    }
+  );
+ }
 }

@@ -2667,6 +2667,9 @@ thead.table-light-Usertbl tr {
   text-overflow: ellipsis;
   width: 380px;
 }
+.userdashbrdTable.dashtable .boxTable{
+  width: 260px;
+}
 .table>tbody>tr>td .vinModelName {
   color: #201d1e;
 }
@@ -3609,6 +3612,10 @@ span.question-Icon .ques{
 }
 .userdashbrdTable.reportTable .table > thead > tr > th:last-child {
     border-radius: 0 12px 0 0 !important;
+}
+
+.notifySubpoint {
+	width: 100%;
 }
 
  

@@ -38,12 +38,6 @@ export class AuthService {
     });
   }
 
- /* insertSheet2Data(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/csv-import-sheet2`, data,{
-      headers:this.getHeaders(),
-    });
-  }
-    */
 
   sendContactUsMessage(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/contact-us`, data,{
@@ -93,7 +87,7 @@ export class userData {
   }
 
   getCurrentVinDataForUser(data: any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/csv-import-sheet2?`+ data, {
+    return this.http.get(`${this.baseUrl}/dashboard-vin-summary?`+ data, {
       headers: this.getHeaders(),
     });
   }
@@ -143,6 +137,12 @@ export class userData {
       headers: this.getHeaders(),
     });
   } 
+
+ getTopTenNotification(data:any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/notification-top-ten?${data}`, {
+      headers: this.getHeaders(),
+    });
+  }
 
   updateSeenAlertData(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/seen-alert?`+ data, {

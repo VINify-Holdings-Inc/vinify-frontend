@@ -9,7 +9,7 @@ import { Pipe, PipeTransform, Injectable } from '@angular/core';
 })
 export class DateFormatPipe implements PipeTransform {
   transform(value: Date | string | null, format: string): string {
-    if (!value) return 'N/A'; // Return a placeholder for null or undefined values
+    if (!value) return '-'; // Return a placeholder for null or undefined values
 
     const date = value instanceof Date ? value : new Date(value);
 
