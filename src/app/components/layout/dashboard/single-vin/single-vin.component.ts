@@ -210,6 +210,7 @@ getSearchVal(){
 
 onType(value: string){
   if(value==""){
+    this.selectedVins=[];
     this.handelSearch(value.trim());
     
   }

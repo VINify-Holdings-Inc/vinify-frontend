@@ -214,7 +214,7 @@ getVinSearch(vin:any){
                               confirmButtonText: 'OK',
                             }); 
 
-                console.log("Failed to retrieve SOAP Token.");
+                //console.log("Failed to retrieve SOAP Token.");
               }
             });
             }
