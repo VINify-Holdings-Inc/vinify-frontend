@@ -138,6 +138,12 @@ export class userData {
     });
   } 
 
+ getTopTenNotification(data:any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/notification-top-ten?${data}`, {
+      headers: this.getHeaders(),
+    });
+  }
+
   updateSeenAlertData(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/seen-alert?`+ data, {
       headers: this.getHeaders(),

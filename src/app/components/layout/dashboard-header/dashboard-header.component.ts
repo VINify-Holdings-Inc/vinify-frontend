@@ -335,9 +335,9 @@ showAlertCountData() {
 }
 
 getNotificationData() { 
-  let url = `page=1&limit=10`;
+  let url = `page=1&limit=5`;
  
- this.userData.getNewAlertData(url).subscribe(
+ this.userData.getTopTenNotification(url).subscribe(
    (res: any) => {
      if (!res.error) {
       console.log('ff',res?.data);
