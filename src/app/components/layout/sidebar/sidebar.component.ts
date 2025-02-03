@@ -23,8 +23,7 @@ export class SidebarComponent implements OnInit {
   helpPdf: any = 'assets/helpdoc/NMVTIS_help_doc.pdf';
   @Input() isSidebarActive: boolean = true; 
  
-  routerNavigation() { 
-  
+  routerNavigation() {  
     let url = `page=1&limit=1`;
    this.userData.getCurrentVinDataForUser(url).subscribe(
      (res: any) => {

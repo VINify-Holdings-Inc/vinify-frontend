@@ -113,8 +113,7 @@ getTableData() {
        this.tableData = res?.data?.items || [];  
        //console.log("this",this.tableData);
        if(res?.data?.items.length){
-      //   this.lastUpdateDate=res?.data?.items[0].updatedAt;
-         localStorage.setItem("singleVin",JSON.stringify(res?.data?.items[0]))
+      //   this.lastUpdateDate=res?.data?.items[0].updatedAt; 
        }else{
          this.lastUpdateDate="";
        }
