@@ -169,11 +169,50 @@ getVinSearch(vin:any){
             cancelButtonText: 'No',  // Text for the cancel button
           }).then((result) => {
             if (result.isConfirmed) {
-             
+              this.isLoading=true;
              this.callSoapServiceAuth().then((success) => {
               if (success) {
-                   this.getVinSearchDataFromSoap(this.soapToken,vin);
+                   this.getVinSearchDataFromSoap(this.soapToken,vin).then((resp) => {
+                     this.isLoading=false;
+                      if(resp.type){
+                            // xml data 
+                            Swal.fire({
+                              title: 'XML data!',
+                              showClass: {
+                                popup: 'animated fadeInDown faster',
+                                icon: 'animated heartBeat delay-1s'
+                              },
+                              text: JSON.stringify(resp.xml),
+                              icon: 'success',
+                              confirmButtonText: 'OK',
+                            });
+                      }else{
+                          Swal.fire({
+                            title: 'Error!',
+                            showClass: {
+                              popup: 'animated fadeInDown faster',
+                              icon: 'animated heartBeat delay-1s'
+                            },
+                            text: "Error is occurred while fetching Vin Details",
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                          });
+                      }
+                      
+                   })
               } else {
+                    this.isLoading=false;
+                        Swal.fire({
+                              title: 'Error!',
+                              showClass: {
+                                popup: 'animated fadeInDown faster',
+                                icon: 'animated heartBeat delay-1s'
+                              },
+                              text: "Sever is down",
+                              icon: 'error',
+                              confirmButtonText: 'OK',
+                            }); 
+
                 console.log("Failed to retrieve SOAP Token.");
               }
             });
@@ -256,23 +295,25 @@ getVariable(key:any) {
       return null;
   }
 }
-getVinSearchDataFromSoap(tk:any,vin:any): Promise<boolean>{
+getVinSearchDataFromSoap(tk: any, vin: any): Promise<{ type: boolean; xml?: any }> {
   return new Promise((resolve) => {
-   let data= {"token":tk,"vin":vin,"gap":"MY"}
-  this.soapService.getVinData(data).subscribe(
-    (res) => {
-      if (!res.error) {
-          console.log("xml",res.data)
-        resolve(true);
-      } else {
-        resolve(false);
+    const data = { token: tk, vin: vin };
+
+    this.soapService.getVinData(data).subscribe(
+      (res) => {
+        if (!res.error) {
+              console.log("XML Response:", res.data);
+          resolve({ type: true, xml: res.data });
+        } else {
+              console.error("SOAP Error:", res.error);
+          resolve({ type: false });
+        }
+      },
+      (err) => {
+            console.error("SOAP Request Error:", err);
+        resolve({ type: false });
       }
-    },
-    (err) => {
-      console.error('SOAP Request Error:', err);
-      resolve(false);
-    }
-  );
+    );
   });
 }
 

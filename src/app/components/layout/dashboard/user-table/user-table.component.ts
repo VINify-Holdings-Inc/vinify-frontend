@@ -265,10 +265,11 @@ alertFilter(data:any){
 
   getBrandDetails(data:any){
        if(data !=null )
-       Swal.fire({
+         Swal.fire({
                    title: 'Info!',
                    text: data,
                    icon: 'info',
+                  
                    showClass: {
                      popup: 'animated fadeInDown faster',
                      icon: 'animated heartBeat delay-1s'
@@ -278,5 +279,5 @@ alertFilter(data:any){
                   
                  })
      }
-
+   
 }
