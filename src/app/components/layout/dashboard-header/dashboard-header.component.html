@@ -77,7 +77,7 @@
                                 </li>
                                
                                 @for(item of notificationData;track $index){
-                                <li class="notifyInner" (click)="getAllNotification()">
+                                <li class="notifyInner" (click)="getAllNotification(item.vin,item.model,item.id)">
                                     <div class="notifyPoint">
                                         <div class="notifyDot"><span class="red-dot"></span></div>
                                         <div class="notifySubpoint">

@@ -175,6 +175,7 @@ getVinSearch(vin:any){
                    this.getVinSearchDataFromSoap(this.soapToken,vin).then((resp) => {
                      this.isLoading=false;
                       if(resp.type){
+                        // console.log("tst",resp.xml)
                             // xml data 
                             Swal.fire({
                               title: 'Info!',
@@ -298,7 +299,8 @@ getVariable(key:any) {
 }
 getVinSearchDataFromSoap(tk: any, vin: any): Promise<{ type: boolean; xml?: any }> {
   return new Promise((resolve) => {
-    const data = { token: tk, vin: vin };
+    //const data = { token: tk, vin: vin };
+    const data = { token: tk, vin: "1FTCF15N5HLA06223" };
 
     this.soapService.getVinData(data).subscribe(
       (res) => {
@@ -351,10 +353,33 @@ getNotificationData() {
  );
 }
 
-getAllNotification(){
-  this.router.navigate(['/notification']).then(() => {
-      
-  });
+getAllNotification(vin:any,model:any,id:any){
+  // this.router.navigate(['/notification']).then(() => {  
+  // });
+
+  let datas = `id=${id}`
+  this.userData.updateSeenAlertData(datas).subscribe(
+    (res:any) => {
+       console.log("data",res?.data);
+      if(!res.error){
+       this.notificationService.decrementUnreadCount(); 
+       this.getRegirect(vin,model);
+      }     
+    },
+    (err) => {
+     
+    }
+  );
+ 
+
+}
+
+
+getRegirect(vin:any,model:any){
+  const timestamp = new Date().getTime(); 
+  this.router.navigate(['/title-details'], { queryParams: { vin: vin.trim(),model:model, refresh: timestamp }}).then(() => {
+  
+})
 }
 
 }
