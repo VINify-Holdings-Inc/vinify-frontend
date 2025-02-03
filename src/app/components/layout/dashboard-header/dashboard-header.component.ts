@@ -10,6 +10,7 @@ import { DateFormatPipe } from '../../../pipes/date-format.pipe';
 import Swal from 'sweetalert2';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SoapService } from '../../../services/soap.service';
+import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-dashboard-header',
   imports: [CommonModule,FormsModule,DateFormatPipe,LoaderComponent,RouterLink],
@@ -113,8 +114,7 @@ getTableData() {
        this.tableData = res?.data?.items || [];  
        //console.log("this",this.tableData);
        if(res?.data?.items.length){
-      //   this.lastUpdateDate=res?.data?.items[0].updatedAt;
-         localStorage.setItem("singleVin",JSON.stringify(res?.data?.items[0]))
+      //   this.lastUpdateDate=res?.data?.items[0].updatedAt; 
        }else{
          this.lastUpdateDate="";
        }
@@ -177,12 +177,13 @@ getVinSearch(vin:any){
                       if(resp.type){
                             // xml data 
                             Swal.fire({
-                              title: 'XML data!',
+                              title: 'Info!',
                               showClass: {
                                 popup: 'animated fadeInDown faster',
                                 icon: 'animated heartBeat delay-1s'
                               },
-                              text: JSON.stringify(resp.xml),
+                              //text: JSON.stringify(resp.xml),
+                              text: "Work in progress",
                               icon: 'success',
                               confirmButtonText: 'OK',
                             });
