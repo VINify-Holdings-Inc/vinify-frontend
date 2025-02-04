@@ -97,6 +97,12 @@ export class userData {
       headers: this.getHeaders(),
     });
   }
+
+  searchVinDataForUserPopSoap(data: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/track-vin-pop?`+ data, {
+      headers: this.getHeaders(),
+    });
+  }
   getKPIData(): Observable<any> {
     return this.http.get(`${this.baseUrl}/kpi-data`, {
           headers: this.getHeaders(),
