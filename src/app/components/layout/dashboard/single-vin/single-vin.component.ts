@@ -29,7 +29,7 @@ export class SingleVinComponent implements OnInit {
   page = 1;
   checkall:any="single";
   selectedVins: any[] = [];
-  displayedColumns: string[] = ['select', 'vin', 'year', 'make', 'titleBrandDate', 'state'];
+  displayedColumns: string[] = ['select', 'vin'];
   searchValue :string="";
   ngOnInit() {
     this.getTableData();
