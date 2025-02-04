@@ -142,7 +142,7 @@ getVinSearch(vin:any){
     this.isLoading= true;
      let url = `vin=${vin}&page=1&limit=1`;
         
-    this.userData.searchVinDataForUser(url).subscribe(
+    this.userData.searchVinDataForUserPopSoap(url).subscribe(
       (res:any) => {
        // console.log("data",res?.data);
           this.isLoading=false; 
