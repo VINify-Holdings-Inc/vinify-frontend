@@ -146,18 +146,22 @@ previousPage() {
 
     getBrandDetails(data:any){
       if(data !=null )
-      Swal.fire({
-                  title: 'Info!',
-                  text: data,
-                  icon: 'info',
-                  showClass: {
-                    popup: 'animated fadeInDown faster',
-                    icon: 'animated heartBeat delay-1s'
-                  },
-                  showCancelButton: false, // Enables the cancel button
-                  confirmButtonText: 'OK', // Text for the confirm button
-                 
-                })
+        Swal.fire({
+          title: 'Info!',
+          text: data,
+          icon: 'info',
+          showClass: {
+            popup: 'animated fadeInDown faster',
+            icon: 'animated heartBeat delay-1s'
+          },
+          customClass: {
+            popup: 'my-custom-swal', // Add your custom class here
+            confirmButton: 'my-confirm-button-class' // Example for confirm button styling
+          },
+          showCancelButton: false,
+          confirmButtonText: 'OK',
+        });
+        
     }
     alertFilter(data:any){
       this.searchValue="";
