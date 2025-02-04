@@ -176,28 +176,45 @@ getVinSearch(vin:any){
               if (success) {
                 
                 this.getVinSearchDataFromSoap(this.soapToken,vin).then((resp) => {
-                        this.isLoading=false;
-                       console.log("data",resp);
+                      this.isLoading=false;
+                      // console.log("data",resp);
                       if(resp.type){
-                        // console.log("tst",resp.xml)
-                            // xml data 
-                            this.pdfService.generatePDF(
-                              PDF_SETTINGS.COMPANY_NAME,
-                              PDF_SETTINGS.LOGO_URL,
-                              resp?.xml?.generatePdf || [],
-                              'Vin-data.pdf'
-                            );
-                            Swal.fire({
-                              title: 'Info!',
-                              showClass: {
-                                popup: 'animated fadeInDown faster',
-                                icon: 'animated heartBeat delay-1s'
-                              },
-                              //text: JSON.stringify(resp.xml),
-                              text: "Work in progress",
-                              icon: 'success',
-                              confirmButtonText: 'OK',
-                            });
+                        if(!resp.xml.error){
+                          // console.log("re",resp?.xml?.generatePdf.length);
+                            if(resp?.xml?.generatePdf.length){
+                              this.pdfService.generatePDF(
+                                PDF_SETTINGS.COMPANY_NAME,
+                                PDF_SETTINGS.LOGO_URL,
+                                resp?.xml?.generatePdf || [],
+                                'Vin-data.pdf'
+                              );
+                            }else{
+                              Swal.fire({
+                                title: 'Info!',
+                                showClass: {
+                                  popup: 'animated fadeInDown faster',
+                                  icon: 'animated heartBeat delay-1s'
+                                },
+                                //text: JSON.stringify(resp.xml),
+                                text: `No data found for ${vin}`,
+                                icon: 'error',
+                                confirmButtonText: 'OK',
+                              });
+                            }
+                        }else{
+                          Swal.fire({
+                            title: 'Info!',
+                            showClass: {
+                              popup: 'animated fadeInDown faster',
+                              icon: 'animated heartBeat delay-1s'
+                            },
+                            //text: JSON.stringify(resp.xml),
+                            text: "Something went worng,please try after sometime",
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                          });
+                        }
+                                                 
                       }else{
                           Swal.fire({
                             title: 'Error!',
@@ -309,8 +326,8 @@ getVariable(key:any) {
 }
 getVinSearchDataFromSoap(tk: any, vin: any): Promise<{ type: boolean; xml?: any }> {
   return new Promise((resolve) => {
-    //const data = { token: tk, vin: vin };
-    const data = { token: tk, vin: "1FTCF15N5HLA06223" };
+    const data = { token: tk, vin: vin };
+    //const data = { token: tk, vin: "1FTCF15N5HLA06223" };
 
     this.soapService.getVinData(data).subscribe(
       (res) => {
