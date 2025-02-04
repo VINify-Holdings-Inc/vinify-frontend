@@ -360,11 +360,15 @@ getAllNotification(vin:any,model:any,id:any){
   let datas = `id=${id}`
   this.userData.updateSeenAlertData(datas).subscribe(
     (res:any) => {
-       console.log("data",res?.data);
+       console.log("data");
       if(!res.error){
-       this.notificationService.decrementUnreadCount(); 
+        if(res?.data?.updated){  console.log("dataiii");
+        this.notificationService.setUnreadCount(
+          res?.data?.totalNotificationCount||0
+        ); 
+       //this.notificationService.decrementUnreadCount(); 
        this.getRegirect(vin,model);
-      }     
+      }  }   
     },
     (err) => {
      
