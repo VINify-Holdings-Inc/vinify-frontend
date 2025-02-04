@@ -9,14 +9,18 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { userData } from '../../../../services/api-service.service';
+import { CreatePDFService } from '../../../../services/create-pdf.service';
+import { PDF_SETTINGS } from '../../../../constants';
+import { LoaderComponent } from '../../common/loader/loader.component';
 
 @Component({
   selector: 'app-title-tab',
-  imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule],
+  imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule,LoaderComponent],
   templateUrl: './title-tab.component.html',
   styleUrl: './title-tab.component.css'
 })
 export class TitleTabComponent implements OnInit{
+  constructor(private userData : userData,private pdfService: CreatePDFService){}
     filerIcon: string = 'assets/images/icons/filter-lines.svg';
     calendarIcon: string = 'assets/images/icons/calendar.svg';
     pdfIcon: string = 'assets/images/icons/pdf.svg';
@@ -33,15 +37,17 @@ export class TitleTabComponent implements OnInit{
         @Output() handelPaginagtion = new EventEmitter <any>();
         @Output() handelSearch = new EventEmitter <any>();
         @Output() handelAlertFil = new EventEmitter <any>();
-               
+        @Input() paramVin:any="";       
         alert:any=null;
-        
+        isLoading:boolean=false;
+        selectedVins: { vin: string; alertDate: string }[] = [];
+
        currentPage: number = 1; // Current active page
        visiblePages: number[] = []; // Pages to display in the pagination UI
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
        displayedColumns: string[] = ['status','vin', 'state','brand', 'model','modelYear','titleBrandDate'];
-        constructor(private userData : userData){}
+        
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
            this.updateVisiblePages();  // Trigger pagination update when totalPages changes
@@ -50,6 +56,7 @@ export class TitleTabComponent implements OnInit{
 
        ngOnInit() {
         this.totalRecords=this.tableData;
+       
         }
 
       onClick(pages:any){
@@ -139,23 +146,57 @@ previousPage() {
 
     getBrandDetails(data:any){
       if(data !=null )
-      Swal.fire({
-                  title: 'Info!',
-                  text: data,
-                  icon: 'info',
-                  showClass: {
-                    popup: 'animated fadeInDown faster',
-                    icon: 'animated heartBeat delay-1s'
-                  },
-                  showCancelButton: false, // Enables the cancel button
-                  confirmButtonText: 'OK', // Text for the confirm button
-                 
-                })
+        Swal.fire({
+          title: 'Info!',
+          text: data,
+          icon: 'info',
+          showClass: {
+            popup: 'animated fadeInDown faster',
+            icon: 'animated heartBeat delay-1s'
+          },
+          customClass: {
+            popup: 'my-custom-swal', // Add your custom class here
+            confirmButton: 'my-confirm-button-class' // Example for confirm button styling
+          },
+          showCancelButton: false,
+          confirmButtonText: 'OK',
+        });
+        
     }
     alertFilter(data:any){
       this.searchValue="";
       this.handelAlertFil.emit(data);
      }
+
+     exportToPDF(type:any) {
+  
+      this.getTableData(type);
+    }
+
+    getTableData(dataType:any) {
+      this.isLoading = true;
+      let url = `page=1&limit=10000000&vin=${this.paramVin}`;
+         if(dataType!=null){
+          url=url+`&isRead=${dataType}`;
+         } 
+      this.userData.searchVinDataForUser(url).subscribe(
+        (res: any) => {
+          if (!res.error) {
+            this.pdfService.generatePDF(
+              PDF_SETTINGS.COMPANY_NAME,
+              PDF_SETTINGS.LOGO_URL,
+              res?.data?.items || [],
+              'Vin-data.pdf'
+            );
+          }
+          this.isLoading = false;
+        },
+        (err) => {
+          this.isLoading = false;
+        }
+      );
+    }
+
   /*
     updateAlertStatus(data:any){
       let datas = `id=${data.id}`

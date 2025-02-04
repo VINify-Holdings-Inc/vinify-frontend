@@ -24,6 +24,7 @@ export class SidebarComponent implements OnInit {
   @Input() isSidebarActive: boolean = true; 
  
   routerNavigation() {  
+
     let url = `page=1&limit=1`;
    this.userData.getCurrentVinDataForUser(url).subscribe(
      (res: any) => {

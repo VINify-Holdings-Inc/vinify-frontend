@@ -149,10 +149,16 @@ previousPage() {
     let datas = `id=${data.id}`
    this.userData.updateSeenAlertData(datas).subscribe(
      (res:any) => {
-        console.log("data",res?.data);
-       if(!res.error){
-        this.notificationService.decrementUnreadCount(); 
-       }     
+        //console.log("data",res?.data);
+      //  if(!res.error){
+      //   this.notificationService.decrementUnreadCount(); 
+      //  }     
+      if(!res.error){
+        if(res?.data?.updated){  console.log("dataiii");
+        this.notificationService.setUnreadCount(
+          res?.data?.totalNotificationCount||0
+        ); 
+      }  }  
      },
      (err) => {
       

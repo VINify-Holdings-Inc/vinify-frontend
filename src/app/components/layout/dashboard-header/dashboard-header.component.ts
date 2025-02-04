@@ -10,7 +10,8 @@ import { DateFormatPipe } from '../../../pipes/date-format.pipe';
 import Swal from 'sweetalert2';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SoapService } from '../../../services/soap.service';
-import { NgIf } from '@angular/common';
+import { CreateSoapPdfService } from '../../../services/create-soap-pdf.service';
+import { PDF_SETTINGS } from '../../../../app/constants';
 @Component({
   selector: 'app-dashboard-header',
   imports: [CommonModule,FormsModule,DateFormatPipe,LoaderComponent,RouterLink],
@@ -31,7 +32,8 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   constructor(private sessionServies: SessionService, private router : Router,
               private profileService: ProfileService,private userData: userData,
               private authService: AuthService,
-              private soapService: SoapService,private notificationService: NotificationService){
+              private soapService: SoapService,private notificationService: NotificationService,
+              private pdfService:CreateSoapPdfService){
     this.profileData = this.profileService.getInitialProfileData()  ;
     this.userEmail=JSON.parse(localStorage.getItem("profileData")||"")?.email;
     
@@ -172,21 +174,47 @@ getVinSearch(vin:any){
               this.isLoading=true;
              this.callSoapServiceAuth().then((success) => {
               if (success) {
-                   this.getVinSearchDataFromSoap(this.soapToken,vin).then((resp) => {
-                     this.isLoading=false;
+                
+                this.getVinSearchDataFromSoap(this.soapToken,vin).then((resp) => {
+                      this.isLoading=false;
+                      // console.log("data",resp);
                       if(resp.type){
-                            // xml data 
-                            Swal.fire({
-                              title: 'Info!',
-                              showClass: {
-                                popup: 'animated fadeInDown faster',
-                                icon: 'animated heartBeat delay-1s'
-                              },
-                              //text: JSON.stringify(resp.xml),
-                              text: "Work in progress",
-                              icon: 'success',
-                              confirmButtonText: 'OK',
-                            });
+                        if(!resp.xml.error){
+                          // console.log("re",resp?.xml?.generatePdf.length);
+                            if(resp?.xml?.generatePdf.length){
+                              this.pdfService.generatePDF(
+                                PDF_SETTINGS.COMPANY_NAME,
+                                PDF_SETTINGS.LOGO_URL,
+                                resp?.xml?.generatePdf || [],
+                                'Vin-data.pdf'
+                              );
+                            }else{
+                              Swal.fire({
+                                title: 'Info!',
+                                showClass: {
+                                  popup: 'animated fadeInDown faster',
+                                  icon: 'animated heartBeat delay-1s'
+                                },
+                                //text: JSON.stringify(resp.xml),
+                                text: `No data found for ${vin}`,
+                                icon: 'error',
+                                confirmButtonText: 'OK',
+                              });
+                            }
+                        }else{
+                          Swal.fire({
+                            title: 'Info!',
+                            showClass: {
+                              popup: 'animated fadeInDown faster',
+                              icon: 'animated heartBeat delay-1s'
+                            },
+                            //text: JSON.stringify(resp.xml),
+                            text: "Something went worng,please try after sometime",
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                          });
+                        }
+                                                 
                       }else{
                           Swal.fire({
                             title: 'Error!',
@@ -214,7 +242,7 @@ getVinSearch(vin:any){
                               confirmButtonText: 'OK',
                             }); 
 
-                console.log("Failed to retrieve SOAP Token.");
+                //console.log("Failed to retrieve SOAP Token.");
               }
             });
             }
@@ -247,7 +275,7 @@ getVinSearch(vin:any){
   callSoapServiceAuth(): Promise<boolean> {
     return new Promise((resolve) => {
       if (this.getVariable('tk') == null || this.getVariable('tk') == "") {
-        console.log("this.getVariable('tk')", this.getVariable('tk'));
+       // console.log("this.getVariable('tk')", this.getVariable('tk'));
   
         this.soapService.getToken().subscribe(
           (res) => {
@@ -291,7 +319,7 @@ getVariable(key:any) {
       }
       return item.value;
   } catch (error) {
-      console.error("Error parsing JSON from localStorage:", error);
+     // console.error("Error parsing JSON from localStorage:", error);
       localStorage.removeItem(key); // Remove the corrupted data
       return null;
   }
@@ -299,6 +327,7 @@ getVariable(key:any) {
 getVinSearchDataFromSoap(tk: any, vin: any): Promise<{ type: boolean; xml?: any }> {
   return new Promise((resolve) => {
     const data = { token: tk, vin: vin };
+    // const data = { token: tk, vin: "1FTCF15N5HLA06223" };
 
     this.soapService.getVinData(data).subscribe(
       (res) => {
@@ -336,12 +365,12 @@ showAlertCountData() {
 }
 
 getNotificationData() { 
-  let url = `page=1&limit=5`;
+  let url = `page=1&limit=8`;
  
  this.userData.getTopTenNotification(url).subscribe(
    (res: any) => {
      if (!res.error) {
-      console.log('ff',res?.data);
+      //console.log('ff',res?.data);
        this.notificationData = res?.data?.items || [];  
       
      }
@@ -351,10 +380,38 @@ getNotificationData() {
  );
 }
 
-getAllNotification(){
-  this.router.navigate(['/notification']).then(() => {
-      
-  });
+getAllNotification(vin:any,model:any,id:any){
+  // this.router.navigate(['/notification']).then(() => {  
+  // });
+
+  let datas = `id=${id}`
+  this.userData.updateSeenAlertData(datas).subscribe(
+    (res:any) => {
+       //console.log("data");
+      if(!res.error){
+        if(res?.data?.updated){  
+          //console.log("dataiii");
+        this.notificationService.setUnreadCount(
+          res?.data?.totalNotificationCount||0
+        ); 
+       //this.notificationService.decrementUnreadCount(); 
+       this.getRegirect(vin,model);
+      }  }   
+    },
+    (err) => {
+     
+    }
+  );
+ 
+
+}
+
+
+getRegirect(vin:any,model:any){
+  const timestamp = new Date().getTime(); 
+  this.router.navigate(['/title-details'], { queryParams: { vin: vin.trim(),model:model, refresh: timestamp }}).then(() => {
+  
+})
 }
 
 }

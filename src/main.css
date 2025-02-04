@@ -614,15 +614,18 @@ span.red-dot {
   background-color: #d6d6d6;
 }
 
+li.notifyInner .notifyDot {
+  padding: 10px 0 0;
+}
 .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
   max-width: 336px;
   width: 336px;
   top: 40px;
   padding-bottom: 20px;
   overflow-y: auto;
-  max-height: 480px;
+  height: calc(100vh - 70px);
   border: 1px solid #EAECF0;
-  box-shadow: 0px 4px 6px -2px #10182808, 0px 12px 16px -4px #10182814;
+  box-shadow: 0 4px 6px -2px #10182808,0 12px 16px -4px #10182814;
   border-radius: 0;
 }
 
@@ -1495,6 +1498,7 @@ span.command_key .f_style {
   font-weight: 600;
   line-height: 24px;
   color: #101828;
+  cursor: pointer;
 }
 
 .dropdownFilter .menuFilter li a:hover {
@@ -3540,7 +3544,10 @@ span.question-Icon .ques{
 
 .extralarge-mod {
   width: 100%;
-  min-width: 1200px;
+  max-width: 550px;
+}
+.extralarge-mod .modalClose {
+  margin-right: 0 !important;
 }
 .cxt{
   margin-bottom: 0 !important;
@@ -3622,3 +3629,8 @@ span.question-Icon .ques{
   border: none;
   background-color: #808080;
 }
+.my-custom-swal .swal2-html-container {
+  text-align: left !important;
+}
+
+
