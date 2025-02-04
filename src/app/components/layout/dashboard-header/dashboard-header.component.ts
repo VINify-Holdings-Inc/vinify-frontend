@@ -10,7 +10,8 @@ import { DateFormatPipe } from '../../../pipes/date-format.pipe';
 import Swal from 'sweetalert2';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SoapService } from '../../../services/soap.service';
-import { NgIf } from '@angular/common';
+import { CreateSoapPdfService } from '../../../services/create-soap-pdf.service';
+import { PDF_SETTINGS } from '../../../../app/constants';
 @Component({
   selector: 'app-dashboard-header',
   imports: [CommonModule,FormsModule,DateFormatPipe,LoaderComponent,RouterLink],
@@ -31,7 +32,8 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   constructor(private sessionServies: SessionService, private router : Router,
               private profileService: ProfileService,private userData: userData,
               private authService: AuthService,
-              private soapService: SoapService,private notificationService: NotificationService){
+              private soapService: SoapService,private notificationService: NotificationService,
+              private pdfService:CreateSoapPdfService){
     this.profileData = this.profileService.getInitialProfileData()  ;
     this.userEmail=JSON.parse(localStorage.getItem("profileData")||"")?.email;
     
@@ -172,11 +174,19 @@ getVinSearch(vin:any){
               this.isLoading=true;
              this.callSoapServiceAuth().then((success) => {
               if (success) {
-                   this.getVinSearchDataFromSoap(this.soapToken,vin).then((resp) => {
-                     this.isLoading=false;
+                
+                this.getVinSearchDataFromSoap(this.soapToken,vin).then((resp) => {
+                        this.isLoading=false;
+                       console.log("data",resp);
                       if(resp.type){
                         // console.log("tst",resp.xml)
                             // xml data 
+                            this.pdfService.generatePDF(
+                              PDF_SETTINGS.COMPANY_NAME,
+                              PDF_SETTINGS.LOGO_URL,
+                              resp?.xml?.generatePdf || [],
+                              'Vin-data.pdf'
+                            );
                             Swal.fire({
                               title: 'Info!',
                               showClass: {
@@ -248,7 +258,7 @@ getVinSearch(vin:any){
   callSoapServiceAuth(): Promise<boolean> {
     return new Promise((resolve) => {
       if (this.getVariable('tk') == null || this.getVariable('tk') == "") {
-        console.log("this.getVariable('tk')", this.getVariable('tk'));
+       // console.log("this.getVariable('tk')", this.getVariable('tk'));
   
         this.soapService.getToken().subscribe(
           (res) => {
@@ -292,7 +302,7 @@ getVariable(key:any) {
       }
       return item.value;
   } catch (error) {
-      console.error("Error parsing JSON from localStorage:", error);
+     // console.error("Error parsing JSON from localStorage:", error);
       localStorage.removeItem(key); // Remove the corrupted data
       return null;
   }
@@ -343,7 +353,7 @@ getNotificationData() {
  this.userData.getTopTenNotification(url).subscribe(
    (res: any) => {
      if (!res.error) {
-      console.log('ff',res?.data);
+      //console.log('ff',res?.data);
        this.notificationData = res?.data?.items || [];  
       
      }
@@ -360,9 +370,10 @@ getAllNotification(vin:any,model:any,id:any){
   let datas = `id=${id}`
   this.userData.updateSeenAlertData(datas).subscribe(
     (res:any) => {
-       console.log("data");
+       //console.log("data");
       if(!res.error){
-        if(res?.data?.updated){  console.log("dataiii");
+        if(res?.data?.updated){  
+          //console.log("dataiii");
         this.notificationService.setUnreadCount(
           res?.data?.totalNotificationCount||0
         ); 
