@@ -15,7 +15,7 @@ import { LoaderComponent } from '../../common/loader/loader.component';
 
 @Component({
   selector: 'app-single-vin',
-  imports: [CommonModule, DateFormatPipe, MatTableModule, FormsModule, MatCheckboxModule,LoaderComponent],
+  imports: [CommonModule, MatTableModule, FormsModule, MatCheckboxModule,LoaderComponent],
   templateUrl: './single-vin.component.html',
   styleUrls: ['./single-vin.component.css'],
 })
@@ -59,7 +59,7 @@ export class SingleVinComponent implements OnInit {
   }
 
   toggleSelectAll(event: any): void {
-    //console.log("tesrr")
+    //...console.log("tesrr")
     const isChecked = event.checked;
     if(isChecked){
     this.tableData.forEach((row) => {
