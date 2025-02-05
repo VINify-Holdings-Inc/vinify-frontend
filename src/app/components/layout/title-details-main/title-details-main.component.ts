@@ -73,10 +73,10 @@ export class TitleDetailsMainComponent {
     this.isLoading= true;
      let url = `page=${this.page}&limit=${this.limit}`;
      if(vin){
-       url=url+`&vin=${vin}`
-     }else{
-        url=url+`&vin=${this.preserveVin}`
-     }  
+      url=url+`&vin=${vin}&oldVin=${this.paramVin}`
+    }else{
+       url=url+`&vin=${this.preserveVin}&oldVin=${this.paramVin}`
+    }  
      if(this.isRead!=null){
       url = url + `&isRead=${(this.isRead)}`
     } 
