@@ -161,4 +161,10 @@ export class userData {
     });
   }
 
+  updateSeenAlertCheckBxData(param: any,data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/seen-alert?`+ param,{vins:data}, {
+      headers: this.getHeaders(),
+    });
+  }
+
 }

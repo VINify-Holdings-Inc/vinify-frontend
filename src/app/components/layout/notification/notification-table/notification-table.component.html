@@ -80,7 +80,7 @@
                         <ng-container matColumnDef="details">
           
                           <th mat-header-cell *matHeaderCellDef width="65"> Details </th>
-                          <td mat-cell *matCellDef="let element">
+                          <td mat-cell *matCellDef="let element" (click)="VegiclePageRedirect(element)">
                             <span class="cursor-detail-img">
                               <img alt="Details" src="assets/images/icons/passport.svg" title="Details" />
                             </span>
@@ -89,7 +89,7 @@
                         </ng-container>
           
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="VegiclePageRedirect(row)" >
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"  >
                         </tr>
                       </table>
                     <div *ngIf="tableData.length === 0" class="no-data-message text-center">
