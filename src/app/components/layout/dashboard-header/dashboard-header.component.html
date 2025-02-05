@@ -68,10 +68,16 @@
                                         </div>
                                         <div>
                                             <!-- <p class="notification-number">View All</p> -->
-                                            <a routerLink="/notification" routerLinkActive="active" class="notification-number">
-                                                
-                                                View All
-                                            </a>
+                                             <div>
+                                                <a routerLink="/notification" routerLinkActive="active" class="notification-number">
+                                                    View All
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <button  class="notification-number" (click)="readNotification('all')">
+                                                   Read All
+                                                </button>
+                                             </div>
                                         </div>
                                     </div>
                                 </li>
