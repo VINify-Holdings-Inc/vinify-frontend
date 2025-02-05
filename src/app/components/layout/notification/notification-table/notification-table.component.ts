@@ -144,17 +144,18 @@ previousPage() {
     this.searchValue="";
     this.handelAlertFil.emit(data);
    } 
+   
+selectedVinRead :any=[];
 
    updateAlertStatus(data:any){
-    let datas = `id=${data.id}`
-   this.userData.updateSeenAlertData(datas).subscribe(
+    let type:any=`type=specific`;
+     let vins:any[] =[]; 
+     vins.push(data.id)
+   this.userData.updateSeenAlertCheckBxData(type,vins).subscribe(
      (res:any) => {
-        //console.log("data",res?.data);
-      //  if(!res.error){
-      //   this.notificationService.decrementUnreadCount(); 
-      //  }     
+          
       if(!res.error){
-        if(res?.data?.updated){  console.log("dataiii");
+        if(res?.data?.updated){  
         this.notificationService.setUnreadCount(
           res?.data?.totalNotificationCount||0
         ); 

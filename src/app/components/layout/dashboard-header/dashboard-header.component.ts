@@ -405,13 +405,31 @@ getAllNotification(vin:any,model:any,id:any){
  
 
 }
-
-
 getRegirect(vin:any,model:any){
   const timestamp = new Date().getTime(); 
   this.router.navigate(['/title-details'], { queryParams: { vin: vin.trim(),model:model, refresh: timestamp }}).then(() => {
   
 })
+}
+
+readNotification(data:any){
+  let type:any=`type=${data}`;
+     let datas:any[] =[]; 
+     datas.push(data.vin)
+   this.userData.updateSeenAlertCheckBxData(type,datas).subscribe(
+     (res:any) => {
+          
+      if(!res.error){
+        if(res?.data?.updated){  
+        this.notificationService.setUnreadCount(
+          res?.data?.totalNotificationCount||0
+        ); 
+      }  }  
+     },
+     (err) => {
+      
+     }
+   );
 }
 
 }
