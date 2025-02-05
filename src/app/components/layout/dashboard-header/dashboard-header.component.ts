@@ -370,7 +370,7 @@ getNotificationData() {
  this.userData.getTopTenNotification(url).subscribe(
    (res: any) => {
      if (!res.error) {
-      //console.log('ff',res?.data);
+      console.log('ff',res?.data);
        this.notificationData = res?.data?.items || [];  
       
      }
@@ -383,9 +383,11 @@ getNotificationData() {
 getAllNotification(vin:any,model:any,id:any){
   // this.router.navigate(['/notification']).then(() => {  
   // });
-
-  let datas = `id=${id}`
-  this.userData.updateSeenAlertData(datas).subscribe(
+ 
+  let type:any=`type=specific`;
+  let datas:any[] =[]; 
+  datas.push(id)
+  this.userData.updateSeenAlertCheckBxData(type,datas).subscribe(
     (res:any) => {
        //console.log("data");
       if(!res.error){
@@ -413,9 +415,10 @@ getRegirect(vin:any,model:any){
 }
 
 readNotification(data:any){
+ 
   let type:any=`type=${data}`;
      let datas:any[] =[]; 
-     datas.push(data.vin)
+     datas.push(data.id)
    this.userData.updateSeenAlertCheckBxData(type,datas).subscribe(
      (res:any) => {
           
@@ -424,7 +427,9 @@ readNotification(data:any){
         this.notificationService.setUnreadCount(
           res?.data?.totalNotificationCount||0
         ); 
+       
       }  }  
+      this.getNotificationData();
      },
      (err) => {
       
