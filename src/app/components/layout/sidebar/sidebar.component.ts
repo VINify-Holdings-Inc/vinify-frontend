@@ -22,6 +22,12 @@ export class SidebarComponent implements OnInit {
   icon7: string = 'assets/images/icons/sidebar-icon/information.png';
   helpPdf: any = 'assets/helpdoc/NMVTIS_help_doc.pdf';
   @Input() isSidebarActive: boolean = true; 
+
+  isExportOpen:boolean=false
+
+  openExportModal=()=>{
+   this.isExportOpen=!this.isExportOpen;
+  }
  
   routerNavigation() {  
 

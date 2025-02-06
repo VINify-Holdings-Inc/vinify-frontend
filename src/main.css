@@ -613,10 +613,7 @@ span.red-dot {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
   background-color: #d6d6d6;
 }
-
-li.notifyInner .notifyDot {
-  padding: 10px 0 0;
-}
+ 
 
 li.notifyInner {
   padding: 0 12px;
@@ -978,6 +975,7 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
 	font-weight: 600;
 	height: 52px;
 	width: 52px;
+  cursor: pointer;
 }
 
 #sidebar ul li a img {
@@ -3649,3 +3647,42 @@ span.question-Icon .ques{
   gap: 10px;
 }
 
+li.nav-item.exportPdfli {
+  position: relative;
+}
+.ExportDivModal {
+  position: relative;
+  background: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  top: 0;
+  width: 152px;
+}
+.show-nav .ExportDivModal {
+  position: absolute; 
+  left: 100px;
+}
+.show-nav .ExportDivModal {
+  left: 100px;
+}
+.ExportDivModal {
+    position: relative;
+    background: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    top: 0;
+    left: 35px;
+    width: 152px;
+}
+.ExportDivModal li span {
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #101828;
+  cursor: pointer;
+  display: block;
+}
+#sidebar .ExportDivModal ul li {
+  padding: 0;
+}
