@@ -1,56 +1,64 @@
 <aside>
-    <nav id="sidebar" [class.active] = "!isSidebarActive"  class="sidebar-link " [ngClass]="isSidebarActive ? 'sidebar-link' : ' active show-nav'">
-        <ul class="nav flex-column mt-3 sidebar-section">
-            <li class="nav-item">
-                <a routerLink="/dashboard" routerLinkActive="active" class="nav-link d-flex">
-                    <img [src]="icon1" class="img-fluid" alt="icon" />
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item" (click)="routerNavigation()">
-                <!-- <a routerLink="#" routerLinkActive="active" class="nav-link d-flex">
-                    <img [src]="icon2" class="img-fluid" alt="icon" />
-                    <span>Vehicles Summary</span>
-                </a> -->
-                <a routerLink="/title-details" routerLinkActive="active" class="nav-link d-flex">
-                    <img [src]="icon2" class="img-fluid" alt="icon" />
-                    <span>Vehicles Summary</span>
-                </a>
-                <!-- {{strUrl}} -->
-            </li>
-            <li class="nav-item">
-                <a routerLink="/alert-list" routerLinkActive="active" class="nav-link d-flex">
-                    <img [src]="icon3" class="img-fluid" alt="icon" />
-                    <span>New Alerts</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a routerLink="/reports" routerLinkActive="active" class="nav-link d-flex">
-                    <img [src]="icon4" class="img-fluid" alt="icon" />
-                    <span>Export Reports</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a routerLink="/user-profile" routerLinkActive="active" class="nav-link d-flex">
-                    <img [src]="icon5" class="img-fluid" alt="icon" />
-                    <span>Profile</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="https://titlealarm.com/#apply-today" target="_blank" routerLinkActive="active" class="nav-link d-flex">
-                    <img [src]="icon6" class="img-fluid" alt="icon" />
-                    <span>Support</span>
-                </a>
-            </li>
-            <li class="nav-item helpicon">
-                <a [href]="helpPdf" target="_blank" routerLinkActive="active" class="nav-link d-flex">
-                    <img [src]="icon7" class="img-fluid" alt="icon" />
-                    <span>Help</span>
-                </a>
-            </li>
-        </ul>
+    <nav id="sidebar" [class.active]="!isSidebarActive" class="sidebar-link" 
+         [ngClass]="isSidebarActive ? 'sidebar-link' : 'active show-nav'">
+      <ul class="nav flex-column mt-3 sidebar-section">
+        <li class="nav-item">
+          <a routerLink="/dashboard" routerLinkActive="active" class="nav-link d-flex">
+            <img [src]="icon1" class="img-fluid" alt="icon" />
+            <span>Dashboard</span>
+          </a>
+        </li>
+  
+        <li class="nav-item" (click)="routerNavigation()">
+          <a routerLink="/title-details" routerLinkActive="active" class="nav-link d-flex">
+            <img [src]="icon2" class="img-fluid" alt="icon" />
+            <span>Vehicles Summary</span>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a routerLink="/alert-list" routerLinkActive="active" class="nav-link d-flex">
+            <img [src]="icon3" class="img-fluid" alt="icon" />
+            <span>New Alerts</span>
+          </a>
+        </li>
+  
+        <li class="nav-item exportPdfli" (click)="openExportModal()">
+          <a class="nav-link d-flex">
+            <img [src]="icon4" class="img-fluid" alt="icon" />
+            <span>Export Reports</span>
+          </a>
+  
+          <div *ngIf="isExportOpen" class="ExportDivModal">
+            <ul>
+              <li><span>All VINs</span></li>
+              <li><span>Specific VINs</span></li>
+              <li><span>Updated VINs</span></li>
+            </ul>
+          </div>
+        </li>
+  
+        <li class="nav-item">
+          <a routerLink="/user-profile" routerLinkActive="active" class="nav-link d-flex">
+            <img [src]="icon5" class="img-fluid" alt="icon" />
+            <span>Profile</span>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a href="https://titlealarm.com/#apply-today" target="_blank" routerLinkActive="active" class="nav-link d-flex">
+            <img [src]="icon6" class="img-fluid" alt="icon" />
+            <span>Support</span>
+          </a>
+        </li>
+  
+        <li class="nav-item helpicon">
+          <a [href]="helpPdf" target="_blank" routerLinkActive="active" class="nav-link d-flex">
+            <img [src]="icon7" class="img-fluid" alt="icon" />
+            <span>Help</span>
+          </a>
+        </li>
+      </ul>
     </nav>
-</aside>
-
-
-
+  </aside>
+  
