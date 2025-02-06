@@ -6,6 +6,7 @@ import { NotificationTableComponent } from './notification-table/notification-ta
 
 
 
+
 @Component({
   selector: 'app-notification',
   imports: [NotificationTableComponent,LoaderComponent],
@@ -27,7 +28,7 @@ export class NotificationComponent {
   tableName:string = "New Alerts"; 
   isLoading: boolean = false;
   isRead:any=null;
-
+  selectedVinsData:any[]=[] ;
   ngOnInit(): void {
    
     this.getTableData();
@@ -86,5 +87,9 @@ export class NotificationComponent {
       this.vin="";
       this.isRead=data;
       this.getTableData();
+  }
+  handelSelectedVin(data:any){
+   // console.log("data",data);
+       this.selectedVinsData=data;
   }
 }

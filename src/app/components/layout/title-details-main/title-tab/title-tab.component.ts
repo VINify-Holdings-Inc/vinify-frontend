@@ -12,15 +12,17 @@ import { userData } from '../../../../services/api-service.service';
 import { CreatePDFService } from '../../../../services/create-pdf.service';
 import { PDF_SETTINGS } from '../../../../constants';
 import { LoaderComponent } from '../../common/loader/loader.component';
+import { NotificationService } from '../../../../services/state-management';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-title-tab',
-  imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule,LoaderComponent],
+  imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule,LoaderComponent,MatCheckboxModule],
   templateUrl: './title-tab.component.html',
   styleUrl: './title-tab.component.css'
 })
 export class TitleTabComponent implements OnInit{
-  constructor(private userData : userData,private pdfService: CreatePDFService){}
+  constructor(private userData : userData,private pdfService: CreatePDFService,private notificationService: NotificationService){}
     filerIcon: string = 'assets/images/icons/filter-lines.svg';
     calendarIcon: string = 'assets/images/icons/calendar.svg';
     pdfIcon: string = 'assets/images/icons/pdf.svg';
@@ -37,26 +39,38 @@ export class TitleTabComponent implements OnInit{
         @Output() handelPaginagtion = new EventEmitter <any>();
         @Output() handelSearch = new EventEmitter <any>();
         @Output() handelAlertFil = new EventEmitter <any>();
-        @Input() paramVin:any="";       
+        @Input() paramVin:any=""; 
+        @Input() selectedVinsData:any[] =[];
+        @Output() handelSelectedVin = new EventEmitter <any>();     
+        checkall:any="specific";
+        selectedVins: any[] = []; 
         alert:any=null;
         isLoading:boolean=false;
-        selectedVins: { vin: string; alertDate: string }[] = [];
-
+       // selectedVins: { vin: string; alertDate: string }[] = [];
+        
        currentPage: number = 1; // Current active page
        visiblePages: number[] = []; // Pages to display in the pagination UI
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
-       displayedColumns: string[] = ['status','vin', 'state','brand', 'model','modelYear','titleBrandDate'];
+       displayedColumns: string[] = ['Select','status','vin', 'state','brand', 'model','modelYear','titleBrandDate'];
         
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
            this.updateVisiblePages();  // Trigger pagination update when totalPages changes
          }
+         this.selectReleventData();
         }
 
        ngOnInit() {
         this.totalRecords=this.tableData;
-       
+        this.selectedVins=this.selectedVinsData;
+          
+        this.tableData.forEach((row: any) => {
+          if (this.selectedVinsData.includes(row.id)) {
+            row.isSelected = true;
+          }
+         
+        });
         }
 
       onClick(pages:any){
@@ -90,6 +104,7 @@ export class TitleTabComponent implements OnInit{
         }
       onType(value: string){
         if(value==""){
+          this.currentPage=1;
           this.handelSearch.emit(value.trim());
           
         }
@@ -197,20 +212,121 @@ previousPage() {
       );
     }
 
-  /*
-    updateAlertStatus(data:any){
-      let datas = `id=${data.id}`
-     this.userData.updateSeenAlertData(datas).subscribe(
-       (res:any) => {
-          console.log("data",res?.data);
-         if(!res.error){
-           
-         }     
-       },
-       (err) => {
-        
-       }
-     );
-   } */
+     selectReleventData(){
+      this.selectedVins=this.selectedVinsData;
+              
+      this.tableData.forEach((row: any) => {
+        if (this.selectedVinsData.includes(row.id)) {
+          row.isSelected = true;
+        }
+      });
+    }
+    
+      toggleSelectAll(event: any): void {
+        //...console.log("tesrr")
+        const isChecked = event.checked;
+        if(isChecked){
+        this.tableData.forEach((row) => {
+          if(row?.isRead==false){
+            row.isSelected = isChecked;
+            this.selectedVins.push(row.id);
+          }
+        });
+       
+      }else{
+        this.tableData.forEach((row) => {
+          row.isSelected = false;
+        })
+        this.tableData.forEach((row: any) => {
+          const index = this.selectedVinsData.indexOf(row.id);
+          if (index !== -1) {
+            row.isSelected = false;
+            this.selectedVinsData.splice(index, 1); // Remove the element from selectedVinsData
+          }
+        });
+       
+      }
+        // if(isChecked){
+        //   this.checkall='all';
+        //   
+        // }else{
+        //   this.checkall='specific';
+        // }
+        this.handelSelectedVin.emit(this.selectedVins)
+      }
+    
+    
+      onRowSelectionChange(item: any): void {
+        if (item.isSelected) {
+         // console.log("item",item);
+          // Add the selected item to the array
+          const vinExists = this.selectedVins.some(
+            
+            (selected) =>
+              selected === item.id 
+          );
+      
+          if (!vinExists) {
+            this.selectedVins.push(item.id);
+          }
+        } else {
+          // Remove the item from the array
+          this.selectedVins = this.selectedVins.filter(
+            (selected) =>
+              selected !== item.id 
+          );
+        }
+        this.checkall='specific';
+           console.log(this.selectedVins,item.isSelected);
+        this.handelSelectedVin.emit(this.selectedVins);
+      }
+    
+      isAllSelected(): boolean {
+        return this.tableData.every((row) => row.isSelected);
+      }
+    
+      isIndeterminate(): boolean {
+        const selected = this.tableData.filter((row) => row.isSelected).length;
+        return selected > 0 && selected < this.tableData.length;
+      }
+     
+      makeAllRead(){
+        if(this.selectedVins.length==0){
+              Swal.fire({
+                        title: 'Error!',
+                        showClass: {
+                          popup: 'animated fadeInDown faster',
+                          icon: 'animated heartBeat delay-1s'
+                        },
+                        text: "Select the VIN",
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                      }); 
+              return;
+            }else{
+                  let type=`type=${this.checkall}`;
+                  let datas = this.selectedVins;
+              this.userData.updateSeenAlertCheckBxData(type,datas).subscribe(
+                (res:any) => {
+                    
+                if(!res.error){
+                  if(res?.data?.updated){  
+                  this.notificationService.setUnreadCount(
+                    res?.data?.totalNotificationCount||0
+                  ); 
+                  
+                }  }  
+                this.selectedVins=[]; 
+                this.currentPage=1;
+                this.handelSelectedVin.emit([])
+                this.handelSearch.emit(this.searchValue.trim());
+                },
+                (err) => {
+                
+                }
+              );
+            
+            }
+      }
 
 }

@@ -4,8 +4,12 @@
             <div class="UserCardHeader cardMainHead">
                 <h4 class="card-title">Recent Alerts</h4>
                 <div class="cardSubHead">
-
-                    <div class="userSingleSearch">
+                  <div class="userReadAll">
+                    <span class="userReadAllBtn">
+                      <button class="userBtn" (click)="makeAllRead()" >Read</button>
+                    </span>
+                  </div>
+                   <div class="userSingleSearch">
                         <span class="VInNumberInput">
                             <img alt="img" src="assets/images/icons/search.svg" class="img-fluid"
                                 (click)="getSearchVal()" />
@@ -46,6 +50,25 @@
                   <div class="table-responsive">
                     <table mat-table [dataSource]="tableData" class="table mat-elevation-z8 " matSort>
                       
+                      <ng-container matColumnDef="Select">
+                        <th mat-header-cell *matHeaderCellDef class="checkBoxModal" width="25">
+                          <mat-checkbox
+                          
+                            (change)="toggleSelectAll($event)"
+                            [checked]="isAllSelected()"
+                            [indeterminate]="isIndeterminate()"
+                            aria-label="Select all rows"
+                          ></mat-checkbox>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                          <mat-checkbox
+                          *ngIf="!element?.isRead"
+                            [(ngModel)]="element.isSelected"
+                            (change)="onRowSelectionChange(element)"
+                            aria-label="Select row"
+                          ></mat-checkbox>
+                        </td>
+                      </ng-container>
                         <ng-container matColumnDef="titleBrandDate">
                             <th mat-header-cell *matHeaderCellDef width="90"> Alert Date </th>
                             <td mat-cell *matCellDef="let element">
