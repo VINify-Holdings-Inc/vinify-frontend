@@ -36,7 +36,7 @@ export class TitleDetailsMainComponent {
         this.paramVin = params['vin'] || '';
         this.preserveVin = params['vin'] || '';
         this.model=params['model'] || '';
-        console.log('Query Params Changed: ', this.paramVin);
+       // console.log('Query Params Changed: ', this.paramVin);
         if (this.paramVin) {
           this.getTableData(this.paramVin);
         }
@@ -67,7 +67,7 @@ export class TitleDetailsMainComponent {
   tableData :any[]=[];
   totalData :number = 0;
   isLoading : boolean=false;
-
+  selectedVinsData:any[]=[] ; 
   getTableData(vin:any=null){
     
     this.isLoading= true;
@@ -130,5 +130,9 @@ handelTitleChange(data:any){
   this.lastTitleChangeUpdated=data.lastUpdate;
 }
 
+handelSelectedVin(data:any){
+   console.log("data",data);
+      this.selectedVinsData=data;
+ }
 
 }

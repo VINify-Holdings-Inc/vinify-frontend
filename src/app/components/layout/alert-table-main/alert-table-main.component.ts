@@ -25,6 +25,7 @@ export class AlertTableMainComponent {
   tableName:string = "New Alerts"; 
   isLoading: boolean = false;
   isRead:any=null;
+  selectedVinsData:any[]=[] ;
 
   ngOnInit(): void {
    
@@ -84,5 +85,9 @@ export class AlertTableMainComponent {
      this.vin="";
       this.isRead=data;
       this.getTableData();
+  }
+  handelSelectedVin(data:any){
+    console.log("data",data);
+       this.selectedVinsData=data;
   }
 }

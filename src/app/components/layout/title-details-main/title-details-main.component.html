@@ -104,7 +104,10 @@
         <div class="tab-content" id="myTabContent">
             <!-- Summary Tab Section -->
             <div class="tab-pane fade show active" id="summaryTab" role="tabpanel">
-              <app-title-tab [tableData]="tableData" [page]="page" [totalPages]="totalPages" [totalData]="totalData" (handelPaginagtion)="handlePageChange($event)" (handelSearch)="handelSearch($event)" (handelAlertFil)="handelAlertFil($event)" [paramVin]="paramVin"></app-title-tab>
+              <app-title-tab [tableData]="tableData" [page]="page" [totalPages]="totalPages" [totalData]="totalData" 
+                            (handelPaginagtion)="handlePageChange($event)" (handelSearch)="handelSearch($event)" 
+                            (handelAlertFil)="handelAlertFil($event)" [paramVin]="paramVin"
+                            (handelSelectedVin)="handelSelectedVin($event)" [selectedVinsData]="selectedVinsData"></app-title-tab>
             </div>
             <!-- Title Details Tab Section -->
             <div class="tab-pane fade " id="detailsTab" role="tabpanel">

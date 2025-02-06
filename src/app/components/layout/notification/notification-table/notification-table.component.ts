@@ -9,10 +9,12 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { userData } from '../../../../services/api-service.service';
 import { NotificationService } from '../../../../services/state-management';
+import { MatCheckboxModule } from '@angular/material/checkbox'; // Import MatCheckboxModule
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-notification-table',
-  imports:  [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule],
+  imports:  [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatCheckboxModule, MatPaginatorModule, MatSortModule],
   templateUrl: './notification-table.component.html',
   styleUrl: './notification-table.component.css'
 })
@@ -38,23 +40,35 @@ export class NotificationTableComponent implements OnInit{
         @Output() handelPaginagtion = new EventEmitter <any>();
         @Output() handelSearch = new EventEmitter <any>();
         @Output() handelAlertFil = new EventEmitter <any>();
+        @Input() selectedVinsData:any[] =[];
+        @Output() handelSelectedVin = new EventEmitter <any>();
         alert:any=null;
-        
        currentPage: number = 1; // Current active page
        visiblePages: number[] = []; // Pages to display in the pagination UI
        maxVisiblePages: number = 4; // Max number of pages to display at once
-     
-       displayedColumns: string[] = ['vin', 'year', 'make', 'titleBrandDate','state','details'];//[ 'titleBrandDate', 'vin','year', 'make', 'state','detailsData', 'details'];
+       checkall:any="specific";
+       selectedVins: any[] = [];
+       displayedColumns: string[] = ['Select','vin', 'year', 'make', 'titleBrandDate','state','details'];//[ 'titleBrandDate', 'vin','year', 'make', 'state','detailsData', 'details'];
 
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
            this.updateVisiblePages();  // Trigger pagination update when totalPages changes
-         }
+          }
+          this.selectReleventData();
         }
 
        ngOnInit() {
        // console.log(this.tableData);
         this.totalRecords=this.tableData;
+        this.selectedVins=this.selectedVinsData;
+          
+        this.tableData.forEach((row: any) => {
+          if (this.selectedVinsData.includes(row.id)) {
+            row.isSelected = true;
+          }
+         
+        });
+
         }
 
       onClick(pages:any){
@@ -88,6 +102,7 @@ export class NotificationTableComponent implements OnInit{
         }
       onType(value: string){
         if(value==""){
+           this.currentPage=1;
           this.handelSearch.emit(value.trim());
           
         }
@@ -145,7 +160,6 @@ previousPage() {
     this.handelAlertFil.emit(data);
    } 
    
-selectedVinRead :any=[];
 
    updateAlertStatus(data:any){
     let type:any=`type=specific`;
@@ -179,8 +193,122 @@ selectedVinRead :any=[];
       }
     });
   }
+  selectReleventData(){
+  this.selectedVins=this.selectedVinsData;
+          
+  this.tableData.forEach((row: any) => {
+    if (this.selectedVinsData.includes(row.id)) {
+      row.isSelected = true;
+    }
+  });
+}
+
+  toggleSelectAll(event: any): void {
+    //...console.log("tesrr")
+    const isChecked = event.checked;
+    if(isChecked){
+    this.tableData.forEach((row) => {
+      if(row?.isRead==false){
+        row.isSelected = isChecked;
+        this.selectedVins.push(row.id);
+      }
+    });
+   
+  }else{
+    this.tableData.forEach((row) => {
+      row.isSelected = false;
+    })
+    this.tableData.forEach((row: any) => {
+      const index = this.selectedVinsData.indexOf(row.id);
+      if (index !== -1) {
+        row.isSelected = false;
+        this.selectedVinsData.splice(index, 1); // Remove the element from selectedVinsData
+      }
+    });
+   
+  }
+    // if(isChecked){
+    //   this.checkall='all';
+    //   
+    // }else{
+    //   this.checkall='specific';
+    // }
+    this.handelSelectedVin.emit(this.selectedVins)
+  }
 
 
+  onRowSelectionChange(item: any): void {
+    if (item.isSelected) {
+     // console.log("item",item);
+      // Add the selected item to the array
+      const vinExists = this.selectedVins.some(
+        
+        (selected) =>
+          selected === item.id 
+      );
+  
+      if (!vinExists) {
+        this.selectedVins.push(item.id);
+      }
+    } else {
+      // Remove the item from the array
+      this.selectedVins = this.selectedVins.filter(
+        (selected) =>
+          selected !== item.id 
+      );
+    }
+    this.checkall='specific';
+       console.log(this.selectedVins,item.isSelected);
+    this.handelSelectedVin.emit(this.selectedVins);
+  }
+
+  isAllSelected(): boolean {
+    return this.tableData.every((row) => row.isSelected);
+  }
+
+  isIndeterminate(): boolean {
+    const selected = this.tableData.filter((row) => row.isSelected).length;
+    return selected > 0 && selected < this.tableData.length;
+  }
  
+  makeAllRead(){
+    if(this.selectedVins.length==0){
+          Swal.fire({
+                    title: 'Error!',
+                    showClass: {
+                      popup: 'animated fadeInDown faster',
+                      icon: 'animated heartBeat delay-1s'
+                    },
+                    text: "Select the VIN",
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                  }); 
+          return;
+        }else{
+          let type=`type=${this.checkall}`;
+              let datas = this.selectedVins;
+          this.userData.updateSeenAlertCheckBxData(type,datas).subscribe(
+            (res:any) => {
+                
+            if(!res.error){
+              if(res?.data?.updated){  
+              this.notificationService.setUnreadCount(
+                res?.data?.totalNotificationCount||0
+              ); 
+              
+            }  }  
+            this.selectedVins=[]; 
+            this.currentPage=1;
+            this.handelSelectedVin.emit([])
+            this.handelSearch.emit(this.searchValue.trim());
+            },
+            (err) => {
+            
+            }
+          );
+        
+        }
+  }
+
 
 }
