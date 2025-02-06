@@ -314,7 +314,6 @@ previousPage() {
                   this.notificationService.setUnreadCount(
                     res?.data?.totalNotificationCount||0
                   ); 
-                  
                 }  }  
                 this.selectedVins=[]; 
                 this.currentPage=1;
