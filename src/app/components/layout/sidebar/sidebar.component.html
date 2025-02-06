@@ -31,9 +31,9 @@
   
           <div *ngIf="isExportOpen" class="ExportDivModal">
             <ul>
-              <li><span>All VINs</span></li>
-              <li><span>Specific VINs</span></li>
-              <li><span>Updated VINs</span></li>
+              <li (click)="exportToPDF('all')"><span>All VINs</span></li>
+              <li><span data-bs-toggle="modal" data-bs-target="#exampleModal">Specific VINs</span></li>
+              <li (click)="exportToPDF('updated')"><span>Updated VINs</span></li>
             </ul>
           </div>
         </li>
@@ -61,4 +61,6 @@
       </ul>
     </nav>
   </aside>
+  <app-single-vin></app-single-vin>
+  <app-loader [IsLoading]="isLoading"></app-loader>
   

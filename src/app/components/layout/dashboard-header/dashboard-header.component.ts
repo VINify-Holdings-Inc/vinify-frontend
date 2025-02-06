@@ -76,7 +76,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   this.getProfileData();
   this.getTableData();
   this.showAlertCountData();
-  this.getNotificationData();
+  //this.getNotificationData();
   this.notificationService.unreadCount$.subscribe(count => {
     this.unreadCount = count; // Update count in the UI
   });
@@ -429,7 +429,7 @@ readNotification(data:any){
         ); 
        
       }  }  
-      this.getNotificationData();
+     
      },
      (err) => {
       

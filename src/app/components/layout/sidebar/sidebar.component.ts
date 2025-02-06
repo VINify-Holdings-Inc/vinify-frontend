@@ -2,14 +2,18 @@ import { Component, Input ,OnInit} from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { userData } from '../../../services/api-service.service';
+import { CreatePDFService } from '../../../services/create-pdf.service';
+import { PDF_SETTINGS } from '../../../constants';
+import { LoaderComponent } from '../common/loader/loader.component';
+import { SingleVinComponent } from '../dashboard/single-vin/single-vin.component';
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule,RouterLink,RouterLinkActive],
+  imports: [CommonModule,RouterLink,RouterLinkActive,LoaderComponent,SingleVinComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements OnInit {
-    constructor(private userData: userData,private router: Router){ }
+    constructor(private userData: userData,private router: Router,private pdfService: CreatePDFService){ }
     tableData :any[] =[]; 
   ngOnInit(): void { 
   }
@@ -55,6 +59,32 @@ export class SidebarComponent implements OnInit {
      (err) => {    
      }
    );
+  }
+  exportToPDF(type:any) {
+      this.getTableData(type);
+  }
+  selectedVins:[]=[];
+  isLoading:boolean=false;
+  getTableData(dataType:any) {
+    this.isLoading = true;
+    let url = `type=${dataType}`;
+      
+    this.userData.getPdfData(url,this.selectedVins).subscribe(
+      (res: any) => {
+        if (!res.error) {
+          this.pdfService.generatePDF(
+            PDF_SETTINGS.COMPANY_NAME,
+            PDF_SETTINGS.LOGO_URL,
+            res?.data?.items || [],
+            'Vin-data.pdf'
+          );
+        }
+        this.isLoading = false;
+      },
+      (err) => {
+        this.isLoading = false;
+      }
+    );
   }
 }
 
