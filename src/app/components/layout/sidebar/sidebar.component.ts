@@ -6,6 +6,7 @@ import { CreatePDFService } from '../../../services/create-pdf.service';
 import { PDF_SETTINGS } from '../../../constants';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SingleVinComponent } from '../dashboard/single-vin/single-vin.component';
+
 @Component({
   selector: 'app-sidebar',
   imports: [CommonModule,RouterLink,RouterLinkActive,LoaderComponent,SingleVinComponent],
@@ -13,9 +14,10 @@ import { SingleVinComponent } from '../dashboard/single-vin/single-vin.component
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements OnInit {
-    constructor(private userData: userData,private router: Router,private pdfService: CreatePDFService){ }
+    constructor(private userData: userData,private router: Router,private pdfService: CreatePDFService,){ }
     tableData :any[] =[]; 
   ngOnInit(): void { 
+   
   }
   icon1: string = 'assets/images/icons/sidebar-icon/dashboard.svg';
   icon2: string = 'assets/images/icons/sidebar-icon/vehicle.svg';
@@ -86,6 +88,8 @@ export class SidebarComponent implements OnInit {
       }
     );
   }
+
+ 
 }
 
 
