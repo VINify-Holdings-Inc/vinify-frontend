@@ -55,7 +55,7 @@
                         <ng-container matColumnDef="Select">
                           <th mat-header-cell *matHeaderCellDef class="checkBoxModal" width="25">
                             <mat-checkbox
-                            
+                            *ngIf="tableData.length"
                               (change)="toggleSelectAll($event)"
                               [checked]="isAllSelected()"
                               [indeterminate]="isIndeterminate()"

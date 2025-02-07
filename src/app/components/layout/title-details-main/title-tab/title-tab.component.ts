@@ -180,7 +180,8 @@ previousPage() {
     }
     alertFilter(data:any){
       this.searchValue="";
-      this.handelAlertFil.emit(data);
+      this.currentPage=1;
+      this.handelAlertFil.emit({"data":data,"page":1});
      }
 
      exportToPDF(type:any) {
@@ -203,6 +204,17 @@ previousPage() {
               res?.data?.items || [],
               'Vin-data.pdf'
             );
+          }else{
+            Swal.fire({
+                        title: 'Error!',
+                        showClass: {
+                          popup: 'animated fadeInDown faster',
+                          icon: 'animated heartBeat delay-1s'
+                        },
+                        text: "No VIN found",
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                      });   
           }
           this.isLoading = false;
         },
