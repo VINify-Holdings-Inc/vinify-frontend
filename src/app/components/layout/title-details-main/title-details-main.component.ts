@@ -122,7 +122,8 @@ export class TitleDetailsMainComponent {
    }
 
    handelAlertFil(data:any){
-    this.isRead=data;
+    this.isRead=data.data;
+    this.page=data.page; 
     this.getTableData(this.paramVin);
 }
 handelTitleChange(data:any){

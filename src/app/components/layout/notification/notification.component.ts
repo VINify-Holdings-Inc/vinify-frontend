@@ -85,7 +85,8 @@ export class NotificationComponent {
   }
   handelAlertFil(data:any){
       this.vin="";
-      this.isRead=data;
+      this.isRead=data.data;
+      this.page=data.page;
       this.getTableData();
   }
   handelSelectedVin(data:any){

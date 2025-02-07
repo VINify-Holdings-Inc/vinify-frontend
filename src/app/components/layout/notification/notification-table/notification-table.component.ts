@@ -157,7 +157,8 @@ previousPage() {
     }
    alertFilter(data:any){
     this.searchValue="";
-    this.handelAlertFil.emit(data);
+    this.currentPage=1;
+    this.handelAlertFil.emit({"data":data,"page":1});
    } 
    
 
