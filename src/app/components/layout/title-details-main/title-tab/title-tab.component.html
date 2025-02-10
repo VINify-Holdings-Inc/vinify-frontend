@@ -6,7 +6,7 @@
         <div class="cardSubHead">
           <div class="userReadAll">
             <span class="userReadAllBtn">
-              <button class="userBtn" (click)="makeAllRead()" >Mark As Read</button>
+              <button class="userBtn" (click)="makeAllRead()" >Mark as Read</button>
             </span>
           </div>
           <div class="userSingleSearch">
@@ -69,7 +69,7 @@
                     [checked]="isAllSelected()"
                     [indeterminate]="isIndeterminate()"
                     aria-label="Select all rows"
-                   
+                    [disabled]="!isCheckboxEnabled"
                   ></mat-checkbox>
                 </th>
                 <td mat-cell *matCellDef="let element" class="check-box">

@@ -6,7 +6,7 @@
                 <div class="cardSubHead">
                   <div class="userReadAll">
                     <span class="userReadAllBtn">
-                      <button class="userBtn" (click)="makeAllRead()" >Mark As Read</button>
+                      <button class="userBtn" (click)="makeAllRead()" >Mark as Read</button>
                     </span>
                   </div>
                    <div class="userSingleSearch">
@@ -57,6 +57,7 @@
                             (change)="toggleSelectAll($event)"
                             [checked]="isAllSelected()"
                             [indeterminate]="isIndeterminate()"
+                            [disabled]="!isCheckboxEnabled"
                             aria-label="Select all rows"
                           ></mat-checkbox>
                         </th>

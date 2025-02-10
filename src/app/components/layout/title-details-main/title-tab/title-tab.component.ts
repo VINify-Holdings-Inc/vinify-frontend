@@ -46,6 +46,7 @@ export class TitleTabComponent implements OnInit{
         selectedVins: any[] = []; 
         alert:any=null;
         isLoading:boolean=false;
+        isCheckboxEnabled:boolean=false;
        // selectedVins: { vin: string; alertDate: string }[] = [];
         
        currentPage: number = 1; // Current active page
@@ -59,6 +60,7 @@ export class TitleTabComponent implements OnInit{
            this.updateVisiblePages();  // Trigger pagination update when totalPages changes
          }
          this.selectReleventData();
+         this.isCheckboxEnabled = this.tableData.some((row: any) => !row.isRead);
         }
 
        ngOnInit() {
@@ -68,9 +70,9 @@ export class TitleTabComponent implements OnInit{
         this.tableData.forEach((row: any) => {
           if (this.selectedVinsData.includes(row.id)) {
             row.isSelected = true;
-          }
-         
+          } 
         });
+        this.isCheckboxEnabled = this.tableData.some((row: any) => !row.isRead);
         }
 
       onClick(pages:any){

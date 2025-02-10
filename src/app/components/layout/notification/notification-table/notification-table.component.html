@@ -7,7 +7,7 @@
 
                   <div class="userReadAll">
                     <span class="userReadAllBtn">
-                      <button class="userBtn" (click)="makeAllRead()" >Mark As Read</button>
+                      <button class="userBtn" (click)="makeAllRead()" >Mark as Read</button>
                     </span>
                   </div>
 
@@ -59,6 +59,7 @@
                               (change)="toggleSelectAll($event)"
                               [checked]="isAllSelected()"
                               [indeterminate]="isIndeterminate()"
+                              [disabled]="!isCheckboxEnabled"
                               aria-label="Select all rows"
                             ></mat-checkbox>
                           </th>
@@ -68,7 +69,7 @@
                               [(ngModel)]="element.isSelected"
                               (change)="onRowSelectionChange(element)"
                               aria-label="Select row"
-                            ></mat-checkbox>
+                              ></mat-checkbox>
                           </td>
                         </ng-container>
                         <ng-container matColumnDef="vin">

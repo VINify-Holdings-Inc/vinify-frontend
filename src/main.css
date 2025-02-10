@@ -3688,6 +3688,20 @@ li.nav-item.exportPdfli {
   padding: 0;
 }
 
+.userBtn{
+  background: var(--bg-primary)!important;
+  color: #fff!important;
+  border-radius: 8px;
+  border: 1px solid #D0D5DD;
+  max-width: 130px!important;
+  width: 100%;
+ }
+ .userBtn:hover {
+  background-color: inherit !important;
+  color: inherit !important;
+  transition: none !important;
+}
+
 td.check-box {
   padding: 0 24px !important;
 }
