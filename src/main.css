@@ -3551,6 +3551,7 @@ span.question-Icon .ques{
   width: 100%;
   max-width: 550px;
 }
+
 .extralarge-mod .modalClose {
   margin-right: 0 !important;
 }
@@ -3701,3 +3702,6 @@ li.nav-item.exportPdfli {
   transition: none !important;
 }
 
+td.check-box {
+  padding: 0 24px !important;
+}
