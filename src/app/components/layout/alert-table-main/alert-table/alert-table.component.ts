@@ -48,6 +48,7 @@ export class AlertTableComponent implements OnInit{
        
        checkall:any="specific";
        selectedVins: any[] = [];
+       isCheckboxEnabled:boolean=false;
 
        currentPage: number = 1; // Current active page
        visiblePages: number[] = []; // Pages to display in the pagination UI
@@ -61,6 +62,7 @@ export class AlertTableComponent implements OnInit{
            this.updateVisiblePages();  // Trigger pagination update when totalPages changes
          }
          this.selectReleventData();
+         this.isCheckboxEnabled = this.tableData.some((row: any) => !row.isRead);
         }
 
        ngOnInit() {
@@ -73,6 +75,7 @@ export class AlertTableComponent implements OnInit{
             row.isSelected = true;
           }
         });
+        this.isCheckboxEnabled = this.tableData.some((row: any) => !row.isRead);
         }
 
       onClick(pages:any){

@@ -48,6 +48,7 @@ export class NotificationTableComponent implements OnInit{
        maxVisiblePages: number = 4; // Max number of pages to display at once
        checkall:any="specific";
        selectedVins: any[] = [];
+       isCheckboxEnabled:boolean=false;
        displayedColumns: string[] = ['Select','vin', 'year', 'make', 'titleBrandDate','state','details'];//[ 'titleBrandDate', 'vin','year', 'make', 'state','detailsData', 'details'];
 
        ngOnChanges(changes: SimpleChanges) {
@@ -55,6 +56,8 @@ export class NotificationTableComponent implements OnInit{
            this.updateVisiblePages();  // Trigger pagination update when totalPages changes
           }
           this.selectReleventData();
+          
+          this.isCheckboxEnabled = this.tableData.some((row: any) => !row.isRead);
         }
 
        ngOnInit() {
@@ -66,8 +69,8 @@ export class NotificationTableComponent implements OnInit{
           if (this.selectedVinsData.includes(row.id)) {
             row.isSelected = true;
           }
-         
         });
+        this.isCheckboxEnabled = this.tableData.some((row: any) => !row.isRead);
 
         }
 

@@ -37,6 +37,9 @@
     color: #475467;
     font-size: 14px;
   }
+
+  
+   
   @media (max-width: 768px) {
     .pagination-container {
       gap: 5px;
@@ -47,5 +50,6 @@
       font-size: 12px;
     }
   }
+ 
   
   
