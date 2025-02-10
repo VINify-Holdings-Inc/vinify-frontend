@@ -62,7 +62,7 @@
                               aria-label="Select all rows"
                             ></mat-checkbox>
                           </th>
-                          <td mat-cell *matCellDef="let element">
+                          <td mat-cell *matCellDef="let element" class="check-box">
                             <mat-checkbox
                             *ngIf="!element?.isRead"
                               [(ngModel)]="element.isSelected"
