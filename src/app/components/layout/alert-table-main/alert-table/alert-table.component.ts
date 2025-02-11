@@ -1,4 +1,4 @@
-import {  Component, AfterViewInit, Input, Output, EventEmitter, OnInit, SimpleChanges } from '@angular/core';
+import {  Component, AfterViewInit, Input, Output, EventEmitter, OnInit, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
@@ -23,7 +23,7 @@ import { NotificationService } from '../../../../services/state-management';
 
 export class AlertTableComponent implements OnInit{
 
-  constructor(private router: Router,private userData: userData,private notificationService: NotificationService) {}
+  constructor(private router: Router,private userData: userData,private notificationService: NotificationService,private changeDetectorRef: ChangeDetectorRef) {}
   
     filerIcon: string = 'assets/images/icons/filter-lines.svg';
     calendarIcon: string = 'assets/images/icons/calendar.svg';
@@ -250,7 +250,8 @@ previousPage() {
     }
   
     isAllSelected(): boolean {
-      return this.tableData.every((row) => row.isSelected);
+      //return this.tableData.every((row) => row.isSelected);
+      return this.tableData.length > 0 && this.tableData.every(row => row.isSelected);
     }
   
     isIndeterminate(): boolean {
@@ -284,8 +285,10 @@ previousPage() {
                 ); 
                 
               }  }  
+              this.tableData.forEach(row => row.isSelected = false);
+              this.changeDetectorRef.detectChanges();
               this.selectedVins=[]; 
-              this.currentPage=1;
+              //this.currentPage=1;
               this.handelSelectedVin.emit([])
               this.handelSearch.emit(this.searchValue.trim());
               },

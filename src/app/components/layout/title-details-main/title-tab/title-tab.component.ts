@@ -1,4 +1,4 @@
-import {  Component, AfterViewInit, Input, Output, EventEmitter, OnInit, SimpleChanges } from '@angular/core';
+import {  Component, AfterViewInit, Input, Output, EventEmitter, OnInit, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
@@ -22,7 +22,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   styleUrl: './title-tab.component.css'
 })
 export class TitleTabComponent implements OnInit{
-  constructor(private userData : userData,private pdfService: CreatePDFService,private notificationService: NotificationService){}
+  constructor(private userData : userData,private pdfService: CreatePDFService,private notificationService: NotificationService,private changeDetectorRef: ChangeDetectorRef){}
     filerIcon: string = 'assets/images/icons/filter-lines.svg';
     calendarIcon: string = 'assets/images/icons/calendar.svg';
     pdfIcon: string = 'assets/images/icons/pdf.svg';
@@ -291,12 +291,13 @@ previousPage() {
           );
         }
         this.checkall='specific';
-           console.log(this.selectedVins,item.isSelected);
+          // console.log(this.selectedVins,item.isSelected);
         this.handelSelectedVin.emit(this.selectedVins);
       }
     
       isAllSelected(): boolean {
-        return this.tableData.every((row) => row.isSelected);
+       // return this.tableData.every((row) => row.isSelected);
+        return this.tableData.length > 0 && this.tableData.every(row => row.isSelected);
       }
     
       isIndeterminate(): boolean {
@@ -329,8 +330,11 @@ previousPage() {
                     res?.data?.totalNotificationCount||0
                   ); 
                 }  }  
+               
+                this.tableData.forEach(row => row.isSelected = false);
+                this.changeDetectorRef.detectChanges();
                 this.selectedVins=[]; 
-                this.currentPage=1;
+               // this.currentPage=1;
                 this.handelSelectedVin.emit([])
                 this.handelSearch.emit(this.searchValue.trim());
                 },
