@@ -1,4 +1,4 @@
-import { Component, Input ,OnInit} from '@angular/core';
+import { Component, Input ,OnInit,HostListener} from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { userData } from '../../../services/api-service.service';
@@ -33,6 +33,10 @@ export class SidebarComponent implements OnInit {
 
   openExportModal=()=>{
    this.isExportOpen=!this.isExportOpen;
+  }
+  @HostListener('document:click', ['$event'])
+  closeModal(event: Event) {
+    this.isExportOpen = false;
   }
  
   routerNavigation() {  

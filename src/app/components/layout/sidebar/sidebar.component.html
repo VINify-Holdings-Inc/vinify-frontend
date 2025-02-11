@@ -23,13 +23,13 @@
           </a>
         </li>
   
-        <li class="nav-item exportPdfli" (click)="openExportModal()">
+        <li class="nav-item exportPdfli" (click)="openExportModal()" (click)="$event.stopPropagation()">
           <a class="nav-link d-flex">
             <img [src]="icon4" class="img-fluid" alt="icon" />
             <span>Export Reports</span>
           </a>
   
-          <div *ngIf="isExportOpen" class="ExportDivModal">
+          <div *ngIf="isExportOpen" class="ExportDivModal" >
             <ul>
               <li (click)="exportToPDF('all')"><span>All VINs</span></li>
               <li><span data-bs-toggle="modal" data-bs-target="#exampleModal">Specific VINs</span></li>
