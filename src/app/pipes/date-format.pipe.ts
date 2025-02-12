@@ -117,6 +117,18 @@ export class DateFormatPipe implements PipeTransform {
       const seconds = date.getSeconds().toString().padStart(2, '0');
       return `${day} ${month} - ${hours}:${minutes}:${seconds}`;
   }
+  case 'MMM DD, YYYY - h:mm A (UTC)': {
+      const utcYear = date.getUTCFullYear();
+      const utcMonth = date.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
+      const utcDay = date.getUTCDate().toString().padStart(2, '0');
+      const utcHours = date.getUTCHours();
+      const utcMinutes = date.getUTCMinutes().toString().padStart(2, '0');
+      
+      const amPm = utcHours >= 12 ? 'PM' : 'AM';
+      const formattedHours = (utcHours % 12 || 12).toString().padStart(2, '0'); // Convert 24-hour to 12-hour format
+    
+      return `${utcMonth} ${utcDay}, ${utcYear} - ${formattedHours}:${utcMinutes} ${amPm}`;
+  }
 
       default:
         return date.toISOString(); // Default ISO string format
