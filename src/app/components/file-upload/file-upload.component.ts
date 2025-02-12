@@ -206,7 +206,5 @@ export class FileUploadComponent {
       }
       
     );
-
-   
   }
 }
