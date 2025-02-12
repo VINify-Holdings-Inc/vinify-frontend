@@ -1,5 +1,35 @@
-<input #fileInput   name="fileupload" type="file" (change)="onFileSelected($event)" accept=".txt" placeholder="Upload file" />
-    <button (click)="uploadFile()" [disabled]="!selectedFile">Upload</button>
-    <p *ngIf="errorMessage()" class="error">{{ errorMessage() }}</p>
-    <p *ngIf="successMessage()" class="success">{{ successMessage() }}</p>
+
+    
+    <!-- <p *ngIf="errorMessage()" class="error">{{ errorMessage() }}</p>
+    <p *ngIf="successMessage()" class="success">{{ successMessage() }}</p> -->
     <app-loader [IsLoading]="isLoading"></app-loader>
+
+    <div class="row">
+        <div class="col-md-12">
+          <div class="uploadArea">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title text-center"></h4>
+                <div class="uploadFile">
+                  <div class="bg-diffrent">
+                    <div class="container">
+                      <div class="row justify-content-center">
+                        <div class="col-xl-8">
+                          <div class="file-upload-contain">
+                            <label for="upload">Upload File</label>
+                            <input #fileInput  class="form-control customFileInput"  name="fileupload" type="file" (change)="onFileSelected($event)" accept=".txt" placeholder="Upload file" />
+                          </div>
+                          <div class="customBtn">
+                            <button  class="btn btn-primary btn-block" (click)="uploadFile()" [disabled]="!selectedFile">Upload</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+</div>
