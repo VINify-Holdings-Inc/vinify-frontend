@@ -38,6 +38,8 @@ export class FileUploadComponent {
 
     if (file.name !== 'MY.T.CINQ.INPUT.TXT') {
      // this.errorMessage.set('Invalid file name. It must be MY.T.CINQ.INPUT.TXT');
+        this.selectedFile=null;
+        this.fileInput.nativeElement.value = ""; 
       Swal.fire({
         title: 'Error!',
         showClass: {
@@ -66,6 +68,8 @@ export class FileUploadComponent {
 
     if (lines.length < 2) {
       //this.errorMessage.set('Invalid file format. CMY record or data records are missing.');
+        this.selectedFile=null;
+        this.fileInput.nativeElement.value = ""; 
       Swal.fire({
         title: 'Error!',
         showClass: {
@@ -81,6 +85,8 @@ export class FileUploadComponent {
 
     const firstLine = lines[0];
     if (!firstLine.startsWith('CMY')) {
+      this.selectedFile=null;
+      this.fileInput.nativeElement.value = ""; 
       //this.errorMessage.set('File must start with "CMY".');
       Swal.fire({
         title: 'Error!',
@@ -98,6 +104,8 @@ export class FileUploadComponent {
     const parts = firstLine.split(/\s+/); // Split by spaces
     if (parts.length < 2) {
       //console.error("Invalid format, missing second part.");
+      this.selectedFile=null;
+      this.fileInput.nativeElement.value = ""; 
       Swal.fire({
         title: 'Error!',
         showClass: {
@@ -121,6 +129,8 @@ export class FileUploadComponent {
    // console.log("recordCount",recordCount,datePart,lines.length);
 
     if (isNaN(recordCount) || isNaN(Number(datePart))) {
+        this.selectedFile=null;
+        this.fileInput.nativeElement.value = ""; 
      // this.errorMessage.set('Invalid record count or date format.');
      Swal.fire({
       title: 'Error!',
@@ -137,6 +147,8 @@ export class FileUploadComponent {
 
     if (lines.length - 1 !== recordCount) {
        //this.errorMessage.set(`Expected ${recordCount} records, but found ${lines.length - 1}.`);
+       this.selectedFile=null;
+        this.fileInput.nativeElement.value = ""; 
        Swal.fire({
         title: 'Error!',
         showClass: {
@@ -158,6 +170,8 @@ export class FileUploadComponent {
   uploadFile() {
     if (!this.selectedFile) {
           //this.errorMessage.set('No valid file selected for upload.');
+         this.selectedFile=null;
+        this.fileInput.nativeElement.value = ""; 
           Swal.fire({
             title: 'Error!',
             showClass: {
