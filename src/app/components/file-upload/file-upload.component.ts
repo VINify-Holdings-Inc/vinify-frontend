@@ -64,7 +64,8 @@ export class FileUploadComponent {
   }
 
   validateFileContent(content: string): boolean {
-    const lines = content.split('\n').map((line) => line.trim());
+   // const lines = content.split('\n').map((line) => line.trim());
+   const lines = content.split('\n').map(line => line.trim()).filter(line => line !== "");
 
     if (lines.length < 2) {
       //this.errorMessage.set('Invalid file format. CMY record or data records are missing.');
