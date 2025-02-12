@@ -1,0 +1,4 @@
+<input  name="fileupload" type="file" (change)="onFileSelected($event)" accept=".txt" placeholder="Upload file" />
+    <button (click)="uploadFile()" [disabled]="!selectedFile">Upload</button>
+    <p *ngIf="errorMessage()" class="error">{{ errorMessage() }}</p>
+    <p *ngIf="successMessage()" class="success">{{ successMessage() }}</p>
