@@ -166,5 +166,8 @@ export class userData {
       headers: this.getHeaders(),
     });
   }
+  uploadTxtFile(data: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl}/upload-ftp-txt`, data);
+  } 
 
 }
