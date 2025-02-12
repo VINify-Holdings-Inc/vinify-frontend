@@ -192,29 +192,43 @@ export class FileUploadComponent {
       (res:any) => {
         this.isLoading=false;
         this.selectedFile=null;
-        this.fileInput.nativeElement.value = "";   
+        this.fileInput.nativeElement.value = "";  
+        if(!res.error){
+          Swal.fire({
+            title: 'Info!',
+            showClass: {
+              popup: 'animated fadeInDown faster',
+              icon: 'animated heartBeat delay-1s'
+            },
+            text: res.message,
+            icon: 'success',
+            confirmButtonText: 'OK',
+          });
+        }else{
+          Swal.fire({
+            title: 'Error!',
+            showClass: {
+              popup: 'animated fadeInDown faster',
+              icon: 'animated heartBeat delay-1s'
+            },
+            text: res.message,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        } 
          //this.successMessage.set('File uploaded successfully!'); 
-         Swal.fire({
-          title: 'Info!',
-          showClass: {
-            popup: 'animated fadeInDown faster',
-            icon: 'animated heartBeat delay-1s'
-          },
-          text: res.message,
-          icon: 'success',
-          confirmButtonText: 'OK',
-        });
+        
       },
       (err) => {
        // this.errorMessage.set('File upload failed. Please try again.');
        Swal.fire({
-        title: 'Info!',
+        title: 'Error!',
         showClass: {
           popup: 'animated fadeInDown faster',
           icon: 'animated heartBeat delay-1s'
         },
         text: 'File upload failed. Please try again.',
-        icon: 'success',
+        icon: 'error',
         confirmButtonText: 'OK',
       });
       }
