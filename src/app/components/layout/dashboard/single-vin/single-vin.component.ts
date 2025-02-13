@@ -1,11 +1,7 @@
 import { Component, OnInit,HostListener,ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { userData } from '../../../../services/api-service.service';
-import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { MatCheckboxModule } from '@angular/material/checkbox'; // Import MatCheckboxModule
 import Swal from 'sweetalert2';

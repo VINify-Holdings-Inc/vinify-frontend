@@ -1,5 +1,5 @@
-import { CommonModule, JsonPipe } from '@angular/common';
-import { Component ,OnInit,ChangeDetectorRef} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/api-service.service'; 
 import { SessionService } from '../../services/session.service'

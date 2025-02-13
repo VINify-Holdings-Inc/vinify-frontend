@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { NotificationTableComponent } from './notification-table/notification-table.component';

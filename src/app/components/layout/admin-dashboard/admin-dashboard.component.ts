@@ -2,7 +2,6 @@ import { Component, AfterViewInit  } from '@angular/core';
 import { BarChartComponent } from '../dashboard/bar-chart/bar-chart.component';
 import { LineChartComponent } from '../dashboard/line-chart/line-chart.component';
 import { PieChartComponent } from '../dashboard/pie-chart/pie-chart.component';
-import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 declare var bootstrap: any;
