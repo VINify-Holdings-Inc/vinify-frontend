@@ -31,15 +31,12 @@ export class DataTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getData();
-    console.log("this.dataSource")
    
   }
  data:any =[];
   
 
   ngAfterViewInit(): void {
-    console.log(this.paginator); // Should not be undefined
-    console.log(this.sort);     // Should not be undefined
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -51,7 +48,6 @@ export class DataTableComponent implements OnInit, AfterViewInit {
   }
 
   getVinDetails(vin: string, model: string): void {
-    console.log('VIN:', vin, 'Model:', model);
     // Add your logic for navigating or performing actions here
   }
   getData (){

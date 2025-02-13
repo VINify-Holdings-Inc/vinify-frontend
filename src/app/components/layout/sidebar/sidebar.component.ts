@@ -46,7 +46,6 @@ export class SidebarComponent implements OnInit {
      (res: any) => {
        if (!res.error) {
          this.tableData = res?.data?.items || [];  
-         //console.log("this",this.tableData);
          if(res?.data?.items.length){
         const lastUpdateDate=res?.data?.items[0]; 
         const timestamp = new Date().getTime();

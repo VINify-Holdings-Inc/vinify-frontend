@@ -60,8 +60,6 @@ export class CsvImportComponent {
         }));
       });
 
-      console.log('All Sheets Data:', allSheetsData);
-
       // Example: Assign data from specific sheets to `data` and `data1`
       const sheet1Headers = ['VIN', 'Title', 'Brand', 'Insurance', 'Junk&Salvage'];
       const sheet2Headers = [
@@ -83,7 +81,7 @@ export class CsvImportComponent {
           const headers = Object.keys(sheetData[0]);
           const isSheet1 = sheet1Headers.every((header) => headers.includes(header));
           const isSheet2 = sheet2Headers.every((header) => headers.includes(header));
-        console.log("isSheet2",isSheet2);
+     
           if (isSheet1) {
             this.data = sheetData.map((item: any) => ({
               vin: item['VIN'] || '',
@@ -105,23 +103,21 @@ export class CsvImportComponent {
               titleBrandDate: item['Title / Brand Date'] || '',
               member: item['Member'] || '',
             }));
-            console.log("test4-",sheetData);
+          
           } else {
             console.warn(`Unrecognized format in sheet: ${sheetName}`);
           }
         }
       });
 
-    
-    //  console.log('Data1:', this.data1);
     };
     reader.readAsArrayBuffer(file);
   }
 
   async handleSubmit() {
-    try {  console.log({ sheet1: this.data ,shhet2: this.data1  });
+    try {  
       if (this.data.length && this.data1.length) {
-            console.log({ sheet1: this.data ,shhet2: this.data1  });
+            
      
         this.authService.insertData({ sheet1: this.data ,sheet2: this.data1  }).subscribe((response: any) => {
           this.handleApiResponse(response);
@@ -139,15 +135,8 @@ export class CsvImportComponent {
             }); 
           }
       
-      // if (this.data1.length) {
-      //  // console.log(this.data1);
-       
-      //   this.authService.insertSheet2Data({ data: this.data1 }).subscribe((response: any) => {
-      //     this.handleApiResponse(response);
-      //   });
-      // }
-    } catch (error) {
-     // console.error('Error:', error);
+      } catch (error) {
+  
       this.showToast('error', 'An unexpected error occurred. Please try again later.');
     }
   }
@@ -160,7 +149,6 @@ export class CsvImportComponent {
   }
 
   showToast(error: string, message: string) {
-    //alert(`Type: ${type}, Message: ${message}`);
     if(!error){
       this.showAlertCountData();
                 Swal.fire({

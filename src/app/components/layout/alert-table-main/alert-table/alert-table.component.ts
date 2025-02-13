@@ -66,7 +66,6 @@ export class AlertTableComponent implements OnInit{
         }
 
        ngOnInit() {
-       // console.log(this.tableData);
         this.totalRecords=this.tableData;
         this.selectedVins=this.selectedVinsData;
           
@@ -191,7 +190,6 @@ previousPage() {
   }
 
    toggleSelectAll(event: any): void {
-      //...console.log("tesrr")
       const isChecked = event.checked;
       if(isChecked){
       this.tableData.forEach((row) => {
@@ -214,22 +212,15 @@ previousPage() {
       });
      
     }
-      // if(isChecked){
-      //   this.checkall='all';
-      //   
-      // }else{
-      //   this.checkall='specific';
-      // }
+      
       this.handelSelectedVin.emit(this.selectedVins)
     }
   
   
     onRowSelectionChange(item: any): void {
       if (item.isSelected) {
-       // console.log("item",item);
         // Add the selected item to the array
         const vinExists = this.selectedVins.some(
-          
           (selected) =>
             selected === item.id 
         );
@@ -245,7 +236,6 @@ previousPage() {
         );
       }
       this.checkall='specific';
-         console.log(this.selectedVins,item.isSelected);
       this.handelSelectedVin.emit(this.selectedVins);
     }
   

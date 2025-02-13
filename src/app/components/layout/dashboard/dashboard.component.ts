@@ -61,7 +61,6 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   resentAlert:any=[];
    
    getTableData(vin:any = null) {
-    //console.log("vin",vin);
     this.tableData=[];
     this.isLoading = true;
     // const url = `page=${this.page}&limit=${this.limit}&status=${encodeURIComponent(JSON.stringify(this.status))}&member=${encodeURIComponent(JSON.stringify(this.member))}`;
@@ -110,7 +109,6 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   
 
   handlePageChange(newPage: any) {
-    //console.log("pagination",newPage);
     this.page = newPage.page;
     if(newPage.search=="" ||newPage.search==null){
       this.getTableData();
@@ -120,7 +118,6 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     
   };
   handelSearch(searchVal: any) {
-    //console.log("searchVal",searchVal);
     this.vin=searchVal;
     if(searchVal=="" ||searchVal==null){
       this.isRead=null;
@@ -129,7 +126,6 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     }else{
       this.getTableData(searchVal);
     }
-    //this.getTableData(searchVal);
   }
 
   isChartSelected: string = "line";

@@ -59,7 +59,6 @@ export class SingleVinComponent implements OnInit {
   }
 
   toggleSelectAll(event: any): void {
-    //...console.log("tesrr")
     const isChecked = event.checked;
     if(isChecked){
     this.tableData.forEach((row) => {
@@ -108,7 +107,6 @@ export class SingleVinComponent implements OnInit {
       );
     }
     this.checkall='single';
-    //console.log(this.selectedVins,item.isSelected);
   }
 
   isAllSelected(): boolean {
@@ -144,25 +142,6 @@ getPDFData() {
     if(this.selectedVins.length==0){
       return;
     }
-    // this.checkall="single"
-    // this.selectedVins = this.selectedVins.filter((item) =>
-    //   item.vin.includes(this.searchValue)
-    // );
-    // if(this.selectedVins.length==0){
-    //   this.isLoading = false;
-    //             Swal.fire({
-    //              title: 'Info!',
-    //              showClass: {
-    //                popup: 'animated fadeInDown faster',
-    //                icon: 'animated heartBeat delay-1s'
-    //              },
-    //               text: 'Please select VINs',
-    //               icon: 'info',
-    //               confirmButtonText: 'OK',
-    //             });
-    //             return;
-    // } 
-
   }
   let url = `type=${this.checkall}`;
 
@@ -220,15 +199,10 @@ handelSearch(vin:any){
   this.getTableData()
 }
 clearAll(){
-  //console.log("test3");
   this.vin="";
   this.selectedVins=[];
   this.searchValue="";
   this.checkall="single";
-
-  // this.tableData.forEach((row) => {
-  //   row.isSelected = false;
-  // });
   this.getTableDataAfetrClose();
 
 }

@@ -10,7 +10,7 @@ import {ProfileService} from '../../../../services/state-management';
 import {passwordValidator} from '../../../custom-validator/password-validator';
 import { Router } from '@angular/router';  // Import Router
 import { strictEmailValidator } from '../../../custom-validator/strict-email.validator';
-import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
+//import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
@@ -67,24 +67,9 @@ export class UserProfileComponent implements OnInit {
       ],
       confirmPassword: [''],
     });  
-/*
-    this.profileForm = this.fb.group({
-      name: [{ value: '',disable:true }, [Validators.required]],
-      lname: [{ value: '',disable:true }],
-      email: [{ value: '',disable:true }],
-      company: [{ value: '',disable:true }],
-      title: [{ value: '',disable:true }],
-      password: [
-        { value: '',disable:true },
-        [passwordValidator()],
-      ],
-      confirmPassword: [''],
-    }); */
 
-    this.profileFormEmail= this.fb.group({
-    
+    this.profileFormEmail= this.fb.group({ 
       secondaryEmailId: ['', [Validators.required, strictEmailValidator()]],
-
     });
    
     this.loadUserData();
@@ -194,7 +179,7 @@ loadUserData(): void {
   }
 
   updateSessionData(data:any):void{
-    console.log("data",data);
+     //console.log("data",data);
     let sessionData= this.sessionService.getSessionData("data"); 
    
     let updatedData = {...sessionData,...data}
@@ -216,7 +201,7 @@ loadUserData(): void {
     if (this.profileForm.valid) {
       this.isLoading = true;
       const formData = new FormData();
-      //console.log("test",this.isPasswordModified);
+      
       // Populate FormData
       if(this.isPasswordModified){
         if(this.profileForm.value.password !== this.profileForm.value.confirmPassword){
@@ -237,13 +222,13 @@ loadUserData(): void {
       formData.append('userId', this.userId);
       formData.append('firstName', this.profileForm.value.name);
       formData.append('lastName', this.profileForm.value.lname);
-      formData.append('emailId', this.profileForm.value.email);
+      //formData.append('emailId', this.profileForm.value.email);
       formData.append('phoneNumber', this.profileForm.value.phone);
       formData.append('companyId', this.profileForm.value.company);
       formData.append('title', this.profileForm.value.title);
       //formData.append('address', this.profileForm.value.address);
       if(this.isPasswordModified){
-        //console.log("isPassword");
+       
         formData.append('password', this.profileForm.value.password);
       }
 
@@ -332,7 +317,6 @@ loadUserData(): void {
     }
     handelSave(){
         const secondaryEmailId = this.profileFormEmail.get('secondaryEmailId')?.value;
-        console.log("secondaryEmailId",secondaryEmailId);
           if (secondaryEmailId) {
             this.isLoading = true;
             const formData = new FormData();
@@ -345,7 +329,6 @@ loadUserData(): void {
                 if (!response.error) {
                   this.isLoading = false;
                
-                 
                   Swal.fire({
                     title: 'Success!',
                     showClass: {
