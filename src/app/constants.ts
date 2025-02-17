@@ -14,3 +14,6 @@ export const API_URL = {
     LOGO_URL : 'assets/images/ta-logo.png',
     DISCLAIMER : 'This is a disclaimer text.', 
   }
+  export const UPLOAD_FOLDER ={
+    UPLOAD : 'https://mvmapi.techwagger.com/api/uploads/',
+  }

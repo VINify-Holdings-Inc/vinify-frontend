@@ -26,18 +26,10 @@ export class SummaryComponent implements OnInit {
     member :string="";
     ngOnInit() {
       this.member  = this.sessionService.getSessionData("memberId")
-      
-      /*
-      this.receivedData = history.state; // Retrieve the state data
-      this.vin=this.receivedData?.vin;
-      this.model=this.receivedData?.model;
-      this.getTableData(this.vin);
-      */
 
       this.route.queryParams.subscribe((params) => {
         this.vin = params['vin'] || '';
         this.model=params['model'] || '';
-       // console.log('Query Params Changed: ', this.vin);
         if (this.vin) {
           this.getTableData(this.vin);
         }

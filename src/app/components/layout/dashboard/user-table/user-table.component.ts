@@ -102,7 +102,6 @@ redirectToOtherPage(vin:string,model:string) {
 
 
 getSearchVal(){
- //console.log("search-us",this.searchValue)
   if(this.searchValue==""){
     this.searchValue="";
   }else{
@@ -120,7 +119,6 @@ getSearchVal(){
 
 
 onType(value: string){
-  //console.log("onType");
   if(value==""){
     this.handelSearch.emit(value.trim());
    
@@ -230,7 +228,6 @@ previousPage() {
 }
 
 updateVisiblePages() {
-  //  console.log("test",this.currentPage,this.page);
   const visible: number[] = [];
      
   const start = Math.max(1, this.currentPage - Math.floor(this.maxVisiblePages / 2));
@@ -253,7 +250,6 @@ updateVisiblePages() {
 }
 
 getValifExist(){
-  //console.log("getValifExist");
   if(this.searchValue!=""){
     this.handelSearch.emit(this.searchValue.trim());
   }

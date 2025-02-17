@@ -1,12 +1,11 @@
-import {  Component, AfterViewInit, Input, Output, EventEmitter, OnInit, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import {  Component,  Input, Output, EventEmitter, OnInit, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import {  MatPaginatorModule } from '@angular/material/paginator';
+import {  MatSortModule } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -66,7 +65,6 @@ export class AlertTableComponent implements OnInit{
         }
 
        ngOnInit() {
-       // console.log(this.tableData);
         this.totalRecords=this.tableData;
         this.selectedVins=this.selectedVinsData;
           
@@ -191,7 +189,6 @@ previousPage() {
   }
 
    toggleSelectAll(event: any): void {
-      //...console.log("tesrr")
       const isChecked = event.checked;
       if(isChecked){
       this.tableData.forEach((row) => {
@@ -214,22 +211,15 @@ previousPage() {
       });
      
     }
-      // if(isChecked){
-      //   this.checkall='all';
-      //   
-      // }else{
-      //   this.checkall='specific';
-      // }
+      
       this.handelSelectedVin.emit(this.selectedVins)
     }
   
   
     onRowSelectionChange(item: any): void {
       if (item.isSelected) {
-       // console.log("item",item);
         // Add the selected item to the array
         const vinExists = this.selectedVins.some(
-          
           (selected) =>
             selected === item.id 
         );
@@ -245,7 +235,6 @@ previousPage() {
         );
       }
       this.checkall='specific';
-         console.log(this.selectedVins,item.isSelected);
       this.handelSelectedVin.emit(this.selectedVins);
     }
   
