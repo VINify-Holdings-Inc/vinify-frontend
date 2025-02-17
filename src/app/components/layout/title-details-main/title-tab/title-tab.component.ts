@@ -1,12 +1,11 @@
-import {  Component, AfterViewInit, Input, Output, EventEmitter, OnInit, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import {  Component,  Input, Output, EventEmitter, OnInit, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import {  MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import Swal from 'sweetalert2';
 import { userData } from '../../../../services/api-service.service';
 import { CreatePDFService } from '../../../../services/create-pdf.service';
@@ -237,7 +236,6 @@ previousPage() {
     }
     
       toggleSelectAll(event: any): void {
-        //...console.log("tesrr")
         const isChecked = event.checked;
         if(isChecked){
         this.tableData.forEach((row) => {
@@ -272,7 +270,6 @@ previousPage() {
     
       onRowSelectionChange(item: any): void {
         if (item.isSelected) {
-         // console.log("item",item);
           // Add the selected item to the array
           const vinExists = this.selectedVins.some(
             
@@ -291,7 +288,6 @@ previousPage() {
           );
         }
         this.checkall='specific';
-          // console.log(this.selectedVins,item.isSelected);
         this.handelSelectedVin.emit(this.selectedVins);
       }
     

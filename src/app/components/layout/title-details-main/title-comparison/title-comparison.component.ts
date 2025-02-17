@@ -24,32 +24,24 @@ export class TitleComparisonComponent implements OnInit {
   paramVin:string="";
   @Output() handelTitleChange = new EventEmitter <any>();
   ngOnInit() {
-    console.log("test");
    
     this.route.queryParams.subscribe((params) => {
       this.paramVin = params['vin'] || '';
-   
-      
-      console.log('Query Params Changed: ', this.paramVin);
       if (this.paramVin) {
         this.getTableData(this.paramVin);
       }
     });
-     //  this.initializeTabs();
   }
 
   getTableData(vin:any=null){
     
     this.isLoading= true;
-   
       let url=`vin=${vin}`
    
      // url = `&page=${this.page}&limit=${this.limit}`;
-     
-   
+
      this.userData.getVinHistoryData(url).subscribe(
       (res:any) => {
-        console.log("datatitle",res?.data);
           this.isLoading=false; 
         if(!res.error){
           this.tableDataHistory=res?.data?.history?.items||[];

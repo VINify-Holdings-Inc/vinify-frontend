@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { NotificationTableComponent } from './notification-table/notification-table.component';
@@ -64,7 +63,6 @@ export class NotificationComponent {
   
   }
   handlePageChange(newPage: any) {
-    //console.log("pagination",newPage);
     this.page = newPage.page;
     if(newPage.search=="" ||newPage.search==null){
       this.getTableData();
@@ -73,7 +71,6 @@ export class NotificationComponent {
     }
   };
   handelSearch(searchVal: any) {
-    //console.log("searchVal",searchVal);
     this.vin=searchVal;
     if(searchVal=="" ||searchVal==null){
       this.getTableData();
@@ -81,7 +78,6 @@ export class NotificationComponent {
     }else{
       this.getTableData(searchVal);
     }
-    //this.getTableData(searchVal);
   }
   handelAlertFil(data:any){
       this.vin="";
@@ -90,7 +86,6 @@ export class NotificationComponent {
       this.getTableData();
   }
   handelSelectedVin(data:any){
-   // console.log("data",data);
        this.selectedVinsData=data;
   }
 }

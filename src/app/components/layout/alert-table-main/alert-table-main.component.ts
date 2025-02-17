@@ -62,7 +62,6 @@ export class AlertTableMainComponent {
   
   }
   handlePageChange(newPage: any) {
-    //console.log("pagination",newPage);
     this.page = newPage.page;
     if(newPage.search=="" ||newPage.search==null){
       this.getTableData();
@@ -71,7 +70,6 @@ export class AlertTableMainComponent {
     }
   };
   handelSearch(searchVal: any) {
-    //console.log("searchVal",searchVal);
     this.vin=searchVal;
     if(searchVal=="" ||searchVal==null){
       this.isRead=null;
@@ -79,7 +77,6 @@ export class AlertTableMainComponent {
     }else{
       this.getTableData(searchVal);
     }
-    //this.getTableData(searchVal);
   }
   handelAlertFil(data:any){
      this.vin="";
@@ -88,7 +85,6 @@ export class AlertTableMainComponent {
       this.getTableData();
   }
   handelSelectedVin(data:any){
-    console.log("data",data);
-       this.selectedVinsData=data;
+    this.selectedVinsData=data;
   }
 }

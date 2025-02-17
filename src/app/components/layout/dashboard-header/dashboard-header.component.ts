@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SoapService } from '../../../services/soap.service';
 import { CreateSoapPdfService } from '../../../services/create-soap-pdf.service';
-import { PDF_SETTINGS } from '../../../../app/constants';
+import { PDF_SETTINGS,UPLOAD_FOLDER } from '../../../../app/constants';
 @Component({
   selector: 'app-dashboard-header',
   imports: [CommonModule,FormsModule,DateFormatPipe,LoaderComponent,RouterLink],
@@ -92,13 +92,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
 
  getSearchVal(){
   if(this.searchValue && this.searchValue.trim() !== ""){
-    
-  //  console.log("test space",this.searchValue);
     this.getVinSearch(this.searchValue.trim());
-      /* const timestamp = new Date().getTime(); 
-        this.router.navigate(['/title-details'], { queryParams: { vin: this.searchValue, refresh: timestamp }}).then(() => {
-          this.searchValue="";
-      }); */
   }else{
     this.searchValue="";
   }
@@ -111,11 +105,8 @@ getTableData() {
    (res: any) => {
      if (!res.error) {
        this.tableData = res?.data?.items || [];  
-       //console.log("this",this.tableData);
-       if(res?.data?.items.length){
-      //   this.lastUpdateDate=res?.data?.items[0].updatedAt; 
-       }else{
-         this.lastUpdateDate="";
+       if(res?.data?.items.length==0){
+        this.lastUpdateDate="";
        }
      }
    },
@@ -141,7 +132,6 @@ getVinSearch(vin:any){
         
     this.userData.searchVinDataForUserPopSoap(url).subscribe(
       (res:any) => {
-       // console.log("data",res?.data);
           this.isLoading=false; 
           this.searchValue="";
           this.searchIconToggle=!this.searchIconToggle
@@ -174,10 +164,8 @@ getVinSearch(vin:any){
                 
                 this.getVinSearchDataFromSoap(this.soapToken,vin).then((resp) => {
                       this.isLoading=false;
-                      // console.log("data",resp);
                       if(resp.type){
                         if(!resp.xml.error){
-                          // console.log("re",resp?.xml?.generatePdf.length);
                             if(resp?.xml?.generatePdf.length){
                               this.pdfService.generatePDF(
                                 PDF_SETTINGS.COMPANY_NAME,
@@ -192,7 +180,6 @@ getVinSearch(vin:any){
                                   popup: 'animated fadeInDown faster',
                                   icon: 'animated heartBeat delay-1s'
                                 },
-                                //text: JSON.stringify(resp.xml),
                                 text: `No data found for ${vin}`,
                                 icon: 'error',
                                 confirmButtonText: 'OK',
@@ -205,7 +192,6 @@ getVinSearch(vin:any){
                               popup: 'animated fadeInDown faster',
                               icon: 'animated heartBeat delay-1s'
                             },
-                            //text: JSON.stringify(resp.xml),
                             text: "Something went worng,please try after sometime",
                             icon: 'success',
                             confirmButtonText: 'OK',
@@ -238,8 +224,6 @@ getVinSearch(vin:any){
                               icon: 'error',
                               confirmButtonText: 'OK',
                             }); 
-
-                //console.log("Failed to retrieve SOAP Token.");
               }
             });
             }
@@ -259,8 +243,7 @@ getVinSearch(vin:any){
         if (!res.error) {
              
               this.userName = res.data.firstName + " " +  res.data.lastName; 
-              this.profile = "https://mvmapi.techwagger.com/api/uploads/"+res.data.profile; 
-            //  this.profileComplete =  res.data.profileComplete; 
+              this.profile = UPLOAD_FOLDER.UPLOAD+res.data.profile; 
           }
       },
       (err) => {
@@ -272,7 +255,6 @@ getVinSearch(vin:any){
   callSoapServiceAuth(): Promise<boolean> {
     return new Promise((resolve) => {
       if (this.getVariable('tk') == null || this.getVariable('tk') == "") {
-       // console.log("this.getVariable('tk')", this.getVariable('tk'));
   
         this.soapService.getToken().subscribe(
           (res) => {
@@ -329,15 +311,15 @@ getVinSearchDataFromSoap(tk: any, vin: any): Promise<{ type: boolean; xml?: any 
     this.soapService.getVinData(data).subscribe(
       (res) => {
         if (!res.error) {
-              console.log("XML Response:", res.data);
+             // console.log("XML Response:", res.data);
           resolve({ type: true, xml: res.data });
         } else {
-              console.error("SOAP Error:", res.error);
+             // console.error("SOAP Error:", res.error);
           resolve({ type: false });
         }
       },
       (err) => {
-            console.error("SOAP Request Error:", err);
+           // console.error("SOAP Request Error:", err);
         resolve({ type: false });
       }
     );
@@ -367,7 +349,6 @@ getNotificationData() {
  this.userData.getTopTenNotification(url).subscribe(
    (res: any) => {
      if (!res.error) {
-      console.log('ff',res?.data);
        this.notificationData = res?.data?.items || [];  
       
      }
@@ -378,22 +359,19 @@ getNotificationData() {
 }
 
 getAllNotification(vin:any,model:any,id:any){
-  // this.router.navigate(['/notification']).then(() => {  
-  // });
- 
+  
   let type:any=`type=specific`;
   let datas:any[] =[]; 
   datas.push(id)
   this.userData.updateSeenAlertCheckBxData(type,datas).subscribe(
     (res:any) => {
-       //console.log("data");
+       
       if(!res.error){
         if(res?.data?.updated){  
-          //console.log("dataiii");
+         
         this.notificationService.setUnreadCount(
           res?.data?.totalNotificationCount||0
         ); 
-       //this.notificationService.decrementUnreadCount(); 
        this.getRegirect(vin,model);
       }  }   
     },
@@ -412,7 +390,6 @@ getRegirect(vin:any,model:any){
 }
 
 readNotification(data:any){
- 
   let type:any=`type=${data}`;
      let datas:any[] =[]; 
      datas.push(data.id)
