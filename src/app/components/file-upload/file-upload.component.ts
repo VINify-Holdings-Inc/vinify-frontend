@@ -189,7 +189,7 @@ export class FileUploadComponent {
               popup: 'animated fadeInDown faster',
               icon: 'animated heartBeat delay-1s'
             },
-            text: res.message,
+            text: 'Fetching the latest alerts—thank you for your patience.',
             icon: 'success',
             confirmButtonText: 'OK',
           });

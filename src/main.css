@@ -977,6 +977,7 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
 	width: 52px;
   cursor: pointer;
   padding-left: 5px;
+  cursor:pointer;
 }
 
 #sidebar ul li a img {

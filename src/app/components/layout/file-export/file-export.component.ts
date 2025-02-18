@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
@@ -26,8 +26,26 @@ export class FileExportComponent  implements OnInit {
   selectedVins: any[] = [];
   displayedColumns: string[] = ['select', 'vin'];
   searchValue :string="";
+   ngOnChanges(changes: SimpleChanges) {
+             this.selectReleventData();
+         
+          }
   ngOnInit() {
     this.getTableData();
+
+    this.tableData.forEach((row: any) => {
+      if (this.selectedVins.includes(row.vin)) {
+        row.isSelected = true;
+      } 
+    });
+  }
+  selectReleventData(){
+         console.log("test")       
+    this.tableData.forEach((row: any) => {
+      if (this.selectedVins.includes(row.vin)) {
+        row.isSelected = true;
+      }
+    });
   }
 
   getTableData(vin: any = null) {
@@ -44,6 +62,8 @@ export class FileExportComponent  implements OnInit {
           data.forEach((item: any) => (item.isSelected = false));
           this.tableData = (data);
         }
+
+        this.selectReleventData();
         this.isLoading = false;
       },
       (err) => {
@@ -57,7 +77,8 @@ export class FileExportComponent  implements OnInit {
     if(isChecked){
     this.tableData.forEach((row) => {
       row.isSelected = isChecked;
-      this.selectedVins.push({"vin":row.vin});
+      //this.selectedVins.push({"vin":row.vin});
+      this.selectedVins.push(row.vin);
     });
   }else{
     this.tableData.forEach((row) => {
@@ -78,6 +99,7 @@ export class FileExportComponent  implements OnInit {
   
 
   onRowSelectionChange(item: any): void {
+   // console.log("sel",item);
     if (item.isSelected) {
       // Add the selected item to the array
       const vinExists = this.selectedVins.some(
@@ -86,15 +108,16 @@ export class FileExportComponent  implements OnInit {
       );
   
       if (!vinExists) {
-        this.selectedVins.push({
-          vin: item.vin
-        });
+        this.selectedVins.push(
+           item.vin
+        );
       }
     } else {
+      //console.log("trte",item.vin)
       // Remove the item from the array
       this.selectedVins = this.selectedVins.filter(
         (selected) =>
-          selected.vin !== item.vin
+          selected !== item.vin
       );
     }
     this.checkall='single';
@@ -134,11 +157,36 @@ getPDFData() {
       return;
     }
   }
-  console.log("data",this.selectedVins)
-  
-  this.fileService.downloadFile(this.selectedVins);
-     
+  let data ={"data":this.selectedVins}
+  //console.log("data",this.selectedVins)
+  this.userData.sendVinData(data).subscribe(
+    (res: any) => {
+      if (!res.error) {
+        Swal.fire({
+          title: 'Info!',
+          showClass: {
+            popup: 'animated fadeInDown faster',
+            icon: 'animated heartBeat delay-1s'
+          },
+           text: 'Fetching the latest alerts—thank you for your patience.',
+           icon: 'info',
+           confirmButtonText: 'OK',
+         });
+        // Add isSelected property to each row for checkbox
+        this.tableData.forEach((item: any) => (item.isSelected = false));
+        
+      }
+      this.selectedVins=[];
       this.isLoading = false;
+    },
+    (err) => {
+      this.isLoading = false;
+    }
+  );
+
+  //this.fileService.downloadFile(this.selectedVins);
+     
+    //  this.isLoading = false;
    
 }
 
@@ -148,10 +196,10 @@ closeData(){
 }
 getSearchVal(){
   this.checkall='single';     
-  this.tableData.forEach((row) => {
-    row.isSelected = false;
-    this.selectedVins=[];
-  });
+  // this.tableData.forEach((row) => {
+  // //  row.isSelected = false;
+  // //  this.selectedVins=[];
+  // });
 
   if(this.searchValue==""){
     this.searchValue="";
@@ -168,7 +216,7 @@ getSearchVal(){
 
 onType(value: string){
   if(value==""){
-    this.selectedVins=[];
+    //this.selectedVins=[];
     this.handelSearch(value.trim());
     
   }

@@ -176,4 +176,10 @@ export class userData {
     });
   }
 
+  sendVinData(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/file-create-automation`, data, {
+      headers: this.getHeaders(),
+    });
+  }
+
 }
