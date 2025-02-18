@@ -14,10 +14,12 @@
                         placeholder="Search VIN Number" />
                 </span>
             </div>
-            <button type="button" class="btn btn-primary " (click) = "clearAll()">Clear Selection</button>
+            <div class="bulkupladsfea">
+            <button type="button" class="btn btn-clear " (click) = "clearAll()">Clear</button>
           <button type="button" class="btn btn-primary modalExport" (click) = "getPDFData()">Initiate Process</button>
           <button  (click)="clearAll()" type="button" class="btn btn-close modalClose" data-bs-dismiss="modal" aria-label="Close" >
           </button>
+          </div>
          
         </div>
         <div class="modal-body">
