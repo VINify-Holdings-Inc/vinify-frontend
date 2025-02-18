@@ -964,6 +964,7 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   margin: 5px auto;
   align-items: center;
   color: #201D1E !important;
+  cursor: pointer;
 }
 
 #sidebar.active ul li a {
@@ -975,7 +976,6 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
 	font-weight: 600;
 	height: 52px;
 	width: 52px;
-  cursor: pointer;
   padding-left: 5px;
   cursor:pointer;
 }
@@ -3712,5 +3712,41 @@ li.nav-item.exportPdfli {
 td.check-box {
   padding: 0 24px !important;
 }
+.btn.btn-clear {
+  font-size: 14px !important;
+  font-weight: 600;
+  line-height: 18px;
+  color: #344054;
+  max-width: 130px !important;
+  width: 100%;
+  border: 1px solid #d0d5dd !important;
+  border-radius: 8px !important;
+  padding: 10px 10px !important;
+  height: 40px;
+}
+button.btn.btn-primary.modalExport {
+  padding: 10px 8px;
+}
+.extralarge-mod .modalClose {
+  margin: 0 !important;
+  padding: 0 13px !important;
+}
+.userSingleSearch.importbox.pull-right {
+  margin: 0;
+}
+.bulkupladsfea {
+	display: flex;
+	flex-direction: row;
+	width: 64%;
+	gap: 6px;
+	padding-left: 10px;
+}
+.bulkupladsfea .btn {
+  height: 40px !important;
+}
+.userSingleSearch.importbox.pull-right .form-control.ng-valid.ng-dirty.ng-touched {
+	padding-right: 2px;
+	padding-left: 38px;
+}
 
-
+ 
