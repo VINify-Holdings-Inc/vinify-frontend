@@ -58,7 +58,67 @@ export class FileUploadComponent {
     };
     reader.readAsText(file);
   }
+  validateFileContent(content: string): boolean {
+    const lines = content.split('\n').map(line => line.trim()).filter(line => line !== "");
+  
+    if (lines.length < 2) {
+      this.showError("Invalid file format. CMY record or data records are missing.");
+      return false;
+    }
+  
+    const firstLine = lines[0];
+  
+    if (!firstLine.startsWith('CMY')) {
+      this.showError('File must start with "CMY".');
+      return false;
+    }
+  
+    // Extract record count and date
+    const match = firstLine.match(/^CMY\s+(\d+)(\d{8})$/);
+  
+    if (!match) {
+      this.showError("Invalid format in header line.");
+      return false;
+    }
+  
+    const recordCount = parseInt(match[1], 10);
+    const datePart = match[2];
+  
+    if (isNaN(recordCount) || isNaN(Number(datePart))) {
+      this.showError("Invalid record count or date format.");
+      return false;
+    }
+  
+    // Validate dynamic spacing: "CMY" + (8 - recordCount length) spaces
+    const expectedSpaces = 9 - match[1].length;
+    const actualSpaces = firstLine.slice(3, firstLine.indexOf(match[1])).length;
+  
+    if (actualSpaces !== expectedSpaces) {
+      this.showError(`Invalid spacing before record count. Expected ${expectedSpaces} spaces but found ${actualSpaces}.`);
+      return false;
+    }
+  
+    if (lines.length - 1 !== recordCount) {
+      this.showError(`Expected ${recordCount} records, but found ${lines.length - 1}.`);
+      return false;
+    }
+  
+    return true;
+  }
+  
+  // Helper function for showing error messages
+  private showError(message: string) {
+    this.selectedFile = null;
+    this.fileInput.nativeElement.value = "";
+    Swal.fire({
+      title: "Error!",
+      text: message,
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
 
+  /*
   validateFileContent(content: string): boolean {
    // const lines = content.split('\n').map((line) => line.trim());
    const lines = content.split('\n').map(line => line.trim()).filter(line => line !== "");
@@ -155,7 +215,7 @@ export class FileUploadComponent {
       return false;
     }
     return true;
-  }
+  }    */
 
   uploadFile() {
     if (!this.selectedFile) {
