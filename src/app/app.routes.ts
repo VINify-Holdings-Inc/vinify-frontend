@@ -20,6 +20,7 @@ import { TitleDetailsMainComponent } from './components/layout/title-details-mai
 import { AlertTableMainComponent } from './components/layout/alert-table-main/alert-table-main.component';
 import {NotificationComponent} from './components/layout/notification/notification.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { FileExportComponent } from './components/layout/file-export/file-export.component';
 export const routes: Routes = [
   { 
     path: '', 
@@ -58,6 +59,7 @@ export const routes: Routes = [
       { path: 'user-profile', component:UserProfileComponent ,canActivate: [AuthGuard]} ,
       { path: 'notification', component:NotificationComponent ,canActivate: [AuthGuard]} ,
       { path: 'file-upload', component:FileUploadComponent ,canActivate: [AuthGuard]},  
+      { path: 'file-export', component:FileExportComponent ,canActivate: [AuthGuard]},  
     ]
   },
   // This route is used for any invalid routes

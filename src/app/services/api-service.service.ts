@@ -170,4 +170,10 @@ export class userData {
     return this.http.post(`${this.baseUrl}/upload-ftp-txt`, data);
   } 
 
+  getVinData(data: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/file-create-automation?`+ data, {
+      headers: this.getHeaders(),
+    });
+  }
+
 }

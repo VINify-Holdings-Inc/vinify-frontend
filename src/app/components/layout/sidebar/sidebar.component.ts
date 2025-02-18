@@ -6,10 +6,11 @@ import { CreatePDFService } from '../../../services/create-pdf.service';
 import { PDF_SETTINGS } from '../../../constants';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SingleVinComponent } from '../dashboard/single-vin/single-vin.component';
+import { FileExportComponent } from '../file-export/file-export.component';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule,RouterLink,RouterLinkActive,LoaderComponent,SingleVinComponent],
+  imports: [CommonModule,RouterLink,RouterLinkActive,LoaderComponent,SingleVinComponent,FileExportComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
@@ -27,6 +28,7 @@ export class SidebarComponent implements OnInit {
   icon6: string = 'assets/images/icons/sidebar-icon/support.svg';
   icon7: string = 'assets/images/icons/sidebar-icon/information.png';
   icon8: string = 'assets/images/icons/sidebar-icon/upload.svg';
+  icon9: string = 'assets/images/icons/sidebar-icon/file.svg';
   helpPdf: any = 'assets/helpdoc/NMVTIS_help_doc.pdf';
   @Input() isSidebarActive: boolean = true; 
 
