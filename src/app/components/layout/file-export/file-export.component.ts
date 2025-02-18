@@ -36,7 +36,6 @@ export class FileExportComponent  implements OnInit {
     if (this.vin) {
       url = url + `&vin=${this.vin}`;
     }
-
     this.userData.getVinData(url).subscribe(
       (res: any) => {
         if (!res.error) {
