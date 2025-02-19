@@ -42,3 +42,28 @@ export class NotificationService {
     }
   }
 }
+
+
+
+@Injectable({
+  providedIn: 'root' // Ensure the service is available globally
+})
+
+export class LastUpdatedService {
+  private lastUpdate = new BehaviorSubject<Date | null>(null);
+  lastUpdate$ = this.lastUpdate.asObservable(); // Observable for components to subscribe
+
+  // Set the last update timestamp (receives Date or string from API)
+  setLastUpdate(date: Date | string | null) {
+    if (date) {
+      this.lastUpdate.next(new Date(date)); // Convert to Date object if string
+    } else {
+      this.lastUpdate.next(null);
+    }
+  }
+
+  // Getter for lastUpdate$ observable
+  getLastUpdate$() {
+    return this.lastUpdate$;
+  }
+}
