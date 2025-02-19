@@ -399,14 +399,16 @@ getRegirect(vin:any,model:any){
 
 readNotification(data:any){
   Swal.fire({
-    title: "",
+    title: 'Action!',
     text: "Are you sure to read all the notifications?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#6e7881",
-    confirmButtonText: "Yes",
-    cancelButtonText : "No"
+    showClass: {
+      popup: 'animated fadeInDown faster',
+      icon: 'animated heartBeat delay-1s'
+    },
+    icon: 'info',
+    showCancelButton: true, // Enables the cancel button
+    confirmButtonText: 'Yes', // Text for the confirm button
+    cancelButtonText: 'No',  // Text for the cancel button
   }).then((result) => {
     if (result.isConfirmed) {
             let type:any=`type=${data}`;
