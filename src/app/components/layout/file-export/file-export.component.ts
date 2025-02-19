@@ -133,7 +133,7 @@ export class FileExportComponent  implements OnInit {
   }
 
 getPDFData() {
-  this.isLoading = true;
+  
   if(this.checkall=="single"){
      if(this.selectedVins.length==0){
        this.isLoading = false;
@@ -158,37 +158,40 @@ getPDFData() {
   }
   let data ={"data":this.selectedVins}
   
-  //console.log("data",this.selectedVins)
-  this.userData.sendVinData(data).subscribe(
-    (res: any) => {
-      if (!res.error) {
-        
-        Swal.fire({
-          title: 'Info!',
-          showClass: {
-            popup: 'animated fadeInDown faster',
-            icon: 'animated heartBeat delay-1s'
-          },
-           text: 'Fetching the latest alerts—Thank you for your patience.',
-           icon: 'info',
-           confirmButtonText: 'OK',
-         }).then((result) => {
-          if (result.isConfirmed) {
-          
-            this.closeModal();
-          }
-        });
-        // Add isSelected property to each row for checkbox
-        this.tableData.forEach((item: any) => (item.isSelected = false));
-        
-      }
-      this.selectedVins=[];
-      this.isLoading = false;
+  Swal.fire({
+    title: 'Info!',
+    showClass: {
+      popup: 'animated fadeInDown faster',
+      icon: 'animated heartBeat delay-1s'
     },
-    (err) => {
-      this.isLoading = false;
+     text: 'Fetching the latest alerts—Thank you for your patience.',
+     icon: 'info',
+     confirmButtonText: 'OK',
+   }).then((result) => {
+    this.isLoading = true;
+    if (result.isConfirmed) {
+    
+      this.closeModal();
+      
+      this.userData.sendVinData(data).subscribe(
+        (res: any) => {
+          if (!res.error) {
+            // Add isSelected property to each row for checkbox
+            this.tableData.forEach((item: any) => (item.isSelected = false));
+            
+          }
+          this.selectedVins=[];
+          this.isLoading = false;
+        },
+        (err) => {
+          this.isLoading = false;
+        }
+      );
+
     }
-  );
+  });
+  //console.log("data",this.selectedVins)
+ 
 
   //this.fileService.downloadFile(this.selectedVins);
      

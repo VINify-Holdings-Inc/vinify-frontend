@@ -3748,5 +3748,10 @@ button.btn.btn-primary.modalExport {
 	padding-right: 2px;
 	padding-left: 38px;
 }
-
+.title-center-data {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 120px;
+}
  
