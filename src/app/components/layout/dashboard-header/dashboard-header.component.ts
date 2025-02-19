@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter,OnInit, OnDestroy } from '@angular/core';
 import { SessionService } from '../../../services/session.service';
 import { Router,RouterLink } from '@angular/router';
-import { NotificationService, ProfileService } from '../../../services/state-management';
+import { LastUpdatedService, NotificationService, ProfileService } from '../../../services/state-management';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -33,6 +33,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
               private profileService: ProfileService,private userData: userData,
               private authService: AuthService,
               private soapService: SoapService,private notificationService: NotificationService,
+              private lastUpdatedService:LastUpdatedService,
               private pdfService:CreateSoapPdfService){
     this.profileData = this.profileService.getInitialProfileData()  ;
     this.userEmail=JSON.parse(localStorage.getItem("profileData")||"")?.email;
@@ -59,7 +60,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
 
  member: string = "";
  tableData :any[] =[];
- lastUpdateDate:string ="";
+ lastUpdateDate:any ="";
  alertCount : number =0;
  notificationData: any[]=[];
  ngOnInit() {
@@ -77,6 +78,12 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   this.notificationService.unreadCount$.subscribe(count => {
     this.unreadCount = count; // Update count in the UI
   });
+
+  this.lastUpdatedService.getLastUpdate$().subscribe(date => {
+    this.lastUpdateDate = date;
+  });
+
+
 }
 
  ngOnDestroy() {
@@ -106,7 +113,7 @@ getTableData() {
      if (!res.error) {
        this.tableData = res?.data?.items || [];  
        if(res?.data?.items.length==0){
-        this.lastUpdateDate="";
+       // this.lastUpdateDate="";
        }
      }
    },
@@ -268,7 +275,7 @@ getVinSearch(vin:any){
             }
           },
           (err) => {
-            console.error('SOAP Request Error:', err);
+          //  console.error('SOAP Request Error:', err);
             resolve(false);
           }
         );
@@ -335,7 +342,8 @@ showAlertCountData() {
       this.notificationService.setUnreadCount(
         res?.data?.totalNotificationCount||0
       ); 
-      this.lastUpdateDate= res?.data?.lastUpdatedDate||""    
+      //this.lastUpdateDate= res?.data?.lastUpdatedDate||""    
+      this.lastUpdatedService.setLastUpdate(res?.data?.lastUpdatedDate||"");
      }
    },
    (err) => {    
@@ -390,25 +398,39 @@ getRegirect(vin:any,model:any){
 }
 
 readNotification(data:any){
-  let type:any=`type=${data}`;
-     let datas:any[] =[]; 
-     datas.push(data.id)
-   this.userData.updateSeenAlertCheckBxData(type,datas).subscribe(
-     (res:any) => {
-          
-      if(!res.error){
-        if(res?.data?.updated){  
-        this.notificationService.setUnreadCount(
-          res?.data?.totalNotificationCount||0
-        ); 
-       
-      }  }  
-     
-     },
-     (err) => {
-      
-     }
-   );
+  Swal.fire({
+    title: "",
+    text: "Are you sure to read all the notifications?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#6e7881",
+    confirmButtonText: "Yes",
+    cancelButtonText : "No"
+  }).then((result) => {
+    if (result.isConfirmed) {
+            let type:any=`type=${data}`;
+            let datas:any[] =[]; 
+            datas.push(data.id)
+              this.userData.updateSeenAlertCheckBxData(type,datas).subscribe(
+                (res:any) => {
+                    
+                if(!res.error){
+                  if(res?.data?.updated){  
+                  this.notificationService.setUnreadCount(
+                    res?.data?.totalNotificationCount||0
+                  ); 
+                  
+                }  }  
+                
+                },
+                (err) => {
+                
+                }
+              )
+    }
+  });
+  ;
 }
 
 }

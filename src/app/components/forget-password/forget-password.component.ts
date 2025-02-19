@@ -84,7 +84,7 @@ export class ForgetPasswordComponent implements OnInit {
         }
       );
     } else {
-      
+      this.isLoading=false;
           Swal.fire({
             title: 'Error!',
             showClass: {

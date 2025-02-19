@@ -8,6 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { FileDownloadService } from '../../../services/file-download.service';
 
+
 @Component({
   selector: 'app-file-export',
   imports: [CommonModule, MatTableModule, FormsModule, MatCheckboxModule,LoaderComponent],
@@ -40,7 +41,7 @@ export class FileExportComponent  implements OnInit {
     });
   }
   selectReleventData(){
-         console.log("test")       
+        // console.log("test")       
     this.tableData.forEach((row: any) => {
       if (this.selectedVins.includes(row.vin)) {
         row.isSelected = true;
@@ -94,9 +95,8 @@ export class FileExportComponent  implements OnInit {
       this.checkall='single';
     }
   }
-
-
   
+    
 
   onRowSelectionChange(item: any): void {
    // console.log("sel",item);
@@ -134,7 +134,6 @@ export class FileExportComponent  implements OnInit {
 
 getPDFData() {
   this.isLoading = true;
- 
   if(this.checkall=="single"){
      if(this.selectedVins.length==0){
        this.isLoading = false;
@@ -158,20 +157,27 @@ getPDFData() {
     }
   }
   let data ={"data":this.selectedVins}
+  
   //console.log("data",this.selectedVins)
   this.userData.sendVinData(data).subscribe(
     (res: any) => {
       if (!res.error) {
+        
         Swal.fire({
           title: 'Info!',
           showClass: {
             popup: 'animated fadeInDown faster',
             icon: 'animated heartBeat delay-1s'
           },
-           text: 'Fetching the latest alerts—thank you for your patience.',
+           text: 'Fetching the latest alerts—Thank you for your patience.',
            icon: 'info',
            confirmButtonText: 'OK',
-         });
+         }).then((result) => {
+          if (result.isConfirmed) {
+          
+            this.closeModal();
+          }
+        });
         // Add isSelected property to each row for checkbox
         this.tableData.forEach((item: any) => (item.isSelected = false));
         
@@ -236,7 +242,9 @@ clearAll(){
 
 
 handleOutsideClick() {
+
    this.isModalOpen = false; // Close the modal
+   //console.log("test hal",this.isModalOpen);
    this.clearAll();
 }
 
@@ -273,5 +281,31 @@ getTableDataAfetrClose(vin: any = null) {
     }
   );
 }
+
+closeModal() {
+  this.clearAll();
+  const modal = document.getElementById('exampleModalExport');
+    if (modal) {
+      const bootstrapModal = new (window as any).bootstrap.Modal(modal);
+      bootstrapModal.hide(); // Hide using Bootstrap API
+
+      // Ensure modal is completely hidden
+      setTimeout(() => {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+        modal.setAttribute('style', 'display: none');
+
+        // Remove backdrop if still present
+        const modalBackdrop = document.querySelector('.modal-backdrop');
+        if (modalBackdrop) {
+          modalBackdrop.remove();
+        }
+
+        document.body.classList.remove('modal-open');
+      }, 300);
+    }
+  }
+
+
 
 }
