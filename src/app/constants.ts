@@ -15,5 +15,5 @@ export const API_URL = {
     DISCLAIMER : 'This is a disclaimer text.', 
   }
   export const UPLOAD_FOLDER ={
-    UPLOAD : 'https://mvmapi.techwagger.com/api/uploads/',
+    UPLOAD : 'https://mvmapi2.techwagger.com/api/uploads/',
   }
