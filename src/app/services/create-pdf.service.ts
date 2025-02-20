@@ -38,14 +38,19 @@ export class CreatePDFService {
       // doc.text('Title Records', 10, 30);
 
       // Add Dynamic Table Data
-      const tableColumn = ['VINs', 'Year', 'Make', 'Alert Date', 'State','Brand Name', 'Status'];
+      //const tableColumn = ['VINs', 'Year', 'Make', 'Alert Date', 'State','Brand Name', 'Status'];
+      const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','City','State','Year', 'Make', 'Status'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : "-",
+        (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
+        item.alertType ? item.alertType : "-",
+        item?.brand ? item?.brand?.split(' - ')[0]:"-",
+        item.description ? item.description :"-",
+        item.city ? item.city : "-",
+        item.state ? item.state : "-",
         item.modelYear ? item.modelYear :"-",
         item.model ? item.model : "-",
-        (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
-        item.state ? item.state : "-",
-        item?.brand ? item?.brand?.split(' - ')[0]:"-",
+             
         item.status ? item.status :"-",
 
       ]);
@@ -58,6 +63,10 @@ export class CreatePDFService {
         headStyles: {
           fillColor: [207, 75, 95], // Set header background color to red (RGB)
           //textColor: [255, 255, 255], // Optional: Set header text color to white
+          fontSize: 8,
+        },
+        bodyStyles: {
+          fontSize: 7, // Set font size for table data
         },
         margin: { top: 28 },
         didDrawPage: (data: any) => {
