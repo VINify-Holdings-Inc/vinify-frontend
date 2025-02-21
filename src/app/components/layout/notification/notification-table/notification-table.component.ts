@@ -49,8 +49,8 @@ export class NotificationTableComponent implements OnInit{
        checkall:any="specific";
        selectedVins: any[] = [];
        isCheckboxEnabled:boolean=false;
-       displayedColumns: string[] = ['Select','vin', 'year', 'make', 'titleBrandDate','state','details'];//[ 'titleBrandDate', 'vin','year', 'make', 'state','detailsData', 'details'];
-
+      // displayedColumns: string[] = ['Select','vin', 'year', 'make', 'titleBrandDate','state','details'];//[ 'titleBrandDate', 'vin','year', 'make', 'state','detailsData', 'details'];
+       displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptg','make','model','modelYear','details']; 
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
            this.updateVisiblePages();  // Trigger pagination update when totalPages changes
@@ -306,6 +306,26 @@ previousPage() {
         
         }
   }
+
+   getBrandDetails(data:any){
+        if(data !=null )
+          Swal.fire({
+            title: 'Info!',
+            text: data,
+            icon: 'info',
+            showClass: {
+              popup: 'animated fadeInDown faster',
+              icon: 'animated heartBeat delay-1s'
+            },
+            customClass: {
+              popup: 'my-custom-swal', // Add your custom class here
+              confirmButton: 'my-confirm-button-class' // Example for confirm button styling
+            },
+            showCancelButton: false,
+            confirmButtonText: 'OK',
+          });
+          
+      }
 
 
 }

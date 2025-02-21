@@ -53,8 +53,8 @@ export class AlertTableComponent implements OnInit{
        visiblePages: number[] = []; // Pages to display in the pagination UI
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
-       displayedColumns: string[] = ['Select', 'titleBrandDate', 'vin','year', 'make', 'state','detailsData', 'details'];
- 
+       //displayedColumns: string[] = ['Select', 'titleBrandDate', 'vin','year', 'make', 'state','detailsData', 'details'];
+       displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptg','make','model','modelYear','details']; 
 
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
@@ -288,5 +288,26 @@ previousPage() {
           
           }
     }
+
+
+     getBrandDetails(data:any){
+            if(data !=null )
+              Swal.fire({
+                title: 'Info!',
+                text: data,
+                icon: 'info',
+                showClass: {
+                  popup: 'animated fadeInDown faster',
+                  icon: 'animated heartBeat delay-1s'
+                },
+                customClass: {
+                  popup: 'my-custom-swal', // Add your custom class here
+                  confirmButton: 'my-confirm-button-class' // Example for confirm button styling
+                },
+                showCancelButton: false,
+                confirmButtonText: 'OK',
+              });
+              
+          }
 
 }
