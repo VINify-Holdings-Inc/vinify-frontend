@@ -13,10 +13,11 @@ import { PDF_SETTINGS } from '../../../../constants';
 import { LoaderComponent } from '../../common/loader/loader.component';
 import { NotificationService } from '../../../../services/state-management';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CapitalizePipe } from '../../../../pipes/capitalize.pipe';
 
 @Component({
   selector: 'app-title-tab',
-  imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule,LoaderComponent,MatCheckboxModule],
+  imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule,LoaderComponent,MatCheckboxModule,CapitalizePipe],
   templateUrl: './title-tab.component.html',
   styleUrl: './title-tab.component.css'
 })
