@@ -54,7 +54,7 @@ export class AlertTableComponent implements OnInit{
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
        //displayedColumns: string[] = ['Select', 'titleBrandDate', 'vin','year', 'make', 'state','detailsData', 'details'];
-       displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptg','make','model','modelYear','details']; 
+       displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptgDetails','make','model','modelYear','details']; 
 
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
