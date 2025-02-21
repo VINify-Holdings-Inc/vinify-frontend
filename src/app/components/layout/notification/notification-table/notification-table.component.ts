@@ -50,7 +50,7 @@ export class NotificationTableComponent implements OnInit{
        selectedVins: any[] = [];
        isCheckboxEnabled:boolean=false;
       // displayedColumns: string[] = ['Select','vin', 'year', 'make', 'titleBrandDate','state','details'];//[ 'titleBrandDate', 'vin','year', 'make', 'state','detailsData', 'details'];
-       displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptg','make','model','modelYear','details']; 
+       displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptgDetails','make','model','modelYear','details']; 
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
            this.updateVisiblePages();  // Trigger pagination update when totalPages changes
