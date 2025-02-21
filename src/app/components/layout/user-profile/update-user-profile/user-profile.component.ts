@@ -252,7 +252,7 @@ loadUserData(): void {
                 icon: 'animated heartBeat delay-1s'
               },
               text: response.message,
-              icon: 'success',
+              icon: 'info',
               confirmButtonText: 'OK',
             });
             this.editMode=false;
@@ -336,7 +336,7 @@ loadUserData(): void {
                       icon: 'animated heartBeat delay-1s'
                     },
                     text: response.message,
-                    icon: 'success',
+                    icon: 'info',
                     confirmButtonText: 'OK',
                   });
                
