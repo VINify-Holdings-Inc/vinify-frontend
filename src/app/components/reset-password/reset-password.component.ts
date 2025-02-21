@@ -112,7 +112,7 @@ export class ResetPasswordComponent {
                             icon: 'animated heartBeat delay-1s'
                           },
                           text: res.message,
-                          icon: 'success',
+                          icon: 'info',
                           confirmButtonText: 'OK',
                         });           
                         this.router.navigate(['/']);

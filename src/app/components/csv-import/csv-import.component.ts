@@ -158,7 +158,7 @@ export class CsvImportComponent {
                         popup: 'animated fadeInDown faster',
                         icon: 'animated heartBeat delay-1s'
                       },
-                      icon: 'success',
+                      icon: 'info',
                       confirmButtonText: 'OK',
                     }); 
 

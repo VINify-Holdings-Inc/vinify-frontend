@@ -66,7 +66,7 @@ export class ContactComponent {
                             icon: 'animated heartBeat delay-1s'
                           },
                           text: res.message,
-                          icon: 'success',
+                          icon: 'info',
                           confirmButtonText: 'OK',
                         });         
                        

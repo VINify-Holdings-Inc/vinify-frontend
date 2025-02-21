@@ -200,7 +200,7 @@ getVinSearch(vin:any){
                               icon: 'animated heartBeat delay-1s'
                             },
                             text: "Something went worng,please try after sometime",
-                            icon: 'success',
+                            icon: 'error',
                             confirmButtonText: 'OK',
                           });
                         }
