@@ -11,10 +11,11 @@ import { userData } from '../../../../services/api-service.service';
 import { NotificationService } from '../../../../services/state-management';
 import { MatCheckboxModule } from '@angular/material/checkbox'; // Import MatCheckboxModule
 import Swal from 'sweetalert2';
+import { CapitalizePipe } from '../../../../pipes/capitalize.pipe';
 
 @Component({
   selector: 'app-notification-table',
-  imports:  [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatCheckboxModule, MatPaginatorModule, MatSortModule],
+  imports:  [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatCheckboxModule, MatPaginatorModule, MatSortModule,CapitalizePipe],
   templateUrl: './notification-table.component.html',
   styleUrl: './notification-table.component.css'
 })

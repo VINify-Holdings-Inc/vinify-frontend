@@ -63,7 +63,7 @@
               <table mat-table [dataSource]="tableData" class="table mat-elevation-z8 " matSort>
                 <!-- vin Column sort ->   mat-sort-header   -->
                 <ng-container matColumnDef="vin">
-                  <th mat-header-cell *matHeaderCellDef width="320"> VINs </th>
+                  <th mat-header-cell *matHeaderCellDef width="240"> VINs </th>
                   <td mat-cell *matCellDef="let element" title="{{ element.vin }}"> <span 
                    class="tableDot redDot"
                    [ngClass]="element.isOld ? 'tableDot grayDot ' : 'tableDot redDot'"
@@ -74,7 +74,7 @@
                 <!-- Name modelYear j-->
 
                 <ng-container matColumnDef="titleBrandDate">
-                  <th mat-header-cell *matHeaderCellDef width="90"> Alert Date </th>
+                  <th mat-header-cell *matHeaderCellDef width="180"> Alert Date </th>
                   <td mat-cell *matCellDef="let element"> {{ element?.titleBrandDate | dateFormat: 'DD MMM YYYY' }} </td>
                 </ng-container>
 
@@ -85,14 +85,14 @@
 
                 <ng-container matColumnDef="brand">
 
-                  <th mat-header-cell *matHeaderCellDef width="280"> Brand Name </th>
+                  <th mat-header-cell *matHeaderCellDef width="180"> Brand Name </th>
                   <td mat-cell *matCellDef="let element" >
                     {{element?.brand ? element?.brand?.split(' - ')[0]:"-"}}
                   </td>
                 </ng-container>
 
                 <ng-container matColumnDef="description">
-                  <th mat-header-cell *matHeaderCellDef width="100"> Description </th>
+                  <th mat-header-cell *matHeaderCellDef width="220"> Description </th>
                   <td mat-cell *matCellDef="let element">{{ element?.description ?  element?.description :"-"  }} </td>
                 </ng-container>
 
@@ -102,7 +102,7 @@
                 </ng-container>
 
                 <ng-container matColumnDef="state">
-                  <th mat-header-cell *matHeaderCellDef width="200"> State </th>
+                  <th mat-header-cell *matHeaderCellDef width="100"> State </th>
                   <td mat-cell *matCellDef="let element" title={{element?.state}}><p class="boxTable"> {{element?.state? element?.state: "-"}} </p></td>
                 </ng-container>
 
@@ -119,7 +119,7 @@
                   <td mat-cell *matCellDef="let element"> {{ element?.model ? element?.model :"-"}} </td>
                 </ng-container>
                 <ng-container matColumnDef="modelYear" width="80">
-                  <th mat-header-cell *matHeaderCellDef> Make Year </th>
+                  <th mat-header-cell *matHeaderCellDef>Year </th>
                   <td mat-cell *matCellDef="let element"> {{ element?.modelYear | dateFormat: 'YYYY' }} </td>
                 </ng-container>
   
