@@ -11,10 +11,11 @@ import Swal from 'sweetalert2';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { userData } from '../../../../services/api-service.service';
 import { NotificationService } from '../../../../services/state-management';
+import { CapitalizePipe } from '../../../../pipes/capitalize.pipe';
 
 @Component({
   selector: 'app-alert-table',
-  imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule, MatCheckboxModule],
+  imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule, MatCheckboxModule,CapitalizePipe],
   templateUrl: './alert-table.component.html',
   styleUrl: './alert-table.component.css'
 })
