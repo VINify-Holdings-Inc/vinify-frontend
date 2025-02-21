@@ -69,7 +69,7 @@
                                         <div>
                                             <!-- <p class="notification-number">View All</p> -->
                                              <div class="notification-btngrp">
-                                                <button  class="notification-number" (click)="readNotification('all')">
+                                                <button  class="notification-number" (click)="readNotification('all')"  [disabled]="unreadCount == 0">
                                                     Read All
                                                  </button>
                                                 <a routerLink="/notification" routerLinkActive="active" class="notification-number">
