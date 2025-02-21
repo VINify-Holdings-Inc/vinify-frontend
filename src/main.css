@@ -258,7 +258,7 @@ p.smallAddIcon i {
 .table>tbody>tr>td {
   white-space: nowrap;
   font-size: 14px;
-  padding: 16px 24px;
+  padding: 12px 8px;
 }
 
 .table> :not(caption)>*>* {
@@ -276,7 +276,7 @@ p.smallAddIcon i {
 
 .table > thead > tr > th {
   font-weight: 600;
-  padding: 12px 24px;
+  padding: 12px 8px;
   text-transform: capitalize;
   font-size: 12px;
   color: #323b48;
@@ -2664,12 +2664,12 @@ thead.table-light-Usertbl tr {
   font-weight: 400;
 }
 
-.userdashbrdTable .table > tbody > tr > td {
-  padding: 16px 24px;
-  color: #475467;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
+.userdashbrdTable .table>tbody>tr>td {
+    padding: 12px 8px;
+    color: #475467;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
 }
 .boxTable{
   overflow: hidden;
@@ -3583,7 +3583,7 @@ span.question-Icon .ques{
       vertical-align: middle !important;
   }
   th.checkBoxModal{
-    padding: 0 24px !important;
+    padding: 0 10px !important;
   }
   .userdashbrdTable.reportTable{
     overflow-y: auto;
@@ -3710,7 +3710,7 @@ li.nav-item.exportPdfli {
 }
 
 td.check-box {
-  padding: 0 24px !important;
+  padding: 0 10px !important;
 }
 .btn.btn-clear {
   font-size: 14px !important;

@@ -21,15 +21,15 @@ export class FileUploadComponent {
 
     if (!file) {
        Swal.fire({
-                    title: 'Error!',
-                    showClass: {
-                      popup: 'animated fadeInDown faster',
-                      icon: 'animated heartBeat delay-1s'
-                    },
-                    text: "No file selected",
-                    icon: 'error',
-                    confirmButtonText: 'OK',
-                  });
+                  title: 'Error!',
+                  showClass: {
+                    popup: 'animated fadeInDown faster',
+                    icon: 'animated heartBeat delay-1s'
+                  },
+                  text: "No file selected",
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                });
       return;
     }
 
@@ -112,110 +112,15 @@ export class FileUploadComponent {
     this.fileInput.nativeElement.value = "";
     Swal.fire({
       title: "Error!",
+      showClass: {
+        popup: 'animated fadeInDown faster',
+        icon: 'animated heartBeat delay-1s'
+      },
       text: message,
       icon: "error",
       confirmButtonText: "OK",
     });
   }
-
-  /*
-  validateFileContent(content: string): boolean {
-   // const lines = content.split('\n').map((line) => line.trim());
-   const lines = content.split('\n').map(line => line.trim()).filter(line => line !== "");
-
-    if (lines.length < 2) {
-      
-        this.selectedFile=null;
-        this.fileInput.nativeElement.value = ""; 
-      Swal.fire({
-        title: 'Error!',
-        showClass: {
-          popup: 'animated fadeInDown faster',
-          icon: 'animated heartBeat delay-1s'
-        },
-        text: 'Invalid file format. CMY record or data records are missing.',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
-      return false;
-    }
-
-    const firstLine = lines[0];
-    if (!firstLine.startsWith('CMY')) {
-      this.selectedFile=null;
-      this.fileInput.nativeElement.value = ""; 
-     
-      Swal.fire({
-        title: 'Error!',
-        showClass: {
-          popup: 'animated fadeInDown faster',
-          icon: 'animated heartBeat delay-1s'
-        },
-        text: 'File must start with "CMY".',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
-      return false;
-    }
-
-    const parts = firstLine.split(/\s+/); // Split by spaces
-    if (parts.length < 2) {
-      this.selectedFile=null;
-      this.fileInput.nativeElement.value = ""; 
-      Swal.fire({
-        title: 'Error!',
-        showClass: {
-          popup: 'animated fadeInDown faster',
-          icon: 'animated heartBeat delay-1s'
-        },
-        text: 'Invalid format',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
-      return false;
-    }
-
-    const recordInfo = parts[1]; 
-
-    const recordCount = parseInt(recordInfo.substring(0, recordInfo.length - 8).trim(), 10);
-
-
-   // const recordCount = parseInt(firstLine.charAt(11).trim(), 10);
-    const datePart = firstLine.slice(-8);
-
-    if (isNaN(recordCount) || isNaN(Number(datePart))) {
-        this.selectedFile=null;
-        this.fileInput.nativeElement.value = ""; 
-     Swal.fire({
-      title: 'Error!',
-      showClass: {
-        popup: 'animated fadeInDown faster',
-        icon: 'animated heartBeat delay-1s'
-      },
-      text: 'Invalid record count or date format.',
-      icon: 'error',
-      confirmButtonText: 'OK',
-    });
-      return false;
-    }
-
-    if (lines.length - 1 !== recordCount) {
-        this.selectedFile=null;
-        this.fileInput.nativeElement.value = ""; 
-       Swal.fire({
-        title: 'Error!',
-        showClass: {
-          popup: 'animated fadeInDown faster',
-          icon: 'animated heartBeat delay-1s'
-        },
-        text: `Expected ${recordCount} records, but found ${lines.length - 1}.`,
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
-      return false;
-    }
-    return true;
-  }    */
 
   uploadFile() {
     if (!this.selectedFile) {
@@ -243,16 +148,17 @@ export class FileUploadComponent {
         this.selectedFile=null;
         this.fileInput.nativeElement.value = "";  
         if(!res.error){
+          
           Swal.fire({
-            title: 'Info!',
-            showClass: {
-              popup: 'animated fadeInDown faster',
-              icon: 'animated heartBeat delay-1s'
-            },
-            text: 'Fetching the latest alerts—Thank you for your patience.',
-            icon: 'success',
-            confirmButtonText: 'OK',
-          });
+              title: 'Info!',
+              showClass: {
+                popup: 'animated fadeInDown faster',
+                icon: 'animated heartBeat delay-1s'
+              },
+              text: 'Fetching the latest alerts—Thank you for your patience.',
+              icon: 'info',
+              confirmButtonText: 'OK',
+            });
         }else{
           Swal.fire({
             title: 'Error!',
