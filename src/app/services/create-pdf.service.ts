@@ -15,7 +15,7 @@ export class CreatePDFService {
     tableData: any[],
     fileName: string = 'Vehicle_History_Report.pdf'
   ): void {
-    const doc = new jsPDF();
+    const doc = new jsPDF({ orientation: 'landscape' });
 
     // Add Logo
     const img = new Image();
@@ -30,7 +30,8 @@ export class CreatePDFService {
       doc.setFontSize(16);
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
-      doc.text('Vehicle History Report', 70, 20);
+     // doc.text('Vehicle History Report', 70, 20);
+      doc.text('Vehicle History Report', 120, 20);
 
       // Title Records Section
       // doc.setFontSize(12);
@@ -39,18 +40,21 @@ export class CreatePDFService {
 
       // Add Dynamic Table Data
       //const tableColumn = ['VINs', 'Year', 'Make', 'Alert Date', 'State','Brand Name', 'Status'];
-      const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','City','State','Year', 'Make', 'Status'];
+      const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','Export','RPTG Entity','City','State','RPTG Details', 'Make','Model','Year', 'Status'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : "-",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
         item.alertType ? item.alertType : "-",
         item?.brand ? item?.brand?.split(' - ')[0]:"-",
         item.description ? item.description :"-",
+        item.export ? item.export :"-",
+        item.rptgEntity ? item.rptgEntity :"-",
         item.city ? item.city : "-",
         item.state ? item.state : "-",
-        item.modelYear ? item.modelYear :"-",
+        item.rptgDetails ? item.rptgDetails : "-",
         item.model ? item.model : "-",
-             
+        item.model ? item.model : "-",
+        item.modelYear ? item.modelYear :"-",     
         item.status ? item.status :"-",
 
       ]);
@@ -80,7 +84,8 @@ export class CreatePDFService {
             doc.setFontSize(16);
             doc.setTextColor(40);
             doc.setFont('helvetica', 'bold');
-            doc.text('Vehicle History Report', 70, 20);
+           // doc.text('Vehicle History Report', 70, 20);
+            doc.text('Vehicle History Report', 120, 20);
 
           }
         },
