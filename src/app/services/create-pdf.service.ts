@@ -3,12 +3,15 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // Correct import for autoTable plugin
 import { disclaimer } from './disclaimer';
 import { DateFormatPipe } from '../pipes/date-format.pipe'
+import { CapitalizePipe } from '../pipes/capitalize.pipe';
+
 
 @Injectable({
   providedIn: 'root', // Makes this service globally available
 })
 export class CreatePDFService {
-  constructor(private dateFormate: DateFormatPipe) { }
+  private capitalizePipe = new CapitalizePipe();
+  constructor(private dateFormate: DateFormatPipe,) { }
   generatePDF(
     companyName: string,
     logoUrl: string,
@@ -47,7 +50,7 @@ export class CreatePDFService {
         item.alertType ? item.alertType : "-",
         item?.brand ? item?.brand?.split(' - ')[0]:"-",
         item.description ? item.description :"-",
-        item.export ? item.export :"-",
+        item.export ? this.capitalizePipe.transform(item.export) : "-",
         item.rptgEntity ? item.rptgEntity :"-",
         item.city ? item.city : "-",
         item.state ? item.state : "-",
