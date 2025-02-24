@@ -59,7 +59,7 @@ export class SingleVinComponent implements OnInit {
     if(isChecked){
     this.tableData.forEach((row) => {
       row.isSelected = isChecked;
-      this.selectedVins.push({"vin":row.vin,"titleBrandDate":row.titleBrandDate});
+      this.selectedVins.push({"vin":row.vin,"titleBrandDate":row.titleBrandDate,"id":row.id});
     });
   }else{
     this.tableData.forEach((row) => {
@@ -85,13 +85,15 @@ export class SingleVinComponent implements OnInit {
       const vinExists = this.selectedVins.some(
         (selected) =>
           selected.vin === item.vin &&
-          selected.titleBrandDate === item.titleBrandDate
+          selected.titleBrandDate === item.titleBrandDate &&
+          selected.id === item.id
       );
   
       if (!vinExists) {
         this.selectedVins.push({
           vin: item.vin,
           titleBrandDate: item.titleBrandDate,
+          id:item.id
         });
       }
     } else {
@@ -99,7 +101,9 @@ export class SingleVinComponent implements OnInit {
       this.selectedVins = this.selectedVins.filter(
         (selected) =>
           selected.vin !== item.vin ||
-          selected.titleBrandDate !== item.titleBrandDate
+          selected.titleBrandDate !== item.titleBrandDate||
+          selected.id !== item.id 
+
       );
     }
     this.checkall='single';
@@ -141,7 +145,9 @@ getPDFData() {
   }
   let url = `type=${this.checkall}`;
 
-  this.userData.getPdfData(url,this.selectedVins).subscribe(
+  const ids = this.selectedVins.map(item => item.id);
+
+  this.userData.getPdfData(url,ids).subscribe(
     (res: any) => {
       if (!res.error) {
         this.pdfService.generatePDF(
@@ -218,7 +224,7 @@ onDocumentClick(event: MouseEvent): void {
   }
 }
 
-// Example function to open the modal
+//  open the modal
 openModal(): void {
   this.isModalOpen = true;
 }

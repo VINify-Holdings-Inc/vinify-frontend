@@ -1051,6 +1051,7 @@ header .logoHeader img {
   width: 100%;
   margin-top: 0;
   min-height: 100vh;
+  padding-bottom: 0;
 }
 
 #main-content.active {
@@ -1058,6 +1059,7 @@ header .logoHeader img {
   position: relative;
   float: right;
   margin-top: 0;
+  padding-bottom: 0;
 }
 
 /* #main-content.main-content.active {
@@ -1448,9 +1450,9 @@ span.command_key .f_style {
 /* pagination CSS Design Starts */
 .paginationArea {
   border-top: none;
-  padding: 12px 24px;
-  justify-content: end;
-  display: flex;
+	padding: 12px 8px;
+	justify-content: end;
+	display: flex;
 }
 .card-body.px-0.userdashbrdTable.pt-0 {
   padding: 0;
