@@ -1050,7 +1050,7 @@ header .logoHeader img {
   position: relative;
   width: 100%;
   margin-top: 0;
-  min-height: 100vh;
+  min-height: 100%;
   padding-bottom: 0;
 }
 
@@ -1074,6 +1074,7 @@ header .logoHeader img {
   position: relative;
   transition: all 0.3s;
   background-color: #F7F8F9;
+  height: calc(100vh - 72px);
 }
 
 .card .card-header-text h4 {
@@ -3756,4 +3757,12 @@ button.btn.btn-primary.modalExport {
 	justify-content: center;
 	min-height: 120px;
 }
- 
+.dashboardtableUI .card {
+  margin: 0;
+}
+.notificationtableUI .card {
+  margin: 0;
+}
+.alerttableUI .card{
+  margin: 0;
+}
