@@ -14,7 +14,7 @@ export class AlertTableMainComponent {
   constructor(private userData: userData,) {}
 
   vin :string= "";
-  limit: number = 9;
+  limit: number = 14;
   page: number = 1;
   totalPages: number = 0;
   status: string = "current";

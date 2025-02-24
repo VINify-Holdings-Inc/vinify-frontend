@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-12 col-md-12 mb-4">
+    <div class="col-lg-12 col-md-12 notificationtableUI">
         <div class="cardWrapper">
             <div class="UserCardHeader cardMainHead">
                 <h4 class="card-title">Notifications</h4>
@@ -79,7 +79,7 @@
                             class="notification-icon" 
                             [ngClass]=" element?.isRead==true ? 'tableDot grayDot' : 'tableDot redDot'">
                         </span>
-                         {{ element.status ? element.status :"-" }} </td>
+                         {{ element.status ? element.status :"History" }} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="vin">
