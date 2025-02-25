@@ -182,4 +182,10 @@ export class userData {
     });
   }
 
+  getDataForCSV(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/test-csv-export`, {
+      headers: this.getHeaders(),
+    });
+  } 
+
 }
