@@ -43,9 +43,10 @@ export class TitleReportService {
 
       // Add Dynamic Table Data
       //const tableColumn = ['VINs', 'Year', 'Make', 'Alert Date', 'State','Brand Name', 'Status'];
-      const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','Export','RPTG Entity','City','State','RPTG Details','Make','Model','Year','Status'];
+      const tableColumn = ['Status','VINs', 'Alert Date','Alert Type','Brand Name','Description','Export','RPTG Entity','City','State','RPTG Details','Make','Model','Year'];
       //const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','City','State','RPTG Details','Make','Model','Year','Status'];
       const tableRows = tableData.map((item) => [
+        item.status ? item.status :"-",
         item.vin ? item.vin : "-",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
         item.alertType ? item.alertType : "-",
@@ -60,7 +61,7 @@ export class TitleReportService {
         item.model ? item.model : "-",
         item.modelYear ? item.modelYear :"-",
          
-        item.status ? item.status :"-",
+       
 
       ]);
 
