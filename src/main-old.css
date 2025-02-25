@@ -258,7 +258,7 @@ p.smallAddIcon i {
 .table>tbody>tr>td {
   white-space: nowrap;
   font-size: 14px;
-  padding: 12px 8px;
+  padding: 16px 24px;
 }
 
 .table> :not(caption)>*>* {
@@ -276,7 +276,7 @@ p.smallAddIcon i {
 
 .table > thead > tr > th {
   font-weight: 600;
-  padding: 12px 8px;
+  padding: 12px 24px;
   text-transform: capitalize;
   font-size: 12px;
   color: #323b48;
@@ -1050,7 +1050,7 @@ header .logoHeader img {
   position: relative;
   width: 100%;
   margin-top: 0;
-  min-height: 100%;
+  min-height: 100vh;
   padding-bottom: 0;
 }
 
@@ -1074,7 +1074,6 @@ header .logoHeader img {
   position: relative;
   transition: all 0.3s;
   background-color: #F7F8F9;
-  height: calc(100vh - 72px);
 }
 
 .card .card-header-text h4 {
@@ -2667,12 +2666,12 @@ thead.table-light-Usertbl tr {
   font-weight: 400;
 }
 
-.userdashbrdTable .table>tbody>tr>td {
-    padding: 12px 8px;
-    color: #475467;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
+.userdashbrdTable .table > tbody > tr > td {
+  padding: 16px 24px;
+  color: #475467;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
 }
 .boxTable{
   overflow: hidden;
@@ -3586,7 +3585,7 @@ span.question-Icon .ques{
       vertical-align: middle !important;
   }
   th.checkBoxModal{
-    padding: 0 10px !important;
+    padding: 0 24px !important;
   }
   .userdashbrdTable.reportTable{
     overflow-y: auto;
@@ -3713,7 +3712,7 @@ li.nav-item.exportPdfli {
 }
 
 td.check-box {
-  padding: 0 10px !important;
+  padding: 0 24px !important;
 }
 .btn.btn-clear {
   font-size: 14px !important;
@@ -3757,12 +3756,4 @@ button.btn.btn-primary.modalExport {
 	justify-content: center;
 	min-height: 120px;
 }
-.dashboardtableUI .card {
-  margin: 0;
-}
-.notificationtableUI .card {
-  margin: 0;
-}
-.alerttableUI .card{
-  margin: 0;
-}
+ 

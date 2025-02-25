@@ -21,6 +21,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { CsvExportService } from '../../../../services/csv-export.service';
 
 @Component({
   selector: 'app-user-table',
@@ -37,7 +38,9 @@ export class UserTableComponent implements AfterViewInit, OnChanges{
   //@ViewChild(MatSort) sort!: MatSort; 
 
 
-  constructor(private router: Router,private pdfService: CreatePDFService,private userData: userData,private cdr: ChangeDetectorRef) {
+  constructor(private router: Router,private pdfService: CreatePDFService,
+              private userData: userData,private cdr: ChangeDetectorRef,
+              private csvExportService: CsvExportService) {
    
   }
   searchValue :string="";
@@ -276,5 +279,26 @@ alertFilter(data:any){
                   
                  })
      }
+
+
+
+     getDataForCSVDump() {
+      this.isLoading = true;
+         
+      this.userData.getDataForCSV().subscribe(
+        (res: any) => {
+          if (!res.error) {
+            this.csvExportService.exportToCsv(res?.data?.csvData || [], 'VehicleData');
+           // this.csvExportService.exportToCsv(res?.data?.rawData || [], 'VehicleDataRAW');
+          }
+          this.isLoading = false;
+        },
+        (err) => {
+          this.isLoading = false;
+        }
+      );
+    }
+
+     
    
 }
