@@ -7,8 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { FileDownloadService } from '../../../services/file-download.service';
-
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-file-export',
   imports: [CommonModule, MatTableModule, FormsModule, MatCheckboxModule,LoaderComponent],
@@ -16,7 +15,7 @@ import { FileDownloadService } from '../../../services/file-download.service';
   styleUrl: './file-export.component.css'
 })
 export class FileExportComponent  implements OnInit {
-  constructor(private userData: userData,private elementRef: ElementRef,private fileService: FileDownloadService) {}
+  constructor(private userData: userData,private router: Router,private elementRef: ElementRef,private fileService: FileDownloadService) {}
   isModalOpen = true;
   tableData: any[] = [];
   isLoading: boolean = false;
@@ -183,7 +182,9 @@ getPDFData() {
           this.selectedVins=[];
           this.isLoading = false;
           setTimeout(() => {
-            window.location.reload();
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate([this.router.url]);
+            });
           }, 1000);
         },
         (err) => {
