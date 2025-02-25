@@ -5,6 +5,7 @@
     position: fixed;
     z-index: 999999;
     background: #000000a3;
+    backdrop-filter: blur(10px);
   }
   .loader-img {
     display: flex;
