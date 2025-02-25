@@ -159,6 +159,9 @@ export class FileUploadComponent {
               icon: 'info',
               confirmButtonText: 'OK',
             });
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000);
         }else{
           Swal.fire({
             title: 'Error!',

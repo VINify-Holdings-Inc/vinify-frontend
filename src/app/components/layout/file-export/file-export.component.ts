@@ -182,6 +182,9 @@ getPDFData() {
           }
           this.selectedVins=[];
           this.isLoading = false;
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         },
         (err) => {
           this.isLoading = false;
