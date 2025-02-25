@@ -193,7 +193,7 @@ getPDFData() {
 
     }
   });
-  //console.log("data",this.selectedVins)
+  //console.log("data",this.selectedVins).
  
 
   //this.fileService.downloadFile(this.selectedVins);
