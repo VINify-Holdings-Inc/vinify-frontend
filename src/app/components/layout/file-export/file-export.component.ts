@@ -243,7 +243,6 @@ clearAll(){
   this.searchValue="";
   this.checkall="single";
   this.getTableDataAfetrClose();
-
 }
 
 
