@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoaderComponent } from '../layout/common/loader/loader.component';
 import { userData } from '../../services/api-service.service';
 import Swal from 'sweetalert2';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-file-upload',
   imports: [CommonModule,LoaderComponent],
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrl: './file-upload.component.css'
 })
 export class FileUploadComponent {
-  constructor(private userData : userData,){}
+  constructor(private userData : userData,private router: Router){}
   @ViewChild('fileInput') fileInput!: ElementRef;
   selectedFile: File | null = null;
   isLoading : boolean=false;
@@ -160,8 +160,10 @@ export class FileUploadComponent {
               confirmButtonText: 'OK',
             });
             setTimeout(() => {
-              window.location.reload();
-            }, 3000);
+              this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+                this.router.navigate([this.router.url]);
+              });
+            }, 1000);
         }else{
           Swal.fire({
             title: 'Error!',
