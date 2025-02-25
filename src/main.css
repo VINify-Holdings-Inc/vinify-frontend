@@ -1438,8 +1438,9 @@ span.command_key .f_style {
   padding-left: 40px;
 }
 .VInNumberInput {
-  position: relative;
-  max-width: 195px;
+    position: relative;
+    max-width: 195px;
+    margin-left: 5px;
 }
 .VInNumberInput img {
   position: absolute;
@@ -3558,9 +3559,7 @@ span.question-Icon .ques{
   max-width: 550px;
 }
 
-.extralarge-mod .modalClose {
-  margin-right: 0 !important;
-}
+
 .cxt{
   margin-bottom: 0 !important;
 }
@@ -3731,8 +3730,10 @@ button.btn.btn-primary.modalExport {
   padding: 10px 8px;
 }
 .extralarge-mod .modalClose {
-  margin: 0 !important;
-  padding: 0 13px !important;
+    margin: 0!important;
+    padding: 0 13px!important;
+    height: 42px;
+    margin-left: 5px !important;
 }
 .userSingleSearch.importbox.pull-right {
   margin: 0;
