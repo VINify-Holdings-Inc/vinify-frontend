@@ -8,21 +8,22 @@ import {  MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import Swal from 'sweetalert2';
 import { userData } from '../../../../services/api-service.service';
-import { CreatePDFService } from '../../../../services/create-pdf.service';
 import { PDF_SETTINGS } from '../../../../constants';
 import { LoaderComponent } from '../../common/loader/loader.component';
 import { NotificationService } from '../../../../services/state-management';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CapitalizePipe } from '../../../../pipes/capitalize.pipe';
+import { TitleReportService } from '../../../../services/title-report.service';
+
 
 @Component({
   selector: 'app-title-tab',
-  imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule,LoaderComponent,MatCheckboxModule,CapitalizePipe],
+  imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule,LoaderComponent,MatCheckboxModule,CapitalizePipe,],
   templateUrl: './title-tab.component.html',
   styleUrl: './title-tab.component.css'
 })
 export class TitleTabComponent implements OnInit{
-  constructor(private userData : userData,private pdfService: CreatePDFService,private notificationService: NotificationService,private changeDetectorRef: ChangeDetectorRef){}
+  constructor(private userData : userData,private titleReportService:TitleReportService,private notificationService: NotificationService,private changeDetectorRef: ChangeDetectorRef){}
     filerIcon: string = 'assets/images/icons/filter-lines.svg';
     calendarIcon: string = 'assets/images/icons/calendar.svg';
     pdfIcon: string = 'assets/images/icons/pdf.svg';
@@ -201,11 +202,11 @@ previousPage() {
       this.userData.searchVinDataForUser(url).subscribe(
         (res: any) => {
           if (!res.error) {
-            this.pdfService.generatePDF(
+            this.titleReportService.generatePDF(
               PDF_SETTINGS.COMPANY_NAME,
               PDF_SETTINGS.LOGO_URL,
               res?.data?.items || [],
-              'Vin-data.pdf'
+              'Vin-detail-report.pdf'
             );
           }else{
             Swal.fire({
