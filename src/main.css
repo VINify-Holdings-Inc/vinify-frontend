@@ -1440,6 +1440,7 @@ span.command_key .f_style {
 .VInNumberInput {
   position: relative;
   max-width: 195px;
+  margin-left: 5px;
 }
 .VInNumberInput img {
   position: absolute;
@@ -3559,7 +3560,10 @@ span.question-Icon .ques{
 }
 
 .extralarge-mod .modalClose {
-  margin-right: 0 !important;
+  margin: 0!important;
+  padding: 0 13px!important;
+  height: 42px;
+  margin-left: 5px !important;
 }
 .cxt{
   margin-bottom: 0 !important;
