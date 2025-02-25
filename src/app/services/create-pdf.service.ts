@@ -43,7 +43,7 @@ export class CreatePDFService {
 
       // Add Dynamic Table Data
       //const tableColumn = ['VINs', 'Year', 'Make', 'Alert Date', 'State','Brand Name', 'Status'];
-      const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','City','State','RPTG Details', 'Make','Model','Year','Export','RPTG Entity', 'Status'];
+      const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','City','State','RPTG Details','Make','Model','Year','Export','RPTG Entity','Status'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : "-",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
