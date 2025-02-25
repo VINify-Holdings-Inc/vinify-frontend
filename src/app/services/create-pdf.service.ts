@@ -43,21 +43,21 @@ export class CreatePDFService {
 
       // Add Dynamic Table Data
       //const tableColumn = ['VINs', 'Year', 'Make', 'Alert Date', 'State','Brand Name', 'Status'];
-      const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','Export','RPTG Entity','City','State','RPTG Details', 'Make','Model','Year', 'Status'];
+      const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','City','State','RPTG Details', 'Make','Model','Year','Export','RPTG Entity', 'Status'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : "-",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
         item.alertType ? item.alertType : "-",
         item?.brand ? item?.brand?.split(' - ')[0]:"-",
         item.description ? item.description :"-",
-        item.export ? this.capitalizePipe.transform(item.export) : "-",
-        item.rptgEntity ? item.rptgEntity :"-",
         item.city ? item.city : "-",
         item.state ? item.state : "-",
         item.rptgDetails ? item.rptgDetails : "-",
         item.model ? item.model : "-",
         item.model ? item.model : "-",
-        item.modelYear ? item.modelYear :"-",     
+        item.modelYear ? item.modelYear :"-",
+        item.export ? this.capitalizePipe.transform(item.export) : "-",
+        item.rptgEntity ? item.rptgEntity :"-",     
         item.status ? item.status :"-",
 
       ]);
