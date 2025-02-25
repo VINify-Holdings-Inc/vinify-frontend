@@ -63,9 +63,10 @@ ol {
 }
 
 .wrapper {
-  position: relative;
-  width: 100%;
-  overflow: auto;
+    position: relative;
+    width: 100%;
+    overflow: auto;
+    background: #F7F8F9;
 }
 
 .btn {
@@ -1073,7 +1074,6 @@ header .logoHeader img {
 #content {
   position: relative;
   transition: all 0.3s;
-  background-color: #F7F8F9;
   height: calc(100vh - 72px);
 }
 
