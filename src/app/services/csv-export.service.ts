@@ -17,9 +17,19 @@ export class CsvExportService {
     // Extract headers dynamically
     const headers = Object.keys(jsonData[0]).join(',');
 
-    // Convert JSON to CSV rows
+    // Convert JSON to CSV rows with proper escaping
     const csvRows = jsonData.map(item =>
-      Object.values(item).map(value => `"${value ?? ''}"`).join(',')
+      Object.values(item).map(value => {
+        if (value === null || value === undefined) {
+          return '""'; // Handle null/undefined values
+        }
+        const stringValue = String(value);
+        // Wrap values in quotes if they contain commas or quotes
+        if (stringValue.includes(',') || stringValue.includes('"')) {
+          return `"${stringValue.replace(/"/g, '""')}"`; // Escape double quotes
+        }
+        return stringValue;
+      }).join(',')
     );
 
     // Combine headers and rows
