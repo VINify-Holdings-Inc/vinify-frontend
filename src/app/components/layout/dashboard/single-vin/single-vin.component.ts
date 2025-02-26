@@ -28,7 +28,7 @@ export class SingleVinComponent implements OnInit {
   displayedColumns: string[] = ['select', 'vin'];
   searchValue :string="";
   ngOnInit() {
-    this.getTableData();
+    //this.getTableData();
   }
 
   getTableData(vin: any = null) {
