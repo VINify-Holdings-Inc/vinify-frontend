@@ -188,4 +188,10 @@ export class userData {
     });
   } 
 
+  getVinDataForPDF(data: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/export-vin-selection-list?`+ data, {
+      headers: this.getHeaders(),
+    });
+  }
+
 }
