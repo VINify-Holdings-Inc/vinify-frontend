@@ -28,20 +28,22 @@ export class SingleVinComponent implements OnInit {
   displayedColumns: string[] = ['select', 'vin'];
   searchValue :string="";
   ngOnInit() {
-    this.getTableData();
+    //this.getTableData();
   }
 
   getTableData(vin: any = null) {
     this.isLoading = true;
-    let url = `page=${this.page}&limit=${this.limit}`;
+   // let url = `page=${this.page}&limit=${this.limit}`;
+    let url = '';
     if (this.vin) {
       url = url + `&vin=${this.vin}`;
     }
 
-    this.userData.getCurrentVinData(url).subscribe(
+    this.userData.getVinDataForPDF(url).subscribe(
       (res: any) => {
         if (!res.error) {
-          const data = res?.data?.items || [];
+          //const data = res?.data?.items || [];
+          const data = res?.data || [];
           // Add isSelected property to each row for checkbox
           data.forEach((item: any) => (item.isSelected = false));
           this.tableData = (data);
@@ -59,7 +61,7 @@ export class SingleVinComponent implements OnInit {
     if(isChecked){
     this.tableData.forEach((row) => {
       row.isSelected = isChecked;
-      this.selectedVins.push({"vin":row.vin,"titleBrandDate":row.titleBrandDate,"id":row.id});
+      this.selectedVins.push({"vin":row.vin,"id":row.id});
     });
   }else{
     this.tableData.forEach((row) => {
@@ -85,14 +87,14 @@ export class SingleVinComponent implements OnInit {
       const vinExists = this.selectedVins.some(
         (selected) =>
           selected.vin === item.vin &&
-          selected.titleBrandDate === item.titleBrandDate &&
+       
           selected.id === item.id
       );
   
       if (!vinExists) {
         this.selectedVins.push({
           vin: item.vin,
-          titleBrandDate: item.titleBrandDate,
+       
           id:item.id
         });
       }
@@ -101,7 +103,7 @@ export class SingleVinComponent implements OnInit {
       this.selectedVins = this.selectedVins.filter(
         (selected) =>
           selected.vin !== item.vin ||
-          selected.titleBrandDate !== item.titleBrandDate||
+       
           selected.id !== item.id 
 
       );
@@ -230,14 +232,16 @@ openModal(): void {
 }
 
 getTableDataAfetrClose(vin: any = null) {
-  let url = `page=${this.page}&limit=${this.limit}`;
+  //let url = `page=${this.page}&limit=${this.limit}`;  getCurrentVinData
+  let url = ``;
   if (this.vin) {
     url = url + `&vin=${this.vin}`;
   }
-  this.userData.getCurrentVinData(url).subscribe(
+  this.userData.getVinDataForPDF(url).subscribe(
     (res: any) => {
       if (!res.error) {
-        const data = res?.data?.items || [];
+        //const data = res?.data?.items || [];
+        const data = res?.data || [];
         // Add isSelected property to each row for checkbox
         data.forEach((item: any) => (item.isSelected = false));
         this.tableData = (data);

@@ -42,9 +42,7 @@ export class TitleReportService {
       // doc.text('Title Records', 10, 30);
 
       // Add Dynamic Table Data
-      //const tableColumn = ['VINs', 'Year', 'Make', 'Alert Date', 'State','Brand Name', 'Status'];
       const tableColumn = ['Status','VINs', 'Alert Date','Alert Type','Brand Name','Description','Export','RPTG Entity','City','State','RPTG Details','Make','Model','Year'];
-      //const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','City','State','RPTG Details','Make','Model','Year','Status'];
       const tableRows = tableData.map((item) => [
         item.status ? item.status :"-",
         item.vin ? item.vin : "-",

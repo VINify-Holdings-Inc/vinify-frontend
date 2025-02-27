@@ -31,7 +31,7 @@ export class FileExportComponent  implements OnInit {
          
           }
   ngOnInit() {
-    this.getTableData();
+   // this.getTableData();
 
     this.tableData.forEach((row: any) => {
       if (this.selectedVins.includes(row.vin)) {
