@@ -1,14 +1,14 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoaderComponent } from '../layout/common/loader/loader.component';
-import { userData } from '../../services/api-service.service';
+import { LoaderComponent } from '../common/loader/loader.component';
+import { userData } from '../../../services/api-service.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-file-upload',
   imports: [CommonModule,LoaderComponent],
-  templateUrl: './file-upload.component.html',
-  styleUrl: './file-upload.component.css'
+  templateUrl: './vin-input-file-upload.component.html',
+  styleUrl: './vin-input-file-upload.component.css'
 })
 export class FileUploadComponent {
   constructor(private userData : userData,private router: Router){}

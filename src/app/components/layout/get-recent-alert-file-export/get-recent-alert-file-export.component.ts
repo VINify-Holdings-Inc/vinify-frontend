@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-file-export',
   imports: [CommonModule, MatTableModule, FormsModule, MatCheckboxModule,LoaderComponent],
-  templateUrl: './file-export.component.html',
-  styleUrl: './file-export.component.css'
+  templateUrl: './get-recent-alert-file-export.component.html',
+  styleUrl: './get-recent-alert-file-export.component.css'
 })
 export class FileExportComponent  implements OnInit {
   constructor(private userData: userData,private router: Router,private elementRef: ElementRef,private fileService: FileDownloadService) {}
@@ -31,7 +31,7 @@ export class FileExportComponent  implements OnInit {
          
           }
   ngOnInit() {
-   // this.getTableData();
+    this.getTableData();
 
     this.tableData.forEach((row: any) => {
       if (this.selectedVins.includes(row.vin)) {

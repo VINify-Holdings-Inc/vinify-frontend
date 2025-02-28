@@ -19,8 +19,8 @@ import { UserProfileComponent } from './components/layout/user-profile/update-us
 import { TitleDetailsMainComponent } from './components/layout/title-details-main/title-details-main.component';
 import { AlertTableMainComponent } from './components/layout/alert-table-main/alert-table-main.component';
 import {NotificationComponent} from './components/layout/notification/notification.component';
-import { FileUploadComponent } from './components/file-upload/file-upload.component';
-import { FileExportComponent } from './components/layout/file-export/file-export.component';
+import { FileUploadComponent } from './components/layout/vin-input-file-upload/vin-input-file-upload.component';
+import { FileExportComponent } from './components/layout/get-recent-alert-file-export/get-recent-alert-file-export.component';
 export const routes: Routes = [
   { 
     path: '', 

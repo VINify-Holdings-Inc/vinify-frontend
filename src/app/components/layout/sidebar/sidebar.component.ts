@@ -6,7 +6,7 @@ import { CreatePDFService } from '../../../services/create-pdf.service';
 import { PDF_SETTINGS } from '../../../constants';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SingleVinComponent } from '../dashboard/single-vin/single-vin.component';
-import { FileExportComponent } from '../file-export/file-export.component';
+import { FileExportComponent } from '../get-recent-alert-file-export/get-recent-alert-file-export.component';
 
 @Component({
   selector: 'app-sidebar',
