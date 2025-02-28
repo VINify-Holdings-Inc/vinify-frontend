@@ -15,7 +15,7 @@ export class CreateSoapPdfService {
     tableData: any[],
     fileName: string = 'Vehicle_History_Report.pdf'
   ): void {
-    const doc = new jsPDF();
+    const doc = new jsPDF({ orientation: 'landscape' });
 
     // Add Logo
     const img = new Image();
@@ -30,7 +30,8 @@ export class CreateSoapPdfService {
       doc.setFontSize(16);
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
-      doc.text('Vehicle History Report', 70, 20);
+     // doc.text('Vehicle History Report', 70, 20);
+      doc.text('Vehicle History Report', 120, 20);  
 
       // Title Records Section
       // doc.setFontSize(12);
@@ -71,7 +72,8 @@ export class CreateSoapPdfService {
             doc.setFontSize(16);
             doc.setTextColor(40);
             doc.setFont('helvetica', 'bold');
-            doc.text('Vehicle History Report', 70, 20);
+           // doc.text('Vehicle History Report', 70, 20);  , 120, 20
+            doc.text('Vehicle History Report', 120, 20);  
 
           }
         },

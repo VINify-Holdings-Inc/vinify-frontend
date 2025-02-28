@@ -238,7 +238,7 @@ onFileSelected(event: Event) {
                 popup: 'animated fadeInDown faster',
                 icon: 'animated heartBeat delay-1s'
               },
-              text: 'Fetching the latest alerts—Thank you for your patience.',
+              text: 'Data fetched successfully. Thank you for your patience.',
               icon: 'info',
               confirmButtonText: 'OK',
             });

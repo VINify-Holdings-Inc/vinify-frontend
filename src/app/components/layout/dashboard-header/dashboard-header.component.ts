@@ -432,7 +432,7 @@ readNotification(data:any){
               )
     }
   });
-  ;
+  
 }
 
 }

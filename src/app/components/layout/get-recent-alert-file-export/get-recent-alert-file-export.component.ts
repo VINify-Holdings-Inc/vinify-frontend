@@ -157,48 +157,46 @@ getPDFData() {
   }
   let data ={"data":this.selectedVins}
   
-  Swal.fire({
-    title: 'Info!',
-    showClass: {
-      popup: 'animated fadeInDown faster',
-      icon: 'animated heartBeat delay-1s'
-    },
-     text: 'Fetching the latest alerts—Thank you for your patience.',
-     icon: 'info',
-     confirmButtonText: 'OK',
-   }).then((result) => {
-    this.isLoading = true;
-    if (result.isConfirmed) {
-    
-      this.closeModal();
+   Swal.fire({
+      title: 'Action!',
+      text: "Are you sure you want to initiate process of VINs?",
+      showClass: {
+        popup: 'animated fadeInDown faster',
+        icon: 'animated heartBeat delay-1s'
+      },
+      icon: 'info',
+      showCancelButton: true, // Enables the cancel button
+      confirmButtonText: 'OK', // Text for the confirm button
+      cancelButtonText: 'Cancel',  // Text for the cancel button
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.closeModal();
       
-      this.userData.sendVinData(data).subscribe(
-        (res: any) => {
-          if (!res.error) {
-            // Add isSelected property to each row for checkbox
-            this.tableData.forEach((item: any) => (item.isSelected = false));
-            
-          }
-          this.selectedVins=[];
-          this.isLoading = false;
-          setTimeout(() => {
-            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-              this.router.navigate([this.router.url]);
-            });
-          }, 1000);
-        },
-        (err) => {
-          this.isLoading = false;
-        }
-      );
-
-    }else{
-      this.isLoading = false;
-    }
-  });
+            this.userData.sendVinData(data).subscribe(
+              (res: any) => {
+                if (!res.error) {
+                  // Add isSelected property to each row for checkbox
+                  this.tableData.forEach((item: any) => (item.isSelected = false));
+                  
+                }
+                this.selectedVins=[];
+                this.isLoading = false;
+                setTimeout(() => {
+                  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+                    this.router.navigate([this.router.url]);
+                  });
+                }, 1000);
+              },
+              (err) => {
+                this.isLoading = false;
+              }
+            );
+      }else{
+        this.isLoading = false;
+      }
+    });
   //console.log("data",this.selectedVins).
  
-
   //this.fileService.downloadFile(this.selectedVins);
      
     //  this.isLoading = false;
