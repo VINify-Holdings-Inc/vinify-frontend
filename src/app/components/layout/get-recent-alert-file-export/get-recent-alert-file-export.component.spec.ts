@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FileExportComponent } from './file-export.component';
+import { FileExportComponent } from './get-recent-alert-file-export.component';
 
 describe('FileExportComponent', () => {
   let component: FileExportComponent;
