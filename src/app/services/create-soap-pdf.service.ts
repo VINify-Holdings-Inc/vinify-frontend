@@ -59,6 +59,10 @@ export class CreateSoapPdfService {
         headStyles: {
           fillColor: [207, 75, 95], // Set header background color to red (RGB)
           //textColor: [255, 255, 255], // Optional: Set header text color to white
+          fontSize: 8,
+        },
+        bodyStyles: {
+          fontSize: 7, // Set font size for table data
         },
         margin: { top: 28 },
         didDrawPage: (data: any) => {
