@@ -89,6 +89,28 @@ export class FileUploadComponent {
       return false;
     }
   
+    // Validate date format (YYYYMMDD) and ensure it's not a future date
+    const year = parseInt(datePart.substring(0, 4), 10);
+    const month = parseInt(datePart.substring(4, 6), 10);
+    const day = parseInt(datePart.substring(6, 8), 10);
+    const inputDate = new Date(year, month - 1, day);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (
+      inputDate.getFullYear() !== year ||
+      inputDate.getMonth() + 1 !== month ||
+      inputDate.getDate() !== day
+    ) {
+      this.showError("Invalid date format in header line.");
+      return false;
+    }
+
+    if (inputDate > today) {
+      this.showError("Date in the header cannot be in the future.");
+      return false;
+    }
+  
     // Validate dynamic spacing: "CMY" + (8 - recordCount length) spaces
     const expectedSpaces = 9 - match[1].length;
     const actualSpaces = firstLine.slice(3, firstLine.indexOf(match[1])).length;
@@ -101,6 +123,18 @@ export class FileUploadComponent {
     if (lines.length - 1 !== recordCount) {
       this.showError(`Expected ${recordCount} records, but found ${lines.length - 1}.`);
       return false;
+    }
+
+      // Validate that every record starts with 'D' and contains no spaces
+    for (let i = 1; i < lines.length; i++) {
+      if (!lines[i].startsWith('D')) {
+        this.showError(`Invalid record format. Every record must start with 'D'. Error at line ${i + 1}.`);
+        return false;
+      }
+      if (lines[i].includes(' ')) {
+        this.showError(`Invalid record format. Records must not contain spaces. Error at line ${i + 1}.`);
+        return false;
+      }
     }
   
     return true;
