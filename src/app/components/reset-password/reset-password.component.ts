@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { SessionService } from '../../services/session.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/api-service.service';
-import { FrontHeaderComponent } from '../FrontLayout/front-header/front-header.component';
-import { FrontFooterComponent } from '../FrontLayout/front-footer/front-footer.component';
+import { FrontHeaderComponent } from '../header-footer/front-header/front-header.component';
+import { FrontFooterComponent } from '../header-footer/front-footer/front-footer.component';
 import Swal from 'sweetalert2';
 import {passwordValidator} from '../custom-validator/password-validator';
 import { LoaderComponent } from '../layout/common/loader/loader.component';

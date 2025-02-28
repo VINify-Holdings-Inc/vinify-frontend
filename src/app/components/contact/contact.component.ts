@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FrontHeaderComponent } from '../FrontLayout/front-header/front-header.component';
-import { FrontFooterComponent } from '../FrontLayout/front-footer/front-footer.component';
+import { FrontHeaderComponent } from '../header-footer/front-header/front-header.component';
+import { FrontFooterComponent } from '../header-footer/front-footer/front-footer.component';
 import { ReactiveFormsModule,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/api-service.service';
 import { Router } from '@angular/router';

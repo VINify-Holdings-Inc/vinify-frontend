@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FrontHeaderComponent } from '../FrontLayout/front-header/front-header.component';
-import { FrontFooterComponent } from '../FrontLayout/front-footer/front-footer.component';
+import { FrontHeaderComponent } from '../header-footer/front-header/front-header.component';
+import { FrontFooterComponent } from '../header-footer/front-footer/front-footer.component';
 
 @Component({
   selector: 'app-faq',

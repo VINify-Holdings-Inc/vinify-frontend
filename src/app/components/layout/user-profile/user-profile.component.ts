@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../../services/api-service.service';
-import { SessionService } from '../../../../services/session.service';
-import { LoaderComponent } from '../../common/loader/loader.component';
-import { environment } from '../../../../../environments/environment';
+import { AuthService } from '../../../services/api-service.service';
+import { SessionService } from '../../../services/session.service';
+import { LoaderComponent } from '../common/loader/loader.component';
+import { environment } from '../../../../environments/environment';
 import Swal from 'sweetalert2';
-import {ProfileService} from '../../../../services/state-management';
-import {passwordValidator} from '../../../custom-validator/password-validator';
+import {ProfileService} from '../../../services/state-management';
+import {passwordValidator} from '../../custom-validator/password-validator';
 import { Router } from '@angular/router';  // Import Router
-import { strictEmailValidator } from '../../../custom-validator/strict-email.validator';
+import { strictEmailValidator } from '../../custom-validator/strict-email.validator';
 //import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
