@@ -15,7 +15,9 @@ export class FileUploadComponent {
   @ViewChild('fileInput') fileInput!: ElementRef;
   selectedFile: File | null = null;
   isLoading : boolean=false;
-  onFileSelected(event: Event) {
+
+
+  /*onFileSelected(event: Event) {
     const fileInput = event.target as HTMLInputElement;
     const file = fileInput.files?.[0];
 
@@ -57,7 +59,41 @@ export class FileUploadComponent {
       }
     };
     reader.readAsText(file);
+  }  
+*/
+
+onFileSelected(event: Event) {
+  const fileInput = event.target as HTMLInputElement;
+  if (fileInput.files?.length) {
+    const file = fileInput.files[0];
+
+    if (!file) {
+      this.showError("No file selected");
+      return;
+    }
+
+    if (file.name !== 'MY.T.CINQ.INPUT.TXT') {
+      this.resetFileInput();
+      this.showError("Invalid file name. It must be MY.T.CINQ.INPUT.TXT");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const content = e.target?.result as string;
+      if (this.validateFileContent(content)) {
+        this.selectedFile = file; // Store file if valid
+      } else {
+        this.resetFileInput();
+      }
+    };
+    reader.readAsText(file);
   }
+}
+
+
+
+
   validateFileContent(content: string): boolean {
     const lines = content.split('\n').map(line => line.trim()).filter(line => line !== "");
   
@@ -126,22 +162,35 @@ export class FileUploadComponent {
     }
 
       // Validate that every record starts with 'D' and contains no spaces
-    for (let i = 1; i < lines.length; i++) {
-      if (!lines[i].startsWith('D')) {
-        this.showError(`Invalid record format. Every record must start with 'D'. Error at line ${i + 1}.`);
-        return false;
+      // Validate that every record starts with 'D', contains no spaces, and only uppercase letters and numbers
+      for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].startsWith('D')) {
+          this.showError(`Invalid record format. Every record must start with 'D'. Error at line ${i + 1}.`);
+          return false;
+        }
+        if (lines[i].includes(' ')) {
+          this.showError(`Invalid record format. Records must not contain spaces. Error at line ${i + 1}.`);
+          return false;
+        }
+        if (!/^[D[A-Z0-9]+$/.test(lines[i])) {
+          this.showError(`Invalid record format. Records must contain only uppercase letters and numbers. Error at line ${i + 1}.`);
+          return false;
+        }
       }
-      if (lines[i].includes(' ')) {
-        this.showError(`Invalid record format. Records must not contain spaces. Error at line ${i + 1}.`);
-        return false;
-      }
-    }
   
     return true;
+  }
+
+  private resetFileInput() {
+    this.selectedFile = null;
+    if (this.fileInput && this.fileInput.nativeElement) {
+      this.fileInput.nativeElement.value = "";
+    }
   }
   
   // Helper function for showing error messages
   private showError(message: string) {
+    this.resetFileInput();
     this.selectedFile = null;
     this.fileInput.nativeElement.value = "";
     Swal.fire({
@@ -189,7 +238,7 @@ export class FileUploadComponent {
                 popup: 'animated fadeInDown faster',
                 icon: 'animated heartBeat delay-1s'
               },
-              text: 'Fetching the latest alerts—Thank you for your patience.',
+              text: 'Data fetched successfully. Thank you for your patience.',
               icon: 'info',
               confirmButtonText: 'OK',
             });

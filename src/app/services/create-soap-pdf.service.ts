@@ -15,7 +15,7 @@ export class CreateSoapPdfService {
     tableData: any[],
     fileName: string = 'Vehicle_History_Report.pdf'
   ): void {
-    const doc = new jsPDF();
+    const doc = new jsPDF({ orientation: 'landscape' });
 
     // Add Logo
     const img = new Image();
@@ -30,7 +30,7 @@ export class CreateSoapPdfService {
       doc.setFontSize(16);
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
-      doc.text('Vehicle History Report', 70, 20);
+      doc.text('Vehicle History Report', 122, 20);  
 
       // Title Records Section
       // doc.setFontSize(12);
@@ -38,14 +38,14 @@ export class CreateSoapPdfService {
       // doc.text('Title Records', 10, 30);
 
       // Add Dynamic Table Data
-      const tableColumn = ['VINs', 'Year', 'Make', 'Alert Date', 'State','Brand Name', 'Status'];
+      const tableColumn = ['VINs', 'Alert Date','Brand Name',  'State', 'Year', 'Make','Status'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : "-",
+        (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
+        item?.brand ? item?.brand?.split(' - ')[0]:"-",
+        item.state ? item.state : "-",
         item.modelYear ? item.modelYear :"-",
         item.model ? item.model : "-",
-        (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
-        item.state ? item.state : "-",
-        item?.brand ? item?.brand?.split(' - ')[0]:"-",
         item.status ? item.status :"-",
 
       ]);
@@ -57,7 +57,10 @@ export class CreateSoapPdfService {
         body: tableRows,
         headStyles: {
           fillColor: [207, 75, 95], // Set header background color to red (RGB)
-          //textColor: [255, 255, 255], // Optional: Set header text color to white
+          fontSize: 8,
+        },
+        bodyStyles: {
+          fontSize: 7, // Set font size for table data
         },
         margin: { top: 28 },
         didDrawPage: (data: any) => {
@@ -71,7 +74,8 @@ export class CreateSoapPdfService {
             doc.setFontSize(16);
             doc.setTextColor(40);
             doc.setFont('helvetica', 'bold');
-            doc.text('Vehicle History Report', 70, 20);
+            doc.text('Vehicle History Report', 122, 20);  
+            
 
           }
         },
@@ -80,8 +84,8 @@ export class CreateSoapPdfService {
       // Disclaimer Section (Ensure it spans multiple pages if necessary)
       const finalY = (doc as any).lastAutoTable.finalY + 10; // Position after the last table
       let yPosition = finalY;
-      const pageHeight = doc.internal.pageSize.height;
-      const pageWidth = doc.internal.pageSize.width;
+      const pageHeight = doc.internal.pageSize.height; 
+      const pageWidth = doc.internal.pageSize.width; 
       const footerHeight = 20; // Reserve 20 units for the footer
 
       // Split the disclaimer into lines that fit the page width
