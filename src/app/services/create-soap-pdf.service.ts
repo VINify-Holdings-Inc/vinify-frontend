@@ -30,7 +30,7 @@ export class CreateSoapPdfService {
       doc.setFontSize(16);
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
-      doc.text('Vehicle History Report', 120, 20);  
+      doc.text('Vehicle History Report', 122, 20);  
 
       // Title Records Section
       // doc.setFontSize(12);
@@ -74,7 +74,7 @@ export class CreateSoapPdfService {
             doc.setFontSize(16);
             doc.setTextColor(40);
             doc.setFont('helvetica', 'bold');
-            doc.text('Vehicle History Report', 120, 20);  
+            doc.text('Vehicle History Report', 122, 20);  
             
 
           }
