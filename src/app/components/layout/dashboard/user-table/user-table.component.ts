@@ -289,7 +289,6 @@ alertFilter(data:any){
         (res: any) => {
           if (!res.error) {
             this.csvExportService.exportToCsv(res?.data?.csvData || [], 'VehicleData');
-           // this.csvExportService.exportToCsv(res?.data?.rawData || [], 'VehicleDataRAW');
           }
           this.isLoading = false;
         },
