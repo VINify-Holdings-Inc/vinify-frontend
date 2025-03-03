@@ -261,12 +261,7 @@ previousPage() {
         });
        
       }
-        // if(isChecked){
-        //   this.checkall='all';
-        //   
-        // }else{
-        //   this.checkall='specific';
-        // }
+        
         this.handelSelectedVin.emit(this.selectedVins)
       }
     
