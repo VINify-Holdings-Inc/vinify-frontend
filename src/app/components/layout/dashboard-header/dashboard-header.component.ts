@@ -313,7 +313,7 @@ getVariable(key:any) {
 getVinSearchDataFromSoap(tk: any, vin: any): Promise<{ type: boolean; xml?: any }> {
   return new Promise((resolve) => {
     const data = { token: tk, vin: vin };
-    // const data = { token: tk, vin: "1FTCF15N5HLA06223" };
+   
 
     this.soapService.getVinData(data).subscribe(
       (res) => {

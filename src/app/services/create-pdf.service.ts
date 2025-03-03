@@ -34,7 +34,7 @@ export class CreatePDFService {
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
      // doc.text('Vehicle History Report', 70, 20);
-      doc.text('Vehicle History Report', 120, 20);
+      doc.text('Vehicle History Report', 122, 20);
 
       // Title Records Section
       // doc.setFontSize(12);
@@ -42,7 +42,6 @@ export class CreatePDFService {
       // doc.text('Title Records', 10, 30);
 
       // Add Dynamic Table Data
-      //const tableColumn = ['VINs', 'Year', 'Make', 'Alert Date', 'State','Brand Name', 'Status'];
       //const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','City','State','RPTG Details','Make','Model','Year','Export','RPTG Entity','Status'];
       const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','City','State','RPTG Details','Make','Model','Year','Status'];
       const tableRows = tableData.map((item) => [
@@ -70,7 +69,6 @@ export class CreatePDFService {
         body: tableRows,
         headStyles: {
           fillColor: [207, 75, 95], // Set header background color to red (RGB)
-          //textColor: [255, 255, 255], // Optional: Set header text color to white
           fontSize: 8,
         },
         bodyStyles: {
@@ -89,7 +87,7 @@ export class CreatePDFService {
             doc.setTextColor(40);
             doc.setFont('helvetica', 'bold');
            // doc.text('Vehicle History Report', 70, 20);
-            doc.text('Vehicle History Report', 120, 20);
+            doc.text('Vehicle History Report', 122, 20);
 
           }
         },

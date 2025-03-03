@@ -170,6 +170,7 @@ getPDFData() {
       cancelButtonText: 'Cancel',  // Text for the cancel button
     }).then((result) => {
       if (result.isConfirmed) {
+        this.isLoading = true;
         this.closeModal();
       
             this.userData.sendVinData(data).subscribe(
@@ -185,7 +186,7 @@ getPDFData() {
                   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
                     this.router.navigate([this.router.url]);
                   });
-                }, 1000);
+                }, 1);
               },
               (err) => {
                 this.isLoading = false;

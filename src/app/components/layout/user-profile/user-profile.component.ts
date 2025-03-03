@@ -16,7 +16,6 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 @Component({
   selector: 'app-user-profile',
   standalone: true,
- // imports: [CommonModule, ReactiveFormsModule, LoaderComponent,DateFormatPipe],
   imports: [CommonModule, ReactiveFormsModule, LoaderComponent,NgxMaskDirective,],
   providers: [provideNgxMask()],
   templateUrl: './user-profile.component.html',
@@ -179,7 +178,7 @@ loadUserData(): void {
   }
 
   updateSessionData(data:any):void{
-     //console.log("data",data);
+     
     let sessionData= this.sessionService.getSessionData("data"); 
    
     let updatedData = {...sessionData,...data}
@@ -191,7 +190,6 @@ loadUserData(): void {
       this.sessionService.setSessionData("name",data?.firstName + " " + data?.lastName)
       this.sessionService.setSessionData("profile",`${environment.img_url}/${data.profile}`)
       this.sessionService.setSessionData("data",updatedData)
-      //let new_data ={"name":data?.firstName + " " + data?.lastName,"profile":`${environment.img_url}/${data.profile}`,"profileComplete":data.profileComplete}
       let new_data ={"name":data?.firstName + " " + data?.lastName,"profile":`${environment.img_url}/${data.profile}`}
       this.profileService.updateProfileData({...this.profileData,...new_data});
       this.cdr.detectChanges();
@@ -237,7 +235,7 @@ loadUserData(): void {
         formData.append('profile', blob, 'profile.jpg');
       }
            
-     // console.log('FormData payload:', formData);
+   
 
       this.authService.updateProfile(formData).subscribe({
         next: (response) => {
@@ -258,7 +256,7 @@ loadUserData(): void {
             this.editMode=false;
             this.isPasswordModified=false;
             this.isLoading = false;
-           // this.router.navigate(['/view-user-profile']);
+         
           } else {
             this.isLoading = false;
            
@@ -287,7 +285,7 @@ loadUserData(): void {
             icon: 'error',
             confirmButtonText: 'OK',
           });
-        //  console.error('Error:', error);
+   
         }
       });
     } else {

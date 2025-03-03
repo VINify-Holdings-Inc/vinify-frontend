@@ -86,7 +86,7 @@ export class ContactComponent {
                       }
                     },
                     (err) => {
-                     // console.error('failed:', err);
+                   
                      this.isLoading=false;
 
                       Swal.fire({
