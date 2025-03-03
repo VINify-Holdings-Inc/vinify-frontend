@@ -30,7 +30,6 @@ export class CreateSoapPdfService {
       doc.setFontSize(16);
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
-     // doc.text('Vehicle History Report', 70, 20);
       doc.text('Vehicle History Report', 120, 20);  
 
       // Title Records Section
@@ -58,7 +57,6 @@ export class CreateSoapPdfService {
         body: tableRows,
         headStyles: {
           fillColor: [207, 75, 95], // Set header background color to red (RGB)
-          //textColor: [255, 255, 255], // Optional: Set header text color to white
           fontSize: 8,
         },
         bodyStyles: {
@@ -76,8 +74,8 @@ export class CreateSoapPdfService {
             doc.setFontSize(16);
             doc.setTextColor(40);
             doc.setFont('helvetica', 'bold');
-           // doc.text('Vehicle History Report', 70, 20);  , 120, 20
             doc.text('Vehicle History Report', 120, 20);  
+            
 
           }
         },
@@ -86,8 +84,8 @@ export class CreateSoapPdfService {
       // Disclaimer Section (Ensure it spans multiple pages if necessary)
       const finalY = (doc as any).lastAutoTable.finalY + 10; // Position after the last table
       let yPosition = finalY;
-      const pageHeight = doc.internal.pageSize.height;
-      const pageWidth = doc.internal.pageSize.width;
+      const pageHeight = doc.internal.pageSize.height; 
+      const pageWidth = doc.internal.pageSize.width; 
       const footerHeight = 20; // Reserve 20 units for the footer
 
       // Split the disclaimer into lines that fit the page width
