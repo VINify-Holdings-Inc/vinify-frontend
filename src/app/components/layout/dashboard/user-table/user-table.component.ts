@@ -50,7 +50,7 @@ export class UserTableComponent implements AfterViewInit, OnChanges{
   selectedVins: { vin: string; alertDate: string }[] = [];
   checkAll:any=null;
  // displayedColumns: string[] = ['vin', 'titleBrandDate', 'alertType', 'brand','description','city','state','rptgDetails','make','model','modelYear','details'];
-  displayedColumns: string[] = ['vin', 'titleBrandDate', 'alertType', 'brand','description','city','state','rptgDetails','details'];
+  displayedColumns: string[] = ['vin', 'titleBrandDate', 'alertType', 'brand','state','details'];
 
 
 
@@ -64,7 +64,8 @@ export class UserTableComponent implements AfterViewInit, OnChanges{
   @Input() limit :number=0;
   @Output() handelPaginagtion = new EventEmitter <any>();
   @Output() handelSearch = new EventEmitter <any>();
-  @Output() handelAlertFil = new EventEmitter <any>();
+  @Output() handelAlertFil = new EventEmitter <any>(); 
+  @Output() handelAlertTypeFilter = new EventEmitter <any>(); 
   alert:any=null;
   ngOnChanges(changes: SimpleChanges) {
     if (changes['resetData']) {
@@ -296,6 +297,9 @@ alertFilter(data:any){
       );
     }
 
-     
+    alertTypeFilter(data:any){
+      this.searchValue="";
+      this.handelAlertTypeFilter.emit({"data":data,"page":1});
+    }  
    
 }

@@ -25,6 +25,7 @@ export class TitleDetailsMainComponent {
   customChange:any=0;
   impoundChange:any=0;
   theftChange:any=0;
+  alertType:any=null;
   constructor(private router: Router ,private route : ActivatedRoute,private userData : userData,
     private sessionService: SessionService,) {}
 
@@ -63,6 +64,9 @@ export class TitleDetailsMainComponent {
      if(this.isRead!=null){
       url = url + `&isRead=${(this.isRead)}`
     } 
+    if(this.alertType!=null){
+      url = url + `&alertType=${(this.alertType)}`
+    }
 
      this.userData.searchVinDataForUser(url).subscribe(
       (res:any) => {
@@ -115,5 +119,11 @@ handelTitleChange(data:any){
 handelSelectedVin(data:any){
       this.selectedVinsData=data;
  }
+ handelAlertTypeFilter(data:any){
+  //console.log("data.page",data.page);
+  this.alertType=data.data;
+  this.page=data.page; 
+  this.getTableData(this.paramVin);
+}
 
 }

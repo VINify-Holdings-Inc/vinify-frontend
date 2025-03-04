@@ -42,7 +42,8 @@ export class TitleTabComponent implements OnInit{
         @Output() handelAlertFil = new EventEmitter <any>();
         @Input() paramVin:any=""; 
         @Input() selectedVinsData:any[] =[];
-        @Output() handelSelectedVin = new EventEmitter <any>();     
+        @Output() handelSelectedVin = new EventEmitter <any>();      
+        @Output() handelAlertTypeFilter = new EventEmitter <any>();      
         checkall:any="specific";
         selectedVins: any[] = []; 
         alert:any=null;
@@ -55,7 +56,7 @@ export class TitleTabComponent implements OnInit{
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
       // displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptgDetails','make','model','modelYear',];
-       displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptgDetails',];
+       displayedColumns: string[] = ['Select','status', 'titleBrandDate','alertType','brand','state','city','description','export','rptgEntity','mobile','email'];
         
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
@@ -338,6 +339,11 @@ previousPage() {
               );
             
             }
+      }
+
+      alertTypeFilter(data:any){
+        this.searchValue="";
+        this.handelAlertTypeFilter.emit({"data":data,"page":1});
       }
 
 }

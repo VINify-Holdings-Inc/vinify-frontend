@@ -39,7 +39,7 @@ export class CreateSoapPdfService {
 
       // Add Dynamic Table Data
      // const tableColumn = ['VINs', 'Alert Date','Brand Name','State', 'Make','Year','Status'];
-      const tableColumn = ['VINs', 'Date','Brand Name','State', 'Status'];
+      const tableColumn = ['VINs', 'Date','Brand Names','State', 'Status'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : "-",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
