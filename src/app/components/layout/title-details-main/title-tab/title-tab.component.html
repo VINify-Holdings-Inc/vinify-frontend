@@ -166,7 +166,7 @@
                 <td mat-cell *matCellDef="let element">{{ element?.rptgDetails ? element?.rptgDetails : "-"}} </td>
               </ng-container>
 
-              <ng-container matColumnDef="make" width="80">
+              <!-- <ng-container matColumnDef="make" width="80">
                 <th mat-header-cell *matHeaderCellDef> Make </th>
                 <td mat-cell *matCellDef="let element"> {{ element?.make ? element?.make : "-" }} </td>
               </ng-container>
@@ -177,12 +177,9 @@
               <ng-container matColumnDef="modelYear" width="80">
                 <th mat-header-cell *matHeaderCellDef> Year </th>
                 <td mat-cell *matCellDef="let element"> {{ element?.modelYear | dateFormat: 'YYYY' }} </td>
-              </ng-container>
-
-              <!-- <ng-container matColumnDef="titleBrandDate" width="90">
-                <th mat-header-cell *matHeaderCellDef> Title/Brand Date </th>
-                <td mat-cell *matCellDef="let element"> {{ element?.titleBrandDate | dateFormat: 'DD MMM YYYY' }} </td>
               </ng-container> -->
+
+             
 
 
 

@@ -38,14 +38,15 @@ export class CreateSoapPdfService {
       // doc.text('Title Records', 10, 30);
 
       // Add Dynamic Table Data
-      const tableColumn = ['VINs', 'Alert Date','Brand Name','State', 'Make','Year','Status'];
+     // const tableColumn = ['VINs', 'Alert Date','Brand Name','State', 'Make','Year','Status'];
+      const tableColumn = ['VINs', 'Alert Date','Brand Name','State', 'Status'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : "-",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
         item?.brand ? item?.brand?.split(' - ')[0]:"-",
         item.state ? item.state : "-",
-        item.model ? item.model : "-",
-        item.modelYear ? item.modelYear :"-",
+        // item.model ? item.model : "-",
+        // item.modelYear ? item.modelYear :"-",
         item.status ? item.status :"-",
 
       ]);
