@@ -278,7 +278,6 @@ p.smallAddIcon i {
 .table > thead > tr > th {
   font-weight: 600;
   padding: 12px 8px;
-  text-transform: capitalize;
   font-size: 12px;
   color: #323b48;
   background-color: #ededed !important;
