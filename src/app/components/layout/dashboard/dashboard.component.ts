@@ -59,6 +59,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   resetData:boolean=false;
   isRead:any=null;
   resentAlert:any=[];
+  alertType:any=null;
    
    getTableData(vin:any = null) {
     this.tableData=[];
@@ -70,6 +71,9 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     }
     if(this.isRead!=null){
       url = url + `&isRead=${(this.isRead)}`
+    }
+    if(this.alertType!=null){
+      url = url + `&alertType=${(this.alertType)}`
     }
    if(this.serchKpiType=='total'){
     this.userData.getCurrentVinData(url).subscribe(
@@ -170,6 +174,12 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.vin="";
     this.isRead=data;
     this.getTableData();
+}
+handelAlertTypeFilter(data:any){
+  this.vin="";
+  this.alertType=data.data;
+  this.page=data.page; 
+  this.getTableData();
 }
 
 }

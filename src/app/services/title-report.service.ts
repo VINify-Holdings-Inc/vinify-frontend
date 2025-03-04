@@ -43,7 +43,7 @@ export class TitleReportService {
 
       // Add Dynamic Table Data
     //  const tableColumn = ['Status','VINs', 'Alert Date','Alert Type','Brand Name','Description','Export','RPTG Entity','City','State','RPTG Details','Make','Model','Year'];
-      const tableColumn = ['Status','VINs', 'Date','Alert Type','Brand Name','Description','Export','RPTG Entity','City','State','RPTG Details'];
+      const tableColumn = ['Status','VINs', 'Date','Type','Brand Names','State','City','Description','Export','RPTG Entity','Mobile','Email'];
       const tableRows = tableData.map((item) => [
         item.status ? item.status :"-",
         item.vin ? item.vin : "-",
@@ -56,6 +56,8 @@ export class TitleReportService {
         item.city ? item.city : "-",
         item.state ? item.state : "-",
         item.rptgDetails ? item.rptgDetails : "-",
+        item.mobile ? item.mobile : "-",
+        item.email ? item.email : "-",
         // item.model ? item.model : "-",
         // item.model ? item.model : "-",
         // item.modelYear ? item.modelYear :"-",

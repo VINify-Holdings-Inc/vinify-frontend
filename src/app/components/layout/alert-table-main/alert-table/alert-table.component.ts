@@ -56,7 +56,7 @@ export class AlertTableComponent implements OnInit{
      
 
      //  displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptgDetails','make','model','modelYear','details']; 
-       displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptgDetails','details']; 
+       displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','state','city','description','export','rptgEntity','mobile','email','details']; 
 
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
