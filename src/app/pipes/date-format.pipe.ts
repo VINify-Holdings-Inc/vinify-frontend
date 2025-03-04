@@ -14,7 +14,7 @@ export class DateFormatPipe implements PipeTransform {
     const date = value instanceof Date ? value : new Date(value);
 
     if (isNaN(date.getTime())) {
-      return 'Invalid Date'; // Handle invalid date inputs
+      return '-'; // Handle invalid date inputs
     }
 
     const now = new Date();

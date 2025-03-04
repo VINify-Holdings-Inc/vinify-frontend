@@ -40,7 +40,7 @@ export class FileExportComponent  implements OnInit {
     });
   }
   selectReleventData(){
-        // console.log("test")       
+          
     this.tableData.forEach((row: any) => {
       if (this.selectedVins.includes(row.vin)) {
         row.isSelected = true;
@@ -98,7 +98,7 @@ export class FileExportComponent  implements OnInit {
     
 
   onRowSelectionChange(item: any): void {
-   // console.log("sel",item);
+  
     if (item.isSelected) {
       // Add the selected item to the array
       const vinExists = this.selectedVins.some(
@@ -112,7 +112,7 @@ export class FileExportComponent  implements OnInit {
         );
       }
     } else {
-      //console.log("trte",item.vin)
+     
       // Remove the item from the array
       this.selectedVins = this.selectedVins.filter(
         (selected) =>
@@ -196,12 +196,7 @@ getPDFData() {
         this.isLoading = false;
       }
     });
-  //console.log("data",this.selectedVins).
- 
-  //this.fileService.downloadFile(this.selectedVins);
-     
-    //  this.isLoading = false;
-   
+      
 }
 
 closeData(){
@@ -210,11 +205,7 @@ closeData(){
 }
 getSearchVal(){
   this.checkall='single';     
-  // this.tableData.forEach((row) => {
-  // //  row.isSelected = false;
-  // //  this.selectedVins=[];
-  // });
-
+  
   if(this.searchValue==""){
     this.searchValue="";
     this.vin="";
@@ -251,8 +242,7 @@ clearAll(){
 handleOutsideClick() {
 
    this.isModalOpen = false; // Close the modal
-   //console.log("test hal",this.isModalOpen);
-   this.clearAll();
+     this.clearAll();
 }
 
 // Listen for clicks on the document

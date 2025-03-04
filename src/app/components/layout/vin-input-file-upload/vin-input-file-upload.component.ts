@@ -17,51 +17,6 @@ export class FileUploadComponent {
   isLoading : boolean=false;
 
 
-  /*onFileSelected(event: Event) {
-    const fileInput = event.target as HTMLInputElement;
-    const file = fileInput.files?.[0];
-
-    if (!file) {
-       Swal.fire({
-                  title: 'Error!',
-                  showClass: {
-                    popup: 'animated fadeInDown faster',
-                    icon: 'animated heartBeat delay-1s'
-                  },
-                  text: "No file selected",
-                  icon: 'error',
-                  confirmButtonText: 'OK',
-                });
-      return;
-    }
-
-    if (file.name !== 'MY.T.CINQ.INPUT.TXT') {
-        this.selectedFile=null;
-        this.fileInput.nativeElement.value = ""; 
-      Swal.fire({
-        title: 'Error!',
-        showClass: {
-          popup: 'animated fadeInDown faster',
-          icon: 'animated heartBeat delay-1s'
-        },
-        text: 'Invalid file name. It must be MY.T.CINQ.INPUT.TXT',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const content = e.target?.result as string;
-      if (this.validateFileContent(content)) {
-        this.selectedFile = file; // Store file if valid
-      }
-    };
-    reader.readAsText(file);
-  }  
-*/
-
 onFileSelected(event: Event) {
   const fileInput = event.target as HTMLInputElement;
   if (fileInput.files?.length) {

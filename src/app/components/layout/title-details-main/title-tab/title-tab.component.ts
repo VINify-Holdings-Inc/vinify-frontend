@@ -54,8 +54,8 @@ export class TitleTabComponent implements OnInit{
        visiblePages: number[] = []; // Pages to display in the pagination UI
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
-      // displayedColumns: string[] = ['Select','status','vin', 'state','brand', 'model','modelYear','titleBrandDate'];
-       displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptgDetails','make','model','modelYear',];
+      // displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptgDetails','make','model','modelYear',];
+       displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptgDetails',];
         
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
@@ -261,12 +261,7 @@ previousPage() {
         });
        
       }
-        // if(isChecked){
-        //   this.checkall='all';
-        //   
-        // }else{
-        //   this.checkall='specific';
-        // }
+        
         this.handelSelectedVin.emit(this.selectedVins)
       }
     

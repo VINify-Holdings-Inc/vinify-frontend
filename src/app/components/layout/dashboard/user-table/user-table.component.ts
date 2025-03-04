@@ -44,15 +44,13 @@ export class UserTableComponent implements AfterViewInit, OnChanges{
    
   }
   searchValue :string="";
-   // totalNoOfData :any=[];
   vins:[] =[]; 
   selectAll = false;
   isLoading: boolean = false;
-  //selectedVins: string[] = [];
   selectedVins: { vin: string; alertDate: string }[] = [];
   checkAll:any=null;
-  //displayedColumns: string[] = ['vin', 'year', 'make', 'titleBrandDate','state','brand','details'];
-  displayedColumns: string[] = ['vin', 'titleBrandDate', 'alertType', 'brand','description','city','state','rptgDetails','make','model','modelYear','details'];
+ // displayedColumns: string[] = ['vin', 'titleBrandDate', 'alertType', 'brand','description','city','state','rptgDetails','make','model','modelYear','details'];
+  displayedColumns: string[] = ['vin', 'titleBrandDate', 'alertType', 'brand','description','city','state','rptgDetails','details'];
 
 
 
