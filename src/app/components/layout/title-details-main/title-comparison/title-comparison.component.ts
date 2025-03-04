@@ -22,6 +22,12 @@ export class TitleComparisonComponent implements OnInit {
   totalDataCurrent :number = 0;
   isLoading : boolean=false;
   paramVin:string="";
+  titleData : any ={};
+  brandData :any ={};
+  jsiData :any ={};
+
+
+
   @Output() handelTitleChange = new EventEmitter <any>();
   ngOnInit() {
    
@@ -31,6 +37,10 @@ export class TitleComparisonComponent implements OnInit {
         this.getTableData(this.paramVin);
       }
     });
+  }
+
+  isObjectNotEmpty(obj: any): boolean {
+    return obj && Object.keys(obj).length > 0;
   }
 
   getTableData(vin:any=null){
@@ -43,12 +53,18 @@ export class TitleComparisonComponent implements OnInit {
      this.userData.getVinHistoryData(url).subscribe(
       (res:any) => {
           this.isLoading=false; 
+          console.log("res",res?.data);
         if(!res.error){
-          this.tableDataHistory=res?.data?.history?.items||[];
-          this.totalDataHistory= res?.data?.history?.totalRecords||0;
+          // this.tableDataHistory=res?.data?.history?.items||[];
+          // this.totalDataHistory= res?.data?.history?.totalRecords||0;
 
-          this.tableDataCurrent=res?.data?.current?.items||[];
-          this.totalDataCurrent= res?.data?.current?.totalRecords||0;
+          // this.tableDataCurrent=res?.data?.current?.items||[];
+          // this.totalDataCurrent= res?.data?.current?.totalRecords||0;
+             
+          this.titleData=res?.data?.title;
+          this.brandData=res?.data?.brand;
+          this.jsiData=res?.data?.jsi;
+
           this.handelTitleChange.emit({"totalRecord":res?.data?.current?.totalRecords||0,"lastUpdate":res?.data?.current?.items[0]?.createdAt||""});
         }     
 
