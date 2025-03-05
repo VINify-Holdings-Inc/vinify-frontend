@@ -73,7 +73,7 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   this.getProfileData();
   this.getTableData();
   this.showAlertCountData();
-  //this.getNotificationData();
+  
   this.notificationService.unreadCount$.subscribe(count => {
     this.unreadCount = count; // Update count in the UI
   });
@@ -110,9 +110,6 @@ getTableData() {
    (res: any) => {
      if (!res.error) {
        this.tableData = res?.data?.items || [];  
-       if(res?.data?.items.length==0){
-       // this.lastUpdateDate="";
-       }
      }
    },
    (err) => {    
@@ -303,7 +300,6 @@ getVariable(key:any) {
       }
       return item.value;
   } catch (error) {
-     // console.error("Error parsing JSON from localStorage:", error);
       localStorage.removeItem(key); // Remove the corrupted data
       return null;
   }
@@ -319,12 +315,12 @@ getVinSearchDataFromSoap(tk: any, vin: any): Promise<{ type: boolean; xml?: any 
              // console.log("XML Response:", res.data);
           resolve({ type: true, xml: res.data });
         } else {
-             // console.error("SOAP Error:", res.error);
+            
           resolve({ type: false });
         }
       },
       (err) => {
-           // console.error("SOAP Request Error:", err);
+          
         resolve({ type: false });
       }
     );
@@ -404,9 +400,9 @@ readNotification(data:any){
       icon: 'animated heartBeat delay-1s'
     },
     icon: 'info',
-    showCancelButton: true, // Enables the cancel button
-    confirmButtonText: 'Yes', // Text for the confirm button
-    cancelButtonText: 'No',  // Text for the cancel button
+    showCancelButton: true, 
+    confirmButtonText: 'Yes', 
+    cancelButtonText: 'No',  
   }).then((result) => {
     if (result.isConfirmed) {
             let type:any=`type=${data}`;

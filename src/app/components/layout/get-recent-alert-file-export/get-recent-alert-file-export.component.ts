@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   templateUrl: './get-recent-alert-file-export.component.html',
   styleUrl: './get-recent-alert-file-export.component.css'
 })
-export class FileExportComponent  implements OnInit {
+export class FileExportComponent  implements OnInit,AfterViewInit {
   constructor(private userData: userData,private router: Router,private elementRef: ElementRef,private fileService: FileDownloadService) {}
   isModalOpen = true;
   tableData: any[] = [];
@@ -31,6 +31,7 @@ export class FileExportComponent  implements OnInit {
          
           }
   ngOnInit() {
+   
     this.getTableData();
 
     this.tableData.forEach((row: any) => {
@@ -39,6 +40,29 @@ export class FileExportComponent  implements OnInit {
       } 
     });
   }
+ 
+  ngAfterViewInit() {
+    // Get the modal element using Bootstrap modal API
+    const modal = document.getElementById('exampleModalExport');
+
+    if (modal) {
+      // Listen for when the modal is shown
+      modal.addEventListener('shown.bs.modal', () => {
+       
+        this.openModal();
+      });
+
+      // Listen for when the modal is hidden
+      modal.addEventListener('hidden.bs.modal', () => {
+       
+        this.clearAll();
+      });
+    }
+  }
+
+
+
+
   selectReleventData(){
           
     this.tableData.forEach((row: any) => {
@@ -231,6 +255,7 @@ handelSearch(vin:any){
   this.getTableData()
 }
 clearAll(){
+
   this.vin="";
   this.selectedVins=[];
   this.searchValue="";
@@ -240,9 +265,12 @@ clearAll(){
 
 
 handleOutsideClick() {
-
-   this.isModalOpen = false; // Close the modal
-     this.clearAll();
+  
+  if (!this.isModalOpen) return; 
+  
+     this.clearAll(); 
+    
+     this.isModalOpen = false; // Close the modal
 }
 
 // Listen for clicks on the document
