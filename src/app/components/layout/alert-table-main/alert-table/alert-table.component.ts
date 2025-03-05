@@ -146,8 +146,7 @@ previousPage() {
         
       const start = Math.max(1, this.currentPage - Math.floor(this.maxVisiblePages / 2));
       const end = Math.min(this.totalPages, start + this.maxVisiblePages - 1);
-      //const end = 4;
-
+     
       for (let i = start; i <= end; i++) {
         visible.push(i);
       }

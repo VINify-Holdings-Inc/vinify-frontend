@@ -46,7 +46,6 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
   userEmail:string="";
   unreadCount = 0;
   soapToken:any="";
-  //profileComplete:string="";
   toggleSidebar() { 
     this.sidebarToggle.emit();
   }
@@ -94,7 +93,6 @@ export class DashboardHeaderComponent implements OnInit , OnDestroy {
  }
  changeSearchIcon=()=>{
     this.searchIconToggle=!this.searchIconToggle
-    //  alert(this.searchIconToggle)
  }
 
  getSearchVal(){
@@ -342,7 +340,7 @@ showAlertCountData() {
       this.notificationService.setUnreadCount(
         res?.data?.totalNotificationCount||0
       ); 
-      //this.lastUpdateDate= res?.data?.lastUpdatedDate||""    
+   
       this.lastUpdatedService.setLastUpdate(res?.data?.lastUpdatedDate||"");
      }
    },

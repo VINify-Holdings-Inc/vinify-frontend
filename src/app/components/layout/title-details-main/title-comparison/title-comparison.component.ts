@@ -48,24 +48,18 @@ export class TitleComparisonComponent implements OnInit {
     this.isLoading= true;
       let url=`vin=${vin}`
    
-     // url = `&page=${this.page}&limit=${this.limit}`;
+    
 
      this.userData.getVinHistoryData(url).subscribe(
       (res:any) => {
           this.isLoading=false; 
-          console.log("res",res?.data);
         if(!res.error){
-          // this.tableDataHistory=res?.data?.history?.items||[];
-          // this.totalDataHistory= res?.data?.history?.totalRecords||0;
-
-          // this.tableDataCurrent=res?.data?.current?.items||[];
-          // this.totalDataCurrent= res?.data?.current?.totalRecords||0;
-             
+                     
           this.titleData=res?.data?.title;
           this.brandData=res?.data?.brand;
           this.jsiData=res?.data?.jsi;
 
-          this.handelTitleChange.emit({"totalRecord":res?.data?.current?.totalRecords||0,"lastUpdate":res?.data?.current?.items[0]?.createdAt||""});
+          this.handelTitleChange.emit({"totalRecord":res?.data?.totalRecords||0,"lastUpdate":res?.data?.createdAt||""});
         }     
 
       },

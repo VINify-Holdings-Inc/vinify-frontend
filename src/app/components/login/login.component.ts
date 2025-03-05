@@ -15,7 +15,7 @@ import { LoaderComponent } from "../layout/common/loader/loader.component";
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'], // Corrected typo: `styleUrl` -> `styleUrls`
+  styleUrls: ['./login.component.css'], 
   imports: [ReactiveFormsModule, CommonModule, ForgetPasswordComponent, LoaderComponent],
 })
 export class LoginComponent {
