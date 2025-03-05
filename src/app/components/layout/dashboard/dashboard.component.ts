@@ -64,7 +64,6 @@ export class DashboardComponent implements AfterViewInit, OnInit {
    getTableData(vin:any = null) {
     this.tableData=[];
     this.isLoading = true;
-    // const url = `page=${this.page}&limit=${this.limit}&status=${encodeURIComponent(JSON.stringify(this.status))}&member=${encodeURIComponent(JSON.stringify(this.member))}`;
     let url = `page=${this.page}&limit=${this.limit}`;
     if (this.vin) {
       url = url + `&vin=${(this.vin)}`

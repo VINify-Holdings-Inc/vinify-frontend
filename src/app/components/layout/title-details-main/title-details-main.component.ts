@@ -120,7 +120,6 @@ handelSelectedVin(data:any){
       this.selectedVinsData=data;
  }
  handelAlertTypeFilter(data:any){
-  //console.log("data.page",data.page);
   this.alertType=data.data;
   this.page=data.page; 
   this.getTableData(this.paramVin);

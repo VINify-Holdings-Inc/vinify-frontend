@@ -44,7 +44,7 @@ export class SummaryInnerComponent implements AfterViewInit {
   onType(value: string){
     if(value==""){
       this.handelSearch.emit(value);
-      //this.searchHideShow = !this.searchHideShow;
+     
     }
   }
 

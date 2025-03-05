@@ -1,4 +1,4 @@
-import { Component, OnInit,HostListener,ElementRef } from '@angular/core';
+import { Component, OnInit,HostListener,ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { userData } from '../../../../services/api-service.service';
 import { MatTableModule } from '@angular/material/table';
@@ -15,7 +15,7 @@ import { LoaderComponent } from '../../common/loader/loader.component';
   templateUrl: './single-vin.component.html',
   styleUrls: ['./single-vin.component.css'],
 })
-export class SingleVinComponent implements OnInit {
+export class SingleVinComponent implements OnInit,AfterViewInit {
   constructor(private userData: userData,private pdfService: CreatePDFService,private elementRef: ElementRef) {}
   isModalOpen = true;
   tableData: any[] = [];
@@ -29,6 +29,25 @@ export class SingleVinComponent implements OnInit {
   searchValue :string="";
   ngOnInit() {
     this.getTableData();
+  }
+
+  ngAfterViewInit() {
+    // Get the modal element using Bootstrap modal API
+    const modal = document.getElementById('exampleModal');
+
+    if (modal) {
+      // Listen for when the modal is shown
+      modal.addEventListener('shown.bs.modal', () => {
+     
+        this.openModal();
+      });
+
+      // Listen for when the modal is hidden
+      modal.addEventListener('hidden.bs.modal', () => {
+      
+        this.clearAll();
+      });
+    }
   }
 
   getTableData(vin: any = null) {
@@ -213,8 +232,10 @@ clearAll(){
 
 
 handleOutsideClick() {
-   this.isModalOpen = false; // Close the modal
+
+  if (!this.isModalOpen) return; 
    this.clearAll();
+   this.isModalOpen = false; // Close the modal
 }
 
 // Listen for clicks on the document
@@ -232,7 +253,6 @@ openModal(): void {
 }
 
 getTableDataAfetrClose(vin: any = null) {
-  //let url = `page=${this.page}&limit=${this.limit}`;  getCurrentVinData
   let url = ``;
   if (this.vin) {
     url = url + `&vin=${this.vin}`;
