@@ -20,6 +20,7 @@ import { AlertTableMainComponent } from './components/layout/alert-table-main/al
 import {NotificationComponent} from './components/layout/notification/notification.component';
 import { FileUploadComponent } from './components/layout/vin-input-file-upload/vin-input-file-upload.component';
 import { FileExportComponent } from './components/layout/get-recent-alert-file-export/get-recent-alert-file-export.component';
+import { ReportComponent } from './components/report/report.component';
 export const routes: Routes = [
   { 
     path: '', 
@@ -41,6 +42,10 @@ export const routes: Routes = [
     path: 'terms-and-conditions', component: TermsOfServicesComponent  
   }
   ,
+  {
+    path: 'reports', component: ReportComponent  
+  }
+  ,
   { 
     path: '', 
     component: LayoutComponent,
@@ -60,7 +65,7 @@ export const routes: Routes = [
       { path: 'file-export', component:FileExportComponent ,canActivate: [AuthGuard]},  
     ]
   },
-  // This route is used for any invalid routes
+  // This route is used for any invalid routes .
   { 
     path: '**', 
     component: NotFoundComponent 
