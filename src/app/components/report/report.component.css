@@ -1,0 +1,345 @@
+.wrapper-pdf{
+	position: relative;
+	min-height: 100%;
+}
+aside.siderbar-pdf{
+	background:#f4f6f9;
+}
+aside.siderbar-pdf{
+	background: #f4f6f9;
+	width: 270px;
+	height: 100vh;
+	overflow-y: hidden;
+	z-index: 1038;
+	float: none;
+	left: 0;
+	position: fixed;
+	top: 0;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08),0 6px 6px rgba(0,0,0,.22) !important;
+}
+.top-logo {
+	padding: 15px;
+}
+.top-logo img {
+	width: 200px;
+}
+.tagline {
+	display: block;
+	text-align: center;
+	font-size: 12px;
+}
+header.header-pdf {
+	margin-left: 270px;
+	background-color: #fff;
+	box-shadow: 0 0 2rem 0 rgba(41, 48, 66, 0.1);
+	border-bottom: 1px solid #eaecf0;
+	padding: 10px 0px;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1090;
+	height: 85px;
+}
+.header-section h1 {
+	font-size: 26px;
+	font-weight: bold;
+	color: var(--bg-primary);
+}
+ul.vinContains li {
+	display: inline-block;
+	margin-right: 25px;
+	font-size: 16px;
+}
+ul.vinContains li strong {
+	margin-right: 10px;
+}
+.content-wrapper-pdf {
+	margin-left: 270px;
+	padding-top: 85px;
+}
+.top-heading {
+	padding: 40px 0;
+}
+.top-heading h1 {
+	font-size: 34px;
+	font-weight: bold;
+}
+.top-heading h3 {
+	font-size: 24px;
+}
+.multilightOptions{
+	position: relative;
+}
+.blackHorizontalLine {
+	position: absolute;
+	background: rgb(34, 37, 46);
+	height: 4px;
+	top: calc(23px);
+	left: 0px;
+	right: 0px;
+}
+.threeLightBox {
+	height: 50px;
+	margin-left: 30px;
+	border-radius: 20px;
+	width: 130px;
+	position: relative;
+	background-color: rgb(34, 37, 46);
+}
+.lightCircles {
+	position: absolute;
+	top: 50%;
+	margin-top: -13px;
+	height: 26px;
+	width: 26px;
+	background-color: rgb(255, 255, 255);
+	border-radius: 50%;
+	border-top: 3px solid rgb(136, 136, 136);
+}
+.lightCircles.Redbox{
+	left: 15px;
+}
+.lightCircles.Redbox.nowOn{
+	background-color: rgb(211, 2, 2);
+}
+.lightCircles.Yellowbox {
+	left: 50%;
+	margin-left: -13px;
+	background-color: rgb(255, 255, 255);
+}
+.lightCircles.Yellowbox.nowOn{
+	background-color: rgb(46, 168, 12);
+}
+.lightCircles.Greenbox{
+	right: 15px;
+	background-color: rgb(255, 255, 255);
+}
+.lightCircles.Greenbox.nowOn{
+	background-color: rgb(232, 220, 38);
+}
+.upperWarningBox {
+	margin: 35px 0;
+}
+.warnigBox {
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+}
+.warningtext {
+	width: 160px;
+	background: #d30202;
+	color: #fff;
+	text-align: center;
+	padding: 0px 20px;
+	border-radius: 25px;
+	font-size: 14px;
+	height: 46px;
+	line-height: 46px;
+}
+.SmallTextarea {
+	display: inline-block;
+	background: #f2f2f2;
+	padding: 5px 20px;
+	border-radius: 25px;
+	margin: 20px 0 0;
+}
+.redText {
+	color: red;
+}
+.yellowText {
+	color: rgb(247, 187, 6);
+}
+.sectionHeadeing {
+	margin: 0 0 25px;
+	font-size: 24px;
+}
+.sumBox .card-title {
+	margin: 0 0 15px;
+}
+.sumBox ul li {
+	margin: 0 0 10px;
+}
+.card.sumBox.noAlert{
+	border-left: 4px solid #2ea80c;
+}
+.sumBox.redAlert {
+	border-left: 4px solid red;
+}
+.circleRedBox {
+	background: #d30202;
+	color: #fff;
+	width: 25px;
+	display: inline-block;
+	text-align: center;
+	height: 25px;
+	border-radius: 25px;
+	line-height: 21px;
+	box-shadow: 0 0 5px #735e5e;
+	margin-right: 5px;
+	font-size: 14px;
+}
+.ftrLogo {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+.ftrLogo img {
+	width: 85px;
+}
+.tableContent {
+	margin: 25px  0;
+}
+.tableinside {
+	width: 80px;
+	margin-left: 15px;
+}
+.tableContent .table > thead > tr > th:last-child {
+	text-align: left;
+	border-right: none;
+}
+.sectionHeadeing small {
+	font-size: 12px;
+	text-align: right;
+	float: right;
+	position: relative;
+	top: 7px;
+}
+.mainTextConent section {
+	padding: 0 0 50px;
+}
+.customBrandTooltip {
+	display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+}
+.tooltipBox {
+	border: 1px solid #cecece;
+	padding: 10px 16px;
+	cursor: pointer;
+	border-radius: 25px;
+	position: relative;
+}
+.showOnHover {
+	display: none;
+}
+.tooltipBox:hover .showOnHover {
+	display: block;
+	position: absolute;
+	width: 250px;
+	background: #fff;
+	border: 2px solid #b14253;
+	padding: 15px;
+	top: 50px;
+	left: 0px;
+	z-index: 1;
+	border-radius: 7px;
+	box-shadow: 0 0 15px #00000091;
+}
+.tooltipBox:hover .showOnHover::after {
+	font-family: Material Icons;
+	content: "arrow_drop_up";
+	display: inline-flex;
+	color: #b14253;
+	position: absolute;
+	top: -39px;
+	left: 10px;
+	-webkit-font-feature-settings: "liga";
+	font-feature-settings: "liga";
+	font-size: 46px;
+}
+.greenCode{
+	border-color: rgb(103, 158, 16);
+}
+.yellowCode {
+	border-color: rgb(232, 220, 38);
+}
+.redCode{
+	border-color: red;
+}
+.tooltipBox.redCode .showOnHover {
+	background: #b14253 !important;
+	color: #fff;
+	border-color: #b14253 !important;
+}
+.tooltipBox.yellowCode .showOnHover {
+	background-color: rgb(232, 220, 38) !important;
+	border-color: rgb(232, 220, 38) !important;
+}
+.tooltipBox.yellowCode:hover .showOnHover::after {
+	color: rgb(232, 220, 38) !important;
+}
+.tooltipBox.greenCode .showOnHover {
+	background-color: rgb(103, 158, 16) !important;
+	border-color: rgb(103, 158, 16) !important;
+	color: #fff;
+}
+.tooltipBox.greenCode:hover .showOnHover::after{
+	color: rgb(103, 158, 16) !important;
+}
+.siderbar-pdf ul li a {
+	display: block;
+	padding: 10px 15px;
+	line-height: 25px;
+	cursor: pointer;
+}
+.siderbar-pdf ul li a span {
+	margin-right: 10px;
+	font-size: 24px;
+	float: left;
+	color: #6c6c6c;
+}
+.siderbar-pdf ul li a.active {
+	background: #dfdfdf;
+}
+.showAlerton {
+	display: inline-block;
+	background: red;
+	width: 8px;
+	height: 8px;
+	margin-right: 10px;
+	border-radius: 50%;
+}
+.siderbar-pdf ul li a .circleRedBox{
+	color: #fff !important;
+	font-size: 14px;
+	box-shadow: none;
+	float: right;
+	line-height: 22px;
+}
+.smallNote {
+	font-size: 18px;
+	margin-top: 25px;
+}
+.ExplanatoryNoteP {
+	margin: 0 0 25px;
+}
+.alert.alert-danger.displayChange {
+	display: inline-block;
+	margin: 0;
+}
+#legaldisclaimer p {
+	margin: 0 0 15px;
+}
+#legaldisclaimer ul {
+	padding-left: 2rem;
+}
+#legaldisclaimer ul li {
+	list-style: disc;
+	margin: 0 0 5px;
+	font-size: 16px;
+}
+.oftrText p {
+	font-size: 14px;
+	color: #000;
+}
+.nmvtsTextandlogo {
+	display: flex;
+	flex-direction: row;
+	gap: 25px;
+	margin: 25px 0 0;
+}
+.nmvtLogosection img {
+	width: 250px;
+}
