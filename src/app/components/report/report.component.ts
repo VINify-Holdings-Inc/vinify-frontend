@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-report',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.css']
@@ -12,36 +13,43 @@ export class ReportComponent implements AfterViewInit {
   nmvtlogo: string = 'assets/images/nmvtis-1.png';
   reportSummary: string = 'assets/images/icons/sidebar-icon/export-report.svg';
   activeTab: string = 'reportsummary';  // Active tab to apply conditional classes
-  scrollCall=true;
+  scrollCall = true;
+
   @ViewChild('scrollableSections', { static: true }) scrollableSections: ElementRef | undefined;
-   
+
   constructor(private renderer: Renderer2) {}
 
   ngAfterViewInit() { 
-      if(this.scrollCall){
-        this.initScrollListener(); 
-      }
-      this.scrollCall=true
+    if (this.scrollCall) {
+      this.initScrollListener();
+    }
   }
 
   // Scroll to section method using @ViewChild
-  scrollToSection(sectionId: string) {
-    this.scrollCall=false;
+  scrollToSection(sectionId: string) {  
     this.activeTab = sectionId;
+    console.log(sectionId, "Value printed here");
+
+    this.scrollCall = false; // Prevent re-initialization
     const targetElement = document.getElementById(sectionId);
+    
     if (targetElement) {
       // Calculate the offset position
       const targetPosition = targetElement.offsetTop - 110; // 110px offset for header
- 
+
       window.scrollTo({
         top: targetPosition,
         behavior: 'smooth' // Smooth scroll effect
       }); 
     }
+
+    // Ensure the scroll listener is initialized
+    this.initScrollListener(); 
   } 
 
   initScrollListener() {
     let ticking = false; 
+
     this.renderer.listen('window', 'scroll', () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
