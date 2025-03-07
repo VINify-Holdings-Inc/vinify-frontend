@@ -65,7 +65,7 @@ export const routes: Routes = [
       { path: 'file-export', component:FileExportComponent ,canActivate: [AuthGuard]},  
     ]
   },
-  // This route is used for any invalid routes
+  // This route is used for any invalid routes .
   { 
     path: '**', 
     component: NotFoundComponent 
