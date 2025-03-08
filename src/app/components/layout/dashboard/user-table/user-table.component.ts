@@ -200,7 +200,7 @@ getTableData(dataType:any) {
           res?.data?.items || [],
           'Vin-data.pdf'
         );
-       
+        
       }
       this.isLoading = false;
     },
