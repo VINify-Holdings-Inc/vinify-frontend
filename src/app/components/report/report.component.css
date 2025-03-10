@@ -343,3 +343,10 @@ ul.vinContains li strong {
 .nmvtLogosection img {
 	width: 250px;
 }
+.sectionHeadeing .circleRedBox {
+	position: relative;
+	top: -3px;
+}
+.cursor-pointer-term{
+	cursor:pointer !important;
+}
