@@ -22,6 +22,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CsvExportService } from '../../../../services/csv-export.service';
+import { NavPdfService } from '../../../../services/nav-pdf.service';
 
 @Component({
   selector: 'app-user-table',
@@ -40,7 +41,8 @@ export class UserTableComponent implements AfterViewInit, OnChanges{
 
   constructor(private router: Router,private pdfService: CreatePDFService,
               private userData: userData,private cdr: ChangeDetectorRef,
-              private csvExportService: CsvExportService) {
+              private csvExportService: CsvExportService,
+              private navPdf : NavPdfService) {
    
   }
   searchValue :string="";
@@ -198,6 +200,7 @@ getTableData(dataType:any) {
           res?.data?.items || [],
           'Vin-data.pdf'
         );
+        
       }
       this.isLoading = false;
     },
