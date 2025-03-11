@@ -200,41 +200,7 @@ getTableData(dataType:any) {
           res?.data?.items || [],
           'Vin-data.pdf'
         );
-        /************************************************* */
-            
-        this.navPdf.generatePDF(
         
-            PDF_SETTINGS.COMPANY_NAME,
-            '1ABCDEFG123456789',
-            [
-              { title: 'Junk Salvage', records: 2 },
-              { title: 'Title Information', records: 3 }
-            ],
-            res?.data?.items || [],
-            res?.data?.items || [],
-            res?.data?.items || [],
-            
-            [
-              {
-                name: 'Black Book',
-                description: `Black Book® is a leading provider of vehicle values, bringing VINData History auto values, 
-                              including pickup trucks, SUVs, RV values, motorcycles, commercial truck values, and classic cars.`,
-                copyright: `Copyright © 2020 Hearst Business Media Corp. ALL RIGHTS RESERVED.`,
-                image: 'blackbook_logo.png', 
-              },
-              {
-                name: 'Kelley Blue Book',
-                description: `© 2025 Kelley Blue Book Co., Inc. All rights reserved. 03/08/2025 National Edition. The specific 
-                              information required to determine the value for this particular vehicle was supplied by the report generator.`,
-                copyright: `Kelley Blue Book assumes no responsibility for errors or omissions.`,
-                image: 'kbb_logo.png', 
-              }
-            ],PDF_SETTINGS.LOGO_URL, 'Vin-data-new.pdf'
-        );
-
-
-
-        /************************************************ */
       }
       this.isLoading = false;
     },
