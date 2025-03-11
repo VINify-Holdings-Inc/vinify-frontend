@@ -156,8 +156,10 @@ getVinSearch(vin:any){
             },
             icon: 'info',
             showCancelButton: true, // Enables the cancel button
-            confirmButtonText: 'Yes', // Text for the confirm button
+            confirmButtonText: 'PDF View', // Text for the confirm button
             cancelButtonText: 'No',  // Text for the cancel button
+            showDenyButton: true, // Enables the additional button
+            denyButtonText: 'Web View', // Text for the new button
           }).then((result) => {
             if (result.isConfirmed) {
               this.isLoading=true;
@@ -228,6 +230,63 @@ getVinSearch(vin:any){
                             }); 
               }
             });
+            }
+            else if(result.isDenied){
+              this.isLoading=true;
+              this.callSoapServiceAuth().then((success) => {
+               if (success) {
+                 
+                 this.getVinSearchDataFromSoap(this.soapToken,vin).then((resp) => {
+                  console.log("test data",resp)
+                       this.isLoading=false;
+                       if(resp.type){
+                         if(!resp.xml.error){
+                             
+                          localStorage.setItem("apiData", JSON.stringify(resp?.xml?.reportData));  // Store data
+                          localStorage.setItem("apiDataVin", JSON.stringify(vin));  // Store data
+                                window.open("/reports", "_blank"); // Redirect to new page
+                            
+                         }else{
+                           Swal.fire({
+                             title: 'Info!',
+                             showClass: {
+                               popup: 'animated fadeInDown faster',
+                               icon: 'animated heartBeat delay-1s'
+                             },
+                             text: "Something went worng,please try after sometime",
+                             icon: 'error',
+                             confirmButtonText: 'OK',
+                           });
+                         }
+                                                  
+                       }else{
+                           Swal.fire({
+                             title: 'Error!',
+                             showClass: {
+                               popup: 'animated fadeInDown faster',
+                               icon: 'animated heartBeat delay-1s'
+                             },
+                             text: "Error is occurred while fetching Vin Details",
+                             icon: 'error',
+                             confirmButtonText: 'OK',
+                           });
+                       }
+                       
+                    })
+               } else {
+                     this.isLoading=false;
+                         Swal.fire({
+                               title: 'Error!',
+                               showClass: {
+                                 popup: 'animated fadeInDown faster',
+                                 icon: 'animated heartBeat delay-1s'
+                               },
+                               text: "Sever is down",
+                               icon: 'error',
+                               confirmButtonText: 'OK',
+                             }); 
+               }
+             })
             }
           });
         } 
