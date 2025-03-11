@@ -350,3 +350,10 @@ ul.vinContains li strong {
 .cursor-pointer-term{
 	cursor:pointer !important;
 }
+span.makeitshortLength {
+    display: block;
+    word-wrap: normal;
+    width: 670px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

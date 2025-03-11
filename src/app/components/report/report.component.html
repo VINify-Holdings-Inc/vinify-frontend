@@ -7,7 +7,7 @@
 						<h1>Vehicle History Report</h1>
 						<div class="vinInfoModel">
 							<ul class="vinContains">
-								<li><strong>VIN</strong><span>1FTCF15N5HLA06223</span></li>
+								<li><strong>VIN</strong><span>{{vinData}}</span></li>
 								<li><strong>2005 NISSAN Sentra</strong></li>
 							</ul>
 						</div>
@@ -30,11 +30,11 @@
 						class="material-icons">summarize</span>Report Summary</a></li>
 			<li (click)="scrollToSection('titleinformations')"><a
 					[ngClass]="{ 'active': activeTab === 'titleinformations' }"><span
-						class="material-icons">article</span>Title Information <span class="circleRedBox">2</span></a>
+						class="material-icons">article</span>Title Information <span *ngIf="data.titleDataCount" class="circleRedBox">{{data.titleDataCount}}</span></a>
 			</li>
 			<li (click)="scrollToSection('junknsalvagesection')"><a
 					[ngClass]="{ 'active': activeTab === 'junknsalvagesection' }"><span
-						class="material-icons">delete</span>Junk/Salvage <span class="circleRedBox">2</span></a></li>
+						class="material-icons">delete</span>Junk/Salvage <span *ngIf="data.JSICount" class="circleRedBox">{{data.JSICount}}</span></a></li>
 			<li (click)="scrollToSection('legaldisclaimer')"><a
 					[ngClass]="{ 'active': activeTab === 'legaldisclaimer' }"><span
 						class="material-icons">local_police</span>Legal Disclaimer</a></li>
@@ -92,7 +92,8 @@
 														<li>State Name</li>
 													</ul>
 													<div class="cardFtr">
-														<span class="circleRedBox">2</span> of 2 Records
+														<span *ngIf="data.titleDataCount"><span class="circleRedBox">{{data.titleDataCount}}</span> of {{data?.titleData?.length}} Records</span>
+														<span *ngIf="!data.titleDataCount">{{data?.titleData?.length}} Records</span>
 													</div>
 													<div class="ftrLogo">
 														<img [src]="nmvtlogo" class="img-fluid" alt="Logo" />
@@ -112,7 +113,8 @@
 														<li>State Name</li>
 													</ul>
 													<div class="cardFtr">
-														<span class="circleRedBox">2</span> of 2 Records
+														<span *ngIf="data.brandDataCount"><span class="circleRedBox">{{data.brandDataCount}}</span> of {{data?.brandData?.length}} Records</span>
+														<span *ngIf="!data.brandDataCount">{{data?.brandData?.length}} Records</span>
 													</div>
 													<div class="ftrLogo">
 														<img [src]="nmvtlogo" class="img-fluid" alt="Logo" />
@@ -132,7 +134,9 @@
 														<li>State Name</li>
 													</ul>
 													<div class="cardFtr">
-														4 Records
+														<span *ngIf="data.JSICount"><span class="circleRedBox">{{data.JSICount}}</span> of {{data?.JSI?.length}} Records</span>
+														<span *ngIf="!data.JSICount">{{data?.JSI?.length}} Records</span>
+												
 													</div>
 													<div class="ftrLogo">
 														<img [src]="nmvtlogo" class="img-fluid" alt="Logo" />
@@ -151,7 +155,7 @@
 
 						<section id="titleinformations" class="">
 							<div class="sectionText">
-								<h2 class="sectionHeadeing">Title Information <small><strong>Source</strong>
+								<h2 class="sectionHeadeing"><span *ngIf="data.titleDataCount" class="circleRedBox">{{data.titleDataCount}}</span>Title Information <small><strong>Source</strong>
 										NMVTIS</small></h2>
 								<p>This section identifies this vehicle's current and historic DMV titles reported as
 									issued by date, indicating the state and reported mileage. Title brands that have
@@ -175,41 +179,26 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>1FTCF15N5HLA06223</td>
-													<td>Flood damage</td>
-													<td>21 Aug 2016 </td>
-													<td>California</td>
-													<td>Current</td>
-													<td>NMVTIS <img [src]="nmvtlogo" class="img-fluid tableinside"
-															alt="Logo" /></td>
-												</tr>
-												<tr>
-													<td>1FTCF15N5HLA06223</td>
-													<td>Flood damage</td>
-													<td>21 Aug 2016 </td>
-													<td>California</td>
-													<td>History</td>
-													<td>NMVTIS <img [src]="nmvtlogo" class="img-fluid tableinside"
-															alt="Logo" /></td>
-												</tr>
-												<tr>
-													<td>1FTCF15N5HLA06223</td>
-													<td>Flood damage</td>
-													<td>21 Aug 2016 </td>
-													<td>California</td>
-													<td>History</td>
-													<td>NMVTIS <img [src]="nmvtlogo" class="img-fluid tableinside"
-															alt="Logo" /></td>
-												</tr>
+												
+												<tr *ngFor="let item of data?.titleData">
+													<td>{{ item?.vin }}</td>
+													<td>{{ item?.brand || '-' }}</td>
+													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat: 'DD MMM YYYY') : '-' }}</td>
+													<td>{{ item?.state || '-' }}</td>
+													<td>{{ item?.status || '-' }}</td>
+													<td>
+														NMVTIS
+													  <img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
+													</td>
+												  </tr>
 											</tbody>
 										</table>
 									</div>
 								</div>
 
-								<h2 class="sectionHeadeing"><span class="circleRedBox">2</span> Title Brands Reported
+								<h2 class="sectionHeadeing"><span *ngIf="data.brandDataCount" class="circleRedBox">{{data.brandDataCount}}</span> Title Brands Reported
 								</h2>
-								<div class="alert alert-danger displayChange" role="alert">
+								<div class="alert alert-danger displayChange" *ngIf="data.brandDataCount" role="alert">
 									Warning – at least one negative title or cautionary DMV title brands have been
 									reported to VINData History.
 								</div>
@@ -219,25 +208,27 @@
 											<thead>
 												<tr>
 													<th scope="col">Date</th>
-													<th scope="col">State</th>
-													<th scope="col">Status</th>
+													<th width="200" scope="col">State</th>
+													<th width="350" scope="col">Brand Name(s)</th>
 													<th scope="col">Description</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td><span class="showAlerton"></span>01 Mar 2002</td>
-													<td>California</td>
-													<td>Prior Police</td>
-													<td>Vehicle previously registered as a police vehicle.</td>
-												</tr>
-												<tr>
-													<td><span class="showAlerton"></span>01 Feb 2001</td>
-													<td>California</td>
-													<td>Gray Market</td>
-													<td>Vehicle was manufactured for use outside of the United States
-														and has been brought into the U.S. for sale or use.</td>
-												</tr>
+												
+												<tr *ngFor="let item of data?.brandData">
+													<!-- <span class="showAlerton"></span> -->
+													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat: 'DD MMM YYYY') : '-' }}</td>
+													<td>{{ item?.state || '-' }}</td>
+													<td>{{ item?.brand? item?.brand?.split(' - ')[0]:"-"}}</td>
+													<td><span class="makeitshortLength">{{ item?.brand? item?.brand?.split(' - ')[1]:"-" }}</span></td>
+													
+													<td>
+														NMVTIS
+													  <img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
+													</td>
+												  </tr>
+												
+												
 
 											</tbody>
 										</table>
@@ -449,7 +440,7 @@
 
 						<section id="junknsalvagesection">
 							<div class="sectionText">
-								<h2 class="sectionHeadeing"><span class="circleRedBox">2</span> Junk/Salvage Information
+								<h2 class="sectionHeadeing"><span *ngIf ="data.JSICount" class="circleRedBox">{{data.JSICount}}</span> Junk/Salvage Information
 									<small><strong>Source</strong> NMVTIS</small></h2>
 								<p>This section discloses events related to events like junk, salvage and insurance
 									total loss that have been reported to VIN ALARM. Included are state DMV titles that
@@ -486,26 +477,20 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td><span class="showAlerton"></span>01 Mar 2002</td>
-													<td>Copart, Inc.<br />Fairfield, California<br />Phone: 707-639-5294
+												
+												<tr *ngFor="let item of data?.JSI">
+													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat: 'DD MMM YYYY') : '-' }}</td>
+													
+													
+													<td>{{ item?.IdentificationID || '-' }}</td>
+													<td>{{ item?.ReportingEntityCategoryText || '-' }}</td>
+													<td>{{ item?.EntityName||"-" }}</td>
+													<td>{{ item?.export||"-" }}</td>
+													<td>
+														NMVTIS
+													  <img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
 													</td>
-													<td>Salvage</td>
-													<td>TO BE DETERMINED</td>
-													<td>No</td>
-													<td>NMVTIS <img [src]="nmvtlogo" class="img-fluid tableinside"
-															alt="Logo" /></td>
-												</tr>
-												<tr>
-													<td><span class="showAlerton"></span>01 Mar 2002</td>
-													<td>Copart, Inc.<br />Fairfield, California<br />Phone: 707-639-5294
-													</td>
-													<td>Salvage</td>
-													<td>TO BE DETERMINED</td>
-													<td>No</td>
-													<td>NMVTIS <img [src]="nmvtlogo" class="img-fluid tableinside"
-															alt="Logo" /></td>
-												</tr>
+												  </tr>
 
 
 											</tbody>

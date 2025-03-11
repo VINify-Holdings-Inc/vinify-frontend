@@ -22,7 +22,7 @@ export class NavPdfService {
     tableData: any[],
     brandData: any[],
     junkSalvageData: any[],
-    sources: string[],
+    sources: any[],
     logImage:any,
     fileName: string = 'Vehicle_History_Report.pdf',
   ): void {
@@ -274,12 +274,14 @@ y = (doc as any).lastAutoTable.finalY + 10;
     y = (doc as any).lastAutoTable.finalY + 10;
 
     // Legal Disclaimer
+    doc.setFontSize(14);
+    doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y+5);
     y += 20;
     // doc.setFontSize(10);
     // doc.text(disclaimer, 15, y);
      
       // Disclaimer Section (Ensure it spans multiple pages if necessary)
-      const finalY = (doc as any).lastAutoTable.finalY + 10; // Position after the last table
+      const finalY = (doc as any).lastAutoTable.finalY + 25; // Position after the last table
       let yPosition = finalY;
       const pageHeight = doc.internal.pageSize.height; 
       const pageWidth = doc.internal.pageSize.width; 
@@ -313,13 +315,36 @@ y = (doc as any).lastAutoTable.finalY + 10;
   
     // Sources
     y += 10;
-    doc.setFontSize(12);
-    doc.text('Sources:', 15, y);
-    y += 5;
-    sources.forEach((source) => {
-      doc.text(`- ${source}`, 20, y);
-      y += 5;
-    });
+   doc.setFontSize(14);
+  doc.text('Data Sources', 15, y);
+  y += 10;
+
+  // Description
+  doc.setFontSize(10);
+  const description = `Your VINData History report checks for and reports information from the following high-quality data sources. 
+  Please see our report sections page, FAQ, terms of service, and disclaimer for more information.`;
+  doc.text(doc.splitTextToSize(description, 180), 15, y);
+  y += 15;
+
+  // Loop through data sources
+  sources.forEach((source, index) => {
+    // Check for page break
+    if (y + 50 > doc.internal.pageSize.height - 20) {
+      doc.addPage();
+      y = 20; // Reset Y for new page
+    }
+
+    // Add Logo
+    doc.addImage(logImage, 'PNG', 15, y, 40, 20);
+    
+    // Add Text
+    doc.text(doc.splitTextToSize(source.description, 140), 60, y + 5);
+    
+    // Add Copyright
+    doc.setFontSize(8);
+    doc.text(doc.splitTextToSize(source.copyright, 180), 15, y + 30);
+    y += 45; // Move Y down for the next block
+  });
 
  
     addFooter();

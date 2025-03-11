@@ -1,14 +1,15 @@
 import { Component, AfterViewInit, Renderer2, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DateFormatPipe } from '../../pipes/date-format.pipe';
 
 @Component({
   selector: 'app-report',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,DateFormatPipe],
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.css']
 })
-export class ReportComponent implements OnInit  {
+export class ReportComponent implements OnInit,AfterViewInit  {
   logo: string = 'assets/images/ta-logo.png';
   nmvtlogo: string = 'assets/images/nmvtis-1.png';
   reportSummary: string = 'assets/images/icons/sidebar-icon/export-report.svg';
@@ -17,17 +18,33 @@ export class ReportComponent implements OnInit  {
 
   @ViewChild('scrollableSections', { static: true }) scrollableSections: ElementRef | undefined;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private el: ElementRef) {}
  ngOnInit(): void {
   this.initScrollListener();
  }
+
+data :any={}
+vinData :any="";
+
+ ngAfterViewInit(): void {
+  const apiData: string | null = localStorage.getItem("apiData");
+  const apiDataVin: any  = localStorage.getItem("apiDataVin");
+
+  if (apiData) {
+    this.data = JSON.parse(apiData);
+    this.vinData = JSON.parse(apiDataVin);
+    console.log("Received Data:", this.data);
+
+    
+  }
+}
 
  private isScrolling = false; // Lock for manual scroll.
 
 scrollToSection(sectionId: string) {  
   this.isScrolling = true;  // Lock scrolling events
   this.activeTab = sectionId;
-  console.log("Scrolling to section:", sectionId);
+  //console.log("Scrolling to section:", sectionId);
 
   const targetElement = document.getElementById(sectionId);
   
@@ -82,4 +99,7 @@ scrollToSection(sectionId: string) {
       this.activeTab = current; // Only update when not locked
     }
   }
+
+  
+
 }
