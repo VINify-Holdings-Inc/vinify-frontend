@@ -224,7 +224,7 @@ export class NavPdfService {
     // Title Information
     y += 60;
     if(titleCount){
-    drawBadge(doc, 14, y-1, 2);  //x,y,number
+    drawBadge(doc, 14, y-1, titleCount);  //x,y,number
     }
     doc.setFontSize(14);
     doc.setTextColor(0, 0, 0);
@@ -272,7 +272,7 @@ export class NavPdfService {
       // Brand Title
       y += 5;
       if(brandCount){
-      drawBadge(doc, 14, y-1, 2);  //x,y,number
+      drawBadge(doc, 14, y-1, brandCount);  //x,y,number
       }
       doc.setFontSize(14);
       doc.setTextColor(0, 0, 0);
@@ -319,7 +319,7 @@ y = (doc as any).lastAutoTable.finalY + 10;
     // Junk Salvage
     y += 5;
     if(JSICount){
-    drawBadge(doc, 14, y-1, 2);  //x,y,number
+    drawBadge(doc, 14, y-1, JSICount);  //x,y,number
     }
     doc.setFontSize(14);
     doc.setTextColor(0, 0, 0);
