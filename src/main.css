@@ -3766,3 +3766,8 @@ button.btn.btn-primary.modalExport {
 .alerttableUI .card{
   margin: 0;
 }
+button.swal2-deny.swal2-styled {
+  width: 120px !important;
+  background: var(--bg-primary) !important;
+  border-color: var(--bg-primary) !important;
+}

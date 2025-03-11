@@ -8,7 +8,7 @@
 						<div class="vinInfoModel">
 							<ul class="vinContains">
 								<li><strong>VIN</strong><span>{{vinData}}</span></li>
-								<li><strong>2005 NISSAN Sentra</strong></li>
+								<!-- <li><strong></strong></li> -->
 							</ul>
 						</div>
 					</div>
@@ -48,7 +48,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="top-heading">
-						<h1>2005 NISSAN Sentra SAMPLE REPORT</h1>
+						<h1>REPORT</h1>
 						<h3>*Don't risk buying a lemon!</h3>
 					</div>
 					<div class="multilightOptions">
@@ -211,6 +211,7 @@
 													<th width="200" scope="col">State</th>
 													<th width="350" scope="col">Brand Name(s)</th>
 													<th scope="col">Description</th>
+													<th width="300" scope="col">Source</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -221,15 +222,11 @@
 													<td>{{ item?.state || '-' }}</td>
 													<td>{{ item?.brand? item?.brand?.split(' - ')[0]:"-"}}</td>
 													<td><span class="makeitshortLength">{{ item?.brand? item?.brand?.split(' - ')[1]:"-" }}</span></td>
-													
-													<td>
+													 <td>
 														NMVTIS
 													  <img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
 													</td>
-												  </tr>
-												
-												
-
+												  </tr> 
 											</tbody>
 										</table>
 									</div>
