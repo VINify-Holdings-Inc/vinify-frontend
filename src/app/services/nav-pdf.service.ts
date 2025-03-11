@@ -62,7 +62,7 @@ export class NavPdfService {
         doc.setLineWidth(1);
         doc.line(15, 35, 195, 35); 
     };
-
+  
     const addVehicleInfoSection = () => {
       let y = 45; // Position below the header
     
