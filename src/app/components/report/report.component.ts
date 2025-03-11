@@ -32,10 +32,7 @@ vinData :any="";
 
   if (apiData) {
     this.data = JSON.parse(apiData);
-    this.vinData = JSON.parse(apiDataVin);
-    console.log("Received Data:", this.data);
-
-    
+    this.vinData = JSON.parse(apiDataVin); 
   }
 }
 
@@ -54,8 +51,7 @@ scrollToSection(sectionId: string) {
     window.scrollTo({
       top: targetPosition,
       behavior: 'smooth'
-    });
-
+    }); 
     // Unlock scrolling after transition completes
     setTimeout(() => {
       this.isScrolling = false;

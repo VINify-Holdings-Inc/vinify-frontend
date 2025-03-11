@@ -97,7 +97,7 @@
 														<li>{{ data?.titleData?.length?
 															(data?.titleData[0]?.titleBrandDate | dateFormat: 'DD MMM
 															YYYY') : '-' }}</li>
-															<li>{{ data?.titleData?.[0]?.state ?? '-' }}</li>
+														<li>{{ data?.titleData?.[0]?.state ?? '-' }}</li>
 													</ul>
 													<div class="cardFtr">
 														<span *ngIf="data.titleDataCount"><span
@@ -128,7 +128,7 @@
 															(data?.brandData[0]?.titleBrandDate | dateFormat: 'DD MMM
 															YYYY') : '-' }}</li>
 
-															<li>{{ data?.brandData?.[0]?.state ?? '-' }}</li>
+														<li>{{ data?.brandData?.[0]?.state ?? '-' }}</li>
 													</ul>
 													<div class="cardFtr">
 														<span *ngIf="data.brandDataCount"><span
@@ -157,7 +157,7 @@
 															Junk/Salvage exists for the vehicle.</li>
 														<li>{{ data?.JSI?.length ? (data?.JSI[0]?.titleBrandDate |
 															dateFormat: 'DD MMM YYYY') : '-' }}</li>
-															<li>{{ data?.JSI?.[0]?.state ?? '-' }}</li>
+														<li>{{ data?.JSI?.[0]?.state ?? '-' }}</li>
 
 													</ul>
 													<div class="cardFtr">
@@ -339,13 +339,19 @@
 											vehicle. The retail value of the vehicle is determined by a current edition
 											of a nationally recognized compilation (to include automated data bases) of
 											retail values.</span></span>
-									<span class="tooltipBox redCode">Test Vehicle <span class="showOnHover">The vehicle
-											is built and retained by the manufacturer for testing.</span></span>
+									<span class="tooltipBox redCode">Test Vehicle <span class="showOnHover"> The vehicle
+											is built and retained by the manufacturer or has been retrofitted by a third
+											party for testing and may not be considered roadworthy after testing is
+											complete.</span></span>
 									<span class="tooltipBox redCode">Refurbished <span class="showOnHover">Any vehicle
 											modified by the installation of a new cab and chassis for the existing coach
-											which has been inspected and re-certified by the jurisdiction.</span></span>
+											which has been renovated, resulting in a vehicle of greater value or a
+											vehicle with a new style.</span></span>
 									<span class="tooltipBox">Collision <span class="showOnHover">Vehicle damaged by
 											collision.</span></span>
+									<span class="tooltipBox"> Reserved <span class="showOnHover"> Eliminated in favor of
+											code 09. Code 15 was "Prior Salvage." </span></span>
+
 									<span class="tooltipBox redCode">Salvage Retention <span class="showOnHover">The
 											vehicle is branded salvage and is kept by the owner.</span></span>
 									<span class="tooltipBox yellowCode">Prior Taxi <span class="showOnHover">Vehicle
@@ -359,9 +365,9 @@
 											vehicle.</span></span>
 									<span class="tooltipBox redCode">Remanufactured <span class="showOnHover">Vehicle
 											was reconstructed by the manufacturer.</span></span>
-									<span class="tooltipBox redCode">Gray Market <span class="showOnHover">Vehicle was
-											manufactured for use outside of the United States and has been brought into
-											the U.S. for sale or use.</span></span>
+									<span class="tooltipBox"> Reserved. Eliminated <span class="showOnHover"> Has been
+											replaced by brands "45" and "46", as of 6/25/01 </span></span>
+
 									<span class="tooltipBox">Warranty Return <span class="showOnHover">Vehicle returned
 											to the manufacturer due to a defect.</span></span>
 									<span class="tooltipBox greenCode">Antique <span class="showOnHover">The vehicle is
@@ -385,31 +391,83 @@
 									<span class="tooltipBox redCode">Owner Retained <span class="showOnHover">The
 											vehicle has been declared a total loss but is kept by the
 											owner.</span></span>
-									<span class="tooltipBox yellowCode">Bond Posted <span class="showOnHover">A surety
-											bond has been posted for the vehicle.</span></span>
+									<span class="tooltipBox yellowCode">Reserved. Eliminated. Bond Posted<span
+											class="showOnHover">The insurance company has issued a bond on the vehicle
+											because the ownership of the vehicle cannot be proven; this allows the
+											vehicle to be sold and titled. Note: This brand is not valid after January
+											17, 2003.</span></span>
 									<span class="tooltipBox yellowCode">Memorandum Copy <span class="showOnHover">The
 											title document is a duplicate.</span></span>
-									<span class="tooltipBox">Parts Only <span class="showOnHover">The vehicle is for
-											parts only and cannot be registered.</span></span>
+									<span class="tooltipBox">Reserved. Eliminated. Parts Only<span
+											class="showOnHover">The vehicle may only be used for parts. This code is no
+											longer used, use "07 - Dismantled".</span></span>
 									<span class="tooltipBox yellowCode">Recovered Theft <span class="showOnHover">The
 											vehicle was stolen and has been recovered.</span></span>
 									<span class="tooltipBox yellowCode">Undisclosed Lien <span class="showOnHover">The
 											vehicle has an undisclosed lien.</span></span>
-									<span class="tooltipBox">Lease Buyback <span class="showOnHover">The vehicle was
-											leased and then bought back by the manufacturer.</span></span>
-									<span class="tooltipBox">Manufacturer Buyback <span class="showOnHover">The vehicle
-											was bought back by the manufacturer due to a defect.</span></span>
-									<span class="tooltipBox">Lemon <span class="showOnHover">The vehicle was repurchased
-											by the manufacturer due to persistent problems.</span></span>
-									<span class="tooltipBox">Vehicle Disclosed as Manufacture Buyback <span
-											class="showOnHover">The vehicle was bought back by the manufacturer and
-											disclosed as such.</span></span>
-									<span class="tooltipBox">Gray Market Non-compliant <span class="showOnHover">The
-											vehicle does not meet U.S. regulations.</span></span>
-									<span class="tooltipBox">Gray Market Compliant <span class="showOnHover">The vehicle
-											meets U.S. regulations.</span></span>
-									<span class="tooltipBox">Insurance Loss <span class="showOnHover">The vehicle has
-											been declared a loss by an insurance company.</span></span>
+
+									<span class="tooltipBox"> Prior Owner Retained <span class="showOnHover">A vehicle
+											that was previously branded owner retained and was sold. The new owner''s
+											title contains this brand. </span></span>
+									<span class="tooltipBox"> Vehicle Non-conformity Uncorrected<span
+											class="showOnHover"> A non-safety defect reported to the jurisdiction by the
+											vehicle manufacturer remains uncorrected. </span></span>
+									<span class="tooltipBox"> Vehicle Non-conformity Corrected <span
+											class="showOnHover"> A non-safety defect reported to the jurisdiction by the
+											vehicle manufacturer has been corrected. </span></span>
+									<span class="tooltipBox">Vehicle Safety Defect Uncorrected <span
+											class="showOnHover">A safety defect reported to the jurisdiction by the
+											vehicle manufacturer remains uncorrected. </span></span>
+									<span class="tooltipBox"> Vehicle Safety Defect Corrected <span class="showOnHover">
+											A safety defect reported to the jurisdiction by the vehicle manufacturer has
+											been corrected. </span></span>
+									<span class="tooltipBox">VIN replaced by a new state assigned VIN <span
+											class="showOnHover"> A title should not be issued for the VIN. This brand
+											can be issued for rebuilt vehicles. </span></span>
+
+
+
+									<span class="tooltipBox"> Gray Market <span class="showOnHover"> Vehicle was
+											manufactured for use outside the United States and has been brought into the
+											United States. The vehicle is not in compliance with applicable federal
+											standards. </span></span>
+									<span class="tooltipBox"> Gray Market <span class="showOnHover"> Vehicle was
+											manufactured for use outside the United States and has been brought into the
+											United States. The vehicle is in compliance with applicable federal
+											standards. </span></span>
+
+									<span class="tooltipBox">Manufacturer Buyback <span class="showOnHover">Vehicle was
+											manufactured for use outside the United States and has been brought into the
+											United States. The vehicle is not in compliance with applicable federal
+											standards.</span></span>
+									<span class="tooltipBox">Former Rental <span class="showOnHover"> Former Rental
+										</span></span>
+
+									<span class="tooltipBox"> Salvage--Stolen <span class="showOnHover"> Any vehicle
+											which has been wrecked, destroyed or damaged, to the extent that the total
+											estimated or actual cost of parts and labor to rebuild or reconstruct the
+											vehicle to its pre-accident condition and for legal operation on roads or
+											highways exceeds a jurisdiction-defined percentage of the retail value of
+											the vehicle. The retail value of the vehicle is determined by a current
+											edition of a nationally recognized compilation (to include automated data
+											bases) of retail values. Salvage--Damage or Not Specified also includes any
+											vehicle to which an insurance company acquires ownership pursuant to a
+											damage settlement, or any vehicle that the vehicle''s owner may wish to
+											designate as a salvage vehicle by obtaining a salvage title, without regard
+											to extent of the vehicle''s damage and repairs, or any vehicle for which the
+											jurisdiction cannot distinguish the reason the vehicle was designated
+											salvage.</span></span>
+
+									<span class="tooltipBox"> Salvage--Reasons Other Than Damage or Stolen <span
+											class="showOnHover"> Any vehicle the reporting jurisdiction considers
+											salvage based on criteria, such as abandonment, not covered by the
+											Salvage--Damage or Not Specified and Salvage--Stolen brands. Note.--Percent
+											of damage is not reported with brand code 50. </span></span>
+
+									<span class="tooltipBox"> Disclosed Damage<span class="showOnHover"> The vehicle has
+											sustained damage to the extent that the damage is required to be disclosed
+											under the jurisdiction''s damage disclosure law. </span></span>
+
 									<span class="tooltipBox">Prior Non-Repairable / Repaired <span class="showOnHover">A
 											vehicle constructed by repairing a vehicle that has been destroyed or
 											declared to be non-repairable or otherwise declared to not be eligible for
@@ -489,6 +547,7 @@
 											(including the engine block), and shall not be exported prior to crushing or
 											shredding. For additional information concerning the CARS program visit
 											CARS.gov.</span></span>
+
 								</div>
 							</div>
 						</section>
