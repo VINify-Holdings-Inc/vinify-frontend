@@ -22,7 +22,7 @@ export class ReportComponent implements OnInit  {
   this.initScrollListener();
  }
 
- private isScrolling = false; // Lock for manual scroll
+ private isScrolling = false; // Lock for manual scroll.
 
 scrollToSection(sectionId: string) {  
   this.isScrolling = true;  // Lock scrolling events
