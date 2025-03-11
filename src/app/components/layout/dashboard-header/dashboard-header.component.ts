@@ -12,6 +12,7 @@ import { LoaderComponent } from '../common/loader/loader.component';
 import { SoapService } from '../../../services/soap.service';
 import { CreateSoapPdfService } from '../../../services/create-soap-pdf.service';
 import { PDF_SETTINGS, UPLOAD_FOLDER } from '../../../../app/constants';
+import { NavPdfService } from '../../../services/nav-pdf.service';
 @Component({
   selector: 'app-dashboard-header',
   imports: [CommonModule, FormsModule, DateFormatPipe, LoaderComponent, RouterLink],
@@ -34,7 +35,8 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private soapService: SoapService, private notificationService: NotificationService,
     private lastUpdatedService: LastUpdatedService,
-    private pdfService: CreateSoapPdfService) {
+    private pdfService: CreateSoapPdfService,
+    private navPdf : NavPdfService) {
     this.profileData = this.profileService.getInitialProfileData();
     this.userEmail = JSON.parse(localStorage.getItem("profileData") || "")?.email;
 
@@ -172,12 +174,21 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
                     if (resp.type) {
                       if (!resp.xml.error) {
                         if (resp?.xml?.generatePdf.length) {
-                          this.pdfService.generatePDF(
+                          // this.pdfService.generatePDF(
+                          //   PDF_SETTINGS.COMPANY_NAME,
+                          //   PDF_SETTINGS.LOGO_URL,
+                          //   resp?.xml?.generatePdf || [],
+                          //   'Vin-data.pdf'
+                          // );
+                          
+                          this.navPdf.generatePDF(
                             PDF_SETTINGS.COMPANY_NAME,
+                            vin,
+                            resp?.xml?.reportData,
                             PDF_SETTINGS.LOGO_URL,
-                            resp?.xml?.generatePdf || [],
-                            'Vin-data.pdf'
-                          );
+                            vin+'-data-req-file.pdf'
+                        );
+
                         } else {
                           Swal.fire({
                             title: 'Info!',
