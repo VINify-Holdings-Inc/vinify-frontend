@@ -244,7 +244,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
                         localStorage.setItem("apiData", JSON.stringify(resp?.xml?.reportData));  // Store data
                         localStorage.setItem("apiDataVin", JSON.stringify(vin));  // Store data
                         window.open("/reports", "_blank"); // Redirect to new page
-                        // this.router.navigate(['/reports']);
+                        // this.router.navigate(['/reports']); 
                       } else {
                         Swal.fire({
                           title: 'Info!',
