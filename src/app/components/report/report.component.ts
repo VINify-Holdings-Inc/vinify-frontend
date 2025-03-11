@@ -12,7 +12,7 @@ export class ReportComponent implements OnInit  {
   logo: string = 'assets/images/ta-logo.png';
   nmvtlogo: string = 'assets/images/nmvtis-1.png';
   reportSummary: string = 'assets/images/icons/sidebar-icon/export-report.svg';
-  activeTab: string = 'reportsummary';  // Active tab to apply conditional classes.
+  activeTab: string = 'reportsummary';  // Active tab to apply conditional classes...
   scrollCall = true;
 
   @ViewChild('scrollableSections', { static: true }) scrollableSections: ElementRef | undefined;
