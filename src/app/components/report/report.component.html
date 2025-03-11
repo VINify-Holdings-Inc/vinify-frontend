@@ -178,8 +178,7 @@
 													<th scope="col">Source</th>
 												</tr>
 											</thead>
-											<tbody>
-												
+											<tbody *ngIf="data?.titleData && data?.titleData.length > 0; else noTitleRecords">
 												<tr *ngFor="let item of data?.titleData">
 													<td>{{ item?.vin }}</td>
 													<td>{{ item?.brand || '-' }}</td>
@@ -188,10 +187,20 @@
 													<td>{{ item?.status || '-' }}</td>
 													<td>
 														NMVTIS
-													  <img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
+														<img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
 													</td>
-												  </tr>
+												</tr>
 											</tbody>
+											
+											<!-- No records found message -->
+											<ng-template #noTitleRecords>
+												<tbody>
+													<tr>
+														<td colspan="6" class="text-center">No records found</td>
+													</tr>
+												</tbody>
+											</ng-template>
+											
 										</table>
 									</div>
 								</div>
@@ -214,20 +223,28 @@
 													<th width="300" scope="col">Source</th>
 												</tr>
 											</thead>
-											<tbody>
-												
+											<tbody *ngIf="data?.brandData && data?.brandData.length > 0; else noRecords">
 												<tr *ngFor="let item of data?.brandData">
-													<!-- <span class="showAlerton"></span> -->
 													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat: 'DD MMM YYYY') : '-' }}</td>
 													<td>{{ item?.state || '-' }}</td>
-													<td>{{ item?.brand? item?.brand?.split(' - ')[0]:"-"}}</td>
-													<td><span class="makeitshortLength">{{ item?.brand? item?.brand?.split(' - ')[1]:"-" }}</span></td>
-													 <td>
+													<td>{{ item?.brand ? item?.brand.split(' - ')[0] : '-' }}</td>
+													<td><span class="makeitshortLength">{{ item?.brand ? item?.brand.split(' - ')[1] : '-' }}</span></td>
+													<td>
 														NMVTIS
-													  <img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
+														<img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
 													</td>
-												  </tr> 
+												</tr>
 											</tbody>
+											
+											<!-- No records found message -->
+											<ng-template #noRecords>
+												<tbody>
+													<tr>
+														<td colspan="5" class="text-center">No records found</td>
+													</tr>
+												</tbody>
+											</ng-template>
+											
 										</table>
 									</div>
 								</div>
@@ -473,24 +490,29 @@
 													<th scope="col">Source</th>
 												</tr>
 											</thead>
-											<tbody>
-												
+											<tbody *ngIf="data?.JSI && data?.JSI.length > 0; else noJSIRecords">
 												<tr *ngFor="let item of data?.JSI">
 													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat: 'DD MMM YYYY') : '-' }}</td>
-													
-													
 													<td>{{ item?.IdentificationID || '-' }}</td>
 													<td>{{ item?.ReportingEntityCategoryText || '-' }}</td>
-													<td>{{ item?.EntityName||"-" }}</td>
-													<td>{{ item?.export||"-" }}</td>
+													<td>{{ item?.EntityName || '-' }}</td>
+													<td>{{ item?.export || '-' }}</td>
 													<td>
 														NMVTIS
-													  <img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
+														<img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
 													</td>
-												  </tr>
-
-
+												</tr>
 											</tbody>
+											
+											<!-- No records found message -->
+											<ng-template #noJSIRecords>
+												<tbody>
+													<tr>
+														<td colspan="6" class="text-center">No records found</td>
+													</tr>
+												</tbody>
+											</ng-template>
+											
 										</table>
 									</div>
 								</div>
