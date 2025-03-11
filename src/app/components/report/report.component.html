@@ -30,11 +30,13 @@
 						class="material-icons">summarize</span>Report Summary</a></li>
 			<li (click)="scrollToSection('titleinformations')"><a
 					[ngClass]="{ 'active': activeTab === 'titleinformations' }"><span
-						class="material-icons">article</span>Title Information <span *ngIf="data.titleDataCount" class="circleRedBox">{{data.titleDataCount}}</span></a>
+						class="material-icons">article</span>Title Information <span *ngIf="data.titleDataCount"
+						class="circleRedBox">{{data.titleDataCount}}</span></a>
 			</li>
 			<li (click)="scrollToSection('junknsalvagesection')"><a
 					[ngClass]="{ 'active': activeTab === 'junknsalvagesection' }"><span
-						class="material-icons">delete</span>Junk/Salvage <span *ngIf="data.JSICount" class="circleRedBox">{{data.JSICount}}</span></a></li>
+						class="material-icons">delete</span>Junk/Salvage <span *ngIf="data.JSICount"
+						class="circleRedBox">{{data.JSICount}}</span></a></li>
 			<li (click)="scrollToSection('legaldisclaimer')"><a
 					[ngClass]="{ 'active': activeTab === 'legaldisclaimer' }"><span
 						class="material-icons">local_police</span>Legal Disclaimer</a></li>
@@ -65,7 +67,7 @@
 							<div class="warningtext">Warning</div>
 							<div class="warningMsg">
 								<div class="smallWrnMsg">
-									Warning – at least one negative event has been reported to VINData
+									Warning – at least one negative event has been reported to VIN ALARM
 									History.<br />We&nbsp;recommend an inspection by a qualified mechanic.
 								</div>
 								<div class="SmallTextarea">
@@ -83,17 +85,26 @@
 								<div class="row setMaxW800">
 									<div class="col-4 cursor-pointer-term">
 										<a (click)="scrollToSection('titleinformations')">
-											<div class="card sumBox redAlert" id="titleinformation">
+											<div [ngClass]="{ 
+												'redAlert': data?.titleData?.length > 0, 
+												'noAlert': data?.titleData?.length === 0 
+											  }" class="card sumBox" id="titleinformation">
 												<div class="card-body">
 													<h5 class="card-title">Title Information</h5>
 													<ul>
-														<li>No brand exists for the vehicle.</li>
-														<li>01 Mar 2020</li>
-														<li>State Name</li>
+														<li>{{data?.titleData?.length > 0 ? data?.titleData?.length:
+															'No' }} Title exists for the vehicle.</li>
+														<li>{{ data?.titleData?.length?
+															(data?.titleData[0]?.titleBrandDate | dateFormat: 'DD MMM
+															YYYY') : '-' }}</li>
+															<li>{{ data?.titleData?.[0]?.state ?? '-' }}</li>
 													</ul>
 													<div class="cardFtr">
-														<span *ngIf="data.titleDataCount"><span class="circleRedBox">{{data.titleDataCount}}</span> of {{data?.titleData?.length}} Records</span>
-														<span *ngIf="!data.titleDataCount">{{data?.titleData?.length}} Records</span>
+														<span *ngIf="data.titleDataCount"><span
+																class="circleRedBox">{{data.titleDataCount}}</span> of
+															{{data?.titleData?.length}} Records</span>
+														<span *ngIf="!data.titleDataCount">{{data?.titleData?.length}}
+															Records</span>
 													</div>
 													<div class="ftrLogo">
 														<img [src]="nmvtlogo" class="img-fluid" alt="Logo" />
@@ -104,17 +115,27 @@
 									</div>
 									<div class="col-4 cursor-pointer-term">
 										<a (click)="scrollToSection('possibleBrands')">
-											<div class="card sumBox redAlert" id="brandinformation">
+											<div [ngClass]="{ 
+												'redAlert': data?.brandData?.length > 0, 
+												'noAlert': data?.brandData?.length === 0 
+											  }" class="card sumBox" id="brandinformation">
 												<div class="card-body">
 													<h5 class="card-title">Brand Information</h5>
 													<ul>
-														<li>No brand exists for the vehicle.</li>
-														<li>01 Mar 2020</li>
-														<li>State Name</li>
+														<li>{{data?.brandData?.length > 0 ? data?.brandData?.length:
+															'No' }} brand exists for the vehicle.</li>
+														<li>{{ data?.brandData?.length?
+															(data?.brandData[0]?.titleBrandDate | dateFormat: 'DD MMM
+															YYYY') : '-' }}</li>
+
+															<li>{{ data?.brandData?.[0]?.state ?? '-' }}</li>
 													</ul>
 													<div class="cardFtr">
-														<span *ngIf="data.brandDataCount"><span class="circleRedBox">{{data.brandDataCount}}</span> of {{data?.brandData?.length}} Records</span>
-														<span *ngIf="!data.brandDataCount">{{data?.brandData?.length}} Records</span>
+														<span *ngIf="data.brandDataCount"><span
+																class="circleRedBox">{{data.brandDataCount}}</span> of
+															{{data?.brandData?.length}} Records</span>
+														<span *ngIf="!data.brandDataCount">{{data?.brandData?.length}}
+															Records</span>
 													</div>
 													<div class="ftrLogo">
 														<img [src]="nmvtlogo" class="img-fluid" alt="Logo" />
@@ -125,18 +146,27 @@
 									</div>
 									<div class="col-4 cursor-pointer-term">
 										<a (click)="scrollToSection('junknsalvagesection')">
-											<div class="card sumBox noAlert" id="junksalvageinformation">
+											<div [ngClass]="{ 
+												'redAlert': data?.JSI?.length > 0, 
+												'noAlert': data?.JSI?.length === 0 
+											  }" class="card sumBox" id="junksalvageinformation">
 												<div class="card-body">
 													<h5 class="card-title">Junk/Salvage Information</h5>
 													<ul>
-														<li>No brand exists for the vehicle.</li>
-														<li>01 Mar 2020</li>
-														<li>State Name</li>
+														<li>{{data?.JSI?.length > 0 ? data?.JSI?.length: 'No' }}
+															Junk/Salvage exists for the vehicle.</li>
+														<li>{{ data?.JSI?.length ? (data?.JSI[0]?.titleBrandDate |
+															dateFormat: 'DD MMM YYYY') : '-' }}</li>
+															<li>{{ data?.JSI?.[0]?.state ?? '-' }}</li>
+
 													</ul>
 													<div class="cardFtr">
-														<span *ngIf="data.JSICount"><span class="circleRedBox">{{data.JSICount}}</span> of {{data?.JSI?.length}} Records</span>
-														<span *ngIf="!data.JSICount">{{data?.JSI?.length}} Records</span>
-												
+														<span *ngIf="data.JSICount"><span
+																class="circleRedBox">{{data.JSICount}}</span> of
+															{{data?.JSI?.length}} Records</span>
+														<span *ngIf="!data.JSICount">{{data?.JSI?.length}}
+															Records</span>
+
 													</div>
 													<div class="ftrLogo">
 														<img [src]="nmvtlogo" class="img-fluid" alt="Logo" />
@@ -155,8 +185,11 @@
 
 						<section id="titleinformations" class="">
 							<div class="sectionText">
-								<h2 class="sectionHeadeing"><span *ngIf="data.titleDataCount" class="circleRedBox">{{data.titleDataCount}}</span>Title Information <small><strong>Source</strong>
-										NMVTIS</small></h2>
+								<h2 class="sectionHeadeing"><span *ngIf="data.titleDataCount"
+										class="circleRedBox">{{data.titleDataCount}}</span>Title Information
+									<small><strong>Source</strong>
+										NMVTIS</small>
+								</h2>
 								<p>This section identifies this vehicle's current and historic DMV titles reported as
 									issued by date, indicating the state and reported mileage. Title brands that have
 									been reported to VIN ALARM are shown in the “Title Brands Reported” section below.
@@ -178,20 +211,23 @@
 													<th scope="col">Source</th>
 												</tr>
 											</thead>
-											<tbody *ngIf="data?.titleData && data?.titleData.length > 0; else noTitleRecords">
+											<tbody
+												*ngIf="data?.titleData && data?.titleData.length > 0; else noTitleRecords">
 												<tr *ngFor="let item of data?.titleData">
 													<td>{{ item?.vin }}</td>
 													<td>{{ item?.brand || '-' }}</td>
-													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat: 'DD MMM YYYY') : '-' }}</td>
+													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
+														'DD MMM YYYY') : '-' }}</td>
 													<td>{{ item?.state || '-' }}</td>
 													<td>{{ item?.status || '-' }}</td>
 													<td>
 														NMVTIS
-														<img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
+														<img [src]="nmvtlogo" class="img-fluid tableinside"
+															alt="Logo" />
 													</td>
 												</tr>
 											</tbody>
-											
+
 											<!-- No records found message -->
 											<ng-template #noTitleRecords>
 												<tbody>
@@ -200,16 +236,17 @@
 													</tr>
 												</tbody>
 											</ng-template>
-											
+
 										</table>
 									</div>
 								</div>
 
-								<h2 class="sectionHeadeing"><span *ngIf="data.brandDataCount" class="circleRedBox">{{data.brandDataCount}}</span> Title Brands Reported
+								<h2 class="sectionHeadeing"><span *ngIf="data.brandDataCount"
+										class="circleRedBox">{{data.brandDataCount}}</span> Title Brands Reported
 								</h2>
 								<div class="alert alert-danger displayChange" *ngIf="data.brandDataCount" role="alert">
 									Warning – at least one negative title or cautionary DMV title brands have been
-									reported to VINData History.
+									reported to VIN ALARM History.
 								</div>
 								<div class="tableContent">
 									<div class="table-responsive">
@@ -223,19 +260,23 @@
 													<th width="300" scope="col">Source</th>
 												</tr>
 											</thead>
-											<tbody *ngIf="data?.brandData && data?.brandData.length > 0; else noRecords">
+											<tbody
+												*ngIf="data?.brandData && data?.brandData.length > 0; else noRecords">
 												<tr *ngFor="let item of data?.brandData">
-													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat: 'DD MMM YYYY') : '-' }}</td>
+													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
+														'DD MMM YYYY') : '-' }}</td>
 													<td>{{ item?.state || '-' }}</td>
 													<td>{{ item?.brand ? item?.brand.split(' - ')[0] : '-' }}</td>
-													<td><span class="makeitshortLength">{{ item?.brand ? item?.brand.split(' - ')[1] : '-' }}</span></td>
+													<td><span class="makeitshortLength">{{ item?.brand ?
+															item?.brand.split(' - ')[1] : '-' }}</span></td>
 													<td>
 														NMVTIS
-														<img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
+														<img [src]="nmvtlogo" class="img-fluid tableinside"
+															alt="Logo" />
 													</td>
 												</tr>
 											</tbody>
-											
+
 											<!-- No records found message -->
 											<ng-template #noRecords>
 												<tbody>
@@ -244,7 +285,7 @@
 													</tr>
 												</tbody>
 											</ng-template>
-											
+
 										</table>
 									</div>
 								</div>
@@ -454,8 +495,10 @@
 
 						<section id="junknsalvagesection">
 							<div class="sectionText">
-								<h2 class="sectionHeadeing"><span *ngIf ="data.JSICount" class="circleRedBox">{{data.JSICount}}</span> Junk/Salvage Information
-									<small><strong>Source</strong> NMVTIS</small></h2>
+								<h2 class="sectionHeadeing"><span *ngIf="data.JSICount"
+										class="circleRedBox">{{data.JSICount}}</span> Junk/Salvage Information
+									<small><strong>Source</strong> NMVTIS</small>
+								</h2>
 								<p>This section discloses events related to events like junk, salvage and insurance
 									total loss that have been reported to VIN ALARM. Included are state DMV titles that
 									show junk, salvage or similar brands, insurance total loss events and salvage
@@ -474,7 +517,8 @@
 									it came into the possession of the business.</p>
 
 								<div class="alert alert-danger displayChange" role="alert">
-									Warning - junk, salvage or insurance total loss events have been reported to VINData
+									Warning - junk, salvage or insurance total loss events have been reported to VIN
+									ALARM
 									History.
 								</div>
 								<div class="tableContent">
@@ -492,18 +536,20 @@
 											</thead>
 											<tbody *ngIf="data?.JSI && data?.JSI.length > 0; else noJSIRecords">
 												<tr *ngFor="let item of data?.JSI">
-													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat: 'DD MMM YYYY') : '-' }}</td>
+													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
+														'DD MMM YYYY') : '-' }}</td>
 													<td>{{ item?.IdentificationID || '-' }}</td>
 													<td>{{ item?.ReportingEntityCategoryText || '-' }}</td>
 													<td>{{ item?.EntityName || '-' }}</td>
 													<td>{{ item?.export || '-' }}</td>
 													<td>
 														NMVTIS
-														<img [src]="nmvtlogo" class="img-fluid tableinside" alt="Logo" />
+														<img [src]="nmvtlogo" class="img-fluid tableinside"
+															alt="Logo" />
 													</td>
 												</tr>
 											</tbody>
-											
+
 											<!-- No records found message -->
 											<ng-template #noJSIRecords>
 												<tbody>
@@ -512,7 +558,7 @@
 													</tr>
 												</tbody>
 											</ng-template>
-											
+
 										</table>
 									</div>
 								</div>
@@ -610,8 +656,8 @@
 									commercial purposes or third-party distribution. All rights reserved. Title Alarm,
 									LLC (c) 2019-2025</p>
 							</div>
-						</section> 
-					</div> 
+						</section>
+					</div>
 				</div>
 			</div>
 		</div>
