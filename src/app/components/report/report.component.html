@@ -91,15 +91,15 @@
 													<ul>
 														<li>{{data?.titleData?.length > 0 ? data?.titleData?.length:
 															'No' }} Title exists for the vehicle.</li>
-														<li>{{ data?.titleData?.length?
-															(data?.titleData[0]?.titleBrandDate | dateFormat: 'DD MMM
+														<li>{{ data?.titleMaxDate ?
+															(data?.titleMaxDate | dateFormat: 'DD MMM
 															YYYY') : '-' }}</li>
 														<li>{{ data?.titleData?.[0]?.state ?? '-' }}</li>
 													</ul>
 													<div class="cardFtr">
 														<span *ngIf="data.titleDataCount"><span
 																class="circleRedBox">{{data.titleDataCount}}</span> of
-															{{data?.titleData?.length}} Records</span>
+																{{data?.titleDataCount+data?.brandDataCount+data?.JSICount}} Records</span>
 														<span *ngIf="!data.titleDataCount">{{data?.titleData?.length}}
 															Records</span>
 													</div>
@@ -118,8 +118,8 @@
 													<ul>
 														<li>{{data?.brandData?.length > 0 ? data?.brandData?.length:
 															'No' }} brand exists for the vehicle.</li>
-														<li>{{ data?.brandData?.length?
-															(data?.brandData[0]?.titleBrandDate | dateFormat: 'DD MMM
+														<li>{{ data?.brandMaxDate ?
+															(data?.brandMaxDate | dateFormat: 'DD MMM
 															YYYY') : '-' }}</li>
 
 														<li>{{ data?.brandData?.[0]?.state ?? '-' }}</li>
@@ -127,7 +127,7 @@
 													<div class="cardFtr">
 														<span *ngIf="data.brandDataCount"><span
 																class="circleRedBox">{{data.brandDataCount}}</span> of
-															{{data?.brandData?.length}} Records</span>
+																{{data?.titleDataCount+data?.brandDataCount+data?.JSICount}}  Records</span>
 														<span *ngIf="!data.brandDataCount">{{data?.brandData?.length}}
 															Records</span>
 													</div>
@@ -146,15 +146,16 @@
 													<ul>
 														<li>{{data?.JSI?.length > 0 ? data?.JSI?.length: 'No' }}
 															Junk/Salvage exists for the vehicle.</li>
-														<li>{{ data?.JSI?.length ? (data?.JSI[0]?.titleBrandDate |
-															dateFormat: 'DD MMM YYYY') : '-' }}</li>
+														<li>{{ data?.jsiMaxDate ?
+															(data?.jsiMaxDate | dateFormat: 'DD MMM
+															YYYY') : '-' }}</li>
 														<li>{{ data?.JSI?.[0]?.state ?? '-' }}</li>
 
 													</ul>
 													<div class="cardFtr">
 														<span *ngIf="data.JSICount"><span
 																class="circleRedBox">{{data.JSICount}}</span> of
-															{{data?.JSI?.length}} Records</span>
+																{{data?.titleDataCount+data?.brandDataCount+data?.JSICount}}  Records</span>
 														<span *ngIf="!data.JSICount">{{data?.JSI?.length}}
 															Records</span>
 
@@ -588,7 +589,7 @@
 												<tr *ngFor="let item of data?.JSI">
 													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
 														'DD MMM YYYY') : '-' }}</td>
-													<td>{{ item?.IdentificationID || '-' }}</td>
+													<td>{{ item?.state || '-' }}</td>
 													<td>{{ item?.ReportingEntityCategoryText || '-' }}</td>
 													<td>{{ item?.EntityName || '-' }}</td>
 													<td>{{ item?.export || '-' }}</td>
