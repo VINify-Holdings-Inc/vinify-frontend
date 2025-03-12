@@ -70,10 +70,10 @@
 									Warning – at least one negative event has been reported to VIN ALARM
 									History.<br />We&nbsp;recommend an inspection by a qualified mechanic.
 								</div>
-								<div class="SmallTextarea">
+								<!-- <div class="SmallTextarea">
 									Potential problem records are marked in <span class="redText">red </span>and <span
 										class="yellowText">yellow</span>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -89,8 +89,7 @@
 												<div class="card-body">
 													<h5 class="card-title">Title Information</h5>
 													<ul>
-														<li>{{data?.titleData?.length > 0 ? data?.titleData?.length:
-															'No' }} Title exists for the vehicle.</li>
+														<li>{{ data?.titleData?.[0]?.brand?.split(' - ')[0] ?? '-' }}</li>
 														<li>{{ data?.titleMaxDate ?
 															(data?.titleMaxDate | dateFormat: 'DD MMM
 															YYYY') : '-' }}</li>
@@ -111,13 +110,12 @@
 										</a>
 									</div>
 									<div class="col-4 cursor-pointer-term">
-										<a (click)="scrollToSection('possibleBrands')">
+										<a (click)="scrollToSection('brandtableID')">
 											<div class="card sumBox" id="brandinformation">
 												<div class="card-body">
 													<h5 class="card-title">Brand Information</h5>
 													<ul>
-														<li>{{data?.brandData?.length > 0 ? data?.brandData?.length:
-															'No' }} brand exists for the vehicle.</li>
+														<li>{{ data?.brandData?.[0]?.brand?.split(' - ')[0] ?? '-' }}</li>
 														<li>{{ data?.brandMaxDate ?
 															(data?.brandMaxDate | dateFormat: 'DD MMM
 															YYYY') : '-' }}</li>
@@ -144,8 +142,7 @@
 												<div class="card-body">
 													<h5 class="card-title">Junk/Salvage Information</h5>
 													<ul>
-														<li>{{data?.JSI?.length > 0 ? data?.JSI?.length: 'No' }}
-															Junk/Salvage exists for the vehicle.</li>
+														<li>{{ data?.JSI?.[0]?.VehicleDispositionText ?? '-' }}</li>
 														<li>{{ data?.jsiMaxDate ?
 															(data?.jsiMaxDate | dateFormat: 'DD MMM
 															YYYY') : '-' }}</li>
@@ -233,8 +230,8 @@
 									</div>
 								</div>
 
-								<h2 class="sectionHeadeing"><span *ngIf="data.brandDataCount"
-										class="circleRedBox">{{data.brandDataCount}}</span> Title Brands Reported
+								<h2 class="sectionHeadeing" id="brandtableID"><span *ngIf="data.brandDataCount"
+										class="circleRedBox">{{data.brandDataCount}}</span>  Brand Information
 								</h2>
 								<div class="alert alert-danger displayChange" *ngIf="data.brandDataCount" role="alert">
 									Warning – at least one negative title or cautionary DMV title brands have been
@@ -589,7 +586,7 @@
 												<tr *ngFor="let item of data?.JSI">
 													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
 														'DD MMM YYYY') : '-' }}</td>
-													<td>{{ item?.state || '-' }}</td>
+													<td>{{ item?.VehicleDispositionText || '-' }}</td>
 													<td>{{ item?.ReportingEntityCategoryText || '-' }}</td>
 													<td>{{ item?.EntityName || '-' }}</td>
 													<td>{{ item?.export || '-' }}</td>
