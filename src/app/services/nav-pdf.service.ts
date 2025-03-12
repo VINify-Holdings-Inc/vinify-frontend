@@ -172,9 +172,9 @@ export class NavPdfService {
     doc.setFontSize(12);
     doc.text(dynamicData, 22 , y + 5); 
     doc.setFontSize(9);
-    doc.text('No brand exists for the vehicle.', 22 , y + 15); 
-    doc.text('01 Mar 2020.', 22 , y + 25); 
-    doc.text('State Name', 22 , y + 35); 
+    titleLength ? doc.text( titleLength+' Title exists for the vehicle', 22 , y + 15) : doc.text( 'No Title exists for the vehicle', 22 , y + 15);
+    doc.text(titleLength?tableData[0]?.titleBrandDate ? this.dateFormate.transform( tableData[0]?.titleBrandDate, 'DD MMM YYYY') : '-':"-", 22 , y + 25)
+    doc.text(titleLength?tableData[0]?.state ?tableData[0]?.state :"-":"-", 22 , y + 35);  
     if(titleCount){
     drawBadge(doc, 24 , y + 44, titleCount);
     doc.setTextColor(0, 0, 0);
@@ -189,9 +189,9 @@ export class NavPdfService {
     doc.setFontSize(12);
     doc.text(dynamicData1, 82 , y + 5); 
     doc.setFontSize(9);
-    doc.text('No brand exists for the vehicle.', 82 , y + 15); 
-    doc.text('01 Mar 2020.', 82 , y + 25); 
-    doc.text('State Name', 82 , y + 35); 
+    brandLength ? doc.text( brandLength+' Brand exists for the vehicle.', 82 , y + 15) : doc.text( 'No Brand exists for the vehicle.', 82 , y + 15);
+    doc.text(brandLength?brandData[0]?.titleBrandDate ? this.dateFormate.transform( brandData[0]?.titleBrandDate, 'DD MMM YYYY') : '-':"-", 82 , y + 25)
+    doc.text(brandLength?brandData[0]?.state ?brandData[0]?.state :"-":"-", 82 , y + 35);  
    // doc.text('1 of 1 Records', 82 , y + 45);
    if(brandCount){
     drawBadge(doc, 84 , y + 44, brandCount);
@@ -206,9 +206,10 @@ export class NavPdfService {
     doc.setFontSize(12);
     doc.text(dynamicData2, 142 , y + 5); 
     doc.setFontSize(9);
-    doc.text('No brand exists for the vehicle.', 142 , y + 15); 
-    doc.text('01 Mar 2020.', 142 , y + 25); 
-    doc.text('State Name', 142 , y + 35); 
+    jsiLength ? doc.text( jsiLength+' JSI exists for the vehicle.', 142 , y + 15) : doc.text( 'No JSI exists for the vehicle.', 142 , y + 15);
+    doc.text(jsiLength?junkSalvageData[0]?.titleBrandDate ? this.dateFormate.transform( junkSalvageData[0]?.titleBrandDate, 'DD MMM YYYY') : '-':"-", 142 , y + 25)
+    doc.text(jsiLength?junkSalvageData[0]?.state ?junkSalvageData[0]?.state :"-":"-", 142 , y + 35); 
+   
    // doc.text('1 of 1 Records', 142 , y + 45);
     if(JSICount){
       drawBadge(doc, 144 , y + 44, JSICount);
@@ -229,12 +230,13 @@ export class NavPdfService {
     doc.setFontSize(14);
     doc.setTextColor(0, 0, 0);
     doc.text('Title Information', 19, y);
+    if(titleCount){
     y += 5;
     doc.setFillColor(248, 215, 218);
     doc.rect(15, y, 180, 9, 'F');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
-    if(titleCount){
+    
     doc.text('Warning - At least one negative title event has been reported.', 20, y + 6);
     }
     doc.setTextColor(0, 0, 0);
@@ -260,6 +262,10 @@ export class NavPdfService {
       headStyles: { fillColor: [237, 237, 237], fontSize: 8,textColor: [0, 0, 0] },
       bodyStyles: { fontSize: 7 },
       margin: { top: 37 , bottom: 25},
+      columnStyles: {
+        2: { cellWidth: 25 }, // Increases width of the "Date" column (index 0)
+        3: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
+      },
       didDrawPage: (data: any) => {
        // if (data.pageNumber > 1)
            addHeader(); addFooter();
@@ -277,12 +283,13 @@ export class NavPdfService {
       doc.setFontSize(14);
       doc.setTextColor(0, 0, 0);
       doc.text('Title Brands Reported', 19, y);
+      if(brandCount){
       y += 5;
       doc.setFillColor(248, 215, 218);
       doc.rect(15, y, 180, 9, 'F');
       doc.setTextColor(0, 0, 0);
       doc.setFontSize(10);
-      if(brandCount){
+      
       doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VINData History.', 20, y + 6);
       }
       doc.setTextColor(0, 0, 0);
@@ -306,6 +313,10 @@ const brandRows = brandData.map((item:any) => [
   headStyles: { fillColor: [237, 237, 237], fontSize: 8,textColor: [0, 0, 0] },
   bodyStyles: { fontSize: 7 },
   margin: { top: 37,bottom: 25 },
+  columnStyles: {
+    0: { cellWidth: 25 }, 
+    1: { cellWidth: 30 }, 
+  },
   didDrawPage: (data: any) => {
    //  if (data.pageNumber > 1)
        addHeader(); addFooter();
@@ -317,19 +328,20 @@ const brandRows = brandData.map((item:any) => [
 y = (doc as any).lastAutoTable.finalY + 10;
 
     // Junk Salvage
-    y += 5;
+    y += 10;
     if(JSICount){
     drawBadge(doc, 14, y-1, JSICount);  //x,y,number
     }
     doc.setFontSize(14);
     doc.setTextColor(0, 0, 0);
     doc.text('Junk/Salvage/Total Loss', 19, y);
+    if(JSICount){
     y += 5;
     doc.setFillColor(248, 215, 218);
     doc.rect(15, y, 180, 9, 'F');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
-    if(JSICount){
+   
     doc.text('Warning - junk, salvage or insurance total loss events have been reported to VINData History.', 20, y + 6);
     }
     doc.setTextColor(0, 0, 0);
@@ -354,6 +366,9 @@ y = (doc as any).lastAutoTable.finalY + 10;
       headStyles: { fillColor: [237, 237, 237], fontSize: 8 ,textColor: [0, 0, 0]},
       bodyStyles: { fontSize: 7 },
       margin: { top: 37,bottom: 25 },
+      columnStyles: {
+        0: { cellWidth: 25 }, 
+      },
       didDrawPage: (data: any) => {
       //  if (data.pageNumber > 1) 
           addHeader(); addFooter();
@@ -361,16 +376,16 @@ y = (doc as any).lastAutoTable.finalY + 10;
       
     });
     y = (doc as any).lastAutoTable.finalY + 10;
-
+    addHeader();
+   // y += 5;
     // Legal Disclaimer
     doc.setFontSize(14);
-    doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y+5);
-    y += 20;
-    // doc.setFontSize(10);
-    // doc.text(disclaimer, 15, y);
+    doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y+15);
+   // y += 20;
      
       // Disclaimer Section (Ensure it spans multiple pages if necessary)
-      const finalY = (doc as any).lastAutoTable.finalY + 25; // Position after the last table
+    //  const finalY = (doc as any).lastAutoTable.finalY + 25; // Position after the last table
+      const finalY = y+ 25; // Position after the last table
       let yPosition = finalY;
       const pageHeight = doc.internal.pageSize.height; 
       const pageWidth = doc.internal.pageSize.width; 
@@ -405,6 +420,7 @@ y = (doc as any).lastAutoTable.finalY + 10;
 
   
     // Sources
+    addHeader();
     y += 10;
    doc.setFontSize(14);
    doc.setTextColor(0, 0, 0);
