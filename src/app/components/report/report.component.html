@@ -51,15 +51,15 @@
 				<div class="col-12">
 					<div class="top-heading">
 						<h1>REPORT</h1>
-						<h3>*Don't risk buying a lemon!</h3>
+						<!-- <h3>*Don't risk buying a lemon!</h3> -->
 					</div>
 					<div class="multilightOptions">
 						<div class="blackHorizontalLine"></div>
-						<div class="threeLightBox">
+						<!-- <div class="threeLightBox">
 							<div class="lightCircles Redbox nowOn"></div>
 							<div class="lightCircles Yellowbox nowOn"></div>
 							<div class="lightCircles Greenbox nowOn"></div>
-						</div>
+						</div> -->
 					</div>
 
 					<div class="upperWarningBox">
@@ -85,10 +85,7 @@
 								<div class="row setMaxW800">
 									<div class="col-4 cursor-pointer-term">
 										<a (click)="scrollToSection('titleinformations')">
-											<div [ngClass]="{ 
-												'redAlert': data?.titleData?.length > 0, 
-												'noAlert': data?.titleData?.length === 0 
-											  }" class="card sumBox" id="titleinformation">
+											<div class="card sumBox" id="titleinformation">
 												<div class="card-body">
 													<h5 class="card-title">Title Information</h5>
 													<ul>
@@ -115,10 +112,7 @@
 									</div>
 									<div class="col-4 cursor-pointer-term">
 										<a (click)="scrollToSection('possibleBrands')">
-											<div [ngClass]="{ 
-												'redAlert': data?.brandData?.length > 0, 
-												'noAlert': data?.brandData?.length === 0 
-											  }" class="card sumBox" id="brandinformation">
+											<div class="card sumBox" id="brandinformation">
 												<div class="card-body">
 													<h5 class="card-title">Brand Information</h5>
 													<ul>
@@ -146,10 +140,7 @@
 									</div>
 									<div class="col-4 cursor-pointer-term">
 										<a (click)="scrollToSection('junknsalvagesection')">
-											<div [ngClass]="{ 
-												'redAlert': data?.JSI?.length > 0, 
-												'noAlert': data?.JSI?.length === 0 
-											  }" class="card sumBox" id="junksalvageinformation">
+											<div class="card sumBox" id="junksalvageinformation">
 												<div class="card-body">
 													<h5 class="card-title">Junk/Salvage Information</h5>
 													<ul>
