@@ -124,8 +124,8 @@ export class NavPdfService {
        const addFooter = () => {
        
         const pageHeight = doc.internal.pageSize.height;
-        const footerY = pageHeight - 10;
-        doc.setFontSize(10);
+        const footerY = pageHeight - 9;
+        doc.setFontSize(9);
         doc.text('This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party ', 15, footerY - 10);
         doc.text('distribution. All rights reserved. Title Alarm, LLC (c) 2019-2025', 15, footerY - 5);
         doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 180, footerY - 5);
@@ -241,7 +241,7 @@ export class NavPdfService {
     y += 15;
 
     const tableColumn = ['VINs','Brand Name(s)' ,'Date', 'State', 'Status', 'Source'];
-    const tableRows = tableData.map((item:any) => [
+    const tableRows = tableData.length > 0 ? tableData.map((item:any) => [
       item?.vin || "-",
       item?.brand ? item.brand.split(' - ')[0] : "-",
       item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-',
@@ -249,7 +249,7 @@ export class NavPdfService {
       item?.status || "-",
       `NMVTIS`
       
-    ]);
+    ]):[["","","No records found","","",""]];
     doc.setTextColor(0, 0, 0);
     // Draw Title Information Table
     (doc as any).autoTable({
@@ -296,14 +296,14 @@ export class NavPdfService {
       y += 15;
   
       const brandColumns = ['Date', 'State', 'Brand Name(s)', 'Description','Source'];
-const brandRows = brandData.map((item:any) => [
+const brandRows = brandData.length > 0?brandData.map((item:any) => [
   
   item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-',
   item?.state || "-",
   item?.brand ? item.brand.split(' - ')[0] : "-",
   item?.brand ? item?.brand.split(' - ')[1] : '-' ,
   `NMVTIS`
-]);
+]):[["","","No records found","",""]];
 
 (doc as any).autoTable({
   startY: y,
@@ -350,15 +350,15 @@ y = (doc as any).lastAutoTable.finalY + 10;
     y += 15;
 
     const jsiColumns = ['Date', 'Reporting Entity', 'Reporting Entity Type', 'Description','Export','Source'];
-    const jsiRows = junkSalvageData.map((item:any) => [
-     
+    const jsiRows =  junkSalvageData.length > 0 
+      ? junkSalvageData.map((item:any) => [     
       item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : '-',
       item?.IdentificationID || "-",
       item?.ReportingEntityCategoryText || "-",
       item?.EntityName || "-",
       item?.export || "-",
       `NMVTIS `
-    ]);
+    ]) : [["","","No records found","","",""]];
     
     (doc as any).autoTable({
       startY: y,
@@ -383,7 +383,7 @@ y = (doc as any).lastAutoTable.finalY + 10;
     if (y + 20 > pageHeight2 - 25) { // Adjust 25 for footer space
         doc.addPage();
         y = 40; // Reset Y for new page
-        addHeader();
+        addHeader();addFooter();
     }
     
     
@@ -394,7 +394,7 @@ y = (doc as any).lastAutoTable.finalY + 10;
     sectionIds['disclaim'] = (doc as any).internal.getNumberOfPages();
     doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y+15);
    // y += 20;
-     
+   doc.setFont('helvetica', 'normal');
       // Disclaimer Section (Ensure it spans multiple pages if necessary)
     //const finalY = (doc as any).lastAutoTable.finalY + 25; // Position after the last table
       const finalY = y+ 25; // Position after the last table
@@ -408,8 +408,6 @@ y = (doc as any).lastAutoTable.finalY + 10;
       //console.log("pageWidth",pageWidth);
       // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
       doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
-      //doc.setTextColor(100);
       doc.setTextColor(0, 0, 0);
 
       for (let i = 0; i < disclaimerLines.length; i++) {
@@ -433,9 +431,15 @@ y = (doc as any).lastAutoTable.finalY + 10;
 
   
     // Sources
-    addHeader();
+    let pageHeight3 = doc.internal.pageSize.height;
+    if (y + 20 > pageHeight3 - 25) { // Adjust 25 for footer space
+        doc.addPage();
+        y = 40; // Reset Y for new page
+        addHeader();addFooter();
+    }
     y += 10;
    doc.setFontSize(14);
+   doc.setFont('helvetica', 'bold');
    doc.setTextColor(0, 0, 0);
    sectionIds['source'] = (doc as any).internal.getNumberOfPages();
   doc.text('Data Sources', 15, y);
@@ -443,6 +447,7 @@ y = (doc as any).lastAutoTable.finalY + 10;
 
   // Description
   doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
 const description = `Your VIN ALARM report checks for and reports information from the following high-quality data sources.
 Please see our report sections page, FAQ, terms of service and disclaimer for more information.`;
   doc.text(doc.splitTextToSize(description, 180), 15, y);
@@ -480,11 +485,11 @@ Please see our report sections page, FAQ, terms of service and disclaimer for mo
     addFooter();
      
     const totalPages =  (doc as any).internal.getNumberOfPages();
-
-// Loop through each page and add the links
+    doc.setFontSize(10);
+    // Loop through each page and add the links
 for (let i = 1; i <= totalPages; i++) {
     doc.setPage(i); // Set to the current page
-    doc.setTextColor(0, 0, 255);
+    doc.setTextColor(32, 29, 30);
     doc.textWithLink('Summary', 15, 30, { pageNumber: sectionIds['summary'] });
     doc.textWithLink('Title Information', 40, 30, { pageNumber: sectionIds['title'] });
     doc.textWithLink('Brand Report', 75, 30, { pageNumber: sectionIds['brand'] });
@@ -492,6 +497,7 @@ for (let i = 1; i <= totalPages; i++) {
     doc.textWithLink('Disclaimer', 135, 30, { pageNumber: sectionIds['disclaim'] });
     doc.textWithLink('Source', 160, 30, { pageNumber: sectionIds['source'] });
 }
+
 
 
     // Save PDF
