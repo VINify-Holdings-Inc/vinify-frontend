@@ -57,13 +57,13 @@ export class NavPdfService {
       doc.setFont('helvetica', 'normal');
       doc.text(`VIN: ${vin}`, 80, 20);
      
-      doc.setTextColor(0, 0, 0); // Reset color to black
+      doc.setTextColor(69, 67, 67); // Reset color to black
 
 
         // Horizontal Line
-        doc.setDrawColor(0, 0, 0);
-        doc.setLineWidth(1);
-        doc.line(15, 35, 195, 35); 
+        doc.setDrawColor(69, 67, 67);
+        doc.setLineWidth(.3);
+        doc.line(14, 35, 196, 35); 
     };
   
     const addVehicleInfoSection = () => {
@@ -85,39 +85,17 @@ export class NavPdfService {
       doc.text('Warning', 23, y+1); // Adjust position
 
       // Reset text color to black for the main message
-      doc.setTextColor(0, 0, 0);
+      doc.setTextColor(69, 67, 67); 
       doc.setFontSize(10);
 
       // Add warning message
-      const text = `Warning – at least one negative event has been reported to VIN ALARM History.
-      We recommend an inspection by a qualified mechanic.`;
+      const text = `Warning – at least one negative event has been reported to VIN ALARM History.`
       doc.text(text, 48, y);
+      doc.text(`We recommend an inspection by a qualified mechanic.`, 48, y+4);
+    
       }
-      // Warning Tagline
-      // doc.setFontSize(14);
-      // doc.setFont('helvetica', 'italic');
-      // doc.text("*Don't risk buying a lemon!", 15, y);
-      // y += 10;
-    
-    
-    
-      // Warning Indicator (Black Bar with Red/White Circles)
-      /*
-      doc.setDrawColor(0, 0, 0);
-      doc.setLineWidth(1);
-      doc.line(15, y+5, 195, y+5); 
-
-      doc.setFillColor(0, 0, 0);
-      doc.roundedRect(25, y , 40 ,10, 5 ,5, 'F'); // Black Bar
-      doc.setFillColor(255, 0, 0);
-      doc.circle(35, y + 5, 3, 'F'); // red Circle
-      doc.setFillColor(255, 255, 0);
-      doc.circle(45, y + 5, 3, 'F'); // yellow Circle
-      doc.setFillColor(0, 128, 0);
-      doc.circle(55, y + 5, 3, 'F'); // green Circle
-      y += 15;
-     */
-     
+         
+         
     };
 
        // Footer (Every Page)
@@ -125,9 +103,13 @@ export class NavPdfService {
        
         const pageHeight = doc.internal.pageSize.height;
         const footerY = pageHeight - 9;
+        doc.setDrawColor(69, 67, 67);
+        doc.setLineWidth(.1);
+        doc.line(14, footerY-14, 196, footerY-14); 
+        //doc.setTextColor(0, 0, 0);
         doc.setFontSize(9);
-        doc.text('This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party ', 15, footerY - 10);
-        doc.text('distribution. All rights reserved. Title Alarm, LLC (c) 2019-2025', 15, footerY - 5);
+        doc.text('This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
+        doc.text('All rights reserved. Title Alarm, LLC (c) 2019-2025', 15, footerY - 5);
         doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 180, footerY - 5);
         
       };
@@ -174,11 +156,12 @@ export class NavPdfService {
     doc.text(titleLength?tableData[0]?.state ?tableData[0]?.state :"-":"-", 22 , y + 35);  
     if(titleCount){
     drawBadge(doc, 24 , y + 44, titleCount);
-    doc.setTextColor(0, 0, 0);
+    doc.setTextColor(69, 67, 67);  //black
     doc.text(' of ' + titleLength+ ' Records ', 28 , y + 45); 
     }else{
       doc.text( titleLength+ ' Records ', 22 , y + 45); 
     }
+    doc.text('NMVTIS', 62 , y + 45);
     
 
     doc.rect(80, y, 55, 50);
@@ -192,11 +175,12 @@ export class NavPdfService {
    // doc.text('1 of 1 Records', 82 , y + 45);
    if(brandCount){
     drawBadge(doc, 84 , y + 44, brandCount);
-    doc.setTextColor(0, 0, 0);
+    doc.setTextColor(69, 67, 67);   //black
     doc.text(' of ' + brandLength+ ' Records', 88 , y + 45); 
    }else{
     doc.text(brandLength+ ' Records ', 82 , y + 45); 
    }
+   doc.text('NMVTIS', 122 , y + 45);
 
     doc.rect(140, y, 55, 50);
     const dynamicData2 = "Junk/Salvage/Total Loss"; // Replace with your dynamic data
@@ -210,11 +194,12 @@ export class NavPdfService {
    // doc.text('1 of 1 Records', 142 , y + 45);
     if(JSICount){
       drawBadge(doc, 144 , y + 44, JSICount);
-      doc.setTextColor(0, 0, 0);
+      doc.setTextColor(69, 67, 67);
       doc.text(' of ' + jsiLength+ ' Records', 148 , y + 45); 
     }else{
       doc.text(jsiLength+ ' Records', 142 , y + 45); 
     }
+    doc.text('NMVTIS', 182 , y + 45);
     
 
     
@@ -225,19 +210,19 @@ export class NavPdfService {
     drawBadge(doc, 14, y-1, titleCount);  //x,y,number
     }
     doc.setFontSize(14);
-    doc.setTextColor(0, 0, 0);
+    doc.setTextColor(69, 67, 67);
     sectionIds['title'] = (doc as any).internal.getNumberOfPages();
     doc.text('Title Information', 19, y);
     if(titleCount){
     y += 5;
     doc.setFillColor(248, 215, 218);
     doc.rect(15, y, 180, 9, 'F');
-    doc.setTextColor(0, 0, 0);
+    doc.setTextColor(69, 67, 67);
     doc.setFontSize(9);
     
     doc.text('Warning - At least one negative title event has been reported.', 20, y + 6);
     }
-    doc.setTextColor(0, 0, 0);
+    doc.setTextColor(69, 67, 67);
     y += 15;
 
     const tableColumn = ['VINs','Brand Name(s)' ,'Date', 'State', 'Status', 'Source'];
@@ -250,7 +235,7 @@ export class NavPdfService {
       `NMVTIS`
       
     ]):[["","","No records found","","",""]];
-    doc.setTextColor(0, 0, 0);
+    doc.setTextColor(69, 67, 67);
     // Draw Title Information Table
     (doc as any).autoTable({
       startY: y += 5, 
@@ -259,7 +244,7 @@ export class NavPdfService {
       body: tableRows,
       headStyles: { fillColor: [237, 237, 237], fontSize: 8,textColor: [0, 0, 0] },
       bodyStyles: { fontSize: 7 },
-      margin: { top: 37 , bottom: 25},
+      margin: { top: 41 , bottom: 25},
       columnStyles: {
         1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
         2: { cellWidth: 25 }, // Increases width of the "Date" column (index 0)
@@ -280,19 +265,19 @@ export class NavPdfService {
       drawBadge(doc, 14, y-1, brandCount);  //x,y,number
       }
       doc.setFontSize(14);
-      doc.setTextColor(0, 0, 0);
+      doc.setTextColor(69, 67, 67);
       sectionIds['brand'] =  (doc as any).internal.getNumberOfPages(); 
       doc.text('Title Brands Reported', 19, y);
       if(brandCount){
       y += 5;
       doc.setFillColor(248, 215, 218);
       doc.rect(15, y, 180, 9, 'F');
-      doc.setTextColor(0, 0, 0);
+      doc.setTextColor(69, 67, 67);
       doc.setFontSize(9);
       
       doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VINData History.', 20, y + 6);
       }
-      doc.setTextColor(0, 0, 0);
+      doc.setTextColor(69, 67, 67);
       y += 15;
   
       const brandColumns = ['Date', 'State', 'Brand Name(s)', 'Description','Source'];
@@ -312,7 +297,7 @@ const brandRows = brandData.length > 0?brandData.map((item:any) => [
   body: brandRows,
   headStyles: { fillColor: [237, 237, 237], fontSize: 8,textColor: [0, 0, 0] },
   bodyStyles: { fontSize: 7 },
-  margin: { top: 37,bottom: 25 },
+  margin: { top: 41,bottom: 25 },
   columnStyles: {
     0: { cellWidth: 25 }, 
     1: { cellWidth: 30 }, 
@@ -334,19 +319,19 @@ y = (doc as any).lastAutoTable.finalY + 10;
     drawBadge(doc, 14, y-1, JSICount);  //x,y,number
     }
     doc.setFontSize(14);
-    doc.setTextColor(0, 0, 0);
+    doc.setTextColor(69, 67, 67);  //black
     sectionIds['junksalvage'] = (doc as any).internal.getNumberOfPages();
     doc.text('Junk/Salvage/Total Loss', 19, y);
     if(JSICount){
     y += 5;
     doc.setFillColor(248, 215, 218);
     doc.rect(15, y, 180, 9, 'F');
-    doc.setTextColor(0, 0, 0);
+    doc.setTextColor(69, 67, 67);  //black
     doc.setFontSize(9);
    
     doc.text('Warning - junk, salvage or insurance total loss events have been reported to VINData History.', 20, y + 6);
     }
-    doc.setTextColor(0, 0, 0);
+    doc.setTextColor(69, 67, 67);  //black
     y += 15;
 
     const jsiColumns = ['Date', 'Reporting Entity', 'Reporting Entity Type', 'Description','Export','Source'];
@@ -367,7 +352,7 @@ y = (doc as any).lastAutoTable.finalY + 10;
       body: jsiRows,
       headStyles: { fillColor: [237, 237, 237], fontSize: 8 ,textColor: [0, 0, 0]},
       bodyStyles: { fontSize: 7 },
-      margin: { top: 37,bottom: 25 },
+      margin: { top: 41,bottom: 25 },
       columnStyles: {
         0: { cellWidth: 25 }, 
       },
@@ -392,12 +377,11 @@ y = (doc as any).lastAutoTable.finalY + 10;
     // Legal Disclaimer
     doc.setFontSize(14);
     sectionIds['disclaim'] = (doc as any).internal.getNumberOfPages();
-    doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y+15);
+    doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y+10);
    // y += 20;
    doc.setFont('helvetica', 'normal');
-      // Disclaimer Section (Ensure it spans multiple pages if necessary)
-    //const finalY = (doc as any).lastAutoTable.finalY + 25; // Position after the last table
-      const finalY = y+ 25; // Position after the last table
+      //const finalY = (doc as any).lastAutoTable.finalY + 25; // Position after the last table
+      const finalY = y+ 27; // Position after the last table
       let yPosition = finalY;
       const pageHeight = doc.internal.pageSize.height; 
       const pageWidth = doc.internal.pageSize.width; 
@@ -408,7 +392,7 @@ y = (doc as any).lastAutoTable.finalY + 10;
       //console.log("pageWidth",pageWidth);
       // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
       doc.setFontSize(10);
-      doc.setTextColor(0, 0, 0);
+      doc.setTextColor(69, 67, 67);
 
       for (let i = 0; i < disclaimerLines.length; i++) {
         const lineHeight = 5; // Approximate line height
@@ -417,7 +401,7 @@ y = (doc as any).lastAutoTable.finalY + 10;
         if (remainingSpace < lineHeight) {
           // Start a new page if remaining space is insufficient
           doc.addPage();
-          addHeader();
+          addHeader();addFooter();
           yPosition = 40; // Reset yPosition to the top margin
         }
 
@@ -437,10 +421,10 @@ y = (doc as any).lastAutoTable.finalY + 10;
         y = 40; // Reset Y for new page
         addHeader();addFooter();
     }
-    y += 10;
+    y += 12;
    doc.setFontSize(14);
    doc.setFont('helvetica', 'bold');
-   doc.setTextColor(0, 0, 0);
+   doc.setTextColor(69, 67, 67);
    sectionIds['source'] = (doc as any).internal.getNumberOfPages();
   doc.text('Data Sources', 15, y);
   y += 10;
@@ -465,7 +449,7 @@ Please see our report sections page, FAQ, terms of service and disclaimer for mo
     // Check for page break
     if (y + 50 > doc.internal.pageSize.height - 20) {
       doc.addPage();
-      addHeader();
+      addHeader();addFooter(); 
       y = 40; // Reset Y for new page
     }
 
@@ -482,22 +466,42 @@ Please see our report sections page, FAQ, terms of service and disclaimer for mo
   });
 
  
+    addFooter();  
     addFooter();
-     
+    
     const totalPages =  (doc as any).internal.getNumberOfPages();
     doc.setFontSize(10);
-    // Loop through each page and add the links
-for (let i = 1; i <= totalPages; i++) {
-    doc.setPage(i); // Set to the current page
-    doc.setTextColor(32, 29, 30);
-    doc.textWithLink('Summary', 15, 30, { pageNumber: sectionIds['summary'] });
-    doc.textWithLink('Title Information', 40, 30, { pageNumber: sectionIds['title'] });
-    doc.textWithLink('Brand Report', 75, 30, { pageNumber: sectionIds['brand'] });
-    doc.textWithLink('Junk/Salvage', 105, 30, { pageNumber: sectionIds['junksalvage'] });
-    doc.textWithLink('Disclaimer', 135, 30, { pageNumber: sectionIds['disclaim'] });
-    doc.textWithLink('Source', 160, 30, { pageNumber: sectionIds['source'] });
-}
 
+/************************************************ */
+const links = [
+  { text: 'Summary', x: 15, page: sectionIds['summary'] },
+  { text: 'Title Information', x: 40, page: sectionIds['title'] },
+  { text: 'Brand Report', x: 75, page: sectionIds['brand'] },
+  { text: 'Junk/Salvage', x: 105, page: sectionIds['junksalvage'] },
+  { text: 'Disclaimer', x: 135, page: sectionIds['disclaim'] },
+  { text: 'Source', x: 160, page: sectionIds['source'] }
+];
+
+ // setting y coordinate
+const y1 = 30; 
+
+for (let i = 1; i <= totalPages; i++) {
+  doc.setPage(i); // Set to the current page
+  doc.setTextColor(32, 29, 30);
+
+  links.forEach(link => {
+    doc.textWithLink(link.text, link.x, y1, { pageNumber: link.page });
+
+   
+    doc.setLineWidth(0.5);
+    doc.setDrawColor(32, 29, 30); 
+
+    // Underline: Draw a line below the text
+    const textWidth = doc.getTextWidth(link.text);
+    doc.line(link.x, y1 + 1.5, link.x + textWidth, y1 + 1.5); 
+  });
+}
+/************************************************ */
 
 
     // Save PDF
