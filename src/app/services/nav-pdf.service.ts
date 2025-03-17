@@ -442,6 +442,15 @@ doc.text(tex, 15, yPosi+5);
 // Draw Boxes
 y += 15;
 items.forEach((item, index) => {
+  const boxHeight =   15 ;//textLines.length * 5 + 5; // Adjust box height dynamically
+  let pageHeight4 = doc.internal.pageSize.height;
+  // Check if we need a new page
+  if (y + boxHeight + 20 > pageHeight4 - 25) { 
+    doc.addPage();
+    y = 50; // Reset Y with enough space for header
+    addHeader();
+    addFooter();
+  }
   doc.setFontSize(7);
   if (index % 4 === 0 && index !== 0) {
     y += 17; // Move down after every 4 items
@@ -450,7 +459,7 @@ items.forEach((item, index) => {
   // Handle text wrapping
   const maxWidth = 45; // Box width
   const textLines = doc.splitTextToSize(item.text, maxWidth - 10); // Wrap text
-  const boxHeight =   15 ;//textLines.length * 5 + 5; // Adjust box height dynamically
+ 
 
   // Set border color
   let borderColor = { r: 100, g: 0, b: 0 }; // Default color
@@ -465,15 +474,7 @@ items.forEach((item, index) => {
   doc.roundedRect(item.x, y - 5, maxWidth, boxHeight, 2, 2);
   doc.text(textLines, item.x + 5, y);
 
-  let pageHeight4 = doc.internal.pageSize.height;
-
-  // Check if we need a new page
-  if (y + boxHeight + 20 > pageHeight4 - 25) { 
-    doc.addPage();
-    y = 50; // Reset Y with enough space for header
-    addHeader();
-    addFooter();
-  }
+  
 });
 
 
@@ -527,14 +528,14 @@ items.forEach((item, index) => {
     if(JSICount){
     y += 44;
     doc.setFillColor(248, 215, 218);
-    doc.rect(15, y, 180, 9, 'F');
+    doc.rect(15, y+16, 180, 9, 'F');
     doc.setTextColor(69, 67, 67);  //black
     doc.setFontSize(9);
    
-    doc.text('Warning - junk, salvage or insurance total loss events have been reported to VIN Alarm History.', 20, y + 6);
+    doc.text('Warning - junk, salvage or insurance total loss events have been reported to VIN Alarm History.', 20, y + 22);
     }
     doc.setTextColor(69, 67, 67);  //black
-    y += 68;
+    y += 58;
 
     const jsiColumns = ['Date', 'Reporting Entity', 'Reporting Entity Type', 'Description','Export','Source'];
     const jsiRows =  junkSalvageData.length > 0 
