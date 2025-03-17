@@ -82,7 +82,7 @@ export class NavPdfService {
       // Add warning text inside button
       doc.setTextColor(255, 255, 255); // White text
       doc.setFontSize(10);
-      doc.text('Warning', 23, y+4); // Adjust position
+      doc.text('Warning', 23, y+5); // Adjust position
 
       // Reset text color to black for the main message
       doc.setTextColor(69, 67, 67); 
@@ -108,7 +108,7 @@ export class NavPdfService {
         doc.line(14, footerY-14, 196, footerY-14); 
         //doc.setTextColor(0, 0, 0);
         doc.setFontSize(9);
-        doc.text('This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
+        doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
         doc.text('All rights reserved. Title Alarm, LLC (c) 2019-2025', 15, footerY - 5);
         doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 180, footerY - 5);
         
@@ -141,12 +141,14 @@ export class NavPdfService {
     //redefied
     let y = 70;  //120
     doc.setFontSize(14);
+    doc.setFont('helvetica', 'normal');
     sectionIds['summary'] = (doc as any).internal.getNumberOfPages(); 
     doc.text('Report Summary', 15, y);
     y += 7;
 
     doc.setLineWidth(.4);
-    doc.rect(20, y, 55, 50);
+    //doc.rect(20, y, 55, 50);
+    doc.roundedRect(20, y, 55, 50, 3, 3, 'S')
     const dynamicData = "Title Information"; // Replace with your dynamic data
     doc.setFontSize(12);
     doc.text(dynamicData, 22 , y + 5); 
@@ -161,10 +163,12 @@ export class NavPdfService {
     }else{
       doc.text( titleLength+ ' Records ', 22 , y + 45); 
     }
-    doc.text('NMVTIS', 62 , y + 45);
+    //doc.text('NMVTIS', 62 , y + 45);
+    doc.addImage(nmvtlogo, 'PNG', 56, y + 39, 17, 10);
     
 
-    doc.rect(80, y, 55, 50);
+    //doc.rect(80, y, 55, 50);
+    doc.roundedRect(80, y, 55, 50, 3, 3, 'S')
     const dynamicData1 = "Brand Information"; // Replace with your dynamic data
     doc.setFontSize(12);
     doc.text(dynamicData1, 82 , y + 5); 
@@ -180,9 +184,11 @@ export class NavPdfService {
    }else{
     doc.text(brandLength+ ' Records ', 82 , y + 45); 
    }
-   doc.text('NMVTIS', 122 , y + 45);
+   //doc.text('NMVTIS', 122 , y + 45);
+   doc.addImage(nmvtlogo, 'PNG', 116, y + 39, 17, 10);
 
-    doc.rect(140, y, 55, 50);
+   // doc.rect(140, y, 55, 50);
+    doc.roundedRect(140, y, 55, 50, 3, 3, 'S')
     const dynamicData2 = "Junk/Salvage Information"; // Replace with your dynamic data
     doc.setFontSize(12);
     doc.text(dynamicData2, 142 , y + 5); 
@@ -199,7 +205,8 @@ export class NavPdfService {
     }else{
       doc.text(jsiLength+ ' Records', 142 , y + 45); 
     }
-    doc.text('NMVTIS', 182 , y + 45);
+    //doc.text('NMVTIS', 182 , y + 45);
+    doc.addImage(nmvtlogo, 'PNG', 176, y + 39, 17, 10);
     
 
     
@@ -210,9 +217,19 @@ export class NavPdfService {
     drawBadge(doc, 14, y-1, titleCount);  //x,y,number
     }
     doc.setFontSize(14);
+    doc.setFont('helvetica', 'normal');
     doc.setTextColor(69, 67, 67);
     sectionIds['title'] = (doc as any).internal.getNumberOfPages();
     doc.text('Title Information', 19, y);
+    doc.setFontSize(6);
+    doc.text('Source NMVTIS', 180, y);
+    
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const TitleDesc = `This section identifies this vehicle's current and historic DMV titles reported as issued by date, indicating the state and reported mileage. Title brands that have been reported to VIN ALARM are shown in the “Title Brands Reported” section below. Each title record represents a new title holder, duplicate title, lien release or other title event. This information reflects the title information on file with NMVTIS. For more information, please contact the state of title. We recommend an inspection by a qualified mechanic.`;
+    doc.text(doc.splitTextToSize(TitleDesc, 180), 15, y+6);
+    y += 21;
+    /*
     if(titleCount){
     y += 5;
     doc.setFillColor(248, 215, 218);
@@ -220,10 +237,10 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     doc.setFontSize(9);
     
-    doc.text('Warning - At least one negative title event has been reported.', 20, y + 6);
-    }
+    doc.text('Warning - At least one negative title event has been reported.', 20, y + 5);
+    }  */
     doc.setTextColor(69, 67, 67);
-    y += 15;
+    y += 10;
 
     const tableColumn = ['VINs','Brand Name(s)' ,'Date', 'State', 'Status', 'Source'];
     const tableRows = tableData.length > 0 ? tableData.map((item:any) => [
@@ -268,6 +285,9 @@ export class NavPdfService {
       doc.setTextColor(69, 67, 67);
       sectionIds['brand'] =  (doc as any).internal.getNumberOfPages(); 
       doc.text('Brand Information', 19, y);
+      doc.setFontSize(6);
+      doc.text('Source NMVTIS', 180, y);
+
       if(brandCount){
       y += 5;
       doc.setFillColor(248, 215, 218);
@@ -313,8 +333,161 @@ const brandRows = brandData.length > 0?brandData.map((item:any) => [
 // **Update y position dynamically again**
 y = (doc as any).lastAutoTable.finalY + 10;
 
+
+let pageHeight4 = doc.internal.pageSize.height;
+ if (y + 20 > pageHeight4 - 25) { // Adjust 25 for footer space
+     doc.addPage();
+     y = 40; // Reset Y for new page
+     addHeader();addFooter();
+ }
+ 
+ y += 10;
+
+ doc.setFontSize(14);
+ doc.setTextColor(69, 67, 67);  //black
+ doc.text('Possible Title Brands', 15, y);
+ doc.setFontSize(6);
+ doc.text('Source NMVTIS', 180, y);
+
+ if (y + 50 > doc.internal.pageSize.height - 20) {
+  doc.addPage();
+  addHeader();addFooter(); 
+  y = 40; // Reset Y for new page
+
+}
+const ptb =`VIN ALARM reports can show one or more of the following DMV state title brands. When there are NMVTIS title brands, they are reported in the Title Brands Reported section . To see the descriptions, hover over or click on the brands below. The red, yellow and green indicators show how the brand would be reflected if it was reported for this vehicle.`;
+
+let yPosi = y + 3; // Initial y position
+doc.setFontSize(10);
+doc.setFont('helvetica', 'normal');
+const tex = doc.splitTextToSize(ptb, 180);
+doc.text(tex, 15, yPosi+5); 
+
+
+
+
+
+ y+=20;
+ const items = [
+  { text: 'Clear', x: 10,  color: 'grey' },
+  { text: 'Flood Damage', x: 60,  color: 'red' },
+  { text: 'Fire Damage', x: 110,  color: 'red' },
+  { text: 'Hail Damage', x: 160, color: 'red' },
+  { text: 'Salt Water Damage', x: 10,  color: 'red' },
+  { text: 'Vandalism', x: 60,  color: 'red' },
+  { text: 'Kit Vehicle', x: 110,  color: 'yellow' },
+  { text: 'Dismantled', x: 160,  color: 'red' },
+  { text: 'Junk', x: 10,  color: 'grey' },
+  { text: 'Rebuilt', x: 60,  color: 'grey' },
+  { text: 'Reconstructed', x: 110,  color: 'grey' },
+  { text: 'Salvage', x: 160, color: 'grey' },
+  { text: 'Test Vehicle', x: 10,  color: 'red' },
+  { text: 'Refurbished', x: 60,  color: 'red' },
+  { text: 'Collision', x: 110,  color: 'grey' },
+  { text: 'Reserved', x: 160,  color: 'grey' },
+  { text: 'Salvage Retention', x: 10,  color: 'red' },
+  { text: 'Prior Taxi', x: 60,  color: 'yellow' },
+  { text: 'Prior Police', x: 110,  color: 'yellow' },
+  { text: 'Original Taxi', x: 160,  color: 'yellow' },
+  { text: 'Original Police', x: 10,  color: 'yellow' },
+  { text: 'Remanufactured', x: 60,  color: 'red' },
+  { text: 'Warranty Return', x: 110,  color: 'grey' },
+  { text: 'Antique', x: 160, color: 'green' },
+  { text: 'Classic', x: 10,  color: 'green' },
+  { text: 'Agricultural Vehicle', x: 60,  color: 'green' },
+  { text: 'Logging Vehicle', x: 110,  color: 'green' },
+  { text: 'Street Rod', x: 160,  color: 'yellow' },
+  { text: 'Vehicle Contains Reissued VIN', x: 10,  color: 'yellow' },
+  { text: 'Replica', x: 60,  color: 'yellow' },
+  { text: 'Totaled', x: 110,  color: 'red' },
+  { text: 'Owner Retained', x: 160,  color: 'red' },
+  { text: 'Recovered Theft', x: 10, color: 'yellow' },
+  { text: 'Undisclosed Lien', x: 60, color: 'yellow' },
+  { text: 'Vehicle Safety Defect Corrected', x: 110, color: 'grey' },
+  { text: 'VIN replaced by a new state assigned VIN', x: 160,  color: 'grey' },
+  { text: 'Gray Market', x: 10,  color: 'grey' },
+  { text: 'Manufacturer Buyback', x: 60,  color: 'grey' },
+  { text: 'Former Rental', x: 110,  color: 'grey' },
+  { text: 'Salvage--Stolen', x: 160, color: 'grey' },
+  { text: 'Disclosed Damage', x: 10,  color: 'grey' },
+  { text: 'Crushed', x: 60,  color: 'red' },
+  { text: 'Hazardous Substance Contaminated Vehicle', x: 110,  color: 'red' },
+  { text: 'Odometer - Actual', x: 160,  color: 'grey' },
+  { text: 'Odometer - Not Actual', x: 10,  color: 'grey' },
+  { text: 'Odometer - Exceeds Mechanical Limits', x: 60,  color: 'red' },
+  { text: 'Odometer may be Altered', x: 110,  color: 'red' },
+  { text: 'Odometer Replaced', x: 160, color: 'red' },
+  { text: 'Odometer Discrepancy', x: 10,  color: 'red' },
+  { text: 'Pending Junk Automobile - CARS.gov', x: 60, color: 'red' },
+  { text: 'Junk Automobile - CARS.gov', x: 110,  color: 'grey' },
+  { text: 'Reserved. Eliminated', x: 160,  color: 'grey' },
+
+  { text: 'Reserved. Eliminated. Bond Posted.', x: 10,  color: 'yellow' },
+  { text: 'Memorandum Copy', x: 60,  color: 'yellow' },
+  { text: 'Reserved. Eliminated. Parts Only', x: 110,  color: 'grey' },
+  { text: 'Prior Owner Retained', x: 160,  color: 'grey' },
+
+  { text: 'Vehicle Non-conformity Uncorrected', x: 10,  color: 'grey' },
+  { text: 'Vehicle Safety Defect Uncorrected', x: 60,  color: 'grey' },
+  { text: 'Salvage-Reasons Other Than Damage or Stolen', x: 110,  color: 'grey' },
+  { text: 'Prior Non-Repairable / Repaired', x: 160,  color: 'grey' },
+
+  { text: 'Export Only Vehicle.', x: 10,  color: 'red' },
+  { text: 'Odometer - Not Actual - Odometer tampering verified', x: 60,  color: 'red' },
+  { text: 'Exempt from Odometer Disclosure', x: 110,  color: 'green' },
+  { text: 'Odometer - Reading at Time of Renewal', x: 160,  color: 'green' },
+
+];
+
+// Draw Boxes
+y += 15;
+items.forEach((item, index) => {
+  doc.setFontSize(7);
+  if (index % 4 === 0 && index !== 0) {
+    y += 17; // Move down after every 4 items
+  }
+
+  // Handle text wrapping
+  const maxWidth = 45; // Box width
+  const textLines = doc.splitTextToSize(item.text, maxWidth - 10); // Wrap text
+  const boxHeight =   15 ;//textLines.length * 5 + 5; // Adjust box height dynamically
+
+  // Set border color
+  let borderColor = { r: 100, g: 0, b: 0 }; // Default color
+  if (item.color === 'red') borderColor = { r: 255, g: 0, b: 0 };
+  else if (item.color === 'yellow') borderColor = { r: 255, g: 255, b: 0 };
+  else if (item.color === 'green') borderColor = { r: 0, g: 128, b: 0 };
+  else if (item.color === 'grey') borderColor = { r: 128, g: 128, b: 128 };
+
+  doc.setDrawColor(borderColor.r, borderColor.g, borderColor.b);
+  
+  // Draw box and text
+  doc.roundedRect(item.x, y - 5, maxWidth, boxHeight, 2, 2);
+  doc.text(textLines, item.x + 5, y);
+
+  let pageHeight4 = doc.internal.pageSize.height;
+
+  // Check if we need a new page
+  if (y + boxHeight + 20 > pageHeight4 - 25) { 
+    doc.addPage();
+    y = 50; // Reset Y with enough space for header
+    addHeader();
+    addFooter();
+  }
+});
+
+
+
+
+ // Junk Salvage
+ let pageHeight5 = doc.internal.pageSize.height;
+ if (y + 20 > pageHeight5 - 25) { // Adjust 25 for footer space
+     doc.addPage();
+     y = 40; // Reset Y for new page
+     addHeader();addFooter();
+ }
     // Junk Salvage
-    y += 10;
+    y += 20;
     if(JSICount){
     drawBadge(doc, 14, y-1, JSICount);  //x,y,number
     }
@@ -322,8 +495,37 @@ y = (doc as any).lastAutoTable.finalY + 10;
     doc.setTextColor(69, 67, 67);  //black
     sectionIds['junksalvage'] = (doc as any).internal.getNumberOfPages();
     doc.text('Junk/Salvage Information', 19, y);
+    doc.setFontSize(6);
+    doc.text('Source NMVTIS', 180, y);
+    
+    const JSIDesc1 = `This section discloses events related to events like junk, salvage and insurance total loss that have been reported to VIN ALARM. Included are state DMV titles that show junk, salvage or similar brands, insurance total loss events and salvage auctions or junk yard disclosures. Events related to an auto dismantler, auto recycler or crush facility indicate that the vehicle has sustained major damage. A vehicle that has been received by a salvage auction or junk yard usually indicates major prior damage, however these entities also remarket undamaged vehicles. We recommend an inspection by a qualified mechanic.`; 
+    const JSIDesc2 = `If this VIN has a record in the Junk/Salvage or Insurance information then the business that submitted the VIN to NMVTIS deemed the vehicle to be either a junk, salvage, or in the case of an insurer, a total loss. The information in the DISPOSITION field in the Junk/Salvage section denotes what has happened to the VIN (i.e., vehicle) since it came into the possession of the business.`;
+   
+    
+    if (y + 50 > doc.internal.pageSize.height - 20) {
+      doc.addPage();
+      addHeader();addFooter(); 
+      y = 40; // Reset Y for new page
+    }
+    let yPosition21 = y + 3; // Initial y position
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const text1 = doc.splitTextToSize(JSIDesc1, 180);
+    doc.text(text1, 15, yPosition21+5); 
+    doc.setFont('helvetica', 'bold');
+    doc.text('Explanatory Note:', 15, yPosition21+30);
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    yPosition21 += 5;
+
+    const text2 = doc.splitTextToSize(JSIDesc2, 180);
+
+    doc.text(text2, 15, yPosition21+35);
+
+
     if(JSICount){
-    y += 5;
+    y += 44;
     doc.setFillColor(248, 215, 218);
     doc.rect(15, y, 180, 9, 'F');
     doc.setTextColor(69, 67, 67);  //black
@@ -332,7 +534,7 @@ y = (doc as any).lastAutoTable.finalY + 10;
     doc.text('Warning - junk, salvage or insurance total loss events have been reported to VIN Alarm History.', 20, y + 6);
     }
     doc.setTextColor(69, 67, 67);  //black
-    y += 15;
+    y += 68;
 
     const jsiColumns = ['Date', 'Reporting Entity', 'Reporting Entity Type', 'Description','Export','Source'];
     const jsiRows =  junkSalvageData.length > 0 
@@ -423,10 +625,10 @@ y = (doc as any).lastAutoTable.finalY + 10;
     }
     y += 12;
    doc.setFontSize(14);
-   doc.setFont('helvetica', 'bold');
+   doc.setFont('helvetica', 'normal');
    doc.setTextColor(69, 67, 67);
    sectionIds['source'] = (doc as any).internal.getNumberOfPages();
-  doc.text('Data Sources', 15, y);
+  doc.text('Sources', 15, y);
   y += 10;
 
   // Description
@@ -465,9 +667,9 @@ Please see our report sections page, FAQ, terms of service and disclaimer for mo
     y += 45; // Move Y down for the next block
   });
 
- 
+  doc.setFont('helvetica', 'normal');
     addFooter();  
-    addFooter();
+   // addFooter();
     
     const totalPages =  (doc as any).internal.getNumberOfPages();
     doc.setFontSize(10);
@@ -475,11 +677,11 @@ Please see our report sections page, FAQ, terms of service and disclaimer for mo
 /************************************************ */
 const links = [
   { text: 'Report Summary', x: 15, page: sectionIds['summary'] },
-  { text: 'Title Information', x: 50, page: sectionIds['title'] },
-  { text: 'Brand Information', x: 85, page: sectionIds['brand'] },
-  { text: 'Junk/Salvage', x: 125, page: sectionIds['junksalvage'] },
-  { text: 'Legal Disclaimer', x: 155, page: sectionIds['disclaim'] },
-  { text: 'Sources', x: 190, page: sectionIds['source'] }
+  { text: 'Title Information', x: 48, page: sectionIds['title'] },
+  { text: 'Brand Information', x: 82, page: sectionIds['brand'] },
+  { text: 'Junk/Salvage', x: 119, page: sectionIds['junksalvage'] },
+  { text: 'Legal Disclaimer', x: 151, page: sectionIds['disclaim'] },
+  { text: 'Sources', x: 182, page: sectionIds['source'] }
 ];
 
  // setting y coordinate
