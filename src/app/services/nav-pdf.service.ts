@@ -67,7 +67,7 @@ export class NavPdfService {
     };
   
     const addVehicleInfoSection = () => {
-      let y = 45; // Position below the header
+      let y = 42; // Position below the header
     
       // Vehicle Title
       doc.setFontSize(18);
@@ -77,12 +77,12 @@ export class NavPdfService {
 
       if(titleCount || brandCount || JSICount ){
       doc.setFillColor(255, 0, 0); // Red color
-      doc.roundedRect(15, y-5, 30, 10, 3, 3, 'F'); // x, y, width, height, rx, ry, style (F for fill)
+      doc.roundedRect(15, y-1, 30, 10, 3, 3, 'F'); // x, y, width, height, rx, ry, style (F for fill)
 
       // Add warning text inside button
       doc.setTextColor(255, 255, 255); // White text
       doc.setFontSize(10);
-      doc.text('Warning', 23, y+1); // Adjust position
+      doc.text('Warning', 23, y+4); // Adjust position
 
       // Reset text color to black for the main message
       doc.setTextColor(69, 67, 67); 
@@ -90,8 +90,8 @@ export class NavPdfService {
 
       // Add warning message
       const text = `Warning – at least one negative event has been reported to VIN ALARM History.`
-      doc.text(text, 48, y);
-      doc.text(`We recommend an inspection by a qualified mechanic.`, 48, y+4);
+      doc.text(text, 48, y+4);
+      doc.text(`We recommend an inspection by a qualified mechanic.`, 48, y+8);
     
       }
          
@@ -183,7 +183,7 @@ export class NavPdfService {
    doc.text('NMVTIS', 122 , y + 45);
 
     doc.rect(140, y, 55, 50);
-    const dynamicData2 = "Junk/Salvage/Total Loss"; // Replace with your dynamic data
+    const dynamicData2 = "Junk/Salvage Information"; // Replace with your dynamic data
     doc.setFontSize(12);
     doc.text(dynamicData2, 142 , y + 5); 
     doc.setFontSize(9);
@@ -267,7 +267,7 @@ export class NavPdfService {
       doc.setFontSize(14);
       doc.setTextColor(69, 67, 67);
       sectionIds['brand'] =  (doc as any).internal.getNumberOfPages(); 
-      doc.text('Title Brands Reported', 19, y);
+      doc.text('Brand Information', 19, y);
       if(brandCount){
       y += 5;
       doc.setFillColor(248, 215, 218);
@@ -275,7 +275,7 @@ export class NavPdfService {
       doc.setTextColor(69, 67, 67);
       doc.setFontSize(9);
       
-      doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VINData History.', 20, y + 6);
+      doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VIN Alarm History.', 20, y + 6);
       }
       doc.setTextColor(69, 67, 67);
       y += 15;
@@ -321,7 +321,7 @@ y = (doc as any).lastAutoTable.finalY + 10;
     doc.setFontSize(14);
     doc.setTextColor(69, 67, 67);  //black
     sectionIds['junksalvage'] = (doc as any).internal.getNumberOfPages();
-    doc.text('Junk/Salvage/Total Loss', 19, y);
+    doc.text('Junk/Salvage Information', 19, y);
     if(JSICount){
     y += 5;
     doc.setFillColor(248, 215, 218);
@@ -329,7 +329,7 @@ y = (doc as any).lastAutoTable.finalY + 10;
     doc.setTextColor(69, 67, 67);  //black
     doc.setFontSize(9);
    
-    doc.text('Warning - junk, salvage or insurance total loss events have been reported to VINData History.', 20, y + 6);
+    doc.text('Warning - junk, salvage or insurance total loss events have been reported to VIN Alarm History.', 20, y + 6);
     }
     doc.setTextColor(69, 67, 67);  //black
     y += 15;
@@ -474,12 +474,12 @@ Please see our report sections page, FAQ, terms of service and disclaimer for mo
 
 /************************************************ */
 const links = [
-  { text: 'Summary', x: 15, page: sectionIds['summary'] },
-  { text: 'Title Information', x: 40, page: sectionIds['title'] },
-  { text: 'Brand Report', x: 75, page: sectionIds['brand'] },
-  { text: 'Junk/Salvage', x: 105, page: sectionIds['junksalvage'] },
-  { text: 'Disclaimer', x: 135, page: sectionIds['disclaim'] },
-  { text: 'Source', x: 160, page: sectionIds['source'] }
+  { text: 'Report Summary', x: 15, page: sectionIds['summary'] },
+  { text: 'Title Information', x: 50, page: sectionIds['title'] },
+  { text: 'Brand Information', x: 85, page: sectionIds['brand'] },
+  { text: 'Junk/Salvage', x: 125, page: sectionIds['junksalvage'] },
+  { text: 'Legal Disclaimer', x: 155, page: sectionIds['disclaim'] },
+  { text: 'Sources', x: 190, page: sectionIds['source'] }
 ];
 
  // setting y coordinate
