@@ -39,7 +39,7 @@ vinData :any="";
  private isScrolling = false; // Lock for manual scroll.
 
 scrollToSection(sectionId: string) {  
-  this.isScrolling = true;  // Lock scrolling events
+  this.isScrolling = true;  // Lock scrolling events......
   this.activeTab = sectionId;
   //console.log("Scrolling to section:", sectionId);
 
@@ -73,6 +73,9 @@ scrollToSection(sectionId: string) {
     }); 
   }
 
+
+
+  //pdf scroll section for the same....
   onScroll() {
     if (this.isScrolling) return; // Ignore auto-scroll interference
   

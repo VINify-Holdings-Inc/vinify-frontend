@@ -98,7 +98,7 @@
 													<div class="cardFtr">
 														<span *ngIf="data.titleDataCount"><span
 																class="circleRedBox">{{data.titleDataCount}}</span> of
-																{{data?.titleDataCount+data?.brandDataCount+data?.JSICount}} Records</span>
+																{{data?.titleDataCount}} Records</span>
 														<span *ngIf="!data.titleDataCount">{{data?.titleData?.length}}
 															Records</span>
 													</div>
@@ -125,7 +125,7 @@
 													<div class="cardFtr">
 														<span *ngIf="data.brandDataCount"><span
 																class="circleRedBox">{{data.brandDataCount}}</span> of
-																{{data?.titleDataCount+data?.brandDataCount+data?.JSICount}}  Records</span>
+																{{data?.brandDataCount}}  Records</span>
 														<span *ngIf="!data.brandDataCount">{{data?.brandData?.length}}
 															Records</span>
 													</div>
@@ -152,7 +152,7 @@
 													<div class="cardFtr">
 														<span *ngIf="data.JSICount"><span
 																class="circleRedBox">{{data.JSICount}}</span> of
-																{{data?.titleDataCount+data?.brandDataCount+data?.JSICount}}  Records</span>
+																{{data?.JSICount}}  Records</span>
 														<span *ngIf="!data.JSICount">{{data?.JSI?.length}}
 															Records</span>
 
