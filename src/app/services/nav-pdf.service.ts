@@ -630,7 +630,11 @@ items.forEach((item, index) => {
    sectionIds['source'] = (doc as any).internal.getNumberOfPages();
   doc.text('Sources', 15, y);
   y += 10;
-
+  if (y + 50 > doc.internal.pageSize.height - 20) {
+    doc.addPage();
+    addHeader();addFooter(); 
+    y = 40; // Reset Y for new page
+  }
   // Description
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
