@@ -522,7 +522,7 @@ items.forEach((item, index) => {
 
     const text2 = doc.splitTextToSize(JSIDesc2, 180);
 
-    doc.text(text2, 15, yPosition21+35);
+    doc.text(text2, 15, yPosition21+30);
 
 
     if(JSICount){
