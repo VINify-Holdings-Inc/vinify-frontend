@@ -508,7 +508,7 @@ items.forEach((item, index) => {
       addFooter();
     }
   }
-
+  doc.setFontSize(7);
   // Handle text wrapping
   const maxWidth = 45; // Box width
   const textLines = doc.splitTextToSize(item.text, maxWidth - 10); // Wrap text
