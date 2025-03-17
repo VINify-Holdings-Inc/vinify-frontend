@@ -37,6 +37,10 @@ export class NavPdfService {
     const brandCount = data?.brandDataCount;
     const JSICount = data?.JSICount;
 
+    const titleMaxDate = data?.titleMaxDate;
+    const brandMaxDate = data?.brandMaxDate;
+    const jsiMaxDate = data?.jsiMaxDate;
+
     const doc = new jsPDF();
     const nmvtlogo = 'assets/images/nmvtis-1.png';
     const sectionIds: Record<string, number> = {};
@@ -153,8 +157,8 @@ export class NavPdfService {
     doc.setFontSize(12);
     doc.text(dynamicData, 22 , y + 5); 
     doc.setFontSize(9);
-    titleLength ? doc.text( titleLength+' Title exists for the vehicle', 22 , y + 15) : doc.text( 'No Title exists for the vehicle', 22 , y + 15);
-    doc.text(titleLength?tableData[0]?.titleBrandDate ? this.dateFormate.transform( tableData[0]?.titleBrandDate, 'DD MMM YYYY') : '-':"-", 22 , y + 25)
+    titleLength ? doc.text( tableData[0]?.brand?.split(' - ')[0] ?? '-', 22 , y + 15) : doc.text( '-', 22 , y + 15);
+    doc.text(titleLength?titleMaxDate ? this.dateFormate.transform( titleMaxDate, 'DD MMM YYYY') : '-':"-", 22 , y + 25)
     doc.text(titleLength?tableData[0]?.state ?tableData[0]?.state :"-":"-", 22 , y + 35);  
     if(titleCount){
     drawBadge(doc, 24 , y + 44, titleCount);
@@ -173,8 +177,8 @@ export class NavPdfService {
     doc.setFontSize(12);
     doc.text(dynamicData1, 82 , y + 5); 
     doc.setFontSize(9);
-    brandLength ? doc.text( brandLength+' Brand exists for the vehicle.', 82 , y + 15) : doc.text( 'No Brand exists for the vehicle.', 82 , y + 15);
-    doc.text(brandLength?brandData[0]?.titleBrandDate ? this.dateFormate.transform( brandData[0]?.titleBrandDate, 'DD MMM YYYY') : '-':"-", 82 , y + 25)
+    brandLength ? doc.text( brandData[0]?.brand?.split(' - ')[0] ?? '-', 82 , y + 15) : doc.text( '-', 82 , y + 15);
+    doc.text(brandLength?brandMaxDate ? this.dateFormate.transform( brandMaxDate, 'DD MMM YYYY') : '-':"-", 82 , y + 25)
     doc.text(brandLength?brandData[0]?.state ?brandData[0]?.state :"-":"-", 82 , y + 35);  
    // doc.text('1 of 1 Records', 82 , y + 45);
    if(brandCount){
@@ -193,8 +197,8 @@ export class NavPdfService {
     doc.setFontSize(12);
     doc.text(dynamicData2, 142 , y + 5); 
     doc.setFontSize(9);
-    jsiLength ? doc.text( jsiLength+' JSI exists for the vehicle.', 142 , y + 15) : doc.text( 'No JSI exists for the vehicle.', 142 , y + 15);
-    doc.text(jsiLength?junkSalvageData[0]?.titleBrandDate ? this.dateFormate.transform( junkSalvageData[0]?.titleBrandDate, 'DD MMM YYYY') : '-':"-", 142 , y + 25)
+    jsiLength ? doc.text( junkSalvageData[0]?.VehicleDispositionText?.split(' - ')[0] ?? '-', 142 , y + 15) : doc.text( '-', 142 , y + 15);
+    doc.text(jsiLength?jsiMaxDate ? this.dateFormate.transform( jsiMaxDate, 'DD MMM YYYY') : '-':"-", 142 , y + 25)
     doc.text(jsiLength?junkSalvageData[0]?.state ?junkSalvageData[0]?.state :"-":"-", 142 , y + 35); 
    
    // doc.text('1 of 1 Records', 142 , y + 45);
@@ -222,7 +226,10 @@ export class NavPdfService {
     sectionIds['title'] = (doc as any).internal.getNumberOfPages();
     doc.text('Title Information', 19, y);
     doc.setFontSize(6);
-    doc.text('Source NMVTIS', 180, y);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Source', 180, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text('NMVTIS', 188, y);
     
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
@@ -286,7 +293,10 @@ export class NavPdfService {
       sectionIds['brand'] =  (doc as any).internal.getNumberOfPages(); 
       doc.text('Brand Information', 19, y);
       doc.setFontSize(6);
-      doc.text('Source NMVTIS', 180, y);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Source', 180, y);
+      doc.setFont('helvetica', 'normal');
+      doc.text('NMVTIS', 188, y);
 
       if(brandCount){
       y += 5;
@@ -295,7 +305,7 @@ export class NavPdfService {
       doc.setTextColor(69, 67, 67);
       doc.setFontSize(9);
       
-      doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VIN Alarm History.', 20, y + 6);
+      doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VIN ALARM History.', 20, y + 6);
       }
       doc.setTextColor(69, 67, 67);
       y += 15;
@@ -347,7 +357,10 @@ let pageHeight4 = doc.internal.pageSize.height;
  doc.setTextColor(69, 67, 67);  //black
  doc.text('Possible Title Brands', 15, y);
  doc.setFontSize(6);
- doc.text('Source NMVTIS', 180, y);
+ doc.setFont('helvetica', 'bold');
+  doc.text('Source', 180, y);
+  doc.setFont('helvetica', 'normal');
+  doc.text('NMVTIS', 188, y);
 
  if (y + 50 > doc.internal.pageSize.height - 20) {
   doc.addPage();
@@ -440,9 +453,9 @@ doc.text(tex, 15, yPosi+5);
 ];
 
 // Draw Boxes
-y += 15;
+y += 12;
 items.forEach((item, index) => {
-  const boxHeight =   15 ;//textLines.length * 5 + 5; // Adjust box height dynamically
+  const boxHeight =   11 ;//textLines.length * 5 + 5; // Adjust box height dynamically
   let pageHeight4 = doc.internal.pageSize.height;
   // Check if we need a new page
   if (y + boxHeight + 20 > pageHeight4 - 25) { 
@@ -453,7 +466,7 @@ items.forEach((item, index) => {
   }
   doc.setFontSize(7);
   if (index % 4 === 0 && index !== 0) {
-    y += 17; // Move down after every 4 items
+    y += 15; // Move down after every 4 items
   }
 
   // Handle text wrapping
@@ -497,7 +510,10 @@ items.forEach((item, index) => {
     sectionIds['junksalvage'] = (doc as any).internal.getNumberOfPages();
     doc.text('Junk/Salvage Information', 19, y);
     doc.setFontSize(6);
-    doc.text('Source NMVTIS', 180, y);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Source', 180, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text('NMVTIS', 188, y);
     
     const JSIDesc1 = `This section discloses events related to events like junk, salvage and insurance total loss that have been reported to VIN ALARM. Included are state DMV titles that show junk, salvage or similar brands, insurance total loss events and salvage auctions or junk yard disclosures. Events related to an auto dismantler, auto recycler or crush facility indicate that the vehicle has sustained major damage. A vehicle that has been received by a salvage auction or junk yard usually indicates major prior damage, however these entities also remarket undamaged vehicles. We recommend an inspection by a qualified mechanic.`; 
     const JSIDesc2 = `If this VIN has a record in the Junk/Salvage or Insurance information then the business that submitted the VIN to NMVTIS deemed the vehicle to be either a junk, salvage, or in the case of an insurer, a total loss. The information in the DISPOSITION field in the Junk/Salvage section denotes what has happened to the VIN (i.e., vehicle) since it came into the possession of the business.`;
@@ -524,24 +540,23 @@ items.forEach((item, index) => {
 
     doc.text(text2, 15, yPosition21+30);
 
-
-    if(JSICount){
     y += 44;
+    if(JSICount){ 
     doc.setFillColor(248, 215, 218);
     doc.rect(15, y+16, 180, 9, 'F');
     doc.setTextColor(69, 67, 67);  //black
     doc.setFontSize(9);
    
-    doc.text('Warning - junk, salvage or insurance total loss events have been reported to VIN Alarm History.', 20, y + 22);
+    doc.text('Warning - junk, salvage or insurance total loss events have been reported to VIN ALARM History.', 20, y + 22);
     }
     doc.setTextColor(69, 67, 67);  //black
-    y += 58;
+    y += 35;
 
     const jsiColumns = ['Date', 'Reporting Entity', 'Reporting Entity Type', 'Description','Export','Source'];
     const jsiRows =  junkSalvageData.length > 0 
       ? junkSalvageData.map((item:any) => [     
       item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : '-',
-      item?.IdentificationID || "-",
+      item?.VehicleDispositionText || "-",
       item?.ReportingEntityCategoryText || "-",
       item?.EntityName || "-",
       item?.export || "-",
@@ -646,8 +661,7 @@ Please see our report sections page, FAQ, terms of service and disclaimer for mo
 
   const sources1=[{
    
-  description: `The National Motor Vehicle Title Information System (NMVTIS) is an electronic system that provides consumers with valuable information about a vehicle's condition and history. 
-  Prior to purchasing a vehicle, NMVTIS allows consumers, dealers, wholesale auctions, vehicle lenders and insurers to find information on the vehicle's title, most recent odometer reading, brand history, and, in some cases, historical theft data.`,
+  description: `The National Motor Vehicle Title Information System (NMVTIS) is an electronic system that provides consumers with valuable information about a vehicle's condition and history. Prior to purchasing a vehicle, NMVTIS allows consumers, dealers, wholesale auctions, vehicle lenders and insurers to find information on the vehicle's title, most recent odometer reading, brand history, and, in some cases, historical theft data.`,
      
   }]
 
@@ -682,11 +696,11 @@ Please see our report sections page, FAQ, terms of service and disclaimer for mo
 /************************************************ */
 const links = [
   { text: 'Report Summary', x: 15, page: sectionIds['summary'] },
-  { text: 'Title Information', x: 48, page: sectionIds['title'] },
-  { text: 'Brand Information', x: 82, page: sectionIds['brand'] },
-  { text: 'Junk/Salvage', x: 119, page: sectionIds['junksalvage'] },
-  { text: 'Legal Disclaimer', x: 151, page: sectionIds['disclaim'] },
-  { text: 'Sources', x: 182, page: sectionIds['source'] }
+  { text: 'Title Information', x: 49, page: sectionIds['title'] },
+//{ text: 'Brand Information', x: 82, page: sectionIds['brand'] },  119 151 182
+  { text: 'Junk/Salvage', x: 82, page: sectionIds['junksalvage'] },
+  { text: 'Legal Disclaimer', x: 111, page: sectionIds['disclaim'] },
+  { text: 'Sources', x: 144, page: sectionIds['source'] }
 ];
 
  // setting y coordinate
