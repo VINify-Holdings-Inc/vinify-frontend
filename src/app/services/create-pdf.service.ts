@@ -25,6 +25,7 @@ export class CreatePDFService {
     img.src = logoUrl;
 
     img.onload = () => {
+    
       const logoWidth = 37; // Adjust width
       const logoHeight = 7; // Adjust height
       doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
@@ -76,6 +77,18 @@ export class CreatePDFService {
           fontSize: 7, // Set font size for table data
         },
         margin: { top: 28 },
+        didDrawCell: (data: any) => {
+          if (data.section === 'body' && data.column.index === 0) {
+            const rowData: any = data.row.raw;
+            const xPos = data.cell.x+.9 ; // Adjust x to position the dot inside cell
+            const yPos = data.cell.y + 3; // Adjust y for vertical alignment
+            let isOld = rowData?.isOld;
+            // Set dot color (Red if old, Grey otherwise)
+            doc.setFillColor(isOld ? 128:207 , isOld ? 128:75 , isOld ? 128:95);
+            doc.circle(xPos, yPos, .5, 'F'); // Draw dot
+          }
+        }
+        ,
         didDrawPage: (data: any) => {
           if (data.pageNumber > 1) {
             // Add the header with logo and title on subsequent pages
