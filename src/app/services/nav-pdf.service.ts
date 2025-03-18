@@ -256,7 +256,7 @@ export class NavPdfService {
       item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-',
       item?.state || "-",
       item?.status || "-",
-      `NMVTIS`
+      " "
       
     ]):[["","","No records found","","",""]];
     doc.setTextColor(69, 67, 67);
@@ -273,6 +273,23 @@ export class NavPdfService {
         1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
         2: { cellWidth: 25 }, // Increases width of the "Date" column (index 0)
         3: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
+        5: { cellWidth: 35, halign: 'center', valign: 'middle' }
+      },
+      didDrawCell: function (data: any) {
+        if (data.column.index === 5 && data.row.index !== -1) { // "Source" column
+          const { x, y, width, height } = data.cell;
+          
+          if (data.row.raw[5] === " ") {  // Ensure only one image per row
+            doc.text("NMVTIS", x + width/14, y + 3, { align: "left" });
+    
+            const imgWidth = 10; // Image width
+            const imgHeight = 5; // Image height
+            const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
+            const imgY = y + 1; // Center vertically
+    
+            doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
+          }
+        }
       },
       didDrawPage: (data: any) => {
        // if (data.pageNumber > 1)
@@ -317,7 +334,7 @@ const brandRows = brandData.length > 0?brandData.map((item:any) => [
   item?.state || "-",
   item?.brand ? item.brand.split(' - ')[0] : "-",
   item?.brand ? item?.brand.split(' - ')[1] : '-' ,
-  `NMVTIS`
+  " "
 ]):[["","","No records found","",""]];
 
 (doc as any).autoTable({
@@ -332,7 +349,24 @@ const brandRows = brandData.length > 0?brandData.map((item:any) => [
     0: { cellWidth: 25 }, 
     1: { cellWidth: 30 }, 
     2: { cellWidth: 30 }, 
+    4: { cellWidth: 35, halign: 'center', valign: 'middle' }
   },
+      didDrawCell: function (data: any) {
+        if (data.column.index === 4 && data.row.index !== -1) { // "Source" column
+          const { x, y, width, height } = data.cell;
+          
+          if (data.row.raw[4] === " ") {  // Ensure only one image per row
+            doc.text("NMVTIS", x + width/14, y + 3, { align: "left" });
+    
+            const imgWidth = 10; // Image width
+            const imgHeight = 5; // Image height
+            const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
+            const imgY = y + 1; // Center vertically
+    
+            doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
+          }
+        }
+      },
   didDrawPage: (data: any) => {
    //  if (data.pageNumber > 1)
        addHeader(); addFooter();
@@ -404,71 +438,77 @@ doc.text(tex, 15, yPosi+5);
   { text: 'Original Taxi', x: 160,  color: 'yellow' },
   { text: 'Original Police', x: 10,  color: 'yellow' },
   { text: 'Remanufactured', x: 60,  color: 'red' },
-  { text: 'Warranty Return', x: 110,  color: 'grey' },
-  { text: 'Antique', x: 160, color: 'green' },
-  { text: 'Classic', x: 10,  color: 'green' },
-  { text: 'Agricultural Vehicle', x: 60,  color: 'green' },
-  { text: 'Logging Vehicle', x: 110,  color: 'green' },
-  { text: 'Street Rod', x: 160,  color: 'yellow' },
-  { text: 'Vehicle Contains Reissued VIN', x: 10,  color: 'yellow' },
-  { text: 'Replica', x: 60,  color: 'yellow' },
-  { text: 'Totaled', x: 110,  color: 'red' },
-  { text: 'Owner Retained', x: 160,  color: 'red' },
+  
+  { text: 'Reserved. Eliminated', x: 110,  color: 'grey' },
+  { text: 'Warranty Return', x: 160,  color: 'grey' },
+  { text: 'Antique', x: 10, color: 'green' },
+  { text: 'Classic', x: 60,  color: 'green' },
+  { text: 'Agricultural Vehicle', x: 110,  color: 'green' },
+  { text: 'Logging Vehicle', x: 160,  color: 'green' },
+  { text: 'Street Rod', x: 10,  color: 'yellow' },
+  { text: 'Vehicle Contains Reissued VIN', x: 60,  color: 'yellow' },
+  { text: 'Replica', x: 110,  color: 'yellow' },
+  
+  { text: 'Totaled', x: 160,  color: 'red' },
+  { text: 'Owner Retained', x: 10,  color: 'red' },
+  { text: 'Reserved. Eliminated. Bond Posted.', x: 60,  color: 'yellow' },
+  { text: 'Memorandum Copy', x: 110,  color: 'yellow' },
+  { text: 'Reserved. Eliminated. Parts Only', x: 160,  color: 'grey' },
+
   { text: 'Recovered Theft', x: 10, color: 'yellow' },
   { text: 'Undisclosed Lien', x: 60, color: 'yellow' },
-  { text: 'Vehicle Safety Defect Corrected', x: 110, color: 'grey' },
-  { text: 'VIN replaced by a new state assigned VIN', x: 160,  color: 'grey' },
-  { text: 'Gray Market', x: 10,  color: 'grey' },
-  { text: 'Manufacturer Buyback', x: 60,  color: 'grey' },
-  { text: 'Former Rental', x: 110,  color: 'grey' },
-  { text: 'Salvage--Stolen', x: 160, color: 'grey' },
+  { text: 'Prior Owner Retained', x: 110,  color: 'grey' },
+  { text: 'Vehicle Non-conformity Uncorrected', x: 160,  color: 'grey' },
+  { text: 'Vehicle Safety Defect Uncorrected', x: 10,  color: 'grey' },
+
+  { text: 'Vehicle Safety Defect Corrected', x: 60, color: 'grey' },
+  { text: 'VIN replaced by a new state assigned VIN', x: 110,  color: 'grey' },
+  { text: 'Gray Market', x: 160,  color: 'grey' },
+
+  { text: 'Manufacturer Buyback', x: 10,  color: 'grey' },
+  { text: 'Former Rental', x: 60,  color: 'grey' },
+  { text: 'Salvage--Stolen', x: 110, color: 'grey' },
+  { text: 'Salvage-Reasons Other Than Damage or Stolen', x: 160,  color: 'grey' },
   { text: 'Disclosed Damage', x: 10,  color: 'grey' },
-  { text: 'Crushed', x: 60,  color: 'red' },
-  { text: 'Hazardous Substance Contaminated Vehicle', x: 110,  color: 'red' },
-  { text: 'Odometer - Actual', x: 160,  color: 'grey' },
-  { text: 'Odometer - Not Actual', x: 10,  color: 'grey' },
+  { text: 'Prior Non-Repairable / Repaired', x: 60,  color: 'grey' },
+
+  { text: 'Crushed', x: 110,  color: 'red' },
+  { text: 'Hazardous Substance Contaminated Vehicle', x: 160,  color: 'red' },
+  { text: 'Export Only Vehicle.', x: 10,  color: 'red' },
+  { text: 'Odometer - Actual', x: 60,  color: 'grey' },
+  { text: 'Odometer - Not Actual', x: 110,  color: 'grey' },
+  { text: 'Odometer - Not Actual - Odometer tampering verified', x: 160,  color: 'red' },
+  { text: 'Exempt from Odometer Disclosure', x: 10,  color: 'green' },
+
   { text: 'Odometer - Exceeds Mechanical Limits', x: 60,  color: 'red' },
   { text: 'Odometer may be Altered', x: 110,  color: 'red' },
   { text: 'Odometer Replaced', x: 160, color: 'red' },
-  { text: 'Odometer Discrepancy', x: 10,  color: 'red' },
-  { text: 'Pending Junk Automobile - CARS.gov', x: 60, color: 'red' },
-  { text: 'Junk Automobile - CARS.gov', x: 110,  color: 'grey' },
-  { text: 'Reserved. Eliminated', x: 160,  color: 'grey' },
-
-  { text: 'Reserved. Eliminated. Bond Posted.', x: 10,  color: 'yellow' },
-  { text: 'Memorandum Copy', x: 60,  color: 'yellow' },
-  { text: 'Reserved. Eliminated. Parts Only', x: 110,  color: 'grey' },
-  { text: 'Prior Owner Retained', x: 160,  color: 'grey' },
-
-  { text: 'Vehicle Non-conformity Uncorrected', x: 10,  color: 'grey' },
-  { text: 'Vehicle Safety Defect Uncorrected', x: 60,  color: 'grey' },
-  { text: 'Salvage-Reasons Other Than Damage or Stolen', x: 110,  color: 'grey' },
-  { text: 'Prior Non-Repairable / Repaired', x: 160,  color: 'grey' },
-
-  { text: 'Export Only Vehicle.', x: 10,  color: 'red' },
-  { text: 'Odometer - Not Actual - Odometer tampering verified', x: 60,  color: 'red' },
-  { text: 'Exempt from Odometer Disclosure', x: 110,  color: 'green' },
-  { text: 'Odometer - Reading at Time of Renewal', x: 160,  color: 'green' },
+  { text: 'Odometer - Reading at Time of Renewal', x: 10,  color: 'green' },
+  { text: 'Odometer Discrepancy', x: 60,  color: 'red' },
+  { text: 'Pending Junk Automobile - CARS.gov', x: 110, color: 'red' },
+  { text: 'Junk Automobile - CARS.gov', x: 160,  color: 'grey' },
+  
 
 ];
 
 // Draw Boxes
 y += 12;
 items.forEach((item, index) => {
-  const boxHeight =   11 ;//textLines.length * 5 + 5; // Adjust box height dynamically
+  const boxHeight =   11 ;
   let pageHeight4 = doc.internal.pageSize.height;
   // Check if we need a new page
-  if (y + boxHeight + 20 > pageHeight4 - 25) { 
-    doc.addPage();
-    y = 50; // Reset Y with enough space for header
-    addHeader();
-    addFooter();
-  }
+ 
   doc.setFontSize(7);
   if (index % 4 === 0 && index !== 0) {
     y += 15; // Move down after every 4 items
+    if (y + boxHeight + 20 > pageHeight4 - 15) { 
+      doc.addPage();
+      y = 50; // Reset Y with enough space for header
+      addHeader();
+      addFooter();
+    }
   }
-
+  doc.setFontSize(7);
   // Handle text wrapping
   const maxWidth = 45; // Box width
   const textLines = doc.splitTextToSize(item.text, maxWidth - 10); // Wrap text
@@ -560,7 +600,7 @@ items.forEach((item, index) => {
       item?.ReportingEntityCategoryText || "-",
       item?.EntityName || "-",
       item?.export || "-",
-      `NMVTIS `
+      " ",
     ]) : [["","","No records found","","",""]];
     
     (doc as any).autoTable({
@@ -573,6 +613,23 @@ items.forEach((item, index) => {
       margin: { top: 41,bottom: 25 },
       columnStyles: {
         0: { cellWidth: 25 }, 
+        5: { cellWidth: 35, halign: 'center', valign: 'middle' }
+      },
+      didDrawCell: function (data: any) {
+        if (data.column.index === 5 && data.row.index !== -1) { // "Source" column
+          const { x, y, width, height } = data.cell;
+          
+          if (data.row.raw[5] === " ") {  // Ensure only one image per row
+            doc.text("NMVTIS", x + width/14, y + 3, { align: "left" });
+    
+            const imgWidth = 10; // Image width
+            const imgHeight = 5; // Image height
+            const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
+            const imgY = y + 1 // Center vertically
+    
+            doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
+          }
+        }
       },
       didDrawPage: (data: any) => {
       //  if (data.pageNumber > 1) 
