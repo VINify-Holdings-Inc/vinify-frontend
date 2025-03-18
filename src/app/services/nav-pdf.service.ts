@@ -699,7 +699,7 @@ const links = [
 //{ text: 'Brand Information', x: 82, page: sectionIds['brand'] },  119 151 182
   { text: 'Junk/Salvage', x: 118, page: sectionIds['junksalvage'] },
   { text: 'Legal Disclaimer', x: 149, page: sectionIds['disclaim'] },
-  { text: 'Sources', x: 18, page: sectionIds['source'] }
+  { text: 'Sources', x: 183, page: sectionIds['source'] }
 ];
 
  // setting y coordinate
