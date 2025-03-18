@@ -694,12 +694,12 @@ Please see our report sections page, FAQ, terms of service and disclaimer for mo
 
 /************************************************ */
 const links = [
-  { text: 'Report Summary', x: 15, page: sectionIds['summary'] },
-  { text: 'Title Information', x: 49, page: sectionIds['title'] },
+  { text: 'Report Summary', x: 49, page: sectionIds['summary'] },
+  { text: 'Title Information', x: 84, page: sectionIds['title'] },
 //{ text: 'Brand Information', x: 82, page: sectionIds['brand'] },  119 151 182
-  { text: 'Junk/Salvage', x: 82, page: sectionIds['junksalvage'] },
-  { text: 'Legal Disclaimer', x: 111, page: sectionIds['disclaim'] },
-  { text: 'Sources', x: 144, page: sectionIds['source'] }
+  { text: 'Junk/Salvage', x: 118, page: sectionIds['junksalvage'] },
+  { text: 'Legal Disclaimer', x: 149, page: sectionIds['disclaim'] },
+  { text: 'Sources', x: 182, page: sectionIds['source'] }
 ];
 
  // setting y coordinate
@@ -707,7 +707,7 @@ const y1 = 30;
 
 for (let i = 1; i <= totalPages; i++) {
   doc.setPage(i); // Set to the current page
-  doc.setTextColor(32, 29, 30);
+  doc.setTextColor(207, 75, 95);
 
   links.forEach(link => {
     doc.textWithLink(link.text, link.x, y1, { pageNumber: link.page }); 
