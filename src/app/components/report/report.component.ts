@@ -1,7 +1,6 @@
 import { Component, AfterViewInit, Renderer2, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DateFormatPipe } from '../../pipes/date-format.pipe';
-
 @Component({
   selector: 'app-report',
   standalone: true,
@@ -10,6 +9,7 @@ import { DateFormatPipe } from '../../pipes/date-format.pipe';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit,AfterViewInit  {
+  //assets
   logo: string = 'assets/images/ta-logo.png';
   nmvtlogo: string = 'assets/images/nmvtis-1.png';
   reportSummary: string = 'assets/images/icons/sidebar-icon/export-report.svg';
@@ -27,6 +27,7 @@ data :any={}
 vinData :any="";
 
  ngAfterViewInit(): void {
+  //store data
   const apiData: string | null = localStorage.getItem("apiData");
   const apiDataVin: any  = localStorage.getItem("apiDataVin");
 
@@ -41,8 +42,7 @@ vinData :any="";
 scrollToSection(sectionId: string) {  
   this.isScrolling = true;  // Lock scrolling events......
   this.activeTab = sectionId;
-  //console.log("Scrolling to section:", sectionId);
-
+  
   const targetElement = document.getElementById(sectionId);
   
   if (targetElement) {
@@ -73,8 +73,6 @@ scrollToSection(sectionId: string) {
     }); 
   }
 
-
-
   //pdf scroll section for the same....
   onScroll() {
     if (this.isScrolling) return; // Ignore auto-scroll interference
@@ -93,7 +91,7 @@ scrollToSection(sectionId: string) {
         current = section.getAttribute('id') || '';
       }
     });
-  
+
     if (!this.isScrolling) {
       this.activeTab = current; // Only update when not locked
     }
