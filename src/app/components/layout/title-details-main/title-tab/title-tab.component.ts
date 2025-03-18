@@ -2,7 +2,6 @@ import {  Component,  Input, Output, EventEmitter, OnInit, SimpleChanges, Change
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
-
 import { MatTableModule } from '@angular/material/table';
 import {  MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -14,8 +13,6 @@ import { NotificationService } from '../../../../services/state-management';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CapitalizePipe } from '../../../../pipes/capitalize.pipe';
 import { TitleReportService } from '../../../../services/title-report.service';
-
-
 @Component({
   selector: 'app-title-tab',
   imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule,LoaderComponent,MatCheckboxModule,CapitalizePipe,],
@@ -27,7 +24,6 @@ export class TitleTabComponent implements OnInit{
     filerIcon: string = 'assets/images/icons/filter-lines.svg';
     calendarIcon: string = 'assets/images/icons/calendar.svg';
     pdfIcon: string = 'assets/images/icons/pdf.svg';
-
 
         totalRecords:any=0;
         searchValue :string="";
@@ -49,13 +45,11 @@ export class TitleTabComponent implements OnInit{
         alert:any=null;
         isLoading:boolean=false;
         isCheckboxEnabled:boolean=false;
-       // selectedVins: { vin: string; alertDate: string }[] = [];
-        
+          
        currentPage: number = 1; // Current active page
        visiblePages: number[] = []; // Pages to display in the pagination UI
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
-      // displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptgDetails','make','model','modelYear',];
        displayedColumns: string[] = ['Select','status', 'titleBrandDate','alertType','brand','state','city','description','export','rptgEntity','mobile','email'];
         
        ngOnChanges(changes: SimpleChanges) {
@@ -68,8 +62,7 @@ export class TitleTabComponent implements OnInit{
 
        ngOnInit() {
         this.totalRecords=this.tableData;
-        this.selectedVins=this.selectedVinsData;
-          
+        this.selectedVins=this.selectedVinsData;   
         this.tableData.forEach((row: any) => {
           if (this.selectedVinsData.includes(row.id)) {
             row.isSelected = true;
@@ -88,7 +81,6 @@ export class TitleTabComponent implements OnInit{
       getSearchVal(){
         if(this.searchValue==""){
           this.searchValue="";
-         
         }else{
           if(this.searchValue.trim().length === 0){
             this.searchValue="";
@@ -97,7 +89,6 @@ export class TitleTabComponent implements OnInit{
             this.handelPaginagtion.emit({"page":1,"search":this.searchValue.trim()});
             this.sn=0;
           }
-          
         }
       }
 
@@ -111,19 +102,14 @@ export class TitleTabComponent implements OnInit{
         if(value==""){
           this.currentPage=1;
           this.handelSearch.emit(value.trim());
-          
         }
       }
       
-
-      
-
 goToPage(page: number) {
   if (page < 1 || page > this.totalPages) return; // Ensure page is within range
   this.currentPage = page;
   this.handelPaginagtion.emit({"page":page,"search":this.searchValue.trim()});
   this.updateVisiblePages();
- 
 }
 
 nextPage() {
@@ -139,7 +125,6 @@ previousPage() {
     this.goToPage(this.currentPage);
   }
 }
-
     updateVisiblePages() {
 
       const visible: number[] = [];
@@ -159,9 +144,7 @@ previousPage() {
       if (end < this.totalPages - 1) visible.splice(visible.length - 1, 0, -1); // Add "..." before the last page
 
       this.visiblePages = visible;
-      this.getValifExist();
-    
-      
+      this.getValifExist(); 
     }
 
     getBrandDetails(data:any){
@@ -180,8 +163,7 @@ previousPage() {
           },
           showCancelButton: false,
           confirmButtonText: 'OK',
-        });
-        
+        }); 
     }
     alertFilter(data:any){
       this.searchValue="";
@@ -260,12 +242,9 @@ previousPage() {
             this.selectedVinsData.splice(index, 1); // Remove the element from selectedVinsData
           }
         });
-       
       }
-        
         this.handelSelectedVin.emit(this.selectedVins)
       }
-    
     
       onRowSelectionChange(item: any): void {
         if (item.isSelected) {
@@ -337,7 +316,6 @@ previousPage() {
                 
                 }
               );
-            
             }
       }
 

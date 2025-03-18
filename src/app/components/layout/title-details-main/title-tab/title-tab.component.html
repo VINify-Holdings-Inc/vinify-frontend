@@ -110,11 +110,7 @@
               </ng-container>
 
               <!-- vin Column sort ->   mat-sort-header   -->
-              <!-- <ng-container matColumnDef="vin">
-                <th mat-header-cell *matHeaderCellDef width="240"> VINs </th>
-                <td mat-cell *matCellDef="let element"><span class="vinModelName">{{ element.vin }} </span></td>
-              </ng-container> -->
-
+              
               <!-- Name  modelYear -->
               <ng-container matColumnDef="titleBrandDate">
                 <th mat-header-cell *matHeaderCellDef width="180"> Date </th>
@@ -176,25 +172,7 @@
                 <th mat-header-cell *matHeaderCellDef width="200"> Email </th>
                 <td mat-cell *matCellDef="let element">{{ element?.email ? element?.email : "-"}} </td>
               </ng-container>
-              
              
-              <!-- <ng-container matColumnDef="make" width="80">
-                <th mat-header-cell *matHeaderCellDef> Make </th>
-                <td mat-cell *matCellDef="let element"> {{ element?.make ? element?.make : "-" }} </td>
-              </ng-container>
-              <ng-container matColumnDef="model" width="80">
-                <th mat-header-cell *matHeaderCellDef> Model </th>
-                <td mat-cell *matCellDef="let element"> {{ element?.model ? element?.model :"-" }} </td>
-              </ng-container>
-              <ng-container matColumnDef="modelYear" width="80">
-                <th mat-header-cell *matHeaderCellDef> Year </th>
-                <td mat-cell *matCellDef="let element"> {{ element?.modelYear | dateFormat: 'YYYY' }} </td>
-              </ng-container> -->
-
-             
-
-
-
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;" >
               </tr>
@@ -203,7 +181,6 @@
               No data found
             </div>
           </div>
-          <!-- <span>{{(limit*(page-1))+1}} - {{((limit*(page-1))+1+(tableData.length-1))}}</span> -->
           <div class="paginationArea">
             <div class="pagination pagination-container">
               <div>
@@ -223,7 +200,7 @@
                   </ng-container>
                 </ng-container>
               </div>
-              <!-- <span class="space" *ngIf="tableData.length">({{(limit*(page-1))+1}} - {{((limit*(page-1))+1+(tableData.length-1))}})</span> -->
+          
               <span class="space" *ngIf="tableData.length">Showing {{(limit*(page-1))+1}} to
                 {{((limit*(page-1))+1+(tableData.length-1))}} of {{totalData}} entries</span>
               <div>
@@ -235,8 +212,6 @@
       </div>
     </div>
     <app-loader [IsLoading]="isLoading"></app-loader>
-    <!-- Tooltip Component -->
-    <!-- <app-tooltip id="my-tooltip"></app-tooltip> -->
-
+  
   </div>
 </div>

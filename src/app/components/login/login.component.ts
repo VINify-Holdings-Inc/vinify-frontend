@@ -40,7 +40,6 @@ export class LoginComponent {
                ) {
              
      this.loginForm = this.fb.group({
-      //email: ['', [Validators.required, Validators.email]],
       email: ['', [Validators.required, strictEmailValidator()]],
       password: [
         '',
@@ -77,10 +76,8 @@ export class LoginComponent {
             this.sessionService.setSessionData("memberId",res.data.memberId);
             this.sessionService.setSessionData("name",res.data?.firstName +" "+ res.data?.lastName);
             this.sessionService.setSessionData("profile",res.data.profile ? `${environment.img_url}/${res.data.profile}` :"assets/images/user.jpg");
-            
             this.sessionService.setSessionData("data",res.data);
-            //dasboard-header,user-profile,login(profileComplete commented)
-           // localStorage.setItem('profileData', JSON.stringify({"name":res.data?.firstName+ " "+res.data?.lastName ,"email":res.data.email,"profileComplete":res.data.profileComplete,"profile":res.data.profile ? `${environment.img_url}/${res.data.profile}` :"assets/images/user.jpg"}));
+       
             localStorage.setItem('profileData', JSON.stringify({"name":res.data?.firstName+ " "+res.data?.lastName ,"email":res.data.email,"profile":res.data.profile ? `${environment.img_url}/${res.data.profile}` :"assets/images/user.jpg"}));
             this.isResInProgLogin=false;
             this.router.navigate(['/dashboard']);

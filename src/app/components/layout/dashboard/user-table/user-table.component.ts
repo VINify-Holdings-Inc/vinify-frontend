@@ -16,13 +16,11 @@ import { PDF_SETTINGS } from '../../../../constants';
 import { userData } from '../../../../services/api-service.service';
 import { LoaderComponent } from '../../common/loader/loader.component';
 import Swal from 'sweetalert2';
-
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 import { CsvExportService } from '../../../../services/csv-export.service';
-import { NavPdfService } from '../../../../services/nav-pdf.service';
+
 
 @Component({
   selector: 'app-user-table',
@@ -36,13 +34,10 @@ export class UserTableComponent implements AfterViewInit, OnChanges{
   pdfIcon: string = 'assets/images/icons/pdf.svg';
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  //@ViewChild(MatSort) sort!: MatSort; 
-
-
+ 
   constructor(private router: Router,private pdfService: CreatePDFService,
               private userData: userData,private cdr: ChangeDetectorRef,
-              private csvExportService: CsvExportService,
-              private navPdf : NavPdfService) {
+              private csvExportService: CsvExportService) {
    
   }
   searchValue :string="";
@@ -51,11 +46,7 @@ export class UserTableComponent implements AfterViewInit, OnChanges{
   isLoading: boolean = false;
   selectedVins: { vin: string; alertDate: string }[] = [];
   checkAll:any=null;
- // displayedColumns: string[] = ['vin', 'titleBrandDate', 'alertType', 'brand','description','city','state','rptgDetails','make','model','modelYear','details'];
   displayedColumns: string[] = ['vin', 'titleBrandDate', 'alertType', 'brand','state','details'];
-
-
-
 
   @Input() tableData :any[]=[];
   @Input() page :number=0;
@@ -99,7 +90,6 @@ onClick(pages:any){
    this.selectedVins = [];
 } 
 
-
 redirectToOtherPage(vin:string,model:string) {
   const data = { vin: vin, model: model }; // Data to send
   this.router.navigateByUrl('/user-summary-list', { state: data });
@@ -114,10 +104,8 @@ getSearchVal(){
       this.searchValue="";
     }else{
       this.handelSearch.emit(this.searchValue.trim());
-      this.handelPaginagtion.emit({"page":1,"search":this.searchValue});
-     
-    }
-    
+      this.handelPaginagtion.emit({"page":1,"search":this.searchValue});  
+    } 
   }
 }
 
@@ -125,21 +113,17 @@ getSearchVal(){
 
 onType(value: string){
   if(value==""){
-    this.handelSearch.emit(value.trim());
-   
+    this.handelSearch.emit(value.trim()); 
   }
 }
 getVinDetails(vin:any,model:any){
  
     const timestamp = new Date().getTime(); 
-      this.router.navigate(['/title-details'], { queryParams: { vin: vin.trim(),model:model, refresh: timestamp }}).then(() => {
-      
-    });
-  
+      this.router.navigate(['/title-details'], { queryParams: { vin: vin.trim(),model:model, refresh: timestamp }}).then(() => {     
+    }); 
 }
 
-exportToPDF(type:any) {
-  
+exportToPDF(type:any) { 
   this.getTableData(type);
 }
 
@@ -155,7 +139,6 @@ exportToPDFSIngle(type:any) {
     confirmButtonText: 'OK',
   });
 }
-
 
 exportToPDFUdate(type:any) { 
   Swal.fire({
@@ -185,8 +168,7 @@ getTableData(dataType:any) {
                    text: 'Please select VINs',
                    icon: 'info',
                    confirmButtonText: 'OK',
-                 });
-     
+                 });    
      }   
    
   }
@@ -209,8 +191,6 @@ getTableData(dataType:any) {
     }
   );
 }
-
-
 
 goToPage(page: number) {
   if (page < 1 || page > this.totalPages) return; // Ensure page is within range
@@ -281,8 +261,6 @@ alertFilter(data:any){
                   
                  })
      }
-
-
 
      getDataForCSVDump() {
       this.isLoading = true;

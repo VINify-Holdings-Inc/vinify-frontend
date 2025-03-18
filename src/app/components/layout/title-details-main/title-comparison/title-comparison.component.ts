@@ -28,7 +28,7 @@ export class TitleComparisonComponent implements OnInit {
 
 
 
-  @Output() handelTitleChange = new EventEmitter <any>();
+ // @Output() handelTitleChange = new EventEmitter <any>();
   ngOnInit() {
    
     this.route.queryParams.subscribe((params) => {
@@ -59,7 +59,7 @@ export class TitleComparisonComponent implements OnInit {
           this.brandData=res?.data?.brand;
           this.jsiData=res?.data?.jsi;
 
-          this.handelTitleChange.emit({"totalRecord":res?.data?.totalRecords||0,"lastUpdate":res?.data?.createdAt||""});
+          //this.handelTitleChange.emit({"totalRecord":res?.data?.totalRecords||0,"lastUpdate":res?.data?.createdAt||""});
         }     
 
       },
