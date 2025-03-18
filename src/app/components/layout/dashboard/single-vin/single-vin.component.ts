@@ -52,16 +52,14 @@ export class SingleVinComponent implements OnInit,AfterViewInit {
 
   getTableData(vin: any = null) {
     this.isLoading = true;
-   // let url = `page=${this.page}&limit=${this.limit}`;
     let url = '';
     if (this.vin) {
       url = url + `&vin=${this.vin}`;
     }
-
+   //Api call
     this.userData.getVinDataForPDF(url).subscribe(
       (res: any) => {
         if (!res.error) {
-          //const data = res?.data?.items || [];
           const data = res?.data || [];
           // Add isSelected property to each row for checkbox
           data.forEach((item: any) => (item.isSelected = false));
@@ -91,14 +89,10 @@ export class SingleVinComponent implements OnInit,AfterViewInit {
   }
     if(isChecked){
       this.checkall='all';
-      //this.selectedVins=[]
     }else{
       this.checkall='single';
     }
   }
-
-
-  
 
   onRowSelectionChange(item: any): void {
     if (item.isSelected) {
@@ -109,7 +103,6 @@ export class SingleVinComponent implements OnInit,AfterViewInit {
        
           selected.id === item.id
       );
-  
       if (!vinExists) {
         this.selectedVins.push({
           vin: item.vin,
@@ -122,9 +115,7 @@ export class SingleVinComponent implements OnInit,AfterViewInit {
       this.selectedVins = this.selectedVins.filter(
         (selected) =>
           selected.vin !== item.vin ||
-       
           selected.id !== item.id 
-
       );
     }
     this.checkall='single';
@@ -141,7 +132,6 @@ export class SingleVinComponent implements OnInit,AfterViewInit {
 
 getPDFData() {
   this.isLoading = true;
- 
   if(this.checkall=="single"){
      if(this.selectedVins.length==0){
        this.isLoading = false;
@@ -156,9 +146,8 @@ getPDFData() {
                    confirmButtonText: 'OK',
                  });
                  return;
-     }   
-   
-  }
+     }
+ }
   if (this.searchValue.trim() !== '') {
     if(this.selectedVins.length==0){
       return;
@@ -213,8 +202,7 @@ getSearchVal(){
 onType(value: string){
   if(value==""){
     this.selectedVins=[];
-    this.handelSearch(value.trim());
-    
+    this.handelSearch(value.trim());  
   }
 }
 handelSearch(vin:any){
@@ -227,12 +215,10 @@ clearAll(){
   this.searchValue="";
   this.checkall="single";
   this.getTableDataAfetrClose();
-
 }
 
 
 handleOutsideClick() {
-
   if (!this.isModalOpen) return; 
    this.clearAll();
    this.isModalOpen = false; // Close the modal
@@ -268,7 +254,6 @@ getTableDataAfetrClose(vin: any = null) {
       }
     },
     (err) => {
-    
     }
   );
 }
