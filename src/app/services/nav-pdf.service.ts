@@ -699,7 +699,7 @@ const links = [
 //{ text: 'Brand Information', x: 82, page: sectionIds['brand'] },  119 151 182
   { text: 'Junk/Salvage', x: 118, page: sectionIds['junksalvage'] },
   { text: 'Legal Disclaimer', x: 149, page: sectionIds['disclaim'] },
-  { text: 'Sources', x: 182, page: sectionIds['source'] }
+  { text: 'Sources', x: 18, page: sectionIds['source'] }
 ];
 
  // setting y coordinate
@@ -712,7 +712,7 @@ for (let i = 1; i <= totalPages; i++) {
   links.forEach(link => {
     doc.textWithLink(link.text, link.x, y1, { pageNumber: link.page }); 
     doc.setLineWidth(0.5);
-    doc.setDrawColor(32, 29, 30); 
+    doc.setDrawColor(207, 75, 95); 
     // Underline: Draw a line below the text
     const textWidth = doc.getTextWidth(link.text);
     doc.line(link.x, y1 + 1.5, link.x + textWidth, y1 + 1.5); 
