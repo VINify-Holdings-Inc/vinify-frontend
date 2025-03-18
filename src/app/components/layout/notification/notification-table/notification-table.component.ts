@@ -4,9 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 import { Router } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { userData } from '../../../../services/api-service.service';
 import { NotificationService } from '../../../../services/state-management';
 import { MatCheckboxModule } from '@angular/material/checkbox'; // Import MatCheckboxModule
@@ -51,7 +50,6 @@ export class NotificationTableComponent implements OnInit{
        selectedVins: any[] = [];
        isCheckboxEnabled:boolean=false;
       
-       //displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptgDetails','make','model','modelYear','details']; 
        displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','state','city','description','export','rptgEntity','mobile','email','details']; 
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {
@@ -64,15 +62,13 @@ export class NotificationTableComponent implements OnInit{
 
        ngOnInit() {
         this.totalRecords=this.tableData;
-        this.selectedVins=this.selectedVinsData;
-          
+        this.selectedVins=this.selectedVinsData;  
         this.tableData.forEach((row: any) => {
           if (this.selectedVinsData.includes(row.id)) {
             row.isSelected = true;
           }
         });
         this.isCheckboxEnabled = this.tableData.some((row: any) => !row.isRead);
-
         }
 
       onClick(pages:any){
@@ -80,12 +76,10 @@ export class NotificationTableComponent implements OnInit{
          this.sn=(pages-1)*10;
          this.getValifExist();
       } 
-      
-       
+             
       getSearchVal(){
         if(this.searchValue==""){
           this.searchValue="";
-         
         }else{
           if(this.searchValue.trim().length === 0){
             this.searchValue="";
@@ -93,13 +87,11 @@ export class NotificationTableComponent implements OnInit{
             this.handelSearch.emit(this.searchValue.trim());
             this.handelPaginagtion.emit({"page":1,"search":this.searchValue.trim()});
             this.sn=0;
-          }
-          
+          } 
         }
       }
 
-      
-        getValifExist(){
+      getValifExist(){
           if(this.searchValue!=""){
             this.handelSearch.emit(this.searchValue.trim());
           }
@@ -108,19 +100,14 @@ export class NotificationTableComponent implements OnInit{
         if(value==""){
            this.currentPage=1;
           this.handelSearch.emit(value.trim());
-          
         }
       }
-      
-
-      
-
+   
 goToPage(page: number) {
   if (page < 1 || page > this.totalPages) return; // Ensure page is within range
   this.currentPage = page;
   this.handelPaginagtion.emit({"page":page,"search":this.searchValue.trim()});
   this.updateVisiblePages();
- 
 }
 
 nextPage() {
@@ -303,8 +290,7 @@ previousPage() {
             (err) => {
             
             }
-          );
-        
+          );        
         }
   }
 
@@ -324,8 +310,7 @@ previousPage() {
             },
             showCancelButton: false,
             confirmButtonText: 'OK',
-          });
-          
+          }); 
       }
 
 

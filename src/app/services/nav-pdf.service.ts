@@ -3,13 +3,13 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { disclaimer } from './disclaimerSoap';
 import { DateFormatPipe } from '../pipes/date-format.pipe'
-import { CapitalizePipe } from '../pipes/capitalize.pipe';
+//import { CapitalizePipe } from '../pipes/capitalize.pipe';
 @Injectable({
   providedIn: 'root'
 })
 export class NavPdfService {
 
-  private capitalizePipe = new CapitalizePipe();
+  //private capitalizePipe = new CapitalizePipe();
   constructor(private dateFormate: DateFormatPipe,) { }
   
   generatePDF(

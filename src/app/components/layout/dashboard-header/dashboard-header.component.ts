@@ -35,7 +35,6 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private soapService: SoapService, private notificationService: NotificationService,
     private lastUpdatedService: LastUpdatedService,
-    private pdfService: CreateSoapPdfService,
     private navPdf : NavPdfService) {
     this.profileData = this.profileService.getInitialProfileData();
     this.userEmail = JSON.parse(localStorage.getItem("profileData") || "")?.email;
@@ -174,13 +173,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
                     if (resp.type) {
                       if (!resp.xml.error) {
                         if (resp?.xml?.generatePdf.length) {
-                          // this.pdfService.generatePDF(
-                          //   PDF_SETTINGS.COMPANY_NAME,
-                          //   PDF_SETTINGS.LOGO_URL,
-                          //   resp?.xml?.generatePdf || [],
-                          //   'Vin-data.pdf'
-                          // );
-                          
+                                                    
                           this.navPdf.generatePDF(
                             PDF_SETTINGS.COMPANY_NAME,
                             vin,

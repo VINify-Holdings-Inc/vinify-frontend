@@ -77,12 +77,16 @@ export class TitleDetailsMainComponent {
           this.totalData= res?.data?.totalItems||0;
           this.paramVin=res?.data?.items[0].vin;
           this.model=res?.data?.items[0].model;
+          this.titleChange = res?.data?.titletitleChangeCount;
+          this.lastTitleChangeUpdated = res?.data?.titletitleChangeLastUpdated;
         }else{
           this.tableData=res?.data?.items||[];
           this.totalPages= res?.data?.totalPages||0;
           this.totalData= res?.data?.totalItems||0;
           this.paramVin=res?.data?.items[0].vin||"";
           this.model=res?.data?.items[0].model||"";
+          this.titleChange =0;
+          this.lastTitleChangeUpdated="2024-05-24";
         }
         
 
@@ -111,10 +115,10 @@ export class TitleDetailsMainComponent {
     this.page=data.page; 
     this.getTableData(this.paramVin);
 }
-handelTitleChange(data:any){
-  this.titleChange=data.totalRecord;
-  this.lastTitleChangeUpdated=data.lastUpdate;
-}
+// handelTitleChange(data:any){
+//   this.titleChange=data.totalRecord;
+//   this.lastTitleChangeUpdated=data.lastUpdate;
+// }
 
 handelSelectedVin(data:any){
       this.selectedVinsData=data;

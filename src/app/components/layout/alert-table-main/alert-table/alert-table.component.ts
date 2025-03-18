@@ -53,9 +53,6 @@ export class AlertTableComponent implements OnInit{
        currentPage: number = 1; // Current active page
        visiblePages: number[] = []; // Pages to display in the pagination UI
        maxVisiblePages: number = 4; // Max number of pages to display at once
-     
-
-     //  displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','description','export','rptgEntity','city','state','rptgDetails','make','model','modelYear','details']; 
        displayedColumns: string[] = ['Select','status','vin', 'titleBrandDate','alertType','brand','state','city','description','export','rptgEntity','mobile','email','details']; 
 
        ngOnChanges(changes: SimpleChanges) {
@@ -83,12 +80,10 @@ export class AlertTableComponent implements OnInit{
          this.sn=(pages-1)*10;
          this.getValifExist();
       } 
-      
-       
+
       getSearchVal(){
         if(this.searchValue==""){
           this.searchValue="";
-         
         }else{
           if(this.searchValue.trim().length === 0){
             this.searchValue="";
@@ -97,11 +92,9 @@ export class AlertTableComponent implements OnInit{
             this.handelPaginagtion.emit({"page":1,"search":this.searchValue.trim()});
             this.sn=0;
           }
-          
         }
       }
-
-      
+     
         getValifExist(){
           if(this.searchValue!=""){
             this.handelSearch.emit(this.searchValue.trim());
@@ -111,19 +104,14 @@ export class AlertTableComponent implements OnInit{
         if(value==""){
           this.currentPage=1;
           this.handelSearch.emit(value.trim());
-          
         }
       }
-      
-
-      
-
+   
 goToPage(page: number) {
   if (page < 1 || page > this.totalPages) return; // Ensure page is within range
   this.currentPage = page;
   this.handelPaginagtion.emit({"page":page,"search":this.searchValue.trim()});
   this.updateVisiblePages();
- 
 }
 
 nextPage() {
@@ -141,9 +129,7 @@ previousPage() {
 }
 
     updateVisiblePages() {
-
-      const visible: number[] = [];
-        
+      const visible: number[] = [];      
       const start = Math.max(1, this.currentPage - Math.floor(this.maxVisiblePages / 2));
       const end = Math.min(this.totalPages, start + this.maxVisiblePages - 1);
      
@@ -158,8 +144,7 @@ previousPage() {
       if (end < this.totalPages - 1) visible.splice(visible.length - 1, 0, -1); // Add "..." before the last page
 
       this.visiblePages = visible;
-      this.getValifExist();
-         
+      this.getValifExist();   
     }
    alertFilter(data:any){
     this.searchValue="";
@@ -168,7 +153,6 @@ previousPage() {
    } 
 
    VegiclePageRedirect=(vin:any)=>{ 
-    
     const timestamp = new Date().getTime();
     this.router.navigate(['/title-details'], {
       queryParams: {
@@ -180,8 +164,7 @@ previousPage() {
   }
 
   selectReleventData(){
-    this.selectedVins=this.selectedVinsData;
-            
+    this.selectedVins=this.selectedVinsData;     
     this.tableData.forEach((row: any) => {
       if (this.selectedVinsData.includes(row.id)) {
         row.isSelected = true;
@@ -215,8 +198,7 @@ previousPage() {
       
       this.handelSelectedVin.emit(this.selectedVins)
     }
-  
-  
+    
     onRowSelectionChange(item: any): void {
       if (item.isSelected) {
         // Add the selected item to the array
@@ -290,7 +272,6 @@ previousPage() {
           }
     }
 
-
      getBrandDetails(data:any){
             if(data !=null )
               Swal.fire({
@@ -308,7 +289,5 @@ previousPage() {
                 showCancelButton: false,
                 confirmButtonText: 'OK',
               });
-              
           }
-
 }
