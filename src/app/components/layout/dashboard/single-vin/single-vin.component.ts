@@ -28,7 +28,7 @@ export class SingleVinComponent implements OnInit,AfterViewInit {
   displayedColumns: string[] = ['select', 'vin'];
   searchValue :string="";
   ngOnInit() {
-    this.getTableData();
+    // this.getTableData();
   }
 
   ngAfterViewInit() {
