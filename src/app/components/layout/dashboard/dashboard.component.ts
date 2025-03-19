@@ -41,7 +41,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   member: string = "";
   ngOnInit(): void {
     this.member = this.sessionService.getSessionData("memberId")
-    if(this.vin==""){this.getTableData();}
+    // if(this.vin==""){this.getTableData();}
     this.getKPIData();
   }
   vin :string= "";

@@ -71,9 +71,9 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       this.profile = data.profile; // Dynamically update profile
     });
     this.member = this.sessionServies.getSessionData("memberId")
-    this.getProfileData();
-    this.getTableData();
-    this.showAlertCountData();
+    // this.getProfileData();
+    // this.getTableData();
+    // this.showAlertCountData();
 
     this.notificationService.unreadCount$.subscribe(count => {
       this.unreadCount = count; // Update count in the UI
