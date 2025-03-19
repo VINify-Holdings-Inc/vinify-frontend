@@ -722,7 +722,7 @@ for (let i = 1; i <= totalPages; i++) {
 
     if (section) {
       doc.text(link.text, link.x, y1);
-      doc.link(link.x, y1, doc.getTextWidth(link.text), 6, {
+      doc.link(link.x, y1-3, doc.getTextWidth(link.text), 4, {
         pageNumber: section.page,
         top: section.y // Scroll to section position
       });
