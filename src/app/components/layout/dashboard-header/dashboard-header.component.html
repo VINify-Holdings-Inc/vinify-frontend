@@ -38,8 +38,7 @@
                                                (keydown.enter)="onEnterKey(dropdownMenu)"
                                                />
                                         <button type="button" class="btn btn-custom"
-                                            (click)="getSearchVal()">Search</button>
-                                            
+                                            (click)="getSearchVal()">Search</button>        
                                     </div>
                                 </div>
                                
@@ -65,7 +64,6 @@
                                             <span>{{unreadCount}} new notifications</span>
                                         </div>
                                         <div>
-                                   
                                              <div class="notification-btngrp">
                                                 <button  class="notification-number" (click)="readNotification('all')"  [disabled]="unreadCount == 0">
                                                     Read All

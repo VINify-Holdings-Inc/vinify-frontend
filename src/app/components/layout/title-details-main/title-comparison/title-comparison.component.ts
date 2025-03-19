@@ -1,4 +1,4 @@
-import { Component,EventEmitter,OnInit, Output, } from '@angular/core';
+import { Component,OnInit,} from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { userData } from '../../../../services/api-service.service';
 import { LoaderComponent } from '../../common/loader/loader.component';
@@ -25,7 +25,7 @@ export class TitleComparisonComponent implements OnInit {
   brandData :any ={};
   jsiData :any ={};
 
- // @Output() handelTitleChange = new EventEmitter <any>();
+ 
   ngOnInit() {
    
     this.route.queryParams.subscribe((params) => {
@@ -53,7 +53,7 @@ export class TitleComparisonComponent implements OnInit {
           this.titleData=res?.data?.title;
           this.brandData=res?.data?.brand;
           this.jsiData=res?.data?.jsi;
-          //this.handelTitleChange.emit({"totalRecord":res?.data?.totalRecords||0,"lastUpdate":res?.data?.createdAt||""});
+          
         }     
 
       },

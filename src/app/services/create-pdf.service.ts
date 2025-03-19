@@ -4,8 +4,6 @@ import 'jspdf-autotable'; // Correct import for autoTable plugin
 import { disclaimer } from './disclaimer';
 import { DateFormatPipe } from '../pipes/date-format.pipe'
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
-
-
 @Injectable({
   providedIn: 'root', // Makes this service globally available
 })
@@ -34,11 +32,9 @@ export class CreatePDFService {
       doc.setFontSize(16);
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
-     // doc.text('Vehicle History Report', 70, 20);
       doc.text('Vehicle History Report', 122, 20);
 
       // Add Dynamic Table Data
-
       const tableColumn = ['VINs', 'Date','Type','Brand Name(s)','State'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : "-",
@@ -46,7 +42,6 @@ export class CreatePDFService {
         item.alertType ? item.alertType : "-",
         item?.brand ? item?.brand?.split(' - ')[0]:"-",
         item.state ? item.state : "-",
-     
       ]);
 
       (doc as any).autoTable({
@@ -108,18 +103,15 @@ export class CreatePDFService {
       for (let i = 0; i < disclaimerLines.length; i++) {
         const lineHeight = 5; // Approximate line height
         const remainingSpace = pageHeight - yPosition - footerHeight;
-
         if (remainingSpace < lineHeight) {
           // Start a new page if remaining space is insufficient
           doc.addPage();
           yPosition = 20; // Reset yPosition to the top margin
         }
-
         // doc.text(disclaimerLines[i], 10, yPosition); // Add line
         doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
         yPosition += lineHeight; // Increment yPosition for the next line
       }
-
       // Save PDF
       doc.save(fileName);
     };
