@@ -729,7 +729,7 @@ for (let i = 1; i <= totalPages; i++) {
 
       // Underline effect
       doc.setLineWidth(0.5);
-      doc.setDrawColor(32, 29, 30);
+      doc.setDrawColor(207, 75, 95);
       const textWidth = doc.getTextWidth(link.text);
       doc.line(link.x, y1 + 1.5, link.x + textWidth, y1 + 1.5);
     }
