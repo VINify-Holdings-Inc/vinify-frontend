@@ -35,10 +35,10 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private soapService: SoapService, private notificationService: NotificationService,
     private lastUpdatedService: LastUpdatedService,
-    private navPdf : NavPdfService) {
+    private navPdf : NavPdfService,
+    private soapPdf :CreateSoapPdfService ){
     this.profileData = this.profileService.getInitialProfileData();
     this.userEmail = JSON.parse(localStorage.getItem("profileData") || "")?.email;
-
   }
   profileData: any;
   userName: string = "";
@@ -181,6 +181,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
                             PDF_SETTINGS.LOGO_URL,
                             vin+'-data-req-file.pdf'
                         );
+                       
 
                         } else {
                           Swal.fire({
