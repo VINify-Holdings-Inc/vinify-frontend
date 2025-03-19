@@ -28,8 +28,10 @@ export class SingleVinComponent implements OnInit,AfterViewInit {
   displayedColumns: string[] = ['select', 'vin'];
   searchValue :string="";
   ngOnInit() {
-    this.getTableData();
+    // this.getTableData();
   }
+
+  // git checkout -b bkp
 
   ngAfterViewInit() {
     // Get the modal element using Bootstrap modal API
