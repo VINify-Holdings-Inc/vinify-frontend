@@ -116,10 +116,7 @@
   .InnerTitleCard .tabVehicleSection.cardHeaderJustify ul li{
     width: 33.3%;
   }
-  .headerSection .profile_dropdown {
-    width: 160px;
-    max-width: 160px;
-  }
+
   /*=======================================================
       Login   Page Design start
     ===============================================*/
@@ -212,6 +209,9 @@
     align-items: start;
     flex-direction: column;
   }
+  .sumBox .card-title{
+  font-size: 15px;
+}
 }
 @media only screen and (max-width: 992px) {
   .backTopImg {
@@ -405,6 +405,32 @@
     align-items: start !important;
     justify-content: start;
   }
+.wrapper-pdf .sidebar-toggle-btn{
+  display: block !important;
+}
+.wrapper-pdf .header-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+header.header-pdf{
+  margin-left: 0 !important;
+}
+.content-wrapper-pdf{
+  margin-left: 0 !important;
+}
+aside.siderbar-pdf{
+  display: none !important;
+  box-shadow: none !important;
+}
+
+aside.siderbar-pdf.hidden {
+  transform: translateX(0%) !important;
+  display:  block !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), 0 6px 6px rgba(0, 0, 0, .22) !important;
+
+}
+
 }
 @media only screen and (min-width: 992px) {
   .authorityThreeBtn {
@@ -486,10 +512,6 @@
     background-position: 2px top;
     max-width: 550px;
   }
-  .profileHead {
-    flex-direction: column;
-    align-items: center;
-  }
   .profileImg {
     max-width: 80px;
     max-height: 80px;
@@ -509,8 +531,16 @@
     display: block;
     font-size: 18px;
   }
-  .headerSection .calendar-date {
-    display: none;
+ .headerSection .calendar-date .d-flex.align-items-center {
+  display: inline-block !important;
+  width: 150px;
+}
+.headerSection .calendar-date .update-time {
+  font-size: 11px;
+  line-height: 11px;
+}
+ li.nav-item.calendar-date img {
+    float: left;
   }
   a.nav-link.no-toggle-icon.noticon img{
     height: 20px;
@@ -624,6 +654,41 @@
   .footersublink ul li {
     padding: 0 15px;
   }
+  .VInNumberInput{
+    margin-left: 0;
+  }
+  .paginationNumber button.currentPage {
+  margin: 0px;
+}
+.pagination .space {
+  left: 90px !important;
+}
+.paginationArea {
+  position: relative;
+  padding: 10px 8px 20px;
+}
+.paginationArea .pagination button {
+  padding: 4px 8px;
+}
+.pagination .space {
+  left: 8px !important;
+  bottom: 0;
+  font-size: 12px;
+}
+.sumBox .card-title {
+  min-height: 38px;
+}
+.tooltipBox:hover .showOnHover {
+  left: 0 !important;
+  width: 280px !important;
+  margin: auto;
+  top: 20% !important;
+  position: fixed !important;
+  right: 0;
+}
+.tooltipBox:hover .showOnHover::after {
+  display: none !important;
+}
 }
 @media only screen and (max-width: 600px) {
   .backTopImg {
@@ -718,7 +783,6 @@
   }
   .tabVehicleSection.cardHeaderJustify .nav-tabs {
     gap: 0;
-    justify-content: center;
   }
   .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.lastTab{
     border-radius: 0 5px 5px 0;
@@ -742,17 +806,25 @@
   span.titleLogo {
     display: none;
   }
-  .headerSection .calendar-date {
-    display: none;
-  }
-
   .logoHeader img {
     width: 150px !important;
   }
   .trackVinNumber {
     right: 25px;
 }
-
+.header-Design{
+  padding: 10px;
+}
+.headerSection .navbar-btn_track {
+  padding: 0 10px;
+  width: auto;
+  min-height: 40px;
+  font-size: 12px;
+  line-height: 40px;
+}
+ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
+  gap: 5px;
+}
 }
 @media only screen and (max-width: 480px) {
   .backTopImg {

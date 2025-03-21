@@ -15,7 +15,7 @@ aside.siderbar-pdf{
 	left: 0;
 	position: fixed;
 	top: 0;
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08),0 6px 6px rgba(0,0,0,.22) !important;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08),0 6px 6px rgba(0,0,0,.22);
 }
 .top-logo {
 	padding: 15px;
@@ -356,4 +356,36 @@ span.makeitshortLength {
     width: 670px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+
+
+
+
+/* Sidebar Styles */
+.siderbar-pdf {
+    width: 250px;
+    background-color: #f8f9fa;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transition: transform 0.3s ease-in-out;
+}
+
+.siderbar-pdf.hidden {
+    transform: translateX(-100%);
+}
+
+/* Toggle Button */
+.sidebar-toggle-btn {    
+    background-color: #ffffff;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: none;
+}
+.wrapper-pdf .sidebar-toggle-btn {
+	display: none;
 }

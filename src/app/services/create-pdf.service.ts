@@ -4,8 +4,6 @@ import 'jspdf-autotable'; // Correct import for autoTable plugin
 import { disclaimer } from './disclaimer';
 import { DateFormatPipe } from '../pipes/date-format.pipe'
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
-
-
 @Injectable({
   providedIn: 'root', // Makes this service globally available
 })
@@ -34,34 +32,16 @@ export class CreatePDFService {
       doc.setFontSize(16);
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
-     // doc.text('Vehicle History Report', 70, 20);
       doc.text('Vehicle History Report', 122, 20);
 
-      // Title Records Section
-      // doc.setFontSize(12);
-      // doc.setFont('helvetica', 'bold');
-      // doc.text('Title Records', 10, 30);
-
       // Add Dynamic Table Data
-    
-      //const tableColumn = ['VINs', 'Alert Date','Alert Type','Brand Name','Description','City','State','RPTG Details','Make','Model','Year','Status'];
       const tableColumn = ['VINs', 'Date','Type','Brand Name(s)','State'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : "-",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
         item.alertType ? item.alertType : "-",
         item?.brand ? item?.brand?.split(' - ')[0]:"-",
-        // item.description ? item.description :"-",
-        // item.city ? item.city : "-",
         item.state ? item.state : "-",
-       // item.rptgDetails ? item.rptgDetails : "-",
-        // item.model ? item.model : "-",
-        // item.model ? item.model : "-",
-        // item.modelYear ? item.modelYear :"-",
-        // item.export ? this.capitalizePipe.transform(item.export) : "-",
-        // item.rptgEntity ? item.rptgEntity :"-",     
-        // item.status ? item.status :"-",
-
       ]);
 
       (doc as any).autoTable({
@@ -100,7 +80,6 @@ export class CreatePDFService {
             doc.setFontSize(16);
             doc.setTextColor(40);
             doc.setFont('helvetica', 'bold');
-           // doc.text('Vehicle History Report', 70, 20);
             doc.text('Vehicle History Report', 122, 20);
 
           }
@@ -116,7 +95,6 @@ export class CreatePDFService {
 
       // Split the disclaimer into lines that fit the page width
       const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 105);
-      //console.log("pageWidth",pageWidth);
       // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
@@ -125,18 +103,15 @@ export class CreatePDFService {
       for (let i = 0; i < disclaimerLines.length; i++) {
         const lineHeight = 5; // Approximate line height
         const remainingSpace = pageHeight - yPosition - footerHeight;
-
         if (remainingSpace < lineHeight) {
           // Start a new page if remaining space is insufficient
           doc.addPage();
           yPosition = 20; // Reset yPosition to the top margin
         }
-
         // doc.text(disclaimerLines[i], 10, yPosition); // Add line
         doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
         yPosition += lineHeight; // Increment yPosition for the next line
       }
-
       // Save PDF
       doc.save(fileName);
     };

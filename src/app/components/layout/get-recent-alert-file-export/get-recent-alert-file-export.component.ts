@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 export class FileExportComponent  implements OnInit,AfterViewInit {
   constructor(private userData: userData,private router: Router,private elementRef: ElementRef,private fileService: FileDownloadService) {}
   isModalOpen = true;
-  tableData: any[] = [];
+  tableData: any[] = [""];
   isLoading: boolean = false;
   vin: any = '';
   limit = 1000000;
@@ -30,16 +30,42 @@ export class FileExportComponent  implements OnInit,AfterViewInit {
              this.selectReleventData();
          
           }
+          /*
   ngOnInit() {
-   
     this.getTableData();
-
     this.tableData.forEach((row: any) => {
       if (this.selectedVins.includes(row.vin)) {
         row.isSelected = true;
       } 
     });
   }
+  */
+
+  @ViewChild('targetElement', { static: false }) targetElement!: ElementRef;
+
+  ngOnInit() {
+    /******************************* */
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+         
+          this.getTableData();
+            this.tableData.forEach((row: any) => {
+              if (this.selectedVins.includes(row.vin)) {
+                row.isSelected = true;
+              } 
+            });
+        }
+      },
+      { threshold: 0.1 } // Call function when 50% of the element is visible
+    );
+  
+    observer.observe(this.targetElement.nativeElement);
+  
+     /************************************ */
+  }
+
+
  
   ngAfterViewInit() {
     // Get the modal element using Bootstrap modal API

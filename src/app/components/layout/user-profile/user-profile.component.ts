@@ -10,9 +10,7 @@ import {ProfileService} from '../../../services/state-management';
 import {passwordValidator} from '../../custom-validator/password-validator';
 import { Router } from '@angular/router';  // Import Router
 import { strictEmailValidator } from '../../custom-validator/strict-email.validator';
-//import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
-
 @Component({
   selector: 'app-user-profile',
   standalone: true,
@@ -110,7 +108,6 @@ loadUserData(): void {
     name: '',
     lname: '',
     email: '',
-    //email: sessionData?.email || '',
     secondaryEmailId:  '',
     company: '',
     phone: '',
@@ -220,13 +217,11 @@ loadUserData(): void {
       formData.append('userId', this.userId);
       formData.append('firstName', this.profileForm.value.name);
       formData.append('lastName', this.profileForm.value.lname);
-      //formData.append('emailId', this.profileForm.value.email);
       formData.append('phoneNumber', this.profileForm.value.phone);
       formData.append('companyId', this.profileForm.value.company);
       formData.append('title', this.profileForm.value.title);
-      //formData.append('address', this.profileForm.value.address);
+
       if(this.isPasswordModified){
-       
         formData.append('password', this.profileForm.value.password);
       }
 
@@ -234,9 +229,7 @@ loadUserData(): void {
         const blob = new Blob([this.profilePhoto as ArrayBuffer], { type: 'image/jpeg' });
         formData.append('profile', blob, 'profile.jpg');
       }
-           
-   
-
+    
       this.authService.updateProfile(formData).subscribe({
         next: (response) => {
           if (!response.error) {
@@ -271,7 +264,6 @@ loadUserData(): void {
               confirmButtonText: 'OK',
             });
           }
-        
         },
         error: (error) => {
           this.isLoading = false;
@@ -285,11 +277,9 @@ loadUserData(): void {
             icon: 'error',
             confirmButtonText: 'OK',
           });
-   
         }
       });
     } else {
-     
       Swal.fire({
         title: 'Error!',
         showClass: {
@@ -317,8 +307,7 @@ loadUserData(): void {
         const secondaryEmailId = this.profileFormEmail.get('secondaryEmailId')?.value;
           if (secondaryEmailId) {
             this.isLoading = true;
-            const formData = new FormData();
-                  
+            const formData = new FormData();      
             formData.append('userId', this.userId);
             formData.append('secondaryEmailId', secondaryEmailId);
              
@@ -326,7 +315,6 @@ loadUserData(): void {
               next: (response) => {
                 if (!response.error) {
                   this.isLoading = false;
-               
                   Swal.fire({
                     title: 'Success!',
                     showClass: {
@@ -337,10 +325,8 @@ loadUserData(): void {
                     icon: 'info',
                     confirmButtonText: 'OK',
                   });
-               
                 } else {
                   this.isLoading = false;
-                 
                   Swal.fire({
                     title: 'Error!',
                      showClass: {
@@ -352,7 +338,6 @@ loadUserData(): void {
                     confirmButtonText: 'OK',
                   });
                 }
-               
               },
               error: (error) => {
                 this.isLoading = false;
@@ -366,11 +351,9 @@ loadUserData(): void {
                   icon: 'error',
                   confirmButtonText: 'OK',
                 });
-         
               }
             });
           } else {
-           
             Swal.fire({
               title: 'Error!',
               showClass: {
@@ -383,8 +366,6 @@ loadUserData(): void {
             });
           }
         }
-
-       
 
    toggleFields(data:boolean): void {
      if (data) {

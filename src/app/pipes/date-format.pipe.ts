@@ -105,7 +105,6 @@ export class DateFormatPipe implements PipeTransform {
         // Remove the extra comma from the date part
         let formattedDate = dayPart.replace(',', '');
         let formattedDate1 = formattedDate.replace(',', '');
-          // console.log("formattedDate",formattedDate1)
         // Return the formatted string
         return `${timePart}, ${formattedDate1}`;
     }

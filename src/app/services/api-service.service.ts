@@ -61,14 +61,6 @@ export class AuthService {
         });
   }
   
-  
-
-  // getProfileData(data: any): Observable<any> {
-  //   return this.http.get(`${this.baseUrl}/user-profile/${data}`, {
-  //     headers: this.getHeaders(),
-  //   });
-  // }
-
 }
 
 @Injectable({

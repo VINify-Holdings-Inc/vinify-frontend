@@ -37,6 +37,12 @@ vinData :any="";
   }
 }
 
+isSidebarOpen = true; // Initially open
+
+toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+}
+
  private isScrolling = false; // Lock for manual scroll.
 
 scrollToSection(sectionId: string) {  

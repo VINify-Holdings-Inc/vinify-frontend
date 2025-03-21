@@ -36,13 +36,7 @@ export class TitleReportService {
      // doc.text('Vehicle History Report', 70, 20);
       doc.text('Vehicle History Report', 120, 20);
 
-      // Title Records Section
-      // doc.setFontSize(12);
-      // doc.setFont('helvetica', 'bold');
-      // doc.text('Title Records', 10, 30);
-
       // Add Dynamic Table Data
-    //  const tableColumn = ['Status','VINs', 'Alert Date','Alert Type','Brand Name','Description','Export','RPTG Entity','City','State','RPTG Details','Make','Model','Year'];
       const tableColumn = ['Status','VINs', 'Date','Type','Brand Name(s)','State','City','Description','Export','RPTG Entity','Mobile','Email'];
       const tableRows = tableData.map((item) => [
         item.status ? item.status :"-",
@@ -58,12 +52,7 @@ export class TitleReportService {
        
         item.mobile ? item.mobile : "-",
         item.email ? item.email : "-",
-        // item.model ? item.model : "-",
-        // item.model ? item.model : "-",
-        // item.modelYear ? item.modelYear :"-",
-         
-       
-
+        
       ]);
 
       (doc as any).autoTable({
@@ -107,7 +96,6 @@ export class TitleReportService {
 
       // Split the disclaimer into lines that fit the page width
       const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 105);
-      //console.log("pageWidth",pageWidth);
       // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');

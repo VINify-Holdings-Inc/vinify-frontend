@@ -270,7 +270,7 @@ previousPage() {
       }
     
       isAllSelected(): boolean {
-       // return this.tableData.every((row) => row.isSelected);
+       
         return this.tableData.length > 0 && this.tableData.every(row => row.isSelected);
       }
     
@@ -308,7 +308,6 @@ previousPage() {
                 this.tableData.forEach(row => row.isSelected = false);
                 this.changeDetectorRef.detectChanges();
                 this.selectedVins=[]; 
-               // this.currentPage=1;
                 this.handelSelectedVin.emit([])
                 this.handelSearch.emit(this.searchValue.trim());
                 },

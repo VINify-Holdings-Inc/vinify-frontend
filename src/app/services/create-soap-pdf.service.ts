@@ -104,7 +104,6 @@
          doc.setDrawColor(69, 67, 67);
          doc.setLineWidth(.1);
          doc.line(14, footerY-14, 196, footerY-14); 
-         //doc.setTextColor(0, 0, 0);
          doc.setFontSize(9);
          doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
          doc.text('All rights reserved. Title Alarm, LLC (c) 2019-2025', 15, footerY - 5);
@@ -278,8 +277,7 @@
          }
        },
        didDrawPage: (data: any) => {
-        // if (data.pageNumber > 1)
-            addHeader(); addFooter();
+           addHeader(); addFooter();
        },  
      });
  
@@ -354,7 +352,6 @@
          }
        },
    didDrawPage: (data: any) => {
-    //  if (data.pageNumber > 1)
         addHeader(); addFooter();
    }, 
  });
@@ -597,7 +594,6 @@
          }
        },
        didDrawPage: (data: any) => {
-       //  if (data.pageNumber > 1) 
            addHeader(); addFooter();
        }, 
      });

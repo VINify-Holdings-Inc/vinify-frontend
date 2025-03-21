@@ -115,10 +115,6 @@ export class TitleDetailsMainComponent {
     this.page=data.page; 
     this.getTableData(this.paramVin);
 }
-// handelTitleChange(data:any){
-//   this.titleChange=data.totalRecord;
-//   this.lastTitleChangeUpdated=data.lastUpdate;
-// }
 
 handelSelectedVin(data:any){
       this.selectedVinsData=data;

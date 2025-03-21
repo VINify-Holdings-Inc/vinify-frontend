@@ -1,29 +1,38 @@
-<div class="wrapper-pdf">
+<div class="wrapper-pdf" [ngClass]="{ 'side-bar-control': isSidebarOpen }">
 	<header class="header-pdf">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
 					<div class="header-section">
-						<h1>Vehicle History Report</h1>
-						<div class="vinInfoModel">
-							<ul class="vinContains">
-								<li><strong>VIN</strong><span>{{vinData}}</span></li>
-								
-							</ul>
+						<div class="btnforToggle">
+							<button type="button" id="sidebarToggle" (click)="toggleSidebar()" class="sidebar-toggle-btn">
+								<i class="material-symbols-outlined text-dark">{{ isSidebarOpen ? 'menu' : 'menu' }}</i>
+							</button>
+						</div>
+						<div class="vinTxConponud">
+							<h1>Vehicle History Report</h1>
+							<div class="vinInfoModel">
+								<ul class="vinContains">
+									<li><strong>VIN</strong><span>{{vinData}}</span></li>
+									
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>		
 	</header>
 
-
-	<aside class="siderbar-pdf">
+	
+	
+	<!-- Sidebar [class.hidden]="!isSidebarOpen" -->
+	<aside class="siderbar-pdf"  [class.hidden]="!isSidebarOpen">
 		<div class="top-logo">
 			<img [src]="logo" class="img-fluid" alt="Logo" />
 			<span class="tagline">Motor Vehicle Monitoring</span>
 		</div>
-
+		
 		<ul>
 			<li (click)="scrollToSection('reportsummary')"><a
 					[ngClass]="{ 'active': activeTab === 'reportsummary' }"><span
