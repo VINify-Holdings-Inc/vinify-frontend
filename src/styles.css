@@ -430,7 +430,22 @@ aside.siderbar-pdf.hidden {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), 0 6px 6px rgba(0, 0, 0, .22) !important;
 
 }
+  .paginationNumber button.currentPage {
+  margin: 0px;
+}
 
+.paginationArea {
+  position: relative;
+  padding: 10px 8px 20px;
+}
+.paginationArea .pagination button {
+  padding: 4px 8px;
+}
+.pagination .space {
+  left: 8px !important;
+  bottom: 0;
+  font-size: 12px;
+}
 }
 @media only screen and (min-width: 992px) {
   .authorityThreeBtn {
@@ -488,6 +503,7 @@ aside.siderbar-pdf.hidden {
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%);
     transform: translate(10px, 10px);
   }
+  
 }
 @media only screen and (max-width: 768px) {
 
@@ -657,24 +673,7 @@ aside.siderbar-pdf.hidden {
   .VInNumberInput{
     margin-left: 0;
   }
-  .paginationNumber button.currentPage {
-  margin: 0px;
-}
-.pagination .space {
-  left: 90px !important;
-}
-.paginationArea {
-  position: relative;
-  padding: 10px 8px 20px;
-}
-.paginationArea .pagination button {
-  padding: 4px 8px;
-}
-.pagination .space {
-  left: 8px !important;
-  bottom: 0;
-  font-size: 12px;
-}
+
 .sumBox .card-title {
   min-height: 38px;
 }
@@ -688,6 +687,20 @@ aside.siderbar-pdf.hidden {
 }
 .tooltipBox:hover .showOnHover::after {
   display: none !important;
+}
+.inner-LoginForm .mb-4 {
+  position: relative;
+  min-height: 78px;
+  margin: 0 !important;
+}
+.inner-LoginForm .mb-4 .showError {
+  position: absolute;
+  bottom: 0;
+  font-size: 12px;
+  top: unset;
+}
+span.passwordEye {
+  bottom: 28px;
 }
 }
 @media only screen and (max-width: 600px) {
@@ -825,6 +838,12 @@ aside.siderbar-pdf.hidden {
 ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   gap: 5px;
 }
+.forgotModelbox .modal-dialog {
+  max-width: 400px;
+  width: 100%;
+  margin: auto;
+}
+
 }
 @media only screen and (max-width: 480px) {
   .backTopImg {
@@ -846,9 +865,17 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   span.titleLogo {
     display: none;
   }
-  .headerSection .calendar-date {
-    display: none;
-  }
+ .headerSection .calendar-date {
+  position: absolute;
+  top: 52px !important;
+  width: 100%;
+  right: 10px;
+}
+.headerSection .calendar-date .d-flex.align-items-center {
+  display: flex !important;
+  width: 100%;
+  justify-content: flex-end;
+}
   .logoHeader {
     padding: 0;
   }
@@ -955,7 +982,6 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
     ===============================================*/
   .tabVehicleSection.cardHeaderJustify .nav-tabs {
     gap: 10px;
-    justify-content: center;
   }
   .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.firstTab,
   .tabVehicleSection.cardHeaderJustify .nav-tabs button.nav-link.lastTab,
@@ -1017,8 +1043,18 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
     width: 12px;
     padding: 10px;
   }
-  .headerSection .navbar-btn_track {
-    display: none;
-  }
+  .header-Design {
+  padding: 5px 10px 20px;
+}
+.trackVinNumber {  
+  max-width: 330px;
+  padding: 15px;
+}
+.tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link {
+  padding: 4px 10px;
+}
+#main-content{
+  padding-bottom: 20px;
+}
 
 }
