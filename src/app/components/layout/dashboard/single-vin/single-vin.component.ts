@@ -31,7 +31,6 @@ export class SingleVinComponent implements OnInit,AfterViewInit {
     // this.getTableData();
   }
 
-  // git checkout -b bkp
 
   ngAfterViewInit() {
     // Get the modal element using Bootstrap modal API

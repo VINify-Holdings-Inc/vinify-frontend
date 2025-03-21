@@ -30,17 +30,16 @@ export class FileExportComponent  implements OnInit,AfterViewInit {
              this.selectReleventData();
          
           }
-  // ngOnInit() {
-   
-  //   this.getTableData();
-
-  //   this.tableData.forEach((row: any) => {
-  //     if (this.selectedVins.includes(row.vin)) {
-  //       row.isSelected = true;
-  //     } 
-  //   });
-  // }
-
+          /*
+  ngOnInit() {
+    this.getTableData();
+    this.tableData.forEach((row: any) => {
+      if (this.selectedVins.includes(row.vin)) {
+        row.isSelected = true;
+      } 
+    });
+  }
+  */
 
   @ViewChild('targetElement', { static: false }) targetElement!: ElementRef;
 
