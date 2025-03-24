@@ -7,15 +7,14 @@
           <h1 class="modal-title fs-5" id="exampleModalLabel">Specific VINs</h1>
             <div class="userSingleSearch importbox pull-right" >
                 <span class="VInNumberInput">
-                    <img alt="img" src="assets/images/icons/search.svg" class="img-fluid"
-                        (click)="getSearchVal()" />
-                    <input type="text" [(ngModel)]="searchValue" (keydown.enter)="getSearchVal()"
-                        (ngModelChange)="onType(searchValue)" class="form-control"
-                        placeholder="Search VIN Number" />
+                    <img src="assets/images/icons/search.svg" class="img-fluid" (click)="getSearchVal()" alt="SingleVinIcon" />
+                        <label for="SearchVINNumber" class="visually-hidden">Enter VIN Number</label>
+                    <input id="SearchVINNumber" type="text" [(ngModel)]="searchValue" (keydown.enter)="getSearchVal()"  (ngModelChange)="onType(searchValue)" class="form-control"
+                        placeholder="Search VIN Number"  />
                 </span>
             </div>
           <button type="button" class="btn btn-primary modalExport" (click) = "getPDFData()">Export PDF</button>
-          <button  (click)="clearAll()" type="button" class="btn btn-close modalClose" data-bs-dismiss="modal" aria-label="Close" >
+          <button  (click)="clearAll()" type="button" class="btn btn-close modalClose" data-bs-dismiss="modal" ><span class="visually-hidden" >Close</span>
           </button>
          
         </div>
@@ -28,6 +27,7 @@
                           <!-- Checkbox Column -->
                           <ng-container matColumnDef="select">
                             <th mat-header-cell *matHeaderCellDef class="checkBoxModal" width="25">
+                              <label class="visually-hidden" for="SelectAllRows">Select all rows</label>
                               <mat-checkbox
                                 (change)="toggleSelectAll($event)"
                                 [checked]="isAllSelected()"
@@ -36,10 +36,11 @@
                               ></mat-checkbox>
                             </th>
                             <td mat-cell *matCellDef="let element" class="check-box">
+                              <label class="visually-hidden" for="SelectedRow">Selected row</label>
                               <mat-checkbox
                                 [(ngModel)]="element.isSelected"
                                 (change)="onRowSelectionChange(element)"
-                                aria-label="Select row"
+                                aria-label="Selected row"
                               ></mat-checkbox>
                             </td>
                           </ng-container>
