@@ -31,12 +31,12 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/reset-password`, data);
   }
 
-  
+  /*
   insertData(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/csv-import`, data,{
       headers:this.getHeaders(),
     });
-  }
+  } */
 
 
   sendContactUsMessage(data: any): Observable<any> {
