@@ -6,9 +6,6 @@ import { VehicleComponent } from './components/layout/vehicle/vehicle.component'
 import { NotFoundComponent } from './components/page-not-found/not-found.component'; // Import your error component
 import { AuthGuard } from './auth.guard';
 import { SummaryComponent } from './components/layout/summary/summary.component';
-//import { AdminDashboardComponent } from './components/layout/admin-dashboard/admin-dashboard.component';
-// import { AdminVehicleComponent } from './components/layout/admin-vehicle/admin-vehicle.component';
-// import { AdminSummaryComponent } from './components/layout/admin-summary/admin-summary.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
