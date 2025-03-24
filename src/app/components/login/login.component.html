@@ -1,5 +1,4 @@
-
-<div class="container-fluid justify-content-center align-items-center setrelative">
+<div class="container-fluid justify-content-center align-items-center setrelative" role="banner">
   <div class="row formWrapper">
     <!-- Left Section -->
     
@@ -14,39 +13,39 @@
                 <div class="oneLeftButton btnleftLogin">
                   <div class="btnIcons btnZero">
                     
-                    <img [src]='gasImg' class="img-fluid" alt="Logo" />
+                    <img [src]='gasImg' class="img-fluid" alt="Gas Icon" />
                     <p>VIN Monitoring</p>
                   </div>
                 </div>
                 <div class="btnleftLogin">
                   <div class="btnIcons btnOne">
-                    <img [src]='carImg' class="img-fluid" alt="Logo" />
+                    <img [src]='carImg' class="img-fluid" alt="Real-Time-Alerts" />
                     <p>Real-Time Alerts</p>
                   </div>
                 </div>
                 <div class="btnleftLogin">
                   <div class="btnIcons btnOne">
-                    <img [src]='settingImg' class="img-fluid" alt="Logo" />
+                    <img [src]='settingImg' class="img-fluid" alt="Data-Integration" />
                     <p>Data Integration</p>
                   </div>
                 </div>
                 <div class="btnleftLogin">
                   <div class="btnIcons btnOne">
-                    <img [src]='parkingImg' class="img-fluid" alt="Logo" />
+                    <img [src]='parkingImg' class="img-fluid" alt="User-Interface" />
                     <p>User Interface</p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="vehicleImage">
-              <img [src]="vehicleImg" class="img-fluid vehicle_img" alt="left background image of vehicle" />
+              <img [src]="vehicleImg" class="img-fluid vehicle_img" alt="Left Background Image of Vehicle" />
             </div>
           </div>
         </div>
         <div class="login-footerbtm">
           <div class="loginTextSection">
             <div class="investmenHeading">
-              <h3>Safeguarding Your Vehicle Investments</h3>
+              <h1>Safeguarding Your Vehicle Investments</h1>
               <p class="spanLine">
                 Empowering Auto Manufactures to Monitor <br />
                 Vehicle Title Integrity and Prevent Fraud.
@@ -83,12 +82,12 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="FormAlign">
           <div class="headerText text-center">
             <div class="logoHeader loginLogoBottom">
-                <img [src]="logo" class="img-fluid" alt="Logo" />
+                <img [src]="logo" class="img-fluid" alt="Main Logo" />
             </div>
           </div>
 
           <div class="inner-LoginForm">
-            <h4>Log into Your Account</h4>
+            <h2>Log into Your Account</h2>
             <p>Please enter your User ID and Password to login</p>
           
           <!-- User ID Field -->
@@ -193,4 +192,5 @@
 <!-- Modal -->
 
 <app-forget-password></app-forget-password>
+
 

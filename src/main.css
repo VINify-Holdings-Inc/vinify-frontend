@@ -455,6 +455,7 @@ li.dropdown-item.notifyInner {
 
 .headerSection .navbar-btn_track {
   color: #fff !important;
+  filter: contrast(100%);
 }
 
 .headerSection .navbar-nav>li.show .dropdown-menu {
@@ -688,6 +689,7 @@ a.nav-link.no-toggle-icon {
 .notification-dot span {
   color: #fff;
   font-size: 10px;
+  filter: contrast(200%);
 }
 
 .headerSection .notification-dot {
@@ -1764,7 +1766,7 @@ form.FormAlign {
   padding-top: 0;
 }
 
-.loginTextSection h3 {
+.loginTextSection h1 {
   color: #fff;
   text-align: center;
   font-weight: 700;
@@ -1835,7 +1837,7 @@ form.FormAlign {
   padding: 0 20px;
   font-size: 12px;
 }
-.inner-LoginForm h4 {
+.inner-LoginForm h2 {
   font-size: 20px;
   font-weight: 700;
   line-height: 30px;
@@ -2736,6 +2738,7 @@ thead.table-light-Usertbl tr {
   color: #fff !important;
   outline: none !important;
   border: none !important;
+  filter: contrast(100%);
 }
 a.nav-link.no-toggle-icon.noticon {
   background: #F9FAFB;
@@ -3041,12 +3044,13 @@ span.apexcharts-legend-marker::before {
 }
 
 .forgetPassword .forgetLink {
-  color: var(--bg-primary) !important;
-  display: flex;
-  font-weight: 500;
-  justify-content: center;
-  margin-top: 25px;
-  text-transform: capitalize;
+    color: var(--bg-primary) !important;
+    display: flex;
+    font-weight: 500;
+    justify-content: center;
+    margin-top: 25px;
+    text-transform: capitalize;
+    filter: contrast(50%);
 }
 
 .FormHead {
@@ -3055,7 +3059,7 @@ span.apexcharts-legend-marker::before {
 }
 
 .FormHead p {
-  color: #a6a6aa;
+  color: #6c737f;
   text-transform: none;
   font-weight: normal;
 }
@@ -3360,6 +3364,7 @@ span.passEye i {
   top: 10px;
   z-index: 3;
   box-shadow: none;
+  opacity: 1;
 }
 .modal-content.customclosebtn button.btn-close:focus-visible {
   outline: none;
@@ -3530,6 +3535,7 @@ table {
 }
 span.alertLink {
   color: var(--bg-primary);
+  filter: contrast(100%);
 }
 
 
