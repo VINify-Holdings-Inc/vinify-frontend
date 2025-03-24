@@ -1,9 +1,5 @@
-import { Component, AfterViewInit, OnInit, SimpleChanges, ChangeDetectorRef } from '@angular/core';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
-import { LineChartComponent } from './line-chart/line-chart.component';
-import { NgModel } from '@angular/forms';
-import { CommonModule, DatePipe } from '@angular/common';
-import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { Component, AfterViewInit, OnInit, ChangeDetectorRef } from '@angular/core';
+import { CommonModule, } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { UserTableComponent } from './user-table/user-table.component';
 import { userData } from '../../../services/api-service.service';
