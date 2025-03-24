@@ -3,8 +3,7 @@
         <nav class="navbar navbar-expand navbar-light bg-navbar header-Design">
             <div class="container-fluid px-0">
                 <div class="logoHeader">
-                    <a routerLink="/dashboard" class="l-logo"><img [src]="logo" class="img-fluid" alt="Logo" /></a>
-                    <a routerLink="/dashboard" class="m-logo"><img [src]="mlogo" class="img-fluid" alt="Logo" /></a>
+                    <a routerLink="/dashboard" class="l-logo"><img [src]="logo" class="img-fluid" alt="LogoLarge" /></a>                    
                 </div>
                 <button type="button" id="sidebarCollapse" (click)="toggleSidebar()"
                     class="d-flex justify-center align-item-center d-xl-block">
@@ -14,7 +13,7 @@
                     <ul class="navbar-nav ms-auto d-flex align-items-center headerRight">
                         <li class="nav-item calendar-date">
                             <div class="d-flex align-items-center">
-                                <img src="assets/images/icons/calendar-full.svg" class="img-fluid" alt="settings" />
+                                <img src="assets/images/icons/calendar-full.svg" class="img-fluid" alt="CalendarDate" />
                                 <span class="d-flex update-time">
                                     Last Record Updated:
                                 </span>
@@ -25,15 +24,16 @@
                             <span class="btn btn-custom navbar-btn_track" (click)="changeSearchIcon()"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 New VIN Report
-                                <img [src]="arrowIcon" *ngIf="searchIconToggle" class="img-fluid" alt="settings" />
-                                <img [src]="searchIcon" *ngIf="!searchIconToggle" class="img-fluid" alt="search" />
+                                <img [src]="arrowIcon" *ngIf="searchIconToggle" class="img-fluid" alt="ArrowDown" />
+                                <img [src]="searchIcon" *ngIf="!searchIconToggle" class="img-fluid" alt="SearchLense" />
                             </span>
                             <div class="dropdown-menu dropdown-menu-end VinTrackDiv" #dropdownMenu>
                                 <div class="custom-modal"></div>
                                 <div class="trackVinNumber">
                                     <h4>VIN Search</h4>
                                     <div class="modalInput form-group position-relative">
-                                        <input type="text" [(ngModel)]="searchValue"   
+                                        <label class="visually-hidden" for="SingleVinSearch">Enter VIN Number</label>
+                                        <input id="SingleVinSearch" type="text" [(ngModel)]="searchValue"   
                                                class="form-control" placeholder="Enter VIN Number"
                                                (keydown.enter)="onEnterKey(dropdownMenu)"
                                                />
@@ -51,7 +51,7 @@
                                >
                               
                                 <div class="notification-dot"><span>{{unreadCount}}</span></div>
-                                <img src="assets/images/icons/bell.svg" class="img-fluid" alt="notifications" />
+                                <img src="assets/images/icons/bell.svg" class="img-fluid" alt="NotificationsBell" />
                                 <div class="checkmodal"></div>
                             </a>
                             
@@ -123,7 +123,7 @@
                                 </li>
                                 <li>
                                     <a routerLink="/user-profile" class="dropdown-item profile-link">
-                                        <img [src]="profileIcon" class="img-fluid" alt="icon" />
+                                        <img [src]="profileIcon" class="img-fluid" alt="ProfileName" />
                                         <span>Profile</span>
                                     </a>
                                 </li>
@@ -131,7 +131,7 @@
                                 <li>
                                     <a routerLink="#" type="button" class="dropdown-item logbtn profile-link"
                                         (click)="logout()">
-                                        <img [src]="logIcon" class="img-fluid" alt="icon" />
+                                        <img [src]="logIcon" class="img-fluid" alt="LogoutIcon" />
                                         <span>Log Out</span>
                                     </a>
                                 </li>
