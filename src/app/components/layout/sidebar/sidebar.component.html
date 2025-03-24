@@ -4,28 +4,28 @@
       <ul class="nav flex-column mt-3 sidebar-section">
         <li class="nav-item">
           <a routerLink="/dashboard" routerLinkActive="active" class="nav-link d-flex">
-            <img [src]="icon1" class="img-fluid" alt="icon" />
+            <img [src]="icon1" class="img-fluid" alt="DashboardIcon" />
             <span>Dashboard</span>
           </a>
         </li>
   
         <li class="nav-item" (click)="routerNavigation()">
           <a routerLink="/title-details" routerLinkActive="active" class="nav-link d-flex">
-            <img [src]="icon2" class="img-fluid" alt="icon" />
+            <img [src]="icon2" class="img-fluid" alt="VehiclesSummaryIcon" />
             <span>Vehicles Summary</span>
           </a>
         </li>
   
         <li class="nav-item">
           <a routerLink="/alert-list" routerLinkActive="active" class="nav-link d-flex">
-            <img [src]="icon3" class="img-fluid" alt="icon" />
+            <img [src]="icon3" class="img-fluid" alt="NewAlertsIcon" />
             <span>New Alerts</span>
           </a>
         </li>
   
         <li class="nav-item exportPdfli" (click)="openExportModal()" (click)="$event.stopPropagation()">
           <a class="nav-link d-flex">
-            <img [src]="icon4" class="img-fluid" alt="icon" />
+            <img [src]="icon4" class="img-fluid" alt="ExportReportsIcon" />
             <span>Export Reports</span>
           </a>
   
@@ -40,33 +40,33 @@
   
         <li class="nav-item">
           <a routerLink="/user-profile" routerLinkActive="active" class="nav-link d-flex">
-            <img [src]="icon5" class="img-fluid" alt="icon" />
+            <img [src]="icon5" class="img-fluid" alt="ProfileIcon" />
             <span>Profile</span>
           </a>
         </li>
   
         <li class="nav-item">
           <a href="https://titlealarm.com/#apply-today" target="_blank" routerLinkActive="active" class="nav-link d-flex">
-            <img [src]="icon6" class="img-fluid" alt="icon" />
+            <img [src]="icon6" class="img-fluid" alt="SupportIcon" />
             <span>Support</span>
           </a>
         </li>
         
         <li class="nav-item helpicon">
-          <a [href]="helpPdf" target="_blank" routerLinkActive="active" class="nav-link d-flex">
-            <img [src]="icon7" class="img-fluid" alt="icon" />
+          <a [href]="helpPdf" target="_blank" routerLinkActive="active" class="nav-link d-flex" aria-label="Download the NMVTS Brand Code PDF document">
+            <img [src]="icon7" class="img-fluid" alt="HelpIcon" />
             <span>Help</span>
           </a>
         </li>
         <li class="nav-item bulk-Upload">
           <a routerLink="/file-upload" routerLinkActive="active sideBarUpload" class="nav-link d-flex">
-            <img [src]="icon8" class="img-fluid" alt="icon" />
+            <img [src]="icon8" class="img-fluid" alt="BulkUploadIcon" />
             <span>Bulk Upload</span>
           </a>
         </li>
         <li class="nav-item bulk-Upload">
           <a routerLinkActive="active" class="nav-link d-flex" data-bs-toggle="modal" data-bs-target="#exampleModalExport">
-            <img [src]="icon9" class="img-fluid" alt="icon" />
+            <img [src]="icon9" class="img-fluid" alt="GetRecentAlertsIcon" />
             <span>Get Recent Alerts</span>
           </a>
         </li>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';//http client for req, HttpHeaders ->heders
 import { Observable } from 'rxjs';
 import {environment} from '../../environments/environment';
 import { SessionService } from './session.service';
@@ -10,7 +10,7 @@ import { SessionService } from './session.service';
 export class AuthService {
   private baseUrl = environment.api_url; // Ensure the URL is correct and accessible
 
-  constructor(private http: HttpClient, private sessionService: SessionService,) {}
+  constructor(private http: HttpClient, private sessionService: SessionService,) {} ///http: HttpClient instance created.
 
   private getHeaders(): HttpHeaders {
     const token = this.sessionService.getSessionData('token'); 

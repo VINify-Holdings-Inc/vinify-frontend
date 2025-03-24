@@ -688,13 +688,13 @@ a.nav-link.no-toggle-icon {
 
 .notification-dot span {
   color: #fff;
-  font-size: 10px;
+  font-size: 11px;
   filter: contrast(200%);
 }
 
 .headerSection .notification-dot {
-  height: 12px;
-  width: 12px;
+  height: 14px;
+  width: 14px;
   padding: 10px;
   background-color: #cf4b5f;
   border-radius: 50%;
@@ -1112,7 +1112,7 @@ header .logoHeader img {
   border-radius: 16px;
 }
 
-h3.card-title.cardDashNum {
+h1.card-title.cardDashNum {
   font-size: 36px;
   margin: 0;
   color: #201d1e;
@@ -1136,7 +1136,7 @@ h3.card-title.cardDashNum {
   justify-content: space-between;
 }
 
-.card .card-header.bg-header-area h5 {
+.card .card-header.bg-header-area h2 {
   margin: 0;
   font-size: 18px;
   font-weight: 500;
@@ -3733,6 +3733,7 @@ td.check-box {
 }
 button.btn.btn-primary.modalExport {
   padding: 10px 8px;
+  filter: contrast(100%);
 }
 .extralarge-mod .modalClose {
     margin: 0!important;
