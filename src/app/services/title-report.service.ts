@@ -19,7 +19,21 @@ export class TitleReportService {
     fileName: string = 'Vehicle_History_Report.pdf'
   ): void {
     const doc = new jsPDF({ orientation: 'landscape' });
-
+    const addFooter = () => {
+        
+      const pageHeight = doc.internal.pageSize.height;
+      const footerY = pageHeight - 1;
+      doc.setDrawColor(69, 67, 67);
+      doc.setLineWidth(.1);
+      doc.line(14, footerY-14, 284, footerY-14); 
+      //doc.setTextColor(0, 0, 0);
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(9);
+      doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
+      doc.text('All rights reserved. Title Alarm, LLC (c) 2019-2025', 15, footerY - 5);
+      doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 276, footerY - 5);
+      
+    };
     // Add Logo
     const img = new Image();
     img.src = logoUrl;
@@ -35,7 +49,7 @@ export class TitleReportService {
       doc.setFont('helvetica', 'bold');
      // doc.text('Vehicle History Report', 70, 20);
       doc.text('Vehicle History Report', 120, 20);
-
+      addFooter();
       // Add Dynamic Table Data
       const tableColumn = ['Status','VINs', 'Date','Type','Brand Name(s)','State','City','Description','Export','RPTG Entity','Mobile','Email'];
       const tableRows = tableData.map((item) => [
@@ -82,11 +96,11 @@ export class TitleReportService {
             doc.setFont('helvetica', 'bold');
            // doc.text('Vehicle History Report', 70, 20);
             doc.text('Vehicle History Report', 120, 20);
-
+            addFooter();
           }
         },
       });
-
+       /*
       // Disclaimer Section (Ensure it spans multiple pages if necessary)
       const finalY = (doc as any).lastAutoTable.finalY + 10; // Position after the last table
       let yPosition = finalY;
@@ -115,7 +129,7 @@ export class TitleReportService {
         doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
         yPosition += lineHeight; // Increment yPosition for the next line
       }
-
+          */
       // Save PDF
       doc.save(fileName);
     };

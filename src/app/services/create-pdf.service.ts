@@ -21,7 +21,21 @@ export class CreatePDFService {
     // Add Logo
     const img = new Image();
     img.src = logoUrl;
-
+    const addFooter = () => {
+        
+      const pageHeight = doc.internal.pageSize.height;
+      const footerY = pageHeight - 1;
+      doc.setDrawColor(69, 67, 67);
+      doc.setLineWidth(.1);
+      doc.line(14, footerY-14, 284, footerY-14); 
+      //doc.setTextColor(0, 0, 0);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
+      doc.text('All rights reserved. Title Alarm, LLC (c) 2019-2025', 15, footerY - 5);
+      doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 276, footerY - 5);
+      
+    };
     img.onload = () => {
     
       const logoWidth = 37; // Adjust width
@@ -33,6 +47,7 @@ export class CreatePDFService {
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
       doc.text('Vehicle History Report', 122, 20);
+      addFooter();
 
       // Add Dynamic Table Data
       const tableColumn = ['VINs', 'Date','Type','Brand Name(s)','State'];
@@ -81,11 +96,12 @@ export class CreatePDFService {
             doc.setTextColor(40);
             doc.setFont('helvetica', 'bold');
             doc.text('Vehicle History Report', 122, 20);
-
+            addFooter();
           }
         },
       });
 
+      /*
       // Disclaimer Section (Ensure it spans multiple pages if necessary)
       const finalY = (doc as any).lastAutoTable.finalY + 10; // Position after the last table
       let yPosition = finalY;
@@ -112,6 +128,7 @@ export class CreatePDFService {
         doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
         yPosition += lineHeight; // Increment yPosition for the next line
       }
+          */
       // Save PDF
       doc.save(fileName);
     };
