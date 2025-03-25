@@ -29,6 +29,7 @@ export class SingleVinComponent implements OnInit,AfterViewInit {
   searchValue :string="";
   ngOnInit() {
     // this.getTableData();
+    this.modifyLabelText();
   }
 
 
@@ -48,8 +49,29 @@ export class SingleVinComponent implements OnInit,AfterViewInit {
       
         this.clearAll();
       });
+      setTimeout(() => {
+        this.modifyLabelText();
+      }, 1000);
     }
+   
   }
+  
+  modifyLabelText() {
+    const observer = new MutationObserver(() => {
+      document.querySelectorAll('.mdc-label').forEach(label => {
+        if (label.textContent !== '.') {
+          label.textContent = '.'; 
+          (label as HTMLElement).style.display = 'none'; 
+        }
+      });
+    });
+  
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+  
 
   getTableData(vin: any = null) {
     this.isLoading = true;

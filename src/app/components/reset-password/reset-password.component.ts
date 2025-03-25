@@ -46,6 +46,11 @@ export class ResetPasswordComponent {
 
               ngOnInit(): void {
                 
+                  setTimeout(() => {
+                    this.modifySwalAttributes();
+                  }, 1000);
+                
+                
                 // Check if the user is already logged in
                 if (this.sessionService.isLoggedIn()) {
                   // If logged in, redirect to the dashboard
@@ -88,6 +93,65 @@ export class ResetPasswordComponent {
                 }
               );     
             }  
+
+            
+            modifySwalAttributes() {
+              const observer = new MutationObserver(() => {
+               document.querySelectorAll('.swal2-image').forEach(img => {
+                  if (!(img as HTMLImageElement).alt) {
+                    (img as HTMLImageElement).alt = 'image'; 
+                  }
+                });
+              document.querySelectorAll('.swal2-input').forEach(input => {
+                  if (!(input as HTMLInputElement).id) {
+                    (input as HTMLInputElement).id = 'swal2-input';
+                    (input as HTMLInputElement).setAttribute('aria-label', 'swal2-input');
+                  }
+                });
+                document.querySelectorAll('.swal2-range input ').forEach(input => {
+                  if (!(input as HTMLInputElement).id) {
+                    (input as HTMLInputElement).id = 'swal2-range-input';
+                    (input as HTMLInputElement).setAttribute('aria-label', 'swal2-range-input');
+                  }
+                });
+                document.querySelectorAll('.swal2-file').forEach(fileInput => {
+                  if (!(fileInput as HTMLInputElement).id) {
+                    (fileInput as HTMLInputElement).id = 'swal2-file';
+                    (fileInput as HTMLInputElement).setAttribute('aria-label', 'swal2-file');
+                  }
+                });
+                document.querySelectorAll('.swal2-select').forEach(fileInput => {
+                  if (!(fileInput as HTMLInputElement).id) {
+                    (fileInput as HTMLInputElement).id = 'swal2-select';
+                    (fileInput as HTMLInputElement).setAttribute('aria-label', 'swal2-select');
+                  }
+                });
+              document.querySelectorAll('.swal2-textarea').forEach(fileInput => {
+                  if (!(fileInput as HTMLInputElement).id) {
+                    (fileInput as HTMLInputElement).id = 'swal2-textarea';
+                    (fileInput as HTMLInputElement).setAttribute('aria-label', 'swal2-textarea');
+                  }
+                });
+              document.querySelectorAll('.swal2-textarea').forEach(fileInput => {
+                  if (!(fileInput as HTMLInputElement).id) {
+                    (fileInput as HTMLInputElement).id = 'swal2-textarea';
+                    (fileInput as HTMLInputElement).setAttribute('aria-label', 'swal2-textarea');
+                  }
+                }); 
+               document.querySelectorAll('.swal2-checkbox').forEach(label => {
+                  if (label.textContent !== '.') {
+                    label.textContent = '.';   
+                  }
+                }); 
+          
+              });
+            
+              observer.observe(document.body, {
+                childList: true,
+                subtree: true
+              });
+            }
+
               onSubmit() {
                 
                 if (this.resetForm.valid) {

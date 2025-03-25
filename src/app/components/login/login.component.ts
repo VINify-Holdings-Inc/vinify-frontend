@@ -77,7 +77,6 @@ export class LoginComponent {
             this.sessionService.setSessionData("name",res.data?.firstName +" "+ res.data?.lastName);
             this.sessionService.setSessionData("profile",res.data.profile ? `${environment.img_url}/${res.data.profile}` :"assets/images/user.jpg");
             this.sessionService.setSessionData("data",res.data);
-       
             localStorage.setItem('profileData', JSON.stringify({"name":res.data?.firstName+ " "+res.data?.lastName ,"email":res.data.email,"profile":res.data.profile ? `${environment.img_url}/${res.data.profile}` :"assets/images/user.jpg"}));
             this.isResInProgLogin=false;
             this.router.navigate(['/dashboard']);
