@@ -385,6 +385,7 @@ button.btn.btn-custom {
   border: 1px solid #D0D5DD;
   max-width: 114px;
   width: 100%;
+  filter:contrast(100%)
 }
 
 .headerSection .navbar-nav>.active>a:focus {
@@ -1634,6 +1635,7 @@ form.FormAlign {
   width: 120px !important;
   background: var(--bg-primary) !important;
   border-color: var(--bg-primary) !important;
+  filter:contrast(100%)
 }
 
 .swal2-styled.swal2-confirm:focus {
@@ -3533,6 +3535,7 @@ table {
     background: #cf4b5f !important;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    filter: contrast(100%);
 }
 .most-recent-alert .mainCurrentHead h5 {
     color: #fff !important;
@@ -3784,6 +3787,7 @@ button.swal2-deny.swal2-styled {
   width: 120px !important;
   background: var(--bg-primary) !important;
   border-color: var(--bg-primary) !important;
+  filter:contrast(100%);
 }
 
 .l-logo {
@@ -3794,12 +3798,15 @@ button.swal2-deny.swal2-styled {
   display: none;  
 }
 
+.statusBody p.tdHead {
+  
+  filter:contrast(100%)
+}
+
 @media (max-width: 992px) {
   .l-logo {
     display: none; 
   }
-  
-
   .m-logo {
     display: inline-block; 
   }
