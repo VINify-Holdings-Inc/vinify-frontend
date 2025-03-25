@@ -3,7 +3,10 @@
         <nav class="navbar navbar-expand navbar-light bg-navbar header-Design">
             <div class="container-fluid px-0">
                 <div class="logoHeader">
-                    <a routerLink="/dashboard" class="l-logo"><img [src]="logo" class="img-fluid" alt="LogoLarge" /></a>                    
+                    <!-- <a routerLink="/dashboard" class="l-logo"><img [src]="logo" class="img-fluid" alt="LogoLarge" /></a>   
+                                       -->
+                    <a routerLink="/dashboard" class="l-logo"><img  [src]="logo" class="img-fluid" alt="VIN Alarm Desktop"  /></a>
+                    <a routerLink="/dashboard" class="m-logo"><img [src]="mlogo" class="img-fluid" alt="VIN Alarm Mobile"  /></a>
                 </div>
                 <button type="button" id="sidebarCollapse" (click)="toggleSidebar()"
                     class="d-flex justify-center align-item-center d-xl-block">
@@ -22,7 +25,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <span class="btn btn-custom navbar-btn_track" (click)="changeSearchIcon()"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                                data-bs-toggle="dropdown" >
                                 New VIN Report
                                 <img [src]="arrowIcon" *ngIf="searchIconToggle" class="img-fluid" alt="ArrowDown" />
                                 <img [src]="searchIcon" *ngIf="!searchIconToggle" class="img-fluid" alt="SearchLense" />

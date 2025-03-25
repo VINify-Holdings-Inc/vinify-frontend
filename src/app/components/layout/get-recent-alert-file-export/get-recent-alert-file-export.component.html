@@ -8,9 +8,9 @@
                 <span class="VInNumberInput">
                     <img alt="img" src="assets/images/icons/search.svg" class="img-fluid"
                         (click)="getSearchVal()" />
-                    <input type="text" [(ngModel)]="searchValue" (keydown.enter)="getSearchVal()"
+                    <input id="SearchVINNumbers" type="text" [(ngModel)]="searchValue" (keydown.enter)="getSearchVal()"
                         (ngModelChange)="onType(searchValue)" class="form-control"
-                        placeholder="Search VIN Number" />
+                        placeholder="Search VIN Number"  aria-label="SearchVINNumbers" />
                 </span>
             </div>
             <div class="bulkupladsfea">
@@ -30,11 +30,12 @@
                           <!-- Checkbox Column -->
                           <ng-container matColumnDef="select">
                             <th mat-header-cell *matHeaderCellDef class="checkBoxModal" width="25">
+                              <label   class="visually-hidden" for="SelectAllRo">Select all rows</label>
                               <mat-checkbox
                                 (change)="toggleSelectAll($event)"
                                 [checked]="isAllSelected()"
                                 [indeterminate]="isIndeterminate()"
-                                aria-label="Select all rows"
+                                aria-label="SelectAllRo"
                               ></mat-checkbox>
                             </th>
                             <td mat-cell *matCellDef="let element" class="check-box">
