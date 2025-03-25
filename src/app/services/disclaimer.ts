@@ -1,1 +1,2 @@
-export const disclaimer =`Its data is prohibiting the distribution of the report without permission. Customer is responsible and agreeing to use it.`;
+export const disclaimer =`This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. 
+All rights reserved. Title Alarm, LLC (c) 2019-2025`;
