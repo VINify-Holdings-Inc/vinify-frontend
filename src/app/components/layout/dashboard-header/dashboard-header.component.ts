@@ -234,8 +234,9 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
 
                   this.getVinSearchDataFromSoap(this.soapToken, vin).then((resp) => {
                     this.isLoading = false;
+                    console.log("test data",resp)
                     if (resp.type) {
-                      if (!resp.xml.error) {
+                      if (!resp.xml.error) {   console.log("test data2",resp)
                         if (resp?.xml?.generatePdf.length) {
                                                     
                           this.navPdf.generatePDF(
@@ -279,7 +280,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
                           popup: 'animated fadeInDown faster',
                           icon: 'animated heartBeat delay-1s'
                         },
-                        text: "Error is occurred while fetching Vin Details",
+                        text: resp?.xml.message,//"Error is occurred while fetching Vin Details",
                         icon: 'error',
                         confirmButtonText: 'OK',
                       });
@@ -334,7 +335,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
                           popup: 'animated fadeInDown faster',
                           icon: 'animated heartBeat delay-1s'
                         },
-                        text: "Error is occurred while fetching Vin Details",
+                        text: resp?.xml.message,  //"Error is occurred while fetching Vin Details",
                         icon: 'error',
                         confirmButtonText: 'OK',
                       });
@@ -443,7 +444,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
             resolve({ type: true, xml: res.data });
           } else {
 
-            resolve({ type: false });
+            resolve({ type: false, xml: res});
           }
         },
         (err) => {

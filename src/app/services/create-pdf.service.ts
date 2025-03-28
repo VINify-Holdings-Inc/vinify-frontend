@@ -100,10 +100,13 @@ export class CreatePDFService {
           }
         },
       });
-
-      /*
+  
+      doc.setFontSize(14);
+    let  y = (doc as any).lastAutoTable.finalY + 10;
+      doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y+10);
+      
       // Disclaimer Section (Ensure it spans multiple pages if necessary)
-      const finalY = (doc as any).lastAutoTable.finalY + 10; // Position after the last table
+      const finalY =   y+ 20; //(doc as any).lastAutoTable.finalY + 10; // Position after the last table
       let yPosition = finalY;
       const pageHeight = doc.internal.pageSize.height;
       const pageWidth = doc.internal.pageSize.width;
@@ -128,7 +131,7 @@ export class CreatePDFService {
         doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
         yPosition += lineHeight; // Increment yPosition for the next line
       }
-          */
+      addFooter();
       // Save PDF
       doc.save(fileName);
     };

@@ -100,36 +100,39 @@ export class TitleReportService {
           }
         },
       });
-       /*
-      // Disclaimer Section (Ensure it spans multiple pages if necessary)
-      const finalY = (doc as any).lastAutoTable.finalY + 10; // Position after the last table
-      let yPosition = finalY;
-      const pageHeight = doc.internal.pageSize.height;
-      const pageWidth = doc.internal.pageSize.width;
-      const footerHeight = 20; // Reserve 20 units for the footer
-
-      // Split the disclaimer into lines that fit the page width
-      const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 105);
-      // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
-      doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
-      doc.setTextColor(100);
-
-      for (let i = 0; i < disclaimerLines.length; i++) {
-        const lineHeight = 5; // Approximate line height
-        const remainingSpace = pageHeight - yPosition - footerHeight;
-
-        if (remainingSpace < lineHeight) {
-          // Start a new page if remaining space is insufficient
-          doc.addPage();
-          yPosition = 20; // Reset yPosition to the top margin
-        }
-
-        // doc.text(disclaimerLines[i], 10, yPosition); // Add line
-        doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
-        yPosition += lineHeight; // Increment yPosition for the next line
-      }
-          */
+       
+        doc.setFontSize(14);
+          let  y = (doc as any).lastAutoTable.finalY + 10;
+            doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y+10);
+            
+            // Disclaimer Section (Ensure it spans multiple pages if necessary)
+            const finalY =   y+ 20; //(doc as any).lastAutoTable.finalY + 10; // Position after the last table
+            let yPosition = finalY;
+            const pageHeight = doc.internal.pageSize.height;
+            const pageWidth = doc.internal.pageSize.width;
+            const footerHeight = 20; // Reserve 20 units for the footer
+      
+            // Split the disclaimer into lines that fit the page width
+            const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 105);
+            // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(100);
+      
+            for (let i = 0; i < disclaimerLines.length; i++) {
+              const lineHeight = 5; // Approximate line height
+              const remainingSpace = pageHeight - yPosition - footerHeight;
+              if (remainingSpace < lineHeight) {
+                // Start a new page if remaining space is insufficient
+                doc.addPage();
+                yPosition = 20; // Reset yPosition to the top margin
+              }
+              // doc.text(disclaimerLines[i], 10, yPosition); // Add line
+              doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
+              yPosition += lineHeight; // Increment yPosition for the next line
+            }
+            addFooter();
+          
       // Save PDF
       doc.save(fileName);
     };
