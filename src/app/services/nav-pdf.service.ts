@@ -77,7 +77,7 @@ export class NavPdfService {
        y += 7;
  
        if(titleCount || brandCount || JSICount ){
-       doc.setFillColor(255, 0, 0); // Red color
+       doc.setFillColor(211, 2, 2); // Red color
        doc.roundedRect(15, y-1, 30, 10, 3, 3, 'F'); // x, y, width, height, rx, ry, style (F for fill)
  
        // Add warning text inside button
