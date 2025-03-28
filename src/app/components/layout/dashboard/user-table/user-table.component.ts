@@ -176,12 +176,25 @@ getTableData(dataType:any) {
   this.userData.getPdfData(url,this.selectedVins).subscribe(
     (res: any) => {
       if (!res.error) {
+        if(res?.data?.items.length>0){ 
         this.pdfService.generatePDF(
           PDF_SETTINGS.COMPANY_NAME,
           PDF_SETTINGS.LOGO_URL,
           res?.data?.items || [],
           'Vin-data.pdf'
         );
+      }else{
+        Swal.fire({
+                    title: 'Error!',
+                    showClass: {
+                      popup: 'animated fadeInDown faster',
+                      icon: 'animated heartBeat delay-1s'
+                    },
+                    text: "No data found",
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                  });      
+      }
         
       }
       this.isLoading = false;

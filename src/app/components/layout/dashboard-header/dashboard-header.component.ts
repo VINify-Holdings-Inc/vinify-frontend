@@ -234,9 +234,9 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
 
                   this.getVinSearchDataFromSoap(this.soapToken, vin).then((resp) => {
                     this.isLoading = false;
-                    console.log("test data",resp)
+                    
                     if (resp.type) {
-                      if (!resp.xml.error) {   console.log("test data2",resp)
+                      if (!resp.xml.error) {  // console.log("test data2",resp)
                         if (resp?.xml?.generatePdf.length) {
                                                     
                           this.navPdf.generatePDF(
