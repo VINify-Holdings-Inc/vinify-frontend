@@ -287,7 +287,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
                             popup: 'animated fadeInDown faster',
                             icon: 'animated heartBeat delay-1s'
                           },
-                          text: "Something went worng,please try after sometime",
+                          text: `No data found for ${vin}`, //"Something went worng,please try after sometime",
                           icon: 'error',
                           confirmButtonText: 'OK',
                         });
@@ -300,7 +300,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
                           popup: 'animated fadeInDown faster',
                           icon: 'animated heartBeat delay-1s'
                         },
-                        text: resp?.xml.message,//"Error is occurred while fetching Vin Details",
+                        text: `No data found for ${vin}`, //resp?.xml.message,//"Error is occurred while fetching Vin Details",
                         icon: 'error',
                         confirmButtonText: 'OK',
                       });
@@ -315,7 +315,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
                       popup: 'animated fadeInDown faster',
                       icon: 'animated heartBeat delay-1s'
                     },
-                    text: "Sever is down",
+                    text:  `No data found for ${vin}`,//"Sever is down",
                     icon: 'error',
                     confirmButtonText: 'OK',
                   });
