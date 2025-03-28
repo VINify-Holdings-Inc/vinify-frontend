@@ -221,10 +221,8 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
             },
             icon: 'info',
             showCancelButton: true, // Enables the cancel button
-            confirmButtonText: 'PDF View', // Text for the confirm button
+            confirmButtonText: 'Yes', // Text for the confirm button
             cancelButtonText: 'No',  // Text for the cancel button
-            showDenyButton: true, // Enables the additional button
-            denyButtonText: 'Web View',
             // Text for the new button
           }).then((result) => {
             if (result.isConfirmed) {
@@ -236,18 +234,40 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
                     this.isLoading = false;
                     
                     if (resp.type) {
-                      if (!resp.xml.error) {  // console.log("test data2",resp)
+                      if (!resp.xml.error) {  
                         if (resp?.xml?.generatePdf.length) {
                                                     
-                          this.navPdf.generatePDF(
-                            PDF_SETTINGS.COMPANY_NAME,
-                            vin,
-                            resp?.xml?.reportData,
-                            PDF_SETTINGS.LOGO_URL,
-                            vin+'-data-req-file.pdf'
-                        );
-                       
-
+                             Swal.fire({
+                                      title: 'Action!',
+                                      text: "How would you prefer the report to be presented?",
+                                      showClass: {
+                                        popup: 'animated fadeInDown faster',
+                                        icon: 'animated heartBeat delay-1s'
+                                      },
+                                      icon: 'info',
+                                    //  showCancelButton: true, // Enables the cancel button
+                                      confirmButtonText: 'PDF View', // Text for the confirm button
+                                    //  cancelButtonText: 'No',  // Text for the cancel button
+                                      showDenyButton: true, // Enables the additional button
+                                      denyButtonText: 'Web View',
+                                      // Text for the new button
+                                    }).then((result) => {
+                                      if (result.isConfirmed) {
+                                            this.navPdf.generatePDF(
+                                            PDF_SETTINGS.COMPANY_NAME,
+                                            vin,
+                                            resp?.xml?.reportData,
+                                            PDF_SETTINGS.LOGO_URL,
+                                            vin+'-data-req-file.pdf'
+                                        );
+                                      }
+                                      else if (result.isDenied) {
+                                        localStorage.setItem("apiData", JSON.stringify(resp?.xml?.reportData));  // Store data
+                                        localStorage.setItem("apiDataVin", JSON.stringify(vin));  // Store data
+                                        window.open("/reports", "_blank"); // Redirect to new page
+                                      }
+                                   }) 
+                           
                         } else {
                           Swal.fire({
                             title: 'Info!',
@@ -302,61 +322,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
                 }
               });
             }
-            else if (result.isDenied) {
-              this.isLoading = true;
-              this.callSoapServiceAuth().then((success) => {
-                if (success) {
-
-                  this.getVinSearchDataFromSoap(this.soapToken, vin).then((resp) => {
-                    this.isLoading = false;
-                    if (resp.type) {
-                      if (!resp.xml.error) {
-                        localStorage.setItem("apiData", JSON.stringify(resp?.xml?.reportData));  // Store data
-                        localStorage.setItem("apiDataVin", JSON.stringify(vin));  // Store data
-                        window.open("/reports", "_blank"); // Redirect to new page
-                        // this.router.navigate(['/reports']); 
-                      } else {
-                        Swal.fire({
-                          title: 'Info!',
-                          showClass: {
-                            popup: 'animated fadeInDown faster',
-                            icon: 'animated heartBeat delay-1s'
-                          },
-                          text: "Something went worng,please try after sometime",
-                          icon: 'error',
-                          confirmButtonText: 'OK',
-                        });
-                      }
-
-                    } else {
-                      Swal.fire({
-                        title: 'Error!',
-                        showClass: {
-                          popup: 'animated fadeInDown faster',
-                          icon: 'animated heartBeat delay-1s'
-                        },
-                        text: resp?.xml.message,  //"Error is occurred while fetching Vin Details",
-                        icon: 'error',
-                        confirmButtonText: 'OK',
-                      });
-                    }
-
-                  })
-                } else {
-                  this.isLoading = false;
-                  Swal.fire({
-                    title: 'Error!',
-                    showClass: {
-                      popup: 'animated fadeInDown faster',
-                      icon: 'animated heartBeat delay-1s'
-                    },
-                    text: "Sever is down",
-                    icon: 'error',
-                    confirmButtonText: 'OK',
-                  });
-                }
-              })
-            }
+          
           });
         }
       },
