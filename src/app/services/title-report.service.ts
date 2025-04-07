@@ -144,6 +144,9 @@ export class TitleReportService {
                 doc.addPage();
                 addHeader();
                 yPosition = 35; // Reset yPosition to the top margin
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(100);
               }
               // doc.text(disclaimerLines[i], 10, yPosition); // Add line
               doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
