@@ -189,7 +189,8 @@ previousPage() {
               PDF_SETTINGS.COMPANY_NAME,
               PDF_SETTINGS.LOGO_URL,
               res?.data?.items || [],
-              'Vin-detail-report.pdf'
+              'Vin-detail-report.pdf',
+              this.paramVin
             );
           }else{
             Swal.fire({
