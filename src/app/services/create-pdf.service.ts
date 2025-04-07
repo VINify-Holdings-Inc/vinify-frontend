@@ -36,17 +36,28 @@ export class CreatePDFService {
       doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 276, footerY - 5);
       
     };
-    img.onload = () => {
-    
+
+    const addHeader = ()=>{
+      //logo 
       const logoWidth = 37; // Adjust width
       const logoHeight = 7; // Adjust height
       doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
-
-      // Add Title
+      //Title
       doc.setFontSize(16);
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
       doc.text('Vehicle History Report', 122, 20);
+    }
+    img.onload = () => {
+    
+     
+
+      // Add Title
+      // doc.setFontSize(16);
+      // doc.setTextColor(40);
+      // doc.setFont('helvetica', 'bold');
+      // doc.text('Vehicle History Report', 122, 20);
+      addHeader();
       addFooter();
 
       // Add Dynamic Table Data
@@ -72,6 +83,10 @@ export class CreatePDFService {
           fontSize: 7, // Set font size for table data
         },
         margin: { top: 28 },
+        columnStyles: {
+          1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
+         
+        },
         didDrawCell: (data: any) => {
           if (data.section === 'body' && data.column.index === 0) {
             const rowData: any = data.row.raw;
@@ -92,10 +107,11 @@ export class CreatePDFService {
             doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
 
             // Add Title
-            doc.setFontSize(16);
-            doc.setTextColor(40);
-            doc.setFont('helvetica', 'bold');
-            doc.text('Vehicle History Report', 122, 20);
+            // doc.setFontSize(16);
+            // doc.setTextColor(40);
+            // doc.setFont('helvetica', 'bold');
+            // doc.text('Vehicle History Report', 122, 20);
+            addHeader();
             addFooter();
           }
         },
@@ -125,7 +141,12 @@ export class CreatePDFService {
         if (remainingSpace < lineHeight) {
           // Start a new page if remaining space is insufficient
           doc.addPage();
-          yPosition = 20; // Reset yPosition to the top margin
+          addHeader();
+          yPosition = 35; // Reset yPosition to the top margin 20
+
+          doc.setFontSize(10);
+          doc.setFont('helvetica', 'normal');
+          doc.setTextColor(100);
         }
         // doc.text(disclaimerLines[i], 10, yPosition); // Add line
         doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });

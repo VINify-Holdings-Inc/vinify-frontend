@@ -16,7 +16,8 @@ export class TitleReportService {
     companyName: string,
     logoUrl: string,
     tableData: any[],
-    fileName: string = 'Vehicle_History_Report.pdf'
+    fileName: string = 'Vehicle_History_Report.pdf',
+    vinFor:any
   ): void {
     const doc = new jsPDF({ orientation: 'landscape' });
     const addFooter = () => {
@@ -34,27 +35,38 @@ export class TitleReportService {
       doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 276, footerY - 5);
       
     };
-    // Add Logo
-    const img = new Image();
-    img.src = logoUrl;
 
-    img.onload = () => {
+    const addHeader =() =>{
+     // logo
       const logoWidth = 37; // Adjust width
       const logoHeight = 7; // Adjust height
       doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
-
-      // Add Title
+      //Title
       doc.setFontSize(16);
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
      // doc.text('Vehicle History Report', 70, 20);
       doc.text('Vehicle History Report', 120, 20);
+      doc.setFontSize(10);
+       doc.setFont('helvetica', 'normal');
+       doc.text(`VIN: ${vinFor}`, 120, 25);
+    }
+
+
+    // Add Logo
+    const img = new Image();
+    img.src = logoUrl;
+
+    img.onload = () => {
+      
+      // Add Title
+      addHeader();
+
       addFooter();
       // Add Dynamic Table Data
-      const tableColumn = ['Status','VINs', 'Date','Type','Brand Name(s)','State','City','Description','Export','RPTG Entity','Mobile','Email'];
+      const tableColumn = ['Status', 'Date','Type','Brand Name(s)','State','City','Description','Export','RPTG Entity','Mobile','Email'];
       const tableRows = tableData.map((item) => [
         item.status ? item.status :"-",
-        item.vin ? item.vin : "-",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
         item.alertType ? item.alertType : "-",
         item?.brand ? item?.brand?.split(' - ')[0]:"-",
@@ -83,6 +95,10 @@ export class TitleReportService {
           fontSize: 7, // Set font size for table data
         },
         margin: { top: 28 },
+        columnStyles: {
+          1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
+         
+        },
         didDrawPage: (data: any) => {
           if (data.pageNumber > 1) {
             // Add the header with logo and title on subsequent pages
@@ -91,11 +107,12 @@ export class TitleReportService {
             doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
 
             // Add Title
-            doc.setFontSize(16);
-            doc.setTextColor(40);
-            doc.setFont('helvetica', 'bold');
-           // doc.text('Vehicle History Report', 70, 20);
-            doc.text('Vehicle History Report', 120, 20);
+          //   doc.setFontSize(16);
+          //   doc.setTextColor(40);
+          //   doc.setFont('helvetica', 'bold');
+          //  // doc.text('Vehicle History Report', 70, 20);
+          //   doc.text('Vehicle History Report', 120, 20);
+            addHeader();
             addFooter();
           }
         },
@@ -125,7 +142,8 @@ export class TitleReportService {
               if (remainingSpace < lineHeight) {
                 // Start a new page if remaining space is insufficient
                 doc.addPage();
-                yPosition = 20; // Reset yPosition to the top margin
+                addHeader();
+                yPosition = 35; // Reset yPosition to the top margin
               }
               // doc.text(disclaimerLines[i], 10, yPosition); // Add line
               doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
