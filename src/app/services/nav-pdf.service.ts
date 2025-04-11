@@ -151,7 +151,8 @@ export class NavPdfService {
      doc.setFontSize(12);
      doc.text(dynamicData, 22 , y + 5); 
      doc.setFontSize(9);
-     titleLength ? doc.text( tableData[0]?.brand?.split(' - ')[0] ?? " ", 22 , y + 15) : doc.text( " ", 22 , y + 15);
+     //titleLength ? doc.text( tableData[0]?.brand?.split(' - ')[0] ?? " ", 22 , y + 15) : doc.text( " ", 22 , y + 15);
+     titleLength ? doc.text( tableData[0]?.status ?? " ", 22 , y + 15) : doc.text( " ", 22 , y + 15);
      doc.text(titleLength?titleMaxDate ? this.dateFormate.transform( titleMaxDate, 'DD MMM YYYY') : " ":" ", 22 , y + 25)
      doc.text(titleLength?tableData[0]?.state ?tableData[0]?.state :" ":" ", 22 , y + 35);  
      if(titleCount){

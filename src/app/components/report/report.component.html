@@ -90,7 +90,7 @@
 												<div class="card-body">
 													<h5 class="card-title">Title Information</h5>
 													<ul>
-														<li>{{ data?.titleData?.[0]?.brand?.split(' - ')[0] ?? " " }}</li>
+														<li>{{ data?.titleData?.[0]?.status ?? " " }}</li>
 														<li>{{ data?.titleMaxDate ?
 															(data?.titleMaxDate | dateFormat: 'DD MMM
 															YYYY') : " " }}</li>
