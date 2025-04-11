@@ -151,9 +151,9 @@ export class NavPdfService {
      doc.setFontSize(12);
      doc.text(dynamicData, 22 , y + 5); 
      doc.setFontSize(9);
-     titleLength ? doc.text( tableData[0]?.brand?.split(' - ')[0] ?? '-', 22 , y + 15) : doc.text( '-', 22 , y + 15);
-     doc.text(titleLength?titleMaxDate ? this.dateFormate.transform( titleMaxDate, 'DD MMM YYYY') : '-':"-", 22 , y + 25)
-     doc.text(titleLength?tableData[0]?.state ?tableData[0]?.state :"-":"-", 22 , y + 35);  
+     titleLength ? doc.text( tableData[0]?.brand?.split(' - ')[0] ?? " ", 22 , y + 15) : doc.text( " ", 22 , y + 15);
+     doc.text(titleLength?titleMaxDate ? this.dateFormate.transform( titleMaxDate, 'DD MMM YYYY') : " ":" ", 22 , y + 25)
+     doc.text(titleLength?tableData[0]?.state ?tableData[0]?.state :" ":" ", 22 , y + 35);  
      if(titleCount){
      drawBadge(doc, 24 , y + 44, titleCount);
      doc.setTextColor(69, 67, 67);  //black
@@ -169,9 +169,9 @@ export class NavPdfService {
      doc.setFontSize(12);
      doc.text(dynamicData1, 82 , y + 5); 
      doc.setFontSize(9);
-     brandLength ? doc.text( brandData[0]?.brand?.split(' - ')[0] ?? '-', 82 , y + 15) : doc.text( '-', 82 , y + 15);
-     doc.text(brandLength?brandMaxDate ? this.dateFormate.transform( brandMaxDate, 'DD MMM YYYY') : '-':"-", 82 , y + 25)
-     doc.text(brandLength?brandData[0]?.state ?brandData[0]?.state :"-":"-", 82 , y + 35);  
+     brandLength ? doc.text( brandData[0]?.brand?.split(' - ')[0] ?? " ", 82 , y + 15) : doc.text( " ", 82 , y + 15);
+     doc.text(brandLength?brandMaxDate ? this.dateFormate.transform( brandMaxDate, 'DD MMM YYYY') : " ":" ", 82 , y + 25)
+     doc.text(brandLength?brandData[0]?.state ?brandData[0]?.state :" ":" ", 82 , y + 35);  
   
     if(brandCount){
      drawBadge(doc, 84 , y + 44, brandCount);
@@ -188,9 +188,9 @@ export class NavPdfService {
      doc.setFontSize(12);
      doc.text(dynamicData2, 142 , y + 5); 
      doc.setFontSize(9);
-     jsiLength ? doc.text( junkSalvageData[0]?.VehicleDispositionText?.split(' - ')[0] ?? '-', 142 , y + 15) : doc.text( '-', 142 , y + 15);
-     doc.text(jsiLength?jsiMaxDate ? this.dateFormate.transform( jsiMaxDate, 'DD MMM YYYY') : '-':"-", 142 , y + 25)
-     doc.text(jsiLength?junkSalvageData[0]?.state ?junkSalvageData[0]?.state :"-":"-", 142 , y + 35); 
+     jsiLength ? doc.text( junkSalvageData[0]?.VehicleDispositionText?.split(' - ')[0] ?? " ", 142 , y + 15) : doc.text( " ", 142 , y + 15);
+     doc.text(jsiLength?jsiMaxDate ? this.dateFormate.transform( jsiMaxDate, 'DD MMM YYYY') : " ":" ", 142 , y + 25)
+     doc.text(jsiLength?junkSalvageData[0]?.state ?junkSalvageData[0]?.state :" ":" ", 142 , y + 35); 
     
      if(JSICount){
        drawBadge(doc, 144 , y + 44, JSICount);
@@ -238,11 +238,11 @@ export class NavPdfService {
  
      const tableColumn = ['VINs','Date', 'State', 'Status', 'Source'];
      const tableRows = tableData.length > 0 ? tableData.map((item:any) => [
-       item?.vin || "-",
-      //  item?.brand ? item.brand.split(' - ')[0] : "-",
-       item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-',
-       item?.state || "-",
-       item?.status || "-",
+       item?.vin || " ",
+      //  item?.brand ? item.brand.split(' - ')[0] : " ",
+       item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
+       item?.state || " ",
+       item?.status || " ",
        " "
        
      ]):[["","","No records found", "",""]];
@@ -317,10 +317,10 @@ export class NavPdfService {
        const brandColumns = ['Date', 'State', 'Brand Name(s)', 'Description','Source'];
  const brandRows = brandData.length > 0?brandData.map((item:any) => [
    
-   item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-',
-   item?.state || "-",
-   item?.brand ? item.brand.split(' - ')[0] : "-",
-   item?.brand ? item?.brand.split(' - ')[1] : '-' ,
+   item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
+   item?.state || " ",
+   item?.brand ? item.brand.split(' - ')[0] : " ",
+   item?.brand ? item?.brand.split(' - ')[1] : " " ,
    " "
  ]):[["","","No records found","",""]];
  
@@ -561,11 +561,11 @@ export class NavPdfService {
      const jsiColumns = ['Date', 'Reporting Entity', 'Reporting Entity Type', 'Description','Export','Source'];
      const jsiRows =  junkSalvageData.length > 0 
        ? junkSalvageData.map((item:any) => [     
-       item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : '-',
-       item?.VehicleDispositionText || "-",
-       item?.ReportingEntityCategoryText || "-",
-       item?.EntityName || "-",
-       item?.export || "-",
+       item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : " ",
+       item?.VehicleDispositionText || " ",
+       item?.ReportingEntityCategoryText || " ",
+       item?.EntityName || " ",
+       item?.export || " ",
        " ",
      ]) : [["","","No records found","","",""]];
      

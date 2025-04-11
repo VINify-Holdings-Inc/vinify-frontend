@@ -55,7 +55,7 @@
                                 <p><span aria-label="Vehicle Identification Number">{{resentAlert.vin}}</span></p>
                                 <span class="date-time" aria-label="">{{ resentAlert.createdAt | dateFormat: 'h:mm A, ddd DD MMM YYYY' }}</span>
                             </div>
-                            <h5> {{resentAlert.brand?resentAlert?.brand?.split(' - ')[0]:'-' }}</h5>
+                            <h5> {{resentAlert.brand?resentAlert?.brand?.split(' - ')[0]:" " }}</h5>
                            
                             <p class="authorityPara">
                                 Theft detected for VIN {{resentAlert.vin}} . Immediate action required.
