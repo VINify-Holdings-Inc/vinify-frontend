@@ -194,7 +194,6 @@
 											<thead>
 												<tr>
 													<th>VINs</th>
-													<th scope="col">Brand Name(s)</th>
 													<th scope="col">Date</th>
 													<th scope="col">State</th>
 													<th scope="col">Status</th>
@@ -205,7 +204,6 @@
 												*ngIf="data?.titleData && data?.titleData.length > 0; else noTitleRecords">
 												<tr *ngFor="let item of data?.titleData">
 													<td>{{ item?.vin }}</td>
-													<td>{{ item?.brand || '-' }}</td>
 													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
 														'DD MMM YYYY') : '-' }}</td>
 													<td>{{ item?.state || '-' }}</td>

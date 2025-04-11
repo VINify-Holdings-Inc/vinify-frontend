@@ -93,7 +93,8 @@
 
                   <th mat-header-cell *matHeaderCellDef width="300">Brand Name(s)</th>
                   <td mat-cell *matCellDef="let element" >
-                    {{element?.brand ? element?.brand?.split(' - ')[0]:"-"}}
+                    <!-- {{element?.brand ? element?.brand?.split(' - ')[0]:"-"}} -->
+                    {{element?.alertType === 'Title' ? "-" : (element?.brand ? element.brand.split(' - ')[0] : "-") }}
                   </td>
                 </ng-container>
 
