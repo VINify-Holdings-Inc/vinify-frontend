@@ -236,10 +236,11 @@ export class NavPdfService {
      doc.setTextColor(69, 67, 67);
      y += 10;
  
-     const tableColumn = ['VINs','Brand Name(s)' ,'Date', 'State', 'Status', 'Source'];
+   //  const tableColumn = ['VINs','Brand Name(s)' ,'Date', 'State', 'Status', 'Source'];
+     const tableColumn = ['VINs','Date', 'State', 'Status', 'Source'];
      const tableRows = tableData.length > 0 ? tableData.map((item:any) => [
        item?.vin || "-",
-       item?.brand ? item.brand.split(' - ')[0] : "-",
+      // item?.brand ? item.brand.split(' - ')[0] : "-",
        item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-',
        item?.state || "-",
        item?.status || "-",
@@ -260,13 +261,13 @@ export class NavPdfService {
          1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
          2: { cellWidth: 25 }, 
          3: { cellWidth: 30 }, 
-         5: { cellWidth: 35, halign: 'center', valign: 'middle' }
+         4: { cellWidth: 35, halign: 'center', valign: 'middle' }
        },
        didDrawCell: function (data: any) {
-         if (data.column.index === 5 && data.row.index !== -1) { // "Source" column
+         if (data.column.index === 4 && data.row.index !== -1) { // "Source" column
            const { x, y, width, height } = data.cell;
            
-           if (data.row.raw[5] === " ") {  // Ensure only one image per row
+           if (data.row.raw[4] === " ") {  // Ensure only one image per row
              doc.text("NMVTIS", x + width/14, y + 3, { align: "left" });
      
              const imgWidth = 10; // Image width
