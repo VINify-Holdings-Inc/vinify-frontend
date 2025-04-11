@@ -69,7 +69,7 @@ export class TitleReportService {
         item.status ? item.status :"-",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
         item.alertType ? item.alertType : "-",
-        item?.brand ? item?.brand?.split(' - ')[0]:"-",
+        item?.alertType === 'Title' ? "-" : (item?.brand ? item.brand.split(' - ')[0] : "-"), 
         item.state ? item.state : "-",
         item.city ? item.city : "-",
         item.description ? item.description :"-",

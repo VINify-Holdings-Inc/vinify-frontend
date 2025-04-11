@@ -66,9 +66,10 @@ export class CreatePDFService {
         item.vin ? item.vin : "-",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
         item.alertType ? item.alertType : "-",
-        item?.brand ? item?.brand?.split(' - ')[0]:"-",
+        item?.alertType === 'Title' ? "-" : (item?.brand ? item.brand.split(' - ')[0] : "-"), 
         item.state ? item.state : "-",
       ]);
+
 
       (doc as any).autoTable({
         startY: 35, // Starting position for the table
