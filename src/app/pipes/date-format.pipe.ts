@@ -9,12 +9,12 @@ import { Pipe, PipeTransform, Injectable } from '@angular/core';
 })
 export class DateFormatPipe implements PipeTransform {
   transform(value: Date | string | null, format: string): string {
-    if (!value) return '-'; // Return a placeholder for null or undefined values
+    if (!value) return " "; // Return a placeholder for null or undefined values
 
     const date = value instanceof Date ? value : new Date(value);
 
     if (isNaN(date.getTime())) {
-      return '-'; // Handle invalid date inputs
+      return " "; // Handle invalid date inputs
     }
 
     const now = new Date();

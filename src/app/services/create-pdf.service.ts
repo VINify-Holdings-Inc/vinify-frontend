@@ -63,11 +63,11 @@ export class CreatePDFService {
       // Add Dynamic Table Data
       const tableColumn = ['VINs', 'Date','Type','Brand Name(s)','State'];
       const tableRows = tableData.map((item) => [
-        item.vin ? item.vin : "-",
-        (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
-        item.alertType ? item.alertType : "-",
-        item?.alertType === 'Title' ? "-" : (item?.brand ? item.brand.split(' - ')[0] : "-"), 
-        item.state ? item.state : "-",
+        item.vin ? item.vin : " ",
+        (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " "),
+        item.alertType ? item.alertType : " ",
+        item?.alertType === 'Title' ? " " : (item?.brand ? item.brand.split(' - ')[0] : " "), 
+        item.state ? item.state : " ",
       ]);
 
 
@@ -119,7 +119,7 @@ export class CreatePDFService {
       });
   
       doc.setFontSize(14);
-    let  y = (doc as any).lastAutoTable.finalY + 10;
+     let  y = (doc as any).lastAutoTable.finalY + 10;
       doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y+10);
       
       // Disclaimer Section (Ensure it spans multiple pages if necessary)

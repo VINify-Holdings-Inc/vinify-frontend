@@ -90,11 +90,11 @@
 												<div class="card-body">
 													<h5 class="card-title">Title Information</h5>
 													<ul>
-														<li>{{ data?.titleData?.[0]?.brand?.split(' - ')[0] ?? '-' }}</li>
+														<li>{{ data?.titleData?.[0]?.status ?? " " }}</li>
 														<li>{{ data?.titleMaxDate ?
 															(data?.titleMaxDate | dateFormat: 'DD MMM
-															YYYY') : '-' }}</li>
-														<li>{{ data?.titleData?.[0]?.state ?? '-' }}</li>
+															YYYY') : " " }}</li>
+														<li>{{ data?.titleData?.[0]?.state ?? " " }}</li>
 													</ul>
 													<div class="cardFtr">
 														<span *ngIf="data.titleDataCount"><span
@@ -116,12 +116,12 @@
 												<div class="card-body">
 													<h5 class="card-title">Brand Information</h5>
 													<ul>
-														<li>{{ data?.brandData?.[0]?.brand?.split(' - ')[0] ?? '-' }}</li>
+														<li>{{ data?.brandData?.[0]?.brand?.split(' - ')[0] ?? " " }}</li>
 														<li>{{ data?.brandMaxDate ?
 															(data?.brandMaxDate | dateFormat: 'DD MMM
-															YYYY') : '-' }}</li>
+															YYYY') : " " }}</li>
 
-														<li>{{ data?.brandData?.[0]?.state ?? '-' }}</li>
+														<li>{{ data?.brandData?.[0]?.state ?? " " }}</li>
 													</ul>
 													<div class="cardFtr">
 														<span *ngIf="data.brandDataCount"><span
@@ -143,11 +143,11 @@
 												<div class="card-body">
 													<h5 class="card-title">Junk/Salvage Information</h5>
 													<ul>
-														<li>{{ data?.JSI?.[0]?.VehicleDispositionText ?? '-' }}</li>
+														<li>{{ data?.JSI?.[0]?.VehicleDispositionText ?? " " }}</li>
 														<li>{{ data?.jsiMaxDate ?
 															(data?.jsiMaxDate | dateFormat: 'DD MMM
-															YYYY') : '-' }}</li>
-														<li>{{ data?.JSI?.[0]?.state ?? '-' }}</li>
+															YYYY') : " " }}</li>
+														<li>{{ data?.JSI?.[0]?.state ?? " " }}</li>
 
 													</ul>
 													<div class="cardFtr">
@@ -205,11 +205,10 @@
 												*ngIf="data?.titleData && data?.titleData.length > 0; else noTitleRecords">
 												<tr *ngFor="let item of data?.titleData">
 													<td>{{ item?.vin }}</td>
-													<!-- <td>{{ item?.brand || '-' }}</td> -->
 													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
-														'DD MMM YYYY') : '-' }}</td>
-													<td>{{ item?.state || '-' }}</td>
-													<td>{{ item?.status || '-' }}</td>
+														'DD MMM YYYY') : " " }}</td>
+													<td>{{ item?.state || " " }}</td>
+													<td>{{ item?.status || " " }}</td>
 													<td>
 														NMVTIS
 														<img [src]="nmvtlogo" class="img-fluid tableinside"
@@ -254,11 +253,11 @@
 												*ngIf="data?.brandData && data?.brandData.length > 0; else noRecords">
 												<tr *ngFor="let item of data?.brandData">
 													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
-														'DD MMM YYYY') : '-' }}</td>
-													<td>{{ item?.state || '-' }}</td>
-													<td>{{ item?.brand ? item?.brand.split(' - ')[0] : '-' }}</td>
+														'DD MMM YYYY') : " " }}</td>
+													<td>{{ item?.state || " " }}</td>
+													<td>{{ item?.brand ? item?.brand.split(' - ')[0] : " " }}</td>
 													<td><span class="makeitshortLength">{{ item?.brand ?
-															item?.brand.split(' - ')[1] : '-' }}</span></td>
+															item?.brand.split(' - ')[1] : " " }}</span></td>
 													<td>
 														NMVTIS
 														<img [src]="nmvtlogo" class="img-fluid tableinside"
@@ -586,11 +585,11 @@
 											<tbody *ngIf="data?.JSI && data?.JSI.length > 0; else noJSIRecords">
 												<tr *ngFor="let item of data?.JSI">
 													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
-														'DD MMM YYYY') : '-' }}</td>
-													<td>{{ item?.VehicleDispositionText || '-' }}</td>
-													<td>{{ item?.ReportingEntityCategoryText || '-' }}</td>
-													<td>{{ item?.EntityName || '-' }}</td>
-													<td>{{ item?.export || '-' }}</td>
+														'DD MMM YYYY') : " " }}</td>
+													<td>{{ item?.VehicleDispositionText || " " }}</td>
+													<td>{{ item?.ReportingEntityCategoryText || " " }}</td>
+													<td>{{ item?.EntityName || " " }}</td>
+													<td>{{ item?.export || " " }}</td>
 													<td>
 														NMVTIS
 														<img [src]="nmvtlogo" class="img-fluid tableinside"

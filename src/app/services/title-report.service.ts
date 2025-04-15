@@ -66,18 +66,18 @@ export class TitleReportService {
       // Add Dynamic Table Data
       const tableColumn = ['Status', 'Date','Type','Brand Name(s)','State','City','Description','Export','RPTG Entity','Mobile','Email'];
       const tableRows = tableData.map((item) => [
-        item.status ? item.status :"-",
-        (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : '-'),
-        item.alertType ? item.alertType : "-",
-        item?.alertType === 'Title' ? "-" : (item?.brand ? item.brand.split(' - ')[0] : "-"), 
-        item.state ? item.state : "-",
-        item.city ? item.city : "-",
-        item.description ? item.description :"-",
-        item.export ? this.capitalizePipe.transform(item.export) : "-",
-        item.rptgEntity ? item.rptgEntity :"-",   
+        item.status ? item.status :" ",
+        (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " "),
+        item.alertType ? item.alertType : " ",
+        item?.alertType === 'Title' ? " " : (item?.brand ? item.brand.split(' - ')[0] : " "), 
+        item.state ? item.state : " ",
+        item.city ? item.city : " ",
+        item.description ? item.description :" ",
+        item.export ? this.capitalizePipe.transform(item.export) : " ",
+        item.rptgEntity ? item.rptgEntity :" ",   
        
-        item.mobile ? item.mobile : "-",
-        item.email ? item.email : "-",
+        item.mobile ? item.mobile : " ",
+        item.email ? item.email : " ",
         
       ]);
 
