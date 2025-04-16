@@ -125,6 +125,9 @@ ul.vinContains li strong {
 	flex-direction: row;
 	gap: 15px;
 }
+.cursor-pointer-term .card {
+	min-height: 192px;
+	}
 .warningtext {
 	width: 160px;
 	background: #d30202;

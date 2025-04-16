@@ -38,8 +38,8 @@ export class TitleReportService {
 
     const addHeader =() =>{
      // logo
-      const logoWidth = 37; // Adjust width
-      const logoHeight = 9; // Adjust height
+      const logoWidth = 30.5; // Adjust width
+      const logoHeight = 8.5; // Adjust height
       doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
       //Title
       doc.setFontSize(16);
@@ -102,8 +102,8 @@ export class TitleReportService {
         didDrawPage: (data: any) => {
           if (data.pageNumber > 1) {
             // Add the header with logo and title on subsequent pages
-            const logoWidth = 37; // Adjust width
-            const logoHeight = 9; // Adjust height
+            const logoWidth = 30.5; // Adjust width
+            const logoHeight = 8.5; // Adjust height
             doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
 
             // Add Title
