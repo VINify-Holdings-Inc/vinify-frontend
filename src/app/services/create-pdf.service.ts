@@ -32,7 +32,7 @@ export class CreatePDFService {
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(9);
       doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
-      doc.text('All rights reserved. Title Alarm, LLC (c) 2019-2025', 15, footerY - 5);
+      doc.text('All rights reserved. VINify, LLC (c) 2019-2025', 15, footerY - 5);
       doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 276, footerY - 5);
       
     };
@@ -40,7 +40,7 @@ export class CreatePDFService {
     const addHeader = ()=>{
       //logo 
       const logoWidth = 37; // Adjust width
-      const logoHeight = 7; // Adjust height
+      const logoHeight = 9; // Adjust height
       doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
       //Title
       doc.setFontSize(16);
@@ -72,7 +72,7 @@ export class CreatePDFService {
 
 
       (doc as any).autoTable({
-        startY: 35, // Starting position for the table
+        startY: 30, // Starting position for the table
         theme: 'grid',
         head: [tableColumn],
         body: tableRows,
@@ -104,7 +104,7 @@ export class CreatePDFService {
           if (data.pageNumber > 1) {
             // Add the header with logo and title on subsequent pages
             const logoWidth = 37; // Adjust width
-            const logoHeight = 7; // Adjust height
+            const logoHeight = 9; // Adjust height
             doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
 
             // Add Title
