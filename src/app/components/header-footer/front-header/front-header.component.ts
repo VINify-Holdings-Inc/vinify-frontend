@@ -10,3 +10,4 @@ import { RouterLink } from '@angular/router';
 export class FrontHeaderComponent {
   logo: string = 'assets/images/ta-logo.png';
 }
+///kkj

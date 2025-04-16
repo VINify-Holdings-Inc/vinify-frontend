@@ -231,6 +231,7 @@
   a.m-logo img {
     width: 32px !important;
     display: block;
+    height: auto;
   }
   a.l-logo img{
     display: none;

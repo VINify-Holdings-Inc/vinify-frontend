@@ -89,7 +89,7 @@
        doc.setFontSize(10);
  
        // Add warning message
-       const text = `Warning – at least one negative event has been reported to VIN ALARM History.`
+       const text = `Warning – at least one negative event has been reported to VINify History.`
        doc.text(text, 48, y+4);
        doc.text(`We recommend an inspection by a qualified mechanic.`, 48, y+8);
      
@@ -106,7 +106,7 @@
          doc.line(14, footerY-14, 196, footerY-14); 
          doc.setFontSize(9);
          doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
-         doc.text('All rights reserved. Title Alarm, LLC (c) 2019-2025', 15, footerY - 5);
+         doc.text('All rights reserved. VINify, LLC (c) 2019-2025', 15, footerY - 5);
          doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 180, footerY - 5);
          
        };
@@ -218,7 +218,7 @@
      
      doc.setFontSize(10);
      doc.setFont('helvetica', 'normal');
-     const TitleDesc = `This section identifies this vehicle's current and historic DMV titles reported as issued by date, indicating the state and reported mileage. Title brands that have been reported to VIN ALARM are shown in the “Title Brands Reported” section below. Each title record represents a new title holder, duplicate title, lien release or other title event. This information reflects the title information on file with NMVTIS. For more information, please contact the state of title. We recommend an inspection by a qualified mechanic.`;
+     const TitleDesc = `This section identifies this vehicle's current and historic DMV titles reported as issued by date, indicating the state and reported mileage. Title brands that have been reported to VINify are shown in the “Title Brands Reported” section below. Each title record represents a new title holder, duplicate title, lien release or other title event. This information reflects the title information on file with NMVTIS. For more information, please contact the state of title. We recommend an inspection by a qualified mechanic.`;
      doc.text(doc.splitTextToSize(TitleDesc, 180), 15, y+6);
      y += 21;
      /*
@@ -306,7 +306,7 @@
        doc.setTextColor(69, 67, 67);
        doc.setFontSize(9);
        
-       doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VIN ALARM History.', 20, y + 6);
+       doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VINify History.', 20, y + 6);
        }
        doc.setTextColor(69, 67, 67);
        y += 15;
@@ -382,7 +382,7 @@
    y = 40; // Reset Y for new page
  
  }
- const ptb =`VIN ALARM reports can show one or more of the following DMV state title brands. When there are NMVTIS title brands, they are reported in the Title Brands Reported section . To see the descriptions, hover over or click on the brands below. The red, yellow and green indicators show how the brand would be reflected if it was reported for this vehicle.`;
+ const ptb =`VINify reports can show one or more of the following DMV state title brands. When there are NMVTIS title brands, they are reported in the Title Brands Reported section . To see the descriptions, hover over or click on the brands below. The red, yellow and green indicators show how the brand would be reflected if it was reported for this vehicle.`;
  
  let yPosi = y + 3; // Initial y position
  doc.setFontSize(10);
@@ -520,7 +520,7 @@
      doc.setFont('helvetica', 'normal');
      doc.text('NMVTIS', 188, y);
      
-     const JSIDesc1 = `This section discloses events related to events like junk, salvage and insurance total loss that have been reported to VIN ALARM. Included are state DMV titles that show junk, salvage or similar brands, insurance total loss events and salvage auctions or junk yard disclosures. Events related to an auto dismantler, auto recycler or crush facility indicate that the vehicle has sustained major damage. A vehicle that has been received by a salvage auction or junk yard usually indicates major prior damage, however these entities also remarket undamaged vehicles. We recommend an inspection by a qualified mechanic.`; 
+     const JSIDesc1 = `This section discloses events related to events like junk, salvage and insurance total loss that have been reported to VINify. Included are state DMV titles that show junk, salvage or similar brands, insurance total loss events and salvage auctions or junk yard disclosures. Events related to an auto dismantler, auto recycler or crush facility indicate that the vehicle has sustained major damage. A vehicle that has been received by a salvage auction or junk yard usually indicates major prior damage, however these entities also remarket undamaged vehicles. We recommend an inspection by a qualified mechanic.`; 
      const JSIDesc2 = `If this VIN has a record in the Junk/Salvage or Insurance information then the business that submitted the VIN to NMVTIS deemed the vehicle to be either a junk, salvage, or in the case of an insurer, a total loss. The information in the DISPOSITION field in the Junk/Salvage section denotes what has happened to the VIN (i.e., vehicle) since it came into the possession of the business.`;
        
      if (y + 50 > doc.internal.pageSize.height - 20) {
@@ -549,7 +549,7 @@
      doc.rect(15, y+16, 180, 9, 'F');
      doc.setTextColor(69, 67, 67);  //black
      doc.setFontSize(9);
-     doc.text('Warning - junk, salvage or insurance total loss events have been reported to VIN ALARM History.', 20, y + 22);
+     doc.text('Warning - junk, salvage or insurance total loss events have been reported to VINify History.', 20, y + 22);
      }
      doc.setTextColor(69, 67, 67);  //black
      y += 35;
@@ -665,7 +665,7 @@
    // Description
    doc.setFontSize(10);
    doc.setFont('helvetica', 'normal');
- const description = `Your VIN ALARM report checks for and reports information from the following high-quality data sources.
+ const description = `Your VINify report checks for and reports information from the following high-quality data sources.
  Please see our report sections page, FAQ, terms of service and disclaimer for more information.`;
    doc.text(doc.splitTextToSize(description, 180), 15, y);
    y += 15;
