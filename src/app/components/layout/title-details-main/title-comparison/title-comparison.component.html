@@ -3,31 +3,38 @@
     <div class="col-xl-6 col-md-6">
         <div class="cardWrapper">
             <div class="accordion" id="accordionfirst">
-                <div class="accordion-item card radiusBgTab most-recent-alert" *ngIf="isObjectNotEmpty(titleData?.current)">
+                <div class="accordion-item card radiusBgTab most-recent-alert" *ngIf="titleData?.current.length">
+                    <ng-container *ngFor="let item of titleData.current; let i = index">
                     <div class="TabTitleStatus">
                         <h2 class="accordion-header">
-                            <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <button  class="accordion-button tabtitleBtn"
+                                    type="button"
+                                    [attr.data-bs-target]="'#collapseOne' + i"
+                                    aria-expanded="false"
+                                    [attr.aria-controls]="'collapseOne' + i"
+                                    data-bs-toggle="collapse">
                                 <div class="tabMainCurrentHead">
                                     <div class="mainCurrentHead">
                                         <h5>Title Details</h5>
                                     </div>
                                     <div class="updatedHead">
                                         <p class="textUpdate">Last Updated</p>
-                                        <p class="updateDate">{{titleData?.current?.createdAt | dateFormat:"MMM DD YYYY"}}</p>
+                                        <p class="updateDate">{{item?.createdAt | dateFormat:"MMM DD YYYY"}}</p>
                                     </div>
                                 </div>
                                 
                             </button>
                         </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionfirst">
+                        <div  [id]="'collapseOne' + i"
+                              class="accordion-collapse collapse show"
+                              data-bs-parent="#accordionfirst">
                             <div class="accordion-body currentTabInnerBg currentBg">
                                 <div class="innerTabCurrent">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody">
                                                 <p class="tdHead">Date</p>
-                                                <p class="tdBody"><span [ngClass]="titleData?.current?.isTitleBrandDate ? ' redDot tableDot' : ''"></span>{{titleData?.current?.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
+                                                <p class="tdBody"><span [ngClass]="item?.isTitleBrandDate ? ' redDot tableDot' : ''"></span>{{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
                                             </div>
                                         </div>
                                         
@@ -42,8 +49,8 @@
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody pbt-0">
                                                 <p class="tdHead">State</p>
-                                                <p class="tdBody"> <span [ngClass]="titleData?.current?.isState ? ' redDot tableDot' : ''"></span>
-                                                    {{titleData?.current?.state ? titleData?.current?.state : " "}}</p>
+                                                <p class="tdBody"> <span [ngClass]="item?.isState ? ' redDot tableDot' : ''"></span>
+                                                    {{item?.state ? item?.state : " "}}</p>
                                             </div>
                                         </div>
 
@@ -52,47 +59,53 @@
                             </div>
                         </div>
                     </div>
+                  </ng-container>
                 </div>
-                <div class="accordion-item card radiusBgTab most-recent-alert" *ngIf="isObjectNotEmpty(brandData?.current)">
+                <div class="accordion-item card radiusBgTab most-recent-alert" *ngIf="brandData?.current.length">
+                    <ng-container *ngFor="let item of brandData.current; let i = index">
                     <div class="TabTitleStatus">
                         <h2 class="accordion-header">
-                            <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <button class="accordion-button tabtitleBtn" type="button"
+                                    [attr.data-bs-target]="'#collapseTwo' + i"
+                                    aria-expanded="false"
+                                    [attr.aria-controls]="'collapseTwo' + i"
+                                    data-bs-toggle="collapse">
+                      
                                 <div class="tabMainCurrentHead">
                                     <div class="mainCurrentHead">
                                         <h5>Brand Details</h5>
                                     </div>
                                     <div class="updatedHead">
                                         <p class="textUpdate">Last Updated</p>
-                                        <p class="updateDate">{{brandData?.current?.createdAt | dateFormat:"MMM DD YYYY"}}</p>
+                                        <p class="updateDate">{{item?.createdAt | dateFormat:"MMM DD YYYY"}}</p>
                                     </div>
                                 </div>
                             </button>
                         </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionfirst">
+                        <div [id]="'collapseTwo' + i" class="accordion-collapse collapse" data-bs-parent="#accordionfirst">
                             <div class="accordion-body currentTabInnerBg currentBg">
                                 <div class="innerTabCurrent">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody">
                                                 <p class="tdHead">Date</p>
-                                                <p class="tdBody"><span [ngClass]="brandData?.current?.isTitleBrandDate ? ' redDot tableDot' : ''"></span>{{brandData?.current?.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
+                                                <p class="tdBody"><span [ngClass]="item?.isTitleBrandDate ? ' redDot tableDot' : ''"></span>{{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody">
                                                 <p class="tdHead">Brand Name(s)</p>
-                                                <p class="tdBody"><span [ngClass]="brandData?.current?.isBrand ? ' redDot tableDot' : ''"></span>
-                                                    {{brandData?.current?.brand ? brandData?.current?.brand?.split(' - ')[0]: " "}} </p>
+                                                <p class="tdBody"><span [ngClass]="item?.isBrand ? ' redDot tableDot' : ''"></span>
+                                                    {{item?.brand ? item?.brand?.split(' - ')[0]: " "}} </p>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody pbt-0">
                                                 <p class="tdHead">State</p>
-                                                <p class="tdBody"> <span [ngClass]="brandData?.current?.isState ? ' redDot tableDot' : ''"></span>
-                                                    {{brandData?.current?.state ? brandData?.current?.state : " "}}</p>
+                                                <p class="tdBody"> <span [ngClass]="item?.isState ? ' redDot tableDot' : ''"></span>
+                                                    {{item?.state ? item?.state : " "}}</p>
                                             </div>
                                         </div>
   
@@ -101,19 +114,25 @@
                             </div>
                         </div>
                     </div>
+                    </ng-container>
                 </div>
-                <div class="accordion-item card radiusBgTab most-recent-alert" *ngIf="isObjectNotEmpty(jsiData?.current)">
+                <div class="accordion-item card radiusBgTab most-recent-alert" *ngIf="jsiData?.current.length">
+                    <ng-container *ngFor="let item of jsiData.current; let i = index">
                     <div class="TabTitleStatus">
                         <h2 class="accordion-header">
-                            <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <button class="accordion-button tabtitleBtn" type="button" 
+                                    [attr.data-bs-target]="'#collapseThree' + i"
+                                    aria-expanded="false"
+                                    [attr.aria-controls]="'collapseThree' + i"
+                                    data-bs-toggle="collapse">
+                               
                                 <div class="tabMainCurrentHead">
                                     <div class="mainCurrentHead">
                                         <h5>Junk and Salvage Details</h5>
                                     </div>
                                     <div class="updatedHead">
                                         <p class="textUpdate">Last Updated</p>
-                                        <p class="updateDate">{{jsiData?.current?.createdAt | dateFormat:"MMM DD YYYY"}}</p>
+                                        <p class="updateDate">{{item?.createdAt | dateFormat:"MMM DD YYYY"}}</p>
                                     </div>
                                 </div>
                             </button>
@@ -125,23 +144,23 @@
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody">
                                                 <p class="tdHead">Date</p>
-                                                <p class="tdBody"><span [ngClass]="jsiData?.current?.isTitleBrandDate ? ' redDot tableDot' : ''"></span>{{jsiData?.current?.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
+                                                <p class="tdBody"><span [ngClass]="item?.isTitleBrandDate ? ' redDot tableDot' : ''"></span>{{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody">
                                                 <p class="tdHead">Brand Name(s)</p>
-                                                <p class="tdBody"><span [ngClass]="jsiData?.current?.isBrand ? ' redDot tableDot' : ''"></span>
-                                                    {{jsiData?.current?.brand ? jsiData?.current?.brand?.split(' - ')[0]: " "}} </p>
+                                                <p class="tdBody"><span [ngClass]="item?.isBrand ? ' redDot tableDot' : ''"></span>
+                                                    {{item?.brand ? item?.brand?.split(' - ')[0]: " "}} </p>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody pbt-0">
                                                 <p class="tdHead">State</p>
-                                                <p class="tdBody"> <span [ngClass]="jsiData?.current?.isState ? ' redDot tableDot' : ''"></span>
-                                                    {{jsiData?.current?.state ? jsiData?.current?.state : " "}}</p>
+                                                <p class="tdBody"> <span [ngClass]="item?.isState ? ' redDot tableDot' : ''"></span>
+                                                    {{item?.state ? item?.state : " "}}</p>
                                             </div>
                                         </div>
                                        
@@ -150,9 +169,10 @@
                             </div>
                         </div>
                     </div>
+                    </ng-container>
                 </div>
             </div>
-            <div *ngIf="!isObjectNotEmpty(jsiData?.current) && !isObjectNotEmpty(brandData?.current) && !isObjectNotEmpty(titleData?.current)">
+            <div *ngIf="!jsiData?.current.length && !brandData?.current.length && titleData?.current.length">
                 <span class="title-center-data">
                     <h5>No Change Found</h5>
                 </span>
@@ -164,46 +184,51 @@
     <div class="col-xl-6 col-md-6">
         <div class="cardWrapper">
             <div class="accordion" id="accordionSecond">
-                <div class="accordion-item card radiusBgTab" *ngIf="isObjectNotEmpty(titleData?.history)">
+                <div class="accordion-item card radiusBgTab" *ngIf="titleData?.history.length">
+                    <ng-container *ngFor="let item of titleData.history; let i = index">
                     <div class="TabTitleStatus">
                         <h2 class="accordion-header">
-                            <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                            <button class="accordion-button tabtitleBtn" type="button" 
+                                    [attr.data-bs-target]="'#collapseFour' + i"
+                                    aria-expanded="false"
+                                    [attr.aria-controls]="'collapseFour' + i"
+                                    data-bs-toggle="collapse">
+                           
                                 <div class="tabMainCurrentHead">
                                     <div class="mainCurrentHead">
                                         <h5>Title History</h5>
                                     </div>
                                     <div class="updatedHead">
                                         <p class="textUpdate">Last Updated</p>
-                                        <p class="updateDate">{{titleData?.history?.createdAt | dateFormat:"MMM DD YYYY"}}</p>
+                                        <p class="updateDate">{{item?.createdAt | dateFormat:"MMM DD YYYY"}}</p>
                                     </div>
                                 </div>
                             </button>
                         </h2>
-                        <div id="collapseFour" class="accordion-collapse collapse show" data-bs-parent="#accordionSecond">
+                        <div  [id]="'collapseFour' + i" class="accordion-collapse collapse show" data-bs-parent="#accordionSecond">
                             <div class="accordion-body currentTabInnerBg lastBg">
                                 <div class="innerTabCurrent">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody">
                                                 <p class="tdHead">Date</p>
-                                                <p class="tdBody"><span [ngClass]="titleData?.history?.isTitleBrandDate ? ' redDot tableDot' : ''"></span>{{titleData?.history?.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
+                                                <p class="tdBody"><span [ngClass]="item?.isTitleBrandDate ? ' redDot tableDot' : ''"></span>{{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody">
                                                 <!-- <p class="tdHead">Brand Name(s)</p>
-                                                <p class="tdBody"><span [ngClass]="titleData?.history?.isBrand ? ' redDot tableDot' : ''"></span>
-                                                    {{titleData?.history?.brand ? titleData?.history?.brand?.split(' - ')[0]: " "}} </p> -->
+                                                <p class="tdBody"><span [ngClass]="item?.isBrand ? ' redDot tableDot' : ''"></span>
+                                                    {{item?.brand ? item?.brand?.split(' - ')[0]: " "}} </p> -->
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody pbt-0">
                                                 <p class="tdHead">State</p>
-                                                <p class="tdBody"> <span [ngClass]="titleData?.history?.isState ? ' redDot tableDot' : ''"></span>
-                                                    {{titleData?.history?.state ? titleData?.history?.state : " "}}</p>
+                                                <p class="tdBody"> <span [ngClass]="item?.isState ? ' redDot tableDot' : ''"></span>
+                                                    {{item?.state ? item?.state : " "}}</p>
                                             </div>
                                         </div>
 
@@ -212,47 +237,53 @@
                             </div>
                         </div>
                     </div>
+                    </ng-container>
                 </div>
-                <div class="accordion-item card radiusBgTab" *ngIf="isObjectNotEmpty(brandData?.history)">
+                <div class="accordion-item card radiusBgTab" *ngIf="brandData?.history.length">
+                    <ng-container *ngFor="let item of brandData.history; let i = index">
                     <div class="TabTitleStatus">
                         <h2 class="accordion-header">
                             <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            [attr.data-bs-target]="'#collapseFive' + i"
+                            aria-expanded="false"
+                            [attr.aria-controls]="'collapseFive' + i"
+                            data-bs-toggle="collapse">
+                               
                                 <div class="tabMainCurrentHead">
                                     <div class="mainCurrentHead">
                                         <h5>Brand History</h5>
                                     </div>
                                     <div class="updatedHead">
                                         <p class="textUpdate">Last Updated</p>
-                                        <p class="updateDate">{{brandData?.history?.createdAt | dateFormat:"MMM DD YYYY"}}</p>
+                                        <p class="updateDate">{{item?.createdAt | dateFormat:"MMM DD YYYY"}}</p>
                                     </div>
                                 </div>
                             </button>
                         </h2>
-                        <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionSecond">
+                        <div [id]="'collapseFive' + i" class="accordion-collapse collapse" data-bs-parent="#accordionSecond">
                             <div class="accordion-body currentTabInnerBg lastBg">
                                 <div class="innerTabCurrent">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody">
                                                 <p class="tdHead">Date</p>
-                                                <p class="tdBody"><span [ngClass]="brandData?.history?.isTitleBrandDate ? ' redDot tableDot' : ''"></span>{{brandData?.history?.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
+                                                <p class="tdBody"><span [ngClass]="item?.isTitleBrandDate ? ' redDot tableDot' : ''"></span>{{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody">
                                                 <p class="tdHead">Brand Name(s)</p>
-                                                <p class="tdBody"><span [ngClass]="brandData?.history?.isBrand ? ' redDot tableDot' : ''"></span>
-                                                    {{brandData?.history?.brand ? brandData?.history?.brand?.split(' - ')[0]: " "}} </p>
+                                                <p class="tdBody"><span [ngClass]="item?.isBrand ? ' redDot tableDot' : ''"></span>
+                                                    {{item?.brand ? item?.brand?.split(' - ')[0]: " "}} </p>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody pbt-0">
                                                 <p class="tdHead">State</p>
-                                                <p class="tdBody"> <span [ngClass]="brandData?.history?.isState ? ' redDot tableDot' : ''"></span>
-                                                    {{brandData?.history?.state ? brandData?.history?.state : " "}}</p>
+                                                <p class="tdBody"> <span [ngClass]="item?.isState ? ' redDot tableDot' : ''"></span>
+                                                    {{item?.state ? item?.state : " "}}</p>
                                             </div>
                                         </div>
 
@@ -261,47 +292,53 @@
                             </div>
                         </div>
                     </div>
+                    </ng-container>
                 </div>
-                <div class="accordion-item card radiusBgTab" *ngIf="isObjectNotEmpty(jsiData?.history)">
+                <div class="accordion-item card radiusBgTab" *ngIf="jsiData?.history.length">
+                    <ng-container *ngFor="let item of jsiData.history; let i = index">
                     <div class="TabTitleStatus">
                         <h2 class="accordion-header">
-                            <button class="accordion-button tabtitleBtn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            <button class="accordion-button tabtitleBtn" type="button" 
+                            [attr.data-bs-target]="'#collapseSix' + i"
+                            aria-expanded="false"
+                            [attr.aria-controls]="'collapseSix' + i"
+                            data-bs-toggle="collapse"> 
+                            
                                 <div class="tabMainCurrentHead">
                                     <div class="mainCurrentHead">
                                         <h5>Junk and Salvage History</h5>
                                     </div>
                                     <div class="updatedHead">
                                         <p class="textUpdate">Last Updated</p>
-                                        <p class="updateDate">{{jsiData?.history?.createdAt | dateFormat:"MMM DD YYYY"}}</p>
+                                        <p class="updateDate">{{item?.createdAt | dateFormat:"MMM DD YYYY"}}</p>
                                     </div>
                                 </div>
                             </button>
                         </h2>
-                        <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionSecond">
+                        <div  [id]="'collapseSix' + i" class="accordion-collapse collapse" data-bs-parent="#accordionSecond">
                             <div class="accordion-body currentTabInnerBg lastBg">
                                 <div class="innerTabCurrent">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody">
                                                 <p class="tdHead">Date</p>
-                                                <p class="tdBody"><span [ngClass]="jsiData?.history?.isTitleBrandDate ? ' redDot tableDot' : ''"></span>{{jsiData?.history?.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
+                                                <p class="tdBody"><span [ngClass]="item?.isTitleBrandDate ? ' redDot tableDot' : ''"></span>{{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}</p>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody">
                                                 <p class="tdHead">Brand Name(s)</p>
-                                                <p class="tdBody"><span [ngClass]="jsiData?.history?.isBrand ? ' redDot tableDot' : ''"></span>
-                                                    {{jsiData?.history?.brand ? jsiData?.history?.brand?.split(' - ')[0]: " "}} </p>
+                                                <p class="tdBody"><span [ngClass]="item?.isBrand ? ' redDot tableDot' : ''"></span>
+                                                    {{item?.brand ? item?.brand?.split(' - ')[0]: " "}} </p>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4 col-sm-4">
                                             <div class="statusBody pbt-0">
                                                 <p class="tdHead">State</p>
-                                                <p class="tdBody"> <span [ngClass]="jsiData?.history?.isState ? ' redDot tableDot' : ''"></span>
-                                                    {{jsiData?.history?.state ? jsiData?.history?.state : " "}}</p>
+                                                <p class="tdBody"> <span [ngClass]="item?.isState ? ' redDot tableDot' : ''"></span>
+                                                    {{item?.state ? item?.state : " "}}</p>
                                             </div>
                                         </div>
                                </div>
@@ -309,9 +346,10 @@
                         </div>
                     </div>
                 </div>
+              </ng-container>
             </div>
         </div>
-        <div *ngIf="!isObjectNotEmpty(jsiData?.history) && !isObjectNotEmpty(brandData?.history) && !isObjectNotEmpty(titleData?.history)">
+        <div *ngIf="!(jsiData?.history.length) && !(brandData?.history.length) && !(titleData?.history.length)">
             <span class="title-center-data">
                 <h5>No History Found</h5>
             </span>
