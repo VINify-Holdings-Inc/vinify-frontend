@@ -50,7 +50,7 @@ export class TitleTabComponent implements OnInit{
        visiblePages: number[] = []; // Pages to display in the pagination UI
        maxVisiblePages: number = 4; // Max number of pages to display at once
      
-       displayedColumns: string[] = ['Select','status', 'titleBrandDate','alertType','brand','state','city','description','export','rptgEntity','mobile','email'];
+       displayedColumns: string[] = ['Select','status', 'titleBrandDate','alertType','brand','odometer','state','city','description','export','rptgEntity','mobile','email'];
         
        ngOnChanges(changes: SimpleChanges) {
          if (changes['totalPages']) {

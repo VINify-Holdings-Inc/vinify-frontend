@@ -3802,6 +3802,9 @@ button.swal2-deny.swal2-styled {
   
   filter:contrast(100%)
 }
+.greens {
+  color:#21a769
+}
 
 @media (max-width: 992px) {
   .l-logo {
