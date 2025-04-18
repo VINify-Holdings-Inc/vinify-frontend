@@ -64,12 +64,13 @@ export class TitleReportService {
 
       addFooter();
       // Add Dynamic Table Data
-      const tableColumn = ['Status', 'Date','Type','Brand Name(s)','State','City','Description','Export','RPTG Entity','Mobile','Email'];
+      const tableColumn = ['Status', 'Date','Type','Brand Name(s)','Odometer','State','City','Description','Export','RPTG Entity','Mobile','Email'];
       const tableRows = tableData.map((item) => [
         item.status ? item.status :" ",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " "),
         item.alertType ? item.alertType : " ",
         item?.alertType === 'Title' ? " " : (item?.brand ? item.brand.split(' - ')[0] : " "), 
+        item.odometer ? item.odometer : " ",
         item.state ? item.state : " ",
         item.city ? item.city : " ",
         item.description ? item.description :" ",

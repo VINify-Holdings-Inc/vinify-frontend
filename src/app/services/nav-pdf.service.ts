@@ -65,6 +65,7 @@ export class NavPdfService {
          doc.setDrawColor(69, 67, 67);
          doc.setLineWidth(.3);
          doc.line(14, 35, 196, 35); 
+       //  doc.line(14, 32, 196, 32); 
      };
    
      const addVehicleInfoSection = () => {
@@ -735,7 +736,7 @@ for (let i = 1; i <= totalPages; i++) {
       doc.line(link.x, y1 + 1.5, link.x + textWidth, y1 + 1.5);
     }
   });
-}
+}   
  /************************************************ */
      // Save PDF
      doc.save(fileName);
