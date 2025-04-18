@@ -57,9 +57,9 @@ export class CreatePDFService {
       const tableColumn = ['VINs', 'Title', 'Brand', 'JSI'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : " ",
-        item.Title ? '✔' : null,
-        item.Brand ? '✔' : null,
-        item.JSI ? '✔' : null,
+        item.Title ? ' ' : null,
+        item.Brand ? " " : null,
+        item.JSI ? " " : null,
       ]);
 
       (doc as any).autoTable({
@@ -70,10 +70,8 @@ export class CreatePDFService {
         headStyles: {
           fillColor: [207, 75, 95],
           fontSize: 8,
-          halign: 'center' 
         },
         bodyStyles: {
-          halign: 'center', 
           fontSize: 7,
         },
         margin: { top: 28 },
@@ -88,8 +86,7 @@ export class CreatePDFService {
 
           // Draw circle if VIN is marked as old
           if (data.section === 'body' && data.column.index === 0) {
-           // const xPos = data.cell.x + 0.9;
-            const xPos = data.cell.x + 2;
+            const xPos = data.cell.x + 0.9;
             const yPos = data.cell.y + 3;
             const isOld = rowData?.isOld;
             doc.setFillColor(isOld ? 128 : 207, isOld ? 128 : 75, isOld ? 128 : 95);
@@ -103,9 +100,9 @@ export class CreatePDFService {
             [1, 2, 3].includes(colIndex) &&
             rowData[colIndex] // Check if the value is truthy
           ) {
-            const imgX = data.cell.x + 35;
+            const imgX = data.cell.x + 2;
             const imgY = data.cell.y + 1.5;
-            const imgSize = 4;
+            const imgSize = 3;
             doc.addImage(checkImg, 'PNG', imgX, imgY, imgSize, imgSize);
           }
         },
