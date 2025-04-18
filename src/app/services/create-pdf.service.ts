@@ -70,8 +70,10 @@ export class CreatePDFService {
         headStyles: {
           fillColor: [207, 75, 95],
           fontSize: 8,
+          halign: 'center' 
         },
         bodyStyles: {
+          halign: 'center', 
           fontSize: 7,
         },
         margin: { top: 28 },
@@ -86,7 +88,8 @@ export class CreatePDFService {
 
           // Draw circle if VIN is marked as old
           if (data.section === 'body' && data.column.index === 0) {
-            const xPos = data.cell.x + 0.9;
+           // const xPos = data.cell.x + 0.9;
+            const xPos = data.cell.x + 2;
             const yPos = data.cell.y + 3;
             const isOld = rowData?.isOld;
             doc.setFillColor(isOld ? 128 : 207, isOld ? 128 : 75, isOld ? 128 : 95);
