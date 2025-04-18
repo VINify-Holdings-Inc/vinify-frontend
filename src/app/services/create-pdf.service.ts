@@ -50,7 +50,6 @@ export class CreatePDFService {
       doc.text('Vehicle History Report', 122, 20);
     };
 
-    // Ensure both images are loaded before proceeding
     img.onload = checkImg.onload = () => {
       addHeader();
       addFooter();
@@ -58,13 +57,13 @@ export class CreatePDFService {
       const tableColumn = ['VINs', 'Title', 'Brand', 'JSI'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : " ",
-        item.Title ? '✔' : '', // Placeholder text; image added later
-        item.Brand ? '✔' : '',
-        item.JSI ? '✔' : '',
+        item.Title ? '✔' : null,
+        item.Brand ? '✔' : null,
+        item.JSI ? '✔' : null,
       ]);
 
       (doc as any).autoTable({
-        startY: 30,
+        startY: 36,
         theme: 'grid',
         head: [tableColumn],
         body: tableRows,
@@ -77,12 +76,15 @@ export class CreatePDFService {
         },
         margin: { top: 28 },
         columnStyles: {
-          1: { cellWidth: 30 },
+          0: { cellWidth: 70 },
+          1: { cellWidth: 70 },
+          2: { cellWidth: 70 },
+          3: { cellWidth: 70 },
         },
         didDrawCell: (data: any) => {
           const rowData: any = data.row.raw;
 
-          // Dot for old VIN
+          // Draw circle if VIN is marked as old
           if (data.section === 'body' && data.column.index === 0) {
             const xPos = data.cell.x + 0.9;
             const yPos = data.cell.y + 3;
@@ -91,14 +93,14 @@ export class CreatePDFService {
             doc.circle(xPos, yPos, 0.5, 'F');
           }
 
-          // Add checkmark image manually
+          // Draw checkmark image if the value is truthy
           const colIndex = data.column.index;
           if (
             data.section === 'body' &&
             [1, 2, 3].includes(colIndex) &&
-            data.cell.text[0] === '✔'
+            rowData[colIndex] // Check if the value is truthy
           ) {
-            const imgX = data.cell.x + 2;
+            const imgX = data.cell.x + 35;
             const imgY = data.cell.y + 1.5;
             const imgSize = 4;
             doc.addImage(checkImg, 'PNG', imgX, imgY, imgSize, imgSize);
