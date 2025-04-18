@@ -49,7 +49,9 @@ export class TitleComparisonComponent implements OnInit {
       (res:any) => {
           this.isLoading=false; 
         if(!res.error){
-                     
+          console.log("data1",res?.data.title.current.length)      
+          console.log("data1",res?.data.brand.current.length)      
+          console.log("data1",res?.data.jsi.current.length)      
           this.titleData=res?.data?.title;
           this.brandData=res?.data?.brand;
           this.jsiData=res?.data?.jsi;
