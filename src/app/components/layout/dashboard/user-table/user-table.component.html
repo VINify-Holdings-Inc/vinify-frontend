@@ -79,29 +79,32 @@
   
                 <!-- Name modelYear j-->
 
-                <ng-container matColumnDef="titleBrandDate">
+                <!-- <ng-container matColumnDef="titleBrandDate">
                   <th mat-header-cell *matHeaderCellDef width="180">Date</th>
                   <td mat-cell *matCellDef="let element"> {{ element?.titleBrandDate | dateFormat: 'DD MMM YYYY' }} </td>
-                </ng-container>
+                </ng-container> -->
 
-                <ng-container matColumnDef="alertType">
-                  <th mat-header-cell *matHeaderCellDef width="100">Type</th>
-                  <td mat-cell *matCellDef="let element">{{ element?.alertType?element?.alertType:" " }} </td>
+                <ng-container matColumnDef="title">
+                  <th mat-header-cell *matHeaderCellDef width="200">Title</th>
+                  <td mat-cell *matCellDef="let element"><span class="greens">{{element?.Title ? "&#x2714;":""}}</span> 
+                   </td>
                 </ng-container>
-
+               
                 <ng-container matColumnDef="brand">
 
-                  <th mat-header-cell *matHeaderCellDef width="300">Brand Name(s)</th>
+                  <th mat-header-cell *matHeaderCellDef width="200">Brand</th>
                   <td mat-cell *matCellDef="let element" >
-                    {{element?.alertType === 'Title' ? " " : (element?.brand ? element.brand.split(' - ')[0] : " ") }}
+                    <span class="greens">{{element?.Brand  ? "&#x2714;":""}}</span> 
+                    
                   </td>
                 </ng-container>
 
             
 
-                <ng-container matColumnDef="state">
-                  <th mat-header-cell *matHeaderCellDef width="100">State</th>
-                  <td mat-cell *matCellDef="let element" title={{element?.state}}><p class="boxTable"> {{element?.state? element?.state: " "}} </p></td>
+                <ng-container matColumnDef="jsi">
+                  <th mat-header-cell *matHeaderCellDef width="200">JSI</th>
+                  <td mat-cell *matCellDef="let element" title={{element?.JSI}}> <span class="greens">{{element?.JSI  ? "&#x2714;":""}}</span>  
+                  </td>
                 </ng-container>
 
               

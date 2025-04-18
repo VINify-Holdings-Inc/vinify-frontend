@@ -10,7 +10,7 @@ import {Component,
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
+//import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 import { CreatePDFService } from '../../../../services/create-pdf.service';
 import { PDF_SETTINGS } from '../../../../constants';
 import { userData } from '../../../../services/api-service.service';
@@ -24,7 +24,8 @@ import { CsvExportService } from '../../../../services/csv-export.service';
 
 @Component({
   selector: 'app-user-table',
-  imports: [FormsModule,CommonModule,DateFormatPipe,LoaderComponent,MatTableModule, MatPaginatorModule, MatSortModule],
+  //imports: [FormsModule,CommonModule,DateFormatPipe,LoaderComponent,MatTableModule, MatPaginatorModule, MatSortModule],
+  imports: [FormsModule,CommonModule,LoaderComponent,MatTableModule, MatPaginatorModule, MatSortModule],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.css'
 })
@@ -46,7 +47,8 @@ export class UserTableComponent implements AfterViewInit, OnChanges{
   isLoading: boolean = false;
   selectedVins: { vin: string; alertDate: string }[] = [];
   checkAll:any=null;
-  displayedColumns: string[] = ['vin', 'titleBrandDate', 'alertType', 'brand','state','details'];
+  //displayedColumns: string[] = ['vin', 'titleBrandDate','title','brand','jsi','details'];
+  displayedColumns: string[] = ['vin', 'title','brand','jsi','details'];
 
   @Input() tableData :any[]=[];
   @Input() page :number=0;

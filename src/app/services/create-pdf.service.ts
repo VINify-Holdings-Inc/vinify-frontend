@@ -61,14 +61,22 @@ export class CreatePDFService {
       addFooter();
 
       // Add Dynamic Table Data
-      const tableColumn = ['VINs', 'Date','Type','Brand Name(s)','State'];
+     /* const tableColumn = ['VINs', 'Date','Title','Brand','JSI'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : " ",
         (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " "),
-        item.alertType ? item.alertType : " ",
+        item.title ? item.title : " ",
         item?.alertType === 'Title' ? " " : (item?.brand ? item.brand.split(' - ')[0] : " "), 
-        item.state ? item.state : " ",
-      ]);
+        item.jsi ? item.jsi : " ",
+      ]); */
+
+       const tableColumn = ['VINs','Title','Brand','JSI'];
+      const tableRows = tableData.map((item) => [
+        item.vin ? item.vin : " ",
+        item.Title ? "T" : " ",
+        item?.Brand ? "T" : " ",   //&#x2714;
+        item.JSI ? "T" : " ",
+      ]); 
 
 
       (doc as any).autoTable({
@@ -97,6 +105,7 @@ export class CreatePDFService {
             // Set dot color (Red if old, Grey otherwise)
             doc.setFillColor(isOld ? 128:207 , isOld ? 128:75 , isOld ? 128:95);
             doc.circle(xPos, yPos, .5, 'F'); // Draw dot
+            
           }
         }
         ,
