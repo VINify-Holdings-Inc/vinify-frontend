@@ -255,8 +255,8 @@ export class NavPdfService {
        theme: 'grid',
        head: [tableColumn],
        body: tableRows,
-       headStyles: { fillColor: [237, 237, 237], fontSize: 8,textColor: [0, 0, 0],halign: 'center' },
-       bodyStyles: { fontSize: 7 ,halign: 'center' },
+       headStyles: { fillColor: [237, 237, 237], fontSize: 8,textColor: [0, 0, 0] },
+       bodyStyles: { fontSize: 7 },
        margin: { top: 41 , bottom: 25},
        columnStyles: {
          1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
@@ -269,11 +269,11 @@ export class NavPdfService {
            const { x, y, width, height } = data.cell;
            
            if (data.row.raw[4] === " ") {  // Ensure only one image per row
-             doc.text("NMVTIS", 2+x + width/14, y + 3, { align: "left" });
+             doc.text("NMVTIS", x + width/14, y + 3, { align: "left" });
      
              const imgWidth = 10; // Image width
              const imgHeight = 5; // Image height
-             const imgX = 6+x + width / 2 - imgWidth / 2; // Center horizontally
+             const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
              const imgY = y + 1; // Center vertically
      
              doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
@@ -331,8 +331,8 @@ export class NavPdfService {
    theme: 'grid',
    head: [brandColumns],
    body: brandRows,
-   headStyles: { fillColor: [237, 237, 237], fontSize: 8,textColor: [0, 0, 0] ,halign: 'center' },
-   bodyStyles: { fontSize: 7 ,halign: 'center' },
+   headStyles: { fillColor: [237, 237, 237], fontSize: 8,textColor: [0, 0, 0] },
+   bodyStyles: { fontSize: 7 },
    margin: { top: 41,bottom: 25 },
    columnStyles: {
      0: { cellWidth: 25 }, 
@@ -345,11 +345,11 @@ export class NavPdfService {
            const { x, y, width, height } = data.cell;
            
            if (data.row.raw[4] === " ") {  // Ensure only one image per row
-             doc.text("NMVTIS", 2+x + width/14, y + 3, { align: "left" });
+             doc.text("NMVTIS", x + width/14, y + 3, { align: "left" });
      
              const imgWidth = 10; // Image width
              const imgHeight = 5; // Image height
-             const imgX = 6+x + width / 2 - imgWidth / 2; // Center horizontally
+             const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
              const imgY = y + 1; // Center vertically
      
              doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
@@ -576,8 +576,8 @@ export class NavPdfService {
        theme: 'grid',
        head: [jsiColumns],
        body: jsiRows,
-       headStyles: { fillColor: [237, 237, 237], fontSize: 8 ,textColor: [0, 0, 0],halign: 'center' },
-       bodyStyles: { fontSize: 7 ,halign: 'center' },
+       headStyles: { fillColor: [237, 237, 237], fontSize: 8 ,textColor: [0, 0, 0]},
+       bodyStyles: { fontSize: 7 },
        margin: { top: 41,bottom: 25 },
        columnStyles: {
          0: { cellWidth: 25 }, 
@@ -588,11 +588,11 @@ export class NavPdfService {
            const { x, y, width, height } = data.cell;
            
            if (data.row.raw[5] === " ") {  // Ensure only one image per row
-             doc.text("NMVTIS", 2+x + width/14, y + 3, { align: "left" });
+             doc.text("NMVTIS", x + width/14, y + 3, { align: "left" });
      
              const imgWidth = 10; // Image width
              const imgHeight = 5; // Image height
-             const imgX = 6+x + width / 2 - imgWidth / 2; // Center horizontally
+             const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
              const imgY = y + 1 // Center vertically
      
              doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
