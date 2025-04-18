@@ -47,7 +47,7 @@ export class NavPdfService {
        // Add Logo
        const img = new Image();
        img.src = logImage; // Ensure this file is in your Angular `assets` folder
-       doc.addImage(img, 'PNG', 15, 10, 43, 11); // Adjust position and size as needed
+       doc.addImage(img, 'PNG', 15, 10, 30.5, 8.5); // Adjust position and size as needed
      
        // Add Title
        doc.setFontSize(14);
