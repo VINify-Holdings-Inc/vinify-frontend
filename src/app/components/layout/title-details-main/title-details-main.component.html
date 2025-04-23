@@ -8,7 +8,7 @@
                         <div class="topVehicleHead">
                             <div class="vehicleTitle">
                                 <h4 class="card-title" id="tabTitle">VIN Details</h4>
-                               
+
                                 <p>VIN - {{paramVin}} </p>
 
                             </div>
@@ -36,25 +36,29 @@
         <div class="col-xl-6 col-lg-12 col-md-12">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <div class="card">
+                    <div class="card disableit">
                         <div class="cardInnerVehicle">
                             <div class="summaryCard cardHeaderJustify">
-                                <p class="font-12"><span class="cardNum">{{customChange}} - </span>Customs Changes</p>
+                                <p class="font-12">
+                                    <!-- <span class="cardNum">{{customChange}} - </span> -->
+                                    Customs Changes</p>
                                 <div>
                                     <span class="small-action-btn action-required-button">High Alert</span>
                                 </div>
                             </div>
                             <div class="summaryCard">
-                                 <p class="font-12">Last Updated: </p> 
+                                <p class="font-12">Last Updated: </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <div class="card">
+                    <div class="card ">
                         <div class="cardInnerVehicle">
                             <div class="summaryCard  cardHeaderJustify">
-                                <p class="font-12"><span class="cardNum">{{titleChange}} - </span> VIN Changes</p>
+                                <p class="font-12">
+                                    <!-- <span class="cardNum">{{titleChange}} - </span> -->
+                                    Changes</p>
                                 <div>
                                     <span class="small-action-btn textWarning">Medium Alert</span>
                                 </div>
@@ -67,32 +71,36 @@
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <div class="card">
-                        <div class="cardInnerVehicle">
+                    <div class="card disableit">
+                        <div class="cardInnerVehicle ">
                             <div class="summaryCard cardHeaderJustify">
-                                <p class="font-12"><span class="cardNum">{{impoundChange}} - </span>Impound Changes </p>
+                                <p class="font-12">
+                                    <!-- <span class="cardNum">{{impoundChange}} - </span> -->
+                                    Impound Changes </p>
                                 <div>
                                     <span class="small-action-btn action-required-button">High Alert</span>
                                 </div>
                             </div>
                             <div class="summaryCard">
-                               <p class="font-12">Last Updated: </p>
+                                <p class="font-12">Last Updated: </p>
                             </div>
 
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <div class="card">
+                    <div class="card disableit">
                         <div class="cardInnerVehicle">
                             <div class="summaryCard cardHeaderJustify">
-                                <p class="font-12"><span class="cardNum">{{theftChange}} - </span>Theft Changes</p>
+                                <p class="font-12">
+                                    <!-- <span class="cardNum">{{theftChange}} - </span> -->
+                                    Theft Changes</p>
                                 <div>
                                     <span class="small-action-btn action-required-button">High Alert</span>
                                 </div>
                             </div>
                             <div class="summaryCard">
-                                 <p class="font-12">Last Updated: </p> 
+                                <p class="font-12">Last Updated: </p>
                             </div>
                         </div>
                     </div>
@@ -116,7 +124,7 @@
             </div>
             <!-- Title Details Tab Section -->
             <div class="tab-pane fade " id="detailsTab" role="tabpanel">
-               
+
                 <app-title-comparison></app-title-comparison>
             </div>
             <!-- Additional Info Tab Section -->

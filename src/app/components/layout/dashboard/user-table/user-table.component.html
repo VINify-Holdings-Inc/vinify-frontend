@@ -86,7 +86,7 @@
 
                 <ng-container matColumnDef="title">
                   <th mat-header-cell *matHeaderCellDef width="200">Title</th>
-                  <td mat-cell *matCellDef="let element"><span class="greens">{{element?.Title ? "&#x2714;":""}}</span> 
+                  <td mat-cell *matCellDef="let element"><span class="red-check-icon">{{element?.Title ? "&#x2714;":""}}</span> 
                    </td>
                 </ng-container>
                
@@ -94,7 +94,7 @@
 
                   <th mat-header-cell *matHeaderCellDef width="200">Brand</th>
                   <td mat-cell *matCellDef="let element" >
-                    <span class="greens">{{element?.Brand  ? "&#x2714;":""}}</span> 
+                    <span class="red-check-icon">{{element?.Brand  ? "&#x2714;":""}}</span> 
                     
                   </td>
                 </ng-container>
@@ -103,7 +103,7 @@
 
                 <ng-container matColumnDef="jsi">
                   <th mat-header-cell *matHeaderCellDef width="200">JSI</th>
-                  <td mat-cell *matCellDef="let element" title={{element?.JSI}}> <span class="greens">{{element?.JSI  ? "&#x2714;":""}}</span>  
+                  <td mat-cell *matCellDef="let element" title={{element?.JSI}}> <span class="red-check-icon">{{element?.JSI  ? "&#x2714;":""}}</span>  
                   </td>
                 </ng-container>
 

@@ -3805,7 +3805,18 @@ button.swal2-deny.swal2-styled {
 .greens {
   color:#21a769
 }
-
+span.red-check-icon {
+  color: #cf4b5f;
+}
+.card.disableit {
+  background: #cdcdcd;
+  cursor: not-allowed;
+}
+.card.disableit .action-required-button {
+  color: #475467 !important;
+  border: 1px solid #9e9e9e;
+  background-color: #bdbdbd;
+}
 @media (max-width: 992px) {
   .l-logo {
     display: none; 

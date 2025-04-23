@@ -11,7 +11,7 @@ import { CapitalizePipe } from '../pipes/capitalize.pipe';
 export class CreatePDFService {
   private capitalizePipe = new CapitalizePipe();
 
-  constructor(private dateFormate: DateFormatPipe) { }
+  constructor(private dateFormate: DateFormatPipe) {}
 
   generatePDF(
     companyName: string,
@@ -35,7 +35,11 @@ export class CreatePDFService {
       doc.line(14, footerY - 14, 284, footerY - 14);
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(9);
-      doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution.', 15, footerY - 10);
+      doc.text(
+        '*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution.',
+        15,
+        footerY - 10
+      );
       doc.text('All rights reserved. VINify, LLC (c) 2019-2025', 15, footerY - 5);
       doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 276, footerY - 5);
     };
@@ -56,7 +60,7 @@ export class CreatePDFService {
 
       const tableColumn = ['VINs', 'Title', 'Brand', 'JSI'];
       const tableRows = tableData.map((item) => [
-        item.vin ? item.vin : " ",
+        item.vin || " ",
         item.Title ? ' ' : null,
         item.Brand ? " " : null,
         item.JSI ? " " : null,
@@ -83,13 +87,14 @@ export class CreatePDFService {
         },
         didDrawCell: (data: any) => {
           const rowData: any = data.row.raw;
+console.log(rowData,"########################");
 
           // Draw circle if VIN is marked as old
           if (data.section === 'body' && data.column.index === 0) {
             const xPos = data.cell.x + 0.9;
             const yPos = data.cell.y + 3;
             const isOld = rowData?.isOld;
-            doc.setFillColor(isOld ? 128 : 207, isOld ? 128 : 75, isOld ? 128 : 95);
+            doc.setFillColor(isOld ? 207 : 128, isOld ? 75 : 128, isOld ? 95 : 128);
             doc.circle(xPos, yPos, 0.5, 'F');
           }
 
@@ -98,7 +103,7 @@ export class CreatePDFService {
           if (
             data.section === 'body' &&
             [1, 2, 3].includes(colIndex) &&
-            rowData[colIndex] // Check if the value is truthy
+            rowData[colIndex]
           ) {
             const imgX = data.cell.x + 2;
             const imgY = data.cell.y + 1.5;
