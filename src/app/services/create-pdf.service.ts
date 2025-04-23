@@ -57,13 +57,14 @@ export class CreatePDFService {
     img.onload = checkImg.onload = () => {
       addHeader();
       addFooter();
-
+  console.log("tableData",tableData);
       const tableColumn = ['VINs', 'Title', 'Brand', 'JSI'];
       const tableRows = tableData.map((item) => [
         item.vin || " ",
         item.Title ? ' ' : null,
         item.Brand ? " " : null,
         item.JSI ? " " : null,
+        item.isOld ? item.isOld :false
       ]);
 
       (doc as any).autoTable({
@@ -87,13 +88,13 @@ export class CreatePDFService {
         },
         didDrawCell: (data: any) => {
           const rowData: any = data.row.raw;
-console.log(rowData,"########################");
+console.log(rowData,data);
 
           // Draw circle if VIN is marked as old
           if (data.section === 'body' && data.column.index === 0) {
             const xPos = data.cell.x + 0.9;
             const yPos = data.cell.y + 3;
-            const isOld = rowData?.isOld;
+            const isOld = rowData[4];
             doc.setFillColor(isOld ? 207 : 128, isOld ? 75 : 128, isOld ? 95 : 128);
             doc.circle(xPos, yPos, 0.5, 'F');
           }
