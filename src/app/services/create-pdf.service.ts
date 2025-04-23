@@ -91,7 +91,6 @@ export class CreatePDFService {
             doc.setFillColor(isOld ? 128 : 207, isOld ? 128 : 75, isOld ? 128 : 95);
             doc.circle(xPos, yPos, 0.5, 'F');
           }
-
           // Draw checkmark image if the value is truthy
           const colIndex = data.column.index;
           if (
