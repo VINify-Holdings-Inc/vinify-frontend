@@ -3800,10 +3800,10 @@ button.swal2-deny.swal2-styled {
 
 .statusBody p.tdHead {
   
-  filter:contrast(100%)
+  filter:contrast(100%);
 }
 .greens {
-  color:#21a769
+  color:#21a769;
 }
 span.red-check-icon {
   color: #cf4b5f;
