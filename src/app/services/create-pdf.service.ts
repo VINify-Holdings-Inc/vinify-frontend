@@ -83,17 +83,12 @@ export class CreatePDFService {
         },
         didDrawCell: (data: any) => {
           const rowData: any = data.row.raw; 
-          const rowData: any = data.row.raw;
-          console.log(rowData,data);
-
-          // Draw circle if VIN is marked as old
+           // Draw circle if VIN is marked as old
           if (data.section === 'body' && data.column.index === 0) {
             const xPos = data.cell.x + 0.9;
             const yPos = data.cell.y + 3;
             const isOld = rowData[4];
             doc.setFillColor(isOld ? 128 : 207, isOld ? 128 : 75, isOld ? 128 : 95);
-
-            doc.setFillColor(!isOld ? 207 : 128, !isOld ? 75 : 128, !isOld ? 95 : 128);
             doc.circle(xPos, yPos, 0.5, 'F');
           }
 
