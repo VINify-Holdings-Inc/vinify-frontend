@@ -38,7 +38,7 @@
                           <div class="statusBody">
                             <p class="tdHead">Date</p>
                             <p class="tdBody">
-                              <span [ngClass]="item?.isTitleBrandDate ? 'redDot tableDot' : ''"></span>
+                              <!-- <span [ngClass]="item?.isTitleBrandDate ? 'redDot tableDot' : ''"></span> -->
                               {{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}
                             </p>
                           </div>
@@ -47,7 +47,7 @@
                           <div class="statusBody">
                             <p class="tdHead">Odometer</p>
                             <p class="tdBody">
-                              <span [ngClass]="item?.isOdometer ? 'redDot tableDot' : ''"></span>
+                              <!-- <span [ngClass]="item?.isOdometer ? 'redDot tableDot' : ''"></span> -->
                               {{item?.odometer}}
                             </p>
                           </div> 
@@ -56,7 +56,7 @@
                           <div class="statusBody pbt-0">
                             <p class="tdHead">State</p>
                             <p class="tdBody">
-                              <span [ngClass]="item?.isState ? 'redDot tableDot' : ''"></span>
+                              <!-- <span [ngClass]="item?.isState ? 'redDot tableDot' : ''"></span> -->
                               {{item?.state ? item?.state : ' '}}
                             </p>
                           </div>
@@ -101,7 +101,7 @@
                         <div class="statusBody">
                           <p class="tdHead">Date</p>
                           <p class="tdBody">
-                            <span [ngClass]="item?.isTitleBrandDate ? 'redDot tableDot' : ''"></span>
+                            <!-- <span [ngClass]="item?.isTitleBrandDate ? 'redDot tableDot' : ''"></span> -->
                             {{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}
                           </p>
                         </div>
@@ -110,7 +110,7 @@
                         <div class="statusBody">
                           <p class="tdHead">Brand Name(s)</p>
                           <p class="tdBody">
-                            <span [ngClass]="item?.isBrand ? 'redDot tableDot' : ''"></span>
+                            <!-- <span [ngClass]="item?.isBrand ? 'redDot tableDot' : ''"></span> -->
                             {{item?.brand ? item?.brand?.split(' - ')[0] : " "}}
                           </p>
                         </div>
@@ -119,7 +119,7 @@
                         <div class="statusBody pbt-0">
                           <p class="tdHead">State</p>
                           <p class="tdBody">
-                            <span [ngClass]="item?.isState ? 'redDot tableDot' : ''"></span>
+                            <!-- <span [ngClass]="item?.isState ? 'redDot tableDot' : ''"></span> -->
                             {{item?.state ? item?.state : " "}}
                           </p>
                         </div>
@@ -163,7 +163,7 @@
                         <div class="statusBody">
                           <p class="tdHead">Date</p>
                           <p class="tdBody">
-                            <span [ngClass]="item?.isTitleBrandDate ? 'redDot tableDot' : ''"></span>
+                            <!-- <span [ngClass]="item?.isTitleBrandDate ? 'redDot tableDot' : ''"></span> -->
                             {{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}
                           </p>
                         </div>
@@ -172,7 +172,7 @@
                         <div class="statusBody">
                           <p class="tdHead">Description</p>
                           <p class="tdBody">
-                            <span [ngClass]="item?.isDescription ? 'redDot tableDot' : ''"></span>
+                            <!-- <span [ngClass]="item?.isDescription ? 'redDot tableDot' : ''"></span> -->
                             {{item?.description ? item?.description : " "}}
                           </p>
                         </div>
@@ -181,7 +181,7 @@
                         <div class="statusBody pbt-0">
                           <p class="tdHead">State</p>
                           <p class="tdBody">
-                            <span [ngClass]="item?.isState ? 'redDot tableDot' : ''"></span>
+                            <!-- <span [ngClass]="item?.isState ? 'redDot tableDot' : ''"></span> -->
                             {{item?.state ? item?.state : " "}}
                           </p>
                         </div>
