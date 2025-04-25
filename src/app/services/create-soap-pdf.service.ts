@@ -106,7 +106,7 @@
          doc.line(14, footerY-14, 196, footerY-14); 
          doc.setFontSize(9);
          doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
-         doc.text('All rights reserved. VINify, LLC (c) 2019-2025', 15, footerY - 5);
+         doc.text('VINify, Title Alarm, LLC', 15, footerY - 5);
          doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 180, footerY - 5);
          
        };
