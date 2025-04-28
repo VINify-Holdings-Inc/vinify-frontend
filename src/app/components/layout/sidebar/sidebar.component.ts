@@ -1,4 +1,4 @@
-import { Component, Input ,OnInit,HostListener} from '@angular/core';
+import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { userData } from '../../../services/api-service.service';
@@ -7,18 +7,19 @@ import { PDF_SETTINGS } from '../../../constants';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SingleVinComponent } from '../dashboard/single-vin/single-vin.component';
 import { FileExportComponent } from '../get-recent-alert-file-export/get-recent-alert-file-export.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule,RouterLink,RouterLinkActive,LoaderComponent,SingleVinComponent,FileExportComponent],
+  imports: [CommonModule, RouterLink, RouterLinkActive, LoaderComponent, SingleVinComponent, FileExportComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements OnInit {
-    constructor(private userData: userData,private router: Router,private pdfService: CreatePDFService,){ }
-    tableData :any[] =[]; 
-  ngOnInit(): void { 
-   
+  constructor(private userData: userData, private router: Router, private pdfService: CreatePDFService,) { }
+  tableData: any[] = [];
+  ngOnInit(): void {
+
   }
   icon1: string = 'assets/images/icons/sidebar-icon/dashboard.svg';
   icon2: string = 'assets/images/icons/sidebar-icon/vehicle.svg';
@@ -30,62 +31,76 @@ export class SidebarComponent implements OnInit {
   icon8: string = 'assets/images/icons/sidebar-icon/upload.svg';
   icon9: string = 'assets/images/icons/sidebar-icon/file.svg';
   helpPdf: any = 'assets/helpdoc/NMVTIS_help_doc.pdf';
-  @Input() isSidebarActive: boolean = true; 
+  @Input() isSidebarActive: boolean = true;
 
-  isExportOpen:boolean=false
+  isExportOpen: boolean = false
 
-  openExportModal=()=>{
-   this.isExportOpen=!this.isExportOpen;
+  openExportModal = () => {
+    this.isExportOpen = !this.isExportOpen;
   }
   @HostListener('document:click', ['$event'])
   closeModal(event: Event) {
     this.isExportOpen = false;
   }
- 
-  routerNavigation() {  
+
+  routerNavigation() {
 
     let url = `page=1&limit=1`;
-   this.userData.getCurrentVinDataForUser(url).subscribe(
-     (res: any) => {
-       if (!res.error) {
-         this.tableData = res?.data?.items || [];  
-         if(res?.data?.items.length){
-        const lastUpdateDate=res?.data?.items[0]; 
-        const timestamp = new Date().getTime();
-        this.router.navigate(['/title-details'], {
-          queryParams: {
-            vin: lastUpdateDate?.vin || '',
-            model:lastUpdateDate?.model || '',
-            refresh: timestamp
-          }
-        });
-         }else{
-          this.tableData = res?.data?.items || []; 
-         }
-       }
-     },
-     (err) => {    
-     }
-   );
-  }
-  exportToPDF(type:any) {
-      this.getTableData(type);
-  }
-  selectedVins:[]=[];
-  isLoading:boolean=false;
-  getTableData(dataType:any) {
-    this.isLoading = true;
-    let url = `type=${dataType}`;
-      
-    this.userData.getPdfData(url,this.selectedVins).subscribe(
+    this.userData.getCurrentVinDataForUser(url).subscribe(
       (res: any) => {
         if (!res.error) {
-          this.pdfService.generatePDF(
-            PDF_SETTINGS.COMPANY_NAME,
-            PDF_SETTINGS.LOGO_URL,
-            res?.data?.items || [],
-            'Vin-data.pdf'
-          );
+          this.tableData = res?.data?.items || [];
+          if (res?.data?.items.length) {
+            const lastUpdateDate = res?.data?.items[0];
+            const timestamp = new Date().getTime();
+            this.router.navigate(['/title-details'], {
+              queryParams: {
+                vin: lastUpdateDate?.vin || '',
+                model: lastUpdateDate?.model || '',
+                refresh: timestamp
+              }
+            });
+          } else {
+            this.tableData = res?.data?.items || [];
+          }
+        }
+      },
+      (err) => {
+      }
+    );
+  }
+  exportToPDF(type: any) {
+    this.getTableData(type);
+  }
+  selectedVins: [] = [];
+  isLoading: boolean = false;
+  getTableData(dataType: any) {
+    this.isLoading = true;
+    let url = `type=${dataType}`;
+
+    this.userData.getPdfData(url, this.selectedVins).subscribe(
+      (res: any) => {
+        if (!res.error) {
+          if (res?.data?.items.length > 0) {
+            this.pdfService.generatePDF(
+              PDF_SETTINGS.COMPANY_NAME,
+              PDF_SETTINGS.LOGO_URL,
+              res?.data?.items || [],
+              'Vin-data.pdf'
+            );
+          } else {
+            Swal.fire({
+              title: 'Error!',
+              showClass: {
+                popup: 'animated fadeInDown faster',
+                icon: 'animated heartBeat delay-1s'
+              },
+              text: "No data found",
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+
         }
         this.isLoading = false;
       },
@@ -95,9 +110,8 @@ export class SidebarComponent implements OnInit {
     );
   }
 
- 
+
 }
 
 
 
- 
