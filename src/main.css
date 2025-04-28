@@ -280,7 +280,7 @@ p.smallAddIcon i {
 .table > thead > tr > th {
   font-weight: 600;
   padding: 12px 8px;
-  font-size: 12px;
+  font-size: 14px;
   color: #323b48;
   background-color: #ededed !important;
   border-right: 1px solid #fff;
@@ -3816,6 +3816,33 @@ span.red-check-icon {
   color: #475467 !important;
   border: 1px solid #9e9e9e;
   background-color: #bdbdbd;
+}
+#sidebar.active:hover ul li a {
+  width: auto;
+}
+#sidebar.active:hover {
+  width: 264px;
+}
+#sidebar.active:hover ul li a span {
+  display: inline;
+}
+div.month-calendar.vehicleMonthSearch.calendar-svg, div.month-calendar.vehicleMonthSearch.calendar-svg:hover {
+  background: #cdcdcd !important;
+  cursor: not-allowed;
+}
+span.month-calendar.vehicleMonthSearch.calendar-svg, span.month-calendar.vehicleMonthSearch.calendar-svg:hover{
+  background: #cdcdcd !important;
+  cursor: not-allowed;
+}
+#sidebar.active:hover .ExportDivModal {
+  position: relative;
+  left: 35px;
+}
+.sidebar-link.active.show-nav .ExportDivModal {
+  display: none;
+}
+#sidebar.active:hover .ExportDivModal{
+  display: inline-block;
 }
 @media (max-width: 992px) {
   .l-logo {

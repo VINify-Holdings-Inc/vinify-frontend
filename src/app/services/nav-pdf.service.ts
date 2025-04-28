@@ -109,7 +109,7 @@ export class NavPdfService {
          //doc.setTextColor(0, 0, 0);
          doc.setFontSize(9);
          doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
-         doc.text('All rights reserved. VINify, LLC (c) 2019-2025', 15, footerY - 5);
+         doc.text('VINify, Title Alarm, LLC', 15, footerY - 5);
          doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 180, footerY - 5);
          
        };
@@ -373,135 +373,135 @@ export class NavPdfService {
   }
   
   y += 10;
-  doc.setFontSize(14);
-  doc.setTextColor(69, 67, 67);  //black
-  doc.text('Possible Title Brands', 15, y);
-  doc.setFontSize(6);
-  doc.setFont('helvetica', 'bold');
-  doc.text('Source', 180, y);
-  doc.setFont('helvetica', 'normal');
-  doc.text('NMVTIS', 188, y);
+//   doc.setFontSize(14);
+//   doc.setTextColor(69, 67, 67);  //black
+//   doc.text('Possible Title Brands', 15, y);
+//   doc.setFontSize(6);
+//   doc.setFont('helvetica', 'bold');
+//   doc.text('Source', 180, y);
+//   doc.setFont('helvetica', 'normal');
+//   doc.text('NMVTIS', 188, y);
  
-  if (y + 50 > doc.internal.pageSize.height - 20) {
-   doc.addPage();
-   addHeader();addFooter(); 
-   y = 40; // Reset Y for new page
+//   if (y + 50 > doc.internal.pageSize.height - 20) {
+//    doc.addPage();
+//    addHeader();addFooter(); 
+//    y = 40; // Reset Y for new page
  
- }
- const ptb =`VINify reports can show one or more of the following DMV state title brands. When there are NMVTIS title brands, they are reported in the Title Brands Reported section . To see the descriptions, hover over or click on the brands below. The red, yellow and green indicators show how the brand would be reflected if it was reported for this vehicle.`;
+//  }
+//  const ptb =`VINify reports can show one or more of the following DMV state title brands. When there are NMVTIS title brands, they are reported in the Title Brands Reported section . To see the descriptions, hover over or click on the brands below. The red, yellow and green indicators show how the brand would be reflected if it was reported for this vehicle.`;
  
- let yPosi = y + 3; // Initial y position
- doc.setFontSize(10);
- doc.setFont('helvetica', 'normal');
- const tex = doc.splitTextToSize(ptb, 180);
- doc.text(tex, 15, yPosi+5); 
+//  let yPosi = y + 3; // Initial y position
+//  doc.setFontSize(10);
+//  doc.setFont('helvetica', 'normal');
+//  const tex = doc.splitTextToSize(ptb, 180);
+//  doc.text(tex, 15, yPosi+5); 
  
-  y+=20;
-  const items = [
-   { text: 'Clear', x: 10,  color: 'grey' },
-   { text: 'Flood Damage', x: 60,  color: 'red' },
-   { text: 'Fire Damage', x: 110,  color: 'red' },
-   { text: 'Hail Damage', x: 160, color: 'red' },
-   { text: 'Salt Water Damage', x: 10,  color: 'red' },
-   { text: 'Vandalism', x: 60,  color: 'red' },
-   { text: 'Kit Vehicle', x: 110,  color: 'yellow' },
-   { text: 'Dismantled', x: 160,  color: 'red' },
-   { text: 'Junk', x: 10,  color: 'grey' },
-   { text: 'Rebuilt', x: 60,  color: 'grey' },
-   { text: 'Reconstructed', x: 110,  color: 'grey' },
-   { text: 'Salvage', x: 160, color: 'grey' },
-   { text: 'Test Vehicle', x: 10,  color: 'red' },
-   { text: 'Refurbished', x: 60,  color: 'red' },
-   { text: 'Collision', x: 110,  color: 'grey' },
-   { text: 'Reserved', x: 160,  color: 'grey' },
-   { text: 'Salvage Retention', x: 10,  color: 'red' },
-   { text: 'Prior Taxi', x: 60,  color: 'yellow' },
-   { text: 'Prior Police', x: 110,  color: 'yellow' },
-   { text: 'Original Taxi', x: 160,  color: 'yellow' },
-   { text: 'Original Police', x: 10,  color: 'yellow' },
-   { text: 'Remanufactured', x: 60,  color: 'red' },
-   { text: 'Reserved. Eliminated', x: 110,  color: 'grey' },
-   { text: 'Warranty Return', x: 160,  color: 'grey' },
-   { text: 'Antique', x: 10, color: 'green' },
-   { text: 'Classic', x: 60,  color: 'green' },
-   { text: 'Agricultural Vehicle', x: 110,  color: 'green' },
-   { text: 'Logging Vehicle', x: 160,  color: 'green' },
-   { text: 'Street Rod', x: 10,  color: 'yellow' },
-   { text: 'Vehicle Contains Reissued VIN', x: 60,  color: 'yellow' },
-   { text: 'Replica', x: 110,  color: 'yellow' },
-   { text: 'Totaled', x: 160,  color: 'red' },
-   { text: 'Owner Retained', x: 10,  color: 'red' },
-   { text: 'Reserved. Eliminated. Bond Posted.', x: 60,  color: 'yellow' },
-   { text: 'Memorandum Copy', x: 110,  color: 'yellow' },
-   { text: 'Reserved. Eliminated. Parts Only', x: 160,  color: 'grey' },
-   { text: 'Recovered Theft', x: 10, color: 'yellow' },
-   { text: 'Undisclosed Lien', x: 60, color: 'yellow' },
-   { text: 'Prior Owner Retained', x: 110,  color: 'grey' },
-   { text: 'Vehicle Non-conformity Uncorrected', x: 160,  color: 'grey' },
-   { text: 'Vehicle Non-conformity Corrected', x: 10,  color: 'grey' },
-   { text: 'Vehicle Safety Defect Uncorrected', x: 60,  color: 'grey' },
-   { text: 'Vehicle Safety Defect Corrected', x: 110, color: 'grey' },
-   { text: 'VIN replaced by a new state assigned VIN', x: 160,  color: 'grey' },
-   { text: 'Gray Market', x: 10,  color: 'grey' },
-   { text: 'Gray Market', x: 60,  color: 'grey' },
-   { text: 'Manufacturer Buyback', x: 110,  color: 'grey' },
-   { text: 'Former Rental', x: 160,  color: 'grey' },
-   { text: 'Salvage--Stolen', x: 10, color: 'grey' },
-   { text: 'Salvage-Reasons Other Than Damage or Stolen', x: 60,  color: 'grey' },
-   { text: 'Disclosed Damage', x: 110,  color: 'grey' },
-   { text: 'Prior Non-Repairable / Repaired', x: 160,  color: 'grey' },
-   { text: 'Crushed', x: 10,  color: 'red' },
-   { text: 'Hazardous Substance Contaminated Vehicle', x: 60,  color: 'red' },
-   { text: 'Export Only Vehicle.', x: 110,  color: 'red' },
-   { text: 'Odometer - Actual', x: 160,  color: 'grey' },
-   { text: 'Odometer - Not Actual', x: 10,  color: 'grey' },
-   { text: 'Odometer - Not Actual - Odometer tampering verified', x: 60,  color: 'red' },
-   { text: 'Exempt from Odometer Disclosure', x: 110,  color: 'green' },
-   { text: 'Odometer - Exceeds Mechanical Limits', x: 160,  color: 'red' },
-   { text: 'Odometer may be Altered', x: 10,  color: 'red' },
-   { text: 'Odometer Replaced', x: 60, color: 'red' },
-   { text: 'Odometer - Reading at Time of Renewal', x: 110,  color: 'green' },
-   { text: 'Odometer Discrepancy', x: 160,  color: 'red' },
-   { text: 'Odometer - Call Title Division', x: 10, color: 'grey' },
-   { text: 'Odmtr-Rectify Prev. Exceeds Mechanical Limit Brand', x: 60,  color: 'grey' },
-   { text: 'Pending Junk Automobile - CARS.gov', x: 110, color: 'red' },
-   { text: 'Junk Automobile - CARS.gov', x: 160,  color: 'grey' },
- ];
+//   y+=20;
+//   const items = [
+//    { text: 'Clear', x: 10,  color: 'grey' },
+//    { text: 'Flood Damage', x: 60,  color: 'red' },
+//    { text: 'Fire Damage', x: 110,  color: 'red' },
+//    { text: 'Hail Damage', x: 160, color: 'red' },
+//    { text: 'Salt Water Damage', x: 10,  color: 'red' },
+//    { text: 'Vandalism', x: 60,  color: 'red' },
+//    { text: 'Kit Vehicle', x: 110,  color: 'yellow' },
+//    { text: 'Dismantled', x: 160,  color: 'red' },
+//    { text: 'Junk', x: 10,  color: 'grey' },
+//    { text: 'Rebuilt', x: 60,  color: 'grey' },
+//    { text: 'Reconstructed', x: 110,  color: 'grey' },
+//    { text: 'Salvage', x: 160, color: 'grey' },
+//    { text: 'Test Vehicle', x: 10,  color: 'red' },
+//    { text: 'Refurbished', x: 60,  color: 'red' },
+//    { text: 'Collision', x: 110,  color: 'grey' },
+//    { text: 'Reserved', x: 160,  color: 'grey' },
+//    { text: 'Salvage Retention', x: 10,  color: 'red' },
+//    { text: 'Prior Taxi', x: 60,  color: 'yellow' },
+//    { text: 'Prior Police', x: 110,  color: 'yellow' },
+//    { text: 'Original Taxi', x: 160,  color: 'yellow' },
+//    { text: 'Original Police', x: 10,  color: 'yellow' },
+//    { text: 'Remanufactured', x: 60,  color: 'red' },
+//    { text: 'Reserved. Eliminated', x: 110,  color: 'grey' },
+//    { text: 'Warranty Return', x: 160,  color: 'grey' },
+//    { text: 'Antique', x: 10, color: 'green' },
+//    { text: 'Classic', x: 60,  color: 'green' },
+//    { text: 'Agricultural Vehicle', x: 110,  color: 'green' },
+//    { text: 'Logging Vehicle', x: 160,  color: 'green' },
+//    { text: 'Street Rod', x: 10,  color: 'yellow' },
+//    { text: 'Vehicle Contains Reissued VIN', x: 60,  color: 'yellow' },
+//    { text: 'Replica', x: 110,  color: 'yellow' },
+//    { text: 'Totaled', x: 160,  color: 'red' },
+//    { text: 'Owner Retained', x: 10,  color: 'red' },
+//    { text: 'Reserved. Eliminated. Bond Posted.', x: 60,  color: 'yellow' },
+//    { text: 'Memorandum Copy', x: 110,  color: 'yellow' },
+//    { text: 'Reserved. Eliminated. Parts Only', x: 160,  color: 'grey' },
+//    { text: 'Recovered Theft', x: 10, color: 'yellow' },
+//    { text: 'Undisclosed Lien', x: 60, color: 'yellow' },
+//    { text: 'Prior Owner Retained', x: 110,  color: 'grey' },
+//    { text: 'Vehicle Non-conformity Uncorrected', x: 160,  color: 'grey' },
+//    { text: 'Vehicle Non-conformity Corrected', x: 10,  color: 'grey' },
+//    { text: 'Vehicle Safety Defect Uncorrected', x: 60,  color: 'grey' },
+//    { text: 'Vehicle Safety Defect Corrected', x: 110, color: 'grey' },
+//    { text: 'VIN replaced by a new state assigned VIN', x: 160,  color: 'grey' },
+//    { text: 'Gray Market', x: 10,  color: 'grey' },
+//    { text: 'Gray Market', x: 60,  color: 'grey' },
+//    { text: 'Manufacturer Buyback', x: 110,  color: 'grey' },
+//    { text: 'Former Rental', x: 160,  color: 'grey' },
+//    { text: 'Salvage--Stolen', x: 10, color: 'grey' },
+//    { text: 'Salvage-Reasons Other Than Damage or Stolen', x: 60,  color: 'grey' },
+//    { text: 'Disclosed Damage', x: 110,  color: 'grey' },
+//    { text: 'Prior Non-Repairable / Repaired', x: 160,  color: 'grey' },
+//    { text: 'Crushed', x: 10,  color: 'red' },
+//    { text: 'Hazardous Substance Contaminated Vehicle', x: 60,  color: 'red' },
+//    { text: 'Export Only Vehicle.', x: 110,  color: 'red' },
+//    { text: 'Odometer - Actual', x: 160,  color: 'grey' },
+//    { text: 'Odometer - Not Actual', x: 10,  color: 'grey' },
+//    { text: 'Odometer - Not Actual - Odometer tampering verified', x: 60,  color: 'red' },
+//    { text: 'Exempt from Odometer Disclosure', x: 110,  color: 'green' },
+//    { text: 'Odometer - Exceeds Mechanical Limits', x: 160,  color: 'red' },
+//    { text: 'Odometer may be Altered', x: 10,  color: 'red' },
+//    { text: 'Odometer Replaced', x: 60, color: 'red' },
+//    { text: 'Odometer - Reading at Time of Renewal', x: 110,  color: 'green' },
+//    { text: 'Odometer Discrepancy', x: 160,  color: 'red' },
+//    { text: 'Odometer - Call Title Division', x: 10, color: 'grey' },
+//    { text: 'Odmtr-Rectify Prev. Exceeds Mechanical Limit Brand', x: 60,  color: 'grey' },
+//    { text: 'Pending Junk Automobile - CARS.gov', x: 110, color: 'red' },
+//    { text: 'Junk Automobile - CARS.gov', x: 160,  color: 'grey' },
+//  ];
  
- // Draw Boxes
- y += 12;
- items.forEach((item, index) => {
-   const boxHeight =   11 ;
-   let pageHeight4 = doc.internal.pageSize.height;
+//  // Draw Boxes
+//  y += 12;
+//  items.forEach((item, index) => {
+//    const boxHeight =   11 ;
+//    let pageHeight4 = doc.internal.pageSize.height;
     
-   doc.setFontSize(7);
-   if (index % 4 === 0 && index !== 0) {
-     y += 15; // Move down after every 4 items
-     if (y + boxHeight + 20 > pageHeight4 - 15) { 
-       doc.addPage();
-       y = 50; // Reset Y with enough space for header
-       addHeader();
-       addFooter();
-     }
-   }
-   doc.setFontSize(7);
-   // Handle text wrapping
-   const maxWidth = 45; // Box width
-   const textLines = doc.splitTextToSize(item.text, maxWidth - 10); // Wrap text
+//    doc.setFontSize(7);
+//    if (index % 4 === 0 && index !== 0) {
+//      y += 15; // Move down after every 4 items
+//      if (y + boxHeight + 20 > pageHeight4 - 15) { 
+//        doc.addPage();
+//        y = 50; // Reset Y with enough space for header
+//        addHeader();
+//        addFooter();
+//      }
+//    }
+//    doc.setFontSize(7);
+//    // Handle text wrapping
+//    const maxWidth = 45; // Box width
+//    const textLines = doc.splitTextToSize(item.text, maxWidth - 10); // Wrap text
  
-   // Set border color
-   let borderColor = { r: 100, g: 0, b: 0 }; // Default color
-   if (item.color === 'red') borderColor = { r: 255, g: 0, b: 0 };
-   else if (item.color === 'yellow') borderColor = { r: 255, g: 255, b: 0 };
-   else if (item.color === 'green') borderColor = { r: 0, g: 128, b: 0 };
-   else if (item.color === 'grey') borderColor = { r: 128, g: 128, b: 128 };
+//    // Set border color
+//    let borderColor = { r: 100, g: 0, b: 0 }; // Default color
+//    if (item.color === 'red') borderColor = { r: 255, g: 0, b: 0 };
+//    else if (item.color === 'yellow') borderColor = { r: 255, g: 255, b: 0 };
+//    else if (item.color === 'green') borderColor = { r: 0, g: 128, b: 0 };
+//    else if (item.color === 'grey') borderColor = { r: 128, g: 128, b: 128 };
  
-   doc.setDrawColor(borderColor.r, borderColor.g, borderColor.b);
+//    doc.setDrawColor(borderColor.r, borderColor.g, borderColor.b);
    
-   // Draw box and text
-   doc.roundedRect(item.x, y - 5, maxWidth, boxHeight, 2, 2);
-   doc.text(textLines, item.x + 5, y);
- });
+//    // Draw box and text
+//    doc.roundedRect(item.x, y - 5, maxWidth, boxHeight, 2, 2);
+//    doc.text(textLines, item.x + 5, y);
+//  });
  
   // Junk Salvage
   let pageHeight5 = doc.internal.pageSize.height;
@@ -511,7 +511,7 @@ export class NavPdfService {
       addHeader();addFooter();
   }
      // Junk Salvage
-     y += 20;
+     y += 3;
      if(JSICount){
      drawBadge(doc, 14, y-1, JSICount);  //x,y,number
      }
