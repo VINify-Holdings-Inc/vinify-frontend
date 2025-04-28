@@ -156,6 +156,7 @@ exportToPDFUdate(type:any) {
 }
 
 getTableData(dataType:any) {
+  console.log("test 1");
   this.isLoading = true;
   let url = `type=${dataType}`;
   if(dataType=="single"){
@@ -177,8 +178,9 @@ getTableData(dataType:any) {
 
   this.userData.getPdfData(url,this.selectedVins).subscribe(
     (res: any) => {
-      if (!res.error) {
+      if (!res.error) { 
         if(res?.data?.items.length>0){ 
+          console.log("test 2");
         this.pdfService.generatePDF(
           PDF_SETTINGS.COMPANY_NAME,
           PDF_SETTINGS.LOGO_URL,
