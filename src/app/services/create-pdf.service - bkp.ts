@@ -11,7 +11,7 @@ import { CapitalizePipe } from '../pipes/capitalize.pipe';
 export class CreatePDFService {
   private capitalizePipe = new CapitalizePipe();
 
-  constructor(private dateFormate: DateFormatPipe) {}
+  constructor(private dateFormate: DateFormatPipe) { }
 
   generatePDF(
     companyName: string,
@@ -26,8 +26,6 @@ export class CreatePDFService {
 
     const checkImg = new Image();
     checkImg.src = '/assets/fonts/tick.png';
-
-    let imagesLoaded = 0;
 
     const addFooter = () => {
       const pageHeight = doc.internal.pageSize.height;
@@ -52,18 +50,17 @@ export class CreatePDFService {
       doc.text('Vehicle History Report', 122, 20);
     };
 
-    const generatePDFContent = () => {
-    //  console.log("test 3");
+    img.onload = checkImg.onload = () => {
+      console.log("test 3");
       addHeader();
-      addFooter();
-
+      addFooter(); 
       const tableColumn = ['VINs', 'Title', 'Brand', 'JSI'];
       const tableRows = tableData.map((item) => [
         item.vin ? item.vin : " ",
         item.Title ? ' ' : null,
         item.Brand ? " " : null,
         item.JSI ? " " : null,
-        item.isOld ? item.isOld : false,
+        item.isOld ? item.isOld :false
       ]);
 
       (doc as any).autoTable({
@@ -86,8 +83,8 @@ export class CreatePDFService {
           3: { cellWidth: 70 },
         },
         didDrawCell: (data: any) => {
-          const rowData: any = data.row.raw;
-          // Draw circle if VIN is marked as old
+          const rowData: any = data.row.raw; 
+           // Draw circle if VIN is marked as old
           if (data.section === 'body' && data.column.index === 0) {
             const xPos = data.cell.x + 0.9;
             const yPos = data.cell.y + 3;
@@ -95,12 +92,12 @@ export class CreatePDFService {
             doc.setFillColor(isOld ? 128 : 207, isOld ? 128 : 75, isOld ? 128 : 95);
             doc.circle(xPos, yPos, 0.5, 'F');
           }
-          // Draw checkmark image if value is truthy
+          // Draw checkmark image if the value is truthy
           const colIndex = data.column.index;
           if (
             data.section === 'body' &&
             [1, 2, 3].includes(colIndex) &&
-            rowData[colIndex]
+            rowData[colIndex] // Check if the value is truthy
           ) {
             const imgX = data.cell.x + 2;
             const imgY = data.cell.y + 1.5;
@@ -147,21 +144,8 @@ export class CreatePDFService {
       }
 
       addFooter();
+      //save
       doc.save(fileName);
-    };
-
-    img.onload = () => {
-      imagesLoaded++;
-      if (imagesLoaded === 2) {
-        generatePDFContent();
-      }
-    };
-
-    checkImg.onload = () => {
-      imagesLoaded++;
-      if (imagesLoaded === 2) {
-        generatePDFContent();
-      }
     };
 
     img.onerror = () => {
