@@ -84,6 +84,12 @@ export class userData {
     });
   }
 
+  getUserDataForVigateFirstItem(data: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/navigate-sidebar-first-item?`+ data, {
+      headers: this.getHeaders(),
+    });
+  }
+
   searchVinDataForUser(data: any): Observable<any> {
     return this.http.get(`${this.baseUrl}/search-pop-vin?`+ data, {
       headers: this.getHeaders(),
