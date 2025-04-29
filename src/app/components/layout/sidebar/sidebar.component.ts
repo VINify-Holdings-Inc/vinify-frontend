@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 })
 export class SidebarComponent implements OnInit {
   constructor(private userData: userData, private router: Router, private pdfService: CreatePDFService,) { }
-  tableData: any[] = [];
+  
   ngOnInit(): void {
 
   }
@@ -43,13 +43,11 @@ export class SidebarComponent implements OnInit {
     this.isExportOpen = false;
   }
 
-  routerNavigation() {
-
+  routerNavigation() { 
     let url = `page=1&limit=1`;
-    this.userData.getCurrentVinDataForUser(url).subscribe(
+    this.userData.getUserDataForVigateFirstItem(url).subscribe(
       (res: any) => {
-        if (!res.error) {
-          this.tableData = res?.data?.items || [];
+        if (!res.error) { 
           if (res?.data?.items.length) {
             const lastUpdateDate = res?.data?.items[0];
             const timestamp = new Date().getTime();
@@ -60,9 +58,7 @@ export class SidebarComponent implements OnInit {
                 refresh: timestamp
               }
             });
-          } else {
-            this.tableData = res?.data?.items || [];
-          }
+          }  
         }
       },
       (err) => {
