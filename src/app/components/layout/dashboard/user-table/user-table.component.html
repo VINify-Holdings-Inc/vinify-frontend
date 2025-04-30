@@ -120,7 +120,7 @@
                 </ng-container>
   
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getVinDetails(row?.vin,row?.model)">
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getVinDetails(row?.vin,row?.model)" [ngClass]="{ 'deleted-row': row?.isDel === true }">
                 </tr>
               </table>
               <div *ngIf="tableData.length === 0" class="no-data-message text-center">

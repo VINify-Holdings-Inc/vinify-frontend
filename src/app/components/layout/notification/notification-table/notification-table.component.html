@@ -156,7 +156,7 @@
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{ 'deleted-row': row?.isDel === true }">
               </tr>
             </table>
             <div *ngIf="tableData.length === 0" class="no-data-message text-center">
