@@ -86,7 +86,6 @@ export class CreatePDFService {
           2: { cellWidth: 70 },
           3: { cellWidth: 70 },
         },
-      
         didParseCell: (data: any) => {
           if (data.section === 'body' && data.row.raw[5] === true) {
             data.cell.styles.fillColor = [246, 225, 228];
