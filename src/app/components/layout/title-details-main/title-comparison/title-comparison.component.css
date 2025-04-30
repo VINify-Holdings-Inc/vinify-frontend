@@ -45,6 +45,9 @@ button.accordion-button.tabtitleBtn {
 .currentBg {
   background-color: #f2f2f7 !important;
 }
+.currentBg.deleted-row {
+  background: #f1e5e6 !important;
+}
 .lastBg {
   background-color: #f2f2f7 !important;
 }

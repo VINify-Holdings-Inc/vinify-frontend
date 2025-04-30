@@ -85,6 +85,13 @@ export class CreatePDFService {
           2: { cellWidth: 70 },
           3: { cellWidth: 70 },
         },
+        willDrawCell: (data: any) => {
+          const rowData: any = data.row.raw;
+          if (data.section === 'body' && rowData?.isDel === true) {
+            data.cell.styles.fillColor = [255, 0, 0]; // Red background
+            data.cell.styles.textColor = [255, 255, 255]; // Optional: white text
+          }
+        },
         didDrawCell: (data: any) => {
           const rowData: any = data.row.raw;
           // Draw circle if VIN is marked as old

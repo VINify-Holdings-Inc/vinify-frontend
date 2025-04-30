@@ -31,7 +31,8 @@
                 aria-labelledby="heading6Title"
                 data-bs-parent="#accordion6">
                 <ng-container *ngFor="let item of titleData.current">
-                  <div class="accordion-body currentTabInnerBg currentBg">
+                  <div class="accordion-body currentTabInnerBg currentBg" 
+                  [ngClass]="{ 'deleted-row': item?.isDel ==true }">
                     <div class="innerTabCurrent">
                       <div class="row">
                         <div class="col-md-4 col-sm-4">
@@ -40,6 +41,7 @@
                             <p class="tdBody">
                               <!-- <span [ngClass]="item?.isTitleBrandDate ? 'redDot tableDot' : ''"></span> -->
                               {{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}
+                               
                             </p>
                           </div>
                         </div>
@@ -94,7 +96,8 @@
                 [ngClass]="{'show': !titleData?.current?.length}"
                 aria-labelledby="heading6Brand"
                 data-bs-parent="#accordion6">
-                <div class="accordion-body currentTabInnerBg currentBg" *ngFor="let item of brandData.current">
+                <div class="accordion-body currentTabInnerBg currentBg" *ngFor="let item of brandData.current" 
+                [ngClass]="{ 'deleted-row': item?.isDel ==true }">
                   <div class="innerTabCurrent">
                     <div class="row">
                       <div class="col-md-4 col-sm-4">
@@ -156,7 +159,8 @@
                 [ngClass]="{'show': !(titleData?.current?.length || brandData?.current?.length)}"
                 aria-labelledby="heading6JSI"
                 data-bs-parent="#accordion6">
-                <div class="accordion-body currentTabInnerBg currentBg" *ngFor="let item of jsiData.current">
+                <div class="accordion-body currentTabInnerBg currentBg" *ngFor="let item of jsiData.current"
+                [ngClass]="{ 'deleted-row': item?.isDel ==true }">
                   <div class="innerTabCurrent">
                     <div class="row">
                       <div class="col-md-4 col-sm-4">

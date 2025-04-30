@@ -3844,6 +3844,9 @@ span.month-calendar.vehicleMonthSearch.calendar-svg, span.month-calendar.vehicle
 #sidebar.active:hover .ExportDivModal{
   display: inline-block;
 }
+.deleted-row {
+  background: #f1e5e6 !important;
+}
 @media (max-width: 992px) {
   .l-logo {
     display: none; 
