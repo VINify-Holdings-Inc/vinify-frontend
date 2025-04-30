@@ -64,6 +64,7 @@ export class CreatePDFService {
         item.Brand ? " " : null,
         item.JSI ? " " : null,
         item.isOld ? item.isOld : false,
+        item.isDel ? item.isDel : false,
       ]);
 
       (doc as any).autoTable({
@@ -85,11 +86,9 @@ export class CreatePDFService {
           2: { cellWidth: 70 },
           3: { cellWidth: 70 },
         },
-        willDrawCell: (data: any) => {
-          const rowData: any = data.row.raw;
-          if (data.section === 'body' && rowData?.isDel === true) {
-            data.cell.styles.fillColor = [255, 0, 0]; // Red background
-            data.cell.styles.textColor = [255, 255, 255]; // Optional: white text
+        didParseCell: (data: any) => {
+          if (data.section === 'body' && data.row.raw[5] === true) {
+            data.cell.styles.fillColor = [246, 225, 228];
           }
         },
         didDrawCell: (data: any) => {
