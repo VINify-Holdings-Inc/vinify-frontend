@@ -79,6 +79,7 @@ export class TitleReportService {
        
         item.mobile ? item.mobile : " ",
         item.email ? item.email : " ",
+        item.isDel ? item.isDel : false,
         
       ]);
 
@@ -100,6 +101,12 @@ export class TitleReportService {
           1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
          
         },
+        didParseCell: (data: any) => {
+          if (data.section === 'body' && data.row.raw[5] === true) {
+            data.cell.styles.fillColor = [246, 225, 228];
+          }
+        },
+
         didDrawPage: (data: any) => {
           if (data.pageNumber > 1) {
             // Add the header with logo and title on subsequent pages
