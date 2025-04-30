@@ -102,7 +102,9 @@ export class TitleReportService {
          
         },
         didParseCell: (data: any) => {
-          if (data.section === 'body' && data.row.raw[5] === true) {
+          console.log(data.row.raw,"####");
+          
+          if (data.section === 'body' && data.row.raw[12] == 1) {
             data.cell.styles.fillColor = [246, 225, 228];
           }
         },
