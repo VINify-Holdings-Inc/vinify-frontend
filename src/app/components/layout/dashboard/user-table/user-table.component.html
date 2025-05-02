@@ -86,7 +86,9 @@
 
                 <ng-container matColumnDef="title">
                   <th mat-header-cell *matHeaderCellDef width="200">Title</th>
-                  <td mat-cell *matCellDef="let element"><span class="red-check-icon">{{element?.Title ? "&#x2714;":""}}</span> 
+                  <td mat-cell *matCellDef="let element"><span class="red-check-icon">{{element?.Title ? "&#x2714;":""}}</span>
+                    <span class="deleted-text" *ngIf="element?.isTitleDel">Deleted</span>
+                  
                    </td>
                 </ng-container>
                
@@ -95,15 +97,17 @@
                   <th mat-header-cell *matHeaderCellDef width="200">Brand</th>
                   <td mat-cell *matCellDef="let element" >
                     <span class="red-check-icon">{{element?.Brand  ? "&#x2714;":""}}</span> 
-                    
+                    <!-- <span class="deleted-text"> {{element?.isBrandDel ? "Deleted":""}}</span>  -->
+                    <span class="deleted-text" *ngIf="element?.isBrandDel">Deleted</span>
                   </td>
-                </ng-container>
-
-            
+                </ng-container> 
 
                 <ng-container matColumnDef="jsi">
                   <th mat-header-cell *matHeaderCellDef width="200">JSI</th>
-                  <td mat-cell *matCellDef="let element" title={{element?.JSI}}> <span class="red-check-icon">{{element?.JSI  ? "&#x2714;":""}}</span>  
+                  <td mat-cell *matCellDef="let element" title={{element?.JSI}}> 
+                    <span class="red-check-icon">{{element?.JSI  ? "&#x2714;":""}}</span>  
+                    <!-- <span class="deleted-text"> {{element?.isJSIDel ? "Deleted":""}}</span>  -->
+                    <span class="deleted-text" *ngIf="element?.isJSIDel">Deleted</span>
                   </td>
                 </ng-container>
 

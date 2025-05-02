@@ -70,6 +70,7 @@
 
 <!-- User Table -->
  <app-user-table [tableData]="tableData" [page]="page" [totalPages]="totalPages" [totalItems]="totalItems"
+ [serchKpiType]="serchKpiType"
   (handelPaginagtion)="handlePageChange($event)" (handelSearch)="handelSearch($event)"
    [tableName]="tableName" [resetData]="resetData" [limit]="limit" (handelAlertFil)="handelAlertFil($event)"
    (handelAlertTypeFilter)="handelAlertTypeFilter($event)"
