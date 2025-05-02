@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable'; // Correct import for autoTable plugin
+import 'jspdf-autotable';
 import { disclaimer } from './disclaimer';
-import { DateFormatPipe } from '../pipes/date-format.pipe'
+import { DateFormatPipe } from '../pipes/date-format.pipe';
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
 
 @Injectable({
@@ -11,160 +11,137 @@ import { CapitalizePipe } from '../pipes/capitalize.pipe';
 export class TitleReportService {
 
   private capitalizePipe = new CapitalizePipe();
-  constructor(private dateFormate: DateFormatPipe,) { }
+
+  constructor(private dateFormate: DateFormatPipe) {}
+
   generatePDF(
     companyName: string,
     logoUrl: string,
     tableData: any[],
     fileName: string = 'Vehicle_History_Report.pdf',
-    vinFor:any
+    vinFor: any
   ): void {
     const doc = new jsPDF({ orientation: 'landscape' });
+
     const addFooter = () => {
-        
       const pageHeight = doc.internal.pageSize.height;
       const footerY = pageHeight - 1;
       doc.setDrawColor(69, 67, 67);
-      doc.setLineWidth(.1);
-      doc.line(14, footerY-14, 284, footerY-14); 
-      //doc.setTextColor(0, 0, 0);
-      doc.setFont('helvetica', 'normal')
+      doc.setLineWidth(0.1);
+      doc.line(14, footerY - 14, 284, footerY - 14);
+      doc.setFont('helvetica', 'normal');
       doc.setFontSize(9);
-      doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
+      doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution.', 15, footerY - 10);
       doc.text('VINify, Title Alarm, LLC', 15, footerY - 5);
       doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 276, footerY - 5);
-      
     };
 
-    const addHeader =() =>{
-     // logo
-      const logoWidth = 30.5; // Adjust width
-      const logoHeight = 8.5; // Adjust height
+    const addHeader = () => {
+      const logoWidth = 30.5;
+      const logoHeight = 8.5;
       doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
-      //Title
       doc.setFontSize(16);
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
-     // doc.text('Vehicle History Report', 70, 20);
       doc.text('Vehicle History Report', 120, 20);
       doc.setFontSize(10);
-       doc.setFont('helvetica', 'normal');
-       doc.text(`VIN: ${vinFor}`, 120, 25);
-    }
+      doc.setFont('helvetica', 'normal');
+      doc.text(`VIN: ${vinFor}`, 120, 25);
+    };
 
-
-    // Add Logo
     const img = new Image();
     img.src = logoUrl;
 
     img.onload = () => {
-      
-      // Add Title
       addHeader();
-
       addFooter();
-      // Add Dynamic Table Data
-      const tableColumn = ['Status', 'Date','Type','Brand Name(s)','Odometer','State','City','Description','Export','RPTG Entity','Mobile','Email'];
+
+      const tableColumn = ['Status', 'Date', 'Type', 'Brand Name(s)', 'Odometer', 'State', 'City', 'Description', 'Export', 'RPTG Entity', 'Mobile', 'Email'];
       const tableRows = tableData.map((item) => [
-        item.status ? item.status :" ",
-        (item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " "),
-        item.alertType ? item.alertType : " ",
-        item?.alertType === 'Title' ? " " : (item?.brand ? item.brand.split(' - ')[0] : " "), 
-        item.odometer ? item.odometer : " ",
-        item.state ? item.state : " ",
-        item.city ? item.city : " ",
-        item.description ? item.description :" ",
+        item.status || " ",
+        item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
+        item.alertType ? `${item.alertType} hellow` : "hellow", // ✨ Add "hellow"
+        item.alertType === 'Title' ? " " : (item.brand ? item.brand.split(' - ')[0] : " "),
+        item.odometer || " ",
+        item.state || " ",
+        item.city || " ",
+        item.description || " ",
         item.export ? this.capitalizePipe.transform(item.export) : " ",
-        item.rptgEntity ? item.rptgEntity :" ",   
-       
-        item.mobile ? item.mobile : " ",
-        item.email ? item.email : " ",
-        item.isDel ? item.isDel : false,
-        
+        item.rptgEntity || " ",
+        item.mobile || " ",
+        item.email || " ",
+        item.isDel || false,
       ]);
 
       (doc as any).autoTable({
-        startY: 30, // Starting position for the table
+        startY: 30,
         theme: 'grid',
         head: [tableColumn],
         body: tableRows,
         headStyles: {
-          fillColor: [207, 75, 95], // Set header background color to red (RGB)
-          //textColor: [255, 255, 255], // Optional: Set header text color to white
+          fillColor: [207, 75, 95],
           fontSize: 8,
         },
         bodyStyles: {
-          fontSize: 7, // Set font size for table data
+          fontSize: 7,
         },
         margin: { top: 28 },
         columnStyles: {
-          1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
-         
+          1: { cellWidth: 30 },
         },
+
         didParseCell: (data: any) => {
-          console.log(data.row.raw,"####");
-          
           if (data.section === 'body' && data.row.raw[12] == 1) {
             data.cell.styles.fillColor = [246, 225, 228];
           }
         },
 
+        didDrawCell: (data: any) => {
+          if (data.section === 'body' && data.column.index === 2) { // ✨ "Type" column
+            const { x, y, width, height } = data.cell;
+            doc.setDrawColor(255, 0, 0); // Red rectangle
+            doc.setLineWidth(0.3);
+            doc.rect(x, y, width, height); // Draw rectangle
+          }
+        },
+
         didDrawPage: (data: any) => {
           if (data.pageNumber > 1) {
-            // Add the header with logo and title on subsequent pages
-            const logoWidth = 30.5; // Adjust width
-            const logoHeight = 8.5; // Adjust height
-            doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
-
-            // Add Title
-          //   doc.setFontSize(16);
-          //   doc.setTextColor(40);
-          //   doc.setFont('helvetica', 'bold');
-          //  // doc.text('Vehicle History Report', 70, 20);
-          //   doc.text('Vehicle History Report', 120, 20);
             addHeader();
             addFooter();
           }
         },
       });
-       
-        doc.setFontSize(14);
-          let  y = (doc as any).lastAutoTable.finalY + 10;
-            doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y+10);
-            
-            // Disclaimer Section (Ensure it spans multiple pages if necessary)
-            const finalY =   y+ 20; //(doc as any).lastAutoTable.finalY + 10; // Position after the last table
-            let yPosition = finalY;
-            const pageHeight = doc.internal.pageSize.height;
-            const pageWidth = doc.internal.pageSize.width;
-            const footerHeight = 20; // Reserve 20 units for the footer
-      
-            // Split the disclaimer into lines that fit the page width
-            const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 105);
-            // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
-            doc.setFontSize(10);
-            doc.setFont('helvetica', 'normal');
-            doc.setTextColor(100);
-      
-            for (let i = 0; i < disclaimerLines.length; i++) {
-              const lineHeight = 5; // Approximate line height
-              const remainingSpace = pageHeight - yPosition - footerHeight;
-              if (remainingSpace < lineHeight) {
-                // Start a new page if remaining space is insufficient
-                doc.addPage();
-                addHeader();
-                yPosition = 35; // Reset yPosition to the top margin
-                doc.setFontSize(10);
-                doc.setFont('helvetica', 'normal');
-                doc.setTextColor(100);
-              }
-              // doc.text(disclaimerLines[i], 10, yPosition); // Add line
-              doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
-              yPosition += lineHeight; // Increment yPosition for the next line
-            }
-            addFooter();
-          
-      // Save PDF
+
+      // Disclaimer Section
+      doc.setFontSize(14);
+      let y = (doc as any).lastAutoTable.finalY + 10;
+      doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
+
+      let yPosition = y + 20;
+      const pageHeight = doc.internal.pageSize.height;
+      const pageWidth = doc.internal.pageSize.width;
+      const footerHeight = 20;
+
+      const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 105);
+
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(100);
+
+      for (let i = 0; i < disclaimerLines.length; i++) {
+        const lineHeight = 5;
+        const remainingSpace = pageHeight - yPosition - footerHeight;
+        if (remainingSpace < lineHeight) {
+          doc.addPage();
+          addHeader();
+          yPosition = 35;
+        }
+        doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
+        yPosition += lineHeight;
+      }
+
+      addFooter();
       doc.save(fileName);
     };
 
@@ -173,3 +150,4 @@ export class TitleReportService {
     };
   }
 }
+  

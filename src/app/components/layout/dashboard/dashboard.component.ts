@@ -34,12 +34,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
       new bootstrap.Tooltip(tooltipElem);
     });
   }
-  member: string = "";
-  ngOnInit(): void {
-    this.member = this.sessionService.getSessionData("memberId")
-    // if(this.vin==""){this.getTableData();}
-    this.getKPIData();
-  }
+  member: string = ""; 
   vin :string= "";
   limit: number = 9;
   page: number = 1;
@@ -56,7 +51,21 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   isRead:any=null;
   resentAlert:any=[];
   alertType:any=null;
-   
+
+  ngOnInit(): void {
+    this.member = this.sessionService.getSessionData("memberId"); 
+    const navigationKey = sessionStorage.getItem('navigationKeyDashboard'); 
+    // Check if navigationKey is not null/undefined/empty
+    if (navigationKey) {
+      this.serchKpiType = navigationKey;
+      this.dashboardCardActive = (navigationKey === "update") ? "updated" : navigationKey; 
+      this.getTableData();
+      sessionStorage.removeItem('navigationKeyDashboard');
+    } 
+    this.getKPIData();
+  }
+  
+  
    getTableData(vin:any = null) {
     this.tableData=[];
     this.isLoading = true;

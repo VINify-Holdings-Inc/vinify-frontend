@@ -3847,6 +3847,14 @@ span.month-calendar.vehicleMonthSearch.calendar-svg, span.month-calendar.vehicle
 .deleted-row {
   background: #f1e5e6 !important;
 }
+.deleted-text {
+  background: #cf4c60;
+  font-size: 11px;
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 5px;
+  margin-left: 10px;
+  }
 @media (max-width: 992px) {
   .l-logo {
     display: none; 

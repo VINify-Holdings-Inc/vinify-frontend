@@ -11,7 +11,7 @@ import { CapitalizePipe } from '../pipes/capitalize.pipe';
 export class CreatePDFService {
   private capitalizePipe = new CapitalizePipe();
 
-  constructor(private dateFormate: DateFormatPipe) {}
+  constructor(private dateFormate: DateFormatPipe) { }
 
   generatePDF(
     companyName: string,
@@ -53,7 +53,6 @@ export class CreatePDFService {
     };
 
     const generatePDFContent = () => {
-    //  console.log("test 3");
       addHeader();
       addFooter();
 
@@ -65,6 +64,9 @@ export class CreatePDFService {
         item.JSI ? " " : null,
         item.isOld ? item.isOld : false,
         item.isDel ? item.isDel : false,
+        item.isTitleDel ? item.isTitleDel : false,
+        item.isBrandDel ? item.isBrandDel : false,
+        item.isJSIDel ? item.isJSIDel : false,
       ]);
 
       (doc as any).autoTable({
@@ -93,6 +95,7 @@ export class CreatePDFService {
         },
         didDrawCell: (data: any) => {
           const rowData: any = data.row.raw;
+
           // Draw circle if VIN is marked as old
           if (data.section === 'body' && data.column.index === 0) {
             const xPos = data.cell.x + 0.9;
@@ -101,19 +104,46 @@ export class CreatePDFService {
             doc.setFillColor(isOld ? 128 : 207, isOld ? 128 : 75, isOld ? 128 : 95);
             doc.circle(xPos, yPos, 0.5, 'F');
           }
-          // Draw checkmark image if value is truthy
+
+          // Draw checkmark image and dynamic label text
           const colIndex = data.column.index;
-          if (
-            data.section === 'body' &&
-            [1, 2, 3].includes(colIndex) &&
-            rowData[colIndex]
-          ) {
+          if (data.section === 'body' && [1, 2, 3].includes(colIndex) && rowData[colIndex]) {
             const imgX = data.cell.x + 2;
             const imgY = data.cell.y + 1.5;
             const imgSize = 3;
+
+            // Add dynamic text based on column and corresponding del flags
+            let labelText = '';
+            if (colIndex === 1 && rowData[6]) {
+              labelText = 'Deleted';
+            } else if (colIndex === 2 && rowData[7]) {
+              labelText = 'Deleted';
+            } else if (colIndex === 3 && rowData[8]) {
+              labelText = 'Deleted';
+            }
+
+            if (labelText) {
+              doc.setFontSize(6);
+              const textColor: [number, number, number] = [255, 255, 255];
+              const boxColor: [number, number, number] = [207, 76, 96];
+              const textWidth = doc.getTextWidth(labelText);
+              const textHeight = 6 / 2;
+              const x = imgX + 7;
+              const y = imgY - 1 + imgSize + 1 - 1;// Adjust Y by -2
+              const borderRadius = 2;  // Define border radius
+            
+              // Use roundedRect for rounded corners
+              doc.setFillColor(...boxColor);
+              doc.roundedRect(x - 2, y - textHeight, textWidth + 4, textHeight + 2, borderRadius, borderRadius, 'F');
+            
+              doc.setTextColor(...textColor);
+              doc.text(labelText, x, y);
+            } 
+            
             doc.addImage(checkImg, 'PNG', imgX, imgY, imgSize, imgSize);
-          }
+             }
         },
+
         didDrawPage: (data: any) => {
           if (data.pageNumber > 1) {
             addHeader();

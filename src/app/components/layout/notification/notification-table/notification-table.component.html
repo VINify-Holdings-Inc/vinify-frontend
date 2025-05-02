@@ -84,7 +84,10 @@
 
               <ng-container matColumnDef="alertType">
                 <th mat-header-cell *matHeaderCellDef width="100"> Type </th>
-                <td mat-cell *matCellDef="let element">{{ element?.alertType ? element?.alertType :" " }} </td>
+                <td mat-cell *matCellDef="let element">{{ element?.alertType ? element?.alertType :" " }}
+                  <span class="deleted-text" *ngIf="element?.isDel">Deleted</span>
+
+                </td>
               </ng-container>
 
 
