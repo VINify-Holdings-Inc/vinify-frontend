@@ -38,9 +38,11 @@ p {
   font-weight: 400;
   line-height: 24px;
 }
+
 select {
   font-family: 'Century Gothic Paneuropean', sans-serif;
 }
+
 .text-normal {
   text-transform: none;
 }
@@ -63,10 +65,10 @@ ol {
 }
 
 .wrapper {
-    position: relative;
-    width: 100%;
-    overflow: auto;
-    background: #F7F8F9;
+  position: relative;
+  width: 100%;
+  overflow: auto;
+  background: #F7F8F9;
 }
 
 .btn {
@@ -169,7 +171,7 @@ p.textLight {
   background: #fff;
 }
 
-.table > thead > tr > th {
+.table>thead>tr>th {
   font-size: 16px;
   font-weight: 400;
 }
@@ -257,7 +259,7 @@ p.smallAddIcon i {
   background-color: #e8faee;
 }
 
-.table > thead > tr > th,
+.table>thead>tr>th,
 .table>tbody>tr>td {
   white-space: nowrap;
   font-size: 14px;
@@ -277,7 +279,7 @@ p.smallAddIcon i {
   background-color: #edeaf9 !important;
 }
 
-.table > thead > tr > th {
+.table>thead>tr>th {
   font-weight: 600;
   padding: 12px 8px;
   font-size: 14px;
@@ -289,19 +291,23 @@ p.smallAddIcon i {
 .table thead {
   border-radius: 12px !important;
 }
-.table > thead > tr, .table > tbody > tr{
+
+.table>thead>tr,
+.table>tbody>tr {
   font-family: 'Century Gothic Paneuropean', sans-serif;
   height: auto;
   border-bottom: 1px solid #EDEDED !important;
 }
-.table > thead > tr > th{
+
+.table>thead>tr>th {
   border-bottom: 1px solid #EDEDED !important;
 }
-.mat-mdc-table{
+
+.mat-mdc-table {
   background-color: transparent !important;
 }
 
-.table > thead > tr > th:last-child {
+.table>thead>tr>th:last-child {
   text-align: right;
   border-right: none;
 }
@@ -385,7 +391,7 @@ button.btn.btn-custom {
   border: 1px solid #D0D5DD;
   max-width: 114px;
   width: 100%;
-  filter:contrast(100%)
+  filter: contrast(100%)
 }
 
 .headerSection .navbar-nav>.active>a:focus {
@@ -417,7 +423,7 @@ button.btn.btn-custom {
 }
 
 .headNotify span {
-  
+
   font-size: 13px;
   font-weight: 400;
   line-height: 20px;
@@ -437,7 +443,8 @@ li.dropdown-item.notifyInner {
   box-shadow: 0px 1px 2px 0px #1018280d;
 }
 
-.btn.btn-custom.navbar-btn_track:active,  .btn.btn-custom.navbar-btn_track:first-child:active{
+.btn.btn-custom.navbar-btn_track:active,
+.btn.btn-custom.navbar-btn_track:first-child:active {
   border: 1px solid #d0d5dd;
 
 }
@@ -507,14 +514,14 @@ li.dropdown-item.notifyInner {
   margin: 0;
   font-size: 16px;
   color: #101828;
-  
+
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
 }
 
 .headerSection .navbar-nav .profile_dropdown li span {
-  
+
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -523,7 +530,7 @@ li.dropdown-item.notifyInner {
 .headerSection .navbar-nav .profile_dropdown .profile-link span {
   font-weight: 600;
   font-size: 16px;
-  
+
   line-height: 20px;
   color: #101828;
 }
@@ -567,18 +574,21 @@ span.red-dot {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  
+
   font-size: 13px;
   font-weight: 400;
   line-height: 20px;
   color: #475467;
 }
+
 .passwordFiled {
   position: relative;
 }
+
 .passwordEye-container {
   position: relative;
 }
+
 .notifySubHead {
   display: flex;
   justify-content: space-between;
@@ -586,21 +596,24 @@ span.red-dot {
 }
 
 .notifySubHead h6 {
-  
+
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
   color: #101828;
   margin-bottom: 4px;
 }
+
 .notifySubHead span {
   font-size: 12px;
 }
+
 .notification-dropdown::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 0;
   background-color: #F5F5F5;
 }
+
 .testopri {
   height: 480px;
   width: 100%;
@@ -608,21 +621,24 @@ span.red-dot {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 }
+
 .notification-dropdown::-webkit-scrollbar {
   width: 6px;
   background-color: #F5F5F5;
 }
+
 .notification-dropdown::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
   background-color: #d6d6d6;
 }
- 
+
 
 li.notifyInner {
   padding: 0 12px;
   cursor: pointer;
 }
+
 .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown {
   max-width: 336px;
   width: 336px;
@@ -631,7 +647,7 @@ li.notifyInner {
   overflow-y: auto;
   height: calc(100vh - 70px);
   border: 1px solid #EAECF0;
-  box-shadow: 0 4px 6px -2px #10182808,0 12px 16px -4px #10182814;
+  box-shadow: 0 4px 6px -2px #10182808, 0 12px 16px -4px #10182814;
   border-radius: 0;
 }
 
@@ -655,7 +671,7 @@ li.notifyInner {
 }
 
 .tableDot.redDot {
-  background-color: #F04438;
+  background-color: #cf4b5f;
 }
 
 .tableDot.grayDot {
@@ -677,7 +693,7 @@ li.notifyInner {
   padding: 2px 10px;
   background: #FEF3F2;
   border: 1px solid #FECDCA;
-  
+
   color: #B42318;
   font-size: 12px;
   font-weight: 500;
@@ -730,9 +746,11 @@ a.nav-link.no-toggle-icon {
   font-weight: 400;
   line-height: 24px;
 }
+
 .headerSection .calendar-date .update-time:last-child {
   font-weight: 600;
 }
+
 .headerSection .calendar-date .d-flex.update-time {
   color: #475467;
 }
@@ -938,6 +956,7 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   display: flex;
   gap: 8px;
 }
+
 .card.rounded.recentlyAlert.userUI {
   border-radius: 12px !important;
   overflow: hidden;
@@ -975,16 +994,16 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
 }
 
 #sidebar.active ul li a {
-	padding: 0px;
-	line-height: 30px;
-	border-radius: 10px;
-	font-size: 14px;
-	position: relative;
-	font-weight: 600;
-	height: 52px;
-	width: 52px;
+  padding: 0px;
+  line-height: 30px;
+  border-radius: 10px;
+  font-size: 14px;
+  position: relative;
+  font-weight: 600;
+  height: 52px;
+  width: 52px;
   padding-left: 5px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 #sidebar ul li a img {
@@ -1050,6 +1069,7 @@ header .logoHeader img {
   width: auto;
   height: 32px;
 }
+
 /*============Dashboard Design start ===========*/
 #main-content {
   padding: 24px;
@@ -1121,11 +1141,11 @@ h1.card-title.cardDashNum {
   margin: 0;
   color: #201d1e;
   font-weight: 700;
-  line-height: 28px;  
+  line-height: 28px;
 }
 
 .userAuthorityBox span {
-  
+
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
@@ -1158,11 +1178,11 @@ h1.card-title.cardDashNum {
 }
 
 .card.rounded.recentlyAlert .card-area h5 {
-    font-weight: 500;
-    color: #fff;
-    margin: 0;
-    font-size: 18px;
-    min-height: 21.6px;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  font-size: 18px;
+  min-height: 21.6px;
 }
 
 .card.rounded.recentlyAlert .text-white {
@@ -1285,9 +1305,11 @@ td.vinNumberUserdash {
   height: 40px;
   gap: 4px;
 }
-.month-calendar:hover{
+
+.month-calendar:hover {
   background-color: #fff !important;
 }
+
 .month-calendar i {
   font-size: 20px;
   padding-right: 2px;
@@ -1416,20 +1438,25 @@ span.command_key .f_style {
   gap: 16px;
   border-radius: 12px;
 }
-.dashboardDetailsBtn .card{
+
+.dashboardDetailsBtn .card {
   min-height: 136px;
 }
+
 .card-body.cardInnerDash.dashcard {
   cursor: pointer;
 }
-.card.cardActive{
+
+.card.cardActive {
   border: 1px solid var(--bg-primary);
   /* box-shadow: 0px 5px 10px 0px #8d90ac1a; */
-  box-shadow: 0px 5px 10px 0px  #f6e1e4;
+  box-shadow: 0px 5px 10px 0px #f6e1e4;
 }
+
 .fraudGraphArea {
   padding: 5px 0 0;
 }
+
 .userSingleSearch .VInNumberInput input {
   padding: 10px 14px;
   height: 40px;
@@ -1442,14 +1469,17 @@ span.command_key .f_style {
   text-align: left;
   padding-left: 40px;
 }
+
 .VInNumberInput {
-    position: relative;
-    max-width: 195px;
-    margin-left: 5px;
+  position: relative;
+  max-width: 195px;
+  margin-left: 5px;
 }
+
 .VInNumberInput img {
   position: absolute;
 }
+
 .userSingleSearch img.img-fluid {
   cursor: pointer;
 }
@@ -1457,25 +1487,26 @@ span.command_key .f_style {
 /* pagination CSS Design Starts */
 .paginationArea {
   border-top: none;
-	padding: 12px 8px;
-	justify-content: end;
-	display: flex;
+  padding: 12px 8px;
+  justify-content: end;
+  display: flex;
 }
+
 .card-body.px-0.userdashbrdTable.pt-0 {
   padding: 0;
 }
 
 .paginationArea li.page-item button.page-link {
-	padding: 8px 12px;
-	color: #344054;
-	font-size: 14px !important;
-	cursor: pointer;
-	border-radius: 8px;
-	font-weight: 600;
-	border: 1px solid #D0D5DD;
-	box-shadow: 0 1px 2px #1018280d;
-	min-width: 82px;
-	width: 100%;
+  padding: 8px 12px;
+  color: #344054;
+  font-size: 14px !important;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 600;
+  border: 1px solid #D0D5DD;
+  box-shadow: 0 1px 2px #1018280d;
+  min-width: 82px;
+  width: 100%;
 }
 
 .paginationArea li.page-item button.page-link:focus {
@@ -1635,7 +1666,7 @@ form.FormAlign {
   width: 120px !important;
   background: var(--bg-primary) !important;
   border-color: var(--bg-primary) !important;
-  filter:contrast(100%)
+  filter: contrast(100%)
 }
 
 .swal2-styled.swal2-confirm:focus {
@@ -1663,7 +1694,7 @@ form.FormAlign {
 
 .btnIcons {
   background: #fff;
-  color: #383b56; 
+  color: #383b56;
   padding: 12px;
   font-weight: 600;
   font-style: normal;
@@ -1734,12 +1765,14 @@ form.FormAlign {
   border-right: 1px solid rgba(255, 255, 255, 0.3);
   height: 104px;
 }
+
 .leftLoginSection .loginTextSection p.spanLine {
   color: #fff;
   font-size: 16px;
   line-height: 22px;
   text-align: center;
 }
+
 .leftLoginSection .vehicleImage {
   max-width: 100%;
   position: absolute;
@@ -1793,6 +1826,7 @@ form.FormAlign {
   line-height: 20px;
   text-align: center;
 }
+
 .loginTextSection {
   position: relative;
   z-index: 1;
@@ -1828,20 +1862,24 @@ form.FormAlign {
   margin: auto;
   justify-content: center;
 }
-.setrelative{
+
+.setrelative {
   position: relative;
 }
+
 .footersublink {
   position: absolute;
   right: 10px;
   bottom: 5px;
   width: auto;
 }
+
 .footersublink ul li {
   display: inline-block;
   padding: 0 20px;
   font-size: 12px;
 }
+
 .inner-LoginForm h2 {
   font-size: 20px;
   font-weight: 700;
@@ -2062,6 +2100,7 @@ p.errorMessage {
   line-height: 31px;
   font-size: 14px;
 }
+
 .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link.active {
   color: #fff;
   border: 1px solid var(--bg-primary);
@@ -2084,6 +2123,7 @@ p.errorMessage {
 .tabVehicleSection.cardHeaderJustify ul li.nav-item .nav-link {
   border: 1px solid #D0D5DD;
 }
+
 .tabVehicleSection.cardHeaderJustify ul li.nav-item .nav-link:focus {
   border: 1px solid #D0D5DD;
 }
@@ -2465,16 +2505,16 @@ h2.tabSummaryHead {
 }
 
 .card-area .userAuthorityBox {
-    flex-wrap: wrap;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 24px;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 24px;
 }
 
 .card-area p.authorityPara {
   font-size: 12px;
-  
+
   font-size: 11px;
   font-weight: 400;
   line-height: 16px;
@@ -2661,11 +2701,11 @@ thead.table-light-Usertbl tr {
   background: #ededed;
 }
 
-.table > thead > tr > th:first-child {
+.table>thead>tr>th:first-child {
   border-radius: 12px 0 0 0 !important;
 }
 
-.table > thead > tr > th:last-child {
+.table>thead>tr>th:last-child {
   border-radius: 0 12px 0 0 !important;
 }
 
@@ -2676,24 +2716,28 @@ thead.table-light-Usertbl tr {
 }
 
 .userdashbrdTable .table>tbody>tr>td {
-    padding: 12px 8px;
-    color: #475467;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
+  padding: 12px 8px;
+  color: #475467;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
 }
-.boxTable{
+
+.boxTable {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 380px;
 }
-.userdashbrdTable.dashtable .boxTable{
+
+.userdashbrdTable.dashtable .boxTable {
   width: 260px;
 }
+
 .table>tbody>tr>td .vinModelName {
   color: #201d1e;
 }
+
 .UserCardHeader {
   display: flex;
   justify-content: space-between;
@@ -2729,24 +2773,28 @@ thead.table-light-Usertbl tr {
   width: 100%;
   flex-wrap: wrap;
 }
-.paginationArea .pagination button{
+
+.paginationArea .pagination button {
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid #D0D5DD;
   color: #344054;
 }
+
 .paginationNumber button.currentPage {
   border: none !important;
   margin: 0 5px;
   padding: 5px 10px !important;
 }
-.paginationNumber button.currentPage.active{
+
+.paginationNumber button.currentPage.active {
   background-color: var(--bg-primary);
   color: #fff !important;
   outline: none !important;
   border: none !important;
   filter: contrast(100%);
 }
+
 a.nav-link.no-toggle-icon.noticon {
   background: #F9FAFB;
   border-radius: 6px;
@@ -2877,7 +2925,7 @@ span.apexcharts-legend-marker::before {
 }
 
 .frontNav li a {
-  
+
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -2896,7 +2944,7 @@ span.apexcharts-legend-marker::before {
   border: 1px;
   font-size: 16px;
   font-weight: 600;
-  
+
 }
 
 .frontHead .LoginBtn.bg-LightBtn {
@@ -2917,7 +2965,7 @@ span.apexcharts-legend-marker::before {
 
 .innerTermsBody .TermsContent p {
   color: #475467;
-  
+
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -3051,13 +3099,13 @@ span.apexcharts-legend-marker::before {
 }
 
 .forgetPassword .forgetLink {
-    color: var(--bg-primary) !important;
-    display: flex;
-    font-weight: 500;
-    justify-content: center;
-    margin-top: 25px;
-    text-transform: capitalize;
-    filter: contrast(50%);
+  color: var(--bg-primary) !important;
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  margin-top: 25px;
+  text-transform: capitalize;
+  filter: contrast(50%);
 }
 
 .FormHead {
@@ -3119,7 +3167,7 @@ span.apexcharts-legend-marker::before {
 
 .ul-aboutSection {
   list-style-type: disc;
-  
+
   font-size: 16px;
   font-weight: 400;
   line-height: 35px;
@@ -3135,7 +3183,7 @@ span.apexcharts-legend-marker::before {
 }
 
 .aboutContentPara p {
-  
+
   font-size: 16px;
   font-weight: 400;
   line-height: 28px;
@@ -3212,7 +3260,7 @@ a.btn.selected {
 }
 
 .card-Profileinner h1 {
-  
+
   font-size: 30px;
   font-weight: 600;
   line-height: 38px;
@@ -3232,7 +3280,7 @@ a.btn.selected {
 }
 
 .nameSec {
-  
+
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -3240,7 +3288,7 @@ a.btn.selected {
 }
 
 .FormInnerInput .form-label {
-  
+
   font-size: 16px;
   font-weight: 400;
   color: #000;
@@ -3256,14 +3304,17 @@ a.btn.selected {
   padding: 13px 15px;
   border: 1px solid transparent;
 }
-.edit-profile-fields .FormInnerInput .modernInput{
+
+.edit-profile-fields .FormInnerInput .modernInput {
   background-color: transparent;
   border: 1px solid #eceef1;
 }
+
 .edit-profile-fields .FormInnerInput input#email {
   cursor: no-drop;
 }
-.FormInnerInput .modernInput:focus{
+
+.FormInnerInput .modernInput:focus {
   box-shadow: none;
 }
 
@@ -3297,24 +3348,25 @@ span.passEye {
   color: #000;
 }
 
-.emailAddress .btnAdd, .emailAddress .btnAdd:active {
+.emailAddress .btnAdd,
+.emailAddress .btnAdd:active {
   background-color: #FAEDEF;
   color: #CF4B5F;
-  
+
   font-size: 16px;
   font-weight: 400;
   border-color: transparent;
 }
 
 .emailName p {
-  
+
   font-size: 16px;
   font-weight: 400;
   color: #000;
 }
 
 .emailName span {
-  
+
   font-size: 16px;
   font-weight: 400;
   color: #475467;
@@ -3373,14 +3425,17 @@ span.passEye i {
   box-shadow: none;
   opacity: 1;
 }
+
 .modal-content.customclosebtn button.btn-close:focus-visible {
   outline: none;
 }
+
 .pointArea {
   max-width: 500px;
   margin: auto;
   width: 100%;
 }
+
 /* update user edit btn */
 .profileBtn span button {
   width: 100%;
@@ -3389,33 +3444,38 @@ span.passEye i {
 
 
 /* Title Details CSS */
-.titleColor{
+.titleColor {
   color: var(--bg-primary);
   filter: contrast(100%);
 }
+
 .InnerTitleCard {
   padding: 20px;
   height: 218px;
   max-height: 100%;
 }
-.vehicleTitle .card-title{
 
-font-size: 30px;
-font-weight: 600;
-line-height: 38px;
-color: #101828;
+.vehicleTitle .card-title {
+
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 38px;
+  color: #101828;
 }
-.vehicleTitle p{
-filter: contrast(100%);
-font-size: 20px;
-font-weight: 600;
-line-height: 24px;
-color: var(--bg-primary);
-padding: 10px 0;
+
+.vehicleTitle p {
+  filter: contrast(100%);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--bg-primary);
+  padding: 10px 0;
 }
+
 .InnerTitleCard .tabVehicleSection.cardHeaderJustify {
   padding-top: 56px;
 }
+
 .cardInnerVehicle {
   display: flex;
   flex-direction: column;
@@ -3425,23 +3485,27 @@ padding: 10px 0;
   max-height: 100%;
   height: 96px;
 }
+
 .tabVehicleSection.cardHeaderJustify .TitleTab li button {
   max-width: 100%;
   padding: 8px 16px;
   line-height: 20px;
 }
+
 .InnerTitleCard .tabVehicleSection.cardHeaderJustify ul li {
   display: flex;
   flex-direction: column;
   width: 33.3%;
 }
+
 .InnerTitleCard .tabVehicleSection.cardHeaderJustify .nav-tabs {
   border-bottom: none;
   width: 100%;
 }
-.cursor-detail-img{
-    cursor: pointer !important;
-} 
+
+.cursor-detail-img {
+  cursor: pointer !important;
+}
 
 .profileName {
   /* width: 158px; */
@@ -3449,7 +3513,8 @@ padding: 10px 0;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.closeDropDown{
+
+.closeDropDown {
   display: none !important;
 }
 
@@ -3465,33 +3530,36 @@ padding: 10px 0;
   z-index: 1;
   cursor: auto;
 }
+
 .profile-areamodal .show .checkmodal {
   display: block;
 }
 
-.button-cursor{
+.button-cursor {
   cursor: pointer !important;
 }
- 
- .table > tbody > tr:last-child > td {
+
+.table>tbody>tr:last-child>td {
   border: none;
 }
- table.table.table-hover {
+
+table.table.table-hover {
   margin: 0;
 }
+
 .swal2-styled.swal2-cancel {
-  min-width: 120px!important;
+  min-width: 120px !important;
 }
 
-.swal2-icon.swal2-info{
-  border-color:var(--bg-primary) !important;
-  color:var(--bg-primary) !important;
+.swal2-icon.swal2-info {
+  border-color: var(--bg-primary) !important;
+  color: var(--bg-primary) !important;
 }
 
 
 /* VinModal CSS */
 
-.VinInnerScroll{
+.VinInnerScroll {
   overflow-y: auto;
   max-height: 500px;
 }
@@ -3501,10 +3569,12 @@ padding: 10px 0;
   border-radius: 0;
   background-color: #F5F5F5;
 }
+
 .VinInnerScroll::-webkit-scrollbar {
   width: 6px;
   background-color: #F5F5F5;
 }
+
 .VinInnerScroll::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
@@ -3526,23 +3596,27 @@ table {
 }
 
 #sidebar ul li.helpicon img {
-    width: 20px;
-    border-style: solid;
-    border-width: thin;
-    border-radius: 50%;
+  width: 20px;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 50%;
 }
+
 .accordion-item.card.radiusBgTab.most-recent-alert h2.accordion-header button {
-    background: #cf4b5f !important;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    filter: contrast(100%);
+  background: #cf4b5f !important;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  filter: contrast(100%);
 }
+
 .most-recent-alert .mainCurrentHead h5 {
-    color: #fff !important;
+  color: #fff !important;
 }
+
 .most-recent-alert .updatedHead p {
-    color: #fff !important;
+  color: #fff !important;
 }
+
 span.alertLink {
   color: var(--bg-primary);
   filter: contrast(100%);
@@ -3551,19 +3625,19 @@ span.alertLink {
 
 
 span.question-Icon {
-  background: #ededed;     
-  width: 13px;     
-  height: 13px;     
-  display: inline-block;    
-  font-size: 10px;     
-  text-align: center;     
-  line-height: 13px;     
-  color: #201D1E;    
-  border-radius: 50%;    
+  background: #ededed;
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  font-size: 10px;
+  text-align: center;
+  line-height: 13px;
+  color: #201D1E;
+  border-radius: 50%;
   border: 1px solid #201D1E;
 }
 
-span.question-Icon .ques{
+span.question-Icon .ques {
   font-size: 10px;
 }
 
@@ -3575,86 +3649,102 @@ span.question-Icon .ques{
 }
 
 
-.cxt{
+.cxt {
   margin-bottom: 0 !important;
 }
-.modalExport{
+
+.modalExport {
   margin-left: auto;
-  }
-  .userdashbrdTable.reportTable table > thead > tr > th:last-child, .userdashbrdTable.reportTable table > tbody > tr > td:last-child{
-      text-align: left !important;
-      border-radius: 0 !important;
-  }
- 
-  .modalClose{
-      margin: 0 10px !important;
-      filter: invert(1);
-      background-color: gray;
-      padding: 12px !important;
-  }
-  .modalClose:hover{
-    background-color: gray !important;
-    padding: 12px;
-  }
-  .reportTable .table > thead{
-      vertical-align: middle !important;
-  }
-  th.checkBoxModal{
-    padding: 0 10px !important;
-  }
-  .userdashbrdTable.reportTable{
-    overflow-y: auto;
-    height: 600px;
-  }
-
-
-  .userdashbrdTable.reportTable::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 0;
-    background-color: #F5F5F5;
-  }
-  .userdashbrdTable.reportTable::-webkit-scrollbar {
-    width: 6px;
-    background-color: #F5F5F5;
-  }
-  .userdashbrdTable.reportTable::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-    background-color: #d6d6d6;
-  }
-  .vSUmmarytable .table > thead > tr > th:last-child {
-    text-align: left;
-    border-right: none;
 }
-.userdashbrdTable.vSUmmarytable .table > tbody > tr > td:last-child {
+
+.userdashbrdTable.reportTable table>thead>tr>th:last-child,
+.userdashbrdTable.reportTable table>tbody>tr>td:last-child {
+  text-align: left !important;
+  border-radius: 0 !important;
+}
+
+.modalClose {
+  margin: 0 10px !important;
+  filter: invert(1);
+  background-color: gray;
+  padding: 12px !important;
+}
+
+.modalClose:hover {
+  background-color: gray !important;
+  padding: 12px;
+}
+
+.reportTable .table>thead {
+  vertical-align: middle !important;
+}
+
+th.checkBoxModal {
+  padding: 0 10px !important;
+}
+
+.userdashbrdTable.reportTable {
+  overflow-y: auto;
+  height: 600px;
+}
+
+
+.userdashbrdTable.reportTable::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  background-color: #F5F5F5;
+}
+
+.userdashbrdTable.reportTable::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+.userdashbrdTable.reportTable::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #d6d6d6;
+}
+
+.vSUmmarytable .table>thead>tr>th:last-child {
+  text-align: left;
+  border-right: none;
+}
+
+.userdashbrdTable.vSUmmarytable .table>tbody>tr>td:last-child {
   text-align: left;
 }
+
 .userdashbrdTable.vSUmmarytable tr {
-	cursor: inherit;
+  cursor: inherit;
 }
 
 .userdashbrdTable.vSUmmarytable tr td.mat-column-brand {
-	cursor: pointer;
+  cursor: pointer;
 }
+
 .userSingleSearch.importbox {
   margin-left: 15px;
 }
 
 .most-recent-alert button.accordion-button.tabtitleBtn:after {
-    filter: invert(1);
+  filter: invert(1);
 }
-.userdashbrdTable.reportTable .table > thead > tr > th:last-child {
-    border-radius: 0 12px 0 0 !important;
+
+.userdashbrdTable.reportTable .table>thead>tr>th:last-child {
+  border-radius: 0 12px 0 0 !important;
 }
 
 .notifySubpoint {
-	width: 100%;
+  width: 100%;
 }
 
-.modal-header.modalTblHead button.btn.btn-close.modalClose:active, .modal-header.modalTblHead button.btn.btn-close.modalClose:focus-visible {
+.modal-header.modalTblHead button.btn.btn-close.modalClose:active,
+.modal-header.modalTblHead button.btn.btn-close.modalClose:focus-visible {
   border: none;
   background-color: #808080;
 }
+
 .my-custom-swal .swal2-html-container {
   text-align: left !important;
 }
@@ -3671,6 +3761,7 @@ span.question-Icon .ques{
 li.nav-item.exportPdfli {
   position: relative;
 }
+
 .ExportDivModal {
   position: relative;
   background: #fff;
@@ -3679,22 +3770,26 @@ li.nav-item.exportPdfli {
   top: 0;
   width: 152px;
 }
+
 .show-nav .ExportDivModal {
-  position: absolute; 
+  position: absolute;
   left: 100px;
 }
+
 .show-nav .ExportDivModal {
   left: 100px;
 }
+
 .ExportDivModal {
-    position: relative;
-    background: #fff;
-    padding: 5px;
-    border-radius: 4px;
-    top: 0;
-    left: 35px;
-    width: 152px;
+  position: relative;
+  background: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  top: 0;
+  left: 35px;
+  width: 152px;
 }
+
 .ExportDivModal li span {
   padding: 12px;
   font-size: 14px;
@@ -3704,6 +3799,7 @@ li.nav-item.exportPdfli {
   cursor: pointer;
   display: block;
 }
+
 #sidebar .ExportDivModal ul li {
   padding: 0;
 }
@@ -3720,6 +3816,7 @@ li.nav-item.exportPdfli {
   padding: 10px 14px !important;
   height: 40px;
 }
+
 .userBtn:hover {
   background-color: #fff !important;
   color: inherit !important;
@@ -3729,6 +3826,7 @@ li.nav-item.exportPdfli {
 td.check-box {
   padding: 0 10px !important;
 }
+
 .btn.btn-clear {
   font-size: 14px !important;
   font-weight: 600;
@@ -3741,112 +3839,139 @@ td.check-box {
   padding: 10px 10px !important;
   height: 40px;
 }
+
 button.btn.btn-primary.modalExport {
   padding: 10px 8px;
   filter: contrast(100%);
 }
+
 .extralarge-mod .modalClose {
-    margin: 0!important;
-    padding: 0 13px!important;
-    height: 42px;
-    margin-left: 5px !important;
+  margin: 0 !important;
+  padding: 0 13px !important;
+  height: 42px;
+  margin-left: 5px !important;
 }
+
 .userSingleSearch.importbox.pull-right {
   margin: 0;
 }
+
 .bulkupladsfea {
-	display: flex;
-	flex-direction: row;
-	width: 64%;
-	gap: 6px;
-	padding-left: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 64%;
+  gap: 6px;
+  padding-left: 10px;
 }
+
 .bulkupladsfea .btn {
   height: 40px !important;
 }
+
 .userSingleSearch.importbox.pull-right .form-control.ng-valid.ng-dirty.ng-touched {
-	padding-right: 2px;
-	padding-left: 38px;
+  padding-right: 2px;
+  padding-left: 38px;
 }
+
 .title-center-data {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
 }
+
 .dashboardtableUI .card {
   margin: 0;
 }
+
 .notificationtableUI .card {
   margin: 0;
 }
-.alerttableUI .card{
+
+.alerttableUI .card {
   margin: 0;
 }
+
 button.swal2-deny.swal2-styled {
   width: 120px !important;
   background: var(--bg-primary) !important;
   border-color: var(--bg-primary) !important;
-  filter:contrast(100%);
+  filter: contrast(100%);
 }
 
 .l-logo {
-  display: inline-block;  
+  display: inline-block;
 }
 
 .m-logo {
-  display: none;  
+  display: none;
 }
 
 .statusBody p.tdHead {
-  
-  filter:contrast(100%);
+
+  filter: contrast(100%);
 }
+
 .greens {
-  color:#21a769;
+  color: #21a769;
 }
+
 span.red-check-icon {
   color: #cf4b5f;
 }
+
 .card.disableit {
   background: #cdcdcd;
   cursor: not-allowed;
 }
+
 .card.disableit .action-required-button {
   color: #475467 !important;
   border: 1px solid #9e9e9e;
   background-color: #bdbdbd;
 }
+
 #sidebar.active:hover ul li a {
   width: auto;
 }
+
 #sidebar.active:hover {
   width: 264px;
 }
+
 #sidebar.active:hover ul li a span {
   display: inline;
 }
-div.month-calendar.vehicleMonthSearch.calendar-svg, div.month-calendar.vehicleMonthSearch.calendar-svg:hover {
+
+div.month-calendar.vehicleMonthSearch.calendar-svg,
+div.month-calendar.vehicleMonthSearch.calendar-svg:hover {
   background: #cdcdcd !important;
   cursor: not-allowed;
 }
-span.month-calendar.vehicleMonthSearch.calendar-svg, span.month-calendar.vehicleMonthSearch.calendar-svg:hover{
+
+span.month-calendar.vehicleMonthSearch.calendar-svg,
+span.month-calendar.vehicleMonthSearch.calendar-svg:hover {
   background: #cdcdcd !important;
   cursor: not-allowed;
 }
+
 #sidebar.active:hover .ExportDivModal {
   position: relative;
   left: 35px;
 }
+
 .sidebar-link.active.show-nav .ExportDivModal {
   display: none;
 }
-#sidebar.active:hover .ExportDivModal{
+
+#sidebar.active:hover .ExportDivModal {
   display: inline-block;
 }
+
 .deleted-row {
   background: #f1e5e6 !important;
 }
+
 .deleted-text {
   background: #cf4c60;
   font-size: 11px;
@@ -3854,12 +3979,14 @@ span.month-calendar.vehicleMonthSearch.calendar-svg, span.month-calendar.vehicle
   padding: 1px 5px;
   border-radius: 5px;
   margin-left: 10px;
-  }
+}
+
 @media (max-width: 992px) {
   .l-logo {
-    display: none; 
+    display: none;
   }
+
   .m-logo {
-    display: inline-block; 
+    display: inline-block;
   }
 }

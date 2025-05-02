@@ -110,7 +110,7 @@ export class CreatePDFService {
           if (data.section === 'body' && [1, 2, 3].includes(colIndex) && rowData[colIndex]) {
             const imgX = data.cell.x + 2;
             const imgY = data.cell.y + 1.5;
-            const imgSize = 3;
+            const imgSize = 2;
 
             // Add dynamic text based on column and corresponding del flags
             let labelText = '';
@@ -129,7 +129,7 @@ export class CreatePDFService {
               const textWidth = doc.getTextWidth(labelText);
               const textHeight = 6 / 2;
               const x = imgX + 7;
-              const y = imgY - 1 + imgSize + 1 - 1;// Adjust Y by -2
+              const y = imgY - 1 + imgSize + 1 ;// Adjust Y by -2
               const borderRadius = 2;  // Define border radius
             
               // Use roundedRect for rounded corners
