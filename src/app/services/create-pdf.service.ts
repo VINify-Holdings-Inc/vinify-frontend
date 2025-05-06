@@ -30,6 +30,7 @@ export class CreatePDFService {
     let imagesLoaded = 0;
 
     const addFooter = () => {
+      doc.setTextColor(100);
       const pageHeight = doc.internal.pageSize.height;
       const footerY = pageHeight - 1;
       doc.setDrawColor(69, 67, 67);
@@ -109,10 +110,10 @@ export class CreatePDFService {
           const colIndex = data.column.index;
           if (data.section === 'body' && [1, 2, 3].includes(colIndex) && rowData[colIndex]) {
             const imgX = data.cell.x + 2;
-            const imgY = data.cell.y + 1.5;
-            const imgSize = 2;
-
-            // Add dynamic text based on column and corresponding del flags
+            const imgY = data.cell.y + 2.5;
+            const imgSize = 0.9;
+          
+            // Determine the "Deleted" label based on column index and corresponding flag
             let labelText = '';
             if (colIndex === 1 && rowData[6]) {
               labelText = 'Deleted';
@@ -121,27 +122,39 @@ export class CreatePDFService {
             } else if (colIndex === 3 && rowData[8]) {
               labelText = 'Deleted';
             }
-
+          
+            // If there's a "Deleted" label, draw it
             if (labelText) {
               doc.setFontSize(6);
               const textColor: [number, number, number] = [255, 255, 255];
               const boxColor: [number, number, number] = [207, 76, 96];
               const textWidth = doc.getTextWidth(labelText);
-              const textHeight = 6 / 2;
-              const x = imgX + 7;
-              const y = imgY - 1 + imgSize + 1 ;// Adjust Y by -2
-              const borderRadius = 2;  // Define border radius
+              const fontHeight = 6 * 0.35; // Approx font height factor for small font sizes
+              const paddingY = 1; // vertical padding
+              const x = imgX + 5;
+              const y = imgY - 1 + imgSize + 1.2;
+              const borderRadius = 2;
             
-              // Use roundedRect for rounded corners
+              const rectHeight = fontHeight + paddingY * 2;
+            
               doc.setFillColor(...boxColor);
-              doc.roundedRect(x - 2, y - textHeight, textWidth + 4, textHeight + 2, borderRadius, borderRadius, 'F');
+              doc.roundedRect(x - 2, y - fontHeight - paddingY + 0.3, textWidth + 4, rectHeight, borderRadius, borderRadius, 'F');
             
               doc.setTextColor(...textColor);
               doc.text(labelText, x, y);
-            } 
+            }
             
-            doc.addImage(checkImg, 'PNG', imgX, imgY, imgSize, imgSize);
-             }
+          
+            // Draw circle instead of image
+            const circleX = imgX + imgSize / 2;
+            const circleY = imgY + imgSize / 2;
+            doc.setFillColor(207, 75, 95);
+            doc.circle(circleX, circleY, 0.5, 'F');
+          
+            // Commented out image
+            // doc.addImage(checkImg, 'PNG', imgX, imgY, imgSize, imgSize);
+          }
+          
         },
 
         didDrawPage: (data: any) => {
@@ -153,15 +166,16 @@ export class CreatePDFService {
       });
 
       doc.setFontSize(14);
+      // doc.setTextColor(100);
       let y = (doc as any).lastAutoTable.finalY + 10;
       doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
-
+      doc.setTextColor(100);
       const finalY = y + 20;
       let yPosition = finalY;
       const pageHeight = doc.internal.pageSize.height;
       const pageWidth = doc.internal.pageSize.width;
       const footerHeight = 20;
-
+      doc.setTextColor(100);
       const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 105);
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
@@ -178,6 +192,7 @@ export class CreatePDFService {
           doc.setFont('helvetica', 'normal');
           doc.setTextColor(100);
         }
+        doc.setTextColor(100);
         doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
         yPosition += lineHeight;
       }

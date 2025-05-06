@@ -35,7 +35,7 @@
                   [ngClass]="{ 'deleted-row': item?.isDel ==true }">
                     <div class="innerTabCurrent">
                       <div class="row">
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-3 col-sm-3">
                           <div class="statusBody">
                             <p class="tdHead">Date</p>
                             <p class="tdBody">
@@ -45,7 +45,7 @@
                             </p>
                           </div>
                         </div>
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-3 col-sm-3">
                           <div class="statusBody">
                             <p class="tdHead">Odometer</p>
                             <p class="tdBody">
@@ -54,13 +54,23 @@
                             </p>
                           </div> 
                         </div>
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-3 col-sm-3">
                           <div class="statusBody pbt-0">
                             <p class="tdHead">State</p>
                             <p class="tdBody">
                               <!-- <span [ngClass]="item?.isState ? 'redDot tableDot' : ''"></span> -->
                               {{item?.state ? item?.state : ' '}}
                             </p>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                          <div class="statusBody pbt-0">
+                            <!-- <p class="tdHead">State</p> -->
+                            <p class="tdBody">
+                              <!-- <span [ngClass]="item?.isDel ? 'redDot tableDot' : ''"></span> -->
+                              <span *ngIf="item?.isDel" class="deleted-text">Deleted</span>
+
+                             </p>
                           </div>
                         </div>
                       </div>
@@ -100,7 +110,7 @@
                 [ngClass]="{ 'deleted-row': item?.isDel ==true }">
                   <div class="innerTabCurrent">
                     <div class="row">
-                      <div class="col-md-4 col-sm-4">
+                      <div class="col-md-3 col-sm-3">
                         <div class="statusBody">
                           <p class="tdHead">Date</p>
                           <p class="tdBody">
@@ -109,7 +119,7 @@
                           </p>
                         </div>
                       </div>
-                      <div class="col-md-4 col-sm-4">
+                      <div class="col-md-3 col-sm-3">
                         <div class="statusBody">
                           <p class="tdHead">Brand Name(s)</p>
                           <p class="tdBody">
@@ -118,13 +128,21 @@
                           </p>
                         </div>
                       </div>
-                      <div class="col-md-4 col-sm-4">
+                      <div class="col-md-3 col-sm-3">
                         <div class="statusBody pbt-0">
                           <p class="tdHead">State</p>
                           <p class="tdBody">
                             <!-- <span [ngClass]="item?.isState ? 'redDot tableDot' : ''"></span> -->
                             {{item?.state ? item?.state : " "}}
                           </p>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-3">
+                        <div class="statusBody pbt-0">
+                          <!-- <p class="tdHead">State</p> -->
+                          <p class="tdBody">
+                            <span *ngIf="item?.isDel" class="deleted-text">Deleted</span>
+                           </p>
                         </div>
                       </div>
                     </div>
@@ -163,7 +181,7 @@
                 [ngClass]="{ 'deleted-row': item?.isDel ==true }">
                   <div class="innerTabCurrent">
                     <div class="row">
-                      <div class="col-md-4 col-sm-4">
+                      <div class="col-md-3 col-sm-3">
                         <div class="statusBody">
                           <p class="tdHead">Date</p>
                           <p class="tdBody">
@@ -172,7 +190,7 @@
                           </p>
                         </div>
                       </div>
-                      <div class="col-md-4 col-sm-4">
+                      <div class="col-md-3 col-sm-3">
                         <div class="statusBody">
                           <p class="tdHead">Description</p>
                           <p class="tdBody">
@@ -181,13 +199,21 @@
                           </p>
                         </div>
                       </div>
-                      <div class="col-md-4 col-sm-4">
+                      <div class="col-md-3 col-sm-3">
                         <div class="statusBody pbt-0">
                           <p class="tdHead">State</p>
                           <p class="tdBody">
                             <!-- <span [ngClass]="item?.isState ? 'redDot tableDot' : ''"></span> -->
                             {{item?.state ? item?.state : " "}}
                           </p>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-3">
+                        <div class="statusBody pbt-0">
+                          <!-- <p class="tdHead">State</p> -->
+                          <p class="tdBody">
+                            <span *ngIf="item?.isDel" class="deleted-text">Deleted</span>
+                           </p>
                         </div>
                       </div>
                     </div>

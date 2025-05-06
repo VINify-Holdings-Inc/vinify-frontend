@@ -2806,11 +2806,16 @@ a.nav-link.no-toggle-icon.noticon {
 .userdashbrdTable .table>tbody>tr:hover {
   background-color: #F9FAFB !important;
 }
-
+.userdashbrdTable .table>tbody>tr.deleted-row:hover {
+  background: #f1e5e6 !important;
+}
 .pop-tableContent.border-bottom {
   padding: 0 0 10px;
 }
-
+.tdBody span.deleted-text {
+  position: relative;
+  top: 20px;
+}
 .authorityThreeBtn {
   justify-content: space-between;
 }
