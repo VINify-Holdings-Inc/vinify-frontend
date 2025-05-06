@@ -10,9 +10,15 @@ A vehicle history report is NOT a substitute for an independent vehicle inspecti
 NMVTIS data INCLUDES (as available by those entities required to report to the System):
 
 • Information from participating state motor vehicle titling agencies.
+
 • Information on automobiles, buses, trucks, motorcycles, recreational vehicles, motor homes, and truck tractors. NMVTIS may not currently include commercial vehicles if those vehicles are not included in a state’s primary database for title records (in some states, those vehicles are managed by a separate state agency), although these records may be added at a later time.
+
 • Information on “brands” applied to vehicles provided by participating state motor vehicle titling agencies. Brand types and definitions vary by state, but may provide useful information about the condition or prior use of the vehicle.
+
 • Most recent odometer reading in the state’s title record.
+
 • Information from insurance companies, and auto recyclers, including junk and salvage yards, that is required by law to be reported to the system, beginning March 31, 2009. This information will include if the vehicle was determined to be a “total loss” by an insurance carrier.
+
 • Information from junk and salvage yards receiving a “cash for clunker” vehicle traded-in under the Consumer Assistance to Recycle and Save Act of 2009 (CARS) Program.
+
 Consumers are advised to visit vehiclehistory.bja.ojp.gov for details on how to interpret the information in the system and understand the meaning of various labels applied to vehicles by the participating state motor vehicle titling agencies.`;

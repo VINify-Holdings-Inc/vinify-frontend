@@ -489,110 +489,45 @@ export class NavPdfService {
       addHeader(); addFooter();
     }
 
-    // Legal Disclaimer
-    doc.setFontSize(14);
-
-    sectionPositions['disclaim'] = { page: (doc as any).internal.getNumberOfPages(), y: y + 5 };
-    doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
-
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(10);
-    doc.setTextColor(69, 67, 67);
-    
-    const leftMargin = 14;
-    const rightPadding = 14;
-    const lineHeight = 5;
-    const footerHeight = 20;
-    
-    const pageHeight = doc.internal.pageSize.height;
-    const pageWidth = doc.internal.pageSize.width;
-    
-    // let finalY = y + 27; // Starting position after the last table
-    // let yPosition = finalY;
-    // doc.setTextColor(69, 67, 67);
-    // // Initial disclaimer split with normal margins
-    // let disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth - leftMargin - rightPadding);
-    
-    // for (let i = 0; i < disclaimerLines.length; i++) {
-    //   const remainingSpace = pageHeight - yPosition - footerHeight;
-    //   doc.setTextColor(69, 67, 67);
-    //   if (remainingSpace < lineHeight) {
-    //     // ✅ Only add a new page if more content remains
-    //     if (i < disclaimerLines.length - 1) {
-    //       doc.addPage();
-    //       addHeader();
-    //           // doc.setTextColor(69, 67, 67);
-    //       addFooter();
-    //       yPosition = 40; // Reset Y for new page
-    
-    //       // Recalculate remaining text for new page
-    //       const remainingText = disclaimerLines.slice(i).join(' ');
-    //       disclaimerLines = doc.splitTextToSize(remainingText, pageWidth - leftMargin - rightPadding);
-    //       i = 0; // Restart loop for rewrapped lines
-    //       continue;
-    //     } else {
-    //       break; // No more content, break out of loop
-    //     }
-    //   }
-    
-    //   // Add the current line
-    //   doc.text(disclaimerLines[i], leftMargin, yPosition, { align: 'left' });
-    //   yPosition += lineHeight;
-    //   y = yPosition; // Update external y if needed
-    // }
+        // Legal Disclaimer
+       doc.setFontSize(14);
+  
+       sectionPositions['disclaim'] = { page: (doc as any).internal.getNumberOfPages(), y: y+5 };
+       doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y+10);
+     
+      doc.setFont('helvetica', 'normal');
+         //const finalY = (doc as any).lastAutoTable.finalY + 25; // Position after the last table
+         const finalY = y+ 27; // Position after the last table
+         let yPosition = finalY;
+         const pageHeight = doc.internal.pageSize.height; 
+         const pageWidth = doc.internal.pageSize.width -40; 
+         const footerHeight = 20; // Reserve 20 units for the footer
+   
+         // Split the disclaimer into lines that fit the page width
+         const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 90);
+         // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
+         doc.setFontSize(10);
+         doc.setTextColor(69, 67, 67);
+   
+         for (let i = 0; i < disclaimerLines.length; i++) {
+           const lineHeight = 5; // Approximate line height
+           const remainingSpace = pageHeight - yPosition - footerHeight;
+                
+           if (remainingSpace < lineHeight) {
+             // Start a new page if remaining space is insufficient
+             doc.addPage();
+             addHeader();addFooter();
+             yPosition = 40; // Reset yPosition to the top margin
+             doc.setTextColor(69, 67, 67);
+             doc.setFontSize(10);
+           }
+           // Add line
+           doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
+           yPosition += lineHeight; // Increment yPosition for the next line
+           y=yPosition;
+         }
     
 
-    const paragraphs = disclaimer.trim().split(/\n\s*\n/); // Split into paragraphs based on double line breaks
-
-    let finalY = y + 27; // Starting position after the last table
-    let yPosition = finalY;
-    doc.setTextColor(69, 67, 67);
-    
-    paragraphs.forEach(paragraph => {
-      const lines = doc.splitTextToSize(paragraph.trim(), pageWidth - leftMargin - rightPadding);
-    
-      for (let i = 0; i < lines.length; i++) {
-        const remainingSpace = pageHeight - yPosition - footerHeight;
-    
-        if (remainingSpace < lineHeight) {
-          if (i < lines.length - 1 || paragraphs.indexOf(paragraph) < paragraphs.length - 1) {
-            doc.addPage();
-            addHeader();
-            addFooter();
-            yPosition = 40;
-    
-            // Rewrap remaining lines for new page
-            const remainingText = [lines.slice(i).join(' ')].concat(
-              paragraphs.slice(paragraphs.indexOf(paragraph) + 1).join(' ')
-            ).join('\n\n');
-            
-            // Restart process for all remaining content
-            const newParagraphs = remainingText.trim().split(/\n\s*\n/);
-            newParagraphs.forEach(para => {
-              const paraLines = doc.splitTextToSize(para.trim(), pageWidth - leftMargin - rightPadding);
-              paraLines.forEach((line:any) => {
-                if (pageHeight - yPosition - footerHeight < lineHeight) {
-                  doc.addPage();
-                  addHeader();
-                  addFooter();
-                  yPosition = 40;
-                }
-                doc.text(line, leftMargin, yPosition);
-                yPosition += lineHeight;
-              });
-              yPosition += lineHeight; // Space between paragraphs
-            });
-    
-            return; // Exit outer loop
-          }
-        }
-    
-        doc.text(lines[i], leftMargin, yPosition);
-        yPosition += lineHeight;
-      }
-    
-      yPosition += lineHeight; // Extra space between paragraphs
-    });
     
 
     // Sources
@@ -618,8 +553,7 @@ export class NavPdfService {
     // Description
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    const description = `Your VINify report checks for and reports information from the following high-quality data sources.
- Please see our report sections page, FAQ, terms of service and disclaimer for more information.`;
+    const description = `Your VINify report checks for and reports information from the following high-quality data sources. Please see our report sections page, FAQ, terms of service and disclaimer for more information.`;
     doc.text(doc.splitTextToSize(description, 180), 15, y);
     y += 15;
 
