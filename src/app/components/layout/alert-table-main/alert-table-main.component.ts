@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { AlertTableComponent } from './alert-table/alert-table.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alert-table-main',
@@ -11,7 +12,7 @@ import { AlertTableComponent } from './alert-table/alert-table.component';
   styleUrl: './alert-table-main.component.css'
 })
 export class AlertTableMainComponent {
-  constructor(private userData: userData,) {}
+  constructor(private userData: userData,private router: Router) {}
 
   vin :string= "";
   limit: number = 14;
@@ -47,6 +48,10 @@ export class AlertTableMainComponent {
      
     this.userData.getNewAlertData(url).subscribe(
       (res: any) => {
+        if (res.code === 401) { 
+          sessionStorage.clear();
+          this.router.navigate(['/']);
+        }
         if (!res.error) {
           this.tableData = res?.data?.items || [];
           this.totalPages = res?.data?.totalPages || 0;

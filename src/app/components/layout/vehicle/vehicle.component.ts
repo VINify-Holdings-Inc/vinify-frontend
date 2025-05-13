@@ -5,6 +5,7 @@ import { SessionService, } from '../../../services/session.service';
 declare var bootstrap: any;
 import { CommonModule } from '@angular/common';
 import { UserTableComponent } from '../dashboard/user-table/user-table.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-vehicle',
   imports: [CommonModule,UserTableComponent,LoaderComponent],
@@ -19,7 +20,7 @@ export class VehicleComponent implements AfterViewInit{
     });
   }
   constructor(private userData: userData,
-    private sessionService: SessionService,) {
+    private sessionService: SessionService,private router: Router) {
 
   }
 
@@ -50,7 +51,10 @@ export class VehicleComponent implements AfterViewInit{
 
     this.userData.getCurrentVinDataForUser(url).subscribe(
       (res: any) => {
-
+        if (res.code === 401) { 
+          sessionStorage.clear();
+          this.router.navigate(['/']);
+        }
         if (!res.error) {
           this.tableData = res?.data?.items || [];
           this.totalPages = res?.data?.totalPages || 0;

@@ -13,6 +13,7 @@ import { NotificationService } from '../../../../services/state-management';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CapitalizePipe } from '../../../../pipes/capitalize.pipe';
 import { TitleReportService } from '../../../../services/title-report.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-title-tab',
   imports: [CommonModule,DateFormatPipe,FormsModule,MatTableModule, MatPaginatorModule, MatSortModule,LoaderComponent,MatCheckboxModule,CapitalizePipe,],
@@ -20,7 +21,7 @@ import { TitleReportService } from '../../../../services/title-report.service';
   styleUrl: './title-tab.component.css'
 })
 export class TitleTabComponent implements OnInit{
-  constructor(private userData : userData,private titleReportService:TitleReportService,private notificationService: NotificationService,private changeDetectorRef: ChangeDetectorRef){}
+  constructor(private userData : userData,private titleReportService:TitleReportService,private notificationService: NotificationService,private changeDetectorRef: ChangeDetectorRef, private router: Router,){}
     filerIcon: string = 'assets/images/icons/filter-lines.svg';
     calendarIcon: string = 'assets/images/icons/calendar.svg';
     pdfIcon: string = 'assets/images/icons/pdf.svg';
@@ -184,6 +185,10 @@ previousPage() {
          } 
       this.userData.searchVinDataForUser(url).subscribe(
         (res: any) => {
+          if (res.code === 401) { 
+            sessionStorage.clear();
+            this.router.navigate(['/']);
+          }
           if (!res.error) {
             this.titleReportService.generatePDF(
               PDF_SETTINGS.COMPANY_NAME,

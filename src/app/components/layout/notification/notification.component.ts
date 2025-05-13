@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { NotificationTableComponent } from './notification-table/notification-table.component';
-
+import { Router } from '@angular/router';
 
 
 
@@ -13,7 +13,7 @@ import { NotificationTableComponent } from './notification-table/notification-ta
   styleUrl: './notification.component.css'
 })
 export class NotificationComponent {
-  constructor(private userData: userData,) {}
+  constructor(private userData: userData,private router: Router) {}
 
   vin :string= "";
   limit: number = 14;
@@ -48,6 +48,10 @@ export class NotificationComponent {
      
     this.userData.getUnreadNotificationData(url).subscribe(
       (res: any) => {
+        if (res.code === 401) { 
+          sessionStorage.clear();
+          this.router.navigate(['/']);
+        }
         if (!res.error) {
           this.tableData = res?.data?.items || [];
           this.totalPages = res?.data?.totalPages || 0;

@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './title-comparison.component.css'
 })
 export class TitleComparisonComponent implements OnInit {
-  constructor(private userData:userData,private route : ActivatedRoute){}
+  constructor(private userData:userData,private route : ActivatedRoute,private router: Router){}
   limit :number=8;
   page : number =1;
   totalPages : number=0;
@@ -48,6 +48,10 @@ export class TitleComparisonComponent implements OnInit {
       this.userData.getVinHistoryData(url).subscribe(
       (res:any) => {
           this.isLoading=false; 
+          if (res.code === 401) { 
+            sessionStorage.clear();
+            this.router.navigate(['/']);
+          }
         if(!res.error){
           console.log("data1",res?.data.title.current.length)      
           console.log("data1",res?.data.brand.current.length)      
@@ -56,8 +60,7 @@ export class TitleComparisonComponent implements OnInit {
           this.brandData=res?.data?.brand;
           this.jsiData=res?.data?.jsi;
           
-        }     
-
+        }    
       },
       (err) => {
         this.isLoading=false;

@@ -71,6 +71,10 @@ export class TitleDetailsMainComponent {
      this.userData.searchVinDataForUser(url).subscribe(
       (res:any) => {
           this.isLoading=false; 
+          if (res.code === 401) { 
+            sessionStorage.clear();
+            this.router.navigate(['/']);
+          }
         if(!res.error){
           this.tableData=res?.data?.items||[];
           this.totalPages= res?.data?.totalPages||0;
