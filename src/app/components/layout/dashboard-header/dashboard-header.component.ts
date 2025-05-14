@@ -202,6 +202,10 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.searchValue = "";
         this.searchIconToggle = !this.searchIconToggle
+        if (res.code === 401) { 
+          sessionStorage.clear();
+          this.router.navigate(['/']);
+        }
         if (!res.error) {
           if (res?.data?.totalItems > 0) {
             this
@@ -335,7 +339,10 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
   getProfileData() {
     this.authService.getProfileData(this.userEmail).subscribe(
       (res: any) => {
-
+        if (res.code === 401) { 
+          sessionStorage.clear();
+          this.router.navigate(['/']);
+        }
         if (!res.error) {
 
           this.userName = res.data.firstName + " " + res.data.lastName;
@@ -425,6 +432,10 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
   showAlertCountData() {
     this.userData.getUnreadCount().subscribe(
       (res: any) => {
+        if (res.code === 401) { 
+          sessionStorage.clear();
+          this.router.navigate(['/']);
+        }
         if (!res.error) {
           this.alertCount = res?.data?.totalNotificationCount || 0
           this.notificationService.setUnreadCount(
@@ -444,6 +455,10 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
 
     this.userData.getTopTenNotification(url).subscribe(
       (res: any) => {
+        if (res.code === 401) { 
+          sessionStorage.clear();
+          this.router.navigate(['/']);
+        }
         if (!res.error) {
           this.notificationData = res?.data?.items || [];
 
@@ -461,7 +476,10 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
     datas.push(id)
     this.userData.updateSeenAlertCheckBxData(type, datas).subscribe(
       (res: any) => {
-
+        if (res.code === 401) { 
+          sessionStorage.clear();
+          this.router.navigate(['/']);
+        }
         if (!res.error) {
           if (res?.data?.updated) {
 
