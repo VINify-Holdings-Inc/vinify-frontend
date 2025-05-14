@@ -268,10 +268,8 @@ getTableDataAfetrClose(vin: any = null) {
   }
   this.userData.getVinDataForPDF(url).subscribe(
     (res: any) => {
-      if (!res.error) {
-        //const data = res?.data?.items || [];
-        const data = res?.data || [];
-        // Add isSelected property to each row for checkbox
+      if (!res.error) { 
+        const data = res?.data || []; 
         data.forEach((item: any) => (item.isSelected = false));
         this.tableData = (data);
       }

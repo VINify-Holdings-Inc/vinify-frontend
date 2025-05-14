@@ -151,9 +151,7 @@ export class CreatePDFService {
             doc.setFillColor(207, 75, 95);
             doc.circle(circleX, circleY, 0.5, 'F');
           
-            // Commented out image
-            // doc.addImage(checkImg, 'PNG', imgX, imgY, imgSize, imgSize);
-          }
+               }
           
         },
 

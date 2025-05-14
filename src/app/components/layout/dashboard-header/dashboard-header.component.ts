@@ -70,11 +70,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       this.userName = data.name; // Dynamically update userName
       this.profile = data.profile; // Dynamically update profile
     });
-    this.member = this.sessionServies.getSessionData("memberId")
-    // this.getProfileData();
-    // this.getTableData();
-    // this.showAlertCountData();
-
+    this.member = this.sessionServies.getSessionData("memberId")  
     this.notificationService.unreadCount$.subscribe(count => {
       this.unreadCount = count; // Update count in the UI
     });
@@ -248,14 +244,11 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
                                         popup: 'animated fadeInDown faster',
                                         icon: 'animated heartBeat delay-1s'
                                       },
-                                      icon: 'info',
-                                    //  showCancelButton: true, // Enables the cancel button
-                                      confirmButtonText: 'PDF View', // Text for the confirm button
-                                    //  cancelButtonText: 'No',  // Text for the cancel button
-                                      showDenyButton: true, // Enables the additional button
+                                      icon: 'info', 
+                                        confirmButtonText: 'PDF View', // Text for the confirm button
+                                         showDenyButton: true, // Enables the additional button
                                       denyButtonText: 'Web View',
-                                      // Text for the new button
-                                    }).then((result) => {
+                                       }).then((result) => {
                                       if (result.isConfirmed) {
                                             this.navPdf.generatePDF(
                                             PDF_SETTINGS.COMPANY_NAME,
@@ -371,8 +364,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
             }
           },
           (err) => {
-            //  console.error('SOAP Request Error:', err);
-            resolve(false);
+              resolve(false);
           }
         );
       } else {

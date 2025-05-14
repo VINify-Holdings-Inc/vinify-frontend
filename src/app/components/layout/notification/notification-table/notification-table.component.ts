@@ -223,8 +223,7 @@ previousPage() {
 
   onRowSelectionChange(item: any): void {
     if (item.isSelected) {
-      // Add the selected item to the array
-      const vinExists = this.selectedVins.some(
+        const vinExists = this.selectedVins.some(
         
         (selected) =>
           selected === item.id 
@@ -234,8 +233,7 @@ previousPage() {
         this.selectedVins.push(item.id);
       }
     } else {
-      // Remove the item from the array
-      this.selectedVins = this.selectedVins.filter(
+       this.selectedVins = this.selectedVins.filter(
         (selected) =>
           selected !== item.id 
       );
@@ -245,8 +243,7 @@ previousPage() {
   }
 
   isAllSelected(): boolean {
-   // return this.tableData.every((row) => row.isSelected);
-   return this.tableData.length > 0 && this.tableData.every(row => row.isSelected);
+    return this.tableData.length > 0 && this.tableData.every(row => row.isSelected);
   }
 
   isIndeterminate(): boolean {

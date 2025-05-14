@@ -3,8 +3,7 @@
  import 'jspdf-autotable';
  import { disclaimer } from './disclaimerSoap';
  import { DateFormatPipe } from '../pipes/date-format.pipe'
- //import { CapitalizePipe } from '../pipes/capitalize.pipe';
- @Injectable({
+   @Injectable({
    providedIn: 'root'
  })
  export class CreateSoapPdfService {
@@ -221,16 +220,7 @@
      const TitleDesc = `This section identifies this vehicle's current and historic DMV titles reported as issued by date, indicating the state and reported mileage. Title brands that have been reported to VINify are shown in the “Title Brands Reported” section below. Each title record represents a new title holder, duplicate title, lien release or other title event. This information reflects the title information on file with NMVTIS. For more information, please contact the state of title. We recommend an inspection by a qualified mechanic.`;
      doc.text(doc.splitTextToSize(TitleDesc, 180), 15, y+6);
      y += 21;
-     /*
-     if(titleCount){
-     y += 5;
-     doc.setFillColor(248, 215, 218);
-     doc.rect(15, y, 180, 9, 'F');
-     doc.setTextColor(69, 67, 67);
-     doc.setFontSize(9);
      
-     doc.text('Warning - At least one negative title event has been reported.', 20, y + 5);
-     }  */
      doc.setTextColor(69, 67, 67);
      y += 10;
  
