@@ -6,7 +6,7 @@ import { SessionService } from '../../services/session.service'
 import { Router } from '@angular/router';  // Import Router
 import {strictEmailValidator} from '../custom-validator/strict-email.validator'
 import {passwordValidator} from '../custom-validator/password-validator';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.prod';
 import Swal from 'sweetalert2';
 import { ForgetPasswordComponent } from '../forget-password/forget-password.component';
 import { LoaderComponent } from "../layout/common/loader/loader.component";
