@@ -99,24 +99,43 @@ export class NavPdfService {
     };
 
     // Footer (Every Page)
-    const addFooter = () => {
+const addFooter = () => {
+  const pageHeight = doc.internal.pageSize.height;
 
-      const pageHeight = doc.internal.pageSize.height;
-      const footerY = pageHeight - 9;
-      doc.setDrawColor(69, 67, 67);
-      doc.setLineWidth(.1);
-      doc.line(14, footerY - 14, 196, footerY - 14);
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(9);
-      // doc.setTextColor(69, 67, 67);
-       doc.setTextColor(80,80,80);
-      //  doc.setFont('helvetica', 'bold');
-      doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
-      doc.text('VINify, Title Alarm, LLC', 15, footerY - 5);
-      doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 180, footerY - 5);
-      // doc.setDrawColor(0, 0, 0);
-      doc.setFont('helvetica', 'normal');
-    };
+  const imgWidth = 10;
+  const imgHeight = 5;
+  const textFontSize = 10;
+
+  const bottomMargin = 2; // 2px bottom margin
+
+  const imgX = 15;
+  const imgY = pageHeight - bottomMargin - imgHeight; // Image is 2px above bottom
+  const textX = imgX + imgWidth + 5;
+  const textY = imgY + imgHeight - 1; // Align text with image
+
+  const hrY = imgY - 4; // Line appears 4px above the image/text
+
+  // Draw horizontal line
+  doc.setDrawColor(69, 67, 67);
+  doc.setLineWidth(0.1);
+  doc.line(14, hrY, 196, hrY);
+
+  // Add image
+  doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
+
+  // Add footer text
+  doc.setTextColor(80, 80, 80);
+  doc.setFontSize(textFontSize);
+  doc.setFont('helvetica', 'normal');
+  doc.text(
+    'Title Alarm LLC, Marley Nonami Incorporated is an approved NMVTIS Data Provider.',
+    textX,
+    textY
+  );
+};
+
+
+
     const drawBadge = (doc: any, x: number, y: number, number: string | number) => {
       const radius = 3.5; // Adjust size of the circle
 

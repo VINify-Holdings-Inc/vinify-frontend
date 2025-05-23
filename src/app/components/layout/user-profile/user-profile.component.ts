@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../../services/api-service.service';
 import { SessionService } from '../../../services/session.service';
 import { LoaderComponent } from '../common/loader/loader.component';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.prod';
 import Swal from 'sweetalert2';
 import {ProfileService} from '../../../services/state-management';
 import {passwordValidator} from '../../custom-validator/password-validator';

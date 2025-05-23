@@ -39,8 +39,7 @@
                           <div class="statusBody">
                             <p class="tdHead">Date</p>
                             <p class="tdBody">
-                              <!-- <span [ngClass]="item?.isTitleBrandDate ? 'redDot tableDot' : ''"></span> -->
-                              {{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}
+                                {{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}
                                
                             </p>
                           </div>
@@ -49,8 +48,7 @@
                           <div class="statusBody">
                             <p class="tdHead">Odometer</p>
                             <p class="tdBody">
-                              <!-- <span [ngClass]="item?.isOdometer ? 'redDot tableDot' : ''"></span> -->
-                              {{item?.odometer}}
+                               {{item?.odometer}}
                             </p>
                           </div> 
                         </div>
@@ -58,17 +56,14 @@
                           <div class="statusBody pbt-0">
                             <p class="tdHead">State</p>
                             <p class="tdBody">
-                              <!-- <span [ngClass]="item?.isState ? 'redDot tableDot' : ''"></span> -->
-                              {{item?.state ? item?.state : ' '}}
+                                 {{item?.state ? item?.state : ' '}}
                             </p>
                           </div>
                         </div>
                         <div class="col-md-3 col-sm-3">
                           <div class="statusBody pbt-0">
-                            <!-- <p class="tdHead">State</p> -->
-                            <p class="tdBody">
-                              <!-- <span [ngClass]="item?.isDel ? 'redDot tableDot' : ''"></span> -->
-                              <span *ngIf="item?.isDel" class="deleted-text">Deleted</span>
+                              <p class="tdBody">
+                                <span *ngIf="item?.isDel" class="deleted-text">Deleted</span>
 
                              </p>
                           </div>
@@ -114,7 +109,6 @@
                         <div class="statusBody">
                           <p class="tdHead">Date</p>
                           <p class="tdBody">
-                            <!-- <span [ngClass]="item?.isTitleBrandDate ? 'redDot tableDot' : ''"></span> -->
                             {{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}
                           </p>
                         </div>
@@ -123,8 +117,7 @@
                         <div class="statusBody">
                           <p class="tdHead">Brand Name(s)</p>
                           <p class="tdBody">
-                            <!-- <span [ngClass]="item?.isBrand ? 'redDot tableDot' : ''"></span> -->
-                            {{item?.brand ? item?.brand?.split(' - ')[0] : " "}}
+                              {{item?.brand ? item?.brand?.split(' - ')[0] : " "}}
                           </p>
                         </div>
                       </div>
@@ -132,15 +125,13 @@
                         <div class="statusBody pbt-0">
                           <p class="tdHead">State</p>
                           <p class="tdBody">
-                            <!-- <span [ngClass]="item?.isState ? 'redDot tableDot' : ''"></span> -->
-                            {{item?.state ? item?.state : " "}}
+                             {{item?.state ? item?.state : " "}}
                           </p>
                         </div>
                       </div>
                       <div class="col-md-3 col-sm-3">
                         <div class="statusBody pbt-0">
-                          <!-- <p class="tdHead">State</p> -->
-                          <p class="tdBody">
+                            <p class="tdBody">
                             <span *ngIf="item?.isDel" class="deleted-text">Deleted</span>
                            </p>
                         </div>
@@ -185,8 +176,7 @@
                         <div class="statusBody">
                           <p class="tdHead">Date</p>
                           <p class="tdBody">
-                            <!-- <span [ngClass]="item?.isTitleBrandDate ? 'redDot tableDot' : ''"></span> -->
-                            {{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}
+                              {{item?.titleBrandDate | dateFormat:"DD MMM YYYY"}}
                           </p>
                         </div>
                       </div>
@@ -194,8 +184,7 @@
                         <div class="statusBody">
                           <p class="tdHead">Description</p>
                           <p class="tdBody">
-                            <!-- <span [ngClass]="item?.isDescription ? 'redDot tableDot' : ''"></span> -->
-                            {{item?.description ? item?.description : " "}}
+                             {{item?.description ? item?.description : " "}}
                           </p>
                         </div>
                       </div>
@@ -203,15 +192,13 @@
                         <div class="statusBody pbt-0">
                           <p class="tdHead">State</p>
                           <p class="tdBody">
-                            <!-- <span [ngClass]="item?.isState ? 'redDot tableDot' : ''"></span> -->
-                            {{item?.state ? item?.state : " "}}
+                              {{item?.state ? item?.state : " "}}
                           </p>
                         </div>
                       </div>
                       <div class="col-md-3 col-sm-3">
                         <div class="statusBody pbt-0">
-                          <!-- <p class="tdHead">State</p> -->
-                          <p class="tdBody">
+                             <p class="tdBody">
                             <span *ngIf="item?.isDel" class="deleted-text">Deleted</span>
                            </p>
                         </div>
@@ -224,8 +211,7 @@
       
           </div>
       
-          <!-- No Change Found -->
-          <div *ngIf="!jsiData?.current?.length && !brandData?.current?.length && !titleData?.current?.length">
+           <div *ngIf="!jsiData?.current?.length && !brandData?.current?.length && !titleData?.current?.length">
             <span class="title-center-data">
               <h5>No Change Found</h5>
             </span>

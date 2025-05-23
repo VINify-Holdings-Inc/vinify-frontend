@@ -57,9 +57,8 @@ scrollToSection(sectionId: string) {
     window.scrollTo({
       top: targetPosition,
       behavior: 'smooth'
-    }); 
-    // Unlock scrolling after transition completes
-    setTimeout(() => {
+    });  
+     setTimeout(() => {
       this.isScrolling = false;
     }, 1000); // Timeout should match scroll animation duration
   }

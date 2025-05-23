@@ -25,14 +25,7 @@ export class FileUploadComponent {
       if (!file) {
         this.showError("No file selected");
         return;
-      }
-
-      // if (file.name !== 'MY.T.CINQ.INPUT.TXT') {
-      //   this.resetFileInput();
-      //   this.showError("Invalid file name. It must be MY.T.CINQ.INPUT.TXT");
-      //   return;
-      // }
-
+      } 
       const validFileNamePattern = /^MY\.T\.CINQ\.INPUT\d*\.TXT$/;
 
       if (!validFileNamePattern.test(file.name)) {
@@ -194,16 +187,7 @@ export class FileUploadComponent {
         this.fileInput.nativeElement.value = "";
         if (!res.error) {
 
-          // Swal.fire({
-          //   title: 'Info!',
-          //   showClass: {
-          //     popup: 'animated fadeInDown faster',
-          //     icon: 'animated heartBeat delay-1s'
-          //   },
-          //   text: 'Data fetched successfully. Thank you for your patience.',
-          //   icon: 'info',
-          //   confirmButtonText: 'OK',
-          // });
+          
           setTimeout(() => {
             this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
               this.router.navigate([this.router.url]);

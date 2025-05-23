@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';//http client for req, HttpHeaders ->heders
 import { Observable } from 'rxjs';
-import {environment} from '../../environments/environment';
+import {environment} from '../../environments/environment.prod';
 import { SessionService } from './session.service';
 
 @Injectable({

@@ -151,10 +151,7 @@ export class CreatePDFService {
             doc.setFillColor(207, 75, 95);
             doc.circle(circleX, circleY, 0.5, 'F');
           
-            // Commented out image
-            // doc.addImage(checkImg, 'PNG', imgX, imgY, imgSize, imgSize);
           }
-          
         },
 
         didDrawPage: (data: any) => {
@@ -168,14 +165,25 @@ export class CreatePDFService {
       doc.setFontSize(14);
       // doc.setTextColor(100);
       let y = (doc as any).lastAutoTable.finalY + 10;
+
+      // ** HERE IS THE CHANGE: Check if space remaining is less than 200 px. If so, add new page **
+      const pageHeight = doc.internal.pageSize.height;
+      const footerHeight = 20; // same as footer height you use
+      const spaceRemaining = pageHeight - y - footerHeight;
+
+      if (spaceRemaining < 200) {
+        doc.addPage();
+        addHeader();
+        addFooter();
+        y = 35;  // Reset y position for disclaimer start on new page
+      }
+ doc.setFontSize(14);
       doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
       doc.setTextColor(100);
       const finalY = y + 20;
       let yPosition = finalY;
-      const pageHeight = doc.internal.pageSize.height;
       const pageWidth = doc.internal.pageSize.width;
-      const footerHeight = 20;
-      doc.setTextColor(100);
+
       const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 105);
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
