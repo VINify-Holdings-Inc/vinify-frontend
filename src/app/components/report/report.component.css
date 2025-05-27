@@ -163,6 +163,10 @@ ul.vinContains li strong {
 	margin: 0 0 10px;
 	min-height: 21px;
 }
+.sumBox ul li span {
+    font-weight: 600;
+    display: block;
+}
 .card.sumBox.noAlert{
 	border-left: 4px solid #2ea80c;
 }

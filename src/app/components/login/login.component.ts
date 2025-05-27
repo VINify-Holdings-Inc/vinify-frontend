@@ -23,6 +23,7 @@ export class LoginComponent {
   eye : boolean = false;
   isLoading : boolean=false;
   logo: string = 'assets/images/ta-logo.png';
+  nmvtslogo: string = 'assets/images/nmvtis-1.png';
   vehicleImg: string = 'assets/images/login-bg.png'; 
   gasImg: string = 'assets/images/icons/login-icon/gas-station.svg';
   carImg: string = 'assets/images/icons/login-icon/car.svg';
