@@ -30,15 +30,25 @@ aside.siderbar-pdf{
 }
 header.header-pdf {
 	margin-left: 270px;
-	background-color: #fff;
-	box-shadow: 0 0 2rem 0 rgba(41, 48, 66, 0.1);
-	border-bottom: 1px solid #eaecf0;
-	padding: 10px 0px;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 1090;
-	height: 85px;
+    background-color: #fff;
+    box-shadow: 0 0 2rem 0 rgba(41, 48, 66, 0.1);
+    border-bottom: 1px solid #eaecf0;
+    padding: 10px 0px;
+    position: fixed;
+    top: 0;
+    max-width: 100%;
+    z-index: 1090;
+    height: 85px;
+    left: 0;
+    right: 0;
+}
+.rightUpdatedDate {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+.vinTxConponud {
+    position: relative;
 }
 .header-section h1 {
 	font-size: 26px;

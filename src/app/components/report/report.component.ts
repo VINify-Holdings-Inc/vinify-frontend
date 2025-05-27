@@ -15,7 +15,7 @@ export class ReportComponent implements OnInit,AfterViewInit  {
   reportSummary: string = 'assets/images/icons/sidebar-icon/export-report.svg';
   activeTab: string = 'reportsummary';  // Active tab to apply conditional classes...
   scrollCall = true;
-
+  currentDate = new Date();
   @ViewChild('scrollableSections', { static: true }) scrollableSections: ElementRef | undefined;
 
   constructor(private renderer: Renderer2, private el: ElementRef) {}
@@ -26,6 +26,7 @@ export class ReportComponent implements OnInit,AfterViewInit  {
 data :any={}
 vinData :any="";
 
+ 
  ngAfterViewInit(): void {
   //store data
   const apiData: string | null = localStorage.getItem("apiData");
