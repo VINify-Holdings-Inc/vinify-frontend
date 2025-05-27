@@ -374,7 +374,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  setVariable(key: any, value: any, ttl = 30 * 60 * 1000) {
+  setVariable(key: any, value: any, ttl = 1 * 60 * 1000) {
     const expiry = Date.now() + ttl;
     localStorage.setItem(key, JSON.stringify({ value, expiry }));
   }
