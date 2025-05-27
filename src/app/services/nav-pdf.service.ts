@@ -44,7 +44,7 @@ export class NavPdfService {
 
     const today = new Date();
     const formattedDate = `${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}.${today.getFullYear()}`;
-    const updatedText = `Updated ${formattedDate}`;
+
     const sectionPositions: { [key: string]: { page: number, y: number } } = {};
     // Header Section (Every Page)
     const addHeader = () => {
@@ -60,7 +60,7 @@ export class NavPdfService {
       doc.setFontSize(10);
       doc.setTextColor(67, 66, 66);
       doc.setFont('helvetica', 'normal');
-      doc.text(updatedText, 160, 15);
+      // doc.text(updatedText, 160, 15);
       // Add VIN and Car Model
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
@@ -112,12 +112,19 @@ export class NavPdfService {
       // Add footer text
       doc.setTextColor(80, 80, 80);
       doc.setFontSize(textFontSize);
+      doc.setFontSize(9);
       doc.setFont('helvetica', 'normal');
       doc.text(
         'Title Alarm LLC, Marley Nonami Incorporated is an approved NMVTIS Data Provider.',
-        textX,
-        textY
+        textX-2,
+        textY-1
       );
+      doc.setTextColor(108, 108, 108);
+      const dateheader = this.dateFormate.transform(today, 'DD MMM YYYY');
+      const updatedText = `Updated ${dateheader}`;
+        doc.setFontSize(9);
+          doc.setFont('helvetica', 'normal');
+      doc.text(updatedText,164, textY-1);
     };
 
 
@@ -153,9 +160,10 @@ export class NavPdfService {
 
     doc.setLineWidth(.4);
 
-    doc.roundedRect(20, y, 55, 50, 3, 3, 'S')
-    const dynamicData = "Title Information"; // Replace with your dynamic data
-    doc.setFontSize(12);
+    doc.roundedRect(20, y, 55, 43, 3, 3, 'S')
+    const dynamicData = `Title Information (${titleCount})`; // Replace with your dynamic data
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
     doc.text(dynamicData, 22, y + 5);
     doc.setFontSize(9);
     //titleLength ? doc.text( tableData[0]?.brand?.split(' - ')[0] ?? " ", 22 , y + 15) : doc.text( " ", 22 , y + 15);
@@ -168,19 +176,20 @@ export class NavPdfService {
     doc.text("Title Issue State", 22, y + 33)
     doc.setTextColor(69, 67, 67);
     doc.text(titleLength ? tableData[0]?.state ? tableData[0]?.state : " " : " ", 22, y + 37);
-    if (titleCount) {
-      drawBadge(doc, 24, y + 44, titleCount);
-      doc.setTextColor(69, 67, 67);  //black
-      doc.text(' of ' + titleLength + ' Records ', 28, y + 45);
-    } else {
-      doc.text(titleLength + ' Records ', 22, y + 45);
-    }
+    // if (titleCount) {
+    //   drawBadge(doc, 24, y + 44, titleCount);
+    //   doc.setTextColor(69, 67, 67);  //black
+    //   doc.text(' of ' + titleLength + ' Records ', 28, y + 45);
+    // } else {
+    //   doc.text(titleLength + ' Records ', 22, y + 45);
+    // }
 
-    doc.addImage(nmvtlogo, 'PNG', 56, y + 39, 17, 10);
+    // doc.addImage(nmvtlogo, 'PNG', 56, y + 39, 17, 10);
 
-    doc.roundedRect(80, y, 55, 50, 3, 3, 'S')
-    const dynamicData1 = "Brand Information"; // Replace with your dynamic data
-    doc.setFontSize(12);
+    doc.roundedRect(80, y, 55, 43, 3, 3, 'S')
+    const dynamicData1 = `Brand Information (${brandCount})`; // Replace with your dynamic data   
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
     doc.text(dynamicData1, 82, y + 5);
     doc.setFontSize(9);
     brandLength ? doc.text(brandData[0]?.brand?.split(' - ')[0] ?? " ", 82, y + 12) : doc.text(" ", 82, y + 12);
@@ -194,19 +203,11 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     doc.text(brandLength ? brandData[0]?.state ? brandData[0]?.state : " " : " ", 82, y + 37);
 
-    if (brandCount) {
-      drawBadge(doc, 84, y + 44, brandCount);
-      doc.setTextColor(69, 67, 67);   //black
-      doc.text(' of ' + brandLength + ' Records', 88, y + 45);
-    } else {
-      doc.text(brandLength + ' Records ', 82, y + 45);
-    }
 
-    doc.addImage(nmvtlogo, 'PNG', 116, y + 39, 17, 10);
-
-    doc.roundedRect(140, y, 55, 50, 3, 3, 'S')
-    const dynamicData2 = "Junk/Salvage Information"; // Replace with your dynamic data
-    doc.setFontSize(12);
+    doc.roundedRect(140, y, 55, 43, 3, 3, 'S')
+    const dynamicData2 = `Junk/Salvage Information (${JSICount})`;  // Replace with your dynamic data  const dynamicData2 = `Junk/Salvage Information (${brandCount})`; 
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
     doc.text(dynamicData2, 142, y + 5);
     doc.setFontSize(9);
     jsiLength ? doc.text(junkSalvageData[0]?.VehicleDispositionText?.split(' - ')[0] ?? " ", 142, y + 12) : doc.text(" ", 142, y + 12);
@@ -219,16 +220,6 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     doc.text(jsiLength ? junkSalvageData[0]?.state ? junkSalvageData[0]?.state : " " : " ", 142, y + 37);
 
-    if (JSICount) {
-      drawBadge(doc, 144, y + 44, JSICount);
-      doc.setTextColor(69, 67, 67);
-      doc.text(' of ' + jsiLength + ' Records', 148, y + 45);
-    } else {
-      doc.text(jsiLength + ' Records', 142, y + 45);
-    }
-    doc.addImage(nmvtlogo, 'PNG', 176, y + 39, 17, 10);
-
-    // Title Information
     y += 60;
     if (titleCount) {
       drawBadge(doc, 14, y - 1, titleCount);  //x,y,number
@@ -238,7 +229,7 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
 
     sectionPositions['title'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
-    doc.text('Title Information', 19, y);
+    doc.text('Title Record History', 19, y);
     doc.setFontSize(6);
     doc.setFont('helvetica', 'bold');
     doc.text('Source', 180, y);
@@ -254,15 +245,24 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     y += 10;
 
-    const tableColumn = ['VINs', 'Title Issue Date', 'Title Issue State', 'Status'];
-    const tableRows = tableData.length > 0 ? tableData.map((item: any) => [
-      item?.vin || " ",
-      //  item?.brand ? item.brand.split(' - ')[0] : " ",
-      item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
-      item?.state || " ",
-      item?.status || " ",
+    const tableColumn = ['VINs', 'Title Issue Date', 'Issuing State','Odometer Reading', 'Status'];
+    
+const tableRows = tableData.length > 0
+    ? tableData.map((item:any) => {
+        // Format odometer
+        const odometerStr = item?.odometer || '';
+        const numericValue = parseInt(odometerStr.replace(/[^\d]/g, ''), 10) || 0;
+        const formattedOdometer = `${numericValue.toLocaleString('en-US')} ${item?.VehicleOdometerReadingUnitCode || ''}`;
 
-    ]) : [["", "", "No records found", "", ""]];
+        return [
+          item?.vin || ' ',
+          item?.titleBrandDate  ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : ' ',
+          item?.state || ' ',
+          formattedOdometer,
+          item?.status || ' ',
+        ];
+      })
+    : [['', '', 'No records found', '', '']];
     doc.setTextColor(69, 67, 67);
     // Draw Title Information Table
     (doc as any).autoTable({
@@ -312,21 +312,13 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
 
     sectionPositions['brand'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
-    doc.text('Brand Information', 19, y);
+    doc.text('Title Brands Reported', 19, y);
     doc.setFontSize(6);
     doc.setFont('helvetica', 'bold');
     doc.text('Source', 180, y);
     doc.setFont('helvetica', 'normal');
     doc.text('NMVTIS', 188, y);
-    // if (brandCount) {
-    //   y += 5;
-    //   doc.setFillColor(248, 215, 218);
-    //   doc.rect(15, y, 180, 9, 'F');
-    //   doc.setTextColor(69, 67, 67);
-    //   doc.setFontSize(9);
 
-    //   doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VINify History.', 20, y + 6);
-    // }
     doc.setTextColor(69, 67, 67);
     y += 5;
 
@@ -456,11 +448,11 @@ export class NavPdfService {
         // item?.export || " ",
         // " ",
         item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : " ",
-          item?.ReportingEntityCategoryText || " ",
-       item?.EntityName || " ",
+        item?.ReportingEntityCategoryText || " ",
+        item?.EntityName || " ",
         item?.LocationCityName || " ",
         item?.state || " ",
-          item?.TelephoneNumberFullID || " ",
+        item?.TelephoneNumberFullID || " ",
         item?.VehicleDispositionText || " ",
       ]) : [["", "", "No records found", "", "", ""]];
 
@@ -473,8 +465,9 @@ export class NavPdfService {
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
+          0: { cellWidth: 30 },
         1: { cellWidth: 30 },
-        4: { cellWidth: 30, halign: 'center', valign: 'middle' }
+        4: { cellWidth: 30 }
       },
       // didDrawCell: function (data: any) {
       //   if (data.column.index === 5 && data.row.index !== -1) { // "Source" column
