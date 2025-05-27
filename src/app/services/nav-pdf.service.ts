@@ -159,11 +159,15 @@ export class NavPdfService {
     doc.text(dynamicData, 22, y + 5);
     doc.setFontSize(9);
     //titleLength ? doc.text( tableData[0]?.brand?.split(' - ')[0] ?? " ", 22 , y + 15) : doc.text( " ", 22 , y + 15);
-    titleLength ? doc.text(tableData[0]?.status ?? " ", 22, y + 10) : doc.text(" ", 22, y + 10);
+    titleLength ? doc.text(tableData[0]?.status ?? " ", 22, y + 12) : doc.text(" ", 22, y + 12);
     doc.setTextColor(0, 0, 0);
-    doc.text("Title Issue Data", 22, y + 25)
-    doc.text(titleLength ? titleMaxDate ? this.dateFormate.transform(titleMaxDate, 'DD MMM YYYY') : " " : " ", 22, y + 35)
-    doc.text(titleLength ? tableData[0]?.state ? tableData[0]?.state : " " : " ", 22, y + 45);
+    doc.text("Title Issue Date", 22, y + 19)
+    doc.setTextColor(69, 67, 67);
+    doc.text(titleLength ? titleMaxDate ? this.dateFormate.transform(titleMaxDate, 'DD MMM YYYY') : " " : " ", 22, y + 24)
+    doc.setTextColor(0, 0, 0);
+    doc.text("Title Issue State", 22, y + 33)
+    doc.setTextColor(69, 67, 67);
+    doc.text(titleLength ? tableData[0]?.state ? tableData[0]?.state : " " : " ", 22, y + 37);
     if (titleCount) {
       drawBadge(doc, 24, y + 44, titleCount);
       doc.setTextColor(69, 67, 67);  //black
@@ -179,9 +183,16 @@ export class NavPdfService {
     doc.setFontSize(12);
     doc.text(dynamicData1, 82, y + 5);
     doc.setFontSize(9);
-    brandLength ? doc.text(brandData[0]?.brand?.split(' - ')[0] ?? " ", 82, y + 15) : doc.text(" ", 82, y + 15);
+    brandLength ? doc.text(brandData[0]?.brand?.split(' - ')[0] ?? " ", 82, y + 12) : doc.text(" ", 82, y + 12);
+    doc.setTextColor(0, 0, 0);
+    doc.text("Brand Issue Date", 82, y + 19)
+    doc.setTextColor(69, 67, 67);
+
     doc.text(brandLength ? brandMaxDate ? this.dateFormate.transform(brandMaxDate, 'DD MMM YYYY') : " " : " ", 82, y + 25)
-    doc.text(brandLength ? brandData[0]?.state ? brandData[0]?.state : " " : " ", 82, y + 35);
+    doc.setTextColor(0, 0, 0);
+    doc.text("Brand Issue State", 82, y + 33)
+    doc.setTextColor(69, 67, 67);
+    doc.text(brandLength ? brandData[0]?.state ? brandData[0]?.state : " " : " ", 82, y + 37);
 
     if (brandCount) {
       drawBadge(doc, 84, y + 44, brandCount);
@@ -198,9 +209,15 @@ export class NavPdfService {
     doc.setFontSize(12);
     doc.text(dynamicData2, 142, y + 5);
     doc.setFontSize(9);
-    jsiLength ? doc.text(junkSalvageData[0]?.VehicleDispositionText?.split(' - ')[0] ?? " ", 142, y + 15) : doc.text(" ", 142, y + 15);
+    jsiLength ? doc.text(junkSalvageData[0]?.VehicleDispositionText?.split(' - ')[0] ?? " ", 142, y + 12) : doc.text(" ", 142, y + 12);
+    doc.setTextColor(0, 0, 0);
+    doc.text("JSI Issue Date", 142, y + 19)
+    doc.setTextColor(69, 67, 67);
     doc.text(jsiLength ? jsiMaxDate ? this.dateFormate.transform(jsiMaxDate, 'DD MMM YYYY') : " " : " ", 142, y + 25)
-    doc.text(jsiLength ? junkSalvageData[0]?.state ? junkSalvageData[0]?.state : " " : " ", 142, y + 35);
+    doc.setTextColor(0, 0, 0);
+    doc.text("JSI Issue State", 142, y + 33)
+    doc.setTextColor(69, 67, 67);
+    doc.text(jsiLength ? junkSalvageData[0]?.state ? junkSalvageData[0]?.state : " " : " ", 142, y + 37);
 
     if (JSICount) {
       drawBadge(doc, 144, y + 44, JSICount);
@@ -237,14 +254,13 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     y += 10;
 
-    const tableColumn = ['VINs', 'Date', 'State', 'Status', 'Source'];
+    const tableColumn = ['VINs', 'Title Issue Date', 'Title Issue State', 'Status'];
     const tableRows = tableData.length > 0 ? tableData.map((item: any) => [
       item?.vin || " ",
       //  item?.brand ? item.brand.split(' - ')[0] : " ",
       item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
       item?.state || " ",
       item?.status || " ",
-      " "
 
     ]) : [["", "", "No records found", "", ""]];
     doc.setTextColor(69, 67, 67);
@@ -257,28 +273,28 @@ export class NavPdfService {
       headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
-      columnStyles: {
-        1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
-        2: { cellWidth: 25 },
-        3: { cellWidth: 30 },
-        4: { cellWidth: 35, halign: 'center', valign: 'middle' }
-      },
-      didDrawCell: function (data: any) {
-        if (data.column.index === 4 && data.row.index !== -1) { // "Source" column
-          const { x, y, width, height } = data.cell;
+      // columnStyles: {
+      //   1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
+      //   2: { cellWidth: 25 },
+      //   3: { cellWidth: 30 },
+      //   4: { cellWidth: 35, halign: 'center', valign: 'middle' }
+      // },
+      // didDrawCell: function (data: any) {
+      //   if (data.column.index === 4 && data.row.index !== -1) { // "Source" column
+      //     const { x, y, width, height } = data.cell;
 
-          if (data.row.raw[4] === " ") {  // Ensure only one image per row
-            doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
+      //     if (data.row.raw[4] === " ") {  // Ensure only one image per row
+      //       doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
 
-            const imgWidth = 10; // Image width
-            const imgHeight = 5; // Image height
-            const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
-            const imgY = y + 1; // Center vertically
+      //       const imgWidth = 10; // Image width
+      //       const imgHeight = 5; // Image height
+      //       const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
+      //       const imgY = y + 1; // Center vertically
 
-            doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
-          }
-        }
-      },
+      //       doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
+      //     }
+      //   }
+      // },
       didDrawPage: (data: any) => {
         // if (data.pageNumber > 1)
         addHeader(); addFooter();
@@ -302,27 +318,25 @@ export class NavPdfService {
     doc.text('Source', 180, y);
     doc.setFont('helvetica', 'normal');
     doc.text('NMVTIS', 188, y);
+    // if (brandCount) {
+    //   y += 5;
+    //   doc.setFillColor(248, 215, 218);
+    //   doc.rect(15, y, 180, 9, 'F');
+    //   doc.setTextColor(69, 67, 67);
+    //   doc.setFontSize(9);
 
-    if (brandCount) {
-      y += 5;
-      doc.setFillColor(248, 215, 218);
-      doc.rect(15, y, 180, 9, 'F');
-      doc.setTextColor(69, 67, 67);
-      doc.setFontSize(9);
-
-      doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VINify History.', 20, y + 6);
-    }
+    //   doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VINify History.', 20, y + 6);
+    // }
     doc.setTextColor(69, 67, 67);
-    y += 15;
+    y += 5;
 
-    const brandColumns = ['Date', 'State', 'Brand Name(s)', 'Description', 'Source'];
+    const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)', 'Description'];
     const brandRows = brandData.length > 0 ? brandData.map((item: any) => [
 
       item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
       item?.state || " ",
       item?.brand ? item.brand.split(' - ')[0] : " ",
       item?.brand ? item?.brand.split(' - ')[1] : " ",
-      " "
     ]) : [["", "", "No records found", "", ""]];
 
     (doc as any).autoTable({
@@ -334,7 +348,7 @@ export class NavPdfService {
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
-        0: { cellWidth: 25 },
+        0: { cellWidth: 35 },
         1: { cellWidth: 30 },
         2: { cellWidth: 30 },
         4: { cellWidth: 35, halign: 'center', valign: 'middle' }
@@ -428,27 +442,26 @@ export class NavPdfService {
 
     const text2 = doc.splitTextToSize(JSIDesc2, 180);
     doc.text(text2, 15, yPosition21 + 30);
-
     y += 44;
-    if (JSICount) {
-      doc.setFillColor(248, 215, 218);
-      doc.rect(15, y + 16, 180, 9, 'F');
-      doc.setTextColor(69, 67, 67);  //black
-      doc.setFontSize(9);
-      doc.text('Warning - junk, salvage or insurance total loss events have been reported to VINify History.', 20, y + 22);
-    }
     doc.setTextColor(69, 67, 67);  //black
-    y += 35;
+    y += 15;
 
-    const jsiColumns = ['Date', 'Reporting Entity', 'Reporting Entity Type', 'Description', 'Export', 'Source'];
+    const jsiColumns = ['Date', 'Report Type', 'Reporting Entity ', 'City', 'State', 'Phone', 'Disposition'];
     const jsiRows = junkSalvageData.length > 0
       ? junkSalvageData.map((item: any) => [
+        // item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : " ",
+        // item?.VehicleDispositionText || " ",
+        // item?.ReportingEntityCategoryText || " ",
+        // item?.EntityName || " ",
+        // item?.export || " ",
+        // " ",
         item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : " ",
+          item?.ReportingEntityCategoryText || " ",
+       item?.EntityName || " ",
+        item?.LocationCityName || " ",
+        item?.state || " ",
+          item?.TelephoneNumberFullID || " ",
         item?.VehicleDispositionText || " ",
-        item?.ReportingEntityCategoryText || " ",
-        item?.EntityName || " ",
-        item?.export || " ",
-        " ",
       ]) : [["", "", "No records found", "", "", ""]];
 
     (doc as any).autoTable({
@@ -460,25 +473,25 @@ export class NavPdfService {
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
-        0: { cellWidth: 25 },
-        5: { cellWidth: 35, halign: 'center', valign: 'middle' }
+        1: { cellWidth: 30 },
+        4: { cellWidth: 30, halign: 'center', valign: 'middle' }
       },
-      didDrawCell: function (data: any) {
-        if (data.column.index === 5 && data.row.index !== -1) { // "Source" column
-          const { x, y, width, height } = data.cell;
+      // didDrawCell: function (data: any) {
+      //   if (data.column.index === 5 && data.row.index !== -1) { // "Source" column
+      //     const { x, y, width, height } = data.cell;
 
-          if (data.row.raw[5] === " ") {  // Ensure only one image per row
-            doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
+      //     if (data.row.raw[5] === " ") {  // Ensure only one image per row
+      //       doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
 
-            const imgWidth = 10; // Image width
-            const imgHeight = 5; // Image height
-            const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
-            const imgY = y + 1 // Center vertically
+      //       const imgWidth = 10; // Image width
+      //       const imgHeight = 5; // Image height
+      //       const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
+      //       const imgY = y + 1 // Center vertically
 
-            doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
-          }
-        }
-      },
+      //       doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
+      //     }
+      //   }
+      // },
       didDrawPage: (data: any) => {
         //  if (data.pageNumber > 1) 
         addHeader(); addFooter();
