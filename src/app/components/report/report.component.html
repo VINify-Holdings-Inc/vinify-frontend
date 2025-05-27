@@ -88,7 +88,7 @@
 										<a (click)="scrollToSection('titleinformations')">
 											<div class="card sumBox" id="titleinformation">
 												<div class="card-body">
-													<h5 class="card-title">Title Information</h5>
+													<h5 class="card-title">Title Information ({{data.titleDataCount}})</h5>
 													<ul>
 														<li>{{ data?.titleData?.[0]?.status ?? " " }}</li>
 														<li><span class="makeFullW">Title Issue Date</span>{{ data?.titleMaxDate ?
@@ -96,16 +96,6 @@
 															YYYY') : " " }}</li>
 														<li><span class="makeFullW">Title Issue State</span>{{ data?.titleData?.[0]?.state ?? " " }}</li>
 													</ul>
-													<div class="cardFtr">
-														<span *ngIf="data.titleDataCount"><span
-																class="circleRedBox">{{data.titleDataCount}}</span> of
-																{{data?.titleDataCount}} Records</span>
-														<span *ngIf="!data.titleDataCount">{{data?.titleData?.length}}
-															Records</span>
-													</div>
-													<div class="ftrLogo">
-														<img [src]="nmvtlogo" class="img-fluid" alt="Logo" />
-													</div>
 												</div>
 											</div>
 										</a>
@@ -114,7 +104,7 @@
 										<a (click)="scrollToSection('brandtableID')">
 											<div class="card sumBox" id="brandinformation">
 												<div class="card-body">
-													<h5 class="card-title">Brand Information</h5>
+													<h5 class="card-title">Brand Information ({{data.brandDataCount}})</h5>
 													<ul>
 														<li>{{ data?.brandData?.[0]?.brand?.split(' - ')[0] ?? " " }}</li>
 														<li><span class="makeFullW">Brand Issue Date</span>{{ data?.brandMaxDate ?
@@ -123,16 +113,7 @@
 
 														<li><span class="makeFullW">Brand Issue State</span>{{ data?.brandData?.[0]?.state ?? " " }}</li>
 													</ul>
-													<div class="cardFtr">
-														<span *ngIf="data.brandDataCount"><span
-																class="circleRedBox">{{data.brandDataCount}}</span> of
-																{{data?.brandDataCount}}  Records</span>
-														<span *ngIf="!data.brandDataCount">{{data?.brandData?.length}}
-															Records</span>
-													</div>
-													<div class="ftrLogo">
-														<img [src]="nmvtlogo" class="img-fluid" alt="Logo" />
-													</div>
+													
 												</div>
 											</div>
 										</a>
@@ -141,7 +122,7 @@
 										<a (click)="scrollToSection('junknsalvagesection')">
 											<div class="card sumBox" id="junksalvageinformation">
 												<div class="card-body">
-													<h5 class="card-title">Junk/Salvage Information</h5>
+													<h5 class="card-title">Junk/Salvage Information ({{data.JSICount}})</h5>
 													<ul>
 														<li>{{ data?.JSI?.[0]?.VehicleDispositionText ?? " " }}</li>
 														<li><span class="makeFullW">JSI Issue Date</span>{{ data?.jsiMaxDate ?
@@ -150,17 +131,7 @@
 														<li><span class="makeFullW">JSI Issue State</span>{{ data?.JSI?.[0]?.state ?? " " }}</li>
 
 													</ul>
-													<div class="cardFtr">
-														<span *ngIf="data.JSICount"><span
-																class="circleRedBox">{{data.JSICount}}</span> of
-																{{data?.JSICount}}  Records</span>
-														<span *ngIf="!data.JSICount">{{data?.JSI?.length}}
-															Records</span>
-
-													</div>
-													<div class="ftrLogo">
-														<img [src]="nmvtlogo" class="img-fluid" alt="Logo" />
-													</div>
+													
 												</div>
 											</div>
 										</a>
@@ -176,7 +147,7 @@
 						<section id="titleinformations" class="">
 							<div class="sectionText">
 								<h2 class="sectionHeadeing"><span *ngIf="data.titleDataCount"
-										class="circleRedBox">{{data.titleDataCount}}</span>Title Information
+										class="circleRedBox">{{data.titleDataCount}}</span>Title Record History 
 									<small><strong>Source</strong>
 										NMVTIS</small>
 								</h2>
@@ -195,7 +166,8 @@
 												<tr>
 													<th>VINs</th>
 													<th scope="col">Title Issue Date</th>
-													<th scope="col">Title Issue State</th>
+													<th scope="col">Issuing State</th>
+													<th scope="col">Odometer Reading</th>
 													<th scope="col">Status</th>
 												</tr>
 											</thead>
@@ -206,6 +178,8 @@
 													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
 														'DD MMM YYYY') : " " }}</td>
 													<td>{{ item?.state || " " }}</td>
+												<td>{{ item?.odometer ? (item.odometer | number:'1.0-0') : " " }} {{ item?.VehicleOdometerReadingUnitCode || " " }}</td>
+
 													<td>{{ item?.status || " " }}</td>
 													
 												</tr>
@@ -225,7 +199,7 @@
 								</div>
 
 								<h2 class="sectionHeadeing" id="brandtableID"><span *ngIf="data.brandDataCount"
-										class="circleRedBox">{{data.brandDataCount}}</span>  Brand Information
+										class="circleRedBox">{{data.brandDataCount}}</span>  Title Brands Reported 
 								</h2>
 								
 
