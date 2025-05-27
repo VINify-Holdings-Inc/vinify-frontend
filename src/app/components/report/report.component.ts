@@ -9,7 +9,7 @@ import { DateFormatPipe } from '../../pipes/date-format.pipe';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit,AfterViewInit  {
-  //assets
+  //assets/
   logo: string = 'assets/images/ta-logo.png';
   nmvtlogo: string = 'assets/images/nmvtis-1.png';
   reportSummary: string = 'assets/images/icons/sidebar-icon/export-report.svg';
