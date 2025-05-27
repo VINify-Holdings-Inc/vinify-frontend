@@ -1839,7 +1839,7 @@ form.FormAlign {
 
 .leftLoginSection .footerLogin p {
   font-weight: normal;
-  text-align: center;
+  text-align: right;
   margin-top: 0;
   color: #fff;
   font-size: 11px;
@@ -3985,7 +3985,18 @@ span.month-calendar.vehicleMonthSearch.calendar-svg:hover {
   border-radius: 5px;
   margin-left: 10px;
 }
-
+.caution-ftr {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+img.img-fluid.nmvtslogocaution {
+    width: 75px;
+}
+.caution-ftr p {
+    color: #fff;
+    font-size: 11px;
+}
 @media (max-width: 992px) {
   .l-logo {
     display: none;

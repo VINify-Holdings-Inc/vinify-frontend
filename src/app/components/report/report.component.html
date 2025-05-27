@@ -67,7 +67,7 @@
 					</div>
 
 					<div class="upperWarningBox">
-						<div class="warnigBox">
+						<!-- <div class="warnigBox">
 							<div class="warningtext">Warning</div>
 							<div class="warningMsg">
 								<div class="smallWrnMsg">
@@ -76,7 +76,7 @@
 								</div>
 								
 							</div>
-						</div>
+						</div> -->
 					</div>
 
 					<div class="mainTextConent">
@@ -91,10 +91,10 @@
 													<h5 class="card-title">Title Information</h5>
 													<ul>
 														<li>{{ data?.titleData?.[0]?.status ?? " " }}</li>
-														<li>{{ data?.titleMaxDate ?
+														<li><span class="makeFullW">Title Issue Date</span>{{ data?.titleMaxDate ?
 															(data?.titleMaxDate | dateFormat: 'DD MMM
 															YYYY') : " " }}</li>
-														<li>{{ data?.titleData?.[0]?.state ?? " " }}</li>
+														<li><span class="makeFullW">Title Issue State</span>{{ data?.titleData?.[0]?.state ?? " " }}</li>
 													</ul>
 													<div class="cardFtr">
 														<span *ngIf="data.titleDataCount"><span
@@ -117,11 +117,11 @@
 													<h5 class="card-title">Brand Information</h5>
 													<ul>
 														<li>{{ data?.brandData?.[0]?.brand?.split(' - ')[0] ?? " " }}</li>
-														<li>{{ data?.brandMaxDate ?
+														<li><span class="makeFullW">Brand Issue Date</span>{{ data?.brandMaxDate ?
 															(data?.brandMaxDate | dateFormat: 'DD MMM
 															YYYY') : " " }}</li>
 
-														<li>{{ data?.brandData?.[0]?.state ?? " " }}</li>
+														<li><span class="makeFullW">Brand Issue State</span>{{ data?.brandData?.[0]?.state ?? " " }}</li>
 													</ul>
 													<div class="cardFtr">
 														<span *ngIf="data.brandDataCount"><span
@@ -144,10 +144,10 @@
 													<h5 class="card-title">Junk/Salvage Information</h5>
 													<ul>
 														<li>{{ data?.JSI?.[0]?.VehicleDispositionText ?? " " }}</li>
-														<li>{{ data?.jsiMaxDate ?
+														<li><span class="makeFullW">JSI Issue Date</span>{{ data?.jsiMaxDate ?
 															(data?.jsiMaxDate | dateFormat: 'DD MMM
 															YYYY') : " " }}</li>
-														<li>{{ data?.JSI?.[0]?.state ?? " " }}</li>
+														<li><span class="makeFullW">JSI Issue State</span>{{ data?.JSI?.[0]?.state ?? " " }}</li>
 
 													</ul>
 													<div class="cardFtr">
@@ -194,11 +194,9 @@
 											<thead>
 												<tr>
 													<th>VINs</th>
-													<!-- <th scope="col">Brand Name(s)</th> -->
-													<th scope="col">Date</th>
-													<th scope="col">State</th>
+													<th scope="col">Title Issue Date</th>
+													<th scope="col">Title Issue State</th>
 													<th scope="col">Status</th>
-													<th scope="col">Source</th>
 												</tr>
 											</thead>
 											<tbody
@@ -209,11 +207,7 @@
 														'DD MMM YYYY') : " " }}</td>
 													<td>{{ item?.state || " " }}</td>
 													<td>{{ item?.status || " " }}</td>
-													<td>
-														NMVTIS
-														<img [src]="nmvtlogo" class="img-fluid tableinside"
-															alt="Logo" />
-													</td>
+													
 												</tr>
 											</tbody>
 
@@ -233,20 +227,17 @@
 								<h2 class="sectionHeadeing" id="brandtableID"><span *ngIf="data.brandDataCount"
 										class="circleRedBox">{{data.brandDataCount}}</span>  Brand Information
 								</h2>
-								<div class="alert alert-danger displayChange" *ngIf="data.brandDataCount" role="alert">
-									Warning – at least one negative title or cautionary DMV title brands have been
-									reported to VINify History.
-								</div>
+								
+
 								<div class="tableContent">
 									<div class="table-responsive">
 										<table class="table">
 											<thead>
 												<tr>
-													<th scope="col">Date</th>
-													<th width="200" scope="col">State</th>
+													<th scope="col">Brand Issue Date</th>
+													<th width="200" scope="col">Brand Issue State</th>
 													<th width="350" scope="col">Brand Name(s)</th>
 													<th scope="col">Description</th>
-													<th width="300" scope="col">Source</th>
 												</tr>
 											</thead>
 											<tbody
@@ -258,11 +249,7 @@
 													<td>{{ item?.brand ? item?.brand.split(' - ')[0] : " " }}</td>
 													<td><span class="makeitshortLength">{{ item?.brand ?
 															item?.brand.split(' - ')[1] : " " }}</span></td>
-													<td>
-														NMVTIS
-														<img [src]="nmvtlogo" class="img-fluid tableinside"
-															alt="Logo" />
-													</td>
+													
 												</tr>
 											</tbody>
 
@@ -304,36 +291,33 @@
 									the Junk/Salvage section denotes what has happened to the VIN (i.e., vehicle) since
 									it came into the possession of the business.</p>
 
-								<div class="alert alert-danger displayChange" role="alert">
-									Warning - junk, salvage or insurance total loss events have been reported to VINify
-									History.
-								</div>
+								
 								<div class="tableContent">
 									<div class="table-responsive">
 										<table class="table">
 											<thead>
 												<tr>
 													<th scope="col">Date</th>
+													<th scope="col">Report Type</th>
 													<th scope="col">Reporting Entity</th>
-													<th scope="col">Reporting Entity Type</th>
-													<th scope="col">Description</th>
-													<th scope="col">Export</th>
-													<th scope="col">Source</th>
+													<th scope="col">City</th>
+													<th scope="col">State</th>
+													<th scope="col">Phone</th>
+													<th scope="col">Disposition</th>
 												</tr>
 											</thead>
 											<tbody *ngIf="data?.JSI && data?.JSI.length > 0; else noJSIRecords">
 												<tr *ngFor="let item of data?.JSI">
 													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
 														'DD MMM YYYY') : " " }}</td>
-													<td>{{ item?.VehicleDispositionText || " " }}</td>
 													<td>{{ item?.ReportingEntityCategoryText || " " }}</td>
 													<td>{{ item?.EntityName || " " }}</td>
-													<td>{{ item?.export || " " }}</td>
-													<td>
-														NMVTIS
-														<img [src]="nmvtlogo" class="img-fluid tableinside"
-															alt="Logo" />
-													</td>
+													
+													<td>{{ item?.LocationCityName || " " }}</td>
+													<td>{{ item?.state || " " }}</td>
+													<td>{{ item?.TelephoneNumberFullID || " " }}</td>
+													<td>{{ item?.VehicleDispositionText || " " }}</td>
+													
 												</tr>
 											</tbody>
 
