@@ -41,10 +41,6 @@ export class NavPdfService {
     const doc = new jsPDF();
     const nmvtlogo = 'assets/images/nmvtis-1.png';
 
-
-    const today = new Date();
-    const formattedDate = `${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}.${today.getFullYear()}`;
-    const updatedText = `Updated ${formattedDate}`;
     const sectionPositions: { [key: string]: { page: number, y: number } } = {};
     // Header Section (Every Page)
     const addHeader = () => {
@@ -57,10 +53,7 @@ export class NavPdfService {
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
       doc.text('Vehicle History Report', 80, 15);
-      doc.setFontSize(10);
-      doc.setTextColor(67, 66, 66);
-      doc.setFont('helvetica', 'normal');
-      doc.text(updatedText, 160, 15);
+
       // Add VIN and Car Model
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
@@ -76,49 +69,70 @@ export class NavPdfService {
     };
 
     const addVehicleInfoSection = () => {
-      let y = 42;
+      let y = 42; // Position below the header
+
       // Vehicle Title
       doc.setFontSize(18);
       doc.setFont('helvetica', 'bold');
       doc.text('REPORT', 15, y);
       y += 7;
+
+      if (titleCount || brandCount || JSICount) {
+        doc.setFillColor(211, 2, 2); // Red color
+        doc.roundedRect(15, y - 1, 30, 10, 3, 3, 'F'); // x, y, width, height, rx, ry, style (F for fill)
+
+        // Add warning text inside button
+        doc.setTextColor(255, 255, 255); // White text
+        doc.setFontSize(10);
+        doc.text('Warning', 23, y + 5); // Adjust position
+
+        // Reset text color to black for the main message
+        doc.setTextColor(69, 67, 67);
+        doc.setFontSize(10);
+
+        // Add warning message
+        const text = `Warning – at least one negative event has been reported to VINify History.`
+        doc.text(text, 48, y + 4);
+        doc.text(`We recommend an inspection by a qualified mechanic.`, 48, y + 8);
+
+      }
     };
 
     // Footer (Every Page)
-    const addFooter = () => {
-      const pageHeight = doc.internal.pageSize.height;
+const addFooter = () => {
+  const pageHeight = doc.internal.pageSize.height;
 
-      const imgWidth = 10;
-      const imgHeight = 5;
-      const textFontSize = 10;
+  const imgWidth = 10;
+  const imgHeight = 5;
+  const textFontSize = 10;
 
-      const bottomMargin = 2; // 2px bottom margin
+  const bottomMargin = 2; // 2px bottom margin
 
-      const imgX = 15;
-      const imgY = pageHeight - bottomMargin - imgHeight; // Image is 2px above bottom
-      const textX = imgX + imgWidth + 5;
-      const textY = imgY + imgHeight - 1; // Align text with image
+  const imgX = 15;
+  const imgY = pageHeight - bottomMargin - imgHeight; // Image is 2px above bottom
+  const textX = imgX + imgWidth + 5;
+  const textY = imgY + imgHeight - 1; // Align text with image
 
-      const hrY = imgY - 4; // Line appears 4px above the image/text
+  const hrY = imgY - 4; // Line appears 4px above the image/text
 
-      // Draw horizontal line
-      doc.setDrawColor(69, 67, 67);
-      doc.setLineWidth(0.1);
-      doc.line(14, hrY, 196, hrY);
+  // Draw horizontal line
+  doc.setDrawColor(69, 67, 67);
+  doc.setLineWidth(0.1);
+  doc.line(14, hrY, 196, hrY);
 
-      // Add image
-      doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
+  // Add image
+  doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
 
-      // Add footer text
-      doc.setTextColor(80, 80, 80);
-      doc.setFontSize(textFontSize);
-      doc.setFont('helvetica', 'normal');
-      doc.text(
-        'Title Alarm LLC, Marley Nonami Incorporated is an approved NMVTIS Data Provider.',
-        textX,
-        textY
-      );
-    };
+  // Add footer text
+  doc.setTextColor(80, 80, 80);
+  doc.setFontSize(textFontSize);
+  doc.setFont('helvetica', 'normal');
+  doc.text(
+    'Title Alarm LLC, Marley Nonami Incorporated is an approved NMVTIS Data Provider.',
+    textX,
+    textY
+  );
+};
 
 
 
@@ -142,8 +156,11 @@ export class NavPdfService {
       doc.setPage(i);
       addHeader();
     }
-    // addVehicleInfoSection(); 
-    let y = 45;  //120
+    addVehicleInfoSection();
+
+    // Report Summary
+    //redefied
+    let y = 70;  //120
     doc.setFontSize(14);
     doc.setFont('helvetica', 'normal');
 
@@ -159,15 +176,9 @@ export class NavPdfService {
     doc.text(dynamicData, 22, y + 5);
     doc.setFontSize(9);
     //titleLength ? doc.text( tableData[0]?.brand?.split(' - ')[0] ?? " ", 22 , y + 15) : doc.text( " ", 22 , y + 15);
-    titleLength ? doc.text(tableData[0]?.status ?? " ", 22, y + 12) : doc.text(" ", 22, y + 12);
-    doc.setTextColor(0, 0, 0);
-    doc.text("Title Issue Date", 22, y + 19)
-    doc.setTextColor(69, 67, 67);
-    doc.text(titleLength ? titleMaxDate ? this.dateFormate.transform(titleMaxDate, 'DD MMM YYYY') : " " : " ", 22, y + 24)
-    doc.setTextColor(0, 0, 0);
-    doc.text("Title Issue State", 22, y + 33)
-    doc.setTextColor(69, 67, 67);
-    doc.text(titleLength ? tableData[0]?.state ? tableData[0]?.state : " " : " ", 22, y + 37);
+    titleLength ? doc.text(tableData[0]?.status ?? " ", 22, y + 15) : doc.text(" ", 22, y + 15);
+    doc.text(titleLength ? titleMaxDate ? this.dateFormate.transform(titleMaxDate, 'DD MMM YYYY') : " " : " ", 22, y + 25)
+    doc.text(titleLength ? tableData[0]?.state ? tableData[0]?.state : " " : " ", 22, y + 35);
     if (titleCount) {
       drawBadge(doc, 24, y + 44, titleCount);
       doc.setTextColor(69, 67, 67);  //black
@@ -183,16 +194,9 @@ export class NavPdfService {
     doc.setFontSize(12);
     doc.text(dynamicData1, 82, y + 5);
     doc.setFontSize(9);
-    brandLength ? doc.text(brandData[0]?.brand?.split(' - ')[0] ?? " ", 82, y + 12) : doc.text(" ", 82, y + 12);
-    doc.setTextColor(0, 0, 0);
-    doc.text("Brand Issue Date", 82, y + 19)
-    doc.setTextColor(69, 67, 67);
-
+    brandLength ? doc.text(brandData[0]?.brand?.split(' - ')[0] ?? " ", 82, y + 15) : doc.text(" ", 82, y + 15);
     doc.text(brandLength ? brandMaxDate ? this.dateFormate.transform(brandMaxDate, 'DD MMM YYYY') : " " : " ", 82, y + 25)
-    doc.setTextColor(0, 0, 0);
-    doc.text("Brand Issue State", 82, y + 33)
-    doc.setTextColor(69, 67, 67);
-    doc.text(brandLength ? brandData[0]?.state ? brandData[0]?.state : " " : " ", 82, y + 37);
+    doc.text(brandLength ? brandData[0]?.state ? brandData[0]?.state : " " : " ", 82, y + 35);
 
     if (brandCount) {
       drawBadge(doc, 84, y + 44, brandCount);
@@ -209,15 +213,9 @@ export class NavPdfService {
     doc.setFontSize(12);
     doc.text(dynamicData2, 142, y + 5);
     doc.setFontSize(9);
-    jsiLength ? doc.text(junkSalvageData[0]?.VehicleDispositionText?.split(' - ')[0] ?? " ", 142, y + 12) : doc.text(" ", 142, y + 12);
-    doc.setTextColor(0, 0, 0);
-    doc.text("JSI Issue Date", 142, y + 19)
-    doc.setTextColor(69, 67, 67);
+    jsiLength ? doc.text(junkSalvageData[0]?.VehicleDispositionText?.split(' - ')[0] ?? " ", 142, y + 15) : doc.text(" ", 142, y + 15);
     doc.text(jsiLength ? jsiMaxDate ? this.dateFormate.transform(jsiMaxDate, 'DD MMM YYYY') : " " : " ", 142, y + 25)
-    doc.setTextColor(0, 0, 0);
-    doc.text("JSI Issue State", 142, y + 33)
-    doc.setTextColor(69, 67, 67);
-    doc.text(jsiLength ? junkSalvageData[0]?.state ? junkSalvageData[0]?.state : " " : " ", 142, y + 37);
+    doc.text(jsiLength ? junkSalvageData[0]?.state ? junkSalvageData[0]?.state : " " : " ", 142, y + 35);
 
     if (JSICount) {
       drawBadge(doc, 144, y + 44, JSICount);
@@ -250,17 +248,18 @@ export class NavPdfService {
     const TitleDesc = `This section identifies this vehicle's current and historic DMV titles reported as issued by date, indicating the state and reported mileage. Title brands that have been reported to VINify are shown in the “Title Brands Reported” section below. Each title record represents a new title holder, duplicate title, lien release or other title event. This information reflects the title information on file with NMVTIS. For more information, please contact the state of title. We recommend an inspection by a qualified mechanic.`;
     doc.text(doc.splitTextToSize(TitleDesc, 180), 15, y + 6);
     y += 21;
-
+   
     doc.setTextColor(69, 67, 67);
     y += 10;
 
-    const tableColumn = ['VINs', 'Title Issue Date', 'Title Issue State', 'Status'];
+    const tableColumn = ['VINs', 'Date', 'State', 'Status', 'Source'];
     const tableRows = tableData.length > 0 ? tableData.map((item: any) => [
       item?.vin || " ",
       //  item?.brand ? item.brand.split(' - ')[0] : " ",
       item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
       item?.state || " ",
       item?.status || " ",
+      " "
 
     ]) : [["", "", "No records found", "", ""]];
     doc.setTextColor(69, 67, 67);
@@ -273,28 +272,28 @@ export class NavPdfService {
       headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
-      // columnStyles: {
-      //   1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
-      //   2: { cellWidth: 25 },
-      //   3: { cellWidth: 30 },
-      //   4: { cellWidth: 35, halign: 'center', valign: 'middle' }
-      // },
-      // didDrawCell: function (data: any) {
-      //   if (data.column.index === 4 && data.row.index !== -1) { // "Source" column
-      //     const { x, y, width, height } = data.cell;
+      columnStyles: {
+        1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
+        2: { cellWidth: 25 },
+        3: { cellWidth: 30 },
+        4: { cellWidth: 35, halign: 'center', valign: 'middle' }
+      },
+      didDrawCell: function (data: any) {
+        if (data.column.index === 4 && data.row.index !== -1) { // "Source" column
+          const { x, y, width, height } = data.cell;
 
-      //     if (data.row.raw[4] === " ") {  // Ensure only one image per row
-      //       doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
+          if (data.row.raw[4] === " ") {  // Ensure only one image per row
+            doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
 
-      //       const imgWidth = 10; // Image width
-      //       const imgHeight = 5; // Image height
-      //       const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
-      //       const imgY = y + 1; // Center vertically
+            const imgWidth = 10; // Image width
+            const imgHeight = 5; // Image height
+            const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
+            const imgY = y + 1; // Center vertically
 
-      //       doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
-      //     }
-      //   }
-      // },
+            doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
+          }
+        }
+      },
       didDrawPage: (data: any) => {
         // if (data.pageNumber > 1)
         addHeader(); addFooter();
@@ -318,25 +317,27 @@ export class NavPdfService {
     doc.text('Source', 180, y);
     doc.setFont('helvetica', 'normal');
     doc.text('NMVTIS', 188, y);
-    // if (brandCount) {
-    //   y += 5;
-    //   doc.setFillColor(248, 215, 218);
-    //   doc.rect(15, y, 180, 9, 'F');
-    //   doc.setTextColor(69, 67, 67);
-    //   doc.setFontSize(9);
 
-    //   doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VINify History.', 20, y + 6);
-    // }
+    if (brandCount) {
+      y += 5;
+      doc.setFillColor(248, 215, 218);
+      doc.rect(15, y, 180, 9, 'F');
+      doc.setTextColor(69, 67, 67);
+      doc.setFontSize(9);
+
+      doc.text('Warning – at least one negative title or cautionary DMV title brands have been reported to VINify History.', 20, y + 6);
+    }
     doc.setTextColor(69, 67, 67);
-    y += 5;
+    y += 15;
 
-    const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)', 'Description'];
+    const brandColumns = ['Date', 'State', 'Brand Name(s)', 'Description', 'Source'];
     const brandRows = brandData.length > 0 ? brandData.map((item: any) => [
 
       item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
       item?.state || " ",
       item?.brand ? item.brand.split(' - ')[0] : " ",
       item?.brand ? item?.brand.split(' - ')[1] : " ",
+      " "
     ]) : [["", "", "No records found", "", ""]];
 
     (doc as any).autoTable({
@@ -348,7 +349,7 @@ export class NavPdfService {
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
-        0: { cellWidth: 35 },
+        0: { cellWidth: 25 },
         1: { cellWidth: 30 },
         2: { cellWidth: 30 },
         4: { cellWidth: 35, halign: 'center', valign: 'middle' }
@@ -387,7 +388,7 @@ export class NavPdfService {
       y = 40; // Reset Y for new page
       addHeader();
       // doc.setFont('helvetica', 'bold');
-      addFooter();
+       addFooter();
     }
 
     y += 10;
@@ -398,10 +399,10 @@ export class NavPdfService {
       doc.addPage();
       y = 40; // Reset Y for new page
       addHeader();
-      // doc.setFont('helvetica', 'bold');
-      addFooter();
+        // doc.setFont('helvetica', 'bold');
+         addFooter();
     }
-
+    
     // Junk Salvage
     y += 3;
     if (JSICount) {
@@ -425,7 +426,7 @@ export class NavPdfService {
       doc.addPage();
       addHeader();
       // doc.setFont('helvetica', 'bold');
-      addFooter();
+       addFooter();
       y = 40; // Reset Y for new page
     }
     let yPosition21 = y + 3; // Initial y position
@@ -442,26 +443,27 @@ export class NavPdfService {
 
     const text2 = doc.splitTextToSize(JSIDesc2, 180);
     doc.text(text2, 15, yPosition21 + 30);
-    y += 44;
-    doc.setTextColor(69, 67, 67);  //black
-    y += 15;
 
-    const jsiColumns = ['Date', 'Report Type', 'Reporting Entity ', 'City', 'State', 'Phone', 'Disposition'];
+    y += 44;
+    if (JSICount) {
+      doc.setFillColor(248, 215, 218);
+      doc.rect(15, y + 16, 180, 9, 'F');
+      doc.setTextColor(69, 67, 67);  //black
+      doc.setFontSize(9);
+      doc.text('Warning - junk, salvage or insurance total loss events have been reported to VINify History.', 20, y + 22);
+    }
+    doc.setTextColor(69, 67, 67);  //black
+    y += 35;
+
+    const jsiColumns = ['Date', 'Reporting Entity', 'Reporting Entity Type', 'Description', 'Export', 'Source'];
     const jsiRows = junkSalvageData.length > 0
       ? junkSalvageData.map((item: any) => [
-        // item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : " ",
-        // item?.VehicleDispositionText || " ",
-        // item?.ReportingEntityCategoryText || " ",
-        // item?.EntityName || " ",
-        // item?.export || " ",
-        // " ",
         item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : " ",
-          item?.ReportingEntityCategoryText || " ",
-       item?.EntityName || " ",
-        item?.LocationCityName || " ",
-        item?.state || " ",
-          item?.TelephoneNumberFullID || " ",
         item?.VehicleDispositionText || " ",
+        item?.ReportingEntityCategoryText || " ",
+        item?.EntityName || " ",
+        item?.export || " ",
+        " ",
       ]) : [["", "", "No records found", "", "", ""]];
 
     (doc as any).autoTable({
@@ -473,25 +475,25 @@ export class NavPdfService {
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
-        1: { cellWidth: 30 },
-        4: { cellWidth: 30, halign: 'center', valign: 'middle' }
+        0: { cellWidth: 25 },
+        5: { cellWidth: 35, halign: 'center', valign: 'middle' }
       },
-      // didDrawCell: function (data: any) {
-      //   if (data.column.index === 5 && data.row.index !== -1) { // "Source" column
-      //     const { x, y, width, height } = data.cell;
+      didDrawCell: function (data: any) {
+        if (data.column.index === 5 && data.row.index !== -1) { // "Source" column
+          const { x, y, width, height } = data.cell;
 
-      //     if (data.row.raw[5] === " ") {  // Ensure only one image per row
-      //       doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
+          if (data.row.raw[5] === " ") {  // Ensure only one image per row
+            doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
 
-      //       const imgWidth = 10; // Image width
-      //       const imgHeight = 5; // Image height
-      //       const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
-      //       const imgY = y + 1 // Center vertically
+            const imgWidth = 10; // Image width
+            const imgHeight = 5; // Image height
+            const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
+            const imgY = y + 1 // Center vertically
 
-      //       doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
-      //     }
-      //   }
-      // },
+            doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
+          }
+        }
+      },
       didDrawPage: (data: any) => {
         //  if (data.pageNumber > 1) 
         addHeader(); addFooter();
@@ -506,46 +508,46 @@ export class NavPdfService {
       addHeader(); addFooter();
     }
 
-    // Legal Disclaimer
-    doc.setFontSize(14);
+        // Legal Disclaimer
+       doc.setFontSize(14);
+  
+       sectionPositions['disclaim'] = { page: (doc as any).internal.getNumberOfPages(), y: y+5 };
+       doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y+10);
+     
+      doc.setFont('helvetica', 'normal');
+         //const finalY = (doc as any).lastAutoTable.finalY + 25; // Position after the last table
+         const finalY = y+ 27; // Position after the last table
+         let yPosition = finalY;
+         const pageHeight = doc.internal.pageSize.height; 
+         const pageWidth = doc.internal.pageSize.width -40; 
+         const footerHeight = 20; // Reserve 20 units for the footer
+   
+         // Split the disclaimer into lines that fit the page width
+         const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 90);
+         // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
+         doc.setFontSize(10);
+         doc.setTextColor(69, 67, 67);
+   
+         for (let i = 0; i < disclaimerLines.length; i++) {
+           const lineHeight = 5; // Approximate line height
+           const remainingSpace = pageHeight - yPosition - footerHeight;
+                
+           if (remainingSpace < lineHeight) {
+             // Start a new page if remaining space is insufficient
+             doc.addPage();
+             addHeader();addFooter();
+             yPosition = 40; // Reset yPosition to the top margin
+             doc.setTextColor(69, 67, 67);
+             doc.setFontSize(10);
+           }
+           // Add line
+           doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
+           yPosition += lineHeight; // Increment yPosition for the next line
+           y=yPosition;
+         }
+    
 
-    sectionPositions['disclaim'] = { page: (doc as any).internal.getNumberOfPages(), y: y + 5 };
-    doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
-
-    doc.setFont('helvetica', 'normal');
-    //const finalY = (doc as any).lastAutoTable.finalY + 25; // Position after the last table
-    const finalY = y + 27; // Position after the last table
-    let yPosition = finalY;
-    const pageHeight = doc.internal.pageSize.height;
-    const pageWidth = doc.internal.pageSize.width - 40;
-    const footerHeight = 20; // Reserve 20 units for the footer
-
-    // Split the disclaimer into lines that fit the page width
-    const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 90);
-    // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
-    doc.setFontSize(10);
-    doc.setTextColor(69, 67, 67);
-
-    for (let i = 0; i < disclaimerLines.length; i++) {
-      const lineHeight = 5; // Approximate line height
-      const remainingSpace = pageHeight - yPosition - footerHeight;
-
-      if (remainingSpace < lineHeight) {
-        // Start a new page if remaining space is insufficient
-        doc.addPage();
-        addHeader(); addFooter();
-        yPosition = 40; // Reset yPosition to the top margin
-        doc.setTextColor(69, 67, 67);
-        doc.setFontSize(10);
-      }
-      // Add line
-      doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
-      yPosition += lineHeight; // Increment yPosition for the next line
-      y = yPosition;
-    }
-
-
-
+    
 
     // Sources
     let pageHeight3 = doc.internal.pageSize.height;
@@ -640,3 +642,81 @@ export class NavPdfService {
   }
 }
 
+
+
+// -----------------------------------------------  box sectionsssssssssssss
+
+    // {
+    ///box wala content
+    // doc.setFontSize(14);
+    // doc.setFont('helvetica', 'normal');
+
+    // sectionPositions['summary'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
+    // doc.text('Report Summary', 15, y);
+    // y += 7;
+
+    // doc.setLineWidth(.4);
+
+    // doc.roundedRect(20, y, 55, 50, 3, 3, 'S')
+    // const dynamicData = "Title Information"; // Replace with your dynamic data
+    // doc.setFontSize(12);
+    // doc.text(dynamicData, 22, y + 5);
+    // doc.setFontSize(9);
+    // //titleLength ? doc.text( tableData[0]?.brand?.split(' - ')[0] ?? " ", 22 , y + 15) : doc.text( " ", 22 , y + 15);
+    // titleLength ? doc.text(tableData[0]?.status ?? " ", 22, y + 15) : doc.text(" ", 22, y + 15);
+    // doc.text(" Title Issue Date: ", 21, y + 25)
+    // doc.text(titleLength ? titleMaxDate ? this.dateFormate.transform(titleMaxDate, 'DD MMM YYYY') : " " : " ", 46, y + 25)
+    //  doc.text("Title Issue State: ", 22, y + 35)
+    // doc.text(titleLength ? tableData[0]?.state ? tableData[0]?.state : " " : " ", 46, y + 35);
+    // if (titleCount) {
+    //   drawBadge(doc, 24, y + 44, titleCount);
+    //   doc.setTextColor(69, 67, 67);  //black
+    //   doc.text(' of ' + titleLength + ' Records ', 28, y + 45);
+    // } else {
+    //   doc.text(titleLength + ' Records ', 22, y + 45);
+    // }
+
+    // doc.addImage(nmvtlogo, 'PNG', 56, y + 39, 17, 10);
+
+    // doc.roundedRect(80, y, 55, 50, 3, 3, 'S')
+    // const dynamicData1 = "Brand Information"; // Replace with your dynamic data
+    // doc.setFontSize(12);
+    // doc.text(dynamicData1, 82, y + 5);
+    // doc.setFontSize(9);
+    // brandLength ? doc.text(brandData[0]?.brand?.split(' - ')[0] ?? " ", 82, y + 15) : doc.text(" ", 82, y + 15);
+    //  doc.text(" Title Issue Date: ", 81, y + 25)
+    // doc.text(brandLength ? brandMaxDate ? this.dateFormate.transform(brandMaxDate, 'DD MMM YYYY') : " " : " ", 107, y + 25)
+    // doc.text("Title Issue State: ", 82, y + 35)
+    // doc.text(brandLength ? brandData[0]?.state ? brandData[0]?.state : " " : " ", 107, y + 35);
+
+    // if (brandCount) {
+    //   drawBadge(doc, 84, y + 44, brandCount);
+    //   doc.setTextColor(69, 67, 67);   //black
+    //   doc.text(' of ' + brandLength + ' Records', 88, y + 45);
+    // } else {
+    //   doc.text(brandLength + ' Records ', 82, y + 45);
+    // }
+
+    // doc.addImage(nmvtlogo, 'PNG', 116, y + 39, 17, 10);
+
+    // doc.roundedRect(140, y, 55, 50, 3, 3, 'S')
+    // const dynamicData2 = "Junk/Salvage Information"; // Replace with your dynamic data
+    // doc.setFontSize(12);
+    // doc.text(dynamicData2, 142, y + 5);
+    // doc.setFontSize(9);
+    // jsiLength ? doc.text(junkSalvageData[0]?.VehicleDispositionText?.split(' - ')[0] ?? " ", 142, y + 15) : doc.text(" ", 142, y + 15);
+    // doc.text(" Title Issue Date: ", 141, y + 25)
+    // doc.text(jsiLength ? jsiMaxDate ? this.dateFormate.transform(jsiMaxDate, 'DD MMM YYYY') : " " : " ", 167, y + 25)
+    //     doc.text("Title Issue State: ", 142, y + 35)
+    // doc.text(jsiLength ? junkSalvageData[0]?.state ? junkSalvageData[0]?.state : " " : " ", 176, y + 35);
+
+    // if (JSICount) {
+    //   drawBadge(doc, 144, y + 44, JSICount);
+    //   doc.setTextColor(69, 67, 67);
+    //   doc.text(' of ' + jsiLength + ' Records', 148, y + 45);
+    // } else {
+    //   doc.text(jsiLength + ' Records', 142, y + 45);
+    // }
+    //doc.addImage(nmvtlogo, 'PNG', 176, y + 39, 17, 10);
+    // }
+    // Title Information 
