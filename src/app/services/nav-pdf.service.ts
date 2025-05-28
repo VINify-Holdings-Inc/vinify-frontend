@@ -116,15 +116,15 @@ export class NavPdfService {
       doc.setFont('helvetica', 'normal');
       doc.text(
         'Title Alarm LLC, Marley Nonami Incorporated is an approved NMVTIS Data Provider.',
-        textX-2,
-        textY-1
+        textX - 2,
+        textY - 1
       );
       doc.setTextColor(108, 108, 108);
       const dateheader = this.dateFormate.transform(today, 'DD MMM YYYY');
       const updatedText = `Updated ${dateheader}`;
-        doc.setFontSize(9);
-          doc.setFont('helvetica', 'normal');
-      doc.text(updatedText,164, textY-1);
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'normal');
+      doc.text(updatedText, 164, textY - 1);
     };
 
 
@@ -161,10 +161,11 @@ export class NavPdfService {
     doc.setLineWidth(.4);
 
     doc.roundedRect(20, y, 55, 43, 3, 3, 'S')
+    doc.setFont('helvetica', 'bold');
     const dynamicData = `Title Information (${titleCount})`; // Replace with your dynamic data
     doc.setFontSize(10);
-    doc.setFont('helvetica', 'bold');
     doc.text(dynamicData, 22, y + 5);
+    doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
     //titleLength ? doc.text( tableData[0]?.brand?.split(' - ')[0] ?? " ", 22 , y + 15) : doc.text( " ", 22 , y + 15);
     titleLength ? doc.text(tableData[0]?.status ?? " ", 22, y + 12) : doc.text(" ", 22, y + 12);
@@ -187,10 +188,11 @@ export class NavPdfService {
     // doc.addImage(nmvtlogo, 'PNG', 56, y + 39, 17, 10);
 
     doc.roundedRect(80, y, 55, 43, 3, 3, 'S')
+    doc.setFont('helvetica', 'bold');
     const dynamicData1 = `Brand Information (${brandCount})`; // Replace with your dynamic data   
     doc.setFontSize(10);
-    doc.setFont('helvetica', 'bold');
     doc.text(dynamicData1, 82, y + 5);
+    doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
     brandLength ? doc.text(brandData[0]?.brand?.split(' - ')[0] ?? " ", 82, y + 12) : doc.text(" ", 82, y + 12);
     doc.setTextColor(0, 0, 0);
@@ -205,10 +207,11 @@ export class NavPdfService {
 
 
     doc.roundedRect(140, y, 55, 43, 3, 3, 'S')
+    doc.setFont('helvetica', 'bold');
     const dynamicData2 = `Junk/Salvage Information (${JSICount})`;  // Replace with your dynamic data  const dynamicData2 = `Junk/Salvage Information (${brandCount})`; 
     doc.setFontSize(10);
-    doc.setFont('helvetica', 'bold');
     doc.text(dynamicData2, 142, y + 5);
+    doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
     jsiLength ? doc.text(junkSalvageData[0]?.VehicleDispositionText?.split(' - ')[0] ?? " ", 142, y + 12) : doc.text(" ", 142, y + 12);
     doc.setTextColor(0, 0, 0);
@@ -221,9 +224,7 @@ export class NavPdfService {
     doc.text(jsiLength ? junkSalvageData[0]?.state ? junkSalvageData[0]?.state : " " : " ", 142, y + 37);
 
     y += 60;
-    if (titleCount) {
-      drawBadge(doc, 14, y - 1, titleCount);  //x,y,number
-    }
+    drawBadge(doc, 14, y - 1, titleCount);
     doc.setFontSize(14);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(69, 67, 67);
@@ -245,24 +246,23 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     y += 10;
 
-    const tableColumn = ['VINs', 'Title Issue Date', 'Issuing State','Odometer Reading', 'Status'];
-    
-const tableRows = tableData.length > 0
-    ? tableData.map((item:any) => {
+    const tableColumn = ['VINs', 'Title Issue Date', 'Issuing State', 'Odometer Reading', 'Status'];
+
+    const tableRows = tableData.length > 0
+      ? tableData.map((item: any) => {
         // Format odometer
         const odometerStr = item?.odometer || '';
         const numericValue = parseInt(odometerStr.replace(/[^\d]/g, ''), 10) || 0;
-        const formattedOdometer = `${numericValue.toLocaleString('en-US')} ${item?.VehicleOdometerReadingUnitCode || ''}`;
-
+        const formattedOdometer = `${numericValue.toLocaleString('en-US')} ${item?.VehicleOdometerReadingUnitCode === "M" ? 'Miles' : 'KM'}`
         return [
           item?.vin || ' ',
-          item?.titleBrandDate  ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : ' ',
+          item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : ' ',
           item?.state || ' ',
           formattedOdometer,
           item?.status || ' ',
         ];
       })
-    : [['', '', 'No records found', '', '']];
+      : [['', '', 'No records found', '', '']];
     doc.setTextColor(69, 67, 67);
     // Draw Title Information Table
     (doc as any).autoTable({
@@ -305,14 +305,20 @@ const tableRows = tableData.length > 0
 
     // Brand Title
     y += 5;
-    if (brandCount) {
-      drawBadge(doc, 14, y - 1, brandCount);  //x,y,number
+
+    const pageHeightBrand = doc.internal.pageSize.height;
+    // Check if less than 150px space is left on the current page
+    if (pageHeightBrand - y < 70) {
+      doc.addPage(); // Add a new page
+      y = 44; // Reset Y position for new page (you can choose your margin)
     }
+    drawBadge(doc, 14, y - 1, brandCount);  //x,y,number
     doc.setFontSize(14);
     doc.setTextColor(69, 67, 67);
-
     sectionPositions['brand'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
     doc.text('Title Brands Reported', 19, y);
+    addHeader();
+    addFooter();
     doc.setFontSize(6);
     doc.setFont('helvetica', 'bold');
     doc.text('Source', 180, y);
@@ -396,14 +402,20 @@ const tableRows = tableData.length > 0
 
     // Junk Salvage
     y += 3;
-    if (JSICount) {
-      drawBadge(doc, 14, y - 1, JSICount);  //x,y,number
+    //black
+    const pageHeightJsi = doc.internal.pageSize.height;
+    // Check if less than 150px space is left on the current page
+    if (pageHeightJsi - y < 70) {
+      doc.addPage(); // Add a new page
+      y = 44; // Reset Y position for new page (you can choose your margin)
     }
+    drawBadge(doc, 14, y - 1, JSICount);
     doc.setFontSize(14);
-    doc.setTextColor(69, 67, 67);  //black
-
+    doc.setTextColor(69, 67, 67);
     sectionPositions['junksalvage'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
     doc.text('Junk/Salvage Information', 19, y);
+    addHeader();
+    addFooter();
     doc.setFontSize(6);
     doc.setFont('helvetica', 'bold');
     doc.text('Source', 180, y);
@@ -426,11 +438,11 @@ const tableRows = tableData.length > 0
     const text1 = doc.splitTextToSize(JSIDesc1, 180);
     doc.text(text1, 15, yPosition21 + 5);
     doc.setFont('helvetica', 'bold');
-    doc.text('Explanatory Note:', 15, yPosition21 + 30);
+    doc.text('Explanatory Note:', 15, yPosition21 + 33);
 
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    yPosition21 += 5;
+    yPosition21 += 7;
 
     const text2 = doc.splitTextToSize(JSIDesc2, 180);
     doc.text(text2, 15, yPosition21 + 30);
@@ -465,7 +477,7 @@ const tableRows = tableData.length > 0
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
-          0: { cellWidth: 30 },
+        0: { cellWidth: 30 },
         1: { cellWidth: 30 },
         4: { cellWidth: 30 }
       },
@@ -502,58 +514,58 @@ const tableRows = tableData.length > 0
     // Legal Disclaimer
     doc.setFontSize(14);
 
-    sectionPositions['disclaim'] = { page: (doc as any).internal.getNumberOfPages(), y: y + 5 };
-    doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
+    const pageHeightDisclamer = doc.internal.pageSize.height;
+    // Check if less than 150px space is left on the current page
+    if (pageHeightDisclamer - y < 70) {
+      doc.addPage(); // Add a new page
+      y = 34; // Reset Y position for new page (you can choose your margin)
+    }
+    // Use pages.length instead of getNumberOfPages()
+  sectionPositions['disclaim'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
 
+    doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
+    addHeader();
+    addFooter();
     doc.setFont('helvetica', 'normal');
-    //const finalY = (doc as any).lastAutoTable.finalY + 25; // Position after the last table
-    const finalY = y + 27; // Position after the last table
+    const finalY = y + 20;
     let yPosition = finalY;
     const pageHeight = doc.internal.pageSize.height;
-    const pageWidth = doc.internal.pageSize.width - 40;
-    const footerHeight = 20; // Reserve 20 units for the footer
+    const pageWidth = doc.internal.pageSize.width - 40; // 20 margin each side
+    const footerHeight = 15;
 
-    // Split the disclaimer into lines that fit the page width
-    const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 90);
-    // Loop through the disclaimer lines and add them to the PDF, spanning multiple pages if needed
+    const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth); // Correct width
     doc.setFontSize(10);
     doc.setTextColor(69, 67, 67);
 
     for (let i = 0; i < disclaimerLines.length; i++) {
-      const lineHeight = 5; // Approximate line height
+      const lineHeight = 5;
       const remainingSpace = pageHeight - yPosition - footerHeight;
 
       if (remainingSpace < lineHeight) {
-        // Start a new page if remaining space is insufficient
         doc.addPage();
-        addHeader(); addFooter();
-        yPosition = 40; // Reset yPosition to the top margin
+        addHeader();
+        addFooter();
+        yPosition = 40;
         doc.setTextColor(69, 67, 67);
         doc.setFontSize(10);
       }
-      // Add line
-      doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
-      yPosition += lineHeight; // Increment yPosition for the next line
+
+      doc.text(disclaimerLines[i], 15, yPosition, { align: 'left' }); // 20 = left margin
+      yPosition += lineHeight;
       y = yPosition;
     }
 
-
-
-
-    // Sources
-    let pageHeight3 = doc.internal.pageSize.height;
-    if (y + 20 > pageHeight3 - 25) { // Adjust 25 for footer space
-      doc.addPage();
-      y = 40; // Reset Y for new page
-      addHeader(); addFooter();
+    y = y + 10;
+    const pageHeightSource = doc.internal.pageSize.height;
+    // Check if less than 150px space is left on the current page
+    if (pageHeightSource - y < 70) {
+      doc.addPage(); // Add a new page
+      y = 44; // Reset Y position for new page (you can choose your margin)
     }
-    y += 12;
     doc.setFontSize(14);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(69, 67, 67);
-
     sectionPositions['source'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
     doc.text('Sources', 15, y);
+    addHeader(); addFooter();
     y += 10;
     if (y + 50 > doc.internal.pageSize.height - 20) {
       doc.addPage();
