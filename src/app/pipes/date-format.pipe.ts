@@ -2,73 +2,66 @@ import { Pipe, PipeTransform, Injectable } from '@angular/core';
 
 @Pipe({
   name: 'dateFormat',
-  standalone: true, // Allows standalone usage of the pipe
+  standalone: true,
 })
 @Injectable({
-  providedIn: 'root', // Makes the pipe injectable for services
+  providedIn: 'root',
 })
 export class DateFormatPipe implements PipeTransform {
   transform(value: Date | string | null, format: string): string {
-    if (!value) return " "; // Return a placeholder for null or undefined values
+    if (!value) return ' ';
 
     const date = value instanceof Date ? value : new Date(value);
 
-    if (isNaN(date.getTime())) {
-      return " "; // Handle invalid date inputs
-    }
+    if (isNaN(date.getTime())) return ' ';
 
     const now = new Date();
 
+    // Get UTC parts for global consistency
+    const utcDay = date.getUTCDate().toString().padStart(2, '0');
+    const utcMonthIndex = date.getUTCMonth(); // 0-based
+    const utcMonth = date.toLocaleString('en-US', {
+      month: 'short',
+      timeZone: 'UTC',
+    });
+    const utcYear = date.getUTCFullYear();
+    const utcHours = date.getUTCHours().toString().padStart(2, '0');
+    const utcMinutes = date.getUTCMinutes().toString().padStart(2, '0');
+    const utcSeconds = date.getUTCSeconds().toString().padStart(2, '0');
+
     switch (format) {
-      case 'DD MM YYYY': {
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day} ${month} ${year}`;
-      }
+      case 'DD MM YYYY':
+        return `${utcDay} ${(utcMonthIndex + 1).toString().padStart(2, '0')} ${utcYear}`;
 
       case 'YYYY':
-        return date.getFullYear().toString();
+        return utcYear.toString();
 
-      case 'MMM DD YYYY': {
-        const options: Intl.DateTimeFormatOptions = {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-        };
-        return date.toLocaleDateString('en-US', options);
-      }
+      case 'MMM DD YYYY':
+        return `${utcMonth} ${utcDay} ${utcYear}`;
 
       case 'MMM DD, YYYY - h:mm A': {
-        const dateOptions: Intl.DateTimeFormatOptions = {
+        const localDate = new Date(date);
+        const datePart = localDate.toLocaleDateString('en-US', {
           year: 'numeric',
           month: 'short',
           day: 'numeric',
-        };
-        const timeOptions: Intl.DateTimeFormatOptions = {
+        });
+        const timePart = localDate.toLocaleTimeString('en-US', {
           hour: 'numeric',
           minute: 'numeric',
           hour12: true,
-        };
-
-        const datePart = date.toLocaleDateString('en-US', dateOptions);
-        const timePart = date.toLocaleTimeString('en-US', timeOptions);
-
+        });
         return `${datePart} - ${timePart}`;
       }
 
-      case 'DD MMM YYYY': {
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = date.toLocaleString('en-US', { month: 'short' });
-        const year = date.getFullYear();
-        return `${day} ${month} ${year}`;
-      }
+      case 'DD MMM YYYY':
+        return `${utcDay} ${utcMonth} ${utcYear}`;
 
       case 'relative': {
-        const createdYear = date.getFullYear();
-        const createdMonth = date.getMonth();
-        const currentYear = now.getFullYear();
-        const currentMonth = now.getMonth();
+        const createdYear = date.getUTCFullYear();
+        const createdMonth = date.getUTCMonth();
+        const currentYear = now.getUTCFullYear();
+        const currentMonth = now.getUTCMonth();
 
         if (createdYear === currentYear && createdMonth === currentMonth) {
           return 'This month';
@@ -77,60 +70,46 @@ export class DateFormatPipe implements PipeTransform {
         const monthsDifference =
           (currentYear - createdYear) * 12 + (currentMonth - createdMonth);
 
-        if (monthsDifference === 1) {
-          return '1 month ago';
-        }
-
-        return `${monthsDifference} months ago`;
+        return monthsDifference === 1
+          ? '1 month ago'
+          : `${monthsDifference} months ago`;
       }
+
       case 'h:mm A, ddd DD MMM YYYY': {
-        const timeOptions: Intl.DateTimeFormatOptions = {
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true,
-        };
-        const dayOptions: Intl.DateTimeFormatOptions = {
-            weekday: 'short',
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric',
-        };
-    
-        // Get time in the desired format (e.g., 10.40 AM)
-        const timePart = date.toLocaleTimeString('en-US', timeOptions);
-    
-        // Get date in the desired format (e.g., Tue Jan 21 2025)
-        const dayPart = date.toLocaleDateString('en-US', dayOptions);
-        
-        // Remove the extra comma from the date part
-        let formattedDate = dayPart.replace(',', '');
-        let formattedDate1 = formattedDate.replace(',', '');
-        // Return the formatted string
-        return `${timePart}, ${formattedDate1}`;
-    }
-    case 'DD MMM - HH:mm:ss': {
-      const day = date.getDate().toString().padStart(2, '0');
-      const month = date.toLocaleString('en-US', { month: 'short' });
-      const hours = date.getHours().toString().padStart(2, '0');
-      const minutes = date.getMinutes().toString().padStart(2, '0');
-      const seconds = date.getSeconds().toString().padStart(2, '0');
-      return `${day} ${month} - ${hours}:${minutes}:${seconds}`;
-  }
-  case 'MMM DD, YYYY - h:mm A (UTC)': {
-      const utcYear = date.getUTCFullYear();
-      const utcMonth = date.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
-      const utcDay = date.getUTCDate().toString().padStart(2, '0');
-      const utcHours = date.getUTCHours();
-      const utcMinutes = date.getUTCMinutes().toString().padStart(2, '0');
-      
-      const amPm = utcHours >= 12 ? 'PM' : 'AM';
-      const formattedHours = (utcHours % 12 || 12).toString().padStart(2, '0'); // Convert 24-hour to 12-hour format
-    
-      return `${utcMonth} ${utcDay}, ${utcYear} - ${formattedHours}:${utcMinutes} ${amPm}`;
-  }
+        const localDate = new Date(date);
+        const timePart = localDate.toLocaleTimeString('en-US', {
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true,
+        });
+        const dayPart = localDate.toLocaleDateString('en-US', {
+          weekday: 'short',
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+        });
+        const formatted = dayPart.replace(/,/g, '');
+        return `${timePart}, ${formatted}`;
+      }
+
+      case 'DD MMM - HH:mm:ss':
+        return `${utcDay} ${utcMonth} - ${utcHours}:${utcMinutes}:${utcSeconds}`;
+
+      case 'MMM DD, YYYY - h:mm A (UTC)': {
+        const utcHour12 = (+utcHours % 12 || 12).toString().padStart(2, '0');
+        const amPm = +utcHours >= 12 ? 'PM' : 'AM';
+        return `${utcMonth} ${utcDay}, ${utcYear} - ${utcHour12}:${utcMinutes} ${amPm}`;
+      }
+
+      // Explicit string case for '2007-09-27' format (handled via default date parsing)
+      case 'global-YYYY-MM-DD': {
+        // Converts to consistent format like "27 Sep 2007"
+        return `${utcDay} ${utcMonth} ${utcYear}`;
+      }
 
       default:
-        return date.toISOString(); // Default ISO string format
+        // ISO format fallback
+        return new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString();
     }
   }
 }
