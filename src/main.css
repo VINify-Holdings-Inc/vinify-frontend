@@ -4006,3 +4006,9 @@ img.img-fluid.nmvtslogocaution {
     display: inline-block;
   }
 }
+
+
+.url_navigate{
+  color: #0000ff !important;
+  cursor: pointer !important;
+}

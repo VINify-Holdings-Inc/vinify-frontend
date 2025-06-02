@@ -246,60 +246,86 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     y += 10;
 
-    const tableColumn = ['VINs', 'Title Issue Date', 'Issuing State', 'Odometer Reading', 'Status'];
+   const tableColumn = ['VINs', 'Title Issue Date', 'Issuing State', 'Odometer Reading', 'Status'];
 
-    const tableRows = tableData.length > 0
-      ? tableData.map((item: any) => {
-        // Format odometer
-        const odometerStr = item?.odometer || '';
-        const numericValue = parseInt(odometerStr.replace(/[^\d]/g, ''), 10) || 0;
-        const formattedOdometer = `${numericValue.toLocaleString('en-US')} ${item?.VehicleOdometerReadingUnitCode === "M" ? 'Miles' : 'KM'}`
-        return [
-          item?.vin || ' ',
-          item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : ' ',
-          item?.state || ' ',
-          formattedOdometer,
-          item?.status || ' ',
-        ];
-      })
-      : [['', '', 'No records found', '', '']];
-    doc.setTextColor(69, 67, 67);
-    // Draw Title Information Table
-    (doc as any).autoTable({
-      startY: y += 5,
-      theme: 'grid',
-      head: [tableColumn],
-      body: tableRows,
-      headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
-      bodyStyles: { fontSize: 7 },
-      margin: { top: 41, bottom: 25 },
-      // columnStyles: {
-      //   1: { cellWidth: 30 }, // Increases width of the "Date" column (index 0)
-      //   2: { cellWidth: 25 },
-      //   3: { cellWidth: 30 },
-      //   4: { cellWidth: 35, halign: 'center', valign: 'middle' }
-      // },
-      // didDrawCell: function (data: any) {
-      //   if (data.column.index === 4 && data.row.index !== -1) { // "Source" column
-      //     const { x, y, width, height } = data.cell;
+const tableRows = tableData.length > 0
+  ? tableData.map((item: any) => {
+      const odometerStr = item?.odometer || '';
+      const numericValue = parseInt(odometerStr.replace(/[^\d]/g, ''), 10) || 0;
+      const formattedOdometer = `${numericValue.toLocaleString('en-US')} ${item?.VehicleOdometerReadingUnitCode === "M" ? 'Miles' : 'KM'}`;
 
-      //     if (data.row.raw[4] === " ") {  // Ensure only one image per row
-      //       doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
+      return [
+        item?.vin || ' ',
+        item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : ' ',
+        item?.state || ' ',
+        formattedOdometer,
+        item?.status || ' ',
+        item?.weburl || ' ' // Index 5 (for internal usage only, not rendered as a visible column)
+      ];
+    })
+  : [['', '', 'No records found', '', '', '']];
 
-      //       const imgWidth = 10; // Image width
-      //       const imgHeight = 5; // Image height
-      //       const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
-      //       const imgY = y + 1; // Center vertically
+doc.setTextColor(69, 67, 67);
 
-      //       doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
-      //     }
-      //   }
-      // },
-      didDrawPage: (data: any) => {
-        // if (data.pageNumber > 1)
-        addHeader(); addFooter();
-      },
-    });
+(doc as any).autoTable({
+  startY: y += 5,
+  theme: 'grid',
+  head: [tableColumn],
+  body: tableRows,
+  headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
+  bodyStyles: { fontSize: 7 },
+  margin: { top: 41, bottom: 25 },
+  columnStyles: {
+    1: { cellWidth: 30 },
+    2: { cellWidth: 25 },
+    3: { cellWidth: 30 },
+    4: { cellWidth: 35, halign: 'center', valign: 'middle' }
+  },
+
+  didParseCell: (data: any) => {
+    // Remove text from 'Issuing State' cell if a URL is available
+    if (data.section === 'body' && data.column.index === 2 && data.row.raw[5]?.trim()) {
+      data.cell.text = '';
+    }
+  },
+
+  didDrawCell: (data: any) => {
+    const { column, row, cell, section } = data;
+    const rowData = row.raw;
+
+    // Add clickable URL on 'Issuing State' column
+    if (section === 'body' && column.index === 2 && row.index !== -1) {
+      const stateText = rowData[2];
+      const url = rowData[5]; // weburl
+
+      if (url?.trim()) {
+        const { x, y, height } = cell;
+
+        // Save current styles
+        const prevColor = doc.getTextColor();
+        const prevFontSize = doc.getFontSize();
+
+        // Set link style
+        doc.setTextColor(0, 0, 255);
+        doc.setFontSize(7);
+
+        const textY = y + height / 2 + 2;
+
+        doc.textWithLink(stateText, x + 1, textY, { url });
+
+        // Restore previous styles
+        doc.setTextColor(prevColor);
+        doc.setFontSize(prevFontSize);
+      }
+    }
+  },
+
+  didDrawPage: (data: any) => {
+    addHeader();
+    addFooter();
+  },
+});
+
 
     y = (doc as any).lastAutoTable.finalY + 10;
 
@@ -328,53 +354,88 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     y += 5;
 
-    const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)', 'Description'];
-    const brandRows = brandData.length > 0 ? brandData.map((item: any) => [
+  const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)', 'Description', 'Source'];
+const brandRows = brandData.length > 0 ? brandData.map((item: any) => [
+  item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
+  item?.state || " ",
+  item?.brand ? item.brand.split(' - ')[0] : " ",
+  item?.brand ? item.brand.split(' - ')[1] : " ",
+  " ", // Source column for NMVTIS logo
+  item?.weburl || " " // Hidden column for hyperlink usage
+]) : [["", "", "No records found", "", "", ""]];
 
-      item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
-      item?.state || " ",
-      item?.brand ? item.brand.split(' - ')[0] : " ",
-      item?.brand ? item?.brand.split(' - ')[1] : " ",
-    ]) : [["", "", "No records found", "", ""]];
+(doc as any).autoTable({
+  startY: y,
+  theme: 'grid',
+  head: [brandColumns],
+  body: brandRows,
+  headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
+  bodyStyles: { fontSize: 7 },
+  margin: { top: 41, bottom: 25 },
+  columnStyles: {
+    0: { cellWidth: 35 },
+    1: { cellWidth: 30 },
+    2: { cellWidth: 30 },
+    4: { cellWidth: 35, halign: 'center', valign: 'middle' },
+    5: { cellWidth: 0 } // Hidden weburl column
+  },
 
-    (doc as any).autoTable({
-      startY: y,
-      theme: 'grid',
-      head: [brandColumns],
-      body: brandRows,
-      headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
-      bodyStyles: { fontSize: 7 },
-      margin: { top: 41, bottom: 25 },
-      columnStyles: {
-        0: { cellWidth: 35 },
-        1: { cellWidth: 30 },
-        2: { cellWidth: 30 },
-        4: { cellWidth: 35, halign: 'center', valign: 'middle' }
-      },
-      didDrawCell: function (data: any) {
-        if (data.column.index === 4 && data.row.index !== -1) { // "Source" column
-          const { x, y, width, height } = data.cell;
+  // Clear State text if it will be replaced with hyperlink
+  didParseCell: (data: any) => {
+    if (data.section === 'body' && data.column.index === 1 && data.row.raw[5]?.trim()) {
+      data.cell.text = '';
+    }
+  },
 
-          if (data.row.raw[4] === " ") {  // Ensure only one image per row
-            doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
+  didDrawCell: function (data: any) {
+    const { column, row, cell, section } = data;
+    const rowData = row.raw;
 
-            const imgWidth = 10; // Image width
-            const imgHeight = 5; // Image height
-            const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
-            const imgY = y + 1; // Center vertically
+    // NMVTIS logo in Source column
+    if (section === 'body' && column.index === 4 && row.index !== -1) {
+      const { x, y, width } = cell;
 
-            doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
-          }
-        }
-      },
-      didDrawPage: (data: any) => {
-        //  if (data.pageNumber > 1)
-        addHeader();
-        // doc.setFont('helvetica', 'bold'); 
-        addFooter();
-        //  doc.setFont('helvetica', 'normal'); 
-      },
-    });
+      if (rowData[4] === " ") {
+        doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
+
+        const imgWidth = 10;
+        const imgHeight = 5;
+        const imgX = x + width / 2 - imgWidth / 2;
+        const imgY = y + 1;
+
+        doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
+      }
+    }
+
+    // Hyperlink on State column
+    if (section === 'body' && column.index === 1 && row.index !== -1) {
+      const stateText = rowData[1];
+      const url = rowData[5];
+
+      if (url?.trim()) {
+        const { x, y, height } = cell;
+
+        const prevColor = doc.getTextColor();
+        const prevFontSize = doc.getFontSize();
+
+        doc.setTextColor(0, 0, 255); // blue link
+        doc.setFontSize(7);
+
+        const textY = y + height / 2 + 2;
+        doc.textWithLink(stateText, x + 1, textY, { url });
+
+        doc.setTextColor(prevColor);
+        doc.setFontSize(prevFontSize);
+      }
+    }
+  },
+
+  didDrawPage: (data: any) => {
+    addHeader();
+    addFooter();
+  },
+});
+
 
     // **Update y position dynamically again**
     y = (doc as any).lastAutoTable.finalY + 10;
@@ -450,58 +511,78 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);  //black
     y += 15;
 
-    const jsiColumns = ['Date', 'Report Type', 'Reporting Entity ', 'City', 'State', 'Phone', 'Disposition'];
-    const jsiRows = junkSalvageData.length > 0
-      ? junkSalvageData.map((item: any) => [
-        // item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : " ",
-        // item?.VehicleDispositionText || " ",
-        // item?.ReportingEntityCategoryText || " ",
-        // item?.EntityName || " ",
-        // item?.export || " ",
-        // " ",
-        item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : " ",
-        item?.ReportingEntityCategoryText || " ",
-        item?.EntityName || " ",
-        item?.LocationCityName || " ",
-        item?.state || " ",
-        item?.TelephoneNumberFullID || " ",
-        item?.VehicleDispositionText || " ",
-      ]) : [["", "", "No records found", "", "", ""]];
+   const jsiColumns = ['Date', 'Report Type', 'Reporting Entity', 'City', 'State', 'Phone', 'Disposition'];
+const jsiRows = junkSalvageData.length > 0
+  ? junkSalvageData.map((item: any) => [
+      item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : " ",
+      item?.ReportingEntityCategoryText || " ",
+      item?.EntityName || " ",
+      item?.LocationCityName || " ",
+      item?.state || " ",        // Index 4 — to display in table (with link)
+      item?.TelephoneNumberFullID || " ",
+      item?.VehicleDispositionText || " ",
+      item?.weburl || " "        // Index 7 — hidden column for actual link
+    ])
+  : [["", "", "No records found", "", "", "", "", ""]];
 
-    (doc as any).autoTable({
-      startY: y,
-      theme: 'grid',
-      head: [jsiColumns],
-      body: jsiRows,
-      headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
-      bodyStyles: { fontSize: 7 },
-      margin: { top: 41, bottom: 25 },
-      columnStyles: {
-        0: { cellWidth: 30 },
-        1: { cellWidth: 30 },
-        4: { cellWidth: 30 }
-      },
-      // didDrawCell: function (data: any) {
-      //   if (data.column.index === 5 && data.row.index !== -1) { // "Source" column
-      //     const { x, y, width, height } = data.cell;
+(doc as any).autoTable({
+  startY: y,
+  theme: 'grid',
+  head: [jsiColumns],
+  body: jsiRows,
+  headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
+  bodyStyles: { fontSize: 7 },
+  margin: { top: 41, bottom: 25 },
+  columnStyles: {
+    0: { cellWidth: 30 },
+    1: { cellWidth: 30 },
+    4: { cellWidth: 30 },
+    7: { cellWidth: 0 } // Hidden column for web URL
+  },
 
-      //     if (data.row.raw[5] === " ") {  // Ensure only one image per row
-      //       doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
+  // Remove text in State column if we are rendering it as link
+  didParseCell: (data: any) => {
+    if (data.section === 'body' && data.column.index === 4 && data.row.raw[7]?.trim()) {
+      data.cell.text = '';
+    }
+  },
 
-      //       const imgWidth = 10; // Image width
-      //       const imgHeight = 5; // Image height
-      //       const imgX = x + width / 2 - imgWidth / 2; // Center horizontally
-      //       const imgY = y + 1 // Center vertically
+  didDrawCell: function (data: any) {
+    const { column, row, cell, section } = data;
+    const rowData = row.raw;
 
-      //       doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
-      //     }
-      //   }
-      // },
-      didDrawPage: (data: any) => {
-        //  if (data.pageNumber > 1) 
-        addHeader(); addFooter();
-      },
-    });
+    // Add link to State column (index 4)
+    if (section === 'body' && column.index === 4 && row.index !== -1) {
+      const stateText = rowData[4];
+      const url = rowData[7]; // Hidden weburl
+
+      if (url?.trim()) {
+        const { x, y, height } = cell;
+
+        const prevColor = doc.getTextColor();
+        const prevFontSize = doc.getFontSize();
+
+        doc.setTextColor(0, 0, 255); // blue
+        doc.setFontSize(7);
+
+        const textY = y + height / 2 + 2;
+
+        doc.textWithLink(stateText, x + 1, textY, { url });
+
+        doc.setTextColor(prevColor);
+        doc.setFontSize(prevFontSize);
+      }
+    }
+  },
+
+  didDrawPage: (data: any) => {
+    addHeader();
+    addFooter();
+  },
+});
+
+
+
     y = (doc as any).lastAutoTable.finalY + 10;
 
     let pageHeight2 = doc.internal.pageSize.height;
@@ -644,4 +725,3 @@ export class NavPdfService {
     doc.save(fileName);
   }
 }
-

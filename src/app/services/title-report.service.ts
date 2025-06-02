@@ -57,109 +57,122 @@ export class TitleReportService {
       addHeader();
       addFooter();
   
-      const tableColumn = ['Status', 'Date', 'Type', 'Brand Name(s)', 'Odometer', 'State', 'City', 'Description', 'Export', 'RPTG Entity', 'Mobile', 'Email'];
-      const tableRows = tableData.map((item) => [
-        item.status || " ",
-        item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
-        item.alertType || " ",
-        item?.alertType === 'Title' ? " " : (item?.brand ? item.brand.split(' - ')[0] : " "),
-        item.odometer || " ",
-        item.state || " ",
-        item.city || " ",
-        item.description || " ",
-        item.export ? this.capitalizePipe.transform(item.export) : " ",
-        item.rptgEntity || " ",
-        item.mobile || " ",
-        item.email || " ",
-        item.isDel ? item.isDel : false,
-        item?.isRead ? item?.isRead : false
-      ]);
-  
-      (doc as any).autoTable({
-        startY: 30,
-        theme: 'grid',
-        head: [tableColumn],
-        body: tableRows,
-        headStyles: {
-          fillColor: [207, 75, 95],
-          fontSize: 8
-        },
-        bodyStyles: {
-          fontSize: 7
-        },
-        margin: { top: 28 },
-        columnStyles: {
-          1: { cellWidth: 30 },
-          2: { cellWidth: 20 }
-        },
-  
-        didParseCell: (data: any) => {
-          if (data.section === 'body') {
-            const isDeleted = data.row.raw[12];
-            const isRead = data.row.raw[13];
-        
-            // Clear Type column text if deleted
-            if (isDeleted && data.column.index === 2) {
-              data.cell.text = '';
-            }
-        
-            // Always clear Status column text (you draw it manually later)
-            if (data.column.index === 0) {
-              data.cell.text = '';
-            }
-          }
-        },
-        
-  
-        didDrawCell: (data: any) => {
-          const isDeleted = data.row.raw[12];
-          const isRead = data.row.raw[13];
-  
-          // Circle before status text (column index 0)
-          if (data.section === 'body' && data.column.index === 0) {
-            const circleX = data.cell.x + 2.5;
-            const circleY = data.cell.y + data.cell.height / 2;
-          
-            const textX = circleX + 4; // Provide enough space between circle and text
-            const textY = circleY + 1;
-          
-            // Prevent autoTable from rendering the default text
-            data.cell.text = '';
-          
-            // Draw the circle
-            doc.setFillColor(isRead ? 128 : 207, isRead ? 128 : 75, isRead ? 128 : 95);
-            doc.circle(circleX, circleY,0.5, 'F');
-          
-            // Draw the status text manually
-            doc.setTextColor(20);
-            doc.setFontSize(7);
-            doc.setTextColor(111, 101, 100);
-            doc.text(String(data.row.raw[0]), textX, textY);  
-          }
-          
-  
-          // Redraw Type column with image if deleted
-          if (data.section === 'body' && data.column.index === 2 && isDeleted) {
-            const alertText = data.row.raw[2];
-            const textX = data.cell.x + 2;
-            const textY = data.cell.y + data.cell.height / 2 + 1;
-  
-            doc.setFontSize(7);
-            doc.text(String(alertText), textX, textY);
-  
-            const imgX = textX + doc.getTextWidth(alertText) + 2;
-            const imgY = textY - 2.5;
-            doc.addImage(checkImg, 'PNG', imgX, imgY, 8, 3);
-          }
-        },
-  
-        didDrawPage: (data: any) => {
-          if (data.pageNumber > 1) {
-            addHeader();
-            addFooter();
-          }
-        }
-      });
+    const tableColumn = ['Status', 'Date', 'Type', 'Brand Name(s)', 'Odometer', 'State', 'City', 'Description', 'Export', 'RPTG Entity', 'Mobile', 'Email'];
+
+const tableRows = tableData.map((item) => [
+  item.status || " ",
+  item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
+  item.alertType || " ",
+  item?.alertType === 'Title' ? " " : (item?.brand ? item.brand.split(' - ')[0] : " "),
+  item.odometer || " ",
+  item.state || " ",
+  item.city || " ",
+  item.description || " ",
+  item.export ? this.capitalizePipe.transform(item.export) : " ",
+  item.rptgEntity || " ",
+  item.mobile || " ",
+  item.email || " ",
+  item.isDel ? item.isDel : false,      // index 12
+  item?.isRead ? item?.isRead : false,  // index 13
+  item.weburl || " "                    // index 14: for anchor
+]);
+
+(doc as any).autoTable({
+  startY: 30,
+  theme: 'grid',
+  head: [tableColumn],
+  body: tableRows,
+  headStyles: {
+    fillColor: [207, 75, 95],
+    fontSize: 8
+  },
+  bodyStyles: {
+    fontSize: 7
+  },
+  margin: { top: 28 },
+  columnStyles: {
+    1: { cellWidth: 30 },
+    2: { cellWidth: 20 }
+  },
+
+  didParseCell: (data: any) => {
+    if (data.section === 'body') {
+      const isDeleted = data.row.raw[12];
+      const isRead = data.row.raw[13];
+
+      // Clear Type column text if deleted
+      if (isDeleted && data.column.index === 2) {
+        data.cell.text = '';
+      }
+
+      // Always clear Status column text (you draw it manually later)
+      if (data.column.index === 0) {
+        data.cell.text = '';
+      }
+
+      // Clear State column to draw anchor manually
+      if (data.column.index === 5 && data.row.raw[14] !== " ") {
+        data.cell.text = '';
+      }
+    }
+  },
+
+  didDrawCell: (data: any) => {
+    const isDeleted = data.row.raw[12];
+    const isRead = data.row.raw[13];
+    const weburl = data.row.raw[14];
+
+    // Circle before status text (column index 0)
+    if (data.section === 'body' && data.column.index === 0) {
+      const circleX = data.cell.x + 2.5;
+      const circleY = data.cell.y + data.cell.height / 2;
+
+      const textX = circleX + 4;
+      const textY = circleY + 1;
+
+      data.cell.text = '';
+      doc.setFillColor(isRead ? 128 : 207, isRead ? 128 : 75, isRead ? 128 : 95);
+      doc.circle(circleX, circleY, 0.5, 'F');
+      doc.setFontSize(7);
+      doc.setTextColor(111, 101, 100);
+      doc.text(String(data.row.raw[0]), textX, textY);
+    }
+
+    // Redraw Type column with image if deleted
+    if (data.section === 'body' && data.column.index === 2 && isDeleted) {
+      const alertText = data.row.raw[2];
+      const textX = data.cell.x + 2;
+      const textY = data.cell.y + data.cell.height / 2 + 1;
+
+      doc.setFontSize(7);
+      doc.text(String(alertText), textX, textY);
+
+      const imgX = textX + doc.getTextWidth(alertText) + 2;
+      const imgY = textY - 2.5;
+      doc.addImage(checkImg, 'PNG', imgX, imgY, 8, 3);
+    }
+
+    // Draw anchor tag-style link in State column (index 5)
+    if (data.section === 'body' && data.column.index === 5 && weburl !== " ") {
+      const stateText = data.row.raw[5];
+      const textX = data.cell.x + 2;
+      const textY = data.cell.y + data.cell.height / 2 + 1;
+
+      doc.setFontSize(7);
+      doc.setTextColor(8, 6, 117); // #080675
+      doc.textWithLink(stateText, textX, textY, { url: weburl });
+      doc.setTextColor(0); // reset to default color after
+    }
+  },
+
+  didDrawPage: (data: any) => {
+    if (data.pageNumber > 1) {
+      addHeader();
+      addFooter();
+    }
+  }
+});
+
   
       let y = (doc as any).lastAutoTable.finalY + 10;
       doc.setFontSize(14);
