@@ -113,7 +113,14 @@
               </ng-container>
               <ng-container matColumnDef="state">
                 <th mat-header-cell *matHeaderCellDef width="100"> State </th>
-                <td mat-cell *matCellDef="let element">{{ element?.state ? element?.state : " "}} </td>
+                <td mat-cell *matCellDef="let element">
+                   <a *ngIf="element?.weburl" class="url_navigate" [href]="element.weburl" target="_blank" rel="noopener noreferrer">
+                      {{ element?.state ? element?.state : ' ' }}
+                    </a>
+                    <span *ngIf="!element?.weburl">
+                      {{ element?.state ? element?.state : ' ' }}
+                    </span>
+                   </td>
               </ng-container>
 
               <ng-container matColumnDef="city">
@@ -139,7 +146,9 @@
 
               <ng-container matColumnDef="mobile">
                 <th mat-header-cell *matHeaderCellDef width="200"> Mobile </th>
-                <td mat-cell *matCellDef="let element">{{ element?.mobile ? element?.mobile : " "}} </td>
+                <td mat-cell *matCellDef="let element">
+                    {{ element?.mobile ? formatPhoneNumber(element?.mobile) : " " }}
+                  </td>
               </ng-container>
 
               <ng-container matColumnDef="email">

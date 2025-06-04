@@ -250,6 +250,14 @@ previousPage() {
     const selected = this.tableData.filter((row) => row.isSelected).length;
     return selected > 0 && selected < this.tableData.length;
   }
+
+  formatPhoneNumber(phone: string): string {
+    const cleaned = ('' + phone).replace(/\D/g, '');
+    if (cleaned.length === 10) {
+      return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
+    }
+    return phone;
+  }
  
   makeAllRead(){
     if(this.selectedVins.length==0){

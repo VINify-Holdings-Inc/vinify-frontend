@@ -5,7 +5,8 @@
 				<div class="col-12">
 					<div class="header-section">
 						<div class="btnforToggle">
-							<button type="button" id="sidebarToggle" (click)="toggleSidebar()" class="sidebar-toggle-btn">
+							<button type="button" id="sidebarToggle" (click)="toggleSidebar()"
+								class="sidebar-toggle-btn">
 								<i class="material-symbols-outlined text-dark">{{ isSidebarOpen ? 'menu' : 'menu' }}</i>
 							</button>
 						</div>
@@ -14,28 +15,29 @@
 							<div class="vinInfoModel">
 								<ul class="vinContains">
 									<li><strong>VIN</strong><span>{{vinData}}</span></li>
-									
+
 								</ul>
 							</div>
 							<div class="rightUpdatedDate">
-								<p><strong>Updated:</strong> {{currentDate ? (currentDate | dateFormat: 'DD MMM YYYY') : " " }}</p>
+								<p><strong>Updated:</strong> {{currentDate ? (currentDate | dateFormat: 'DD MMM YYYY') :
+									" " }}</p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>		
+		</div>
 	</header>
 
-	
-	
+
+
 	<!-- Sidebar [class.hidden]="!isSidebarOpen" -->
-	<aside class="siderbar-pdf"  [class.hidden]="!isSidebarOpen">
+	<aside class="siderbar-pdf" [class.hidden]="!isSidebarOpen">
 		<div class="top-logo">
 			<img [src]="logo" class="img-fluid" alt="Logo" />
 			<span class="tagline">Motor Vehicle Monitoring</span>
 		</div>
-		
+
 		<ul>
 			<li (click)="scrollToSection('reportsummary')"><a
 					[ngClass]="{ 'active': activeTab === 'reportsummary' }"><span
@@ -66,7 +68,7 @@
 					</div>
 					<div class="multilightOptions">
 						<div class="blackHorizontalLine"></div>
-						
+
 					</div>
 
 					<div class="upperWarningBox">
@@ -91,13 +93,21 @@
 										<a (click)="scrollToSection('titleinformations')">
 											<div class="card sumBox" id="titleinformation">
 												<div class="card-body">
-													<h5 class="card-title">Title Information ({{data.titleDataCount}})</h5>
+													<h5 class="card-title">Title Information ({{data.titleDataCount}})
+													</h5>
 													<ul>
 														<li>{{ data?.titleData?.[0]?.status ?? " " }}</li>
-														<li><span class="makeFullW">Title Issue Date</span>{{ data?.titleMaxDate ?
+														<li><span class="makeFullW">Title Issue Date</span>{{
+															data?.titleMaxDate ?
 															(data?.titleMaxDate | dateFormat: 'DD MMM
 															YYYY') : " " }}</li>
-														<li><span class="makeFullW">Title Issue State</span>{{ data?.titleData?.[0]?.state ?? " " }}</li>
+														<li><span class="makeFullW">Title Issue State</span>
+															<a *ngIf="data?.titleData?.[0]?.weburl" class="url_navigate"
+																[href]="data.titleData[0].weburl" target="_blank"
+																rel="noopener noreferrer">
+																{{ data.titleData[0]?.state ?? ' ' }}
+															</a>
+														</li>
 													</ul>
 												</div>
 											</div>
@@ -107,16 +117,28 @@
 										<a (click)="scrollToSection('brandtableID')">
 											<div class="card sumBox" id="brandinformation">
 												<div class="card-body">
-													<h5 class="card-title">Brand Information ({{data.brandDataCount}})</h5>
+													<h5 class="card-title">Brand Information ({{data.brandDataCount}})
+													</h5>
 													<ul>
-														<li>{{ data?.brandData?.[0]?.brand?.split(' - ')[0] ?? " " }}</li>
-														<li><span class="makeFullW">Brand Issue Date</span>{{ data?.brandMaxDate ?
+														<li>{{ data?.brandData?.[0]?.brand?.split(' - ')[0] ?? " " }}
+														</li>
+														<li><span class="makeFullW">Brand Issue Date</span>{{
+															data?.brandMaxDate ?
 															(data?.brandMaxDate | dateFormat: 'DD MMM
 															YYYY') : " " }}</li>
 
-														<li><span class="makeFullW">Brand Issue State</span>{{ data?.brandData?.[0]?.state ?? " " }}</li>
+														<li><span class="makeFullW">Brand Issue State</span>
+															<!-- {{
+															data?.brandData?.[0]?.state ?? " " }} -->
+															<a *ngIf="data?.brandData?.[0]?.weburl" class="url_navigate"
+																[href]="data.brandData[0].weburl" target="_blank"
+																rel="noopener noreferrer">
+																{{ data.brandData[0]?.state ?? ' ' }}
+															</a>
+														
+														</li>
 													</ul>
-													
+
 												</div>
 											</div>
 										</a>
@@ -125,16 +147,29 @@
 										<a (click)="scrollToSection('junknsalvagesection')">
 											<div class="card sumBox" id="junksalvageinformation">
 												<div class="card-body">
-													<h5 class="card-title">Junk/Salvage Information ({{data.JSICount}})</h5>
+													<h5 class="card-title">Junk/Salvage Information ({{data.JSICount}})
+													</h5>
 													<ul>
 														<li>{{ data?.JSI?.[0]?.VehicleDispositionText ?? " " }}</li>
-														<li><span class="makeFullW">JSI Issue Date</span>{{ data?.jsiMaxDate ?
+														<li><span class="makeFullW">JSI Issue Date</span>{{
+															data?.jsiMaxDate ?
 															(data?.jsiMaxDate | dateFormat: 'DD MMM
 															YYYY') : " " }}</li>
-														<li><span class="makeFullW">JSI Issue State</span>{{ data?.JSI?.[0]?.state ?? " " }}</li>
+														<li><span class="makeFullW">JSI Issue State</span>
+															
+															<!-- {{
+															data?.JSI?.[0]?.state ?? " " }} -->
+
+															<a *ngIf="data?.JSI?.[0]?.weburl" class="url_navigate"
+																[href]="data.JSI[0].weburl" target="_blank"
+																rel="noopener noreferrer">
+																{{ data.JSI[0]?.state ?? ' ' }}
+															</a>
+														
+														</li>
 
 													</ul>
-													
+
 												</div>
 											</div>
 										</a>
@@ -150,7 +185,7 @@
 						<section id="titleinformations" class="">
 							<div class="sectionText">
 								<h2 class="sectionHeadeing"><span *ngIf="data.titleDataCount"
-										class="circleRedBox">{{data.titleDataCount}}</span>Title Record History 
+										class="circleRedBox">{{data.titleDataCount}}</span>Title Record History
 									<small><strong>Source</strong>
 										NMVTIS</small>
 								</h2>
@@ -180,11 +215,20 @@
 													<td>{{ item?.vin }}</td>
 													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
 														'DD MMM YYYY') : " " }}</td>
-													<td>{{ item?.state || " " }}</td>
-												<td>{{ item?.odometer ? (item.odometer | number:'1.0-0') : " " }} {{ item?.VehicleOdometerReadingUnitCode || " " }}</td>
+													<td> <a *ngIf="item?.weburl" class="url_navigate"
+															[href]="item.weburl" target="_blank"
+															rel="noopener noreferrer">
+															{{ item?.state ? item?.state : ' ' }}
+														</a>
+														<span *ngIf="!item?.weburl">
+															{{ item?.state ? item?.state : ' ' }}
+														</span>
+													</td>
+													<td>{{ item?.odometer ? (item.odometer | number:'1.0-0') : " " }} {{
+														item?.VehicleOdometerReadingUnitCode || " " }}</td>
 
 													<td>{{ item?.status || " " }}</td>
-													
+
 												</tr>
 											</tbody>
 
@@ -202,9 +246,9 @@
 								</div>
 
 								<h2 class="sectionHeadeing" id="brandtableID"><span *ngIf="data.brandDataCount"
-										class="circleRedBox">{{data.brandDataCount}}</span>  Title Brands Reported 
+										class="circleRedBox">{{data.brandDataCount}}</span> Title Brands Reported
 								</h2>
-								
+
 
 								<div class="tableContent">
 									<div class="table-responsive">
@@ -222,11 +266,19 @@
 												<tr *ngFor="let item of data?.brandData">
 													<td>{{ item?.titleBrandDate ? (item?.titleBrandDate | dateFormat:
 														'DD MMM YYYY') : " " }}</td>
-													<td>{{ item?.state || " " }}</td>
+													<td><a *ngIf="item?.weburl" class="url_navigate"
+															[href]="item.weburl" target="_blank"
+															rel="noopener noreferrer">
+															{{ item?.state ? item?.state : ' ' }}
+														</a>
+														<span *ngIf="!item?.weburl">
+															{{ item?.state ? item?.state : ' ' }}
+														</span>
+													</td>
 													<td>{{ item?.brand ? item?.brand.split(' - ')[0] : " " }}</td>
 													<td><span class="makeitshortLength">{{ item?.brand ?
 															item?.brand.split(' - ')[1] : " " }}</span></td>
-													
+
 												</tr>
 											</tbody>
 
@@ -241,7 +293,7 @@
 
 										</table>
 									</div>
-								</div> 
+								</div>
 							</div>
 						</section>
 
@@ -268,7 +320,7 @@
 									the Junk/Salvage section denotes what has happened to the VIN (i.e., vehicle) since
 									it came into the possession of the business.</p>
 
-								
+
 								<div class="tableContent">
 									<div class="table-responsive">
 										<table class="table">
@@ -289,12 +341,20 @@
 														'DD MMM YYYY') : " " }}</td>
 													<td>{{ item?.ReportingEntityCategoryText || " " }}</td>
 													<td>{{ item?.EntityName || " " }}</td>
-													
+
 													<td>{{ item?.LocationCityName || " " }}</td>
-													<td>{{ item?.state || " " }}</td>
+													<td><a *ngIf="item?.weburl" class="url_navigate"
+															[href]="item.weburl" target="_blank"
+															rel="noopener noreferrer">
+															{{ item?.state ? item?.state : ' ' }}
+														</a>
+														<span *ngIf="!item?.weburl">
+															{{ item?.state ? item?.state : ' ' }}
+														</span>
+													</td>
 													<td>{{ item?.TelephoneNumberFullID || " " }}</td>
 													<td>{{ item?.VehicleDispositionText || " " }}</td>
-													
+
 												</tr>
 											</tbody>
 
