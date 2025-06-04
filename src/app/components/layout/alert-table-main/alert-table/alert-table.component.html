@@ -149,7 +149,9 @@
 
                 <ng-container matColumnDef="mobile">
                   <th mat-header-cell *matHeaderCellDef width="200"> Mobile </th>
-                  <td mat-cell *matCellDef="let element">{{ element?.mobile ? element?.mobile : " "}} </td>
+                 <td mat-cell *matCellDef="let element">
+                    {{ element?.mobile ? formatPhoneNumber(element?.mobile) : " " }}
+                  </td>
                 </ng-container>
 
 

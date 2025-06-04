@@ -101,8 +101,13 @@
 															data?.titleMaxDate ?
 															(data?.titleMaxDate | dateFormat: 'DD MMM
 															YYYY') : " " }}</li>
-														<li><span class="makeFullW">Title Issue State</span>{{
-															data?.titleData?.[0]?.state ?? " " }}</li>
+														<li><span class="makeFullW">Title Issue State</span>
+															<a *ngIf="data?.titleData?.[0]?.weburl" class="url_navigate"
+																[href]="data.titleData[0].weburl" target="_blank"
+																rel="noopener noreferrer">
+																{{ data.titleData[0]?.state ?? ' ' }}
+															</a>
+														</li>
 													</ul>
 												</div>
 											</div>
@@ -122,8 +127,16 @@
 															(data?.brandMaxDate | dateFormat: 'DD MMM
 															YYYY') : " " }}</li>
 
-														<li><span class="makeFullW">Brand Issue State</span>{{
-															data?.brandData?.[0]?.state ?? " " }}</li>
+														<li><span class="makeFullW">Brand Issue State</span>
+															<!-- {{
+															data?.brandData?.[0]?.state ?? " " }} -->
+															<a *ngIf="data?.brandData?.[0]?.weburl" class="url_navigate"
+																[href]="data.brandData[0].weburl" target="_blank"
+																rel="noopener noreferrer">
+																{{ data.brandData[0]?.state ?? ' ' }}
+															</a>
+														
+														</li>
 													</ul>
 
 												</div>
@@ -142,8 +155,18 @@
 															data?.jsiMaxDate ?
 															(data?.jsiMaxDate | dateFormat: 'DD MMM
 															YYYY') : " " }}</li>
-														<li><span class="makeFullW">JSI Issue State</span>{{
-															data?.JSI?.[0]?.state ?? " " }}</li>
+														<li><span class="makeFullW">JSI Issue State</span>
+															
+															<!-- {{
+															data?.JSI?.[0]?.state ?? " " }} -->
+
+															<a *ngIf="data?.JSI?.[0]?.weburl" class="url_navigate"
+																[href]="data.JSI[0].weburl" target="_blank"
+																rel="noopener noreferrer">
+																{{ data.JSI[0]?.state ?? ' ' }}
+															</a>
+														
+														</li>
 
 													</ul>
 

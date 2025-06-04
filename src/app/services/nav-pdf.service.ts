@@ -20,6 +20,10 @@ export class NavPdfService {
     logImage: any,
     fileName: string = 'Vehicle_History_Report.pdf',
   ): void {
+  const today = new Date();
+
+const formattedDate = `${String(today.getUTCDate()).padStart(2, '0')}${String(today.getUTCMonth() + 1).padStart(2, '0')}${today.getUTCFullYear()}`; 
+const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
 
     const tableData = data?.titleData;
     const brandData = data?.brandData;
@@ -42,9 +46,7 @@ export class NavPdfService {
     const nmvtlogo = 'assets/images/nmvtis-1.png';
 
 
-    const today = new Date();
-    const formattedDate = `${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}.${today.getFullYear()}`;
-
+   
     const sectionPositions: { [key: string]: { page: number, y: number } } = {};
     // Header Section (Every Page)
     const addHeader = () => {
@@ -90,7 +92,7 @@ export class NavPdfService {
 
       const imgWidth = 10;
       const imgHeight = 5;
-      const textFontSize = 10;
+      const textFontSize = 11;
 
       const bottomMargin = 2; // 2px bottom margin
 
@@ -110,7 +112,7 @@ export class NavPdfService {
       doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
 
       // Add footer text
-      doc.setTextColor(80, 80, 80);
+      doc.setTextColor(67, 66, 66);
       doc.setFontSize(textFontSize);
       doc.setFontSize(9);
       doc.setFont('helvetica', 'normal');
@@ -175,17 +177,11 @@ export class NavPdfService {
     doc.text(titleLength ? titleMaxDate ? this.dateFormate.transform(titleMaxDate, 'DD MMM YYYY') : " " : " ", 22, y + 24)
     doc.setTextColor(0, 0, 0);
     doc.text("Title Issue State", 22, y + 33)
+    const stateText = titleLength ? (tableData[0]?.state || " ") : " ";
+    const url = tableData[0]?.weburl || "";
+    doc.setTextColor(0, 0, 255);  // Blue color for link
+    doc.textWithLink(stateText, 22, y + 38, { url });
     doc.setTextColor(69, 67, 67);
-    doc.text(titleLength ? tableData[0]?.state ? tableData[0]?.state : " " : " ", 22, y + 37);
-    // if (titleCount) {
-    //   drawBadge(doc, 24, y + 44, titleCount);
-    //   doc.setTextColor(69, 67, 67);  //black
-    //   doc.text(' of ' + titleLength + ' Records ', 28, y + 45);
-    // } else {
-    //   doc.text(titleLength + ' Records ', 22, y + 45);
-    // }
-
-    // doc.addImage(nmvtlogo, 'PNG', 56, y + 39, 17, 10);
 
     doc.roundedRect(80, y, 55, 43, 3, 3, 'S')
     doc.setFont('helvetica', 'bold');
@@ -202,8 +198,11 @@ export class NavPdfService {
     doc.text(brandLength ? brandMaxDate ? this.dateFormate.transform(brandMaxDate, 'DD MMM YYYY') : " " : " ", 82, y + 25)
     doc.setTextColor(0, 0, 0);
     doc.text("Brand Issue State", 82, y + 33)
+    const stateTexturl = brandLength ? (brandData[0]?.state || " ") : " ";
+    const urlbrand = brandData[0]?.weburl || "";
+    doc.setTextColor(0, 0, 255);
+    doc.textWithLink(stateTexturl, 82, y + 38, { url: urlbrand });
     doc.setTextColor(69, 67, 67);
-    doc.text(brandLength ? brandData[0]?.state ? brandData[0]?.state : " " : " ", 82, y + 37);
 
 
     doc.roundedRect(140, y, 55, 43, 3, 3, 'S')
@@ -220,8 +219,11 @@ export class NavPdfService {
     doc.text(jsiLength ? jsiMaxDate ? this.dateFormate.transform(jsiMaxDate, 'DD MMM YYYY') : " " : " ", 142, y + 25)
     doc.setTextColor(0, 0, 0);
     doc.text("JSI Issue State", 142, y + 33)
+    const stateTextJsi = jsiLength ? (junkSalvageData[0]?.state || " ") : " ";
+    const urljsii = junkSalvageData[0]?.weburl || "";
+    doc.setTextColor(0, 0, 255);
+    doc.textWithLink(stateTextJsi, 142, y + 38, { url: urljsii });
     doc.setTextColor(69, 67, 67);
-    doc.text(jsiLength ? junkSalvageData[0]?.state ? junkSalvageData[0]?.state : " " : " ", 142, y + 37);
 
     y += 60;
     drawBadge(doc, 14, y - 1, titleCount);
@@ -246,85 +248,79 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     y += 10;
 
-   const tableColumn = ['VINs', 'Title Issue Date', 'Issuing State', 'Odometer Reading', 'Status'];
+    const tableColumn = ['VINs', 'Title Issue Date', 'Issuing State', 'Odometer Reading', 'Status'];
 
-const tableRows = tableData.length > 0
-  ? tableData.map((item: any) => {
-      const odometerStr = item?.odometer || '';
-      const numericValue = parseInt(odometerStr.replace(/[^\d]/g, ''), 10) || 0;
-      const formattedOdometer = `${numericValue.toLocaleString('en-US')} ${item?.VehicleOdometerReadingUnitCode === "M" ? 'Miles' : 'KM'}`;
+    const tableRows = tableData.length > 0
+      ? tableData.map((item: any) => {
+        const odometerStr = item?.odometer || '';
+        const numericValue = parseInt(odometerStr.replace(/[^\d]/g, ''), 10) || 0;
+        const formattedOdometer = `${numericValue.toLocaleString('en-US')} ${item?.VehicleOdometerReadingUnitCode === "M" ? 'Miles' : 'KM'}`;
 
-      return [
-        item?.vin || ' ',
-        item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : ' ',
-        item?.state || ' ',
-        formattedOdometer,
-        item?.status || ' ',
-        item?.weburl || ' ' // Index 5 (for internal usage only, not rendered as a visible column)
-      ];
-    })
-  : [['', '', 'No records found', '', '', '']];
+        return [
+          item?.vin || ' ',
+          item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : ' ',
+          item?.state || ' ',
+          formattedOdometer,
+          item?.status || ' ',
+          item?.weburl || ' ' // Hidden column (index 5)
+        ];
+      })
+      : [['', '', 'No records found', '', '', '']];
 
-doc.setTextColor(69, 67, 67);
+    doc.setTextColor(69, 67, 67);
 
-(doc as any).autoTable({
-  startY: y += 5,
-  theme: 'grid',
-  head: [tableColumn],
-  body: tableRows,
-  headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
-  bodyStyles: { fontSize: 7 },
-  margin: { top: 41, bottom: 25 },
-  columnStyles: {
-    1: { cellWidth: 30 },
-    2: { cellWidth: 25 },
-    3: { cellWidth: 30 },
-    4: { cellWidth: 35, halign: 'center', valign: 'middle' }
-  },
+    (doc as any).autoTable({
+      startY: y += 5,
+      theme: 'grid',
+      head: [tableColumn],
+      body: tableRows,
+      headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
+      bodyStyles: { fontSize: 7 },
+      margin: { top: 41, bottom: 25 },
+      columnStyles: {
+        1: { cellWidth: 30 },
+        2: { cellWidth: 25, halign: 'left', valign: 'top' },
+        3: { cellWidth: 30 },
+        4: { cellWidth: 35, }
+      },
 
-  didParseCell: (data: any) => {
-    // Remove text from 'Issuing State' cell if a URL is available
-    if (data.section === 'body' && data.column.index === 2 && data.row.raw[5]?.trim()) {
-      data.cell.text = '';
-    }
-  },
+      didParseCell: (data: any) => {
+        // Apply blue color only for real data rows and when column is 'Issuing State' (index 2)
+        if (
+          data.section === 'body' &&
+          data.column.index === 2 &&
+          data.cell.raw !== 'No records found'
+        ) {
+          data.cell.styles.textColor = [0, 0, 255]; // Blue
+        }
 
-  didDrawCell: (data: any) => {
-    const { column, row, cell, section } = data;
-    const rowData = row.raw;
+        // Optionally set a different color for "No records found" text
+        if (
+          data.section === 'body' &&
+          data.row.raw.includes('No records found')
+        ) {
+          data.cell.styles.textColor = [67, 66, 66]; // Dark gray
+        }
+      },
+      didDrawCell: (data: any) => {
+        const { column, row, cell, section } = data;
+        const rowData = row.raw;
 
-    // Add clickable URL on 'Issuing State' column
-    if (section === 'body' && column.index === 2 && row.index !== -1) {
-      const stateText = rowData[2];
-      const url = rowData[5]; // weburl
+        if (section === 'body' && column.index === 2 && row.index !== -1) {
+          const url = rowData[5];
+          if (url?.trim()) {
+            doc.link(cell.x, cell.y, cell.width, cell.height, { url });
+          }
+        }
+      },
 
-      if (url?.trim()) {
-        const { x, y, height } = cell;
+      didDrawPage: (data: any) => {
+        addHeader();
+        addFooter();
+      },
+    });
 
-        // Save current styles
-        const prevColor = doc.getTextColor();
-        const prevFontSize = doc.getFontSize();
 
-        // Set link style
-        doc.setTextColor(0, 0, 255);
-        doc.setFontSize(7);
-
-        const textY = y + height / 2 + 2;
-
-        doc.textWithLink(stateText, x + 1, textY, { url });
-
-        // Restore previous styles
-        doc.setTextColor(prevColor);
-        doc.setFontSize(prevFontSize);
-      }
-    }
-  },
-
-  didDrawPage: (data: any) => {
-    addHeader();
-    addFooter();
-  },
-});
 
 
     y = (doc as any).lastAutoTable.finalY + 10;
@@ -354,87 +350,59 @@ doc.setTextColor(69, 67, 67);
     doc.setTextColor(69, 67, 67);
     y += 5;
 
-  const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)', 'Description', 'Source'];
-const brandRows = brandData.length > 0 ? brandData.map((item: any) => [
-  item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
-  item?.state || " ",
-  item?.brand ? item.brand.split(' - ')[0] : " ",
-  item?.brand ? item.brand.split(' - ')[1] : " ",
-  " ", // Source column for NMVTIS logo
-  item?.weburl || " " // Hidden column for hyperlink usage
-]) : [["", "", "No records found", "", "", ""]];
+    const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)', 'Description'];
+    const brandRows = brandData.length > 0
+      ? brandData.map((item: any) => [
+        item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
+        item?.state || " ",
+        item?.brand ? item.brand.split(' - ')[0] : " ",
+        item?.brand ? item.brand.split(' - ')[1] : " ",
+        " ", // Source column for NMVTIS logo
+        item?.weburl || " " // Hidden column for hyperlink usage
+      ])
+      : [["", "", "No records found", "", "", ""]];
 
-(doc as any).autoTable({
-  startY: y,
-  theme: 'grid',
-  head: [brandColumns],
-  body: brandRows,
-  headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
-  bodyStyles: { fontSize: 7 },
-  margin: { top: 41, bottom: 25 },
-  columnStyles: {
-    0: { cellWidth: 35 },
-    1: { cellWidth: 30 },
-    2: { cellWidth: 30 },
-    4: { cellWidth: 35, halign: 'center', valign: 'middle' },
-    5: { cellWidth: 0 } // Hidden weburl column
-  },
+    (doc as any).autoTable({
+      startY: y,
+      theme: 'grid',
+      head: [brandColumns],
+      body: brandRows,
+      headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
+      bodyStyles: { fontSize: 7 },
+      margin: { top: 41, bottom: 25 },
+      columnStyles: {
+        0: { cellWidth: 35 },
+        1: { cellWidth: 30, halign: 'left', valign: 'top' },
+        2: { cellWidth: 30 },
+        4: { cellWidth: 35, halign: 'center', valign: 'middle' },
+        5: { cellWidth: 0 } // Hidden weburl column
+      },
 
-  // Clear State text if it will be replaced with hyperlink
-  didParseCell: (data: any) => {
-    if (data.section === 'body' && data.column.index === 1 && data.row.raw[5]?.trim()) {
-      data.cell.text = '';
-    }
-  },
+      didParseCell: (data: any) => {
+        // Apply blue text color for Brand Issue State (index 1) if URL exists
+        if (data.section === 'body' && data.column.index === 1 && data.row.raw[5]?.trim()) {
+          data.cell.styles.textColor = [0, 0, 255]; // Blue
+        }
+      },
 
-  didDrawCell: function (data: any) {
-    const { column, row, cell, section } = data;
-    const rowData = row.raw;
+      didDrawCell: (data: any) => {
+        const { column, row, cell, section } = data;
+        const rowData = row.raw; 
+        // Hyperlink on Brand Issue State column
+        if (section === 'body' && column.index === 1 && row.index !== -1) {
+          const url = rowData[5];
+          if (url?.trim()) {
+            doc.link(cell.x, cell.y, cell.width, cell.height, { url });
+          }
+        }
+      },
 
-    // NMVTIS logo in Source column
-    if (section === 'body' && column.index === 4 && row.index !== -1) {
-      const { x, y, width } = cell;
+      didDrawPage: (data: any) => {
+        addHeader();
+        addFooter();
+      },
+    });
 
-      if (rowData[4] === " ") {
-        doc.text("NMVTIS", x + width / 14, y + 3, { align: "left" });
-
-        const imgWidth = 10;
-        const imgHeight = 5;
-        const imgX = x + width / 2 - imgWidth / 2;
-        const imgY = y + 1;
-
-        doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
-      }
-    }
-
-    // Hyperlink on State column
-    if (section === 'body' && column.index === 1 && row.index !== -1) {
-      const stateText = rowData[1];
-      const url = rowData[5];
-
-      if (url?.trim()) {
-        const { x, y, height } = cell;
-
-        const prevColor = doc.getTextColor();
-        const prevFontSize = doc.getFontSize();
-
-        doc.setTextColor(0, 0, 255); // blue link
-        doc.setFontSize(7);
-
-        const textY = y + height / 2 + 2;
-        doc.textWithLink(stateText, x + 1, textY, { url });
-
-        doc.setTextColor(prevColor);
-        doc.setFontSize(prevFontSize);
-      }
-    }
-  },
-
-  didDrawPage: (data: any) => {
-    addHeader();
-    addFooter();
-  },
-});
 
 
     // **Update y position dynamically again**
@@ -511,75 +479,69 @@ const brandRows = brandData.length > 0 ? brandData.map((item: any) => [
     doc.setTextColor(69, 67, 67);  //black
     y += 15;
 
-   const jsiColumns = ['Date', 'Report Type', 'Reporting Entity', 'City', 'State', 'Phone', 'Disposition'];
+const formatPhoneNumber = (phone: string): string => {
+  const cleaned = ('' + phone).replace(/\D/g, '');
+  if (cleaned.length === 10) {
+    return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
+  }
+  return phone; // fallback to original if not 10 digits
+};
+
+const jsiColumns = ['Date', 'Report Type', 'Reporting Entity', 'City', 'State', 'Phone', 'Disposition'];
+
 const jsiRows = junkSalvageData.length > 0
   ? junkSalvageData.map((item: any) => [
       item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : " ",
       item?.ReportingEntityCategoryText || " ",
       item?.EntityName || " ",
       item?.LocationCityName || " ",
-      item?.state || " ",        // Index 4 — to display in table (with link)
-      item?.TelephoneNumberFullID || " ",
+      item?.state || " ",
+      formatPhoneNumber(item?.TelephoneNumberFullID || ""), // <-- formatted phone
       item?.VehicleDispositionText || " ",
-      item?.weburl || " "        // Index 7 — hidden column for actual link
+      item?.weburl || " "
     ])
   : [["", "", "No records found", "", "", "", "", ""]];
 
-(doc as any).autoTable({
-  startY: y,
-  theme: 'grid',
-  head: [jsiColumns],
-  body: jsiRows,
-  headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
-  bodyStyles: { fontSize: 7 },
-  margin: { top: 41, bottom: 25 },
-  columnStyles: {
-    0: { cellWidth: 30 },
-    1: { cellWidth: 30 },
-    4: { cellWidth: 30 },
-    7: { cellWidth: 0 } // Hidden column for web URL
-  },
+    (doc as any).autoTable({
+      startY: y,
+      theme: 'grid',
+      head: [jsiColumns],
+      body: jsiRows,
+      headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
+      bodyStyles: { fontSize: 7 },
+      margin: { top: 41, bottom: 25 },
+      columnStyles: {
+        0: { cellWidth: 30 },
+        1: { cellWidth: 30 },
+        4: { cellWidth: 30 },
+        7: { cellWidth: 0 } // Hidden column for web URL
+      },
 
-  // Remove text in State column if we are rendering it as link
-  didParseCell: (data: any) => {
-    if (data.section === 'body' && data.column.index === 4 && data.row.raw[7]?.trim()) {
-      data.cell.text = '';
-    }
-  },
+      // Apply blue color if link exists
+      didParseCell: (data: any) => {
+        if (data.section === 'body' && data.column.index === 4 && data.row.raw[7]?.trim()) {
+          data.cell.styles.textColor = [0, 0, 255]; // Blue color
+        }
+      },
 
-  didDrawCell: function (data: any) {
-    const { column, row, cell, section } = data;
-    const rowData = row.raw;
+      // Make State cell (index 4) clickable
+      didDrawCell: function (data: any) {
+        const { column, row, cell, section } = data;
+        const rowData = row.raw;
 
-    // Add link to State column (index 4)
-    if (section === 'body' && column.index === 4 && row.index !== -1) {
-      const stateText = rowData[4];
-      const url = rowData[7]; // Hidden weburl
+        if (section === 'body' && column.index === 4 && row.index !== -1) {
+          const url = rowData[7]; // Hidden column for link
+          if (url?.trim()) {
+            doc.link(cell.x, cell.y, cell.width, cell.height, { url }); // Clickable area
+          }
+        }
+      },
 
-      if (url?.trim()) {
-        const { x, y, height } = cell;
-
-        const prevColor = doc.getTextColor();
-        const prevFontSize = doc.getFontSize();
-
-        doc.setTextColor(0, 0, 255); // blue
-        doc.setFontSize(7);
-
-        const textY = y + height / 2 + 2;
-
-        doc.textWithLink(stateText, x + 1, textY, { url });
-
-        doc.setTextColor(prevColor);
-        doc.setFontSize(prevFontSize);
-      }
-    }
-  },
-
-  didDrawPage: (data: any) => {
-    addHeader();
-    addFooter();
-  },
-});
+      didDrawPage: (data: any) => {
+        addHeader();
+        addFooter();
+      },
+    });
 
 
 
@@ -602,7 +564,7 @@ const jsiRows = junkSalvageData.length > 0
       y = 34; // Reset Y position for new page (you can choose your margin)
     }
     // Use pages.length instead of getNumberOfPages()
-  sectionPositions['disclaim'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
+    sectionPositions['disclaim'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
 
     doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
     addHeader();
@@ -722,6 +684,6 @@ const jsiRows = junkSalvageData.length > 0
     }
     /************************************************ */
     // Save PDF
-    doc.save(fileName);
+    doc.save(FinalfileName);
   }
 }

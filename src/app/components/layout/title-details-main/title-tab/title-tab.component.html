@@ -147,7 +147,8 @@
                 <ng-container matColumnDef="state">
                   <th mat-header-cell *matHeaderCellDef width="100">State</th>
                   <td mat-cell *matCellDef="let element">
-                    <a *ngIf="element?.weburl" class="url_navigate" [href]="element.weburl" target="_blank" rel="noopener noreferrer">
+                    <a *ngIf="element?.weburl" class="url_navigate" [href]="element.weburl" target="_blank"
+                      rel="noopener noreferrer">
                       {{ element?.state ? element?.state : ' ' }}
                     </a>
                     <span *ngIf="!element?.weburl">
@@ -192,8 +193,9 @@
                 <!-- Mobile Column -->
                 <ng-container matColumnDef="mobile">
                   <th mat-header-cell *matHeaderCellDef width="220">Mobile</th>
+                  
                   <td mat-cell *matCellDef="let element">
-                    {{ element?.mobile ? element?.mobile : " " }}
+                    {{ element?.mobile ? formatPhoneNumber(element?.mobile) : " " }}
                   </td>
                 </ng-container>
 
