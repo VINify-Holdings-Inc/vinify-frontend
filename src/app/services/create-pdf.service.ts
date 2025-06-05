@@ -26,23 +26,67 @@ export class CreatePDFService {
 
     const checkImg = new Image();
     checkImg.src = '/assets/fonts/tick.png';
+    const nmvtlogo = 'assets/images/nmvtis-1.png';
+    const today = new Date();
 
     let imagesLoaded = 0;
 
-    const addFooter = () => {
-      doc.setTextColor(100);
-      const pageHeight = doc.internal.pageSize.height;
-      const footerY = pageHeight - 1;
-      doc.setDrawColor(69, 67, 67);
-      doc.setLineWidth(0.1);
-      doc.line(14, footerY - 14, 284, footerY - 14);
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(9);
-      doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution.', 15, footerY - 10);
-      doc.text('VINify, Title Alarm, LLC', 15, footerY - 5);
-      doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 276, footerY - 5);
-    };
+    // const addFooter = () => {
+    //   doc.setTextColor(100);
+    //   const pageHeight = doc.internal.pageSize.height;
+    //   const footerY = pageHeight - 1;
+    //   doc.setDrawColor(69, 67, 67);
+    //   doc.setLineWidth(0.1);
+    //   doc.line(14, footerY - 14, 284, footerY - 14);
+    //   doc.setFont('helvetica', 'normal');
+    //   doc.setFontSize(9);
+    //   doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution.', 15, footerY - 10);
+    //   doc.text('VINify, Title Alarm, LLC', 15, footerY - 5);
+    //   doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 276, footerY - 5);
+    // };
 
+    const addFooter = () => {
+         const nmvtlogo = 'assets/images/nmvtis-1.png';
+    const today = new Date();
+      const pageHeight = doc.internal.pageSize.height;
+
+      const imgWidth = 10;
+      const imgHeight = 5;
+      const textFontSize = 9;
+
+      const bottomMargin = 2;
+      const imgX = 15;
+      const imgY = pageHeight - bottomMargin - imgHeight;
+      const textX = imgX + imgWidth + 5;
+      const textY = imgY + imgHeight - 1;
+      const hrY = imgY - 4;
+
+      // Save current color
+      const originalColor = doc.getTextColor();
+
+      // Set dark gray
+      doc.setDrawColor(67, 66, 66);
+      doc.setLineWidth(0.1);
+      doc.line(14, hrY, 296, hrY);
+
+      doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
+
+      doc.setTextColor(67, 66, 66);
+      doc.setFontSize(textFontSize);
+      doc.setFont('helvetica', 'normal');
+      doc.text(
+        'Title Alarm LLC, Marley Nonami Incorporated is an approved NMVTIS Data Provider.',
+        textX - 2,
+        textY - 1
+      );
+
+      const dateheader = this.dateFormate.transform(today, 'DD MMM YYYY');
+      const updatedText = `Updated ${dateheader}`;
+      doc.text(updatedText, 254, textY - 1);
+
+      // Restore original color
+      doc.setTextColor(originalColor);
+    };
     const addHeader = () => {
       const logoWidth = 30.5;
       const logoHeight = 8.5;
@@ -112,7 +156,7 @@ export class CreatePDFService {
             const imgX = data.cell.x + 2;
             const imgY = data.cell.y + 2.5;
             const imgSize = 0.9;
-          
+
             // Determine the "Deleted" label based on column index and corresponding flag
             let labelText = '';
             if (colIndex === 1 && rowData[6]) {
@@ -122,7 +166,7 @@ export class CreatePDFService {
             } else if (colIndex === 3 && rowData[8]) {
               labelText = 'Deleted';
             }
-          
+
             // If there's a "Deleted" label, draw it
             if (labelText) {
               doc.setFontSize(6);
@@ -134,23 +178,23 @@ export class CreatePDFService {
               const x = imgX + 5;
               const y = imgY - 1 + imgSize + 1.2;
               const borderRadius = 2;
-            
+
               const rectHeight = fontHeight + paddingY * 2;
-            
+
               doc.setFillColor(...boxColor);
               doc.roundedRect(x - 2, y - fontHeight - paddingY + 0.3, textWidth + 4, rectHeight, borderRadius, borderRadius, 'F');
-            
+
               doc.setTextColor(...textColor);
               doc.text(labelText, x, y);
             }
-            
-          
+
+
             // Draw circle instead of image
             const circleX = imgX + imgSize / 2;
             const circleY = imgY + imgSize / 2;
             doc.setFillColor(207, 75, 95);
             doc.circle(circleX, circleY, 0.5, 'F');
-          
+
           }
         },
 
@@ -177,7 +221,7 @@ export class CreatePDFService {
         addFooter();
         y = 35;  // Reset y position for disclaimer start on new page
       }
- doc.setFontSize(14);
+      doc.setFontSize(14);
       doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
       doc.setTextColor(100);
       const finalY = y + 20;

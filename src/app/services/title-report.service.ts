@@ -19,21 +19,62 @@ export class TitleReportService {
     vinFor: any
   ): void {
     const doc = new jsPDF({ orientation: 'landscape' });
-
+    const urlTextColor: [number, number, number] = [224, 138, 151];
+    // const addFooter = () => {
+    //   const pageHeight = doc.internal.pageSize.height;
+    //   const footerY = pageHeight - 1;
+    //   doc.setDrawColor(69, 67, 67);
+    //   doc.setLineWidth(.1);
+    //   doc.line(14, footerY - 14, 284, footerY - 14);
+    //   doc.setFont('helvetica', 'normal');
+    //   doc.setFontSize(9);
+    //   doc.setTextColor(100);
+    //   doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
+    //   doc.text('VINify, Title Alarm, LLC', 15, footerY - 5);
+    //   doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 276, footerY - 5);
+    // };
     const addFooter = () => {
+      const nmvtlogo = 'assets/images/nmvtis-1.png';
+      const today = new Date();
       const pageHeight = doc.internal.pageSize.height;
-      const footerY = pageHeight - 1;
-      doc.setDrawColor(69, 67, 67);
-      doc.setLineWidth(.1);
-      doc.line(14, footerY - 14, 284, footerY - 14);
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(9);
-      doc.setTextColor(100);
-      doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution. ', 15, footerY - 10);
-      doc.text('VINify, Title Alarm, LLC', 15, footerY - 5);
-      doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 276, footerY - 5);
-    };
 
+      const imgWidth = 10;
+      const imgHeight = 5;
+      const textFontSize = 9;
+
+      const bottomMargin = 2;
+      const imgX = 15;
+      const imgY = pageHeight - bottomMargin - imgHeight;
+      const textX = imgX + imgWidth + 5;
+      const textY = imgY + imgHeight - 1;
+      const hrY = imgY - 4;
+
+      // Save current color
+      const originalColor = doc.getTextColor();
+
+      // Set dark gray
+      doc.setDrawColor(67, 66, 66);
+      doc.setLineWidth(0.1);
+      doc.line(14, hrY, 296, hrY);
+
+      doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
+
+      doc.setTextColor(67, 66, 66);
+      doc.setFontSize(textFontSize);
+      doc.setFont('helvetica', 'normal');
+      doc.text(
+        'Title Alarm LLC, Marley Nonami Incorporated is an approved NMVTIS Data Provider.',
+        textX - 2,
+        textY - 1
+      );
+
+      const dateheader = this.dateFormate.transform(today, 'DD MMM YYYY');
+      const updatedText = `Updated ${dateheader}`;
+      doc.text(updatedText, 254, textY - 1);
+
+      // Restore original color
+      doc.setTextColor(originalColor);
+    };
     const addHeader = () => {
       const logoWidth = 30.5;
       const logoHeight = 8.5;
@@ -58,13 +99,13 @@ export class TitleReportService {
       addFooter();
 
       const tableColumn = ['Status', 'Date', 'Type', 'Brand Name(s)', 'Odometer', 'State', 'City', 'Description', 'Export', 'RPTG Entity', 'Mobile', 'Email'];
-const formatPhoneNumber = (phone: string): string => {
-  const cleaned = ('' + phone).replace(/\D/g, '');
-  if (cleaned.length === 10) {
-    return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
-  }
-  return phone; // fallback to original if not 10 digits
-};
+      const formatPhoneNumber = (phone: string): string => {
+        const cleaned = ('' + phone).replace(/\D/g, '');
+        if (cleaned.length === 10) {
+          return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
+        }
+        return phone; // fallback to original if not 10 digits
+      };
 
       const tableRows = tableData.map((item) => [
         item.status || " ",
@@ -76,8 +117,8 @@ const formatPhoneNumber = (phone: string): string => {
         item.city || " ",
         item.description || " ",
         item.export ? this.capitalizePipe.transform(item.export) : " ",
-        item.rptgEntity || " ", 
-         formatPhoneNumber(item.mobile || " "), 
+        item.rptgEntity || " ",
+        formatPhoneNumber(item.mobile || " "),
         item.email || " ",
         item.isDel ? item.isDel : false,      // index 12
         item?.isRead ? item?.isRead : false,  // index 13
@@ -168,7 +209,7 @@ const formatPhoneNumber = (phone: string): string => {
 
             // Draw visible link text
             doc.setFontSize(7);
-            doc.setTextColor(8, 6, 117); // #080675
+            doc.setTextColor(...urlTextColor);
             doc.textWithLink(stateText, textX, textY, { url: weburl });
 
             // Make the entire cell clickable
