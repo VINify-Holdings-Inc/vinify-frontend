@@ -190,11 +190,14 @@ export class TitleTabComponent implements OnInit {
           this.router.navigate(['/']);
         }
         if (!res.error) {
+         const today = new Date();
+            const formattedDate = `${String(today.getUTCDate()).padStart(2, '0')}${String(today.getUTCMonth() + 1).padStart(2, '0')}${today.getUTCFullYear()}`;
+            const FinalfileName = `${this.paramVin}-VINify-Report-${formattedDate}`;
           this.titleReportService.generatePDF(
             PDF_SETTINGS.COMPANY_NAME,
             PDF_SETTINGS.LOGO_URL,
             res?.data?.items || [],
-            'Vin-detail-report.pdf',
+           FinalfileName,
             this.paramVin
           );
         } else {

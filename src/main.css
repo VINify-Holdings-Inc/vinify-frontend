@@ -4009,6 +4009,7 @@ img.img-fluid.nmvtslogocaution {
 
 
 .url_navigate{
-  color: #0000ff !important;
+  color: #cf4b5f !important;
   cursor: pointer !important;
+  /* text-decoration: underline !important; */
 }

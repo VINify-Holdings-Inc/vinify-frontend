@@ -20,10 +20,11 @@ export class NavPdfService {
     logImage: any,
     fileName: string = 'Vehicle_History_Report.pdf',
   ): void {
-  const today = new Date();
+    const today = new Date();
 
-const formattedDate = `${String(today.getUTCDate()).padStart(2, '0')}${String(today.getUTCMonth() + 1).padStart(2, '0')}${today.getUTCFullYear()}`; 
-const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
+    const urlTextColor: [number, number, number] = [224, 138, 151];
+    const formattedDate = `${String(today.getUTCDate()).padStart(2, '0')}${String(today.getUTCMonth() + 1).padStart(2, '0')}${today.getUTCFullYear()}`;
+    const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
 
     const tableData = data?.titleData;
     const brandData = data?.brandData;
@@ -46,7 +47,7 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
     const nmvtlogo = 'assets/images/nmvtis-1.png';
 
 
-   
+
     const sectionPositions: { [key: string]: { page: number, y: number } } = {};
     // Header Section (Every Page)
     const addHeader = () => {
@@ -76,72 +77,57 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
       doc.line(14, 35, 196, 35);
       //  doc.line(14, 32, 196, 32); 
     };
-
-    const addVehicleInfoSection = () => {
-      let y = 42;
-      // Vehicle Title
-      doc.setFontSize(18);
-      doc.setFont('helvetica', 'bold');
-      doc.text('REPORT', 15, y);
-      y += 7;
-    };
-
     // Footer (Every Page)
     const addFooter = () => {
       const pageHeight = doc.internal.pageSize.height;
 
       const imgWidth = 10;
       const imgHeight = 5;
-      const textFontSize = 11;
+      const textFontSize = 9;
 
-      const bottomMargin = 2; // 2px bottom margin
-
+      const bottomMargin = 2;
       const imgX = 15;
-      const imgY = pageHeight - bottomMargin - imgHeight; // Image is 2px above bottom
+      const imgY = pageHeight - bottomMargin - imgHeight;
       const textX = imgX + imgWidth + 5;
-      const textY = imgY + imgHeight - 1; // Align text with image
+      const textY = imgY + imgHeight - 1;
+      const hrY = imgY - 4;
 
-      const hrY = imgY - 4; // Line appears 4px above the image/text
+      // Save current color
+      const originalColor = doc.getTextColor();
 
-      // Draw horizontal line
-      doc.setDrawColor(69, 67, 67);
+      // Set dark gray
+      doc.setTextColor(69, 67, 67);
       doc.setLineWidth(0.1);
       doc.line(14, hrY, 196, hrY);
 
-      // Add image
       doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
 
-      // Add footer text
-      doc.setTextColor(67, 66, 66);
+      doc.setTextColor(69, 67, 67);
       doc.setFontSize(textFontSize);
-      doc.setFontSize(9);
       doc.setFont('helvetica', 'normal');
       doc.text(
         'Title Alarm LLC, Marley Nonami Incorporated is an approved NMVTIS Data Provider.',
         textX - 2,
         textY - 1
       );
-      doc.setTextColor(108, 108, 108);
+
       const dateheader = this.dateFormate.transform(today, 'DD MMM YYYY');
       const updatedText = `Updated ${dateheader}`;
-      doc.setFontSize(9);
-      doc.setFont('helvetica', 'normal');
       doc.text(updatedText, 164, textY - 1);
+
+      // Restore original color
+      doc.setTextColor(originalColor);
     };
 
 
 
     const drawBadge = (doc: any, x: number, y: number, number: string | number) => {
-      const radius = 3.5; // Adjust size of the circle
-
-      // Draw red filled circle
+      const radius = 3;
       doc.setFillColor(207, 75, 95); // Red color
-      doc.circle(x, y, radius, 'F'); // 'F' = Fill
-
-      // Draw white text in the center
+      doc.circle(x, y - 1, radius, 'F');
       doc.setTextColor(255, 255, 255); // White text
       doc.setFontSize(8);
-      doc.text(`${number}`, x, y + 1, { align: 'center' }); // Centered text
+      // doc.text(`${number}`, x, y + 1, { align: 'center' }); // Centered text
     }
 
     doc.setProperties({ title: "Vehicle History Report" });
@@ -179,8 +165,13 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
     doc.text("Title Issue State", 22, y + 33)
     const stateText = titleLength ? (tableData[0]?.state || " ") : " ";
     const url = tableData[0]?.weburl || "";
-    doc.setTextColor(0, 0, 255);  // Blue color for link
-    doc.textWithLink(stateText, 22, y + 38, { url });
+    if (url) {
+      doc.setTextColor(...urlTextColor)
+      doc.textWithLink(stateText, 22, y + 38, { url, underline: true });
+    } else {
+      doc.setTextColor(69, 67, 67);  // Normal color for plain text
+      doc.text(stateText, 22, y + 38);
+    }
     doc.setTextColor(69, 67, 67);
 
     doc.roundedRect(80, y, 55, 43, 3, 3, 'S')
@@ -200,11 +191,16 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
     doc.text("Brand Issue State", 82, y + 33)
     const stateTexturl = brandLength ? (brandData[0]?.state || " ") : " ";
     const urlbrand = brandData[0]?.weburl || "";
-    doc.setTextColor(0, 0, 255);
-    doc.textWithLink(stateTexturl, 82, y + 38, { url: urlbrand });
+    if (urlbrand) {
+      doc.setTextColor(...urlTextColor)
+
+      doc.textWithLink(stateTexturl, 82, y + 38, { url: urlbrand });
+    } else {
+      doc.setTextColor(69, 67, 67);
+      doc.text(stateTexturl, 82, y + 38);
+    }
+
     doc.setTextColor(69, 67, 67);
-
-
     doc.roundedRect(140, y, 55, 43, 3, 3, 'S')
     doc.setFont('helvetica', 'bold');
     const dynamicData2 = `Junk/Salvage Information (${JSICount})`;  // Replace with your dynamic data  const dynamicData2 = `Junk/Salvage Information (${brandCount})`; 
@@ -221,9 +217,13 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
     doc.text("JSI Issue State", 142, y + 33)
     const stateTextJsi = jsiLength ? (junkSalvageData[0]?.state || " ") : " ";
     const urljsii = junkSalvageData[0]?.weburl || "";
-    doc.setTextColor(0, 0, 255);
-    doc.textWithLink(stateTextJsi, 142, y + 38, { url: urljsii });
-    doc.setTextColor(69, 67, 67);
+    if (urljsii) {
+      doc.setTextColor(...urlTextColor)
+      doc.textWithLink(stateTextJsi, 142, y + 38, { url: urljsii });
+    } else {
+      doc.setTextColor(69, 67, 67);
+      doc.text(stateTextJsi, 142, y + 38);
+    }
 
     y += 60;
     drawBadge(doc, 14, y - 1, titleCount);
@@ -262,7 +262,7 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
           item?.state || ' ',
           formattedOdometer,
           item?.status || ' ',
-          item?.weburl || ' ' // Hidden column (index 5)
+          item?.weburl || '' // Hidden column (index 5)
         ];
       })
       : [['', '', 'No records found', '', '', '']];
@@ -281,27 +281,25 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
         1: { cellWidth: 30 },
         2: { cellWidth: 25, halign: 'left', valign: 'top' },
         3: { cellWidth: 30 },
-        4: { cellWidth: 35, }
+        4: { cellWidth: 35 }
       },
 
       didParseCell: (data: any) => {
-        // Apply blue color only for real data rows and when column is 'Issuing State' (index 2)
-        if (
-          data.section === 'body' &&
-          data.column.index === 2 &&
-          data.cell.raw !== 'No records found'
-        ) {
-          data.cell.styles.textColor = [0, 0, 255]; // Blue
+        const isNoRecords = data.row.raw.includes('No records found');
+        const isIssuingStateColumn = data.column.index === 2;
+        const url = data.row.raw[5];
+
+        // Color the "Issuing State" text
+        if (data.section === 'body' && isIssuingStateColumn && !isNoRecords) {
+          data.cell.styles.textColor = url?.trim() ? urlTextColor : [67, 66, 66]; // Blue if URL exists, dark gray otherwise
         }
 
-        // Optionally set a different color for "No records found" text
-        if (
-          data.section === 'body' &&
-          data.row.raw.includes('No records found')
-        ) {
-          data.cell.styles.textColor = [67, 66, 66]; // Dark gray
+        // Special color for "No records found"
+        if (data.section === 'body' && isNoRecords) {
+          data.cell.styles.textColor = [67, 66, 66];
         }
       },
+
       didDrawCell: (data: any) => {
         const { column, row, cell, section } = data;
         const rowData = row.raw;
@@ -381,13 +379,13 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
       didParseCell: (data: any) => {
         // Apply blue text color for Brand Issue State (index 1) if URL exists
         if (data.section === 'body' && data.column.index === 1 && data.row.raw[5]?.trim()) {
-          data.cell.styles.textColor = [0, 0, 255]; // Blue
+          data.cell.styles.textColor = urlTextColor // Blue
         }
       },
 
       didDrawCell: (data: any) => {
         const { column, row, cell, section } = data;
-        const rowData = row.raw; 
+        const rowData = row.raw;
         // Hyperlink on Brand Issue State column
         if (section === 'body' && column.index === 1 && row.index !== -1) {
           const url = rowData[5];
@@ -399,6 +397,7 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
 
       didDrawPage: (data: any) => {
         addHeader();
+        doc.setFont('helvetica', 'normal');
         addFooter();
       },
     });
@@ -413,7 +412,7 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
       doc.addPage();
       y = 40; // Reset Y for new page
       addHeader();
-      // doc.setFont('helvetica', 'bold');
+      doc.setFont('helvetica', 'normal');
       addFooter();
     }
 
@@ -425,7 +424,7 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
       doc.addPage();
       y = 40; // Reset Y for new page
       addHeader();
-      // doc.setFont('helvetica', 'bold');
+      doc.setFont('helvetica', 'normal');
       addFooter();
     }
 
@@ -457,7 +456,7 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
     if (y + 50 > doc.internal.pageSize.height - 20) {
       doc.addPage();
       addHeader();
-      // doc.setFont('helvetica', 'bold');
+      doc.setFont('helvetica', 'normal');
       addFooter();
       y = 40; // Reset Y for new page
     }
@@ -479,28 +478,28 @@ const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
     doc.setTextColor(69, 67, 67);  //black
     y += 15;
 
-const formatPhoneNumber = (phone: string): string => {
-  const cleaned = ('' + phone).replace(/\D/g, '');
-  if (cleaned.length === 10) {
-    return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
-  }
-  return phone; // fallback to original if not 10 digits
-};
+    const formatPhoneNumber = (phone: string): string => {
+      const cleaned = ('' + phone).replace(/\D/g, '');
+      if (cleaned.length === 10) {
+        return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
+      }
+      return phone; // fallback to original if not 10 digits
+    };
 
-const jsiColumns = ['Date', 'Report Type', 'Reporting Entity', 'City', 'State', 'Phone', 'Disposition'];
+    const jsiColumns = ['Date', 'Report Type', 'Reporting Entity', 'City', 'State', 'Phone', 'Disposition'];
 
-const jsiRows = junkSalvageData.length > 0
-  ? junkSalvageData.map((item: any) => [
-      item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : " ",
-      item?.ReportingEntityCategoryText || " ",
-      item?.EntityName || " ",
-      item?.LocationCityName || " ",
-      item?.state || " ",
-      formatPhoneNumber(item?.TelephoneNumberFullID || ""), // <-- formatted phone
-      item?.VehicleDispositionText || " ",
-      item?.weburl || " "
-    ])
-  : [["", "", "No records found", "", "", "", "", ""]];
+    const jsiRows = junkSalvageData.length > 0
+      ? junkSalvageData.map((item: any) => [
+        item?.titleBrandDate ? this.dateFormate.transform(item?.titleBrandDate, 'DD MMM YYYY') : " ",
+        item?.ReportingEntityCategoryText || " ",
+        item?.EntityName || " ",
+        item?.LocationCityName || " ",
+        item?.state || " ",
+        formatPhoneNumber(item?.TelephoneNumberFullID || ""), // <-- formatted phone
+        item?.VehicleDispositionText || " ",
+        item?.weburl || " "
+      ])
+      : [["", "", "No records found", "", "", "", "", ""]];
 
     (doc as any).autoTable({
       startY: y,
@@ -511,16 +510,20 @@ const jsiRows = junkSalvageData.length > 0
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
-        0: { cellWidth: 30 },
-        1: { cellWidth: 30 },
-        4: { cellWidth: 30 },
+        0: { cellWidth: 20 },
+        1: { cellWidth: 25 },
+        2: { cellWidth: 30 },
+        3: { cellWidth: 25 },
+        4: { cellWidth: 20 },
+        5: { cellWidth: 25 },
+        6: { cellWidth: 35 },
         7: { cellWidth: 0 } // Hidden column for web URL
       },
 
       // Apply blue color if link exists
       didParseCell: (data: any) => {
         if (data.section === 'body' && data.column.index === 4 && data.row.raw[7]?.trim()) {
-          data.cell.styles.textColor = [0, 0, 255]; // Blue color
+          data.cell.styles.textColor = urlTextColor; // Blue color
         }
       },
 
@@ -539,6 +542,7 @@ const jsiRows = junkSalvageData.length > 0
 
       didDrawPage: (data: any) => {
         addHeader();
+        doc.setFont('helvetica', 'normal');
         addFooter();
       },
     });
@@ -551,7 +555,10 @@ const jsiRows = junkSalvageData.length > 0
     if (y + 20 > pageHeight2 - 25) { // Adjust 25 for footer space
       doc.addPage();
       y = 40; // Reset Y for new page
-      addHeader(); addFooter();
+      addHeader();
+      doc.setTextColor(69, 67, 67);
+      doc.setFont('helvetica', 'normal');
+      addFooter();
     }
 
     // Legal Disclaimer
@@ -565,7 +572,7 @@ const jsiRows = junkSalvageData.length > 0
     }
     // Use pages.length instead of getNumberOfPages()
     sectionPositions['disclaim'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
-
+    doc.setTextColor(69, 67, 67);
     doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
     addHeader();
     addFooter();
@@ -573,11 +580,12 @@ const jsiRows = junkSalvageData.length > 0
     const finalY = y + 20;
     let yPosition = finalY;
     const pageHeight = doc.internal.pageSize.height;
-    const pageWidth = doc.internal.pageSize.width - 40; // 20 margin each side
+    const pageWidth = doc.internal.pageSize.width;
+    const contentWidth = pageWidth - 27; // 20px left + 20px right padding
     const footerHeight = 15;
 
-    const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth); // Correct width
-    doc.setFontSize(10);
+    const disclaimerLines = doc.splitTextToSize(disclaimer, contentWidth); // 20px margin on both sides
+    doc.setFontSize(9);
     doc.setTextColor(69, 67, 67);
 
     for (let i = 0; i < disclaimerLines.length; i++) {
@@ -585,18 +593,21 @@ const jsiRows = junkSalvageData.length > 0
       const remainingSpace = pageHeight - yPosition - footerHeight;
 
       if (remainingSpace < lineHeight) {
+        doc.setFontSize(9);
         doc.addPage();
         addHeader();
+        doc.setFont('helvetica', 'normal');
         addFooter();
         yPosition = 40;
         doc.setTextColor(69, 67, 67);
         doc.setFontSize(10);
       }
-
+      doc.setFontSize(9);
       doc.text(disclaimerLines[i], 15, yPosition, { align: 'left' }); // 20 = left margin
       yPosition += lineHeight;
       y = yPosition;
     }
+
 
     y = y + 10;
     const pageHeightSource = doc.internal.pageSize.height;
@@ -608,15 +619,18 @@ const jsiRows = junkSalvageData.length > 0
     doc.setFontSize(14);
     sectionPositions['source'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
     doc.text('Sources', 15, y);
-    addHeader(); addFooter();
+    addHeader();
+    addFooter();
     y += 10;
     if (y + 50 > doc.internal.pageSize.height - 20) {
       doc.addPage();
-      addHeader(); addFooter();
+      addHeader();
+      addFooter();
       y = 40; // Reset Y for new page
     }
     // Description
-    doc.setFontSize(10);
+    doc.setFontSize(9);
+    doc.setTextColor(69, 67, 67);
     doc.setFont('helvetica', 'normal');
     const description = `Your VINify report checks for and reports information from the following high-quality data sources. Please see our report sections page, FAQ, terms of service and disclaimer for more information.`;
     doc.text(doc.splitTextToSize(description, 180), 15, y);
@@ -627,17 +641,19 @@ const jsiRows = junkSalvageData.length > 0
     }]
 
     // Loop through data sources
+    doc.setFontSize(9);
     sources1.forEach((source, index) => {
       // Check for page break
       if (y + 50 > doc.internal.pageSize.height - 20) {
         doc.addPage();
-        addHeader(); addFooter();
+        addHeader();
+        addFooter();
         y = 40; // Reset Y for new page
       }
       // Add Logo
       doc.addImage(nmvtlogo, 'PNG', 15, y, 40, 20);
       // Add Text
-      doc.text(doc.splitTextToSize(source.description, 140), 60, y + 5);
+      doc.text(doc.splitTextToSize(source.description, 135), 60, y + 5);
       y += 45; // Move Y down for the next block
     });
 
@@ -645,7 +661,7 @@ const jsiRows = junkSalvageData.length > 0
     addFooter();
 
     const totalPages = (doc as any).internal.getNumberOfPages();
-    doc.setFontSize(10);
+    doc.setFontSize(9);
 
     /************************************************ */
 
