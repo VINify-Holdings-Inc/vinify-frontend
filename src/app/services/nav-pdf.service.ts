@@ -78,8 +78,12 @@ export class NavPdfService {
       //  doc.line(14, 32, 196, 32); 
     };
     // Footer (Every Page)
-    const addFooter = () => {
+    let a = 0;
+    const addFooter = (currentPage: any = "Zero") => {
       const pageHeight = doc.internal.pageSize.height;
+
+      a++
+      console.log(currentPage, a, "apge ");
 
       const imgWidth = 10;
       const imgHeight = 5;
@@ -268,7 +272,7 @@ export class NavPdfService {
       : [['', '', 'No records found', '', '', '']];
 
     doc.setTextColor(69, 67, 67);
-
+    const footerAddedPages = new Set<number>();
     (doc as any).autoTable({
       startY: y += 5,
       theme: 'grid',
@@ -314,7 +318,8 @@ export class NavPdfService {
 
       didDrawPage: (data: any) => {
         addHeader();
-        addFooter();
+        const currentPage = data.pageNumber;
+        addFooter(currentPage);
       },
     });
 
@@ -397,8 +402,8 @@ export class NavPdfService {
 
       didDrawPage: (data: any) => {
         addHeader();
-        doc.setFont('helvetica', 'normal');
-        addFooter();
+        const currentPage = data.pageNumber;
+        addFooter(currentPage);
       },
     });
 
@@ -412,8 +417,8 @@ export class NavPdfService {
       doc.addPage();
       y = 40; // Reset Y for new page
       addHeader();
-      doc.setFont('helvetica', 'normal');
-      addFooter();
+      const currentPage = data.pageNumber;
+        addFooter(currentPage);
     }
 
     y += 10;
@@ -424,8 +429,8 @@ export class NavPdfService {
       doc.addPage();
       y = 40; // Reset Y for new page
       addHeader();
-      doc.setFont('helvetica', 'normal');
-      addFooter();
+      const currentPage = data.pageNumber;
+        addFooter(currentPage);
     }
 
     // Junk Salvage
@@ -443,7 +448,8 @@ export class NavPdfService {
     sectionPositions['junksalvage'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
     doc.text('Junk/Salvage Information', 19, y);
     addHeader();
-    addFooter();
+    const currentPage = data.pageNumber;
+        addFooter(currentPage);
     doc.setFontSize(6);
     doc.setFont('helvetica', 'bold');
     doc.text('Source', 180, y);
@@ -456,8 +462,8 @@ export class NavPdfService {
     if (y + 50 > doc.internal.pageSize.height - 20) {
       doc.addPage();
       addHeader();
-      doc.setFont('helvetica', 'normal');
-      addFooter();
+     const currentPage = data.pageNumber;
+        addFooter(currentPage);
       y = 40; // Reset Y for new page
     }
     let yPosition21 = y + 3; // Initial y position
@@ -542,8 +548,8 @@ export class NavPdfService {
 
       didDrawPage: (data: any) => {
         addHeader();
-        doc.setFont('helvetica', 'normal');
-        addFooter();
+        const currentPage = data.pageNumber;
+        addFooter(currentPage);
       },
     });
 
@@ -557,8 +563,8 @@ export class NavPdfService {
       y = 40; // Reset Y for new page
       addHeader();
       doc.setTextColor(69, 67, 67);
-      doc.setFont('helvetica', 'normal');
-      addFooter();
+     const currentPage = data.pageNumber;
+        addFooter(currentPage);
     }
 
     // Legal Disclaimer

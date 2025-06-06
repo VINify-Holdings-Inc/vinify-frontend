@@ -102,11 +102,20 @@
 															(data?.titleMaxDate | dateFormat: 'DD MMM
 															YYYY') : " " }}</li>
 														<li><span class="makeFullW">Title Issue State</span>
-															<a *ngIf="data?.titleData?.[0]?.weburl" class="url_navigate"
-																[href]="data.titleData[0].weburl" target="_blank"
-																rel="noopener noreferrer">
-																{{ data.titleData[0]?.state ?? ' ' }}
-															</a>
+															<span
+																*ngIf="data?.titleData?.length > 0 && data.titleData[0]?.weburl; else plainStateTitle">
+																<a class="url_navigate"
+																	[href]="data.titleData[0].weburl" target="_blank"
+																	rel="noopener noreferrer">
+																	{{ data.titleData[0]?.state ?? ' ' }}
+																</a>
+															</span>
+
+															<ng-template #plainStateTitle>
+																{{ data?.titleData?.length > 0 ?
+																data.titleData[0]?.state ?? ' ' : ' ' }}
+															</ng-template>
+
 														</li>
 													</ul>
 												</div>
@@ -130,12 +139,21 @@
 														<li><span class="makeFullW">Brand Issue State</span>
 															<!-- {{
 															data?.brandData?.[0]?.state ?? " " }} -->
-															<a *ngIf="data?.brandData?.[0]?.weburl" class="url_navigate"
-																[href]="data.brandData[0].weburl" target="_blank"
-																rel="noopener noreferrer">
-																{{ data.brandData[0]?.state ?? ' ' }}
-															</a>
-														
+															<span
+																*ngIf="data?.brandData?.length > 0 && data.brandData[0]?.weburl; else plainStateBrand">
+																<a class="url_navigate"
+																	[href]="data.brandData[0].weburl" target="_blank"
+																	rel="noopener noreferrer">
+																	{{ data.brandData[0]?.state ?? ' ' }}
+																</a>
+															</span>
+
+															<ng-template #plainStateBrand>
+																{{ data?.brandData?.length > 0 ?
+																data.brandData[0]?.state ?? ' ' : ' ' }}
+															</ng-template>
+
+
 														</li>
 													</ul>
 
@@ -156,16 +174,22 @@
 															(data?.jsiMaxDate | dateFormat: 'DD MMM
 															YYYY') : " " }}</li>
 														<li><span class="makeFullW">JSI Issue State</span>
-															
-															<!-- {{
-															data?.JSI?.[0]?.state ?? " " }} -->
 
-															<a *ngIf="data?.JSI?.[0]?.weburl" class="url_navigate"
-																[href]="data.JSI[0].weburl" target="_blank"
-																rel="noopener noreferrer">
-																{{ data.JSI[0]?.state ?? ' ' }}
-															</a>
-														
+															<span
+																*ngIf="data?.JSI?.length > 0 && data.JSI[0]?.weburl; else plainState">
+																<a class="url_navigate" [href]="data.JSI[0].weburl"
+																	target="_blank" rel="noopener noreferrer">
+																	{{ data.JSI[0]?.state ?? ' ' }}
+																</a>
+															</span>
+
+															<ng-template #plainState>
+																{{ data?.JSI?.length > 0 ? data.JSI[0]?.state ?? ' ' : '
+																' }}
+															</ng-template>
+
+
+
 														</li>
 
 													</ul>
@@ -184,8 +208,9 @@
 
 						<section id="titleinformations" class="">
 							<div class="sectionText">
-								<h2 class="sectionHeadeing"><span *ngIf="data.titleDataCount"
-										class="circleRedBox">{{data.titleDataCount}}</span>Title Record History
+								<h2 class="sectionHeadeing"><span *ngIf="data.titleDataCount" class="circleRedBox">
+										<span class="decimal">.</span>
+									</span>Title Record History
 									<small><strong>Source</strong>
 										NMVTIS</small>
 								</h2>
@@ -246,7 +271,7 @@
 								</div>
 
 								<h2 class="sectionHeadeing" id="brandtableID"><span *ngIf="data.brandDataCount"
-										class="circleRedBox">{{data.brandDataCount}}</span> Title Brands Reported
+										class="circleRedBox"><span class="decimal">.</span></span> Title Brands Reported
 								</h2>
 
 
@@ -299,8 +324,8 @@
 
 						<section id="junknsalvagesection">
 							<div class="sectionText">
-								<h2 class="sectionHeadeing"><span *ngIf="data.JSICount"
-										class="circleRedBox">{{data.JSICount}}</span> Junk/Salvage Information
+								<h2 class="sectionHeadeing"><span *ngIf="data.JSICount" class="circleRedBox"><span
+											class="decimal">.</span></span> Junk/Salvage Information
 									<small><strong>Source</strong> NMVTIS</small>
 								</h2>
 								<p>This section discloses events related to events like junk, salvage and insurance

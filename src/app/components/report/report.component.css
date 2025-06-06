@@ -194,7 +194,12 @@ ul.vinContains li strong {
 	line-height: 21px;
 	box-shadow: 0 0 5px #735e5e;
 	margin-right: 5px;
+	
 	font-size: 14px;
+}
+
+.decimal{
+	color: #d30202;
 }
 .ftrLogo {
 	position: absolute;
