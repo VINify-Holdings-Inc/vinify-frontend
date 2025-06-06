@@ -181,7 +181,7 @@ export class SingleVinComponent implements OnInit, AfterViewInit {
     const ids = this.selectedVins.map(item => item.id);
     const today = new Date();
     const formattedDate = `${String(today.getUTCDate()).padStart(2, '0')}${String(today.getUTCMonth() + 1).padStart(2, '0')}${today.getUTCFullYear()}`;
-    const FinalfileName = `specific-vins-VINify-Report-${formattedDate}`;
+    const FinalfileName = `Specific-Vins-VINify-Report-${formattedDate}`;
     this.userData.getPdfData(url, ids).subscribe(
       (res: any) => {
         if (!res.error) {

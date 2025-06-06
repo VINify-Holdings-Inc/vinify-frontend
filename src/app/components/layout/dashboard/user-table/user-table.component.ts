@@ -158,7 +158,7 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
     });
   }
 
-  getTableData(dataType: any) { 
+  getTableData(dataType: any) {
     this.isLoading = true;
     let url = `type=${dataType}`;
     if (dataType == "single") {
@@ -182,10 +182,13 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
       (res: any) => {
         if (!res.error) {
           if (res?.data?.items.length > 0) {
-            console.log(dataType," 66  666");
+            console.log(dataType, " 66  666");
             const today = new Date();
             const formattedDate = `${String(today.getUTCDate()).padStart(2, '0')}${String(today.getUTCMonth() + 1).padStart(2, '0')}${today.getUTCFullYear()}`;
-            const FinalfileName = `${dataType == 'all' || 'update ' ? dataType : "specific"}-vins-VINify-Report-${formattedDate}`;
+            const capitalizeFirstLetter = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1);
+
+            const typeLabel = dataType === 'all' || dataType === 'update' ? capitalizeFirstLetter(dataType) : 'Updated';
+            const FinalfileName = `${typeLabel}-Vins-VINify-Report-${formattedDate}`;
             this.pdfService.generatePDF(
               PDF_SETTINGS.COMPANY_NAME,
               PDF_SETTINGS.LOGO_URL,

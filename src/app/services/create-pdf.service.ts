@@ -46,8 +46,8 @@ export class CreatePDFService {
     // };
 
     const addFooter = () => {
-         const nmvtlogo = 'assets/images/nmvtis-1.png';
-    const today = new Date();
+      const nmvtlogo = 'assets/images/nmvtis-1.png';
+      const today = new Date();
       const pageHeight = doc.internal.pageSize.height;
 
       const imgWidth = 10;
@@ -67,7 +67,7 @@ export class CreatePDFService {
       // Set dark gray
       doc.setDrawColor(67, 66, 66);
       doc.setLineWidth(0.1);
-      doc.line(14, hrY, 296, hrY);
+      doc.line(14, hrY, 279.5, hrY);
 
       doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
 
@@ -82,7 +82,7 @@ export class CreatePDFService {
 
       const dateheader = this.dateFormate.transform(today, 'DD MMM YYYY');
       const updatedText = `Updated ${dateheader}`;
-      doc.text(updatedText, 254, textY - 1);
+      doc.text(updatedText, 248.5, textY - 1);
 
       // Restore original color
       doc.setTextColor(originalColor);
@@ -129,9 +129,9 @@ export class CreatePDFService {
         margin: { top: 28 },
         columnStyles: {
           0: { cellWidth: 70 },
-          1: { cellWidth: 70 },
-          2: { cellWidth: 70 },
-          3: { cellWidth: 70 },
+          1: { cellWidth: 65 },
+          2: { cellWidth: 65 },
+          3: { cellWidth: 65 },
         },
         didParseCell: (data: any) => {
           if (data.section === 'body' && data.row.raw[5] == 1) {
@@ -224,29 +224,42 @@ export class CreatePDFService {
       doc.setFontSize(14);
       doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
       doc.setTextColor(100);
-      const finalY = y + 20;
-      let yPosition = finalY;
-      const pageWidth = doc.internal.pageSize.width;
+      // Define page and layout settingsconst leftPadding = 14;
+      const leftPadding = 14;
+      const rightPadding = -92;
+      const startYPosition = y + 20;
+      let currentY = startYPosition;
 
-      const disclaimerLines = doc.splitTextToSize(disclaimer, pageWidth + 105);
+      const pdfPageWidth = doc.internal.pageSize.width;
+      const pdfPageHeight = doc.internal.pageSize.height;
+      const pdfFooterHeight = 15;
+
+      const contentWidth = pdfPageWidth - (leftPadding + rightPadding);
+      const disclaimerLines = doc.splitTextToSize(disclaimer, contentWidth);
+
+      // Set font styles
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(100);
 
+      // Render disclaimer text with page break handling
       for (let i = 0; i < disclaimerLines.length; i++) {
         const lineHeight = 5;
-        const remainingSpace = pageHeight - yPosition - footerHeight;
+        const remainingSpace = pdfPageHeight - currentY - pdfFooterHeight;
+
         if (remainingSpace < lineHeight) {
           doc.addPage();
-          addHeader();
-          yPosition = 35;
+          addHeader(); // your custom header function
+          currentY = 35;
+
+          // Reapply font styling on new page
           doc.setFontSize(10);
           doc.setFont('helvetica', 'normal');
           doc.setTextColor(100);
         }
-        doc.setTextColor(100);
-        doc.text(disclaimerLines[i], 14, yPosition, { align: 'left' });
-        yPosition += lineHeight;
+
+        doc.text(disclaimerLines[i], leftPadding, currentY, { align: 'left' });
+        currentY += lineHeight;
       }
 
       addFooter();
