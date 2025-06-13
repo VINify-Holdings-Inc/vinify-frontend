@@ -249,8 +249,11 @@
 															{{ item?.state ? item?.state : ' ' }}
 														</span>
 													</td>
-													<td>{{ item?.odometer ? (item.odometer | number:'1.0-0') : " " }} {{
-														item?.VehicleOdometerReadingUnitCode || " " }}</td>
+													<td>
+														{{ item?.odometer ? (item.odometer | number:'1.0-0') : ' ' }}
+														{{ item?.VehicleOdometerReadingUnitCode === 'M' ? 'Miles' : 'KM'
+														}}
+													</td>
 
 													<td>{{ item?.status || " " }}</td>
 
@@ -377,7 +380,11 @@
 															{{ item?.state ? item?.state : ' ' }}
 														</span>
 													</td>
-													<td>{{ item?.TelephoneNumberFullID || " " }}</td>
+													<td>
+														{{ item?.TelephoneNumberFullID ?
+														formatPhoneNumber(item?.TelephoneNumberFullID) : " " }}
+
+														<!-- {{ item?.TelephoneNumberFullID || " " }}</td> -->
 													<td>{{ item?.VehicleDispositionText || " " }}</td>
 
 												</tr>
