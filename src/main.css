@@ -415,7 +415,7 @@ button.btn.btn-custom {
 }
 
 .headNotify p {
-  font-size: 0.875rem !important;
+  font-size: 1rem !important;
   font-weight: 600;
   line-height: 24px;
   color: #101828;
@@ -604,9 +604,11 @@ span.red-dot {
 }
 
 .notifySubHead span {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
-
+.dropdownFilter button span{
+  font-size: 0.875rem !important;
+}
 .notification-dropdown::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 0;
@@ -694,7 +696,7 @@ li.notifyInner {
   border: 1px solid #FECDCA;
 
   color: #B42318;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 20px;
 }
@@ -1129,12 +1131,23 @@ header .logoHeader img {
 }
 
 .small-action-btn {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   padding: 2px 8px;
   font-weight: 500;
   border-radius: 16px;
 }
-
+.updatedHead .textUpdate{
+    font-size: 0.875rem !important;
+}
+.updatedHead .updateDate {
+    font-size: 0.875rem !important;
+}
+.statusBody p.tdHead {
+    font-size: 1rem !important;
+}
+.statusBody p.tdBody {
+    font-size: 0.875rem !important;
+}
 h1.card-title.cardDashNum {
   font-size: 2.25rem;
   margin: 0;
@@ -1166,13 +1179,14 @@ h1.card-title.cardDashNum {
 }
 
 .card .card-header.bg-header-area a.view {
-  text-decoration: underline;
-  color: #fff;
-  cursor: pointer;
+    text-decoration: underline;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.125rem;
 }
 
 .card.rounded.recentlyAlert .card-area span.date-time {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 400;
 }
 
@@ -1434,7 +1448,7 @@ span.command_key .f_style {
   display: flex;
   padding: 12px 24px;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
   border-radius: 12px;
 }
 
@@ -1841,7 +1855,7 @@ form.FormAlign {
   text-align: right;
   margin-top: 0;
   color: #fff;
-  font-size: 0.688rem;
+  font-size: 0.875rem;
   padding: 0 0 10px;
 }
 
@@ -1876,7 +1890,7 @@ form.FormAlign {
 .footersublink ul li {
   display: inline-block;
   padding: 0 20px;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 
 .inner-LoginForm h2 {
@@ -2097,9 +2111,17 @@ p.errorMessage {
 .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link {
   padding: 4px 16px;
   line-height: 31px;
-  font-size: 0.875rem;
+  font-size: 1.063rem;
+  font-weight: 600;
 }
-
+span.userReadAllBtn button {
+    font-size: 0.875rem !important;
+    font-weight: 600;
+    color: #212529 !important;
+}
+.pagination.pagination-container span.space {
+    font-size: 0.875rem !important;
+}
 .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link.active {
   color: #fff;
   border: 1px solid var(--bg-primary);
@@ -2691,7 +2713,7 @@ td.vinNumberUserdash {
 }
 
 .table>tbody>tr>td {
-  font-size: 13px;
+  font-size: 0.875rem;
 }
 
 thead.table-light-Usertbl tr {
@@ -2776,6 +2798,7 @@ thead.table-light-Usertbl tr {
   border-radius: 8px;
   border: 1px solid #D0D5DD;
   color: #344054;
+  font-size: 0.875rem;
 }
 
 .paginationNumber button.currentPage {
@@ -2790,6 +2813,7 @@ thead.table-light-Usertbl tr {
   outline: none !important;
   border: none !important;
   filter: contrast(100%);
+  font-size: 0.875rem;;
 }
 
 a.nav-link.no-toggle-icon.noticon {
@@ -3928,9 +3952,10 @@ span.red-check-icon {
 }
 
 .card.disableit .action-required-button {
-  color: #475467 !important;
-  border: 1px solid #9e9e9e;
-  background-color: #bdbdbd;
+    color: #475467 !important;
+    border: 1px solid #9e9e9e;
+    font-size: 0.875rem;
+    background-color: #bdbdbd;
 }
 
 #sidebar.active:hover ul li a {
@@ -3992,7 +4017,7 @@ img.img-fluid.nmvtslogocaution {
 }
 .caution-ftr p {
     color: #fff;
-    font-size: 0.688rem;
+    font-size: 0.875rem;
 }
 @media (max-width: 992px) {
   .l-logo {
