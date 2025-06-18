@@ -1,6 +1,6 @@
 @media only screen and (max-width: 2000px) {
   .card-area p.authorityPara {
-    font-size: 11px;
+    font-size: 0.813rem;
   }
   .backBottomImg {
     height: 306px;
@@ -12,7 +12,7 @@
 }
 @media only screen and (max-width: 1600px) {
   .card-area p.authorityPara {
-    font-size: 10px;
+    font-size: 0.625rem;
   }
   .leftLoginSection .innerLeftSection {
     padding: 20px 0 0;
@@ -38,10 +38,10 @@
     padding: 14px 10px;
   }
   .card-area p.authorityPara {
-    font-size: 8px;
+    font-size: 0.5rem;
   }
   .userAuthorityBox span {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .footerLogin {
     padding-top: 20px;
@@ -50,10 +50,10 @@
     height: 320px;
   }
   .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .leftLoginSection .oneLeftButton button {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .loginTopsection {
     padding-top: 35px;
@@ -69,10 +69,10 @@
     top: 0;
   }
   .loginTextSection h3 {
-    font-size: 26px;
+    font-size: 1.625rem;
   }
   .cardBottomLine a {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .search_table.ms-3.form-group.has-search {
     width: 200px;
@@ -82,7 +82,7 @@
     width: 16px;
   }
   .month-calendar {
-    font-size: 12px;
+    font-size: 0.75rem;
     padding: 10px;
   }
   .month-calendar.vehicleMonthSearch i {
@@ -92,10 +92,10 @@
     gap: 12px;
   }
   .historyTab p {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .currentVehicleSection p {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .CurrentDetails h5 {
     font-size: 16px;
@@ -140,10 +140,10 @@
   }
   .graphSectionBtn .vinAlertGraph_area .fraud_numbers {
     font-weight: 600;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .vinAlertGraph_area h6 {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   /*=======================================================
       Dashboard Page Design start
@@ -157,21 +157,21 @@
     font-size: 11px;
   }
   .card.rounded.recentlyAlert .text-white {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .cardBottomLine a {
     font-size: 9px;
     font-weight: 600;
   }
   .btn-view {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   h3.card-title.cardDashNum {
     font-size: 30px;
     margin-bottom: 0;
   }
   .card.rounded.recentlyAlert .card-area p {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .card.rounded.recentlyAlert .card-area h5 {
     font-size: 13px;
@@ -223,7 +223,7 @@
     padding-top: 10px;
   }
   .vehicleTitle .card-title{
-    font-size: 26px;
+    font-size: 1.625rem;
   }
   .InnerTitleCard .tabVehicleSection.cardHeaderJustify ul li{
     width: 33.3%;
@@ -245,14 +245,14 @@
   }
   .btnIcons.btnZero p,
   .btnIcons.btnOne p {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .logoHeader img {
     width: 200px;
   }
   /* login page UI end*/
   .month-calendar.vehicleMonthSearch span {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .pt-4.barGraph {
     height: auto;
@@ -299,7 +299,7 @@
     top: 15px;
   }
   .leftLoginSection .loginTextSection p {
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 16px;
   }
   .btn-compound {
@@ -323,7 +323,7 @@
       Header Design start good
     ===============================================*/
   span.d-flex.update-time i {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   button#sidebarCollapse{
     margin-left: 0;
@@ -347,11 +347,11 @@
     margin-right: 15px;
   }
   .headerSection ul.dropdown-menu.dropdown-menu-end.notification-dropdown p {
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 18px;
   }
   .headerSection .notification-dropdown .notifications-points h5 {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   #sidebarCollapse {
     width: 35px;
@@ -380,7 +380,7 @@
       Summary Page Design start
 ===============================================*/
   .month-calendar span {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   button.btn.btn-view {
@@ -445,7 +445,7 @@ aside.siderbar-pdf.hidden {
 .pagination .space {
   left: 8px !important;
   bottom: 0;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 }
 @media only screen and (min-width: 992px) {
@@ -646,13 +646,13 @@ aside.siderbar-pdf.hidden {
     font-size: 16px;
   }
   .currentVehicleSection p {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .currentVehicleSection p {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .historyTab p {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   /* form CSS  */
   .contactForm-wrapper {
@@ -697,7 +697,7 @@ aside.siderbar-pdf.hidden {
 .inner-LoginForm .mb-4 .showError {
   position: absolute;
   bottom: 0;
-  font-size: 12px;
+  font-size: 0.75rem;
   top: unset;
 }
 span.passwordEye {
@@ -727,7 +727,7 @@ span.passwordEye {
   }
   .btnIcons.btnOne p,
   .btnIcons.btnZero p {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .logoHeader img {
@@ -812,10 +812,10 @@ span.passwordEye {
     flex-direction: column;
   }
   .currentVehicleSection p {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .historyTab p {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   span.titleLogo {
     display: none;
@@ -833,7 +833,7 @@ span.passwordEye {
   padding: 0 10px;
   width: auto;
   min-height: 40px;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 40px;
 }
 ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
@@ -894,7 +894,7 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   }
   .btnIcons.btnZero p,
   .btnIcons.btnOne p {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .btnIcons img {
     width: 16px;
@@ -904,11 +904,11 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   }
   .leftLoginSection .loginTextSection p {
     font-weight: normal;
-    font-size: 10px;
+    font-size: 0.625rem;
     line-height: 16px;
   }
   .leftLoginSection .loginTextSection h1 {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .leftLoginSection .vehicleImage img {
     height: 170px;
@@ -921,10 +921,10 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
     padding: 3px 6px;
   }
   .leftLoginSection .loginTextSection .loginCheck i {
-    font-size: 26px;
+    font-size: 1.625rem;
   }
   .leftLoginSection .loginTextSection p.spanLine {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .leftLoginSection .borderLoginRight {
     height: auto;
@@ -933,20 +933,20 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
     max-width: 90px;
   }
   .inner-LoginForm p {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .btn-compound {
     max-width: 145px;
     gap: 10px;
     top: 30px;
     left: 15px;
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .rightLoginSection {
     max-width: 290px;
   }
   .rightLoginSection .headerText p {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent i {
     font-weight: normal;
@@ -1007,10 +1007,10 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
     gap: 15px;
   }
   .historyTab p {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .currentVehicleSection p {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .pt-4.barGraph,
   .pieChartGraph {
@@ -1027,17 +1027,17 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
     top: 53px;
     right: -55px;
     max-width: 300px;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .paginationArea li.page-item span.page-link {
     padding: 8px 6px;
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .card.rounded.recentlyAlert .card-area p {
-    font-size: 10px;
+    font-size: 0.625rem;
   }
   .card.rounded.recentlyAlert .card-area h5 {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .headerSection .notification-dot {
     height: 12px;

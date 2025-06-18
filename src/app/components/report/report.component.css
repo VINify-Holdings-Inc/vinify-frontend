@@ -26,7 +26,7 @@ aside.siderbar-pdf{
 .tagline {
 	display: block;
 	text-align: center;
-	font-size: 12px;
+	font-size: 0.75rem;;
 }
 header.header-pdf {
 	margin-left: 270px;
@@ -51,14 +51,14 @@ header.header-pdf {
     position: relative;
 }
 .header-section h1 {
-	font-size: 26px;
+	font-size: 1.625rem;
 	font-weight: bold;
 	color: var(--bg-primary);
 }
 ul.vinContains li {
 	display: inline-block;
 	margin-right: 25px;
-	font-size: 16px;
+	font-size: 1rem;
 }
 ul.vinContains li strong {
 	margin-right: 10px;
@@ -71,11 +71,11 @@ ul.vinContains li strong {
 	padding: 40px 0 10px;
 }
 .top-heading h1 {
-	font-size: 34px;
+	font-size: 2.125rem;
 	font-weight: bold;
 }
 .top-heading h3 {
-	font-size: 24px;
+	font-size: 1.5rem;
 }
 .multilightOptions{
 	position: relative;
@@ -145,7 +145,7 @@ ul.vinContains li strong {
 	text-align: center;
 	padding: 0px 20px;
 	border-radius: 25px;
-	font-size: 14px;
+	font-size: 0.875rem;
 	height: 46px;
 	line-height: 46px;
 }
@@ -164,7 +164,7 @@ ul.vinContains li strong {
 }
 .sectionHeadeing {
 	margin: 0 0 25px;
-	font-size: 24px;
+	font-size: 1.5rem;
 }
 .sumBox .card-title {
 	margin: 0 0 15px;
@@ -195,7 +195,7 @@ ul.vinContains li strong {
 	box-shadow: 0 0 5px #735e5e;
 	margin-right: 5px;
 	
-	font-size: 14px;
+	font-size: 0.875rem;
 }
 
 .decimal{
@@ -221,7 +221,7 @@ ul.vinContains li strong {
 	border-right: none;
 }
 .sectionHeadeing small {
-	font-size: 12px;
+	font-size: 0.75rem;;
 	text-align: right;
 	float: right;
 	position: relative;
@@ -270,7 +270,7 @@ ul.vinContains li strong {
 	left: 10px;
 	-webkit-font-feature-settings: "liga";
 	font-feature-settings: "liga";
-	font-size: 46px;
+	font-size: 2.875rem;
 }
 .greenCode{
 	border-color: rgb(103, 158, 16);
@@ -309,7 +309,7 @@ ul.vinContains li strong {
 }
 .siderbar-pdf ul li a span {
 	margin-right: 10px;
-	font-size: 24px;
+	font-size: 1.5rem;
 	float: left;
 	color: #6c6c6c;
 }
@@ -326,13 +326,13 @@ ul.vinContains li strong {
 }
 .siderbar-pdf ul li a .circleRedBox{
 	color: #fff !important;
-	font-size: 14px;
+	font-size: 0.875rem;
 	box-shadow: none;
 	float: right;
 	line-height: 22px;
 }
 .smallNote {
-	font-size: 18px;
+	font-size: 1.125rem;
 	margin-top: 25px;
 }
 .ExplanatoryNoteP {
@@ -351,10 +351,10 @@ ul.vinContains li strong {
 #legaldisclaimer ul li {
 	list-style: disc;
 	margin: 0 0 5px;
-	font-size: 16px;
+	font-size: 1rem;
 }
 .oftrText p {
-	font-size: 14px;
+	font-size: 0.875rem;
 	color: #000;
 }
 .nmvtsTextandlogo {

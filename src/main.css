@@ -13,7 +13,7 @@ html {
   color: #47475d;
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 1rem;
   box-sizing: border-box;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
@@ -34,7 +34,7 @@ h6,
 
 p {
   margin-bottom: 0;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 24px;
 }
@@ -74,7 +74,7 @@ ol {
 .btn {
   border-radius: 8px;
   padding: 10px 14px;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 20px;
 }
@@ -172,7 +172,7 @@ p.textLight {
 }
 
 .table>thead>tr>th {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
 }
 
@@ -213,18 +213,18 @@ hr {
 .card-area h6 {
   color: #475467;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .card-title {
   margin-bottom: 0;
-  font-size: 22px;
+  font-size: 1.375rem;;
   font-weight: 600;
   color: #101828;
 }
 
 .pieChartGraph .card-title {
-  font-size: 18px;
+  font-size: 1.125rem;;
 }
 
 p.smallAddIcon i {
@@ -262,7 +262,7 @@ p.smallAddIcon i {
 .table>thead>tr>th,
 .table>tbody>tr>td {
   white-space: nowrap;
-  font-size: 14px;
+  font-size: 1rem;
   padding: 12px 8px;
 }
 
@@ -282,7 +282,7 @@ p.smallAddIcon i {
 .table>thead>tr>th {
   font-weight: 600;
   padding: 12px 8px;
-  font-size: 14px;
+  font-size: 1rem;
   color: #323b48;
   background-color: #ededed !important;
   border-right: 1px solid #fff;
@@ -372,9 +372,8 @@ ul.navbar-nav.ms-auto.d-flex.align-items-center.headerRight {
   top: 5px;
   right: 10px;
   display: block;
-  font-size: 9px;
   border: 0px;
-  font-size: 10px;
+  font-size: 0.625rem;
   background: #d9534f;
   min-width: 15px;
   text-align: center;
@@ -416,7 +415,7 @@ button.btn.btn-custom {
 }
 
 .headNotify p {
-  font-size: 14px !important;
+  font-size: 0.875rem !important;
   font-weight: 600;
   line-height: 24px;
   color: #101828;
@@ -424,7 +423,7 @@ button.btn.btn-custom {
 
 .headNotify span {
 
-  font-size: 13px;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 20px;
   color: #475467;
@@ -512,24 +511,24 @@ li.dropdown-item.notifyInner {
 
 .headerSection .navbar-nav .profile_dropdown .profileName h5 {
   margin: 0;
-  font-size: 16px;
+  font-size: 1rem;
   color: #101828;
 
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 24px;
 }
 
 .headerSection .navbar-nav .profile_dropdown li span {
 
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 20px;
 }
 
 .headerSection .navbar-nav .profile_dropdown .profile-link span {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1rem;
 
   line-height: 20px;
   color: #101828;
@@ -575,7 +574,7 @@ span.red-dot {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 
-  font-size: 13px;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 20px;
   color: #475467;
@@ -597,7 +596,7 @@ span.red-dot {
 
 .notifySubHead h6 {
 
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 24px;
   color: #101828;
@@ -605,7 +604,7 @@ span.red-dot {
 }
 
 .notifySubHead span {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .notification-dropdown::-webkit-scrollbar-track {
@@ -695,7 +694,7 @@ li.notifyInner {
   border: 1px solid #FECDCA;
 
   color: #B42318;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   line-height: 20px;
 }
@@ -707,7 +706,7 @@ a.nav-link.no-toggle-icon {
 
 .notification-dot span {
   color: #fff;
-  font-size: 11px;
+  font-size: 0.688rem;
   filter: contrast(200%);
 }
 
@@ -742,7 +741,7 @@ a.nav-link.no-toggle-icon {
 .headerSection .calendar-date .update-time {
   color: #201d1e;
   padding-left: 10px;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 24px;
 }
@@ -787,7 +786,7 @@ a.nav-link.no-toggle-icon {
 }
 
 .trackVinNumber h4 {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 24px;
   color: #1A1919;
@@ -824,7 +823,7 @@ a.nav-link.no-toggle-icon {
   left: 10px;
   z-index: 0;
   color: #b8b8b8;
-  font-size: 22px;
+  font-size: 1.375rem;;
 }
 
 ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
@@ -983,7 +982,7 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   padding: 5px 5px;
   line-height: 42px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 0.875rem;
   position: relative;
   font-weight: 600;
   display: block;
@@ -997,7 +996,7 @@ ul.dropdown-menu.dropdown-menu-end.profile_dropdown li:hover {
   padding: 0px;
   line-height: 30px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 0.875rem;
   position: relative;
   font-weight: 600;
   height: 52px;
@@ -1105,7 +1104,7 @@ header .logoHeader img {
 .card .card-header-text h4 {
   margin-top: 0;
   margin-bottom: 3px;
-  font-size: 19px;
+  font-size: 1.188rem;
   font-weight: 400;
   color: #222222;
   text-decoration: none;
@@ -1130,14 +1129,14 @@ header .logoHeader img {
 }
 
 .small-action-btn {
-  font-size: 12px;
+  font-size: 0.75rem;
   padding: 2px 8px;
   font-weight: 500;
   border-radius: 16px;
 }
 
 h1.card-title.cardDashNum {
-  font-size: 36px;
+  font-size: 2.25rem;
   margin: 0;
   color: #201d1e;
   font-weight: 700;
@@ -1146,7 +1145,7 @@ h1.card-title.cardDashNum {
 
 .userAuthorityBox span {
 
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 18px;
 }
@@ -1162,7 +1161,7 @@ h1.card-title.cardDashNum {
 
 .card .card-header.bg-header-area h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: 1.125rem;;
   font-weight: 500;
 }
 
@@ -1173,7 +1172,7 @@ h1.card-title.cardDashNum {
 }
 
 .card.rounded.recentlyAlert .card-area span.date-time {
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 400;
 }
 
@@ -1181,7 +1180,7 @@ h1.card-title.cardDashNum {
   font-weight: 500;
   color: #fff;
   margin: 0;
-  font-size: 18px;
+  font-size: 1.125rem;;
   min-height: 21.6px;
 }
 
@@ -1192,7 +1191,7 @@ h1.card-title.cardDashNum {
 .graphSectionBtn .vinAlertGraph_area span.alert_percent,
 .vinAlertGraph_area span.alert_percent i {
   color: red;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .graphSectionBtn .vinAlertGraph_area .fraud_numbers {
@@ -1206,7 +1205,7 @@ h1.card-title.cardDashNum {
 }
 
 .vinAlertGraph_area h6 {
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
 }
 
@@ -1223,7 +1222,7 @@ td.vinNumberUserdash {
   padding: 5px 15px;
   display: flex;
   border: 1px solid rgb(227, 227, 227);
-  font-size: 12px;
+  font-size: 0.75rem;
   align-items: center;
   border-radius: 0 5px 5px 0;
 }
@@ -1269,7 +1268,7 @@ td.vinNumberUserdash {
 
 .pieChartGraph .currentWeek p {
   display: flex;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .pieChartGraph .currentWeek p i {
@@ -1285,7 +1284,7 @@ td.vinNumberUserdash {
 
 .cardWrapper .card .card-body .actionBtn i {
   color: #525e71;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 400;
   margin: auto !important;
 }
@@ -1297,7 +1296,7 @@ td.vinNumberUserdash {
   border-radius: 8px !important;
   font-weight: 600;
   padding: 10px 14px !important;
-  font-size: 14px;
+  font-size: 0.875rem;
   cursor: pointer;
   line-height: 20px;
   background: #fff;
@@ -1311,12 +1310,12 @@ td.vinNumberUserdash {
 }
 
 .month-calendar i {
-  font-size: 20px;
+  font-size: 1.25rem;
   padding-right: 2px;
 }
 
 .month-calendar.vehicleMonthSearch.calendar-svg p {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 20px;
   color: #344054;
@@ -1330,7 +1329,7 @@ td.vinNumberUserdash {
 }
 
 .search_table input::placeholder {
-  font-size: 13px;
+  font-size: 0.813rem;
 }
 
 .search_table input:focus {
@@ -1365,12 +1364,12 @@ span.command_key {
 }
 
 span.command_key i {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 span.command_key .f_style {
   color: #000;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .has-search .form-control {
@@ -1380,7 +1379,7 @@ span.command_key .f_style {
 
 .cardBottomLine.check-details a {
   color: #475467;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 20px;
 }
@@ -1402,7 +1401,7 @@ span.command_key .f_style {
   display: flex;
   align-items: center;
   gap: 20px;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .legend-entry {
@@ -1410,7 +1409,7 @@ span.command_key .f_style {
 }
 
 .legend-border {
-  font-size: 13px;
+  font-size: 0.813rem;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -1464,7 +1463,7 @@ span.command_key .f_style {
   box-shadow: none;
   color: #47475d;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 0.875rem;
   border-radius: 8px;
   text-align: left;
   padding-left: 40px;
@@ -1499,7 +1498,7 @@ span.command_key .f_style {
 .paginationArea li.page-item button.page-link {
   padding: 8px 12px;
   color: #344054;
-  font-size: 14px !important;
+  font-size: 0.875rem !important;
   cursor: pointer;
   border-radius: 8px;
   font-weight: 600;
@@ -1517,7 +1516,7 @@ span.command_key .f_style {
 .paginationArea li.page-item button.page-link.active {
   color: #fff;
   background-color: var(--bg-primary);
-  font-size: 14px !important;
+  font-size: 0.875rem !important;
 }
 
 .paginationArea li.page-item span.page-link {
@@ -1525,7 +1524,7 @@ span.command_key .f_style {
   padding: 8px 12px;
   background: transparent;
   border: none;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 20px;
 }
@@ -1540,7 +1539,7 @@ span.command_key .f_style {
 
 .dropdownFilter .menuFilter li a {
   padding: 12px;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 24px;
   color: #101828;
@@ -1698,18 +1697,18 @@ form.FormAlign {
   padding: 12px;
   font-weight: 600;
   font-style: normal;
-  font-size: 18px;
+  font-size: 1.125rem;;
 }
 
 .btnIcons.btnZero p {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 24px;
   text-align: left;
 }
 
 .btnIcons.btnOne p {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 24px;
   text-align: left;
@@ -1754,7 +1753,7 @@ form.FormAlign {
   font-family: "Barlow", sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: 18px;
+  font-size: 1.125rem;;
 }
 
 .leftLoginSection .innerLeftSection .btnleftLogin .loginTransparent i {
@@ -1768,7 +1767,7 @@ form.FormAlign {
 
 .leftLoginSection .loginTextSection p.spanLine {
   color: #fff;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 22px;
   text-align: center;
 }
@@ -1795,7 +1794,7 @@ form.FormAlign {
   border: 0;
   border-radius: 8px !important;
   font-family: "Barlow";
-  font-size: 18px;
+  font-size: 1.125rem;;
   line-height: 24px;
   text-align: left;
 }
@@ -1809,7 +1808,7 @@ form.FormAlign {
   text-align: center;
   font-weight: 700;
   line-height: 40px;
-  font-size: 31px;
+  font-size: 1.938rem;
   letter-spacing: 1px;
 }
 
@@ -1822,7 +1821,7 @@ form.FormAlign {
 }
 
 .leftLoginSection .loginTextSection p {
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 20px;
   text-align: center;
 }
@@ -1833,7 +1832,7 @@ form.FormAlign {
 }
 
 .leftLoginSection .loginTextSection .loginCheck i {
-  font-size: 35px;
+  font-size: 2.188rem;
   font-weight: lighter;
 }
 
@@ -1842,7 +1841,7 @@ form.FormAlign {
   text-align: right;
   margin-top: 0;
   color: #fff;
-  font-size: 11px;
+  font-size: 0.688rem;
   padding: 0 0 10px;
 }
 
@@ -1877,11 +1876,11 @@ form.FormAlign {
 .footersublink ul li {
   display: inline-block;
   padding: 0 20px;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .inner-LoginForm h2 {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 30px;
   text-align: center;
@@ -1889,7 +1888,7 @@ form.FormAlign {
 }
 
 .inner-LoginForm p {
-  font-size: 14px;
+  font-size: 0.875rem;
   margin-bottom: 24px;
   font-weight: 400;
   line-height: 20px;
@@ -1902,7 +1901,7 @@ form.FormAlign {
 }
 
 .formInput::placeholder {
-  font-size: 14px;
+  font-size: 0.875rem;
   background-color: #fff;
   color: #d5d5e2;
 }
@@ -1932,7 +1931,7 @@ textarea.formInput:focus {
   border-radius: 0;
   color: #475467;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 1rem;
 }
 
 .inner-LoginForm .mb-4 {
@@ -1952,7 +1951,7 @@ span.passwordEye {
 }
 
 span.passwordEye i {
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .formInput {
@@ -1962,7 +1961,7 @@ span.passwordEye i {
   border-radius: 0;
   margin-top: 6px;
   color: #475467;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -2020,7 +2019,7 @@ p.errorMessage {
 /* Login Page Design end */
 /* Vehicle Monitoring  Page Design start */
 .VehicleMonitoring .card .vehicleTitle h4.card-title {
-  font-size: 22px;
+  font-size: 1.375rem;;
 }
 
 .topVehicleHead {
@@ -2058,7 +2057,7 @@ p.errorMessage {
 }
 
 .cardHeaderStyle .exportReport button i {
-  font-size: 18px;
+  font-size: 1.125rem;;
   font-weight: 300;
 }
 
@@ -2098,7 +2097,7 @@ p.errorMessage {
 .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link {
   padding: 4px 16px;
   line-height: 31px;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link.active {
@@ -2131,7 +2130,7 @@ p.errorMessage {
 /*Vehicle Monitoring  Page Design end */
 /*Summary   Page Design starts*/
 .SummaryCardDetails .card .vehicleTitle h4.card-title {
-  font-size: 22px;
+  font-size: 1.375rem;;
 }
 
 .summaryFilter {
@@ -2158,14 +2157,14 @@ button.btn.filterSearch i {
 i.material-symbols-outlined.arrow_key {
   color: #201d1e;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 1rem;
   padding-left: 5px;
   top: 0;
   position: relative;
 }
 
 .summaryCard .font-12 {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #475467;
   font-weight: 500;
 }
@@ -2246,7 +2245,7 @@ i.material-symbols-outlined.arrow_key {
 }
 
 .txtRed {
-  font-size: 12px;
+  font-size: 0.75rem;
   padding: 3px 10px;
   font-weight: 500;
   border-radius: 5px;
@@ -2498,7 +2497,7 @@ h2.tabSummaryHead {
 }
 
 .cardBottomLine .aroow-angle span {
-  font-size: 20px;
+  font-size: 1.25rem;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -2513,9 +2512,7 @@ h2.tabSummaryHead {
 }
 
 .card-area p.authorityPara {
-  font-size: 12px;
-
-  font-size: 11px;
+   font-size: 0.688rem;
   font-weight: 400;
   line-height: 16px;
   text-align: left;
@@ -2530,11 +2527,11 @@ h2.tabSummaryHead {
   border: none;
   font-weight: 500;
   padding: 3px 6px;
-  font-size: 11px;
+  font-size: 0.688rem;
 }
 
 .authorityThreeBtn button i {
-  font-size: 16px;
+  font-size: 1rem;
   margin-right: 2px;
 }
 
@@ -2614,12 +2611,12 @@ h2.tabSummaryHead {
 
 .vinnumber-top h3 {
   color: #000;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .vinPopout-Content {
   color: #000;
-  font-size: 13px;
+  font-size: 0.813rem;
   padding: 15px 20px;
 }
 
@@ -2711,14 +2708,14 @@ thead.table-light-Usertbl tr {
 
 .userdashbrdTable .table>tbody>tr>td p {
   color: #201D1E;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
 }
 
 .userdashbrdTable .table>tbody>tr>td {
   padding: 12px 8px;
   color: #475467;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 20px;
 }
@@ -2894,7 +2891,7 @@ tr.secondTitleHead>td {
 
 td p.subHeadRowData {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .headLines {
@@ -2931,7 +2928,7 @@ span.apexcharts-legend-marker::before {
 
 .frontNav li a {
 
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 24px;
   color: #475467;
@@ -2947,7 +2944,7 @@ span.apexcharts-legend-marker::before {
   padding: 10px 16px;
   border-radius: 8px;
   border: 1px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
 
 }
@@ -2971,7 +2968,7 @@ span.apexcharts-legend-marker::before {
 .innerTermsBody .TermsContent p {
   color: #475467;
 
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 24px;
 }
@@ -3011,7 +3008,7 @@ span.apexcharts-legend-marker::before {
 }
 
 .footer-contents p {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #aaa;
   margin: 0;
   padding: 1rem 0;
@@ -3079,13 +3076,13 @@ span.apexcharts-legend-marker::before {
 
 .contactForm .title {
   text-align: center;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 
 .contactForm .description {
   color: #aeb4b9;
-  font-size: 14px;
+  font-size: 0.875rem;
   text-align: center;
 }
 
@@ -3152,7 +3149,7 @@ span.apexcharts-legend-marker::before {
 }
 
 .forgotModelbox .FormInnerContentForgotForm h3 {
-  font-size: 22px;
+  font-size: 1.375rem;;
 }
 
 .forgotModelbox .FormInnerContentForgotForm .FormHead {
@@ -3173,7 +3170,7 @@ span.apexcharts-legend-marker::before {
 .ul-aboutSection {
   list-style-type: disc;
 
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 35px;
   color: #475467;
@@ -3189,7 +3186,7 @@ span.apexcharts-legend-marker::before {
 
 .aboutContentPara p {
 
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 28px;
   color: #475467;
@@ -3266,7 +3263,7 @@ a.btn.selected {
 
 .card-Profileinner h1 {
 
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 600;
   line-height: 38px;
   color: #101828;
@@ -3279,14 +3276,14 @@ a.btn.selected {
 }
 
 .nameSec h6 {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #000;
 }
 
 .nameSec {
 
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 20px;
   color: #475467;
@@ -3294,7 +3291,7 @@ a.btn.selected {
 
 .FormInnerInput .form-label {
 
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   color: #000;
   margin-bottom: 20px;
@@ -3303,7 +3300,7 @@ a.btn.selected {
 .FormInnerInput .modernInput {
   background-color: #F9F9F9;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   color: #475467;
   padding: 13px 15px;
@@ -3347,7 +3344,7 @@ span.passEye {
 }
 
 .emailSec h4 {
-  font-size: 18px;
+  font-size: 1.125rem;;
   font-weight: 600;
   line-height: 33px;
   color: #000;
@@ -3358,21 +3355,21 @@ span.passEye {
   background-color: #FAEDEF;
   color: #CF4B5F;
 
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   border-color: transparent;
 }
 
 .emailName p {
 
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   color: #000;
 }
 
 .emailName span {
 
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   color: #475467;
 }
@@ -3384,7 +3381,7 @@ span.passEye {
 }
 
 span.passEye i {
-  font-size: 18px;
+  font-size: 1.125rem;;
   color: #475467;
 }
 
@@ -3411,7 +3408,7 @@ span.passEye i {
 }
 
 .errorLink span.material-symbols-outlined {
-  font-size: 66px;
+  font-size: 4.125rem;
   color: #cf4b5f;
   margin: 0 0 35px;
 }
@@ -3462,7 +3459,7 @@ span.passEye i {
 
 .vehicleTitle .card-title {
 
-  font-size: 30px;
+  font-size: 1.875;
   font-weight: 600;
   line-height: 38px;
   color: #101828;
@@ -3470,7 +3467,7 @@ span.passEye i {
 
 .vehicleTitle p {
   filter: contrast(100%);
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
   line-height: 24px;
   color: var(--bg-primary);
@@ -3634,7 +3631,7 @@ span.question-Icon {
   width: 13px;
   height: 13px;
   display: inline-block;
-  font-size: 10px;
+  font-size: 0.625rem;
   text-align: center;
   line-height: 13px;
   color: #201D1E;
@@ -3643,7 +3640,7 @@ span.question-Icon {
 }
 
 span.question-Icon .ques {
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 
 /* Dashboard icon CSS */
@@ -3797,7 +3794,7 @@ li.nav-item.exportPdfli {
 
 .ExportDivModal li span {
   padding: 12px;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 24px;
   color: #101828;
@@ -3810,7 +3807,7 @@ li.nav-item.exportPdfli {
 }
 
 .userBtn {
-  font-size: 14px !important;
+  font-size: 0.875rem !important;
   font-weight: 600;
   line-height: 18px;
   color: #344054;
@@ -3833,7 +3830,7 @@ td.check-box {
 }
 
 .btn.btn-clear {
-  font-size: 14px !important;
+  font-size: 0.875rem !important;
   font-weight: 600;
   line-height: 18px;
   color: #344054;
@@ -3979,7 +3976,7 @@ span.month-calendar.vehicleMonthSearch.calendar-svg:hover {
 
 .deleted-text {
   background: #cf4c60;
-  font-size: 11px;
+  font-size: 0.688rem;
   color: #fff;
   padding: 1px 5px;
   border-radius: 5px;
@@ -3995,7 +3992,7 @@ img.img-fluid.nmvtslogocaution {
 }
 .caution-ftr p {
     color: #fff;
-    font-size: 11px;
+    font-size: 0.688rem;
 }
 @media (max-width: 992px) {
   .l-logo {
