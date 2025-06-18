@@ -1,6 +1,6 @@
 export const environment = {
-  api_url: 'https://api.getvinify.com/api',
-  img_url: 'https://api.getvinify.com/api/uploads',
+api_url: 'https://mvmapi2.techwagger.com/api',
+img_url: 'https://mvmapi2.techwagger.com/api/uploads',
   production: true,
 
 };
@@ -12,3 +12,7 @@ export const environment = {
 
 // api_url: 'https://mvmapi2.techwagger.com/api',
 // img_url: 'https://mvmapi2.techwagger.com/api/uploads',
+
+
+  // api_url: 'https://api.getvinify.com/api',
+  // img_url: 'https://api.getvinify.com/api/uploads',
