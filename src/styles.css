@@ -703,6 +703,12 @@ aside.siderbar-pdf.hidden {
 span.passwordEye {
   bottom: 28px;
 }
+.caution-ftr {
+    position: relative;
+}
+.leftLoginSection .footerLogin p {
+    text-align: center;
+}
 }
 @media only screen and (max-width: 600px) {
   .backTopImg {
