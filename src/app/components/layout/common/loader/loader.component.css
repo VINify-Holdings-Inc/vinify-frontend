@@ -23,7 +23,7 @@
     border-radius: 50%;
     -webkit-animation: spinner-border 0.75s linear infinite;
     animation: spinner-border 0.75s linear infinite;
-    color: #881337;
+    color: #456791;
     cursor: none !important;
   }
   .loader-img svg {

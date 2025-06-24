@@ -4,7 +4,7 @@ NMVTIS is intended to serve as a reliable source of title and brand history for 
 repair history.
 
 All states, insurance companies, and junk and salvage yards are required by federal law to regularly report information to NMVTIS. However, NMVTIS does not contain
-information on all motor vehicles in the United States because some states are not yet providing their vehicle data to the system. Currently, the data provided to 
+information on all motor VINs in the United States because some states are not yet providing their vehicle data to the system. Currently, the data provided to 
 NMVTIS by states is provided in a variety of time frames; while some states report and update NMVTIS data in “real-time” (as title transactions occur), other states 
 send updates less frequently, such as once every 24 hours or within a period of days.
 
@@ -20,11 +20,11 @@ NMVTIS data INCLUDES (as available by those entities required to report to the S
 
 • Information from participating state motor vehicle titling agencies.
 
-• Information on automobiles, buses, trucks, motorcycles, recreational vehicles, motor homes, and truck tractors. NMVTIS may not currently include commercial vehicles if 
-those vehicles are not included in a state’s primary database for title records (in some states, those vehicles are managed by a separate state agency), although these 
+• Information on automobiles, buses, trucks, motorcycles, recreational VINs, motor homes, and truck tractors. NMVTIS may not currently include commercial VINs if 
+those VINs are not included in a state’s primary database for title records (in some states, those VINs are managed by a separate state agency), although these 
 records may be added at a later time.
 
-• Information on “brands” applied to vehicles provided by participating state motor vehicle titling agencies. Brand types and definitions vary by state, but may provide useful 
+• Information on “brands” applied to VINs provided by participating state motor vehicle titling agencies. Brand types and definitions vary by state, but may provide useful 
 information about the condition or prior use of the vehicle.
 
 • Most recent odometer reading in the state’s title record.
@@ -35,4 +35,4 @@ This information will include if the vehicle was determined to be a “total los
 • Information from junk and salvage yards receiving a “cash for clunker” vehicle traded-in under the Consumer Assistance to Recycle and Save Act of 2009 (CARS) Program.
 
 Consumers are advised to visit vehiclehistory.bja.ojp.gov for details on how to interpret the information in the system and understand the meaning of various labels applied to 
-vehicles by the participating state motor vehicle titling agencies.`;
+VINs by the participating state motor vehicle titling agencies.`;
