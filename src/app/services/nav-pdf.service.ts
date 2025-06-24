@@ -22,7 +22,7 @@ export class NavPdfService {
   ): void {
     const today = new Date();
 
-    const urlTextColor: [number, number, number] = [224, 138, 151];
+    const urlTextColor: [number, number, number] = [0, 0, 255];
     const formattedDate = `${String(today.getUTCDate()).padStart(2, '0')}${String(today.getUTCMonth() + 1).padStart(2, '0')}${today.getUTCFullYear()}`;
     const FinalfileName = `${vin}-VINify-Report-${formattedDate}`;
 
