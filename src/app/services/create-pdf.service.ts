@@ -120,7 +120,7 @@ export class CreatePDFService {
         head: [tableColumn],
         body: tableRows,
         headStyles: {
-          fillColor: [207, 75, 95],
+          fillColor: [69,103,145],
           fontSize: 8,
         },
         bodyStyles: {

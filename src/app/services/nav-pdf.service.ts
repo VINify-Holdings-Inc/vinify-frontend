@@ -127,7 +127,7 @@ export class NavPdfService {
 
     const drawBadge = (doc: any, x: number, y: number, number: string | number) => {
       const radius = 3;
-      doc.setFillColor(207, 75, 95); // Red color
+      doc.setFillColor(69,103,145); // Red color
       doc.circle(x, y - 1, radius, 'F');
       doc.setTextColor(255, 255, 255); // White text
       doc.setFontSize(8);
@@ -278,7 +278,7 @@ export class NavPdfService {
       theme: 'grid',
       head: [tableColumn],
       body: tableRows,
-      headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
+      headStyles: { fillColor: [69,103,145], fontSize: 8, textColor: [255,255,255] },
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
@@ -370,7 +370,7 @@ export class NavPdfService {
       theme: 'grid',
       head: [brandColumns],
       body: brandRows,
-      headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
+      headStyles: { fillColor: [69,103,145], fontSize: 8, textColor: [255,255,255] },
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
@@ -456,7 +456,7 @@ export class NavPdfService {
     doc.setFont('helvetica', 'normal');
     doc.text('NMVTIS', 188, y);
 
-    const JSIDesc1 = `This section discloses events related to events like junk, salvage and insurance total loss that have been reported to VINify. Included are state DMV titles that show junk, salvage or similar brands, insurance total loss events and salvage auctions or junk yard disclosures. Events related to an auto dismantler, auto recycler or crush facility indicate that the vehicle has sustained major damage. A vehicle that has been received by a salvage auction or junk yard usually indicates major prior damage, however these entities also remarket undamaged vehicles. We recommend an inspection by a qualified mechanic.`;
+    const JSIDesc1 = `This section discloses events related to events like junk, salvage and insurance total loss that have been reported to VINify. Included are state DMV titles that show junk, salvage or similar brands, insurance total loss events and salvage auctions or junk yard disclosures. Events related to an auto dismantler, auto recycler or crush facility indicate that the vehicle has sustained major damage. A vehicle that has been received by a salvage auction or junk yard usually indicates major prior damage, however these entities also remarket undamaged VINs. We recommend an inspection by a qualified mechanic.`;
     const JSIDesc2 = `If this VIN has a record in the Junk/Salvage or Insurance information then the business that submitted the VIN to NMVTIS deemed the vehicle to be either a junk, salvage, or in the case of an insurer, a total loss. The information in the DISPOSITION field in the Junk/Salvage section denotes what has happened to the VIN (i.e., vehicle) since it came into the possession of the business.`;
 
     if (y + 50 > doc.internal.pageSize.height - 20) {
@@ -512,7 +512,7 @@ export class NavPdfService {
       theme: 'grid',
       head: [jsiColumns],
       body: jsiRows,
-      headStyles: { fillColor: [237, 237, 237], fontSize: 8, textColor: [0, 0, 0] },
+      headStyles: { fillColor: [69,103,145], fontSize: 8, textColor: [255,255,255] },
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
@@ -684,7 +684,7 @@ export class NavPdfService {
 
     for (let i = 1; i <= totalPages; i++) {
       doc.setPage(i);
-      doc.setTextColor(207, 75, 95);
+      doc.setTextColor(69,103,145);
 
       links.forEach(link => {
         const section = sectionPositions[link.key];
@@ -698,7 +698,7 @@ export class NavPdfService {
 
           // Underline effect
           doc.setLineWidth(0.5);
-          doc.setDrawColor(207, 75, 95);
+          doc.setDrawColor(69,103,145);
           const textWidth = doc.getTextWidth(link.text);
           doc.line(link.x, y1 + 1.5, link.x + textWidth, y1 + 1.5);
         }

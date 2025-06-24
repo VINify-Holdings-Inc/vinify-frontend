@@ -181,10 +181,10 @@ ul.vinContains li strong {
 	border-left: 4px solid #2ea80c;
 }
 .sumBox.redAlert {
-	border-left: 4px solid red;
+	border-left: 4px solid var(--bg-primary);
 }
 .circleRedBox {
-	background: #d30202;
+	background: var(--bg-primary);
 	color: #fff;
 	width: 25px;
 	display: inline-block;
@@ -199,7 +199,7 @@ ul.vinContains li strong {
 }
 
 .decimal{
-	color: #d30202;
+	color: var(--bg-primary);
 }
 .ftrLogo {
 	position: absolute;
