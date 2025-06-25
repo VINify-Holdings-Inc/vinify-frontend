@@ -4031,6 +4031,20 @@ h3.history_heading {
     margin: 0 0 15px;
     font-weight: 600;
 }
+span.deleted-cell-area {
+    display: flex;
+    justify-content: space-between;
+}
+span.shortNameBrand {
+    white-space: nowrap;
+    width: 215px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    left: 5px;
+}
 @media (max-width: 992px) {
   .l-logo {
     display: none;
