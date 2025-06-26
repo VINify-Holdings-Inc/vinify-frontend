@@ -257,7 +257,7 @@ for (let i = 0; i < disclaimerLines.length; i++) {
     addHeader();
     addFooter();
     
-    // Reset Y position after header
+    // Reset Y position after header 
     yPosition = headerOffset;
 
     // Reset styles after new page
