@@ -498,7 +498,7 @@ export class NavPdfService {
       doc.setFontSize(9);
       doc.setTextColor(69, 67, 67);
       doc.setFont('helvetica', 'normal');
-      doc.text(`No Brand Available for this VIN (${vin})`, 105, y, { align: 'center' }); // centered text
+      doc.text(`No Brand Available for this VIN (${vin})`, 15, y); // centered text
       y += 10;
     } else {
       const brandRows1: any = brandData.map((item: any) => [
