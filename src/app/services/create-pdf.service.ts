@@ -11,7 +11,7 @@ import { CapitalizePipe } from '../pipes/capitalize.pipe';
 export class CreatePDFService {
   private capitalizePipe = new CapitalizePipe();
 
-  constructor(private dateFormate: DateFormatPipe) { }
+  constructor(private dateFormate: DateFormatPipe) {}
 
   generatePDF(
     companyName: string,
@@ -31,23 +31,7 @@ export class CreatePDFService {
 
     let imagesLoaded = 0;
 
-    // const addFooter = () => {
-    //   doc.setTextColor(100);
-    //   const pageHeight = doc.internal.pageSize.height;
-    //   const footerY = pageHeight - 1;
-    //   doc.setDrawColor(69, 67, 67);
-    //   doc.setLineWidth(0.1);
-    //   doc.line(14, footerY - 14, 284, footerY - 14);
-    //   doc.setFont('helvetica', 'normal');
-    //   doc.setFontSize(9);
-    //   doc.text('*This report is for private use only and may not be resold, shared, or used for commercial purposes or third-party distribution.', 15, footerY - 10);
-    //   doc.text('VINify, Title Alarm, LLC', 15, footerY - 5);
-    //   doc.text('Page ' + (doc as any).internal.getNumberOfPages(), 276, footerY - 5);
-    // };
-
     const addFooter = () => {
-      const nmvtlogo = 'assets/images/nmvtis-1.png';
-      const today = new Date();
       const pageHeight = doc.internal.pageSize.height;
 
       const imgWidth = 10;
@@ -61,18 +45,16 @@ export class CreatePDFService {
       const textY = imgY + imgHeight - 1;
       const hrY = imgY - 4;
 
-      // Save current color
       const originalColor = doc.getTextColor();
 
-      // Set dark gray
       doc.setDrawColor(67, 66, 66);
       doc.setLineWidth(0.1);
-      doc.line(14, hrY, 279.5, hrY);
+      doc.line(16, hrY, 281.5, hrY);
 
       doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
 
       doc.setTextColor(67, 66, 66);
-      doc.setFontSize(textFontSize);
+      doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
       doc.text(
         'Title Alarm LLC, Marley Nonami Incorporated is an approved NMVTIS Data Provider.',
@@ -81,16 +63,15 @@ export class CreatePDFService {
       );
 
       const dateheader = this.dateFormate.transform(today, 'DD MMM YYYY');
-      const updatedText = `Updated ${dateheader}`;
-      doc.text(updatedText, 248.5, textY - 1);
+      doc.text(`Updated ${dateheader}`, 247.5, textY - 1);
 
-      // Restore original color
       doc.setTextColor(originalColor);
     };
+
     const addHeader = () => {
       const logoWidth = 30.5;
       const logoHeight = 8.5;
-      doc.addImage(img, 'PNG', 10, 15, logoWidth, logoHeight);
+      doc.addImage(img, 'PNG', 16.3, 15, logoWidth, logoHeight);
       doc.setFontSize(16);
       doc.setTextColor(40);
       doc.setFont('helvetica', 'bold');
@@ -114,19 +95,24 @@ export class CreatePDFService {
         item.isJSIDel ? item.isJSIDel : false,
       ]);
 
+      const pageWidth = doc.internal.pageSize.width;
+      const columnWidths = [70, 65, 65, 65];
+      const tableWidth = columnWidths.reduce((a, b) => a + b, 0);
+      const centerMargin = (pageWidth - tableWidth) / 2;
+
       (doc as any).autoTable({
         startY: 36,
         theme: 'grid',
         head: [tableColumn],
         body: tableRows,
         headStyles: {
-          fillColor: [69,103,145],
-          fontSize: 8,
+          fillColor: [69, 103, 145],
+          fontSize: 10,
         },
         bodyStyles: {
-          fontSize: 7,
+          fontSize: 10,
         },
-        margin: { top: 28 },
+        margin: { top: 28, left: centerMargin },
         columnStyles: {
           0: { cellWidth: 70 },
           1: { cellWidth: 65 },
@@ -141,7 +127,6 @@ export class CreatePDFService {
         didDrawCell: (data: any) => {
           const rowData: any = data.row.raw;
 
-          // Draw circle if VIN is marked as old
           if (data.section === 'body' && data.column.index === 0) {
             const xPos = data.cell.x + 0.9;
             const yPos = data.cell.y + 3;
@@ -150,35 +135,27 @@ export class CreatePDFService {
             doc.circle(xPos, yPos, 0.5, 'F');
           }
 
-          // Draw checkmark image and dynamic label text
           const colIndex = data.column.index;
           if (data.section === 'body' && [1, 2, 3].includes(colIndex) && rowData[colIndex]) {
             const imgX = data.cell.x + 2;
             const imgY = data.cell.y + 2.5;
             const imgSize = 0.9;
 
-            // Determine the "Deleted" label based on column index and corresponding flag
             let labelText = '';
-            if (colIndex === 1 && rowData[6]) {
-              labelText = 'Deleted';
-            } else if (colIndex === 2 && rowData[7]) {
-              labelText = 'Deleted';
-            } else if (colIndex === 3 && rowData[8]) {
-              labelText = 'Deleted';
-            }
+            if (colIndex === 1 && rowData[6]) labelText = 'Deleted';
+            else if (colIndex === 2 && rowData[7]) labelText = 'Deleted';
+            else if (colIndex === 3 && rowData[8]) labelText = 'Deleted';
 
-            // If there's a "Deleted" label, draw it
             if (labelText) {
               doc.setFontSize(6);
-              const textColor: [number, number, number] = [255, 255, 255];
               const boxColor: [number, number, number] = [207, 76, 96];
+              const textColor : [number, number, number]= [255, 255, 255];
               const textWidth = doc.getTextWidth(labelText);
-              const fontHeight = 6 * 0.35; // Approx font height factor for small font sizes
-              const paddingY = 1; // vertical padding
+              const fontHeight = 6 * 0.35;
+              const paddingY = 1;
               const x = imgX + 5;
               const y = imgY - 1 + imgSize + 1.2;
               const borderRadius = 2;
-
               const rectHeight = fontHeight + paddingY * 2;
 
               doc.setFillColor(...boxColor);
@@ -188,16 +165,12 @@ export class CreatePDFService {
               doc.text(labelText, x, y);
             }
 
-
-            // Draw circle instead of image
             const circleX = imgX + imgSize / 2;
             const circleY = imgY + imgSize / 2;
             doc.setFillColor(207, 75, 95);
             doc.circle(circleX, circleY, 0.5, 'F');
-
           }
         },
-
         didDrawPage: (data: any) => {
           if (data.pageNumber > 1) {
             addHeader();
@@ -207,59 +180,56 @@ export class CreatePDFService {
       });
 
       doc.setFontSize(14);
-      // doc.setTextColor(100);
       let y = (doc as any).lastAutoTable.finalY + 10;
 
-      // ** HERE IS THE CHANGE: Check if space remaining is less than 200 px. If so, add new page **
       const pageHeight = doc.internal.pageSize.height;
-      const footerHeight = 20; // same as footer height you use
+      const footerHeight = 20;
       const spaceRemaining = pageHeight - y - footerHeight;
 
       if (spaceRemaining < 200) {
         doc.addPage();
         addHeader();
         addFooter();
-        y = 35;  // Reset y position for disclaimer start on new page
+        y = 35;
       }
+
       doc.setFontSize(14);
       doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
       doc.setTextColor(100);
-      // Define page and layout settingsconst leftPadding = 14;
-      const leftPadding = 14;
-      const rightPadding = -92;
-      const startYPosition = y + 20;
-      let currentY = startYPosition;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(69, 67, 67);
 
-      const pdfPageWidth = doc.internal.pageSize.width;
-      const pdfPageHeight = doc.internal.pageSize.height;
-      const pdfFooterHeight = 15;
+      const pageWidth1 = doc.internal.pageSize.width;
+      const pageHeight1 = doc.internal.pageSize.height;
 
-      const contentWidth = pdfPageWidth - (leftPadding + rightPadding);
+      const leftMargin = 15;
+      const rightMargin = 12;
+      const footerHeight1 = 15;
+      const lineHeight = 5;
+      const headerOffset = 40;
+
+      const contentWidth = (pageWidth1 + 200) - (leftMargin + rightMargin);
       const disclaimerLines = doc.splitTextToSize(disclaimer, contentWidth);
 
-      // Set font styles
-      doc.setFontSize(10);
+      let yPosition = y + 20;
+
       doc.setFont('helvetica', 'normal');
-      doc.setTextColor(100);
-
-      // Render disclaimer text with page break handling
+      doc.setFontSize(10);
       for (let i = 0; i < disclaimerLines.length; i++) {
-        const lineHeight = 5;
-        const remainingSpace = pdfPageHeight - currentY - pdfFooterHeight;
-
+        const remainingSpace = pageHeight1 - yPosition - footerHeight1;
         if (remainingSpace < lineHeight) {
           doc.addPage();
-          addHeader(); // your custom header function
-          currentY = 35;
-
-          // Reapply font styling on new page
-          doc.setFontSize(10);
+          addHeader();
+          addFooter();
+          yPosition = headerOffset;
           doc.setFont('helvetica', 'normal');
-          doc.setTextColor(100);
+          doc.setFontSize(10);
+          doc.setTextColor(69, 67, 67);
         }
-
-        doc.text(disclaimerLines[i], leftPadding, currentY, { align: 'left' });
-        currentY += lineHeight;
+        doc.text(disclaimerLines[i], leftMargin, yPosition, { align: 'left' });
+        yPosition += lineHeight;
+        y = yPosition;
       }
 
       addFooter();
@@ -268,24 +238,13 @@ export class CreatePDFService {
 
     img.onload = () => {
       imagesLoaded++;
-      if (imagesLoaded === 2) {
-        generatePDFContent();
-      }
+      if (imagesLoaded === 2) generatePDFContent();
     };
-
     checkImg.onload = () => {
       imagesLoaded++;
-      if (imagesLoaded === 2) {
-        generatePDFContent();
-      }
+      if (imagesLoaded === 2) generatePDFContent();
     };
-
-    img.onerror = () => {
-      console.error('Failed to load the logo image.');
-    };
-
-    checkImg.onerror = () => {
-      console.error('Failed to load the checkmark image.');
-    };
+    img.onerror = () => console.error('Failed to load the logo image.');
+    checkImg.onerror = () => console.error('Failed to load the checkmark image.');
   }
 }

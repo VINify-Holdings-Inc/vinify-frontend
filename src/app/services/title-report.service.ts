@@ -45,7 +45,7 @@ export class TitleReportService {
       doc.addImage(nmvtlogo, 'PNG', imgX, imgY, imgWidth, imgHeight);
 
       doc.setTextColor(67, 66, 66);
-      doc.setFontSize(9);
+      doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
       doc.text(
         'Title Alarm LLC, Marley Nonami Incorporated is an approved NMVTIS Data Provider.',
@@ -54,7 +54,7 @@ export class TitleReportService {
       );
 
       const dateheader = this.dateFormate.transform(today, 'DD MMM YYYY');
-      doc.text(`Updated ${dateheader}`, 248.5, textY - 1);
+      doc.text(`Updated ${dateheader}`, 245.5, textY - 1);
     };
 
     const addHeader = () => {
@@ -156,10 +156,10 @@ export class TitleReportService {
         body: tableRows,
         headStyles: {
           fillColor: [69,103,145],
-          fontSize: 8
+          fontSize: 10
         },
         bodyStyles: {
-          fontSize: 7
+          fontSize:10
         },
         margin: { top: 28 },
         columnStyles: {
@@ -232,7 +232,52 @@ export class TitleReportService {
       doc.setFontSize(14);
       doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
 
-      addDisclaimerSection(doc, disclaimer, y, fileName, addHeader, addFooter);
+      // addDisclaimerSection(doc, disclaimer, y, fileName, addHeader, addFooter);
+      doc.setFontSize(10);  
+const pageHeight1 = doc.internal.pageSize.height;
+const pageWidth = doc.internal.pageSize.width;
+
+const leftMargin = 15;
+const rightMargin = 1; // 27 - 15 = 12 to make total 27 padding
+const footerHeight1 = 15;
+const lineHeight = 5;
+const headerOffset = 40;
+
+const contentWidth = (pageWidth+200) - (leftMargin + rightMargin);
+const disclaimerLines = doc.splitTextToSize(disclaimer, contentWidth);
+
+let yPosition = y + 20; // Start after some space from last Y position
+ doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+for (let i = 0; i < disclaimerLines.length; i++) {
+  const remainingSpace = pageHeight1 - yPosition - footerHeight1;
+
+  if (remainingSpace < lineHeight) {
+    doc.addPage();
+    addHeader();
+    addFooter();
+    
+    // Reset Y position after header
+    yPosition = headerOffset;
+
+    // Reset styles after new page
+    
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+    doc.setTextColor(69, 67, 67);
+  }
+   doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+
+  doc.text(disclaimerLines[i], leftMargin, yPosition, { align: 'left' });
+  yPosition += lineHeight;
+
+  // Optional: update external y reference if needed
+  y = yPosition;
+} 
+addFooter();
+      doc.save(fileName);
+
     };
 
     img.onerror = () => {
