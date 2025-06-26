@@ -8,9 +8,6 @@ import { DateFormatPipe } from '../pipes/date-format.pipe'
   providedIn: 'root'
 })
 export class NavPdfService {
-
-
-  //private capitalizePipe = new CapitalizePipe();
   constructor(private dateFormate: DateFormatPipe,) { }
 
   generatePDF(
@@ -29,19 +26,10 @@ export class NavPdfService {
     const tableData = data?.titleData;
     const brandData = data?.brandData;
     const junkSalvageData = data?.JSI;
-    //sources: any[],
-
-    const titleLength = data?.titleData.length;
-    const brandLength = data?.brandData.length;
-    const jsiLength = data?.JSI.length;
 
     const titleCount = data?.titleDataCount;
     const brandCount = data?.brandDataCount;
     const JSICount = data?.JSICount;
-
-    const titleMaxDate = data?.titleMaxDate;
-    const brandMaxDate = data?.brandMaxDate;
-    const jsiMaxDate = data?.jsiMaxDate;
 
     const doc = new jsPDF();
     const nmvtlogo = 'assets/images/nmvtis-1.png';
@@ -123,17 +111,6 @@ export class NavPdfService {
       doc.setTextColor(originalColor);
     };
 
-
-
-    const drawBadge = (doc: any, x: number, y: number, number: string | number) => {
-      const radius = 3;
-      doc.setFillColor(69,103,145); // Red color
-      doc.circle(x, y - 1, radius, 'F');
-      doc.setTextColor(255, 255, 255); // White text
-      doc.setFontSize(8);
-      // doc.text(`${number}`, x, y + 1, { align: 'center' }); // Centered text
-    }
-
     doc.setProperties({ title: "Vehicle History Report" });
 
     const pageCount = (doc as any).internal.getNumberOfPages();
@@ -152,91 +129,40 @@ export class NavPdfService {
 
     doc.setLineWidth(.4);
 
-    doc.roundedRect(20, y, 55, 43, 3, 3, 'S')
+    // Title Report
+    doc.roundedRect(20, y, 55, 20, 3, 3, 'S');
     doc.setFont('helvetica', 'bold');
-    const dynamicData = `Title Information (${titleCount})`; // Replace with your dynamic data
     doc.setFontSize(10);
-    doc.text(dynamicData, 22, y + 5);
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    //titleLength ? doc.text( tableData[0]?.brand?.split(' - ')[0] ?? " ", 22 , y + 15) : doc.text( " ", 22 , y + 15);
-    titleLength ? doc.text(tableData[0]?.status ?? " ", 22, y + 12) : doc.text(" ", 22, y + 12);
-    doc.setTextColor(0, 0, 0);
-    doc.text("Title Issue Date", 22, y + 19)
-    doc.setTextColor(69, 67, 67);
-    doc.text(titleLength ? titleMaxDate ? this.dateFormate.transform(titleMaxDate, 'DD MMM YYYY') : " " : " ", 22, y + 24)
-    doc.setTextColor(0, 0, 0);
-    doc.text("Title Issue State", 22, y + 33)
-    const stateText = titleLength ? (tableData[0]?.state || " ") : " ";
-    const url = tableData[0]?.weburl || "";
-    if (url) {
-      doc.setTextColor(...urlTextColor)
-      doc.textWithLink(stateText, 22, y + 38, { url, underline: true });
-    } else {
-      doc.setTextColor(69, 67, 67);  // Normal color for plain text
-      doc.text(stateText, 22, y + 38);
-    }
-    doc.setTextColor(69, 67, 67);
+    let dynamicData = `Title Records (${titleCount})`;
+    let textWidth = doc.getTextWidth(dynamicData);
+    let textX = 20 + (55 - textWidth) / 2;
+    doc.text(dynamicData, textX, y + 12);
 
-    doc.roundedRect(80, y, 55, 43, 3, 3, 'S')
+    // Brand Report
+    doc.roundedRect(80, y, 55, 20, 3, 3, 'S');
     doc.setFont('helvetica', 'bold');
-    const dynamicData1 = `Brand Information (${brandCount})`; // Replace with your dynamic data   
-    doc.setFontSize(10);
-    doc.text(dynamicData1, 82, y + 5);
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    brandLength ? doc.text(brandData[0]?.brand?.split(' - ')[0] ?? " ", 82, y + 12) : doc.text(" ", 82, y + 12);
-    doc.setTextColor(0, 0, 0);
-    doc.text("Brand Issue Date", 82, y + 19)
-    doc.setTextColor(69, 67, 67);
+    let dynamicData1 = `Brand Records (${brandCount})`;
+    textWidth = doc.getTextWidth(dynamicData1);
+    textX = 80 + (55 - textWidth) / 2;
+    doc.text(dynamicData1, textX, y + 12);
 
-    doc.text(brandLength ? brandMaxDate ? this.dateFormate.transform(brandMaxDate, 'DD MMM YYYY') : " " : " ", 82, y + 25)
-    doc.setTextColor(0, 0, 0);
-    doc.text("Brand Issue State", 82, y + 33)
-    const stateTexturl = brandLength ? (brandData[0]?.state || " ") : " ";
-    const urlbrand = brandData[0]?.weburl || "";
-    if (urlbrand) {
-      doc.setTextColor(...urlTextColor)
-
-      doc.textWithLink(stateTexturl, 82, y + 38, { url: urlbrand });
-    } else {
-      doc.setTextColor(69, 67, 67);
-      doc.text(stateTexturl, 82, y + 38);
-    }
-
-    doc.setTextColor(69, 67, 67);
-    doc.roundedRect(140, y, 55, 43, 3, 3, 'S')
+    // Junk/Salvage Report
+    doc.roundedRect(140, y, 55, 20, 3, 3, 'S');
     doc.setFont('helvetica', 'bold');
-    const dynamicData2 = `Junk/Salvage Information (${JSICount})`;  // Replace with your dynamic data  const dynamicData2 = `Junk/Salvage Information (${brandCount})`; 
-    doc.setFontSize(10);
-    doc.text(dynamicData2, 142, y + 5);
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    jsiLength ? doc.text(junkSalvageData[0]?.VehicleDispositionText?.split(' - ')[0] ?? " ", 142, y + 12) : doc.text(" ", 142, y + 12);
-    doc.setTextColor(0, 0, 0);
-    doc.text("JSI Issue Date", 142, y + 19)
-    doc.setTextColor(69, 67, 67);
-    doc.text(jsiLength ? jsiMaxDate ? this.dateFormate.transform(jsiMaxDate, 'DD MMM YYYY') : " " : " ", 142, y + 25)
-    doc.setTextColor(0, 0, 0);
-    doc.text("JSI Issue State", 142, y + 33)
-    const stateTextJsi = jsiLength ? (junkSalvageData[0]?.state || " ") : " ";
-    const urljsii = junkSalvageData[0]?.weburl || "";
-    if (urljsii) {
-      doc.setTextColor(...urlTextColor)
-      doc.textWithLink(stateTextJsi, 142, y + 38, { url: urljsii });
-    } else {
-      doc.setTextColor(69, 67, 67);
-      doc.text(stateTextJsi, 142, y + 38);
-    }
+    let dynamicData2 = `Junk/Salvage Records (${JSICount})`;
+    textWidth = doc.getTextWidth(dynamicData2);
+    textX = 140 + (55 - textWidth) / 2;
+    doc.text(dynamicData2, textX, y + 12);
 
-    y += 60;
-    drawBadge(doc, 14, y - 1, titleCount);
+
+    y += 37;
+    // drawBadge(doc, 14, y - 1, titleCount);
     doc.setFontSize(14);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(69, 67, 67);
 
     sectionPositions['title'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
-    doc.text('Title Record History', 19, y);
+    doc.text(`Title Record History (${titleCount})`, 14, y);
     doc.setFontSize(6);
     doc.setFont('helvetica', 'bold');
     doc.text('Source', 180, y);
@@ -278,7 +204,7 @@ export class NavPdfService {
       theme: 'grid',
       head: [tableColumn],
       body: tableRows,
-      headStyles: { fillColor: [69,103,145], fontSize: 8, textColor: [255,255,255] },
+      headStyles: { fillColor: [69, 103, 145], fontSize: 8, textColor: [255, 255, 255] },
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
@@ -338,11 +264,11 @@ export class NavPdfService {
       doc.addPage(); // Add a new page
       y = 44; // Reset Y position for new page (you can choose your margin)
     }
-    drawBadge(doc, 14, y - 1, brandCount);  //x,y,number
+    // drawBadge(doc, 14, y - 1, brandCount);  //x,y,number
     doc.setFontSize(14);
     doc.setTextColor(69, 67, 67);
     sectionPositions['brand'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
-    doc.text('Title Brands Reported', 19, y);
+    doc.text(`Title Brands Reported (${brandCount})`, 14, y);
     addHeader();
     addFooter();
     doc.setFontSize(6);
@@ -354,13 +280,12 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     y += 5;
 
-    const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)', 'Description'];
+    const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)' ];
     const brandRows = brandData.length > 0
       ? brandData.map((item: any) => [
         item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
         item?.state || " ",
-        item?.brand ? item.brand.split(' - ')[0] : " ",
-        item?.brand ? item.brand.split(' - ')[1] : " ",
+        item?.brand ? item.brand.split(' - ')[0] : " ", 
         " ", // Source column for NMVTIS logo
         item?.weburl || " " // Hidden column for hyperlink usage
       ])
@@ -371,15 +296,15 @@ export class NavPdfService {
       theme: 'grid',
       head: [brandColumns],
       body: brandRows,
-      headStyles: { fillColor: [69,103,145], fontSize: 8, textColor: [255,255,255] },
+      headStyles: { fillColor: [69, 103, 145], fontSize: 8, textColor: [255, 255, 255] },
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
-        0: { cellWidth: 35 },
-        1: { cellWidth: 30, halign: 'left', valign: 'top' },
-        2: { cellWidth: 30 },
-        4: { cellWidth: 35, halign: 'center', valign: 'middle' },
-        5: { cellWidth: 0 } // Hidden weburl column
+        0: { cellWidth: 57.5 },
+        1: { cellWidth:62.5, halign: 'left', valign: 'top' },
+        2: { cellWidth: 61.5 },
+        // 4: { cellWidth: 35, halign: 'center', valign: 'middle' },
+        4: { cellWidth: 0 } // Hidden weburl column
       },
 
       didParseCell: (data: any) => {
@@ -420,7 +345,7 @@ export class NavPdfService {
       y = 40; // Reset Y for new page
       addHeader();
       const currentPage = data.pageNumber;
-        addFooter(currentPage);
+      addFooter(currentPage);
     }
 
     y += 10;
@@ -432,7 +357,7 @@ export class NavPdfService {
       y = 40; // Reset Y for new page
       addHeader();
       const currentPage = data.pageNumber;
-        addFooter(currentPage);
+      addFooter(currentPage);
     }
 
     // Junk Salvage
@@ -444,14 +369,14 @@ export class NavPdfService {
       doc.addPage(); // Add a new page
       y = 44; // Reset Y position for new page (you can choose your margin)
     }
-    drawBadge(doc, 14, y - 1, JSICount);
+    // drawBadge(doc, 14, y - 1, JSICount);
     doc.setFontSize(14);
     doc.setTextColor(69, 67, 67);
     sectionPositions['junksalvage'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
-    doc.text('Junk/Salvage Information', 19, y);
+    doc.text(`Junk/Salvage Records (${JSICount})`, 14, y);
     addHeader();
     const currentPage = data.pageNumber;
-        addFooter(currentPage);
+    addFooter(currentPage);
     doc.setFontSize(6);
     doc.setFont('helvetica', 'bold');
     doc.text('Source', 180, y);
@@ -464,8 +389,8 @@ export class NavPdfService {
     if (y + 50 > doc.internal.pageSize.height - 20) {
       doc.addPage();
       addHeader();
-     const currentPage = data.pageNumber;
-        addFooter(currentPage);
+      const currentPage = data.pageNumber;
+      addFooter(currentPage);
       y = 40; // Reset Y for new page
     }
     let yPosition21 = y + 3; // Initial y position
@@ -514,7 +439,7 @@ export class NavPdfService {
       theme: 'grid',
       head: [jsiColumns],
       body: jsiRows,
-      headStyles: { fillColor: [69,103,145], fontSize: 8, textColor: [255,255,255] },
+      headStyles: { fillColor: [69, 103, 145], fontSize: 8, textColor: [255, 255, 255] },
       bodyStyles: { fontSize: 7 },
       margin: { top: 41, bottom: 25 },
       columnStyles: {
@@ -543,7 +468,7 @@ export class NavPdfService {
         if (section === 'body' && column.index === 4 && row.index !== -1) {
           const url = rowData[7]; // Hidden column for link
           if (url?.trim()) {
-              doc.setFontSize(7);
+            doc.setFontSize(7);
             doc.link(cell.x, cell.y, cell.width, cell.height, { url }); // Clickable area
           }
         }
@@ -558,16 +483,69 @@ export class NavPdfService {
 
 
 
-    y = (doc as any).lastAutoTable.finalY + 10;
 
+    y = (doc as any).lastAutoTable.finalY + 10;
+    y += 10;
+    doc.setFontSize(14)
+    doc.text('Brand Description', 15, y);
+    doc.setFontSize(8)
+    y += 7;
+    doc.setFont('helvetica', 'normal');
+
+    const brandColumns2 = ['Brand Name(s)', 'Description'];
+
+    const brandRows1: any = brandData.map((item: any) => [
+      item?.brand ? item.brand.split(' - ')[0] : " ",
+      item?.brand ? item.brand.split(' - ')[1] : " ",
+    ]);
+
+
+    (doc as any).autoTable({
+      startY: y,
+      theme: 'plain',
+      head: [brandColumns2],
+      body: brandRows1,
+      headStyles: {
+        fillColor: [255, 255, 255],
+        fontSize:9,
+        textColor: [69, 67, 67],
+        fontStyle: 'bold',
+        lineWidth: 0,
+      },
+      bodyStyles: {
+        fontSize: 8,
+        lineWidth: 0,
+        textColor: [69, 67, 67],
+      },
+      margin: { top: 41, bottom: 25 },
+      columnStyles: {
+        0: { cellWidth: 35 },
+        1: { cellWidth: 145, halign: 'left', valign: 'top' },
+      },
+      didParseCell: (data: any) => {
+        data.cell.styles.lineWidth = 0;
+        if (data.section === 'body' && data.column.index === 0) {
+          data.cell.styles.fontStyle = 'bold';
+        }
+      },
+      didDrawCell: () => { },
+      didDrawPage: (data: any) => {
+        addHeader();
+        addFooter(data.pageNumber);
+      }
+    });
+
+
+    y = (doc as any).lastAutoTable.finalY + 10;
+    y += 10;
     let pageHeight2 = doc.internal.pageSize.height;
     if (y + 20 > pageHeight2 - 25) { // Adjust 25 for footer space
       doc.addPage();
       y = 40; // Reset Y for new page
       addHeader();
       doc.setTextColor(69, 67, 67);
-     const currentPage = data.pageNumber;
-        addFooter(currentPage);
+      const currentPage = data.pageNumber;
+      addFooter(currentPage);
     }
 
     // Legal Disclaimer
@@ -672,41 +650,61 @@ export class NavPdfService {
     const totalPages = (doc as any).internal.getNumberOfPages();
     doc.setFontSize(9);
 
-    /************************************************ */
+    /************************************************ */const y1 = 30;       // Y for top row
+    const y2 = y1 + 10;  // Y for bottom row (slightly below)
 
-    const links = [
-      { text: 'Report Summary', x: 49, key: 'summary' },
-      { text: 'Title Information', x: 84, key: 'title' },
-      { text: 'Junk/Salvage', x: 118, key: 'junksalvage' },
-      { text: 'Legal Disclaimer', x: 149, key: 'disclaim' },
-      { text: 'Sources', x: 183, key: 'source' }
+    const linksTop = [
+      { text: 'Report Summary', x: 106, key: 'summary' },
+      { text: 'Title', x: 141, key: 'title' },
+      { text: 'Brand', x: 158, key: 'brand' },
+      { text: 'Junk/Salvage', x: 177, key: 'junksalvage' },
     ];
 
-    // Setting Y coordinate for links
-    const y1 = 30;
+    // const linksBottom = [
+    //   { text: 'Legal Disclaimer', x: 150, key: 'disclaim' },
+    //   { text: 'Sources', x: 185.6, key: 'source' }
+    // ];
 
     for (let i = 1; i <= totalPages; i++) {
       doc.setPage(i);
-      doc.setTextColor(69,103,145);
+      doc.setTextColor(69, 103, 145);
 
-      links.forEach(link => {
+      // First row
+      linksTop.forEach(link => {
         const section = sectionPositions[link.key];
-
         if (section) {
-          doc.text(link.text, link.x, y1);
-          doc.link(link.x, y1 - 3, doc.getTextWidth(link.text), 4, {
-            pageNumber: section.page,
-            top: section.y // Scroll to section position
-          });
-
-          // Underline effect
-          doc.setLineWidth(0.5);
-          doc.setDrawColor(69,103,145);
           const textWidth = doc.getTextWidth(link.text);
+          doc.text(link.text, link.x, y1);
+          doc.link(link.x, y1 - 3, textWidth, 4, {
+            pageNumber: section.page,
+            top: section.y
+          });
+          doc.setLineWidth(0.5);
+          doc.setDrawColor(69, 103, 145);
           doc.line(link.x, y1 + 1.5, link.x + textWidth, y1 + 1.5);
         }
       });
+
+      // // Second row (also using fixed x values)
+      // linksBottom.forEach(link => {
+      //   const section = sectionPositions[link.key];
+      //   if (section) {
+      //     const textWidth = doc.getTextWidth(link.text);
+      //      doc.setFontSize(8);
+      //     doc.text(link.text, link.x, y2);
+      //     doc.link(link.x, y2 - 3, (textWidth-1.6), 3, {
+      //       pageNumber: section.page,
+      //       top: section.y
+      //     });
+      //     doc.setLineWidth(0.5);
+      //     doc.setDrawColor(69, 103, 145);
+      //     doc.line(link.x, y2 + 1.5, link.x + textWidth, y2 + 1.5);
+      //   }
+      // });
     }
+
+
+
     /************************************************ */
     // Save PDF
     doc.save(FinalfileName);
