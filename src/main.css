@@ -309,13 +309,13 @@ p.smallAddIcon i {
   background-color: transparent !important;
 }
 
-.table>thead>tr>th:last-child {
-  text-align: right;
+.table > thead > tr >th:last-child {
+  text-align: left;
   border-right: none;
 }
 
 .userdashbrdTable .table>tbody>tr>td:last-child {
-  text-align: right;
+  text-align: left;
 }
 
 .table tbody tr td.vinNumber {
@@ -681,7 +681,7 @@ li.notifyInner {
 }
 
 .notifyPoint:hover {
-  background-color: #FECDCA59;
+  background-color: #45679136;
   border-radius: 8px;
 }
 
@@ -690,18 +690,16 @@ li.notifyInner {
 }
 
 .headerSection .notification-number {
-  font-weight: 700;
-  border-radius: 20px;
-  padding: 2px 10px;
-  background: #FEF3F2;
-  border: 1px solid #FECDCA;
-
-  color: #B42318;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 20px;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 2px 10px;
+    background: #4567914f;
+    border: 1px solid #456791;
+    color: #456791;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 20px;
 }
-
 a.nav-link.no-toggle-icon {
   position: relative;
   cursor: pointer;
@@ -3998,9 +3996,9 @@ span.month-calendar.vehicleMonthSearch.calendar-svg:hover {
   display: inline-block;
 }
 
-.deleted-row {
+/* .deleted-row {
   background: #f1e5e6 !important;
-}
+} */
 .deleted-text {
 	background: #f6e1e4;
 	font-size: 0.688rem;
