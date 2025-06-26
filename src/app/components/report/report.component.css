@@ -135,9 +135,9 @@ ul.vinContains li strong {
 	flex-direction: row;
 	gap: 15px;
 }
-.cursor-pointer-term .card {
+/* .cursor-pointer-term .card {
 	min-height: 206px;
-	}
+	} */
 .warningtext {
 	width: 160px;
 	background: #d30202;
@@ -303,7 +303,7 @@ ul.vinContains li strong {
 }
 .siderbar-pdf ul li a {
 	display: block;
-	padding: 10px 15px;
+	padding: 10px;
 	line-height: 25px;
 	cursor: pointer;
 }
@@ -315,6 +315,10 @@ ul.vinContains li strong {
 }
 .siderbar-pdf ul li a.active {
 	background: #dfdfdf;
+}
+span.wrap-text {
+    display: inline-block;
+    white-space: normal;
 }
 .showAlerton {
 	display: inline-block;

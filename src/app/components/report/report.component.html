@@ -44,12 +44,17 @@
 						class="material-icons">summarize</span>Report Summary</a></li>
 			<li (click)="scrollToSection('titleinformations')"><a
 					[ngClass]="{ 'active': activeTab === 'titleinformations' }"><span
-						class="material-icons">article</span>Title Information <span *ngIf="data.titleDataCount"
+						class="material-icons">article</span>Title Records <span *ngIf="data.titleDataCount"
 						class="circleRedBox">{{data.titleDataCount}}</span></a>
 			</li>
+			<li (click)="scrollToSection('brandinformation')"><a
+					[ngClass]="{ 'active': activeTab === 'brandinformation' }"><span
+						class="material-icons">article</span>Brand Records<span *ngIf="data.brandDataCount"
+						class="circleRedBox">{{data.brandDataCount}}</span></a></li>
+
 			<li (click)="scrollToSection('junknsalvagesection')"><a
 					[ngClass]="{ 'active': activeTab === 'junknsalvagesection' }"><span
-						class="material-icons">delete</span>Junk/Salvage <span *ngIf="data.JSICount"
+						class="material-icons">delete</span>Junk/Salvage Records<span *ngIf="data.JSICount"
 						class="circleRedBox">{{data.JSICount}}</span></a></li>
 			<li (click)="scrollToSection('legaldisclaimer')"><a
 					[ngClass]="{ 'active': activeTab === 'legaldisclaimer' }"><span
@@ -93,9 +98,9 @@
 										<a (click)="scrollToSection('titleinformations')">
 											<div class="card sumBox" id="titleinformation">
 												<div class="card-body">
-													<h5 class="card-title">Title Information ({{data.titleDataCount}})
+													<h5 class="card-title">Title Records ({{data.titleDataCount}})
 													</h5>
-													<ul>
+													<!-- <ul>
 														<li>{{ data?.titleData?.[0]?.status ?? " " }}</li>
 														<li><span class="makeFullW">Title Issue Date</span>{{
 															data?.titleMaxDate ?
@@ -117,7 +122,7 @@
 															</ng-template>
 
 														</li>
-													</ul>
+													</ul> -->
 												</div>
 											</div>
 										</a>
@@ -126,9 +131,9 @@
 										<a (click)="scrollToSection('brandtableID')">
 											<div class="card sumBox" id="brandinformation">
 												<div class="card-body">
-													<h5 class="card-title">Brand Information ({{data.brandDataCount}})
+													<h5 class="card-title">Brand Records ({{data.brandDataCount}})
 													</h5>
-													<ul>
+													<!-- <ul>
 														<li>{{ data?.brandData?.[0]?.brand?.split(' - ')[0] ?? " " }}
 														</li>
 														<li><span class="makeFullW">Brand Issue Date</span>{{
@@ -137,8 +142,7 @@
 															YYYY') : " " }}</li>
 
 														<li><span class="makeFullW">Brand Issue State</span>
-															<!-- {{
-															data?.brandData?.[0]?.state ?? " " }} -->
+															
 															<span
 																*ngIf="data?.brandData?.length > 0 && data.brandData[0]?.weburl; else plainStateBrand">
 																<a class="url_navigate"
@@ -155,7 +159,7 @@
 
 
 														</li>
-													</ul>
+													</ul> -->
 
 												</div>
 											</div>
@@ -165,9 +169,9 @@
 										<a (click)="scrollToSection('junknsalvagesection')">
 											<div class="card sumBox" id="junksalvageinformation">
 												<div class="card-body">
-													<h5 class="card-title">Junk/Salvage Information ({{data.JSICount}})
+													<h5 class="card-title">Junk/Salvage Records ({{data.JSICount}})
 													</h5>
-													<ul>
+													<!-- <ul>
 														<li>{{ data?.JSI?.[0]?.VehicleDispositionText ?? " " }}</li>
 														<li><span class="makeFullW">JSI Issue Date</span>{{
 															data?.jsiMaxDate ?
@@ -192,7 +196,7 @@
 
 														</li>
 
-													</ul>
+													</ul> -->
 
 												</div>
 											</div>
@@ -208,9 +212,8 @@
 
 						<section id="titleinformations" class="">
 							<div class="sectionText">
-								<h2 class="sectionHeadeing"><span *ngIf="data.titleDataCount" class="circleRedBox">
-										<span class="decimal">.</span>
-									</span>Title Record History
+								<h2 class="sectionHeadeing">
+									Title Records ({{data.titleDataCount}})
 									<small><strong>Source</strong>
 										NMVTIS</small>
 								</h2>
@@ -273,8 +276,7 @@
 									</div>
 								</div>
 
-								<h2 class="sectionHeadeing" id="brandtableID"><span *ngIf="data.brandDataCount"
-										class="circleRedBox"><span class="decimal">.</span></span> Title Brands Reported
+								<h2 class="sectionHeadeing" id="brandtableID">Brands Records ({{data.brandDataCount}})
 								</h2>
 
 
@@ -284,9 +286,9 @@
 											<thead>
 												<tr>
 													<th scope="col">Brand Issue Date</th>
-													<th width="200" scope="col">Brand Issue State</th>
-													<th width="350" scope="col">Brand Name(s)</th>
-													<th scope="col">Description</th>
+													<th width="" scope="col">Brand Issue State</th>
+													<th width="" scope="col">Brand Name(s)</th>
+													
 												</tr>
 											</thead>
 											<tbody
@@ -304,8 +306,7 @@
 														</span>
 													</td>
 													<td>{{ item?.brand ? item?.brand.split(' - ')[0] : " " }}</td>
-													<td><span class="makeitshortLength">{{ item?.brand ?
-															item?.brand.split(' - ')[1] : " " }}</span></td>
+													
 
 												</tr>
 											</tbody>
@@ -327,8 +328,7 @@
 
 						<section id="junknsalvagesection">
 							<div class="sectionText">
-								<h2 class="sectionHeadeing"><span *ngIf="data.JSICount" class="circleRedBox"><span
-											class="decimal">.</span></span> Junk/Salvage Information
+								<h2 class="sectionHeadeing"> Junk/Salvage Records ({{data.JSICount}})
 									<small><strong>Source</strong> NMVTIS</small>
 								</h2>
 								<p>This section discloses events related to events like junk, salvage and insurance
@@ -405,6 +405,36 @@
 
 
 							</div>
+						</section>
+						<section id="brand-description">
+							<div class="sectionText">
+								<h2 class="sectionHeadeing">Brand Description</h2>
+								<p>No Brand Available for this VIN ({{vinData}})</p>
+								<div class="tableContent">
+									<div class="table-responsive">
+										<table class="table" width="100%">
+											<thead>
+												<tr>
+													<th scope="col"><span class="setmaxwidth">Brand Name(s)</span></th>
+													<th scope="col">Description</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Rebuilt</td>
+													<td><span class="wrap-text">The vehicle, previously branded "salvage", has passed anti-theft and safety inspections, or other jurisdiction procedures, to ensure the vehicle was rebuilt to required standards. Also known as prior salvage (salvaged).</span></td>
+												</tr>
+												<tr>
+													<td>Prior Non-Repairable/Repaired</td>
+													<td><span class="wrap-text">A vehicle constructed by repairing a vehicle that has been destroyed or declared to be non-repairable or otherwise declared to not be eligible for titling because of the extent of damage to the vehicle but has been issued a title pursuant to state law after falling within this criterion with this brand on the face of the certificate of title.</span></td>
+												</tr>
+											</tbody>
+											
+										</table>
+									</div>
+								</div>
+							</div>
+
 						</section>
 
 						<section id="legaldisclaimer">
