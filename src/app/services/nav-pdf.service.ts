@@ -295,6 +295,7 @@ export class NavPdfService {
 
         // Color the "Issuing State" text
         if (data.section === 'body' && isIssuingStateColumn && !isNoRecords) {
+          doc.setFontSize(7);
           data.cell.styles.textColor = url?.trim() ? urlTextColor : [67, 66, 66]; // Blue if URL exists, dark gray otherwise
         }
 
@@ -395,6 +396,7 @@ export class NavPdfService {
         if (section === 'body' && column.index === 1 && row.index !== -1) {
           const url = rowData[5];
           if (url?.trim()) {
+            doc.setFontSize(7);
             doc.link(cell.x, cell.y, cell.width, cell.height, { url });
           }
         }
@@ -541,6 +543,7 @@ export class NavPdfService {
         if (section === 'body' && column.index === 4 && row.index !== -1) {
           const url = rowData[7]; // Hidden column for link
           if (url?.trim()) {
+              doc.setFontSize(7);
             doc.link(cell.x, cell.y, cell.width, cell.height, { url }); // Clickable area
           }
         }

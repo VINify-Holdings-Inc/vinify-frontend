@@ -212,7 +212,7 @@ export class TitleReportService {
             const stateText = data.row.raw[5];
             const textX = data.cell.x + 2;
             const textY = data.cell.y + data.cell.height / 2 + 1;
-            doc.setFontSize(7);
+            doc.setFontSize(10);
             doc.setTextColor(...urlTextColor);
             doc.textWithLink(stateText, textX, textY, { url: weburl });
             doc.link(data.cell.x, data.cell.y, data.cell.width, data.cell.height, { url: weburl });
@@ -257,7 +257,7 @@ for (let i = 0; i < disclaimerLines.length; i++) {
     addHeader();
     addFooter();
     
-    // Reset Y position after header
+    // Reset Y position after header 
     yPosition = headerOffset;
 
     // Reset styles after new page
