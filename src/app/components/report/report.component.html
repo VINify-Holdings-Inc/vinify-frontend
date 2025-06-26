@@ -288,7 +288,7 @@
 													<th scope="col">Brand Issue Date</th>
 													<th width="" scope="col">Brand Issue State</th>
 													<th width="" scope="col">Brand Name(s)</th>
-													
+
 												</tr>
 											</thead>
 											<tbody
@@ -306,7 +306,7 @@
 														</span>
 													</td>
 													<td>{{ item?.brand ? item?.brand.split(' - ')[0] : " " }}</td>
-													
+
 
 												</tr>
 											</tbody>
@@ -406,10 +406,9 @@
 
 							</div>
 						</section>
-						<section id="brand-description">
+						<section id="brand-description" *ngIf="data?.brandData?.length > 0; else noBrand">
 							<div class="sectionText">
 								<h2 class="sectionHeadeing">Brand Description</h2>
-								<p>No Brand Available for this VIN ({{vinData}})</p>
 								<div class="tableContent">
 									<div class="table-responsive">
 										<table class="table" width="100%">
@@ -420,22 +419,25 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>Rebuilt</td>
-													<td><span class="wrap-text">The vehicle, previously branded "salvage", has passed anti-theft and safety inspections, or other jurisdiction procedures, to ensure the vehicle was rebuilt to required standards. Also known as prior salvage (salvaged).</span></td>
-												</tr>
-												<tr>
-													<td>Prior Non-Repairable/Repaired</td>
-													<td><span class="wrap-text">A vehicle constructed by repairing a vehicle that has been destroyed or declared to be non-repairable or otherwise declared to not be eligible for titling because of the extent of damage to the vehicle but has been issued a title pursuant to state law after falling within this criterion with this brand on the face of the certificate of title.</span></td>
+												<tr *ngFor="let item of data.brandData">
+													<td>{{ item?.brand ? item.brand.split(' - ')[0] : ' ' }}</td>
+													<td><span class="wrap-text">{{ item?.brand ? item.brand.split(' -
+															')[1] : ' ' }}</span></td>
 												</tr>
 											</tbody>
-											
 										</table>
 									</div>
 								</div>
 							</div>
-
 						</section>
+
+						<ng-template #noBrand>
+							<div class="sectionText">
+								<h2 class="sectionHeadeing">Brand Description</h2>
+								<p>No Brand Available for this VIN ({{ vinData }})</p>
+							</div>
+						</ng-template>
+
 
 						<section id="legaldisclaimer">
 							<div class="sectionText">
