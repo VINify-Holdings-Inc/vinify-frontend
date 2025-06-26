@@ -162,7 +162,7 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
 
     sectionPositions['title'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
-    doc.text(`Title Record History (${titleCount})`, 14, y);
+    doc.text(`Title Records (${titleCount})`, 14, y);
     doc.setFontSize(6);
     doc.setFont('helvetica', 'bold');
     doc.text('Source', 180, y);
@@ -268,7 +268,7 @@ export class NavPdfService {
     doc.setFontSize(14);
     doc.setTextColor(69, 67, 67);
     sectionPositions['brand'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
-    doc.text(`Title Brands Reported (${brandCount})`, 14, y);
+    doc.text(`Brand Records (${brandCount})`, 14, y);
     addHeader();
     addFooter();
     doc.setFontSize(6);
@@ -280,16 +280,16 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     y += 5;
 
-    const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)' ];
+    const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)'];
     const brandRows = brandData.length > 0
       ? brandData.map((item: any) => [
         item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
         item?.state || " ",
-        item?.brand ? item.brand.split(' - ')[0] : " ", 
+        item?.brand ? item.brand.split(' - ')[0] : " ",
         " ", // Source column for NMVTIS logo
         item?.weburl || " " // Hidden column for hyperlink usage
       ])
-      : [["", "", "No records found", "", "", ""]];
+      : [["", "No records found", ""]];
 
     (doc as any).autoTable({
       startY: y,
@@ -301,7 +301,7 @@ export class NavPdfService {
       margin: { top: 41, bottom: 25 },
       columnStyles: {
         0: { cellWidth: 57.5 },
-        1: { cellWidth:62.5, halign: 'left', valign: 'top' },
+        1: { cellWidth: 62.5, halign: 'left', valign: 'top' },
         2: { cellWidth: 61.5 },
         // 4: { cellWidth: 35, halign: 'center', valign: 'middle' },
         4: { cellWidth: 0 } // Hidden weburl column
@@ -432,7 +432,7 @@ export class NavPdfService {
         item?.VehicleDispositionText || " ",
         item?.weburl || " "
       ])
-      : [["", "", "No records found", "", "", "", "", ""]];
+      : [["", "", "", "No records found", "", "", "", ""]];
 
     (doc as any).autoTable({
       startY: y,
@@ -494,49 +494,61 @@ export class NavPdfService {
 
     const brandColumns2 = ['Brand Name(s)', 'Description'];
 
-    const brandRows1: any = brandData.map((item: any) => [
-      item?.brand ? item.brand.split(' - ')[0] : " ",
-      item?.brand ? item.brand.split(' - ')[1] : " ",
-    ]);
+    if (brandData.length === 0) {
+      doc.setFontSize(9);
+      doc.setTextColor(69, 67, 67);
+      doc.setFont('helvetica', 'normal');
+      doc.text(`No Brand Available for this VIN (${vin})`, 105, y, { align: 'center' }); // centered text
+      y += 10;
+    } else {
+      const brandRows1: any = brandData.map((item: any) => [
+        item?.brand ? item.brand.split(' - ')[0] : " ",
+        item?.brand ? item.brand.split(' - ')[1] : " ",
+      ]);
 
-
-    (doc as any).autoTable({
-      startY: y,
-      theme: 'plain',
-      head: [brandColumns2],
-      body: brandRows1,
-      headStyles: {
-        fillColor: [255, 255, 255],
-        fontSize:9,
-        textColor: [69, 67, 67],
-        fontStyle: 'bold',
-        lineWidth: 0,
-      },
-      bodyStyles: {
-        fontSize: 8,
-        lineWidth: 0,
-        textColor: [69, 67, 67],
-      },
-      margin: { top: 41, bottom: 25 },
-      columnStyles: {
-        0: { cellWidth: 35 },
-        1: { cellWidth: 145, halign: 'left', valign: 'top' },
-      },
-      didParseCell: (data: any) => {
-        data.cell.styles.lineWidth = 0;
-        if (data.section === 'body' && data.column.index === 0) {
-          data.cell.styles.fontStyle = 'bold';
+      (doc as any).autoTable({
+        startY: y,
+        theme: 'plain',
+        head: [brandColumns2],
+        body: brandRows1,
+        headStyles: {
+          fillColor: [255, 255, 255],
+          fontSize: 9,
+          textColor: [69, 67, 67],
+          fontStyle: 'bold',
+          lineWidth: 0,
+        },
+        bodyStyles: {
+          fontSize: 8,
+          lineWidth: 0,
+          textColor: [69, 67, 67],
+        },
+        margin: { top: 41, bottom: 25 },
+        columnStyles: {
+          0: { cellWidth: 35 },
+          1: { cellWidth: 145, halign: 'left', valign: 'top' },
+        },
+        didParseCell: (data: any) => {
+          data.cell.styles.lineWidth = 0;
+          if (data.section === 'body' && data.column.index === 0) {
+            data.cell.styles.fontStyle = 'bold';
+          }
+        },
+        didDrawCell: () => { },
+        didDrawPage: (data: any) => {
+          addHeader();
+          addFooter(data.pageNumber);
         }
-      },
-      didDrawCell: () => { },
-      didDrawPage: (data: any) => {
-        addHeader();
-        addFooter(data.pageNumber);
-      }
-    });
+      });
+    }
 
 
-    y = (doc as any).lastAutoTable.finalY + 10;
+    if (brandData.length == 0) {
+      y += 2
+    } else {
+      y = (doc as any).lastAutoTable.finalY + 10;
+    }
+
     y += 10;
     let pageHeight2 = doc.internal.pageSize.height;
     if (y + 20 > pageHeight2 - 25) { // Adjust 25 for footer space
