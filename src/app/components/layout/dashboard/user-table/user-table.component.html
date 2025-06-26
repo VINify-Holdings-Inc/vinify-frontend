@@ -90,7 +90,7 @@
 
               <ng-container matColumnDef="jsi">
                 <th mat-header-cell *matHeaderCellDef width="200">JSI</th>
-                <td mat-cell *matCellDef="let element" title={{element?.JSI}}>
+                <td mat-cell *matCellDef="let element" >
 
                   <span [ngClass]="element?.JSI ? 'tableDot redDot' : ''"></span>
                   <span class="deleted-text" *ngIf="element?.isJSIDel">Deleted</span>
