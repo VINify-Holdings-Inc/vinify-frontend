@@ -4045,6 +4045,14 @@ span.shortNameBrand {
     top: 4px;
     left: 5px;
 }
+.mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background {
+    border-color: var(--bg-primary, var(--bg-primary)) !important;
+    background-color: var(--bg-primary, var(--bg-primary)) !important;
+}
+.mdc-checkbox .mdc-checkbox__native-control:focus:checked~.mdc-checkbox__ripple {
+    opacity: var(--mdc-checkbox-selected-focus-state-layer-opacity, var(--mat-sys-focus-state-layer-opacity));
+    background-color: var(--bg-primary) !important;
+}
 @media (max-width: 992px) {
   .l-logo {
     display: none;
