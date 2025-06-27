@@ -406,7 +406,7 @@
 
 							</div>
 						</section>
-						<section id="brand-description" *ngIf="data?.brandData?.length > 0; else noBrand">
+						<section id="brand-description" *ngIf="data?.uniqueBrand?.length > 0; else noBrand">
 							<div class="sectionText">
 								<h2 class="sectionHeadeing">Brand Description</h2>
 								<div class="tableContent">
@@ -419,7 +419,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr *ngFor="let item of data.brandData">
+												<tr *ngFor="let item of data.uniqueBrand">
 													<td>{{ item?.brand ? item.brand.split(' - ')[0] : ' ' }}</td>
 													<td><span class="wrap-text">{{ item?.brand ? item.brand.split(' -
 															')[1] : ' ' }}</span></td>

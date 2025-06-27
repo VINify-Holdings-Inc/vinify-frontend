@@ -280,59 +280,56 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     y += 5;
 
-    const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)'];
-    const brandRows = brandData.length > 0
-      ? brandData.map((item: any) => [
-        item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
-        item?.state || " ",
-        item?.brand ? item.brand.split(' - ')[0] : " ",
-        " ", // Source column for NMVTIS logo
-        item?.weburl || " " // Hidden column for hyperlink usage
-      ])
-      : [["", "No records found", ""]];
+   const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)'];
+const brandRows = brandData.length > 0
+  ? brandData.map((item: any) => [
+      item?.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
+      item?.state || " ",
+      item?.brand ? item.brand.split(' - ')[0] : " ",
+      " ", // Placeholder for NMVTIS logo (not shown)
+      item?.weburl || " " // Hidden column for hyperlink usage
+    ])
+  : [["", "No records found", " ", " ", ""]];
 
-    (doc as any).autoTable({
-      startY: y,
-      theme: 'grid',
-      head: [brandColumns],
-      body: brandRows,
-      headStyles: { fillColor: [69, 103, 145], fontSize: 8, textColor: [255, 255, 255] },
-      bodyStyles: { fontSize: 7 },
-      margin: { top: 41, bottom: 25 },
-      columnStyles: {
-        0: { cellWidth: 57.5 },
-        1: { cellWidth: 62.5, halign: 'left', valign: 'top' },
-        2: { cellWidth: 61.5 },
-        // 4: { cellWidth: 35, halign: 'center', valign: 'middle' },
-        4: { cellWidth: 0 } // Hidden weburl column
-      },
+(doc as any).autoTable({
+  startY: y,
+  theme: 'grid',
+  head: [brandColumns],
+  body: brandRows,
+  headStyles: { fillColor: [69, 103, 145], fontSize: 8, textColor: [255, 255, 255] },
+  bodyStyles: { fontSize: 7 },
+  margin: { top: 41, bottom: 25 },
+  columnStyles: {
+    0: { cellWidth: 57.5 },
+    1: { cellWidth: 62.5, halign: 'left', valign: 'top' },
+    2: { cellWidth: 61.5 },
+    4: { cellWidth: 0 } // Hidden weburl column
+  },
 
-      didParseCell: (data: any) => {
-        // Apply blue text color for Brand Issue State (index 1) if URL exists
-        if (data.section === 'body' && data.column.index === 1 && data.row.raw[5]?.trim()) {
-          data.cell.styles.textColor = urlTextColor // Blue
-        }
-      },
+  didParseCell: (data: any) => {
+    // Blue color for Brand Issue State text if URL exists
+    if (data.section === 'body' && data.column.index === 1 && data.row.raw[4]?.trim()) {
+      data.cell.styles.textColor = [0, 0, 255]; // Blue
+    }
+  },
 
-      didDrawCell: (data: any) => {
-        const { column, row, cell, section } = data;
-        const rowData = row.raw;
-        // Hyperlink on Brand Issue State column
-        if (section === 'body' && column.index === 1 && row.index !== -1) {
-          const url = rowData[5];
-          if (url?.trim()) {
-            doc.setFontSize(7);
-            doc.link(cell.x, cell.y, cell.width, cell.height, { url });
-          }
-        }
-      },
+  didDrawCell: (data: any) => {
+    const { column, row, cell, section } = data;
+    if (section === 'body' && column.index === 1) {
+      const url = row.raw[4];
+      if (url?.trim()) {
+        doc.setFontSize(7);
+        doc.link(cell.x, cell.y, cell.width, cell.height, { url });
+      }
+    }
+  },
 
-      didDrawPage: (data: any) => {
-        addHeader();
-        const currentPage = data.pageNumber;
-        addFooter(currentPage);
-      },
-    });
+  didDrawPage: (data: any) => {
+    addHeader();
+    const currentPage = data.pageNumber;
+    addFooter(currentPage);
+  },
+});
 
 
 
@@ -494,53 +491,62 @@ export class NavPdfService {
 
     const brandColumns2 = ['Brand Name(s)', 'Description'];
 
-    if (brandData.length === 0) {
-      doc.setFontSize(9);
-      doc.setTextColor(69, 67, 67);
-      doc.setFont('helvetica', 'normal');
-      doc.text(`No Brand Available for this VIN (${vin})`, 15, y); // centered text
-      y += 10;
-    } else {
-      const brandRows1: any = brandData.map((item: any) => [
-        item?.brand ? item.brand.split(' - ')[0] : " ",
-        item?.brand ? item.brand.split(' - ')[1] : " ",
-      ]);
+   if (brandData.length === 0) {
+  doc.setFontSize(9);
+  doc.setTextColor(69, 67, 67);
+  doc.setFont('helvetica', 'normal');
+  doc.text(`No Brand Available for this VIN (${vin})`, 15, y);
+  y += 10;
+} else {
+  const uniqueBrands: Set<string> = new Set();
+  const filteredBrandData = brandData.filter((item: any) => {
+    const brandName = item?.brand ? item.brand.split(' - ')[0] : '';
+    if (!brandName || uniqueBrands.has(brandName)) return false;
+    uniqueBrands.add(brandName);
+    return true;
+  });
 
-      (doc as any).autoTable({
-        startY: y,
-        theme: 'plain',
-        head: [brandColumns2],
-        body: brandRows1,
-        headStyles: {
-          fillColor: [255, 255, 255],
-          fontSize: 9,
-          textColor: [69, 67, 67],
-          fontStyle: 'bold',
-          lineWidth: 0,
-        },
-        bodyStyles: {
-          fontSize: 8,
-          lineWidth: 0,
-          textColor: [69, 67, 67],
-        },
-        margin: { top: 41, bottom: 25 },
-        columnStyles: {
-          0: { cellWidth: 35 },
-          1: { cellWidth: 145, halign: 'left', valign: 'top' },
-        },
-        didParseCell: (data: any) => {
-          data.cell.styles.lineWidth = 0;
-          if (data.section === 'body' && data.column.index === 0) {
-            data.cell.styles.fontStyle = 'bold';
-          }
-        },
-        didDrawCell: () => { },
-        didDrawPage: (data: any) => {
-          addHeader();
-          addFooter(data.pageNumber);
-        }
-      });
+  const brandRows1: any = filteredBrandData.map((item: any) => [
+    item?.brand ? item.brand.split(' - ')[0] : " ",
+    item?.brand ? item.brand.split(' - ')[1] : " ",
+  ]);
+
+  (doc as any).autoTable({
+    startY: y,
+    theme: 'plain',
+    head: [brandColumns2],
+    body: brandRows1,
+    headStyles: {
+      fillColor: [255, 255, 255],
+      fontSize: 9,
+      textColor: [69, 67, 67],
+      fontStyle: 'bold',
+      lineWidth: 0,
+    },
+    bodyStyles: {
+      fontSize: 8,
+      lineWidth: 0,
+      textColor: [69, 67, 67],
+    },
+    margin: { top: 41, bottom: 25 },
+    columnStyles: {
+      0: { cellWidth: 35 },
+      1: { cellWidth: 145, halign: 'left', valign: 'top' },
+    },
+    didParseCell: (data: any) => {
+      data.cell.styles.lineWidth = 0;
+      if (data.section === 'body' && data.column.index === 0) {
+        data.cell.styles.fontStyle = 'bold';
+      }
+    },
+    didDrawCell: () => { },
+    didDrawPage: (data: any) => {
+      addHeader();
+      addFooter(data.pageNumber);
     }
+  });
+}
+
 
 
     if (brandData.length == 0) {
