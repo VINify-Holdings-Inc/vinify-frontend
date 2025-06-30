@@ -4012,6 +4012,7 @@ span.month-calendar.vehicleMonthSearch.calendar-svg:hover {
 	padding: 1px 5px;
 	border-radius: 5px;
 	margin-left: 10px;
+  font-size: 0.75rem;
 }
 .caution-ftr {
     position: absolute;
