@@ -53,7 +53,10 @@ export class AlertTableMainComponent {
           this.router.navigate(['/']);
         }
         if (!res.error) {
+        
+          
           this.tableData = res?.data?.items || [];
+            console.log( this.tableData ," res?.data?.items");
           this.totalPages = res?.data?.totalPages || 0;
           this.totalItems = res?.data?.totalRecords || 0;
         }

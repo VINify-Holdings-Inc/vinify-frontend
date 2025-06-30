@@ -42,7 +42,7 @@
                         <p class="tdHead">Odometer</p>
                         <p class="tdBody">
 
-                          <span [ngClass]="{ 'newChangeBlue': item.isOdometer }">
+                          <span [ngClass]="{ 'newChangeBlue': item.isOdometer && !item?.isDel }">
                             {{ item?.odometer }}
                           </span>
                         </p>
@@ -52,8 +52,8 @@
                       <div class="statusBody pbt-0">
                         <p class="tdHead">State</p>
                         <p class="tdBody">
-                         
-                          <span [ngClass]="{ 'newChangeBlue': item.isState }">
+
+                          <span [ngClass]="{ 'newChangeBlue': item.isState && !item?.isDel}">
                             {{item?.state ? item?.state : ' '}}
                           </span>
                         </p>
@@ -110,9 +110,9 @@
                       <p class="tdHead">Brand Name(s)</p>
                       <p class="tdBody">
                         <!-- {{item?.brand ? item?.brand?.split(' - ')[0] : " "}} -->
-                         <span [ngClass]="{ 'newChangeBlue': item.isBrand }">
-                         {{item?.brand ? item?.brand?.split(' - ')[0] : " "}}
-                          </span>
+                        <span [ngClass]="{ 'newChangeBlue': item.isBrand && !item?.isDel }">
+                          {{item?.brand ? item?.brand?.split(' - ')[0] : " "}}
+                        </span>
                       </p>
                     </div>
                   </div>
@@ -120,9 +120,9 @@
                     <div class="statusBody pbt-0">
                       <p class="tdHead">State</p>
                       <p class="tdBody">
-                       <span [ngClass]="{ 'newChangeBlue': item.isState }">
-                            {{item?.state ? item?.state : ' '}}
-                          </span>
+                        <span [ngClass]="{ 'newChangeBlue': item.isState && !item?.isDel }">
+                          {{ item?.state ? item.state : ' ' }}
+                        </span>
                       </p>
                     </div>
                   </div>
@@ -178,9 +178,9 @@
                       <p class="tdHead">Description</p>
                       <p class="tdBody">
                         <!-- {{item?.description ? item?.description : " "}} -->
-                          <span [ngClass]="{ 'newChangeBlue': item.isDescription }">
-                           {{item?.description ? item?.description : " "}}
-                          </span>
+                        <span [ngClass]="{ 'newChangeBlue': item.isDescription && !item?.isDel }">
+                          {{item?.description ? item?.description : " "}}
+                        </span>
                       </p>
                     </div>
                   </div>
@@ -189,9 +189,9 @@
                       <p class="tdHead">State</p>
                       <p class="tdBody">
                         <!-- {{item?.state ? item?.state : " "}} -->
-                           <span [ngClass]="{ 'newChangeBlue': item.isState }">
-                            {{item?.state ? item?.state : ' '}}
-                          </span>
+                        <span [ngClass]="{ 'newChangeBlue': item.isState && !item?.isDel }">
+                          {{item?.state ? item?.state : ' '}}
+                        </span>
                       </p>
                     </div>
                   </div>
