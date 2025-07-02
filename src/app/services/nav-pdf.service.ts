@@ -162,7 +162,7 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
 
     sectionPositions['title'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
-    doc.text(`Title Records (${titleCount})`, 14, y);
+    doc.text(`Vehicle Title Records (${titleCount})`, 14, y);
     doc.setFontSize(6);
     doc.setFont('helvetica', 'bold');
     doc.text('Source', 180, y);
@@ -268,7 +268,7 @@ export class NavPdfService {
     doc.setFontSize(14);
     doc.setTextColor(69, 67, 67);
     sectionPositions['brand'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
-    doc.text(`Brand Records (${brandCount})`, 14, y);
+    doc.text(`Vehicle Brand Records (${brandCount})`, 14, y);
     y+=1;
      doc.setFontSize(6);
     doc.setFont('helvetica', 'bold');
@@ -376,7 +376,7 @@ const brandRows = brandData.length > 0
     doc.setFontSize(14);
     doc.setTextColor(69, 67, 67);
     sectionPositions['junksalvage'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
-    doc.text(`Junk and Salvage Records (${JSICount})`, 14, y);
+    doc.text(`Vehicle Junk and Salvage Records (${JSICount})`, 14, y);
     addHeader();
     const currentPage = data.pageNumber;
     addFooter(currentPage);
