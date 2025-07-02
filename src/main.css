@@ -137,6 +137,9 @@ ol {
     border: 1px solid #f1cad0;
     background: #f6e1e4;
 }
+.card-area p.authorityPara{
+  visibility: hidden !important;
+}
 .historyTab p {
   color: #47475d;
   font-weight: 600;
