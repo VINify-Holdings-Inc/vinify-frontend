@@ -133,10 +133,9 @@ ol {
 .bg-orange {
   background-color: #ffefe7 !important;
 }
-
 .card.bg-pink {
-    border: 1px solid #769ecf;
-    background: #4567917a;
+    border: 1px solid #f1cad0;
+    background: #f6e1e4;
 }
 .historyTab p {
   color: #47475d;
