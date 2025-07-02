@@ -171,7 +171,7 @@ export class NavPdfService {
 
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    const TitleDesc = `This section identifies this vehicle's current and historic DMV titles reported as issued by date, indicating the state and reported mileage. Title brands that have been reported to VINify are shown in the “Title Brands Reported” section below. Each title record represents a new title holder, duplicate title, lien release or other title event. This information reflects the title information on file with NMVTIS. For more information, please contact the state of title. We recommend an inspection by a qualified mechanic.`;
+    const TitleDesc = `This section shows the current and past title records for this vehicle, including when each title was issued, the state that issued it, and the mileage recorded at the time. These records come from the National Motor Vehicle Title Information System (NMVTIS), which is a trusted federal database used to track vehicle history and detect potential fraud. For any questions or to confirm details, you can contact the motor vehicle agency in the state where the title was issued.`;
     doc.text(doc.splitTextToSize(TitleDesc, 180), 15, y + 6);
     y += 21;
 
@@ -269,16 +269,22 @@ export class NavPdfService {
     doc.setTextColor(69, 67, 67);
     sectionPositions['brand'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
     doc.text(`Brand Records (${brandCount})`, 14, y);
-    addHeader();
-    addFooter();
-    doc.setFontSize(6);
+    y+=1;
+     doc.setFontSize(6);
     doc.setFont('helvetica', 'bold');
     doc.text('Source', 180, y);
     doc.setFont('helvetica', 'normal');
     doc.text('NMVTIS', 188, y);
 
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const BrandTextDesc = `This section lists any title brands reported for this vehicle, including when they were added, the state that issued them, and the type of brand. Title brands are labels that states use to indicate issues like salvage, flood damage, or that the vehicle was rebuilt. If a brand is shown here, you can look in the “Brand Description” section later in this report to learn what it means. All of this information comes from the National Motor Vehicle Title Information System (NMVTIS). For questions or confirmation, you can contact the motor vehicle agency in the state that issued the brand.`;
+    doc.text(doc.splitTextToSize(BrandTextDesc, 180), 15, y + 6);
+    y += 21;
+    addHeader();
+    addFooter(); 
     doc.setTextColor(69, 67, 67);
-    y += 5;
+    y += 15;
 
    const brandColumns = ['Brand Issue Date', 'Brand Issue State', 'Brand Name(s)'];
 const brandRows = brandData.length > 0
@@ -370,7 +376,7 @@ const brandRows = brandData.length > 0
     doc.setFontSize(14);
     doc.setTextColor(69, 67, 67);
     sectionPositions['junksalvage'] = { page: (doc as any).internal.getNumberOfPages(), y: y - 5 };
-    doc.text(`Junk/Salvage Records (${JSICount})`, 14, y);
+    doc.text(`Junk and Salvage Records (${JSICount})`, 14, y);
     addHeader();
     const currentPage = data.pageNumber;
     addFooter(currentPage);
@@ -380,8 +386,8 @@ const brandRows = brandData.length > 0
     doc.setFont('helvetica', 'normal');
     doc.text('NMVTIS', 188, y);
 
-    const JSIDesc1 = `This section discloses events related to events like junk, salvage and insurance total loss that have been reported to VINify. Included are state DMV titles that show junk, salvage or similar brands, insurance total loss events and salvage auctions or junk yard disclosures. Events related to an auto dismantler, auto recycler or crush facility indicate that the vehicle has sustained major damage. A vehicle that has been received by a salvage auction or junk yard usually indicates major prior damage, however these entities also remarket undamaged VINs. We recommend an inspection by a qualified mechanic.`;
-    const JSIDesc2 = `If this VIN has a record in the Junk/Salvage or Insurance information then the business that submitted the VIN to NMVTIS deemed the vehicle to be either a junk, salvage, or in the case of an insurer, a total loss. The information in the DISPOSITION field in the Junk/Salvage section denotes what has happened to the VIN (i.e., vehicle) since it came into the possession of the business.`;
+    const JSIDesc1 = `This section includes any reports showing that the vehicle was identified as junk, salvage, or a total loss by a participating business or state agency. These records may come from state DMVs, insurance companies, salvage auctions, or dismantlers. If this VIN appears in this section, the business reporting it to NMVTIS indicated one of these statuses at the time of reporting. The “Disposition” field provides additional detail on what was recorded about the vehicle’s status or handling.`;
+    const JSIDesc2 = `This information reflects the title information on file with NMVTIS. For more information, please contact the motor vehicle agency in the state that issued the title.`;
 
     if (y + 50 > doc.internal.pageSize.height - 20) {
       doc.addPage();
@@ -479,19 +485,35 @@ const brandRows = brandData.length > 0
     });
 
 
+y = (doc as any).lastAutoTable.finalY + 10;
+y += 10;
 
+// 👉 Check if there is at least 170px of space left on the current page
+const pageHeightDesc = doc.internal.pageSize.height;
+const requiredSpace = 170;
 
-    y = (doc as any).lastAutoTable.finalY + 10;
-    y += 10;
-    doc.setFontSize(14)
-    doc.text('Brand Description', 15, y);
-    doc.setFontSize(8)
-    y += 7;
-    doc.setFont('helvetica', 'normal');
+// Flag to check whether we added a new page
+let isNewPage = false;
 
-    const brandColumns2 = ['Brand Name(s)', 'Description'];
+if ((pageHeightDesc - y) < requiredSpace) {
+  doc.addPage(); 
+  y = 50;
+  isNewPage = true;
+}
 
-   if (brandData.length === 0) {
+if (isNewPage) {
+  addHeader(); // ✅ Only call header if a new page was added
+}
+
+doc.setFontSize(14);
+doc.text('Brand Description', 15, y);
+doc.setFontSize(8);
+y += 7;
+doc.setFont('helvetica', 'normal');
+
+const brandColumns2 = ['Brand Name(s)', 'Description'];
+
+if (brandData.length === 0) {
   doc.setFontSize(9);
   doc.setTextColor(69, 67, 67);
   doc.setFont('helvetica', 'normal');
@@ -546,6 +568,7 @@ const brandRows = brandData.length > 0
     }
   });
 }
+
 
 
 

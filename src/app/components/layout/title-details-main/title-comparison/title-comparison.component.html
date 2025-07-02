@@ -51,9 +51,9 @@
                     <div class="col-md-3 col-sm-3">
                       <div class="statusBody pbt-0">
                         <p class="tdHead">State</p>
-                        <p class="tdBody">
+                        <p class="tdBody" [title]="item.fullstate">
 
-                          <span [ngClass]="{ 'newChangeBlue': item.isState && !item?.isDel}">
+                          <span [ngClass]="{ 'newChangeBlue': item.isState && !item?.isDel}" >
                             {{item?.state ? item?.state : ' '}}
                           </span>
                         </p>
@@ -119,7 +119,7 @@
                   <div class="col-md-3 col-sm-3">
                     <div class="statusBody pbt-0">
                       <p class="tdHead">State</p>
-                      <p class="tdBody">
+                      <p class="tdBody" [title]="item.fullstate">
                         <span [ngClass]="{ 'newChangeBlue': item.isState && !item?.isDel }">
                           {{ item?.state ? item.state : ' ' }}
                         </span>
@@ -187,7 +187,7 @@
                   <div class="col-md-3 col-sm-3">
                     <div class="statusBody pbt-0">
                       <p class="tdHead">State</p>
-                      <p class="tdBody">
+                      <p class="tdBody" [title]="item.fullstate">
                         <!-- {{item?.state ? item?.state : " "}} -->
                         <span [ngClass]="{ 'newChangeBlue': item.isState && !item?.isDel }">
                           {{item?.state ? item?.state : ' '}}
@@ -278,7 +278,7 @@
                     <div class="col-md-4 col-sm-4">
                       <div class="statusBody pbt-0">
                         <p class="tdHead">State</p>
-                        <p class="tdBody">
+                        <p class="tdBody" [title]="item.fullstate">
                           <span [ngClass]="item?.isState ? ' redDot tableDot' : ''"></span>
                           {{ item?.state || ' ' }}
                         </p>
@@ -337,7 +337,7 @@
                     <div class="col-md-4 col-sm-4">
                       <div class="statusBody pbt-0">
                         <p class="tdHead">State</p>
-                        <p class="tdBody">
+                        <p class="tdBody" [title]="item.fullstate">
                           <span [ngClass]="item?.isState ? ' redDot tableDot' : ''"></span>
                           {{ item?.state || ' ' }}
                         </p>
@@ -400,7 +400,7 @@
                     <div class="col-md-4 col-sm-4">
                       <div class="statusBody pbt-0">
                         <p class="tdHead">State</p>
-                        <p class="tdBody">
+                        <p class="tdBody" [title]="item.fullstate">
                           <span [ngClass]="item?.isState ? ' redDot tableDot' : ''"></span>
                           {{ item?.state || ' ' }}
                         </p>
