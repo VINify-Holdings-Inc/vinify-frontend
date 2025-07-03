@@ -9,6 +9,14 @@
   .leftLoginSection .innerLeftSection {
     padding: 60px 0 0;
   }
+
+}
+@media only screen and (max-width:1899px){
+  .caution-ftr {
+	position: absolute;
+	max-width: 100%;
+	width: 65%;
+}
 }
 @media only screen and (max-width: 1600px) {
   .card-area p.authorityPara {
@@ -31,6 +39,11 @@
     position: relative;
     top: 65px;
   }
+  .tabVehicleSection.cardHeaderJustify .nav-tabs .nav-link {
+	padding: 4px;
+	font-size: 1rem;
+}
+
 }
 @media only screen and (max-width: 1400px) {
   .cardInnerVehicle {
@@ -101,11 +114,13 @@
     font-size: 16px;
   }
   .tabVehicleSection.cardHeaderJustify ul li.nav-item .nav-link {
-    font-size: 11px;
-  }
+	font-size: 0.813rem;
+	padding: 4px;
+}
   .summaryCard .font-12{
     font-size: 13px;
   }
+
 }
 @media only screen and (max-width: 1200px) {
 .backTopImg {
@@ -212,6 +227,11 @@
   .sumBox .card-title{
   font-size: 15px;
 }
+.caution-ftr {
+	bottom: 10px;
+  max-width: 100%;
+  width: 100%;
+}
 }
 @media only screen and (max-width: 992px) {
   .backTopImg {
@@ -266,6 +286,7 @@
     margin: auto;
     justify-content: center;
     padding: 50px 0;
+    width: 100%;    
   }
   #main-content.active {
     width: 100%;
@@ -446,6 +467,17 @@ aside.siderbar-pdf.hidden {
   left: 8px !important;
   bottom: 0;
   font-size: 0.75rem;
+}
+.leftLoginSection {
+	min-height: unset;
+	order: 2;
+	width: 100%;
+}
+.caution-ftr {
+	position: relative;
+}
+.leftLoginSection .footerLogin p {
+	text-align: center;
 }
 }
 @media only screen and (min-width: 992px) {
