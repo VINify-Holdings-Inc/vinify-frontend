@@ -12,10 +12,21 @@
 
 }
 @media only screen and (max-width:1899px){
-  .caution-ftr {
-	position: absolute;
+.caution-ftr {
 	max-width: 100%;
-	width: 65%;
+  bottom: 10px;
+	width: 100%;
+}
+.caution-ftr p {
+	color: #fff;
+	font-size: 0.813rem;
+}
+img.img-fluid.nmvtslogocaution {
+	width: 65px;
+}
+.leftLoginSection .footerLogin p {
+	font-size: 0.813rem;
+	padding: 0 0 10px;
 }
 }
 @media only screen and (max-width: 1600px) {
@@ -43,7 +54,12 @@
 	padding: 4px;
 	font-size: 1rem;
 }
-
+.caution-ftr {
+  bottom: 20px;	
+}
+.leftLoginSection .footerLogin p {
+	padding: 0 0 4px;
+}
 }
 @media only screen and (max-width: 1400px) {
   .cardInnerVehicle {
