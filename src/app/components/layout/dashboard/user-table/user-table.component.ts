@@ -182,7 +182,7 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
       (res: any) => {
         if (!res.error) {
           if (res?.data?.items.length > 0) {
-            console.log(dataType, " 66  666");
+            // console.log(dataType, " 66  666");
             const today = new Date();
             const formattedDate = `${String(today.getUTCDate()).padStart(2, '0')}${String(today.getUTCMonth() + 1).padStart(2, '0')}${today.getUTCFullYear()}`;
             const capitalizeFirstLetter = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1);
