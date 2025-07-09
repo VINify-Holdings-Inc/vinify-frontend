@@ -186,6 +186,8 @@ export class DashboardComponent implements AfterViewInit, OnInit {
 
   changeDashboardActiveCard = (paranemtName: any) => {
     this.dashboardCardActive = paranemtName;
+    this.alertType=null;
+    // alert(this.alertType)
   }
   handelAlertFil(data: any) {
     this.vin = "";

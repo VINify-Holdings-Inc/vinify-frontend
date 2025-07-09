@@ -10,7 +10,8 @@
                             <h6 id="total-vehicle-monitors">Total VINs Monitored</h6>
                         </div>
                         <div>
-                            <h1 class="card-title cardDashNum">{{totalItemsKpi}}</h1>
+                            <h1 class="card-title cardDashNum">{{ totalItemsKpi | number }}</h1>
+
                         </div>
                         <div class="cardBottomLine check-details" >
                             <span   aria-label="Check details about total vehicle monitors" class="checkLink">View Monitored VINs</span>
@@ -30,7 +31,7 @@
                             <h6 id="urgent-alerts">New VINs Update</h6>
                         </div>
                         <div>
-                            <h1 class="card-title cardDashNum">{{updatedTotalItems}}</h1>
+                            <h1 class="card-title cardDashNum">{{updatedTotalItems  | number}}</h1>
                         </div>
                         <div class="cardBottomLine check-details color-check" >
                             <span   aria-label="Check details about total vehicle monitors alerts" class=" ">See New VIN Updates</span>
