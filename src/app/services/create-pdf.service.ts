@@ -14,11 +14,12 @@ export class CreatePDFService {
   constructor(private dateFormate: DateFormatPipe) {}
 
   generatePDF(
-    companyName: string,
-    logoUrl: string,
-    tableData: any[],
-    fileName: string = 'Vehicle_History_Report.pdf'
-  ): void {
+  companyName: string,
+  logoUrl: string,
+  tableData: any[],
+  fileName: string = 'Vehicle_History_Report.pdf'
+): Promise<void> {
+  return new Promise((resolve, reject) => {
     const doc = new jsPDF({ orientation: 'landscape' });
 
     const img = new Image();
@@ -33,18 +34,15 @@ export class CreatePDFService {
 
     const addFooter = () => {
       const pageHeight = doc.internal.pageSize.height;
-
       const imgWidth = 10;
       const imgHeight = 5;
       const textFontSize = 9;
-
       const bottomMargin = 2;
       const imgX = 15;
       const imgY = pageHeight - bottomMargin - imgHeight;
       const textX = imgX + imgWidth + 5;
       const textY = imgY + imgHeight - 1;
       const hrY = imgY - 4;
-
       const originalColor = doc.getTextColor();
 
       doc.setDrawColor(67, 66, 66);
@@ -149,7 +147,7 @@ export class CreatePDFService {
             if (labelText) {
               doc.setFontSize(6);
               const boxColor: [number, number, number] = [207, 76, 96];
-              const textColor : [number, number, number]= [255, 255, 255];
+              const textColor: [number, number, number] = [255, 255, 255];
               const textWidth = doc.getTextWidth(labelText);
               const fontHeight = 6 * 0.35;
               const paddingY = 1;
@@ -160,7 +158,6 @@ export class CreatePDFService {
 
               doc.setFillColor(...boxColor);
               doc.roundedRect(x - 2, y - fontHeight - paddingY + 0.3, textWidth + 4, rectHeight, borderRadius, borderRadius, 'F');
-
               doc.setTextColor(...textColor);
               doc.text(labelText, x, y);
             }
@@ -179,7 +176,6 @@ export class CreatePDFService {
         },
       });
 
-      doc.setFontSize(14);
       let y = (doc as any).lastAutoTable.finalY + 10;
 
       const pageHeight = doc.internal.pageSize.height;
@@ -195,45 +191,35 @@ export class CreatePDFService {
 
       doc.setFontSize(14);
       doc.text('NMVTIS Consumer Access Product Disclaimer', 15, y + 10);
-      doc.setTextColor(100);
+      doc.setTextColor(69, 67, 67);
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(9);
-      doc.setTextColor(69, 67, 67);
 
       const pageWidth1 = doc.internal.pageSize.width;
-      const pageHeight1 = doc.internal.pageSize.height;
-
       const leftMargin = 15;
       const rightMargin = 12;
       const footerHeight1 = 15;
       const lineHeight = 5;
-      const headerOffset = 40;
-
       const contentWidth = (pageWidth1 + 200) - (leftMargin + rightMargin);
-      const disclaimerLines = doc.splitTextToSize(disclaimer, contentWidth);
 
+      const disclaimerLines = doc.splitTextToSize(disclaimer, contentWidth);
       let yPosition = y + 20;
 
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(10);
       for (let i = 0; i < disclaimerLines.length; i++) {
-        const remainingSpace = pageHeight1 - yPosition - footerHeight1;
+        const remainingSpace = pageHeight - yPosition - footerHeight1;
         if (remainingSpace < lineHeight) {
           doc.addPage();
           addHeader();
           addFooter();
-          yPosition = headerOffset;
-          doc.setFont('helvetica', 'normal');
-          doc.setFontSize(10);
-          doc.setTextColor(69, 67, 67);
+          yPosition = 40;
         }
         doc.text(disclaimerLines[i], leftMargin, yPosition, { align: 'left' });
         yPosition += lineHeight;
-        y = yPosition;
       }
 
       addFooter();
       doc.save(fileName);
+      resolve(); // <-- Notify async completion
     };
 
     img.onload = () => {
@@ -244,7 +230,11 @@ export class CreatePDFService {
       imagesLoaded++;
       if (imagesLoaded === 2) generatePDFContent();
     };
-    img.onerror = () => console.error('Failed to load the logo image.');
-    checkImg.onerror = () => console.error('Failed to load the checkmark image.');
-  }
+    img.onerror = () => reject('Failed to load logo image.');
+    checkImg.onerror = () => reject('Failed to load check image.');
+  });
 }
+
+
+}
+

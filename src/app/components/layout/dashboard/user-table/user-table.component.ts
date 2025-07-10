@@ -12,7 +12,6 @@ import {
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-//import { DateFormatPipe } from '../../../../pipes/date-format.pipe';
 import { CreatePDFService } from '../../../../services/create-pdf.service';
 import { PDF_SETTINGS } from '../../../../constants';
 import { userData } from '../../../../services/api-service.service';
@@ -21,63 +20,91 @@ import Swal from 'sweetalert2';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CsvExportService } from '../../../../services/csv-export.service';
-import { SingleVinComponent } from '../single-vin/single-vin.component';
-
 
 @Component({
   selector: 'app-user-table',
-  //imports: [FormsModule,CommonModule,DateFormatPipe,LoaderComponent,MatTableModule, MatPaginatorModule, MatSortModule],
-  imports: [FormsModule, CommonModule, LoaderComponent, MatTableModule, MatPaginatorModule, MatSortModule],
+  standalone: true,
+  imports: [
+    FormsModule,
+    CommonModule,
+    LoaderComponent,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCheckboxModule,
+  ],
   templateUrl: './user-table.component.html',
-  styleUrl: './user-table.component.css'
+  styleUrls: ['./user-table.component.css'],
 })
 export class UserTableComponent implements AfterViewInit, OnChanges {
-  filerIcon: string = 'assets/images/icons/filter-lines.svg';
-  calendarIcon: string = 'assets/images/icons/calendar.svg';
-  pdfIcon: string = 'assets/images/icons/pdf.svg';
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private router: Router, private pdfService: CreatePDFService,
-    private userData: userData, private cdr: ChangeDetectorRef,
-    private csvExportService: CsvExportService) {
-
-  }
-  searchValue: string = "";
-  vins: [] = [];
-  selectAll = false;
-  isLoading: boolean = false;
-  selectedVins: { vin: string; alertDate: string }[] = [];
-  checkAll: any = null;
-  //displayedColumns: string[] = ['vin', 'titleBrandDate','title','brand','jsi','details'];
-  displayedColumns: string[] = ['vin', 'title', 'brand', 'jsi', 'details'];
+  constructor(
+    private router: Router,
+    private pdfService: CreatePDFService,
+    private userData: userData,
+    private cdr: ChangeDetectorRef,
+    private csvExportService: CsvExportService
+  ) {}
 
   @Input() tableData: any[] = [];
-  @Input() page: number = 0;
-  @Input() totalPages: number = 0;
-  @Input() tableName: string = "";
-  @Input() serchKpiType: any = ''
-  @Input() totalItems: number = 0;
-  @Input() resetData: boolean = false;
-  @Input() limit: number = 0;
+  @Input() page = 0;
+  @Input() totalPages = 0;
+  @Input() tableName = '';
+  @Input() serchKpiType: any = '';
+  @Input() totalItems = 0;
+  @Input() resetData = false;
+  @Input() limit = 0;
   @Output() handelPaginagtion = new EventEmitter<any>();
   @Output() handelSearch = new EventEmitter<any>();
   @Output() handelAlertFil = new EventEmitter<any>();
   @Output() handelAlertTypeFilter = new EventEmitter<any>();
-  alert: any = null;
 
-  isClick: boolean = false; // ✅ ADD THIS LINE
 
-  openSingleVinModal() {
-    this.isClick = true; // ✅ SET TRUE WHEN CLICKED
+   filerIcon = 'assets/images/icons/filter-lines.svg';
+  calendarIcon = 'assets/images/icons/calendar.svg';
+  pdfIcon = 'assets/images/icons/pdf.svg';
+
+  searchValue = '';
+  selectedVins: { vin: string; alertDate: string }[] = [];
+  displayedColumns: string[] = ['vin', 'title', 'brand', 'jsi', 'details'];
+  currentPage = 1;
+  visiblePages: number[] = [];
+  maxVisiblePages = 4;
+  isLoading = false;
+
+  isAllSelected(): any {
+    return this.tableData.length && this.tableData.every(row => row.isSelected);
   }
 
-  handleModalClose() {
-    this.isClick = false; // ✅ RESET WHEN MODAL CLOSES
+  isIndeterminate(): boolean {
+    const selected = this.tableData.filter(row => row.isSelected).length;
+    return selected > 0 && selected < this.tableData.length;
   }
+
+  onRowSelectionChange(item: any): void {
+    if (item.isSelected) {
+      const alreadyExists = this.selectedVins.some(v => v.vin === item.vin);
+      if (!alreadyExists) this.selectedVins.push(item);
+    } else {
+      this.selectedVins = this.selectedVins.filter(v => v.vin !== item.vin);
+    }
+  }
+
+  toggleSelectAll(event: any): void {
+    const isChecked = event.checked;
+    this.tableData.forEach(row => (row.isSelected = isChecked));
+    this.selectedVins = isChecked ? [...this.tableData] : [];
+  }
+
+  clearAll(): void {
+    this.selectedVins = [];
+    this.tableData.forEach(row => (row.isSelected = false));
+  }
+
   ngOnChanges(changes: SimpleChanges) {
-    
     if (changes['resetData']) {
       this.searchValue = '';
       this.onType('');
@@ -87,56 +114,59 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
       this.currentPage = this.page;
       this.updateVisiblePages();
     }
-    // Trigger change detection manually to avoid ExpressionChangedAfterItHasBeenCheckedError
     this.cdr.detectChanges();
   }
 
   ngAfterViewInit() {
     this.currentPage = this.page;
     this.updateVisiblePages();
-    this.cdr.detectChanges(); // Manually detect changes post view initialization
+    this.cdr.detectChanges();
+
+    const modal = document.getElementById('exampleModalvivek');
+    if (modal) {
+      modal.addEventListener('shown.bs.modal', () => {
+        this.modalIsOpen = true;
+        this.getTableDataForModal();
+      });
+
+      modal.addEventListener('hidden.bs.modal', () => {
+        this.clearAllModalData();
+        this.modalIsOpen = false;
+      });
+    }
   }
 
-  currentPage: number = 1; // Current active page
-  visiblePages: number[] = []; // Pages to display in the pagination UI
-  maxVisiblePages: number = 4; // Max number of pages to display at once
-
-  onClick(pages: any) {
-    this.handelPaginagtion.emit({ "page": pages, "search": this.searchValue });
+  onClick(pages: number) {
+    this.handelPaginagtion.emit({ page: pages, search: this.searchValue });
     this.getValifExist();
     this.selectedVins = [];
   }
 
   redirectToOtherPage(vin: string, model: string) {
-    const data = { vin: vin, model: model }; // Data to send
+    const data = { vin, model };
     this.router.navigateByUrl('/user-summary-list', { state: data });
   }
 
-
   getSearchVal() {
-    if (this.searchValue == "") {
-      this.searchValue = "";
+    if (this.searchValue.trim().length > 0) {
+      this.handelSearch.emit(this.searchValue.trim());
+      this.handelPaginagtion.emit({ page: 1, search: this.searchValue });
     } else {
-      if (this.searchValue.trim().length === 0) {
-        this.searchValue = "";
-      } else {
-        this.handelSearch.emit(this.searchValue.trim());
-        this.handelPaginagtion.emit({ "page": 1, "search": this.searchValue });
-      }
+      this.searchValue = '';
     }
   }
 
-
-
   onType(value: string) {
-    if (value == "") {
+    if (value === '') {
       this.handelSearch.emit(value.trim());
     }
   }
-  getVinDetails(vin: any, model: any) {
+
+  getVinDetails(vin: string, model: string) {
     sessionStorage.setItem('navigationKeyDashboard', this.serchKpiType);
     const timestamp = new Date().getTime();
-    this.router.navigate(['/title-details'], { queryParams: { vin: vin.trim(), model: model, refresh: timestamp } }).then(() => {
+    this.router.navigate(['/title-details'], {
+      queryParams: { vin: vin.trim(), model, refresh: timestamp },
     });
   }
 
@@ -144,180 +174,250 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
     this.getTableData(type);
   }
 
-  exportToPDFSIngle(type: any) {
-    Swal.fire({
-      title: 'Info!',
-      showClass: {
-        popup: 'animated fadeInDown faster',
-        icon: 'animated heartBeat delay-1s'
-      },
-      text: 'Work in Progress',
-      icon: 'info',
-      confirmButtonText: 'OK',
-    });
+ async getTableData(dataType: any) {
+  this.isLoading = true;
+  let url = `type=${dataType}`;
+
+  if (dataType === 'single' && this.selectedVins.length === 0) {
+    this.isLoading = false;
+    Swal.fire('Info!', 'Please select VINs', 'info');
+    return;
   }
 
-  exportToPDFUdate(type: any) {
-    Swal.fire({
-      title: 'Info!',
-      text: 'No Updated VINs',
-      showClass: {
-        popup: 'animated fadeInDown faster',
-        icon: 'animated heartBeat delay-1s'
-      },
-      icon: 'info',
-      confirmButtonText: 'OK',
-    });
-  }
-
-  getTableData(dataType: any) {
-    this.isLoading = true;
-    let url = `type=${dataType}`;
-    if (dataType == "single") {
-      if (this.selectedVins.length == 0) {
-        this.isLoading = false;
-        Swal.fire({
-          title: 'Info!',
-          showClass: {
-            popup: 'animated fadeInDown faster',
-            icon: 'animated heartBeat delay-1s'
-          },
-          text: 'Please select VINs',
-          icon: 'info',
-          confirmButtonText: 'OK',
-        });
+  this.userData.getPdfData(url, this.selectedVins).subscribe(
+    async (res: any) => {
+      if (!res.error) {
+        const FinalfileName = `${dataType}-Vins-VINify-Report-${this.getFormattedDate()}`;
+        await this.pdfService.generatePDF(
+          PDF_SETTINGS.COMPANY_NAME,
+          PDF_SETTINGS.LOGO_URL,
+          res?.data?.items || [],
+          FinalfileName
+        );
       }
+      this.isLoading = false;
+    },
+    () => (this.isLoading = false)
+  );
+}
 
-    }
-
-    this.userData.getPdfData(url, this.selectedVins).subscribe(
-      (res: any) => {
-        if (!res.error) {
-          if (res?.data?.items.length > 0) {
-            // console.log(dataType, " 66  666");
-            const today = new Date();
-            const formattedDate = `${String(today.getUTCDate()).padStart(2, '0')}${String(today.getUTCMonth() + 1).padStart(2, '0')}${today.getUTCFullYear()}`;
-            const capitalizeFirstLetter = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1);
-
-            const typeLabel = dataType === 'all' || dataType === 'update' ? capitalizeFirstLetter(dataType) : 'Updated';
-            const FinalfileName = `${typeLabel}-Vins-VINify-Report-${formattedDate}`;
-            this.pdfService.generatePDF(
-              PDF_SETTINGS.COMPANY_NAME,
-              PDF_SETTINGS.LOGO_URL,
-              res?.data?.items || [],
-              `${FinalfileName}`
-            );
-          } else {
-            Swal.fire({
-              title: 'Error!',
-              showClass: {
-                popup: 'animated fadeInDown faster',
-                icon: 'animated heartBeat delay-1s'
-              },
-              text: "No data found",
-              icon: 'error',
-              confirmButtonText: 'OK',
-            });
-          }
-
-        }
-        this.isLoading = false;
-      },
-      (err) => {
-        this.isLoading = false;
-      }
-    );
-  }
 
   goToPage(page: number) {
-    if (page < 1 || page > this.totalPages) return; // Ensure page is within range
+    if (page < 1 || page > this.totalPages) return;
     this.currentPage = page;
-    this.handelPaginagtion.emit({ "page": page, "search": this.searchValue });
+    this.handelPaginagtion.emit({ page, search: this.searchValue });
     this.updateVisiblePages();
   }
 
   nextPage() {
     if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.goToPage(this.currentPage);
+      this.goToPage(++this.currentPage);
     }
   }
 
   previousPage() {
     if (this.currentPage > 1) {
-      this.currentPage--;
-      this.goToPage(this.currentPage);
+      this.goToPage(--this.currentPage);
     }
   }
 
   updateVisiblePages() {
-    const visible: number[] = [];
-
     const start = Math.max(1, this.currentPage - Math.floor(this.maxVisiblePages / 2));
     const end = Math.min(this.totalPages, start + this.maxVisiblePages - 1);
-    //const end = 4;
-
-    for (let i = start; i <= end; i++) {
-      visible.push(i);
-    }
-
-    if (start > 1) visible.unshift(1); // Ensure first page is visible
-    if (start > 2) visible.splice(1, 0, -1); // Add "..." after the first page
-
-    if (end < this.totalPages) visible.push(this.totalPages); // Ensure last page is visible
-    if (end < this.totalPages - 1) visible.splice(visible.length - 1, 0, -1); // Add "..." before the last page
-
+    const visible: number[] = [];
+    for (let i = start; i <= end; i++) visible.push(i);
+    if (start > 1) visible.unshift(1);
+    if (start > 2) visible.splice(1, 0, -1);
+    if (end < this.totalPages) visible.push(this.totalPages);
+    if (end < this.totalPages - 1) visible.splice(visible.length - 1, 0, -1);
     this.visiblePages = visible;
     this.getValifExist();
-
   }
 
   getValifExist() {
-    if (this.searchValue != "") {
+    if (this.searchValue !== '') {
       this.handelSearch.emit(this.searchValue.trim());
     }
   }
-  alertFilter(data: any) {
-    this.searchValue = "";
-    this.handelAlertFil.emit(data);
+
+  alertTypeFilter(type: string | null) {
+    this.handelAlertTypeFilter.emit(type);
   }
 
-  getBrandDetails(data: any) {
-    if (data != null)
-      Swal.fire({
-        title: 'Info!',
-        text: data,
-        icon: 'info',
-
-        showClass: {
-          popup: 'animated fadeInDown faster',
-          icon: 'animated heartBeat delay-1s'
-        },
-        showCancelButton: false, // Enables the cancel button
-        confirmButtonText: 'OK', // Text for the confirm button
-
-      })
+  getFormattedDate(): string {
+    const today = new Date();
+    return `${String(today.getUTCDate()).padStart(2, '0')}${String(today.getUTCMonth() + 1).padStart(2, '0')}${today.getUTCFullYear()}`;
   }
 
-  getDataForCSVDump() {
+  // ============== MODAL =================
+  modalTableData: any[] = [];
+  vin: any = '';
+  modalSearchValue = '';
+  modalSelectedVins: any[] = [];
+  modalCheckAll: 'single' | 'all' = 'single';
+  modalIsLoading = false;
+  modalIsOpen = false;
+  modalDisplayedColumns: string[] = ['select', 'vin'];
+
+  // ✅ Modal Pagination
+  modalPage = 1;
+  modalLimit = 1000;
+  modalTotalPages = 0;
+  modalTotalRecords = 0;
+  modalVisiblePages: number[] = [];
+
+  getTableDataForModal(vin: any = null) {
     this.isLoading = true;
+    const offset = (this.modalPage - 1) * this.modalLimit;
+    let url = `page=${this.modalPage}&limit=${this.modalLimit}`;
+    if (this.vin) url += `&vin=${this.vin}`;
 
-    this.userData.getDataForCSV().subscribe(
+    this.userData.getVinDataForPDF(url).subscribe(
       (res: any) => {
         if (!res.error) {
-          this.csvExportService.exportToCsv(res?.data?.csvData || [], 'VehicleData');
+          const data = res?.data?.items || [];
+          data.forEach((item: any) => (item.isSelected = false));
+          this.modalTableData = data;
+          this.modalTotalRecords = res?.data?.totalRecords || 0;
+          this.modalTotalPages = res?.data?.totalPages || 0;
+          this.updateModalVisiblePages();
         }
         this.isLoading = false;
       },
-      (err) => {
-        this.isLoading = false;
-      }
+      () => (this.isLoading = false)
     );
   }
 
-  alertTypeFilter(data: any) {
-    this.searchValue = "";
-    this.handelAlertTypeFilter.emit({ "data": data, "page": 1 });
+  toggleSelectAllModal(event: any): void {
+    const isChecked = event.checked;
+    this.modalTableData.forEach(row => (row.isSelected = isChecked));
+    this.modalSelectedVins = isChecked
+      ? this.modalTableData.map(row => ({ vin: row.vin, id: row.id }))
+      : [];
+    this.modalCheckAll = isChecked ? 'all' : 'single';
   }
 
+  onModalRowSelectionChange(item: any): void {
+    if (item.isSelected) {
+      const exists = this.modalSelectedVins.some(v => v.vin === item.vin && v.id === item.id);
+      if (!exists) this.modalSelectedVins.push({ vin: item.vin, id: item.id });
+    } else {
+      this.modalSelectedVins = this.modalSelectedVins.filter(
+        v => v.vin !== item.vin || v.id !== item.id
+      );
+    }
+    this.modalCheckAll = 'single';
+  }
+
+  isAllModalSelected(): boolean {
+    return this.modalTableData.length > 0 && this.modalTableData.every(row => row.isSelected);
+  }
+
+  isModalIndeterminate(): boolean {
+    const selected = this.modalTableData.filter(row => row.isSelected).length;
+    return selected > 0 && selected < this.modalTableData.length;
+  }
+
+ getPDFDataModal() {
+  this.isLoading = true;
+
+  if (this.modalCheckAll == 'single' && this.modalSelectedVins.length == 0) {
+    this.isLoading = false;
+    Swal.fire('Info!', 'Please select VINs', 'info');
+    return;
+  }
+
+  let url = `type=${this.modalCheckAll}`;
+  const ids = this.modalSelectedVins.map(item => item.id);
+  const FinalfileName = `Specific-Vins-VINify-Report-${this.getFormattedDate()}`;
+
+  this.userData.getPdfData(url, ids).subscribe(
+    (res: any) => {
+      (async () => {
+        if (!res.error) {
+          try {
+            await this.pdfService.generatePDF(
+              PDF_SETTINGS.COMPANY_NAME,
+              PDF_SETTINGS.LOGO_URL,
+              res?.data?.items || [],
+              FinalfileName
+            );
+          } catch (err) {
+            console.error('PDF generation failed:', err);
+          }
+        }
+        this.isLoading = false;
+      })();
+    },
+    () => {
+      this.isLoading = false;
+    }
+  );
+}
+
+  modalGetSearchVal() {
+    this.modalCheckAll = 'single';
+    this.modalTableData.forEach(row => (row.isSelected = false));
+    this.modalSelectedVins = [];
+    if (this.modalSearchValue.trim().length > 0) {
+      this.handleModalSearch(this.modalSearchValue.trim());
+    } else {
+      this.modalSearchValue = '';
+      this.vin = '';
+    }
+  }
+
+  onTypeModal(value: string) {
+    if (value === '') {
+      this.modalSelectedVins = [];
+      this.handleModalSearch('');
+    }
+  }
+
+  handleModalSearch(vin: any) {
+    this.vin = vin;
+    this.modalPage = 1; // reset to first page
+    this.getTableDataForModal();
+  }
+
+  clearAllModalData() {
+    this.vin = '';
+    this.modalSelectedVins = [];
+    this.modalSearchValue = '';
+    this.modalCheckAll = 'single';
+    this.modalPage = 1;
+    this.getTableDataForModal();
+  }
+
+  // ✅ Modal pagination handlers
+  goToModalPage(page: number) {
+    if (page < 1 || page > this.modalTotalPages) return;
+    this.modalPage = page;
+    this.getTableDataForModal();
+    this.updateModalVisiblePages();
+  }
+
+  nextModalPage() {
+    if (this.modalPage < this.modalTotalPages) {
+      this.goToModalPage(this.modalPage + 1);
+    }
+  }
+
+  previousModalPage() {
+    if (this.modalPage > 1) {
+      this.goToModalPage(this.modalPage - 1);
+    }
+  }
+
+  updateModalVisiblePages() {
+    const start = Math.max(1, this.modalPage - Math.floor(this.maxVisiblePages / 2));
+    const end = Math.min(this.modalTotalPages, start + this.maxVisiblePages - 1);
+    const visible: number[] = [];
+    for (let i = start; i <= end; i++) visible.push(i);
+    if (start > 1) visible.unshift(1);
+    if (start > 2) visible.splice(1, 0, -1);
+    if (end < this.modalTotalPages) visible.push(this.modalTotalPages);
+    if (end < this.modalTotalPages - 1) visible.splice(visible.length - 1, 0, -1);
+    this.modalVisiblePages = visible;
+  }
 }

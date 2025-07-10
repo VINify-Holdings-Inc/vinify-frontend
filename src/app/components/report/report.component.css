@@ -416,3 +416,6 @@ span.makeitshortLength {
 .wrapper-pdf .sidebar-toggle-btn {
 	display: none;
 }
+.add-margin{
+	margin: 0 0 15px;
+}

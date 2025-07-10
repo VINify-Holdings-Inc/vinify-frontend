@@ -402,11 +402,11 @@ const brandRows = brandData.length > 0
     const text1 = doc.splitTextToSize(JSIDesc1, 180);
     doc.text(text1, 15, yPosition21 + 5);
     doc.setFont('helvetica', 'bold');
-    doc.text('Explanatory Note:', 15, yPosition21 + 33);
+    // doc.text('Explanatory Note:', 15, yPosition21 + 33);
 
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    yPosition21 += 7;
+    yPosition21 += 1;
 
     const text2 = doc.splitTextToSize(JSIDesc2, 180);
     doc.text(text2, 15, yPosition21 + 30);

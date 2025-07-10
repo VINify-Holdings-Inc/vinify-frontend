@@ -3689,7 +3689,9 @@ span.question-Icon .ques {
 }
 
 .modalExport {
-  margin-left: auto;
+    margin-left: auto;
+    background-color: var(--bg-primary) !important;
+    border-color: var(--bg-primary) !important;
 }
 
 .userdashbrdTable.reportTable table>thead>tr>th:last-child,
@@ -4059,6 +4061,25 @@ span.shortNameBrand {
 .mdc-checkbox .mdc-checkbox__native-control:focus:checked~.mdc-checkbox__ripple {
     opacity: var(--mdc-checkbox-selected-focus-state-layer-opacity, var(--mat-sys-focus-state-layer-opacity));
     background-color: var(--bg-primary) !important;
+}
+.modal-dialog.dashboard-specific {
+    max-width: 860px;
+}
+.modal-footer.pagei-ftr .paginationArea {
+    padding: 0;
+}
+.modal-footer.pagei-ftr span.space {
+    left: 15px;
+        position: absolute;
+
+    color: #475467;
+    font-size: 0.875rem;
+}
+.modal-footer.pagei-ftr .pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 @media (max-width: 992px) {
   .l-logo {
