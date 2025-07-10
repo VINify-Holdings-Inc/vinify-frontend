@@ -1,4 +1,6 @@
-import { Component, Input, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener,Input,
+  Output,
+  EventEmitter, } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { userData } from '../../../services/api-service.service';
@@ -6,18 +8,26 @@ import { CreatePDFService } from '../../../services/create-pdf.service';
 import { PDF_SETTINGS } from '../../../constants';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SingleVinComponent } from '../dashboard/single-vin/single-vin.component';
-import { FileExportComponent } from '../get-recent-alert-file-export/get-recent-alert-file-export.component';
+// import { FileExportComponent } from '../get-recent-alert-file-export/get-recent-alert-file-export.component';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule, RouterLink, RouterLinkActive, LoaderComponent, SingleVinComponent, FileExportComponent],
+  imports: [CommonModule, RouterLink, RouterLinkActive, LoaderComponent ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements OnInit {
   constructor(private userData: userData, private router: Router, private pdfService: CreatePDFService,) { }
-  
+   isClick: boolean = false; // ✅ ADD THIS LINE
+
+  openSingleVinModal() {
+    this.isClick = true; // ✅ SET TRUE WHEN CLICKED
+  }
+
+  handleModalClose() {
+    this.isClick = false; // ✅ RESET WHEN MODAL CLOSES
+  } 
   ngOnInit(): void {
 
   }

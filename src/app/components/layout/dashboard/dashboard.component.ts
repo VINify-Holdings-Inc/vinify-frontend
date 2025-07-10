@@ -13,7 +13,7 @@ declare var bootstrap: any;
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [UserTableComponent, RouterLink, CommonModule, LoaderComponent, DateFormatPipe, SingleVinComponent],
+  imports: [UserTableComponent, RouterLink, CommonModule, LoaderComponent, DateFormatPipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

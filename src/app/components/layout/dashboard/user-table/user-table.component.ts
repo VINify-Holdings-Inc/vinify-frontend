@@ -22,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { CsvExportService } from '../../../../services/csv-export.service';
+import { SingleVinComponent } from '../single-vin/single-vin.component';
 
 
 @Component({
@@ -65,7 +66,18 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
   @Output() handelAlertFil = new EventEmitter<any>();
   @Output() handelAlertTypeFilter = new EventEmitter<any>();
   alert: any = null;
+
+  isClick: boolean = false; // ✅ ADD THIS LINE
+
+  openSingleVinModal() {
+    this.isClick = true; // ✅ SET TRUE WHEN CLICKED
+  }
+
+  handleModalClose() {
+    this.isClick = false; // ✅ RESET WHEN MODAL CLOSES
+  }
   ngOnChanges(changes: SimpleChanges) {
+    
     if (changes['resetData']) {
       this.searchValue = '';
       this.onType('');
