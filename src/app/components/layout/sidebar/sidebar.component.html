@@ -24,7 +24,7 @@
           <div *ngIf="isExportOpen" class="ExportDivModal" >
             <ul>
               <li (click)="exportToPDF('all')"><span>All VINs</span></li>
-              <li><span data-bs-toggle="modal" data-bs-target="#exampleModal">Specific VINs</span></li>
+              <li><span data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openSingleVinModal()">Specific VINs</span></li>
               <li (click)="exportToPDF('updated')"><span>Updated VINs</span></li>
             </ul>
           </div>
@@ -59,7 +59,7 @@
       </ul>
     </nav>
   </aside>
-  <app-single-vin></app-single-vin>
-  <app-file-export></app-file-export>
+  <!-- <app-single-vin></app-single-vin> -->
+<!-- <app-single-vin *ngIf="isClick" (close)="handleModalClose()"></app-single-vin> -->
   <app-loader [IsLoading]="isLoading"></app-loader>
   
