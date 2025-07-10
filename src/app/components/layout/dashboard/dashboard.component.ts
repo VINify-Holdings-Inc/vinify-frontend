@@ -179,7 +179,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.totalPages = 0;
     this.vin = "";
     this.isRead = null;
-    this.getTableData();
+    // this.getTableData();
     this.resetData = !this.resetData;
     this.cdr.detectChanges();
   }

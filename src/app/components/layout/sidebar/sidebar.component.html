@@ -1,65 +1,179 @@
 <aside>
-    <nav id="sidebar" [class.active]="!isSidebarActive" class="sidebar-link" 
-         [ngClass]="isSidebarActive ? 'sidebar-link' : 'active show-nav'">
-      <ul class="nav flex-column mt-3 sidebar-section">
-        <li class="nav-item">
-          <a routerLink="/dashboard" routerLinkActive="active" class="nav-link d-flex">
-            <img [src]="icon1" class="img-fluid" alt="DashboardIcon" />
-            <span>Dashboard</span>
-          </a>
-        </li>
-     <li class="nav-item">
-          <a routerLink="/alert-list" routerLinkActive="active" class="nav-link d-flex">
-            <img [src]="icon3" class="img-fluid" alt="NewAlertsIcon" />
-            <span>New Alerts</span>
-          </a>
-        </li>
-  
-        <li class="nav-item exportPdfli" (click)="openExportModal()" (click)="$event.stopPropagation()">
-          <a class="nav-link d-flex">
-            <img [src]="icon4" class="img-fluid" alt="ExportReportsIcon" />
-            <span>Export Reports</span>
-          </a>
-  
-          <div *ngIf="isExportOpen" class="ExportDivModal" >
-            <ul>
-              <li (click)="exportToPDF('all')"><span>All VINs</span></li>
-              <li><span data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openSingleVinModal()">Specific VINs</span></li>
-              <li (click)="exportToPDF('updated')"><span>Updated VINs</span></li>
-            </ul>
+  <nav id="sidebar" [class.active]="!isSidebarActive" class="sidebar-link"
+    [ngClass]="isSidebarActive ? 'sidebar-link' : 'active show-nav'">
+    <ul class="nav flex-column mt-3 sidebar-section">
+      <li class="nav-item">
+        <a routerLink="/dashboard" routerLinkActive="active" class="nav-link d-flex">
+          <img [src]="icon1" class="img-fluid" alt="DashboardIcon" />
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/alert-list" routerLinkActive="active" class="nav-link d-flex">
+          <img [src]="icon3" class="img-fluid" alt="NewAlertsIcon" />
+          <span>New Alerts</span>
+        </a>
+      </li>
+
+    <!-- Export Dropdown -->
+<li class="nav-item exportPdfli" (click)="openExportModal()" (click)="$event.stopPropagation()">
+  <a class="nav-link d-flex">
+    <img [src]="icon4" class="img-fluid" alt="ExportReportsIcon" />
+    <span>Export Reports</span>
+  </a>
+
+  <div *ngIf="isExportOpen" class="ExportDivModal">
+    <ul>
+      <li (click)="exportToPDF('all')"><span>All VINs</span></li>
+      <li (click)="openSingleVinModal()" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Specific VINs</span></li>
+      <li (click)="exportToPDF('updated')"><span>Updated VINs</span></li>
+    </ul>
+  </div>
+</li>
+
+
+      <li class="nav-item">
+        <a routerLink="/user-profile" routerLinkActive="active" class="nav-link d-flex">
+          <img [src]="icon5" class="img-fluid" alt="ProfileIcon" />
+          <span>Profile</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="https://getvinify.com/contact/" target="_blank" routerLinkActive="active" class="nav-link d-flex">
+          <img [src]="icon6" class="img-fluid" alt="SupportIcon" />
+          <span>Support</span>
+        </a>
+      </li>
+
+      <li class="nav-item helpicon">
+        <a [href]="helpPdf" target="_blank" routerLinkActive="active" class="nav-link d-flex"
+          aria-label="Download the NMVTS Brand Code PDF document">
+          <img [src]="icon7" class="img-fluid" alt="HelpIcon" />
+          <span>Help</span>
+        </a>
+      </li>
+      <li class="nav-item bulk-Upload">
+        <a routerLink="/file-upload" routerLinkActive="active sideBarUpload" class="nav-link d-flex">
+          <img [src]="icon8" class="img-fluid" alt="BulkUploadIcon" />
+          <span>Bulk Upload</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<!-- Specific VINs Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered dashboard-specific">
+    <div class="modal-content">
+      <div class="modal-header modalTblHead">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Specific VINs</h1>
+        <div class="userSingleSearch importbox pull-right">
+          <span class="VInNumberInput">
+            <img src="assets/images/icons/search.svg" class="img-fluid" (click)="modalGetSearchVal()" alt="Search" />
+            <input id="SearchVINNumber" type="text" [(ngModel)]="modalSearchValue" (keydown.enter)="modalGetSearchVal()"
+              (ngModelChange)="onTypeModal(modalSearchValue)" class="form-control" placeholder="Search VIN Number"
+              aria-label="SearchVINNumber" />
+          </span>
+        </div>
+        <button type="button" class="btn btn-primary modalExport" (click)="getPDFDataModal()">Export PDF</button>
+        <button (click)="clearAllModalData()" type="button" class="btn btn-close modalClose" data-bs-dismiss="modal">
+          <span class="visually-hidden">Close</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card cxt">
+          <div class="card-body px-0 userdashbrdTable reportTable pt-0">
+            <div class="table-responsive">
+              <table mat-table [dataSource]="modalTableData" class="table mat-elevation-z8" matSort>
+
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef class="checkBoxModal" width="25">
+                    <mat-checkbox (change)="toggleSelectAllModal($event)" [checked]="isAllModalSelected()"
+                      [indeterminate]="isModalIndeterminate()" aria-label="Select All Rows"></mat-checkbox>
+                  </th>
+                  <td mat-cell *matCellDef="let element" class="check-box">
+                    <mat-checkbox [(ngModel)]="element.isSelected" (change)="onModalRowSelectionChange(element)"
+                      aria-label="Select Row"></mat-checkbox>
+                  </td>
+                </ng-container>
+
+                <!-- VIN Column -->
+                <ng-container matColumnDef="vin">
+                  <th mat-header-cell *matHeaderCellDef width="300">VINs</th>
+                  <td mat-cell *matCellDef="let element" title="{{ element.vin }}">
+                    <span class="tableDot" [ngClass]="element.isOld ? 'grayDot' : 'redDot'"></span>
+                    {{ element.vin }}
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="modalDisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: modalDisplayedColumns"></tr>
+              </table>
+
+              <div *ngIf="modalTableData.length === 0" class="no-data-message text-center">No data found</div>
+            </div>
           </div>
-        </li>
-  
-        <li class="nav-item">
-          <a routerLink="/user-profile" routerLinkActive="active" class="nav-link d-flex">
-            <img [src]="icon5" class="img-fluid" alt="ProfileIcon" />
-            <span>Profile</span>
-          </a>
-        </li>
-  
-        <li class="nav-item">
-          <a href="https://getvinify.com/contact/" target="_blank" routerLinkActive="active" class="nav-link d-flex">
-            <img [src]="icon6" class="img-fluid" alt="SupportIcon" />
-            <span>Support</span>
-          </a>
-        </li>
-        
-        <li class="nav-item helpicon">
-          <a [href]="helpPdf" target="_blank" routerLinkActive="active" class="nav-link d-flex" aria-label="Download the NMVTS Brand Code PDF document">
-            <img [src]="icon7" class="img-fluid" alt="HelpIcon" />
-            <span>Help</span>
-          </a>
-        </li>
-        <li class="nav-item bulk-Upload">
-          <a routerLink="/file-upload" routerLinkActive="active sideBarUpload" class="nav-link d-flex">
-            <img [src]="icon8" class="img-fluid" alt="BulkUploadIcon" />
-            <span>Bulk Upload</span>
-          </a>
-        </li> 
-      </ul>
-    </nav>
-  </aside>
-  <!-- <app-single-vin></app-single-vin> -->
-<!-- <app-single-vin *ngIf="isClick" (close)="handleModalClose()"></app-single-vin> -->
-  <app-loader [IsLoading]="isLoading"></app-loader>
-  
+        </div>
+      </div>
+    <!-- <div class="modal-footer pagei-ftr">
+  <div class="paginationArea text-end">
+    <div class="pagination pagination-container">
+        <span class="space" *ngIf="modalTableData.length">
+        Showing {{ (modalLimit * (modalPage - 1)) + 1 }}
+        to {{ (modalLimit * (modalPage - 1)) + modalTableData.length }}
+        of {{ modalTotalRecords }} entries
+      </span>
+      <button (click)="previousModalPage()" [disabled]="modalPage === 1">Previous</button>
+
+      <div class="paginationNumber">
+        <ng-container *ngFor="let page of modalVisiblePages">
+          <span *ngIf="page === -1">...</span>
+          <button *ngIf="page !== -1"
+                  (click)="goToModalPage(page)"
+                  [class.active]="page === modalPage"
+                  class="currentPage">
+            {{ page }}
+          </button>
+        </ng-container>
+      </div> 
+
+      <button (click)="nextModalPage()" [disabled]="modalPage === modalTotalPages">Next</button>
+    </div>
+  </div>
+</div> -->
+
+  <div class="modal-footer pagei-ftr">
+            <div class="paginationArea text-end">
+  <div class="pagination pagination-container">
+    <button (click)="previousModalPage()" [disabled]="modalPage === 1">Previous</button>
+
+    <div class="paginationNumber">
+      <ng-container *ngFor="let page of modalVisiblePages">
+        <span *ngIf="page === -1">...</span>
+        <button
+          *ngIf="page !== -1"
+          (click)="goToModalPage(page)"
+          [class.active]="page === modalPage"
+          class="currentPage"
+        >
+          {{ page }}
+        </button>
+      </ng-container>
+    </div>
+
+    <span class="space" *ngIf="modalTableData.length">
+      Showing {{ (modalLimit * (modalPage - 1)) + 1 }} to
+      {{ (modalLimit * (modalPage - 1)) + modalTableData.length }} of {{ modalTotalRecords }} entries
+    </span>
+
+    <button (click)="nextModalPage()" [disabled]="modalPage === modalTotalPages">Next</button>
+  </div>
+</div>
+          </div>
+    </div>
+  </div>
+</div>
+
+<app-loader [IsLoading]="isLoading"></app-loader>

@@ -3,8 +3,9 @@
         <div class="row dashboardDetailsBtn">
             <!-- Total Vehicle Monitors -->
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                
-                <div [ngClass]="{'cardActive': dashboardCardActive === 'total'}" class="card cardActive" role="region" aria-labelledby="total-vehicle-monitors" (click)="changeDashboardActiveCard('total')">
+
+                <div [ngClass]="{'cardActive': dashboardCardActive === 'total'}" class="card cardActive" role="region"
+                    aria-labelledby="total-vehicle-monitors" (click)="changeDashboardActiveCard('total')">
                     <div class="card-body cardInnerDash dashcard" (click)="setKpiData('total')">
                         <div class="card-area">
                             <h6 id="total-vehicle-monitors">Total VINs Monitored</h6>
@@ -13,40 +14,43 @@
                             <h1 class="card-title cardDashNum">{{ totalItemsKpi | number }}</h1>
 
                         </div>
-                        <div class="cardBottomLine check-details" >
-                            <span   aria-label="Check details about total vehicle monitors" class="checkLink">View Monitored VINs</span>
-                            <span  class="arrow-angle" aria-hidden="true" class="checkLink" >
+                        <div class="cardBottomLine check-details">
+                            <span aria-label="Check details about total vehicle monitors" class="checkLink">View
+                                Monitored VINs</span>
+                            <span class="arrow-angle" aria-hidden="true" class="checkLink">
                                 <span class="material-symbols-outlined">arrow_forward_ios</span>
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Urgent Alerts -->
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                <div class="card bg-pink" [ngClass]="{'cardActive': dashboardCardActive === 'updated'}"  role="region" aria-labelledby="urgent-alerts" (click)="changeDashboardActiveCard('updated')">
+                <div class="card bg-pink" [ngClass]="{'cardActive': dashboardCardActive === 'updated'}" role="region"
+                    aria-labelledby="urgent-alerts" (click)="changeDashboardActiveCard('updated')">
                     <div class="card-body cardInnerDash dashcard" (click)="setKpiData('update')">
                         <div class="card-area">
                             <h6 id="urgent-alerts">New VINs Update</h6>
                         </div>
                         <div>
-                            <h1 class="card-title cardDashNum">{{updatedTotalItems  | number}}</h1>
+                            <h1 class="card-title cardDashNum">{{updatedTotalItems | number}}</h1>
                         </div>
-                        <div class="cardBottomLine check-details color-check" >
-                            <span   aria-label="Check details about total vehicle monitors alerts" class=" ">See New VIN Updates</span>
-                            <span  class="arrow-angle alertLink" aria-hidden="true" >
-                               <span class="material-symbols-outlined">arrow_forward_ios</span>
+                        <div class="cardBottomLine check-details color-check">
+                            <span aria-label="Check details about total vehicle monitors alerts" class=" ">See New VIN
+                                Updates</span>
+                            <span class="arrow-angle alertLink" aria-hidden="true">
+                                <span class="material-symbols-outlined">arrow_forward_ios</span>
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--- Recent Alerts- -->
             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
                 <div class="card rounded recentlyAlert userUI" role="region" aria-labelledby="recent-alert">
-                    <div class="card-header bg-header-area"> 
+                    <div class="card-header bg-header-area">
                         <h2 id="recent-alert">Recent Alert</h2>
                         <a routerLink="/alert-list" class="view" aria-label="View all recent alerts">View All</a>
                     </div>
@@ -54,10 +58,11 @@
                         <div class="card-area">
                             <div class="userAuthorityBox">
                                 <p><span aria-label="Vehicle Identification Number">{{resentAlert.vin}}</span></p>
-                                <span class="date-time" aria-label="">{{ resentAlert.createdAt | dateFormat: 'h:mm A, ddd DD MMM YYYY' }}</span>
+                                <span class="date-time" aria-label="">{{ resentAlert.createdAt | dateFormat: 'h:mm A,
+                                    ddd DD MMM YYYY' }}</span>
                             </div>
                             <h5> {{resentAlert.brand?resentAlert?.brand?.split(' - ')[0]:" " }}</h5>
-                           
+
                             <p class="authorityPara">
                                 Theft detected for VIN {{resentAlert.vin}} . Immediate action required.
                             </p>
@@ -70,12 +75,9 @@
 </div>
 
 <!-- User Table -->
- <app-user-table [tableData]="tableData" [page]="page" [totalPages]="totalPages" [totalItems]="totalItems"
- [serchKpiType]="serchKpiType"
-  (handelPaginagtion)="handlePageChange($event)" (handelSearch)="handelSearch($event)"
-   [tableName]="tableName" [resetData]="resetData" [limit]="limit" (handelAlertFil)="handelAlertFil($event)"
-   (handelAlertTypeFilter)="handelAlertTypeFilter($event)"
-   ></app-user-table>
- <!-- <app-single-vin></app-single-vin> -->
- <app-loader [IsLoading]="isLoading"></app-loader>
- 
+<app-user-table [tableData]="tableData" [page]="page" [totalPages]="totalPages" [totalItems]="totalItems"
+    [serchKpiType]="serchKpiType" (handelPaginagtion)="handlePageChange($event)" (handelSearch)="handelSearch($event)"
+    [tableName]="tableName" [resetData]="resetData" [limit]="limit" (handelAlertFil)="handelAlertFil($event)"
+    (handelAlertTypeFilter)="handelAlertTypeFilter($event)"></app-user-table>
+<!-- <app-single-vin></app-single-vin> -->
+<app-loader [IsLoading]="isLoading"></app-loader>

@@ -1,157 +1,262 @@
+<!-- user-table.component.html -->
 <div class="row">
   <div class="col-lg-12 col-md-12 dashboardtableUI">
     <div class="cardWrapper">
       <div class="UserCardHeader cardMainHead">
-        <h4 class="card-title">{{tableName}}</h4>
+        <h4 class="card-title">{{ tableName }}</h4>
         <div class="cardSubHead">
 
-
+          <!-- Search -->
           <div class="userSingleSearch">
             <span class="VInNumberInput">
-              <img alt="img" src="assets/images/icons/search.svg" class="img-fluid" (click)="getSearchVal()"
-                alt="Search-Icon-Table" />
-              <input id="SearchVinTable" type="text" [(ngModel)]="searchValue" (keydown.enter)="getSearchVal()"
-                (ngModelChange)="onType(searchValue)" class="form-control" placeholder="Search VIN Number"
-                aria-label="SearchVinTable" />
+              <img alt="Search Icon" src="assets/images/icons/search.svg" class="img-fluid" (click)="getSearchVal()" />
+              <input
+                id="SearchVinTable"
+                type="text"
+                [(ngModel)]="searchValue"
+                (keydown.enter)="getSearchVal()"
+                (ngModelChange)="onType(searchValue)"
+                class="form-control"
+                placeholder="Search VIN Number"
+              />
             </span>
-
           </div>
 
-          <div class=" dropdownFilter">
-            <button class="month-calendar menuType calendar-svg " type="button" id="alertTypeMenu"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              <img alt="AlertType" [src]="filerIcon" class="img-fluid" />
+          <!-- Filter Dropdown -->
+          <div class="dropdownFilter">
+            <button class="month-calendar menuType calendar-svg" type="button" id="alertTypeMenu" data-bs-toggle="dropdown">
+              <img [src]="filerIcon" class="img-fluid" />
               <span>All Types</span>
               <i class="material-symbols-outlined">keyboard_arrow_down</i>
             </button>
-            <ul class="dropdown-menu menuFilter" aria-labelledby="alertTypeMenu">
-              <li><a class="dropdown-item" routerLink="#" (click)="alertTypeFilter(null)">All Types</a></li>
-              <li><a class="dropdown-item" routerLink="#" (click)="alertTypeFilter('Title')">Title</a></li>
-              <li><a class="dropdown-item" routerLink="#" (click)="alertTypeFilter('Brand')">Brand</a></li>
-              <li><a class="dropdown-item" routerLink="#" (click)="alertTypeFilter('JSI')">JSI</a></li>
+            <ul class="dropdown-menu menuFilter">
+              <li><a class="dropdown-item" (click)="alertTypeFilter(null)">All Types</a></li>
+              <li><a class="dropdown-item" (click)="alertTypeFilter('Title')">Title</a></li>
+              <li><a class="dropdown-item" (click)="alertTypeFilter('Brand')">Brand</a></li>
+              <li><a class="dropdown-item" (click)="alertTypeFilter('JSI')">JSI</a></li>
             </ul>
           </div>
 
+          <!-- Calendar Icon -->
           <div class="month-calendar vehicleMonthSearch calendar-svg">
-            <img alt="img" [src]="calendarIcon" class="img-fluid" alt="calendarIcon" />
+            <img [src]="calendarIcon" class="img-fluid" />
             <p><span>Jan 6, 2025 – Jul 13, 2025</span></p>
-
           </div>
+
+          <!-- Export PDF Dropdown -->
           <div class="dropdownFilter">
-            <button class="month-calendar vehicleMonthSearch calendar-svg " type="button" id="exportPdfMenu"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              <img alt="PDFIcon" [src]="pdfIcon" class="img-fluid" />
+            <button class="month-calendar vehicleMonthSearch calendar-svg" type="button" id="exportPdfMenu" data-bs-toggle="dropdown">
+              <img [src]="pdfIcon" class="img-fluid" />
               <span>Export PDF</span>
               <i class="material-symbols-outlined">keyboard_arrow_down</i>
             </button>
-            <ul class="dropdown-menu menuFilter" aria-labelledby="exportPdfMenu">
-
-              <li><a class="dropdown-item button-cursor" routerLink="#" (click)="exportToPDF('all')">All
-                  VINs</a></li>
-
-              <li><a class="dropdown-item button-cursor" routerLink="#" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"  (click)="openSingleVinModal()">Specific VINs</a>
-
-              </li>
-              <li><a class="dropdown-item button-cursor" routerLink="#" (click)="exportToPDF('updated')">Updated
-                  VINs</a>
-              </li>
+            <ul class="dropdown-menu menuFilter">
+              <li><a class="dropdown-item" (click)="exportToPDF('all')">All VINs</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModalvivek">Specific VINs</a></li>
+              <li><a class="dropdown-item" (click)="exportToPDF('updated')">Updated VINs</a></li>
             </ul>
           </div>
-
         </div>
       </div>
+
+      <!-- Table -->
       <div class="card">
         <div class="card-body px-0 userdashbrdTable dashtable pt-0">
           <div class="table-responsive">
-            <table mat-table [dataSource]="tableData" class="table mat-elevation-z8 " matSort>
+            <table mat-table [dataSource]="tableData" class="table mat-elevation-z8" matSort>
+
+              <!-- VIN -->
               <ng-container matColumnDef="vin">
-                <th mat-header-cell *matHeaderCellDef width="240">VINs</th>
-                <td mat-cell *matCellDef="let element" title="{{ element.vin }}"> <span class="tableDot redDot"
-                    [ngClass]="element.isOld ? 'tableDot grayDot ' : 'tableDot redDot'"> </span>{{ element.vin }} </td>
+                <th mat-header-cell *matHeaderCellDef>VINs</th>
+                <td mat-cell *matCellDef="let element" title="{{ element.vin }}">
+                  <span class="tableDot" [ngClass]="element.isOld ? 'grayDot' : 'redDot'"></span>
+                  {{ element.vin }}
+                </td>
               </ng-container>
+
+              <!-- Title -->
               <ng-container matColumnDef="title">
-                <th mat-header-cell *matHeaderCellDef width="200">Title</th>
+                <th mat-header-cell *matHeaderCellDef>Title</th>
                 <td mat-cell *matCellDef="let element">
-                  <span [ngClass]="element.Title ? 'tableDot redDot' : ''"></span>
-                  <span class="deleted-text" *ngIf="element?.isTitleDel">Deleted</span>
-
+                  <span *ngIf="element.Title" class="tableDot redDot"></span>
+                  <span *ngIf="element.isTitleDel" class="deleted-text">Deleted</span>
                 </td>
               </ng-container>
 
+              <!-- Brand -->
               <ng-container matColumnDef="brand">
-
-                <th mat-header-cell *matHeaderCellDef width="200">Brand</th>
+                <th mat-header-cell *matHeaderCellDef>Brand</th>
                 <td mat-cell *matCellDef="let element">
-                  <span [ngClass]="element.Brand ? 'tableDot redDot' : ''"></span>
-                  <span class="deleted-text" *ngIf="element?.isBrandDel">Deleted</span>
+                  <span *ngIf="element.Brand" class="tableDot redDot"></span>
+                  <span *ngIf="element.isBrandDel" class="deleted-text">Deleted</span>
                 </td>
               </ng-container>
 
+              <!-- JSI -->
               <ng-container matColumnDef="jsi">
-                <th mat-header-cell *matHeaderCellDef width="200">JSI</th>
+                <th mat-header-cell *matHeaderCellDef>JSI</th>
                 <td mat-cell *matCellDef="let element">
-
-                  <span [ngClass]="element?.JSI ? 'tableDot redDot' : ''"></span>
-                  <span class="deleted-text" *ngIf="element?.isJSIDel">Deleted</span>
+                  <span *ngIf="element.JSI" class="tableDot redDot"></span>
+                  <span *ngIf="element.isJSIDel" class="deleted-text">Deleted</span>
                 </td>
               </ng-container>
 
-
+              <!-- Details -->
               <ng-container matColumnDef="details">
-
-                <th mat-header-cell *matHeaderCellDef width="65">View</th>
+                <th mat-header-cell *matHeaderCellDef>View</th>
                 <td mat-cell *matCellDef="let element">
                   <span class="cursor-detail-img">
-                    <img src="assets/images/icons/passport.svg" title="View VIN Details" alt="DetailsIcon" />
+                    <img src="assets/images/icons/passport.svg" title="View VIN Details" />
                   </span>
-
                 </td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getVinDetails(row?.vin,row?.model)"
-                [ngClass]="{ 'deleted-row': row?.isDel === true }">
-              </tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumns"
+                (click)="getVinDetails(row?.vin, row?.model)"
+                [ngClass]="{ 'deleted-row': row?.isDel === true }"
+              ></tr>
             </table>
-            <div *ngIf="tableData.length === 0" class="no-data-message text-center">
-              No data found
-            </div>
+
+            <div *ngIf="tableData.length === 0" class="no-data-message text-center">No data found</div>
           </div>
 
+          <!-- Pagination -->
           <div class="paginationArea">
             <div class="pagination pagination-container">
-              <div>
-                <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
-              </div>
-
+              <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
               <div class="paginationNumber">
                 <ng-container *ngFor="let page of visiblePages">
-                  <ng-container *ngIf="page === -1">
-                    <span>...</span>
-                  </ng-container>
-                  <ng-container *ngIf="page !== -1">
-                    <button (click)="goToPage(page)" [class.active]="page === currentPage" class="currentPage">
-                      {{ page }}
-                    </button>
-                  </ng-container>
+                  <span *ngIf="page === -1">...</span>
+                  <button
+                    *ngIf="page !== -1"
+                    (click)="goToPage(page)"
+                    [class.active]="page === currentPage"
+                    class="currentPage"
+                  >
+                    {{ page }}
+                  </button>
                 </ng-container>
               </div>
-              <span class="space" *ngIf="tableData.length">Showing {{(limit*(page-1))+1}} to
-                {{((limit*(page-1))+1+(tableData.length-1))}} of {{totalItems}} entries</span>
-              <div>
-                <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
-              </div>
+              <span class="space" *ngIf="tableData.length">
+                Showing {{ (limit * (page - 1)) + 1 }} to
+                {{ (limit * (page - 1)) + tableData.length }} of {{ totalItems }} entries
+              </span>
+              <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-<!-- <app-single-vin
-  *ngIf="isClick"
-  [isClick]="isClick"
-  (modalClosed)="handleModalClose()"
-></app-single-vin> -->
+
+    <!-- Specific VINs Modal -->
+    <div class="modal fade" id="exampleModalvivek" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered dashboard-specific">
+       
+        <div class="modal-content">
+          <div class="modal-header modalTblHead">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Specific VINs</h1>
+            <div class="userSingleSearch importbox pull-right">
+              <span class="VInNumberInput">
+                <img src="assets/images/icons/search.svg" class="img-fluid" (click)="modalGetSearchVal()" alt="Search" />
+                <input
+                  id="SearchVINNumber"
+                  type="text"
+                  [(ngModel)]="modalSearchValue"
+                  (keydown.enter)="modalGetSearchVal()"
+                  (ngModelChange)="onTypeModal(modalSearchValue)"
+                  class="form-control"
+                  placeholder="Search VIN Number"
+                  aria-label="SearchVINNumber"
+                />
+              </span>
+            </div>
+            <!-- Modal Pagination -->
+
+
+            <button type="button" class="btn btn-primary modalExport" (click)="getPDFDataModal()">Export PDF</button>
+            <button (click)="clearAllModalData()" type="button" class="btn btn-close modalClose" data-bs-dismiss="modal">
+              <span class="visually-hidden">Close</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card cxt">
+              <div class="card-body px-0 userdashbrdTable reportTable pt-0">
+                <div class="table-responsive">
+                  <table mat-table [dataSource]="modalTableData" class="table mat-elevation-z8" matSort>
+
+                    <!-- Checkbox Column -->
+                    <ng-container matColumnDef="select">
+                      <th mat-header-cell *matHeaderCellDef class="checkBoxModal" width="25">
+                        <mat-checkbox
+                          (change)="toggleSelectAllModal($event)"
+                          [checked]="isAllModalSelected()"
+                          [indeterminate]="isModalIndeterminate()"
+                          aria-label="Select All Rows"
+                        ></mat-checkbox>
+                      </th>
+                      <td mat-cell *matCellDef="let element" class="check-box">
+                        <mat-checkbox
+                          [(ngModel)]="element.isSelected"
+                          (change)="onModalRowSelectionChange(element)"
+                          aria-label="Select Row"
+                        ></mat-checkbox>
+                      </td>
+                    </ng-container>
+
+                    <!-- VIN Column -->
+                    <ng-container matColumnDef="vin">
+                      <th mat-header-cell *matHeaderCellDef width="300">VINs</th>
+                      <td mat-cell *matCellDef="let element" title="{{ element.vin }}">
+                        <span class="tableDot" [ngClass]="element.isOld ? 'grayDot' : 'redDot'"></span>
+                        {{ element.vin }}
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="modalDisplayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: modalDisplayedColumns"></tr>
+                  </table>
+
+                  <div *ngIf="modalTableData.length === 0" class="no-data-message text-center">No data found</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer pagei-ftr">
+            <div class="paginationArea text-end">
+  <div class="pagination pagination-container">
+    <button (click)="previousModalPage()" [disabled]="modalPage === 1">Previous</button>
+
+    <div class="paginationNumber">
+      <ng-container *ngFor="let page of modalVisiblePages">
+        <span *ngIf="page === -1">...</span>
+        <button
+          *ngIf="page !== -1"
+          (click)="goToModalPage(page)"
+          [class.active]="page === modalPage"
+          class="currentPage"
+        >
+          {{ page }}
+        </button>
+      </ng-container>
+    </div>
+
+    <span class="space" *ngIf="modalTableData.length">
+      Showing {{ (modalLimit * (modalPage - 1)) + 1 }} to
+      {{ (modalLimit * (modalPage - 1)) + modalTableData.length }} of {{ modalTotalRecords }} entries
+    </span>
+
+    <button (click)="nextModalPage()" [disabled]="modalPage === modalTotalPages">Next</button>
+  </div>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loader -->
     <app-loader [IsLoading]="isLoading"></app-loader>
   </div>
 </div>
