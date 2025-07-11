@@ -242,6 +242,7 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
 
   alertTypeFilter(type: string | null) {
     this.handelAlertTypeFilter.emit(type);
+ 
   }
 
   getFormattedDate(): string {
