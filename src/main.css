@@ -2808,10 +2808,15 @@ thead.table-light-Usertbl tr {
 }
 
 .paginationNumber button.currentPage {
-  border: none !important;
-  margin: 0 5px;
-  padding: 5px 10px !important;
+	border: none !important;
+	margin: 0 3px;
+	padding: 5px 10px !important;
+	background-color: #fff;
 }
+.paginationNumber button.currentPage:hover{
+  background-color: #f0f0f0;
+}
+
 
 .paginationNumber button.currentPage.active {
   background-color: var(--bg-primary);
@@ -4063,15 +4068,14 @@ span.shortNameBrand {
     background-color: var(--bg-primary) !important;
 }
 .modal-dialog.dashboard-specific {
-    max-width: 860px;
+	max-width: 660px;
 }
 .modal-footer.pagei-ftr .paginationArea {
     padding: 0;
 }
 .modal-footer.pagei-ftr span.space {
     left: 15px;
-        position: absolute;
-
+    position: absolute;
     color: #475467;
     font-size: 0.875rem;
 }
