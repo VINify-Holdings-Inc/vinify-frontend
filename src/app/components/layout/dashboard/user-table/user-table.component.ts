@@ -47,7 +47,7 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
     private userData: userData,
     private cdr: ChangeDetectorRef,
     private csvExportService: CsvExportService
-  ) {}
+  ) { }
 
   @Input() tableData: any[] = [];
   @Input() page = 0;
@@ -63,7 +63,7 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
   @Output() handelAlertTypeFilter = new EventEmitter<any>();
 
 
-   filerIcon = 'assets/images/icons/filter-lines.svg';
+  filerIcon = 'assets/images/icons/filter-lines.svg';
   calendarIcon = 'assets/images/icons/calendar.svg';
   pdfIcon = 'assets/images/icons/pdf.svg';
 
@@ -174,32 +174,32 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
     this.getTableData(type);
   }
 
- async getTableData(dataType: any) {
-  this.isLoading = true;
-  let url = `type=${dataType}`;
+  async getTableData(dataType: any) {
+    this.isLoading = true;
+    let url = `type=${dataType}`;
 
-  if (dataType === 'single' && this.selectedVins.length === 0) {
-    this.isLoading = false;
-    Swal.fire('Info!', 'Please select VINs', 'info');
-    return;
-  }
-
-  this.userData.getPdfData(url, this.selectedVins).subscribe(
-    async (res: any) => {
-      if (!res.error) {
-        const FinalfileName = `${dataType}-Vins-VINify-Report-${this.getFormattedDate()}`;
-        await this.pdfService.generatePDF(
-          PDF_SETTINGS.COMPANY_NAME,
-          PDF_SETTINGS.LOGO_URL,
-          res?.data?.items || [],
-          FinalfileName
-        );
-      }
+    if (dataType === 'single' && this.selectedVins.length === 0) {
       this.isLoading = false;
-    },
-    () => (this.isLoading = false)
-  );
-}
+      Swal.fire('Info!', 'Please select VINs', 'info');
+      return;
+    }
+
+    this.userData.getPdfData(url, this.selectedVins).subscribe(
+      async (res: any) => {
+        if (!res.error) {
+          const FinalfileName = `${dataType}-Vins-VINify-Report-${this.getFormattedDate()}`;
+          await this.pdfService.generatePDF(
+            PDF_SETTINGS.COMPANY_NAME,
+            PDF_SETTINGS.LOGO_URL,
+            res?.data?.items || [],
+            FinalfileName
+          );
+        }
+        this.isLoading = false;
+      },
+      () => (this.isLoading = false)
+    );
+  }
 
 
   goToPage(page: number) {
@@ -242,7 +242,7 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
 
   alertTypeFilter(type: string | null) {
     this.handelAlertTypeFilter.emit(type);
- 
+
   }
 
   getFormattedDate(): string {
@@ -277,7 +277,12 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
       (res: any) => {
         if (!res.error) {
           const data = res?.data?.items || [];
-          data.forEach((item: any) => (item.isSelected = false));
+
+          data.forEach((item: any) => {
+            const exists = this.modalSelectedVins.some(v => v.vin === item.vin && v.id === item.id);
+            item.isSelected = exists;
+          });
+
           this.modalTableData = data;
           this.modalTotalRecords = res?.data?.totalRecords || 0;
           this.modalTotalPages = res?.data?.totalPages || 0;
@@ -288,6 +293,7 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
       () => (this.isLoading = false)
     );
   }
+
 
   toggleSelectAllModal(event: any): void {
     const isChecked = event.checked;
@@ -310,6 +316,7 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
     this.modalCheckAll = 'single';
   }
 
+
   isAllModalSelected(): boolean {
     return this.modalTableData.length > 0 && this.modalTableData.every(row => row.isSelected);
   }
@@ -319,58 +326,59 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
     return selected > 0 && selected < this.modalTableData.length;
   }
 
- getPDFDataModal() {
-  this.isLoading = true;
+  getPDFDataModal() {
+    this.isLoading = true;
 
-  if (this.modalCheckAll == 'single' && this.modalSelectedVins.length == 0) {
-    this.isLoading = false;
-    Swal.fire('Info!', 'Please select VINs', 'info');
-    return;
-  }
-
-  let url = `type=${this.modalCheckAll}`;
-  const ids = this.modalSelectedVins.map(item => item.id);
-  const FinalfileName = `Specific-Vins-VINify-Report-${this.getFormattedDate()}`;
-
-  this.userData.getPdfData(url, ids).subscribe(
-    (res: any) => {
-      (async () => {
-        if (!res.error) {
-          try {
-            await this.pdfService.generatePDF(
-              PDF_SETTINGS.COMPANY_NAME,
-              PDF_SETTINGS.LOGO_URL,
-              res?.data?.items || [],
-              FinalfileName
-            );
-          } catch (err) {
-            console.error('PDF generation failed:', err);
-          }
-        }
-        this.isLoading = false;
-      })();
-    },
-    () => {
+    if (this.modalCheckAll == 'single' && this.modalSelectedVins.length == 0) {
       this.isLoading = false;
+      Swal.fire('Info!', 'Please select VINs', 'info');
+      return;
     }
-  );
-}
+
+    let url = `type=${this.modalCheckAll}`;
+    const ids = this.modalSelectedVins.map(item => item.id);
+    const FinalfileName = `Specific-Vins-VINify-Report-${this.getFormattedDate()}`;
+
+    this.userData.getPdfData(url, ids).subscribe(
+      (res: any) => {
+        (async () => {
+          if (!res.error) {
+            try {
+              await this.pdfService.generatePDF(
+                PDF_SETTINGS.COMPANY_NAME,
+                PDF_SETTINGS.LOGO_URL,
+                res?.data?.items || [],
+                FinalfileName
+              );
+            } catch (err) {
+              console.error('PDF generation failed:', err);
+            }
+          }
+          this.isLoading = false;
+        })();
+      },
+      () => {
+        this.isLoading = false;
+      }
+    );
+  }
 
   modalGetSearchVal() {
     this.modalCheckAll = 'single';
     this.modalTableData.forEach(row => (row.isSelected = false));
-    this.modalSelectedVins = [];
+    // ❌ Do NOT clear modalSelectedVins here
     if (this.modalSearchValue.trim().length > 0) {
       this.handleModalSearch(this.modalSearchValue.trim());
     } else {
       this.modalSearchValue = '';
       this.vin = '';
+      this.getTableDataForModal(); // ✅ Also refetch full data
     }
   }
 
+
   onTypeModal(value: string) {
     if (value === '') {
-      this.modalSelectedVins = [];
       this.handleModalSearch('');
     }
   }
@@ -422,3 +430,6 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
     this.modalVisiblePages = visible;
   }
 }
+
+
+
