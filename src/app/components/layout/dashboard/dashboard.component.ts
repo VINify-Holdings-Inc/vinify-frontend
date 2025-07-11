@@ -5,8 +5,7 @@ import { UserTableComponent } from './user-table/user-table.component';
 import { userData } from '../../../services/api-service.service';
 import { LoaderComponent } from '../common/loader/loader.component';
 import { SessionService } from '../../../services/session.service';
-import { DateFormatPipe } from '../../../pipes/date-format.pipe';
-import { SingleVinComponent } from './single-vin/single-vin.component';
+import { DateFormatPipe } from '../../../pipes/date-format.pipe'; 
 import { Router } from '@angular/router';
 declare var bootstrap: any;
 
@@ -195,10 +194,14 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.getTableData();
   }
   handelAlertTypeFilter(data: any) {
+    
     this.vin = "";
-    this.alertType = data.data;
-    this.page = data.page;
+    this.alertType = data;
+    this.page = 1;
+    console.log(data);
+    
     this.getTableData();
+   
   }
 
 }
