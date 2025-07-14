@@ -43,7 +43,7 @@
                         <p class="tdBody">
 
                           <span [ngClass]="{ 'newChangeBlue': item.isOdometer && !item?.isDel }">
-                            {{ item?.odometer }}
+                            {{ item?.titleUnique }}
                           </span>
                         </p>
                       </div>
@@ -271,7 +271,7 @@
                         <p class="tdHead">Odometer</p>
                         <p class="tdBody">
                           <span [ngClass]="item?.isOdometer ? ' redDot tableDot' : ''"></span>
-                          {{ item?.odometer}}
+                          {{ item?.titleUnique}}
                         </p>
                       </div>
                     </div>
