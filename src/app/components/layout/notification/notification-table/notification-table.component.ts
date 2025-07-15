@@ -267,7 +267,7 @@ previousPage() {
                       popup: 'animated fadeInDown faster',
                       icon: 'animated heartBeat delay-1s'
                     },
-                    text: "Select the VIN",
+                    text: "Select the Record",
                     icon: 'error',
                     confirmButtonText: 'OK',
                   }); 

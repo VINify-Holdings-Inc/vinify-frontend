@@ -78,7 +78,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
     this. lastUpdatedService.getLastUpdate$().subscribe(date => {
       this.lastUpdateDate = date;
     });
-     this.showAlertCountData();
+    //  this.showAlertCountData();
 
     // Call this function once when the app initializes
     setTimeout(() => {

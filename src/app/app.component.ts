@@ -17,23 +17,23 @@ export class AppComponent {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-         // this.showAlertCountData();
+         this.showAlertCountData();
       }
     });
   }
 
-//   showAlertCountData() { 
-//     this.userData.getUnreadCount().subscribe(
-//     (res: any) => {
-//       if (!res.error) {
-//        this.notificationService.setUnreadCount(
-//          res?.data?.totalNotificationCount||0
-//        );
-//        this.lastUpdatedService.setLastUpdate(res?.data?.lastUpdatedDate||""); 
-//       }
-//     },
-//     (err) => {    
-//     }
-//   );
-//  }
+  showAlertCountData() { 
+    this.userData.getUnreadCount().subscribe(
+    (res: any) => {
+      if (!res.error) {
+       this.notificationService.setUnreadCount(
+         res?.data?.totalNotificationCount||0
+       );
+       this.lastUpdatedService.setLastUpdate(res?.data?.lastUpdatedDate||""); 
+      }
+    },
+    (err) => {    
+    }
+  );
+ }
 }
