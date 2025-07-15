@@ -136,7 +136,7 @@ export class TitleReportService {
         item.titleBrandDate ? this.dateFormate.transform(item.titleBrandDate, 'DD MMM YYYY') : " ",
         item.alertType || " ",
         item?.alertType === 'Title' ? " " : (item?.brand ? item.brand.split(' - ')[0] : " "),
-        item.odometer || " ",
+        item.titleUnique || " ",
         item.state || " ",
         item.city || " ",
         item.description || " ",

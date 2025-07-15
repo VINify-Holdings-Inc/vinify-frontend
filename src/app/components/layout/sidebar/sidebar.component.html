@@ -15,21 +15,22 @@
         </a>
       </li>
 
-    <!-- Export Dropdown -->
-<li class="nav-item exportPdfli" (click)="openExportModal()" (click)="$event.stopPropagation()">
-  <a class="nav-link d-flex">
-    <img [src]="icon4" class="img-fluid" alt="ExportReportsIcon" />
-    <span>Export Reports</span>
-  </a>
+      <!-- Export Dropdown -->
+      <li class="nav-item exportPdfli" (click)="openExportModal()" (click)="$event.stopPropagation()">
+        <a class="nav-link d-flex">
+          <img [src]="icon4" class="img-fluid" alt="ExportReportsIcon" />
+          <span>Export Reports</span>
+        </a>
 
-  <div *ngIf="isExportOpen" class="ExportDivModal">
-    <ul>
-      <li (click)="exportToPDF('all')"><span>All VINs</span></li>
-      <li (click)="openSingleVinModal()" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Specific VINs</span></li>
-      <li (click)="exportToPDF('updated')"><span>Updated VINs</span></li>
-    </ul>
-  </div>
-</li>
+        <div *ngIf="isExportOpen" class="ExportDivModal">
+          <ul>
+            <li (click)="exportToPDF('all')"><span>All VINs</span></li>
+            <li (click)="openSingleVinModal()" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Specific
+                VINs</span></li>
+            <li (click)="exportToPDF('updated')"><span>Updated VINs</span></li>
+          </ul>
+        </div>
+      </li>
 
 
       <li class="nav-item">
@@ -117,7 +118,7 @@
           </div>
         </div>
       </div>
-    <!-- <div class="modal-footer pagei-ftr">
+      <!-- <div class="modal-footer pagei-ftr">
   <div class="paginationArea text-end">
     <div class="pagination pagination-container">
         <span class="space" *ngIf="modalTableData.length">
@@ -144,34 +145,30 @@
   </div>
 </div> -->
 
-  <div class="modal-footer pagei-ftr">
-            <div class="paginationArea text-end">
-  <div class="pagination pagination-container">
-    <button (click)="previousModalPage()" [disabled]="modalPage === 1">Previous</button>
+      <div class="modal-footer pagei-ftr">
+        <div class="paginationArea text-end">
+          <div class="pagination pagination-container">
+            <button (click)="previousModalPage()" [disabled]="modalPage === 1">Previous</button>
 
-    <div class="paginationNumber">
-      <ng-container *ngFor="let page of modalVisiblePages">
-        <span *ngIf="page === -1">...</span>
-        <button
-          *ngIf="page !== -1"
-          (click)="goToModalPage(page)"
-          [class.active]="page === modalPage"
-          class="currentPage"
-        >
-          {{ page }}
-        </button>
-      </ng-container>
-    </div>
+            <div class="paginationNumber">
+              <ng-container *ngFor="let page of modalVisiblePages">
+                <span *ngIf="page === -1">...</span>
+                <button *ngIf="page !== -1" (click)="goToModalPage(page)" [class.active]="page === modalPage"
+                  class="currentPage">
+                  {{ page }}
+                </button>
+              </ng-container>
+            </div>
 
-    <span class="space" *ngIf="modalTableData.length">
-      Showing {{ (modalLimit * (modalPage - 1)) + 1 }} to
-      {{ (modalLimit * (modalPage - 1)) + modalTableData.length }} of {{ modalTotalRecords }} entries
-    </span>
+            <span class="space" *ngIf="modalTableData.length">
+              Showing {{ (modalLimit * (modalPage - 1)) + 1 }} to
+              {{ (modalLimit * (modalPage - 1)) + modalTableData.length }} of {{ modalTotalRecords }} entries
+            </span>
 
-    <button (click)="nextModalPage()" [disabled]="modalPage === modalTotalPages">Next</button>
-  </div>
-</div>
+            <button (click)="nextModalPage()" [disabled]="modalPage === modalTotalPages">Next</button>
           </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -418,17 +418,45 @@ export class UserTableComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  updateModalVisiblePages() {
-    const start = Math.max(1, this.modalPage - Math.floor(this.maxVisiblePages / 2));
-    const end = Math.min(this.modalTotalPages, start + this.maxVisiblePages - 1);
-    const visible: number[] = [];
-    for (let i = start; i <= end; i++) visible.push(i);
-    if (start > 1) visible.unshift(1);
-    if (start > 2) visible.splice(1, 0, -1);
-    if (end < this.modalTotalPages) visible.push(this.modalTotalPages);
-    if (end < this.modalTotalPages - 1) visible.splice(visible.length - 1, 0, -1);
-    this.modalVisiblePages = visible;
+ updateModalVisiblePages() {
+  const totalPages = this.modalTotalPages;
+  const currentPage = this.modalPage;
+  const maxVisible = 3; // fixed to 4 pages
+
+  let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+  let end = start + maxVisible - 1;
+
+  if (end > totalPages) {
+    end = totalPages;
+    start = Math.max(1, end - maxVisible + 1);
   }
+
+  const pages: number[] = [];
+
+  // Add first page
+  if (start > 1) {
+    pages.push(1);
+    if (start > 2) {
+      pages.push(-1); // Ellipsis before
+    }
+  }
+
+  // Add main range (up to 4 pages)
+  for (let i = start; i <= end; i++) {
+    pages.push(i);
+  }
+
+  // Add last page
+  if (end < totalPages) {
+    if (end < totalPages - 1) {
+      pages.push(-1); // Ellipsis after
+    }
+    pages.push(totalPages);
+  }
+
+  this.modalVisiblePages = pages;
+}
+
 }
 
 

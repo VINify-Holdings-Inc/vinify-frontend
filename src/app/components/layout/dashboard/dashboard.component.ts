@@ -178,6 +178,7 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     this.totalPages = 0;
     this.vin = "";
     this.isRead = null;
+    this.alertType=null
     // this.getTableData();
     this.resetData = !this.resetData;
     this.cdr.detectChanges();
@@ -185,8 +186,13 @@ export class DashboardComponent implements AfterViewInit, OnInit {
 
   changeDashboardActiveCard = (paranemtName: any) => {
     this.dashboardCardActive = paranemtName;
-    this.alertType=null;
-    // alert(this.alertType)
+    this.alertType=null; 
+    //  this.serchKpiType = paranemtName;
+    this.limit = 9;
+    this.page = 1;
+    this.totalPages = 0;
+    this.vin = "";
+    this.isRead = null; 
   }
   handelAlertFil(data: any) {
     this.vin = "";

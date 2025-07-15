@@ -13,8 +13,7 @@ import { SoapService } from '../../../services/soap.service';
 import { CreateSoapPdfService } from '../../../services/create-soap-pdf.service';
 import { PDF_SETTINGS, UPLOAD_FOLDER } from '../../../../app/constants';
 import { NavPdfService } from '../../../services/nav-pdf.service';
-
-@Component({
+ @Component({
   selector: 'app-dashboard-header',
   imports: [CommonModule, FormsModule, DateFormatPipe, LoaderComponent, RouterLink],
   templateUrl: './dashboard-header.component.html',
@@ -66,7 +65,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
   notificationData: any[] = [];
   ngOnInit() {
     // Subscribe to the profile data observable
-    this.subscription = this.profileService.profileData$.subscribe((data) => {
+      this.subscription = this.profileService.profileData$.subscribe((data) => {
       this.profileData = data; // Update local variable when data changes
       this.userName = data.name; // Dynamically update userName
       this.profile = data.profile; // Dynamically update profile
@@ -76,9 +75,10 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       this.unreadCount = count; // Update count in the UI
     });
 
-    this.lastUpdatedService.getLastUpdate$().subscribe(date => {
+    this. lastUpdatedService.getLastUpdate$().subscribe(date => {
       this.lastUpdateDate = date;
     });
+    //  this.showAlertCountData();
 
     // Call this function once when the app initializes
     setTimeout(() => {
@@ -143,7 +143,6 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       subtree: true
     });
   }
-  
 
   
 
@@ -329,6 +328,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       }
     );
   }
+ 
 
   getProfileData() {
     this.authService.getProfileData(this.userEmail).subscribe(
@@ -433,10 +433,10 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
           this.alertCount = res?.data?.totalNotificationCount || 0
           this.notificationService.setUnreadCount(
             res?.data?.totalNotificationCount || 0
-          );
-
+          ); 
           this.lastUpdatedService.setLastUpdate(res?.data?.lastUpdatedDate || "");
-        }
+          this.lastUpdateDate=res?.data?.lastUpdatedDate
+             }
       },
       (err) => {
       }
