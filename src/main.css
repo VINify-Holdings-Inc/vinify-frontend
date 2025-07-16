@@ -4068,7 +4068,7 @@ span.shortNameBrand {
     background-color: var(--bg-primary) !important;
 }
 .modal-dialog.dashboard-specific {
-	max-width: 660px;
+	max-width: 690px;
 }
 .modal-footer.pagei-ftr .paginationArea {
     padding: 0;
