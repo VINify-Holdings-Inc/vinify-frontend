@@ -10,11 +10,11 @@ const Dashboard = () => {
       </div>
       <div className='kips-area grid lg:grid-cols-2 lg:gap-x-8 gap-y-8 mt-6'>
         <div className='border border-gray-200 rounded p-8 md:p-10'>
-          <p className="font-bold text-lg mb-2">Total Users</p>
+          <p className="font-bold text-lg mb-2">Users</p>
           <h1 className="text-3xl font-bold">120</h1>
         </div>
         <div className='border border-gray-200 rounded p-8 md:p-10'>
-          <p className="font-bold text-lg mb-2">Total Videos</p>
+          <p className="font-bold text-lg mb-2">Videos</p>
           <h1 className="text-3xl font-bold">350</h1>
         </div>
 
