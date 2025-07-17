@@ -1,0 +1,16 @@
+.percentage-display {
+  border: 1px solid #efeeee;
+  width: 300px;
+  padding: 40px;
+  margin: 10px 0px;
+  box-shadow: 1px 1px #efeeee;
+  .title {
+    text-transform: capitalize;
+    margin-bottom: 0px;
+  }
+  .value {
+    font-size: 44px;
+    margin-top: 10px;
+    margin-bottom: 6px;
+  }
+}

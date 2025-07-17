@@ -1,0 +1,15 @@
+.line-chart {
+    padding: 10px;
+  }
+
+.ui.buttons {
+  flex-wrap: wrap;
+}
+
+@media(max-width: 500px) {
+  .ui.buttons .button.disabled {
+    width: 100%;
+  }
+}
+
+  

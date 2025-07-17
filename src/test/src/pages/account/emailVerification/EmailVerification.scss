@@ -1,0 +1,40 @@
+@import '../../../content/scss/styles.scss';
+
+.page-email-verification {
+  background-color: $bg-clr;
+  text-align: center;
+
+  @media #{$sm-screen} {
+    padding-top: 30px;
+  }
+
+  @media #{$md-to-lg-screen} {
+    padding-top: 120px;
+  }
+
+  @media #{$xl-screen} {
+    padding-top: 80px;
+  }
+
+  .head {
+    color: $base-clr;
+
+    h2 {
+      font-size: 2.5em !important;
+      font-weight: 700;
+      padding: 0px;
+      margin: 40px auto 16px auto;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 16px;
+    }
+  }
+
+  .foot {
+    font-size: 0.8em;
+    margin-top: 30px;
+    color: $pri-clr;
+  }
+}

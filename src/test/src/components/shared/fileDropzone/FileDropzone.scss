@@ -1,0 +1,70 @@
+@import '../../../content/scss/styles.scss';
+
+.cmp-file-dropzone {
+
+  .file-preview {
+    background-color: $sec-clr;
+    border: 1px solid $border-clr;
+    border-radius: 5px;
+
+    .file-details {
+      padding: 10px;
+      font-weight: 600;
+
+      .file-options {
+        display: flex;
+        justify-content: space-between;
+
+        .delete-icon {
+          color: $brand-clr;
+          cursor: pointer;
+        }
+
+        .file-name {
+          font-size: 1.2em;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+
+      .file-status {
+        opacity: 0.8;
+        color: $pri-clr;
+      }
+
+      .file-progress {
+        display: flex;
+        justify-content: flex-start;
+
+        .file-size {
+          color: $info-clr;
+          font-size: 0.9em;
+        }
+      }
+    }
+  }
+
+  .dropzone {
+    padding: 40px 25px;
+    width: 100%;
+    background-color: #FEFCFC;
+    border: 2px dashed rgb(229, 231, 235);
+    font-size: 1em;
+    color:#867676;
+    text-align: center;
+    border-radius: 5px;
+
+    &.highlight {
+      background-color: $shadow-light-clr;
+    }
+
+    .upload-icon {
+      opacity: 0.7;
+    }
+
+    .fileInput {
+      display: none;
+    }
+  }
+}

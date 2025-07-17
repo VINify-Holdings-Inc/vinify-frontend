@@ -1,0 +1,34 @@
+@import '../../../content/scss/styles.scss';
+
+.cmp-profile-picture-settings {
+  h1 {
+    font-size: 1.6em !important;
+  }
+
+  .update-photo {
+    h4 {
+      font-size: 1.2em !important;
+      margin: 5px auto;
+      font-weight: 600;
+    }
+
+    .px {
+      font-size: 0.9em;
+      line-height: 12px;
+    }
+
+    .btn-upload-photo {
+      display: inline-block;
+      background: $pri-clr;
+      color: $sec-clr !important;
+      font-size: 1em !important;
+      border-radius: 2px;
+      padding: 10px;
+    }
+  }
+
+  .profile-photo {
+    width: 120px !important;
+    height: 120px !important;
+  }
+}

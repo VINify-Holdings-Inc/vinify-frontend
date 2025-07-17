@@ -1,0 +1,15 @@
+@import '../../../content/scss/styles.scss';
+
+.page-support-center {
+    .jumbotron-header {
+        width: 100%;
+        padding: 6% 10%;
+        background-color: $brand-clr;
+        color: #fff;
+
+        &>h2 {
+            display: inline-block;
+            margin: 0 auto;
+        }
+    }
+}

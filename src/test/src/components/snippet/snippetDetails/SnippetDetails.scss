@@ -1,0 +1,128 @@
+@import '../../../content/scss/styles.scss';
+
+.cmp-snippet-details {
+  .title {
+    font-size: 2.4em !important;
+  }
+
+  .status {
+    display: inline-block;
+    position: relative;
+    top: -6px;
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+  }
+
+  .status-active {
+    background-color: $success-clr;
+  }
+
+  .status-inactive {
+    background-color: $brand-clr;
+  }
+
+  .button {
+    margin-top: 8px;
+  }
+
+  .snippet-details {
+
+    margin-top: 32px;
+
+    p {
+      margin-top: 0.8rem;
+      margin-bottom: 0.1rem;
+    }
+  }
+
+  label {
+    font-weight: 100;
+  }
+
+  .header-buttons-divider {
+    height: 28px;
+    width: 1px;
+    background: #999;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  .video-react {
+    width: 600px;
+    height: 338px;
+    padding: 0px;
+  }
+
+  @media #{$xl-screen} {
+    .video-react-fluid {
+      max-width: 600px !important;
+    }
+  }
+
+  @media #{$md-up-screen} {
+    .video-react-fluid {
+      max-width: 65% !important;
+    }
+  }
+
+  @media #{$sm-screen} {
+    .video-react-fluid {
+      max-width: 100% !important;
+    }
+  }
+}
+
+.cmp-export-snippet .cmp-select,
+.cmp-export-snippet .cmp-text-box input {
+  margin-bottom: 20px;
+}
+
+.cmp-export-snippet .form .form-group {
+  margin-bottom: 0 !important;
+}
+
+.cmp-export-snippet .cmp-text-box input {
+  width: 100%;
+}
+span.micon {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+div.mutebtn{
+  position: relative;
+}
+
+.videoSec {
+  position: relative;
+}
+
+.logo.right {
+  text-align: right;
+}
+
+.logo.left {
+  text-align: left;
+}
+.logo.center {
+  text-align: center;
+}
+
+.cmp-button.txt a {
+  display: inline-block;
+  min-width: 147.15px;
+  text-align: center;
+}
+.cmp-button.txt a:hover{
+  background-color: #c8131b;
+  color: #fff;
+}
+.btnGrey{
+  background:#ababad!important;
+}
+.text-2xl.font-bold.mb-0{
+  text-align: left!important;
+}

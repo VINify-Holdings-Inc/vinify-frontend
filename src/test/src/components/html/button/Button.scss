@@ -1,0 +1,205 @@
+@import '../../../content/scss/styles.scss';
+
+.cmp-button {
+  &:hover {
+    .cmp-tool-tip {
+      display: block;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+
+  .button {
+    margin: 0;
+    padding: 12px 35px;
+    border-radius: 5px;
+    font-family: $button-font;
+    transition: background-color 150ms;
+
+    &.disabled {
+      pointer-events: initial !important;
+      &:hover {
+        pointer-events: initial !important;
+      }
+    }
+
+    &:hover {
+      color: #fff !important;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &:active {
+      outline: 0;
+    }
+
+    &.transparent {
+      background: $transparent-clr;
+      &:focus {
+        outline: 0;
+      }
+      &:active {
+        outline: 0;
+      }
+      &:hover {
+        color: #fff !important;
+      }
+    }
+
+    .icon {
+      margin-left: 0.2rem;
+      margin-right: 0.2rem;
+    }
+
+    &.base {
+      background: $base-clr;
+      color: $sec-clr;
+    }
+
+    &.primary {
+      background: $brand-clr;
+      font-weight: bold;
+      color: $sec-clr;
+
+      &:hover {
+        background: #C8131B;
+      }
+
+      &:active {
+        background: #C8131B;
+      }
+
+      &:focus {
+        background: #C8131B;
+      }
+
+      &.basic {
+        background-color: transparent;
+        color: $pri-clr !important;
+        border-radius: 2px;
+
+        &:hover {
+          background: $pri-clr !important;
+          color: $sec-clr !important;
+        }
+      }
+    }
+
+    &.brand {
+      background: $brand-clr;
+      color: $sec-clr;
+      font-weight: bold;
+
+      &.basic {
+        background-color: transparent;
+        color: $base-clr !important;
+        border-radius: 2px;
+
+        &:hover {
+          background: $brand-clr !important;
+          color: $sec-clr !important;
+        }
+      }
+    }
+  }
+
+  .button-secondary {
+    border:2px solid #C8131B;
+    color: #C8131B;
+    font-weight: bold;
+    padding: 8px 35px;
+    border-radius: 5px;
+    font-family: $button-font;
+    transition: background-color 150ms;
+  }
+
+  .button-secondary.deactivate {
+    border-color: #AFA1A1;
+    color: #826D6D;
+  }
+
+  .deactivate:hover {
+    background-color: #fff;
+    border-color:#C8131B;
+    color: #826D6D;
+  }
+
+  .button-secondary:hover {
+    color: #fff;
+  }
+
+  .button:hover {
+      background-color: #C8131B;
+  }
+}
+
+.cmp-button-group {
+  &.buttons {
+    margin: 0;
+    letter-spacing: 0.04rem;
+    padding-top: 14px;
+    border-radius: 2px;
+    font-family: $button-font;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &:active {
+      outline: 0;
+    }
+
+    &.transparent {
+      .button {
+        background: $transparent-clr;
+        &:focus {
+          outline: 0;
+        }
+        &:active {
+          outline: 0;
+        }
+      }
+    }
+
+    .icon {
+      margin-left: 0.2rem;
+      margin-right: 0.2rem;
+    }
+
+    &.base {
+      .button {
+        background: $base-clr;
+        color: $sec-clr;
+      }
+    }
+
+    &.primary {
+      .button {
+        background-color: $brand-clr;
+        color: $sec-clr;
+
+        &:hover {
+          background: #C8131B;
+        }
+
+        &:active {
+          background: #C8131B;
+        }
+
+        &:focus {
+          background: #C8131B;
+        }
+      }
+    }
+
+    &.brand {
+      .button {
+        background-color: $brand-clr;
+        color: $sec-clr;
+      }
+    }
+  }
+}

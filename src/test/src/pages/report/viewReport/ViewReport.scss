@@ -1,0 +1,158 @@
+@import '../../../content/scss/styles.scss';
+
+#view-report-page {
+  .filters {
+    .filter-heading {
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .filter {
+      width: 33%;
+      padding: 16px;
+
+      @media #{$md-to-lg-screen} {
+        width: 49%;
+      }
+
+      @media #{$sm-screen} {
+        width: 100%;
+      }
+    }
+
+    .snippet-filter {
+      width: 66%;
+
+      @media #{$md-to-lg-screen} {
+        width: 49%;
+      }
+
+      @media #{$sm-screen} {
+        width: 100%;
+      }
+    }
+
+    .filter-btns {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin: 20px auto;
+
+      .cmp-button {
+        width: 45%;
+        height: 42px;
+
+        .filter-btn {
+          width: 100%;
+        }
+      }
+    }
+
+    .date-range {
+      margin-bottom: 24px;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='password'],
+    input[type='number'],
+    input[type='url'] {
+      padding-top: 13px !important;
+      padding-bottom: 13px !important;
+    }
+  }
+
+  .ui .menu, .ui.compact.menu {
+    background-color: white !important;
+    border: 2px solid #AFA1A1 !important;
+    box-shadow: none !important;
+  }
+
+  .ui .menu .item, .ui.compact.menu .item {
+    color: #826D6D !important;
+  }
+
+  .ui.grid > .column:not(.row), .ui.grid > .row > .column {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .accordion.ui.fluid {
+    background-color: #FEFCFC !important;
+  }
+
+  .cmp-button .button-secondary {
+    padding: 12px 35px;
+  }
+
+  .snippet-title {
+    // position: relative;
+
+    .snippet-title-buttons {
+      // position: absolute;
+      // top: 20px;
+      // right: 0px;
+
+      // &>div {
+      //   display: inline-block;
+      //   margin-left: 6px;
+      //   font-size: 1.6em;
+
+      //   &:hover {
+      //     cursor: pointer;
+      //   }
+      // }
+
+      // .clear-snippet-button{
+      //   font-size: 1.8em;
+      // }
+    }
+
+  }
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination button:hover {
+  background-color: #ddd;
+}
+
+.customWidth{
+  width:100%!important
+}
