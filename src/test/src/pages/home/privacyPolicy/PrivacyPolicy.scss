@@ -1,0 +1,59 @@
+@import '../../../content/scss/styles.scss';
+
+.page-privacy-policy {
+  background-color: $bg-clr;
+
+  @media #{$sm-screen} {
+    padding: 20px 20px;
+  }
+
+  @media #{$md-to-lg-screen} {
+    padding: 20px 26px;
+  }
+
+  @media #{$xl-screen} {
+    padding: 20px 34px;
+  }
+
+  @media #{$md-to-lg-screen} {
+    margin-left: 1em !important;
+    margin-right: 1em !important;
+  }
+
+  .head {
+    color: $base-clr;
+    text-align: center;
+
+    h1 {
+      font-size: 1.8em !important;
+      font-weight: 700;
+    }
+  }
+
+  .body {
+    position: relative;
+    background-color: $sec-clr;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    padding: 20px 20px 20px 20px;
+    margin-top: 20px;
+    box-shadow: 4px 0px 6px 0 $shadow-light-clr;
+
+    h2 {
+      font-size: 1.5em !important;
+      font-weight: 700;
+      padding-top: 20px;
+    }
+    h3 {
+      font-size: 1.2em !important;
+      padding-top: 5px;
+    }
+    p {
+      font-size: 1.1em;
+      margin-top: 16px;
+    }
+    a {
+      color: $info-clr;
+    }
+  }
+}

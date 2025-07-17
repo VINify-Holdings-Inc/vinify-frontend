@@ -1,0 +1,10 @@
+@import '../../../content/scss/styles.scss';
+
+.modal {
+  .actions {
+    .cmp-button {
+      display: inline-block !important;
+      margin-left: 5px;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+@import '../../../content/scss/styles.scss';
+
+.cmp-profile-settings {
+  .clearfix {
+    clear: both;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .ui.grid {
+    margin-left: -0.8rem !important;
+    margin-right: -0.8rem !important;
+  }
+
+  .ui.grid > .row > .column {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+}

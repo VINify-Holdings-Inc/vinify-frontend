@@ -1,0 +1,39 @@
+@import '../../../content/scss/styles.scss';
+
+.page-view-snippet {
+  .ui.divider {
+    margin-top: 128px;
+    margin-bottom: 80px;
+    margin-left: 26%;
+    margin-right: 26%;
+    border-top-color: #efefef;
+  }
+}
+
+.newRules{
+  
+    
+  justify-content: center;
+	width: 100%;
+	max-width: 600px;
+	align-items: center;
+	margin: auto;
+
+}
+
+
+span.micon {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+div.mutebtn {
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+}
+
+.videoSec {
+  position: relative;
+}

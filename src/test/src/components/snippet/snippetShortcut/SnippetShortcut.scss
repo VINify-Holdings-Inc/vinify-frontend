@@ -1,0 +1,16 @@
+@import '../../../content/scss/styles.scss';
+
+.cmp-snippet-shortcut {
+  .ui.placeholder.segment {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  .segment-header {
+    img {
+      margin: 0 auto;
+      max-width: 20%;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import '../../../content/scss/styles.scss';
+
+.page-home {
+  .head {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  .ui.grid > .row > .column {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .body {
+    .explore-area {
+      padding-top: 64px;
+
+      h2 {
+        font-size: 1.8em !important;
+        margin: 5px auto;
+      }
+
+      .explore-img {
+        min-height: inherit;
+        box-shadow: 0 0 5px $shadow-light-clr;
+      }
+
+      .card {
+        h4 {
+          font-size: 1.2em !important;
+          margin: 5px auto;
+        }
+
+        h6 {
+          font-size: 1.2em !important;
+          font-weight: 600;
+          margin: 5px auto;
+        }
+      }
+    }
+  }
+}
