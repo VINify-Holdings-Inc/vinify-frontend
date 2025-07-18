@@ -15,22 +15,12 @@ const fetData = async () => {
   setLoader(true);
   try {
     const res = await GetAdminDashboardTotalDataForKpi();
-
-    if (!res || !res.body) {
-      throw new Error("Invalid response from server");
-    }
-
+ 
     setUser(res.body.userCount || 0);
     setvideo(res.body.videoCount || 0);
-  } catch (error) {
-    console.error("Failed to fetch KPI data:", error);
-
-    // Set fallback values
+  } catch (error) { 
     setUser(0);
-    setvideo(0);
-
-    // Optional: Display an error message //
-    setErrorMessage("Failed to load KPI data. Please try again later.");
+    setvideo(0); 
   } finally {
     setLoader(false);
   }

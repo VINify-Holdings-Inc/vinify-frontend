@@ -19,15 +19,10 @@ const fetData = async () => {
 
     if (!res || !res.body || !Array.isArray(res.body.urLs)) {
       throw new Error("Invalid video data from server");
-    }
-
+    } 
     setvideo(res.body.urLs);
-  } catch (error) {
-    console.error("Failed to fetch video data:", error);
-
-    // Optional: Show error UI or fallback
-    setvideo([]); // Clear video list
-    setErrorMessage("Failed to load videos. Please try again later.");
+  } catch (error) { 
+    setvideo([]);  
   } finally {
     setLoader(false);
   }

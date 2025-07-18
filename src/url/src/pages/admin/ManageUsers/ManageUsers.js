@@ -49,17 +49,11 @@ const ManageUsers = () => {
     setPage(res.body.currentPage);
     setTotal(res.body.totalCount);
     setTotalPages(res.body.totalPage);
-  } catch (error) {
-    console.error("Failed to fetch user data:", error);
-
-    // Optional: Show error UI or fallback message
+  } catch (error) { 
     setUsers([]);
     setPage(1);
     setTotal(0);
-    setTotalPages(0);
-
-    // If you have an error message state, set it here
-    setErrorMessage("Failed to load user data. Please try again later.");
+    setTotalPages(0); 
   } finally {
     setLoader(false);
   }
@@ -68,7 +62,7 @@ const ManageUsers = () => {
 
   const exportToCSV = () => {
     setLoader(true);
-    const headers = ["Name", "Last Name", "Username", "Phone Number", "Email", "Registration Type", "Videos", "Status"];
+    const headers = ["First Name", "Last Name", "Username", "Phone Number", "Email", "Registration Type", "Videos", "Status"];
     const rows = users.map(user => [
       user.name,
       user.lastName,
@@ -193,7 +187,7 @@ const ManageUsers = () => {
             <thead className="bg-gray-100">
               <tr>
                 <th className="border p-2 text-left cursor-pointer" onClick={toggleSortOrder}>
-                  Name
+                First  Name
                   <span className="ml-2">
                     {sortOrder === 'asc' && <i className="fas fa-arrow-up"></i>}
                     {sortOrder === 'desc' && <i className="fas fa-arrow-down"></i>}
