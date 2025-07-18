@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GetAdminDashboardTotalDataForKpi } from "../../../actions/account"
+import { Loading } from '../../../components/shared/loading/Loading';
+
 const Dashboard = () => {
   const [user, setUser] = useState(0)
   const [video, setvideo] = useState(0)
+  const [loader, setLoader] = useState(false);
   useEffect(() => {
     fetData()
   }, [])
 
   const fetData = async () => {
+    setLoader(true);
     const res = await GetAdminDashboardTotalDataForKpi();
     setUser(res?.body?.userCount);
-      console.log(res?.body?.userCount);
     setvideo(res?.body?.videoCount);
+    setLoader(false);
   }
-  console.log(user,video);
-  
+
   return (
     <>
       <div className='topHeadarea'>
@@ -37,7 +40,9 @@ const Dashboard = () => {
             <h1 className="text-3xl font-bold">{video}</h1>
           </div>
         </Link>
-
+        <div className={`${loader ? 'loader-component' : ""}`}>
+          {loader && <Loading center="center" />}
+        </div>
       </div>
 
     </>

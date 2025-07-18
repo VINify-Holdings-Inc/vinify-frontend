@@ -96,3 +96,12 @@ export const GetAdminDashboardAllUserData = async(page=1 ,limit=12) => {
  
   return res;
 };
+
+export const GetAdminDashboardAllVedio = async (emailId) => {
+  let url = 'Admin/GetAllVideos'; 
+  if (emailId) {
+    url += `?emailId=${emailId}`;
+  } 
+  const res = await serviceHandler.get(url);
+  return res;
+};
