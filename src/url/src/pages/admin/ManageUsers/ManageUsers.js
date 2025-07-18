@@ -17,11 +17,16 @@ const ManageUsers = () => {
     fetData();
   }, [page, limit, query, status, sortOrder]);
 
-  const fetData = async () => {
-    setLoader(true);
+ const fetData = async () => {
+  setLoader(true);
+  try {
     const res = await GetAdminDashboardAllUserData(page, limit, query, status);
 
-    let userData = res?.body?.data?.map(user => ({
+    if (!res || !res.body || !res.body.data) {
+      throw new Error("Invalid response from server");
+    }
+
+    let userData = res.body.data.map(user => ({
       name: user.firstName || '',
       lastName: user.lastName || '',
       userName: user.userName || '',
@@ -35,17 +40,31 @@ const ManageUsers = () => {
 
     // Sort by name
     if (sortOrder === 'asc') {
-      userData = userData.sort((a, b) => a.name.localeCompare(b.name));
+      userData.sort((a, b) => a.name.localeCompare(b.name));
     } else if (sortOrder === 'desc') {
-      userData = userData.sort((a, b) => b.name.localeCompare(a.name));
+      userData.sort((a, b) => b.name.localeCompare(a.name));
     }
 
     setUsers(userData);
-    setPage(res?.body?.currentPage);
-    setTotal(res?.body?.totalCount);
-    setTotalPages(res?.body?.totalPage);
+    setPage(res.body.currentPage);
+    setTotal(res.body.totalCount);
+    setTotalPages(res.body.totalPage);
+  } catch (error) {
+    console.error("Failed to fetch user data:", error);
+
+    // Optional: Show error UI or fallback message
+    setUsers([]);
+    setPage(1);
+    setTotal(0);
+    setTotalPages(0);
+
+    // If you have an error message state, set it here
+    setErrorMessage("Failed to load user data. Please try again later.");
+  } finally {
     setLoader(false);
-  };
+  }
+};
+
 
   const exportToCSV = () => {
     setLoader(true);

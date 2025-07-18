@@ -11,13 +11,30 @@ const Dashboard = () => {
     fetData()
   }, [])
 
-  const fetData = async () => {
-    setLoader(true);
+const fetData = async () => {
+  setLoader(true);
+  try {
     const res = await GetAdminDashboardTotalDataForKpi();
-    setUser(res?.body?.userCount);
-    setvideo(res?.body?.videoCount);
+
+    if (!res || !res.body) {
+      throw new Error("Invalid response from server");
+    }
+
+    setUser(res.body.userCount || 0);
+    setvideo(res.body.videoCount || 0);
+  } catch (error) {
+    console.error("Failed to fetch KPI data:", error);
+
+    // Set fallback values
+    setUser(0);
+    setvideo(0);
+
+    // Optional: Display an error message //
+    setErrorMessage("Failed to load KPI data. Please try again later.");
+  } finally {
     setLoader(false);
   }
+};
 
   return (
     <>

@@ -12,12 +12,26 @@ const AdminVedio = () => {
     fetData()
   }, [])
 
-  const fetData = async () => {
-    setLoader(true);
+const fetData = async () => {
+  setLoader(true);
+  try {
     const res = await GetAdminDashboardAllVedio();
-    setvideo(res?.body?.urLs);
+
+    if (!res || !res.body || !Array.isArray(res.body.urLs)) {
+      throw new Error("Invalid video data from server");
+    }
+
+    setvideo(res.body.urLs);
+  } catch (error) {
+    console.error("Failed to fetch video data:", error);
+
+    // Optional: Show error UI or fallback
+    setvideo([]); // Clear video list
+    setErrorMessage("Failed to load videos. Please try again later.");
+  } finally {
     setLoader(false);
   }
+};
 
   // Sample video data
 
