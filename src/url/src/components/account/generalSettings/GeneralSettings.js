@@ -344,7 +344,7 @@ class GeneralSettings extends Component {
                         />
                         {this.state.isUpdating ? (
                             <div className='ui center aligned grid'>
-                                <Loading/>
+                                <Loading />
                             </div>
                         ) : null}
                     </form>

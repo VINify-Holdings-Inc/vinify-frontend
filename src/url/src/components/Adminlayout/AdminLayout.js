@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import AdminLeftSideBar from "../../pages/admin/common/AdminLeftSideBar/AdminLeftSideBar";
 import AdminFooter from "../../pages/admin/common/AdminFooter";
-
+import './admin-custom.css'
 const AdminLayout = ({ component: Component, ...rest }) => {
   return (
     <Route

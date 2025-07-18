@@ -1,38 +1,108 @@
 import React, { useState, useEffect } from 'react';
+import { GetAdminDashboardAllUserData } from "../../../actions/account";
+import { Loading } from '../../../components/shared/loading/Loading';
 
 const ManageUsers = () => {
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState('All');
   const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(1);
   const [users, setUsers] = useState([]);
-
-  const pageSize = 5;
-
-  const fetchUsersFromServer = ({ filter }) => {
-    const allUsers = [
-      { name: 'Vivek Mishra', videos: 8, status: "Active" },
-      { name: 'Niharika Singh', videos: 80, status: "Inactive" },
-      { name: 'Amit Singh', videos: 18, status: "Active" },
-      { name: 'Rohit Sharma', videos: 32, status: "Inactive" },
-      { name: 'Suman Yadav', videos: 5, status: "Active" },
-      { name: 'Nitin Sinha', videos: 25, status: "Active" },
-    ];
-
-    return allUsers.filter(user => {
-      const matchesQuery = user.name.toLowerCase().includes(filter.query.toLowerCase());
-      const matchesStatus = filter.status === "All" || user.status === filter.status;
-      return matchesQuery && matchesStatus;
-    });
-  };
+  const [totalPages, setTotalPages] = useState(1);
+  const [total, setTotal] = useState(1);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
-    const data = fetchUsersFromServer({ filter: { query, status } });
-    setUsers(data);
-    setPage(1); // Reset to page 1 on filter change
-  }, [query, status]);
+    fetData();
+  }, [page, limit, query, status]);
 
-  const paginatedUsers = users.slice((page - 1) * pageSize, page * pageSize);
-  const totalPages = Math.ceil(users.length / pageSize);
+  const fetData = async () => {
+    setLoader(true);
+    const res = await GetAdminDashboardAllUserData(page, limit, query, status);
+
+    const userData = res?.body?.data?.map(user => ({
+      name: user.firstName || '',
+      lastName: user.lastName || '',
+      userName: user.userName || '',
+      phoneNumber: user.phoneNumber || '',
+      dateOfJoining: user.dateOfJoining ? new Date(user.dateOfJoining).toLocaleDateString() : '',
+      email: user.email || '',
+      registrationType: user.registrationType || '',
+      videos: user.videoCount || 0,
+      status: 'Active'
+    }));
+
+    setUsers(userData);
+    setPage(res?.body?.currentPage);
+    setTotal(res?.body?.totalCount);
+    setTotalPages(res?.body?.totalPage);
+    setLoader(false);
+  };
+
+  const exportToCSV = () => {
+    setLoader(true);
+    const headers = ["Name", "Last Name", "Username", "Phone Number", "Date of Joining", "Email", "Registration Type", "Videos", "Status"];
+    const rows = users.map(user => [
+      user.name,
+      user.lastName,
+      user.userName,
+      user.phoneNumber,
+      user.dateOfJoining,
+      user.email,
+      user.registrationType,
+      user.videos,
+      user.status
+    ]);
+
+    let csvContent =
+      "data:text/csv;charset=utf-8," +
+      [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "users_data.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setLoader(false);
+  };
+
+  const getVisiblePages = (currentPage, totalPages, maxVisible = 4) => {
+    let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let end = start + maxVisible - 1;
+
+    if (end > totalPages) {
+      end = totalPages;
+      start = Math.max(1, end - maxVisible + 1);
+    }
+
+    const pages = [];
+
+    // Add first page
+    if (start > 1) {
+      pages.push(1);
+      if (start > 2) {
+        pages.push(-1); // Ellipsis before
+      }
+    }
+
+    // Add main range
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    // Add last page
+    if (end < totalPages) {
+      if (end < totalPages - 1) {
+        pages.push(-1); // Ellipsis after
+      }
+      pages.push(totalPages);
+    }
+
+    return pages;
+  };
+
 
   return (
     <>
@@ -47,7 +117,6 @@ const ManageUsers = () => {
         <div className='border border-gray-200 rounded p-8 md:p-10'>
           <h1 className="text-2xl font-bold mb-4">List of Users</h1>
 
-          {/* Filter + Sort */}
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="flex flex-col md:flex-row justify-between items-end md:items-center mt-8 md:mt-0 mb-8 gap-y-5 md:gap-x-8">
               <div className="form-group cmp-text-box w-full">
@@ -63,19 +132,29 @@ const ManageUsers = () => {
                   />
                   <button
                     type="submit"
+                    onClick={() => setPage(1)}
                     className="px-4 text-sm py-3 font-medium text-primary bg-white border border-primary rounded hover:bg-primary-dark group hover:text-white transition duration-150 ml-3"
                   >
                     Search
                   </button>
                 </div>
               </div>
-
+              <button
+                type="button"
+                onClick={exportToCSV}
+                className="bg-light-rose rounded px-4 py-3 border border-gray-200"
+              >
+                CSV
+              </button>
               <div className="cmp-select">
                 <select
                   name="status"
                   id="status"
                   value={status}
-                  onChange={(e) => setStatus(e.target.value)}
+                  onChange={(e) => {
+                    setStatus(e.target.value);
+                    setPage(1);
+                  }}
                   className="ui selection dropdown select"
                 >
                   <option value="All">All</option>
@@ -83,47 +162,46 @@ const ManageUsers = () => {
                   <option value="Inactive">Inactive</option>
                 </select>
               </div>
-
-              {/* <div className="cmp-select">
-                <select
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
-                  className="border border-gray-300 rounded px-4 py-3"
-                >
-                  <option value="All">All</option>
-                  <option value="Active">Active</option>
-                  <option value="Inactive">Inactive</option>
-                </select>
-              </div> */}
             </div>
           </form>
 
-          {/* Table */}
           <table className="min-w-full table-auto border-collapse border border-gray-300">
             <thead className="bg-gray-100">
               <tr>
-                <th className="border p-2 text-left">User</th>
+                <th className="border p-2 text-left">Name</th>
+                <th className="border p-2 text-left">Last Name</th>
+                <th className="border p-2 text-left">Username</th>
+                <th className="border p-2 text-left">Phone Number</th>
+                <th className="border p-2 text-left">Date of Joining</th>
+                <th className="border p-2 text-left">Email</th>
+                <th className="border p-2 text-left">Registration Type</th>
                 <th className="border p-2 text-left">Videos</th>
                 <th className="border p-2 text-left">Action</th>
               </tr>
             </thead>
             <tbody>
-              {paginatedUsers.length === 0 ? (
+              {users.length === 0 ? (
                 <tr>
-                  <td colSpan="3" className="p-4 text-center">No users found.</td>
+                  <td colSpan="9" className="p-4 text-center">No users found.</td>
                 </tr>
               ) : (
-                paginatedUsers.map((user, index) => (
+                users.map((user, index) => (
                   <tr key={index}>
-                    <td className="border p-2">{user.name}</td>
-                    <td className="border p-2">{user.videos}</td>
+                    <td className="border p-2">{user?.name}</td>
+                    <td className="border p-2">{user?.lastName}</td>
+                    <td className="border p-2">{user?.userName}</td>
+                    <td className="border p-2">{user?.phoneNumber}</td>
+                    <td className="border p-2">{user?.dateOfJoining}</td>
+                    <td className="border p-2">{user?.email}</td>
+                    <td className="border p-2">{user?.registrationType}</td>
+                    <td className="border p-2">{user?.videos}</td>
                     <td className="border p-2">
                       <div className="flex flex-wrap gap-x-3 gap-y-3 sm:gap-x-5">
                         <div className="cmp-button">
-                          <button className="medium button-secondary button">View</button>
+                          <button className="medium button-secondary button">Active</button>
                         </div>
                         <div className="cmp-button">
-                          <button className="medium button-secondary button">Disable</button>
+                          <button className="medium button-secondary button">Deactivate</button>
                         </div>
                       </div>
                     </td>
@@ -133,20 +211,24 @@ const ManageUsers = () => {
             </tbody>
           </table>
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="pagination mt-4 flex gap-2">
-              {Array.from({ length: totalPages }, (_, i) => (
+          {loader && <Loading center="center" />}
+
+          <div className="pagination mt-4 flex gap-2">
+            {getVisiblePages(page, totalPages)?.map((p, index) =>
+              p === -1 ? (
+                <span key={index} className="px-3 py-1">...</span>
+              ) : (
                 <button
-                  key={i}
-                 className="active"
-                  onClick={() => setPage(i + 1)}
+                  key={index}
+                  className={`px-3 py-1 border rounded ${page === p ? 'active' : 'bg-white text-dark border-primary'}`}
+                  onClick={() => setPage(p)}
                 >
-                  {i + 1}
+                  {p}
                 </button>
-              ))}
-            </div>
-          )}
+              )
+            )}
+          </div>
+
         </div>
       </div>
     </>
@@ -154,3 +236,4 @@ const ManageUsers = () => {
 };
 
 export default ManageUsers;
+
