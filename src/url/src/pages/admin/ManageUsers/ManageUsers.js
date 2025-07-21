@@ -60,33 +60,45 @@ const ManageUsers = () => {
 };
 
 
-  const exportToCSV = () => {
-    setLoader(true);
-    const headers = ["First Name", "Last Name", "Username", "Phone Number", "Email", "Registration Type", "Videos", "Status"];
-    const rows = users.map(user => [
-      user.name,
-      user.lastName,
-      user.userName,
-      user.phoneNumber,
-      user.email,
-      user.registrationType,
-      user.videos,
-      user.status
-    ]);
+const exportToCSV = () => {
+  if (!users || users.length === 0) {
+    alert("No user data available to export.");
+    return;
+  }
 
-    let csvContent =
-      "data:text/csv;charset=utf-8," +
-      [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+  setLoader(true);
 
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "users_data.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setLoader(false);
-  };
+  const headers = [
+    "First Name", "Last Name", "Username", "Phone Number",
+    "Email", "Registration Type", "Videos", "Status"
+  ];
+
+  const rows = users.map(user => [
+    user.name,
+    user.lastName,
+    user.userName,
+    user.phoneNumber,
+    user.email,
+    user.registrationType,
+    user.videos,
+    user.status
+  ]);
+
+  const csvContent =
+    "data:text/csv;charset=utf-8," +
+    [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "users_data.csv");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  setLoader(false);
+};
+
 
   const getVisiblePages = (currentPage, totalPages, maxVisible = 4) => {
     let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));

@@ -110,7 +110,7 @@ export class NavPdfService {
       doc.setFontSize(textFontSize);
       doc.setFont('helvetica', 'normal');
       doc.text(
-        'Title Alarm LLC, Marley Nonami Incorporated is an approved NMVTIS Data Provider.',
+        'Title Alarm LLC, Marley Nonami Incorporated is an Approved NMVTIS Data Provider.',
         textX,
         textY
       );
