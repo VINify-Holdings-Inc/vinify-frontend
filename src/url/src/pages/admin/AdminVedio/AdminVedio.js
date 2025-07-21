@@ -9,15 +9,22 @@ const AdminVedio = () => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-   if(email?.length==0){
-     fetData()
-   }
-  }, [email])
+    fetData()
+
+  }, [])
+
+  // useEffect(() => { 
+  //   if (email?.length == 0) {
+  //     fetData()
+  //   }
+  // }, [email])
 
   const fetData = async () => {
     setLoader(true);
     try {
-      const emailParam = email?.trim();
+      const params = new URLSearchParams(window.location.search);
+      const email = params.get('email');
+      const emailParam = email ? email : email?.trim();
       const res = await GetAdminDashboardAllVedio(emailParam !== '' ? emailParam : null);
 
       if (!res) {
@@ -75,7 +82,7 @@ const AdminVedio = () => {
                 </div>
               </div>
 
-              <div className="cmp-select">
+              {/* <div className="cmp-select">
                 <select
 
                   value={status}
@@ -86,63 +93,42 @@ const AdminVedio = () => {
                   <option value="Active">Active</option>
                   <option value="Inactive">Inactive</option>
                 </select>
-              </div>
+              </div> */}
             </div>
           </form>
 
-         <section className="min-h-[100px]">
-  {loader ? (
-    <div className="loader-component">
-      <Loading center="center" />
-    </div>
-  ) : video.length === 0 ? (
-    <div className="text-center text-gray-500 text-lg py-10">
-      No records found
-    </div>
-  ) : (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-6">
-      {video.map((items, index) => (
-        <div key={index} className="rounded border border-gray-200 snippet">
-          <div className="relative">
-            <img src={items.gifUrl} alt="Thumbnail" className="snippet-img" />
-            <a
-              href={items.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="absolute right-4 top-3 text-base text-white drop-shadow-2xl flex items-center group text-shadow hover:text-primary"
-            >
-              {/* Eye Icon SVG */}
-              <svg
-                className="fill-current h-5 text-white drop-shadow-md group-hover:text-primary transition duration-500"
-                clipRule="evenodd"
-                fillRule="evenodd"
-                strokeLinejoin="round"
-                strokeMiterlimit="2"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="m11.998 5c-4.078 0-7.742 3.093-9.853 6.483-.096.159-.145.338-.145.517s.048.358.144.517c2.112 3.39 5.776 6.483 9.854 6.483 4.143 0 7.796-3.09 9.864-6.493.092-.156.138-.332.138-.507s-.046-.351-.138-.507c-2.068-3.403-5.721-6.493-9.864-6.493zm.002 3c2.208 0 4 1.792 4 4s-1.792 4-4 4-4-1.792-4-4 1.792-4 4-4zm0 1.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z"
-                  fillRule="nonzero"
-                />
-              </svg>
-              Preview
-            </a>
-          </div>
-          <div className="p-6">
-            <div className="flex justify-between items-center">
-              <small className="text-sm text-gray-400">
-                Created at:{" "}
-                {items.createdDate &&
-                  new Date(items.createdDate).toLocaleDateString()}
-              </small>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  )}
-</section>
+          <section className="min-h-[100px]">
+            {loader ? (
+              <div className="loader-component">
+                <Loading center="center" />
+              </div>
+            ) : video.length === 0 ? (
+              <div className="text-center text-gray-500 text-lg py-10">
+                No records found
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-6">
+                {video.map((items, index) => (
+                  <div key={index} className="rounded border border-gray-200 snippet">
+                    <div className="relative video-blocks">
+                      {/* <img src={items.gifUrl} alt="Thumbnail" className="snippet-img" /> */}
+                      <video src={items.url} controls height='180' width='350' />
+
+                    </div>
+                    <div className="p-6">
+                      <div className="flex justify-between items-center">
+                        <small className="text-sm text-gray-400">
+                          Created at:{" "}
+                          {items.createdDate &&
+                            new Date(items.createdDate).toLocaleDateString()}
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
 
         </div>
       </div>

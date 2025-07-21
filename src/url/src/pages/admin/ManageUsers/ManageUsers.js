@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { GetAdminDashboardAllUserData, AdminUserActiveInactive } from "../../../actions/account";
 import { Loading } from '../../../components/shared/loading/Loading';
-
+import history from '../../../history';
 const ManageUsers = () => {
   const [query, setQuery] = useState('');
-  const [status1, setStatus] = useState('All');
+  const [status1, setStatus] = useState(null);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(4);
+  const [limit, setLimit] = useState(10);
   const [users, setUsers] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [total, setTotal] = useState(1);
@@ -79,7 +79,7 @@ const ManageUsers = () => {
       user.email || "",
       user.registrationType || "",
       user.videos || 0,
-      user.status === 1 ? "Actived" : "Deactivated"
+      user.status === 1 ? "Activated" : "Deactivated"
     ]);
 
     const csvContent =
@@ -144,6 +144,10 @@ const ManageUsers = () => {
     setLoader(false);
   };
 
+  const redirectToUserCount = (videos, email) => {
+    history.push(`/admin-vedio?email=${email}`)
+  }
+
   return (
     <>
       <div className="topHeadarea">
@@ -190,16 +194,16 @@ const ManageUsers = () => {
                 <select
                   name="status"
                   id="status"
-                  value={status1}
+                  value={status1 == null ? "All" : status1 == 1 ? "Activated" : "Deactivated"}
                   onChange={(e) => {
                     setStatus(e.target.value);
                     setPage(1);
                   }}
                   className="ui selection dropdown select"
                 >
-                  <option value="All">All</option>
-                  <option value="Active">Active</option>
-                  <option value="Inactive">Inactive</option>
+                  <option value="null">All</option>
+                  <option value="1">Activated</option>
+                  <option value="0">Deactivated</option>
                 </select>
               </div>
             </div>
@@ -208,19 +212,20 @@ const ManageUsers = () => {
           <table className="min-w-full table-auto border-collapse border border-gray-300">
             <thead className="bg-gray-100">
               <tr>
-                <th className="border p-2 text-left cursor-pointer" onClick={toggleSortOrder}>
+                <th className="border p-2 text-left cursor-pointer">
                   First Name
-                  <span className="ml-2">
+                  {/* <span className="ml-2">
                     {sortOrder === 'asc' && <i className="fas fa-arrow-up"></i>}
                     {sortOrder === 'desc' && <i className="fas fa-arrow-down"></i>}
                     {sortOrder === null && <i className="fas fa-arrow-down"></i>}
-                  </span>
+                  </span> */}
                 </th>
                 <th className="border p-2 text-left">Last Name</th>
                 <th className="border p-2 text-left">Username</th>
                 <th className="border p-2 text-left">Phone Number</th>
                 <th className="border p-2 text-left">Email</th>
                 <th className="border p-2 text-left">Registration Type</th>
+                <th className="border p-2 text-left">Registration Date</th>
                 <th className="border p-2 text-left">Videos</th>
                 <th className="border p-2 text-left">Action</th>
               </tr>
@@ -239,7 +244,8 @@ const ManageUsers = () => {
                     <td className="border p-2">{user?.phoneNumber}</td>
                     <td className="border p-2">{user?.email}</td>
                     <td className="border p-2">{user?.registrationType}</td>
-                    <td className="border p-2">{user?.videos}</td>
+                    <td className="border p-2">{new Date(user?.dateOfJoining).toDateString()}</td>
+                    <td className="border p-2 pointerAction" onClick={() => redirectToUserCount(user?.videos, user?.email)}> {user?.videos}</td>
                     <td className="border p-2">
                       <div className="flex flex-wrap gap-x-3 gap-y-3 sm:gap-x-5">
                         <div className="cmp-button">
@@ -251,7 +257,7 @@ const ManageUsers = () => {
                             }
                             onClick={() => updateUserStatus(user?.email, 1)}
                           >
-                            {user?.status === 1 ? 'Actived' : 'Active'}
+                            {user?.status === 1 ? 'Activated' : 'Active'}
                           </button>
                         </div>
                         <div className="cmp-button">

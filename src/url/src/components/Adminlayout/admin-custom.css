@@ -23,3 +23,17 @@
    
     min-width: 157px !important; 
 }
+
+.video-blocks video{
+ height: 180px;
+ width: 100%; 
+ background-color:#333333 ;
+
+}
+
+.pointerAction{
+    cursor: pointer;
+    color:blue;
+    text-decoration: underline;
+    
+}
