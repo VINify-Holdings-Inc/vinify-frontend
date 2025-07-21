@@ -78,3 +78,30 @@ export const UpdateSecurity = async security => {
   );
   return res;
 };
+
+export const GetAdminDashboardTotalDataForKpi = async() => {
+
+  let res = await serviceHandler.get(
+    `Admin/GetDashboardData`
+  ); 
+ 
+  return res;
+};
+
+export const GetAdminDashboardAllUserData = async(page=1 ,limit=12) => {
+
+  let res = await serviceHandler.get(
+    `Admin/GetAllUserData?Page=${page}&size=${limit}`
+  ); 
+ 
+  return res;
+};
+
+export const GetAdminDashboardAllVedio = async (emailId) => {
+  let url = 'Admin/GetAllVideos'; 
+  if (emailId) {
+    url += `?emailId=${emailId}`;
+  } 
+  const res = await serviceHandler.get(url);
+  return res;
+};

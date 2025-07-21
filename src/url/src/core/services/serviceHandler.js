@@ -4,6 +4,7 @@ var config;
 
 const serviceHandler = {
   get: async (url, headers = null) => {
+  
     return await fetchRequest(url, "GET", null, headers);
   },
 
@@ -45,8 +46,7 @@ const fetchRequest = async (
       };
     request.body = body;
   }
-  let status;
-
+  let status; 
   return fetch(url, request)
     .then(response => {
       status = response.status;

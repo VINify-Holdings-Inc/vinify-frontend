@@ -1,5 +1,31 @@
-  import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { GetAdminDashboardTotalDataForKpi } from "../../../actions/account"
+import { Loading } from '../../../components/shared/loading/Loading';
+
 const Dashboard = () => {
+  const [user, setUser] = useState(0)
+  const [video, setvideo] = useState(0)
+  const [loader, setLoader] = useState(false);
+  useEffect(() => {
+    fetData()
+  }, [])
+
+const fetData = async () => {
+  setLoader(true);
+  try {
+    const res = await GetAdminDashboardTotalDataForKpi();
+ 
+    setUser(res.body.userCount || 0);
+    setvideo(res.body.videoCount || 0);
+  } catch (error) { 
+    setUser(0);
+    setvideo(0); 
+  } finally {
+    setLoader(false);
+  }
+};
+
   return (
     <>
       <div className='topHeadarea'>
@@ -9,17 +35,23 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='kips-area grid lg:grid-cols-2 lg:gap-x-8 gap-y-8 mt-6'>
-        <div className='border border-gray-200 rounded p-8 md:p-10'>
-          <p className="font-bold text-lg mb-2">Total Users</p>
-          <h1 className="text-3xl font-bold">120</h1>
+        <Link to="/admin-manage-user">
+          <div className='border border-gray-200 rounded p-8 md:p-10'>
+            <p className="font-bold text-lg mb-2">Users</p>
+            <h1 className="text-3xl font-bold">{user}</h1>
+          </div>
+        </Link>
+        <Link to="/admin-vedio">
+          <div className='border border-gray-200 rounded p-8 md:p-10'>
+            <p className="font-bold text-lg mb-2">Media</p>
+            <h1 className="text-3xl font-bold">{video}</h1>
+          </div>
+        </Link>
+        <div className={`${loader ? 'loader-component' : ""}`}>
+          {loader && <Loading center="center" />}
         </div>
-        <div className='border border-gray-200 rounded p-8 md:p-10'>
-          <p className="font-bold text-lg mb-2">Total Videos</p>
-          <h1 className="text-3xl font-bold">350</h1>
-        </div>
-
       </div>
-     
+
     </>
   )
 }
