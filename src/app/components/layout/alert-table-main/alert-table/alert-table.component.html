@@ -65,7 +65,7 @@
                   <span class="notification-icon"
                     [ngClass]=" element?.isRead==true ? 'tableDot grayDot' : 'tableDot redDot'">
                   </span>
-                  {{ element.status ? element.status :"Histroy" }}
+                  {{ element.status ?? element.status  }}
                 </td>
               </ng-container>
 

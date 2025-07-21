@@ -88,11 +88,12 @@ export const GetAdminDashboardTotalDataForKpi = async() => {
   return res;
 };
 
-export const GetAdminDashboardAllUserData = async(page=1 ,limit=12) => {
-
-  let res = await serviceHandler.get(
-    `Admin/GetAllUserData?Page=${page}&size=${limit}`
-  ); 
+export const GetAdminDashboardAllUserData = async(page=1 ,limit=12,query) => {
+ let url = `Admin/GetAllUserData?Page=${page}&size=${limit}` ; 
+  if (query) {
+    url += `&key=${query}`;
+  } 
+  let res = await serviceHandler.get(url); 
  
   return res;
 };

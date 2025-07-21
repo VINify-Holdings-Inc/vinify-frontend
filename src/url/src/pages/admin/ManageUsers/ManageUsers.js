@@ -15,7 +15,7 @@ const ManageUsers = () => {
 
   useEffect(() => {
     fetData();
-  }, [page, limit, query, status, sortOrder]);
+  }, [page, limit,  status, sortOrder]);
 
  const fetData = async () => {
   setLoader(true);
@@ -162,7 +162,7 @@ const exportToCSV = () => {
                   />
                   <button
                     type="submit"
-                    onClick={() => setPage(1)}
+                    onClick={() => {setPage(1);fetData()}}
                     className="px-4 text-sm py-3 font-medium text-primary bg-white border border-primary rounded hover:bg-primary-dark group hover:text-white transition duration-150 ml-3"
                   >
                     Search

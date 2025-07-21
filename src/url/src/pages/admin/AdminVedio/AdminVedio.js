@@ -64,6 +64,7 @@ const fetData = async () => {
                     required
                   />
                   <button
+                   onClick={() => {setPage(1);fetData()}}
                     type="submit"
                     className="px-4 text-sm py-3 font-medium text-primary bg-white border border-primary rounded hover:bg-primary-dark group hover:text-white transition duration-150 ml-3"
                   >
