@@ -98,11 +98,27 @@ export const GetAdminDashboardAllUserData = async(page=1 ,limit=12,query) => {
   return res;
 };
 
-export const GetAdminDashboardAllVedio = async (emailId) => {
-  let url = 'Admin/GetAllVideos'; 
+export const GetAdminDashboardAllVedio = async (emailId) => { 
+  if (emailId && typeof emailId === 'string' && emailId.trim() !== '') {
+    emailId = emailId.trim();  
+  } else {
+    emailId = null;  
+  }
+
+  let url = 'Admin/GetAllVideos';
   if (emailId) {
     url += `?emailId=${emailId}`;
-  } 
+  }
+
   const res = await serviceHandler.get(url);
   return res;
 };
+
+export const  AdminUserActiveInactive = async(email,status) => {
+
+  let res = await serviceHandler.put(
+    `Admin/UpdateUserStatus?EmailId=${email}&Status=${status}`
+  ); 
+ 
+  return res;
+}; 

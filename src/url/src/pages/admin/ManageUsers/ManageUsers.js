@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { GetAdminDashboardAllUserData } from "../../../actions/account";
+import { GetAdminDashboardAllUserData, AdminUserActiveInactive } from "../../../actions/account";
 import { Loading } from '../../../components/shared/loading/Loading';
 
 const ManageUsers = () => {
   const [query, setQuery] = useState('');
-  const [status, setStatus] = useState('All');
+  const [status1, setStatus] = useState('All');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(4);
   const [users, setUsers] = useState([]);
@@ -15,90 +15,87 @@ const ManageUsers = () => {
 
   useEffect(() => {
     fetData();
-  }, [page, limit,  status, sortOrder]);
+  }, [page, limit, status1, sortOrder]);
 
- const fetData = async () => {
-  setLoader(true);
-  try {
-    const res = await GetAdminDashboardAllUserData(page, limit, query, status);
+  const fetData = async () => {
+    setLoader(true);
+    try {
+      const res = await GetAdminDashboardAllUserData(page, limit, query, status1);
 
-    if (!res || !res.body || !res.body.data) {
-      throw new Error("Invalid response from server");
+      if (!res || !res.body || !res.body.data) {
+        throw new Error("Invalid response from server");
+      }
+
+      let userData = res.body.data.map(user => ({
+        name: user.firstName || '',
+        lastName: user.lastName || '',
+        userName: user.userName || '',
+        phoneNumber: user.phoneNumber || '',
+        dateOfJoining: user.dateOfJoining ? new Date(user.dateOfJoining).toLocaleDateString() : '',
+        email: user.email || '',
+        registrationType: user.registrationType || '',
+        videos: user.videoCount || 0,
+        status: user.status
+      }));
+
+      if (sortOrder === 'asc') {
+        userData.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (sortOrder === 'desc') {
+        userData.sort((a, b) => b.name.localeCompare(a.name));
+      }
+
+      setUsers(userData);
+      setPage(res.body.currentPage);
+      setTotal(res.body.totalCount);
+      setTotalPages(res.body.totalPage);
+    } catch (error) {
+      setUsers([]);
+      setPage(1);
+      setTotal(0);
+      setTotalPages(0);
+    } finally {
+      setLoader(false);
+    }
+  };
+
+  const exportToCSV = () => {
+    if (!users || users.length === 0) {
+      alert("No user data available to export.");
+      return;
     }
 
-    let userData = res.body.data.map(user => ({
-      name: user.firstName || '',
-      lastName: user.lastName || '',
-      userName: user.userName || '',
-      phoneNumber: user.phoneNumber || '',
-      dateOfJoining: user.dateOfJoining ? new Date(user.dateOfJoining).toLocaleDateString() : '',
-      email: user.email || '',
-      registrationType: user.registrationType || '',
-      videos: user.videoCount || 0,
-      status: 'Active'
-    }));
+    setLoader(true);
 
-    // Sort by name
-    if (sortOrder === 'asc') {
-      userData.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortOrder === 'desc') {
-      userData.sort((a, b) => b.name.localeCompare(a.name));
-    }
+    const headers = [
+      "First Name", "Last Name", "Username", "Phone Number",
+      "Email", "Registration Type", "Videos", "Status"
+    ];
 
-    setUsers(userData);
-    setPage(res.body.currentPage);
-    setTotal(res.body.totalCount);
-    setTotalPages(res.body.totalPage);
-  } catch (error) { 
-    setUsers([]);
-    setPage(1);
-    setTotal(0);
-    setTotalPages(0); 
-  } finally {
+    const rows = users.map(user => [
+      user.name || "",
+      user.lastName || "",
+      user.userName || "",
+      user.phoneNumber || "",
+      user.email || "",
+      user.registrationType || "",
+      user.videos || 0,
+      user.status === 1 ? "Actived" : "Deactivated"
+    ]);
+
+    const csvContent =
+      "data:text/csv;charset=utf-8," +
+      [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "users_data.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
     setLoader(false);
-  }
-};
-
-
-const exportToCSV = () => {
-  if (!users || users.length === 0) {
-    alert("No user data available to export.");
-    return;
-  }
-
-  setLoader(true);
-
-  const headers = [
-    "First Name", "Last Name", "Username", "Phone Number",
-    "Email", "Registration Type", "Videos", "Status"
-  ];
-
-  const rows = users.map(user => [
-    user.name,
-    user.lastName,
-    user.userName,
-    user.phoneNumber,
-    user.email,
-    user.registrationType,
-    user.videos,
-    user.status
-  ]);
-
-  const csvContent =
-    "data:text/csv;charset=utf-8," +
-    [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
-
-  const encodedUri = encodeURI(csvContent);
-  const link = document.createElement("a");
-  link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "users_data.csv");
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-
-  setLoader(false);
-};
-
+  };
 
   const getVisiblePages = (currentPage, totalPages, maxVisible = 4) => {
     let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
@@ -134,6 +131,19 @@ const exportToCSV = () => {
     else setSortOrder('asc');
   };
 
+  const updateUserStatus = async (email, newStatus) => {
+    setLoader(true);
+    const res = await AdminUserActiveInactive(email, newStatus);
+    if (res.body.result && res.body.statusCode === 200) {
+      setUsers(prevUsers =>
+        prevUsers.map(user =>
+          user.email === email ? { ...user, status: newStatus } : user
+        )
+      );
+    }
+    setLoader(false);
+  };
+
   return (
     <>
       <div className="topHeadarea">
@@ -162,7 +172,7 @@ const exportToCSV = () => {
                   />
                   <button
                     type="submit"
-                    onClick={() => {setPage(1);fetData()}}
+                    onClick={() => { setPage(1); fetData(); }}
                     className="px-4 text-sm py-3 font-medium text-primary bg-white border border-primary rounded hover:bg-primary-dark group hover:text-white transition duration-150 ml-3"
                   >
                     Search
@@ -180,7 +190,7 @@ const exportToCSV = () => {
                 <select
                   name="status"
                   id="status"
-                  value={status}
+                  value={status1}
                   onChange={(e) => {
                     setStatus(e.target.value);
                     setPage(1);
@@ -199,11 +209,11 @@ const exportToCSV = () => {
             <thead className="bg-gray-100">
               <tr>
                 <th className="border p-2 text-left cursor-pointer" onClick={toggleSortOrder}>
-                First  Name
+                  First Name
                   <span className="ml-2">
                     {sortOrder === 'asc' && <i className="fas fa-arrow-up"></i>}
                     {sortOrder === 'desc' && <i className="fas fa-arrow-down"></i>}
-                    {sortOrder === null &&  <i className="fas fa-arrow-down"></i>}
+                    {sortOrder === null && <i className="fas fa-arrow-down"></i>}
                   </span>
                 </th>
                 <th className="border p-2 text-left">Last Name</th>
@@ -233,10 +243,28 @@ const exportToCSV = () => {
                     <td className="border p-2">
                       <div className="flex flex-wrap gap-x-3 gap-y-3 sm:gap-x-5">
                         <div className="cmp-button">
-                          <button className="medium button-secondary button">Active</button>
+                          <button
+                            className={
+                              user?.status === 0
+                                ? "medium button-secondary button butdisabled"
+                                : "medium button-secondary button"
+                            }
+                            onClick={() => updateUserStatus(user?.email, 1)}
+                          >
+                            {user?.status === 1 ? 'Actived' : 'Active'}
+                          </button>
                         </div>
                         <div className="cmp-button">
-                          <button className="medium button-secondary button">Deactivate</button>
+                          <button
+                            className={
+                              user?.status === 1
+                                ? "medium button-secondary button butdisabled"
+                                : "medium button-secondary button"
+                            }
+                            onClick={() => updateUserStatus(user?.email, 0)}
+                          >
+                            {user?.status === 0 ? 'Deactivated' : 'Deactivate'}
+                          </button>
                         </div>
                       </div>
                     </td>
@@ -265,7 +293,6 @@ const exportToCSV = () => {
               )
             )}
           </div>
-
         </div>
       </div>
     </>

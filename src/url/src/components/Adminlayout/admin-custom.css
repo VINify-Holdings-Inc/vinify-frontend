@@ -12,3 +12,14 @@
     justify-content: center;
     
 }
+.cmp-button button.butdisabled{
+	background-color: rgb(156, 163, 175);
+	border-color: rgb(156, 163, 175);
+	color: #000;
+}
+
+
+.cmp-button .button-secondary {
+   
+    min-width: 157px !important; 
+}
