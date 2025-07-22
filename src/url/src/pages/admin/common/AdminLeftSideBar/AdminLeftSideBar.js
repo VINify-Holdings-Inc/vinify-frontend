@@ -10,15 +10,16 @@ const AdminLeftSideBar = (prop) => {
     setShowProfileOptions(!showProfileOptions);
   };
 const handleSignOut=async()=>{ 
-    history.push('/signin');
-  //  let response = await SignOutAction();
-  //  console.log(response,"###################"); 
-  //         if (response.result) {
-  //             history.replace(site.routes.signIn);
-  //            // window.location.reload();
-  //         } else {
-  //             alert.error('Unable to sign out');
-  //         } 
+    
+   let response = await SignOutAction();
+   console.log(response,"###################"); 
+          if (response.result) {
+              // history.replace(site.routes.signIn);
+             // window.location.reload();
+            history.push('/signin');
+          } else {
+              alert.error('Unable to sign out');
+          } 
 }
   return (
     <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
