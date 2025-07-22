@@ -15,7 +15,7 @@ useEffect(()=>{
      console.log(response,"##################",prop);
      if(response.status!==200){
       history.push('/signin')
-     }
+     } 
   }
 
     const profileShowToggle = () => {

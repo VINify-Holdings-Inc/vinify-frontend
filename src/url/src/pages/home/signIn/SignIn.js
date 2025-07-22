@@ -15,6 +15,8 @@ import Swal from 'sweetalert2';
 class SignIn extends Component {
   // State
 
+
+
   state = {
     loading: false,
     showPassword: false,
@@ -58,10 +60,13 @@ class SignIn extends Component {
     },
   };
 
-  componentDidMount = async () => {
-    //console.log("test23");
+componentDidMount = () => {
+  // Prevent back button
+  window.history.pushState(null, null, window.location.href);
+  window.onpopstate = function () {
+    window.history.go(1);
   };
-  // Events
+};
 
   _onClickShowPassword = () => {
 

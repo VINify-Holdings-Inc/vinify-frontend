@@ -88,7 +88,7 @@ export const GetAdminDashboardTotalDataForKpi = async () => {
   return res;
 };
 
-export const GetAdminDashboardAllUserData = async (page = 1, limit = 12, query, status) => {
+export const GetAdminDashboardAllUserData = async (page = 1, limit = 12, query, status,sort) => {
   let url = `Admin/GetAllUserData?Page=${page}&size=${limit}`;
   if (status) {
     url += `&&status=${status}`
