@@ -14,8 +14,7 @@ const ManageUsers = () => {
   const [sortOrder, setSortOrder] = useState(null); // 'asc' | 'desc' | null
 
   useEffect(() => {
-    fetData();
-    console.log(status1, "hi ");
+    fetData(); 
 
   }, [page, limit, status1, sortOrder]);
 

@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import history from '../../../../history';
-import {SignOutAction} from '../../../../actions/account'
+import {SignOutAction,TryLogInAction} from '../../../../actions/account'
 import  site from '../../../../sitemap'
 const AdminLeftSideBar = (prop) => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
 
-  const profileShowToggle = () => {
+useEffect(()=>{
+ fetchUser()
+},[])
+
+  const fetchUser=async()=>{
+     let response = await TryLogInAction();
+     console.log(response,"##################",prop);
+     if(response.status!==200){
+      history.push('/signin')
+     }
+  }
+
+    const profileShowToggle = () => {
     setShowProfileOptions(!showProfileOptions);
   };
-const handleSignOut=async()=>{ 
-    
-   let response = await SignOutAction();
-   console.log(response,"###################"); 
+
+const handleSignOut=async()=>{  
+   let response = await SignOutAction(); 
           if (response.result) {
               // history.replace(site.routes.signIn);
              // window.location.reload();
