@@ -4,7 +4,7 @@ import { Loading } from '../../../components/shared/loading/Loading';
 import history from '../../../history';
 const ManageUsers = () => {
   const [query, setQuery] = useState('');
-  const [status1, setStatus] = useState(null);
+  const [status1, setStatus] = useState('all');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [users, setUsers] = useState([]);
@@ -15,6 +15,8 @@ const ManageUsers = () => {
 
   useEffect(() => {
     fetData();
+    console.log(status1,"hi ");
+    
   }, [page, limit, status1, sortOrder]);
 
   const fetData = async () => {
@@ -131,19 +133,29 @@ const ManageUsers = () => {
     else setSortOrder('asc');
   };
 
-  const updateUserStatus = async (email, newStatus) => {
+ const updateUserStatus = async (email, newStatus) => {
+  try {
     setLoader(true);
+
     const res = await AdminUserActiveInactive(email, newStatus);
-    if (res.body.result && res.body.statusCode === 200) {
+
+    if (res?.result && res?.status === 200) {
       setUsers(prevUsers =>
         prevUsers.map(user =>
           user.email === email ? { ...user, status: newStatus } : user
         )
       );
+    } else {
+      console.error("Status update failed:", res);
     }
-    setLoader(false);
-  };
 
+  } catch (error) {
+    console.error("Error while updating status:", error);
+  } finally {
+    setLoader(false);
+  }
+};
+ 
   const redirectToUserCount = (videos, email) => {
     history.push(`/admin-vedio?email=${email}`)
   }
@@ -191,20 +203,21 @@ const ManageUsers = () => {
                 CSV
               </button>
               <div className="cmp-select">
-                <select
-                  name="status"
-                  id="status"
-                  value={status1 == null ? "All" : status1 == 1 ? "Activated" : "Deactivated"}
-                  onChange={(e) => {
-                    setStatus(e.target.value);
-                    setPage(1);
-                  }}
-                  className="ui selection dropdown select"
-                >
-                  <option value="null">All</option>
-                  <option value="1">Activated</option>
-                  <option value="0">Deactivated</option>
-                </select>
+               <select
+  name="status"
+  id="status"
+  value={status1}
+  onChange={(e) => {
+    setStatus(e.target.value);
+    setPage(1);
+  }}
+  className="ui selection dropdown select"
+>
+  <option value="all">All</option>
+  <option value="1">Activated</option>
+  <option value="0">Deactivated</option>
+</select>
+
               </div>
             </div>
           </form>

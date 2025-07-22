@@ -79,30 +79,33 @@ export const UpdateSecurity = async security => {
   return res;
 };
 
-export const GetAdminDashboardTotalDataForKpi = async() => {
+export const GetAdminDashboardTotalDataForKpi = async () => {
 
   let res = await serviceHandler.get(
     `Admin/GetDashboardData`
-  ); 
- 
+  );
+
   return res;
 };
 
-export const GetAdminDashboardAllUserData = async(page=1 ,limit=12,query,status) => {
- let url = `Admin/GetAllUserData?Page=${page}&size=${limit}&status=${status}` ; 
+export const GetAdminDashboardAllUserData = async (page = 1, limit = 12, query, status) => {
+  let url = `Admin/GetAllUserData?Page=${page}&size=${limit}`;
+  if (status) {
+    url += `&&status=${status}`
+  }
   if (query) {
     url += `&key=${query}`;
-  } 
-  let res = await serviceHandler.get(url); 
- 
+  }
+  let res = await serviceHandler.get(url);
+
   return res;
 };
 
-export const GetAdminDashboardAllVedio = async (emailId) => { 
+export const GetAdminDashboardAllVedio = async (emailId) => {
   if (emailId && typeof emailId === 'string' && emailId.trim() !== '') {
-    emailId = emailId.trim();  
+    emailId = emailId.trim();
   } else {
-    emailId = null;  
+    emailId = null;
   }
 
   let url = 'Admin/GetAllVideos';
@@ -114,11 +117,11 @@ export const GetAdminDashboardAllVedio = async (emailId) => {
   return res;
 };
 
-export const  AdminUserActiveInactive = async(email,status) => {
+export const AdminUserActiveInactive = async (email, status) => {
 
   let res = await serviceHandler.put(
     `Admin/UpdateUserStatus?EmailId=${email}&Status=${status}`
-  ); 
- 
+  );
+
   return res;
 }; 

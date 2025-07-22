@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import history from '../../../../history';
-const AdminLeftSideBar = () => {
+import {SignOutAction} from '../../../../actions/account'
+import  site from '../../../../sitemap'
+const AdminLeftSideBar = (prop) => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
 
   const profileShowToggle = () => {
     setShowProfileOptions(!showProfileOptions);
   };
-const handleSignOut=()=>{
- history.push('/'); 
+const handleSignOut=async()=>{ 
+    history.push('/signin');
+  //  let response = await SignOutAction();
+  //  console.log(response,"###################"); 
+  //         if (response.result) {
+  //             history.replace(site.routes.signIn);
+  //            // window.location.reload();
+  //         } else {
+  //             alert.error('Unable to sign out');
+  //         } 
 }
   return (
     <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
