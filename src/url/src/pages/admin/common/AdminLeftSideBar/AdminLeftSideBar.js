@@ -116,7 +116,7 @@ const handleSignOut=async()=>{
             </svg>
 
             {showProfileOptions && (
-              <div onClick={handleSignOut} className="absolute left-0 top-[60px] z-50 w-40 origin-top-right text-left rounded-md bg-light-rose shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div onClick={handleSignOut} className="absolute movetheposition left-0 top-[60px] z-50 w-40 origin-top-right text-left rounded-md bg-light-rose shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div className="block px-4 py-3 text-base text-light-rose-dark hover:text-light-rose-menu-text hover:bg-light-rose-hover transition duration-150 rounded-md cursor-pointer">
                   Sign out
                 </div>
