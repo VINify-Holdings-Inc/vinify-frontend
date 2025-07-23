@@ -17,6 +17,7 @@ const modules = {
   adminDashboard:{name: "Admin Dashboard", url: "/admin-dashboard"},
   adminMangeUser:{name: "Admin Manage Users", url: "/admin-manage-user"},
   adminVedio:{name: "Admin Vedioes", url: "/admin-video"},
+   adminVedioSearch:{name: "Admin Vedioes", url: "/admin-video-search"},
      
 };
 
@@ -257,8 +258,17 @@ const site = {
       title: "Admin  Vedioes",
       isIndex: true,
     },
+     adminVedioesSearch: {
+      exact: true,
+      module: modules.adminVedioSearch,
+      path: "/admin-video-search",
+      title: "Admin  Vedioes",
+      isIndex: true,
+    },
   },   
   
 };
 
 export default site;
+
+ 

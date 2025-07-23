@@ -39,6 +39,7 @@ import AdminLayout from "./components/Adminlayout/AdminLayout";
 import site from "./sitemap";
 import { ViewLiveSnippet } from "./pages/snippet/viewLiveSnippet/ViewLiveSnippet";
 import AdminVedio from "./pages/admin/AdminVedio/AdminVedio";
+import AdminVedioUrlSearch from './pages/admin/AdminVedio/AdminVedioUrlSearch'
 import ManageUsers from "./pages/admin/ManageUsers/ManageUsers";
 class Routes extends Component {
   // LifeCycle Events
@@ -96,6 +97,7 @@ class Routes extends Component {
           <AdminLayout component={Dashboard} {...site.routes.adminDashboard} />
           <AdminLayout component={ManageUsers} {...site.routes.adminMangeUser} />
           <AdminLayout component={AdminVedio} {...site.routes.adminVedioes} />
+          <AdminLayout component={AdminVedioUrlSearch} {...site.routes.adminVedioesSearch} />
           <Layout component={NotFound} />
 
         </Switch>

@@ -158,7 +158,7 @@ const ManageUsers = () => {
   };
 
   const redirectToUserCount = (videos, email) => {
-    history.push(`/admin-video?email=${encryptString(email)}`)
+    history.push(`/admin-video-search?email=${encryptString(email)}`)
   }
 
   const handleSorting=(obj)=>{
