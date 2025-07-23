@@ -15,6 +15,8 @@ import Swal from 'sweetalert2';
 class SignIn extends Component {
   // State
 
+
+
   state = {
     loading: false,
     showPassword: false,
@@ -58,10 +60,13 @@ class SignIn extends Component {
     },
   };
 
-  componentDidMount = async () => {
-    //console.log("test23");
+componentDidMount = () => {
+  // Prevent back button
+  window.history.pushState(null, null, window.location.href);
+  window.onpopstate = function () {
+    window.history.go(1);
   };
-  // Events
+};
 
   _onClickShowPassword = () => {
 
@@ -116,7 +121,8 @@ class SignIn extends Component {
 
   signIn = async (user) => {
     let response = await SignInAction(user); 
-    if ( user?.email == "mom@eyemailinc.com") {  
+      console.log(response, "############");
+    if (response?.status==200 && user?.email == "mom@eyemailinc.com") {  
       history.push('/admin-dashboard'); 
       return;
     }
@@ -125,14 +131,14 @@ class SignIn extends Component {
     if (response.result) {
       this.props.changeUser(response.body);
       this.props.changeLastRoute(history.location.pathname);
-      console.log(user, "############");
+    
 
       if (this.props.requestedRoute !== '/signin') {
         history.push(this.props.requestedRoute);
         //  window.location.reload();
       } else {
-        history.push('/');
-        //   window.location.reload();
+        // history.push('/');
+          window.location.reload();
       }
     } else {
 

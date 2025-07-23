@@ -12,3 +12,31 @@
     justify-content: center;
     
 }
+.cmp-button button.butdisabled{
+	background-color: rgb(156, 163, 175);
+	border-color: rgb(156, 163, 175);
+	color: #000;
+}
+
+
+.cmp-button .button-secondary {
+   
+    min-width: 157px !important; 
+}
+
+.video-blocks video{
+ height: 180px;
+ width: 100%; 
+ background-color:#333333 ;
+
+}
+
+.pointerAction{
+    cursor: pointer;
+    color:blue;
+    text-decoration: underline;
+    
+}
+.movetheposition{
+    top: -45px !important;
+}

@@ -1,14 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import history from '../../../../history';
-const AdminLeftSideBar = () => {
+import {SignOutAction,TryLogInAction} from '../../../../actions/account'
+import  site from '../../../../sitemap'
+const AdminLeftSideBar = (prop) => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
 
-  const profileShowToggle = () => {
+useEffect(()=>{
+ fetchUser()
+},[])
+
+  const fetchUser=async()=>{
+     let response = await TryLogInAction();
+     console.log(response,"##################",prop);
+     if(response.status!==200){
+      history.push('/signin')
+     } 
+  }
+
+    const profileShowToggle = () => {
     setShowProfileOptions(!showProfileOptions);
   };
-const handleSignOut=()=>{
- history.push('/'); 
+
+const handleSignOut=async()=>{  
+   let response = await SignOutAction(); 
+          if (response.result) {
+              // history.replace(site.routes.signIn);
+             // window.location.reload();
+            history.push('/signin');
+          } else {
+              alert.error('Unable to sign out');
+          } 
 }
   return (
     <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
@@ -105,7 +127,7 @@ const handleSignOut=()=>{
             </svg>
 
             {showProfileOptions && (
-              <div onClick={handleSignOut} className="absolute left-0 top-[60px] z-50 w-40 origin-top-right text-left rounded-md bg-light-rose shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div onClick={handleSignOut} className="absolute movetheposition left-0 top-[60px] z-50 w-40 origin-top-right text-left rounded-md bg-light-rose shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div className="block px-4 py-3 text-base text-light-rose-dark hover:text-light-rose-menu-text hover:bg-light-rose-hover transition duration-150 rounded-md cursor-pointer">
                   Sign out
                 </div>
