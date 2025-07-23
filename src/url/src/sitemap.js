@@ -16,8 +16,7 @@ const modules = {
   feeds:{name: "EyeMails", url: "/feeds"},
   adminDashboard:{name: "Admin Dashboard", url: "/admin-dashboard"},
   adminMangeUser:{name: "Admin Manage Users", url: "/admin-manage-user"},
-  adminVedio:{name: "Admin Vedioes", url: "/admin-video"},
-   adminVedioSearch:{name: "Admin Vedioes", url: "/admin-video-search"},
+  adminVedio:{name: "Admin Vedioes", url: "/admin-video"}, 
      
 };
 
@@ -257,14 +256,7 @@ const site = {
       path: "/admin-video",
       title: "Admin  Vedioes",
       isIndex: true,
-    },
-     adminVedioesSearch: {
-      exact: true,
-      module: modules.adminVedioSearch,
-      path: "/admin-video-search",
-      title: "Admin  Vedioes",
-      isIndex: true,
-    },
+    }, 
   },   
   
 };

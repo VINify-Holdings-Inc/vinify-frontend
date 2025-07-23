@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { GetAdminDashboardAllVedio } from '../../../actions/account';
 import { Loading } from '../../../components/shared/loading/Loading';
 import { decryptString } from '../helpers'
-const AdminVedio = () => {
+const AdminVedio = (props) => {
+ 
   const [status, setStatus] = useState('All');
   const [video, setvideo] = useState([])
   const [loader, setLoader] = useState(false);
@@ -15,6 +16,13 @@ const AdminVedio = () => {
     fetData(emailUrl)
 
   }, [])
+
+  useEffect(()=>{
+if(props?.videoItem){
+    setEmail('')
+    fetData('')
+}
+  },[props?.videoItem])
 
   const fetData = async (emailUrl) => {
     setLoader(true);

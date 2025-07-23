@@ -3,7 +3,7 @@ import { GetAdminDashboardAllUserData, AdminUserActiveInactive } from "../../../
 import { Loading } from '../../../components/shared/loading/Loading';
 import history from '../../../history';
 import {encryptString} from '../helpers'
-const ManageUsers = () => {
+const ManageUsers = (props) => {
   const [query, setQuery] = useState('');
   const [status1, setStatus] = useState('all');
   const [page, setPage] = useState(1);
@@ -18,6 +18,13 @@ const ManageUsers = () => {
     fetData(''); 
 
   }, [page, limit, status1]);
+
+  useEffect(()=>{
+  if(props?.userClick){
+    setQuery('')
+     fetData(''); 
+  }
+  },[props?.userClick])
 
   const fetData = async (email) => {
     setLoader(true);
@@ -158,7 +165,7 @@ const ManageUsers = () => {
   };
 
   const redirectToUserCount = (videos, email) => {
-    history.push(`/admin-video-search?email=${encryptString(email)}`)
+    history.push(`/admin-video?email=${encryptString(email)}`)
   }
 
   const handleSorting=(obj)=>{
