@@ -1,40 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { GetAdminDashboardAllVedio } from '../../../actions/account';
 import { Loading } from '../../../components/shared/loading/Loading';
-
+import { decryptString } from '../helpers'
 const AdminVedio = () => {
   const [status, setStatus] = useState('All');
   const [video, setvideo] = useState([])
   const [loader, setLoader] = useState(false);
   const [email, setEmail] = useState("");
-
+  const [count, setCount] = useState(0)
   useEffect(() => {
-    fetData()
+    const params = new URLSearchParams(window.location.search);
+    const emailUrl = decryptString(params.get('email'));
+    setEmail(emailUrl)
+    fetData(emailUrl)
 
   }, [])
 
-  // useEffect(() => { 
-  //   if (email?.length == 0) {
-  //     fetData()
-  //   }
-  // }, [email])
-
-  const fetData = async () => {
+  const fetData = async (emailUrl) => {
     setLoader(true);
     try {
-      const params = new URLSearchParams(window.location.search);
-      const email = params.get('email');
-      const emailParam = email ? email : email?.trim();
-      const res = await GetAdminDashboardAllVedio(emailParam !== '' ? emailParam : null);
+      const res = await GetAdminDashboardAllVedio(emailUrl !== '' ? emailUrl : null);
 
       if (!res) {
         throw new Error("Invalid video data from server");
       }
 
       setvideo(res.body.urLs);
+      setCount(res.body.countData);
       setLoader(false);
     } catch (error) {
       setvideo([]);
+        setCount(0);
       setLoader(false);
     } finally {
       setLoader(false);
@@ -62,7 +58,7 @@ const AdminVedio = () => {
                 <div className="flex fluid action input">
                   <input
                     type="text"
-                    placeholder="Search..."
+                    placeholder="Search by email"
                     className="bg-light-rose rounded px-4 py-3 border border-gray-200 w-full md:w-8/12"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -71,7 +67,7 @@ const AdminVedio = () => {
                   <button
                     onClick={(e) => {
                       e.preventDefault();
-                      fetData();
+                      fetData(email);
                     }}
                     type="submit"
                     className="px-4 text-sm py-3 font-medium text-primary bg-white border border-primary rounded hover:bg-primary-dark group hover:text-white transition duration-150 ml-3"
@@ -79,21 +75,24 @@ const AdminVedio = () => {
                     Search
                   </button>
 
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setEmail('')
+                      fetData('');
+                    }}
+                    type="submit"
+                    className="px-4 text-sm py-3 font-medium text-primary bg-white border border-primary rounded hover:bg-primary-dark group hover:text-white transition duration-150 ml-3 clearbtn"
+                  >
+                    Clear
+                  </button>
+
                 </div>
               </div>
 
-              {/* <div className="cmp-select">
-                <select
-
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
-                  className="ui selection dropdown select"
-                >
-                  <option value="All">All</option>
-                  <option value="Active">Active</option>
-                  <option value="Inactive">Inactive</option>
-                </select>
-              </div> */}
+              <div className="cmp-select showingNumber">
+                {count > -1 ? ` Showing Videos: ${count} ` : ""}
+              </div>
             </div>
           </form>
 
@@ -119,8 +118,7 @@ const AdminVedio = () => {
                       <div className="flex justify-between items-center">
                         <small className="text-sm text-gray-400">
                           Created at:{" "}
-                          {items.createdDate &&
-                            new Date(items.createdDate).toLocaleDateString()}
+                          {items.createdDate}
                         </small>
                       </div>
                     </div>

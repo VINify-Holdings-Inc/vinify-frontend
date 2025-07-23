@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { GetAdminDashboardAllUserData, AdminUserActiveInactive } from "../../../actions/account";
 import { Loading } from '../../../components/shared/loading/Loading';
 import history from '../../../history';
+import {encryptString} from '../helpers'
 const ManageUsers = () => {
   const [query, setQuery] = useState('');
   const [status1, setStatus] = useState('all');
@@ -14,14 +15,14 @@ const ManageUsers = () => {
   const [sortOrder, setSortOrder] = useState(null); // 'asc' | 'desc' | null
 
   useEffect(() => {
-    fetData(); 
+    fetData(''); 
 
-  }, [page, limit, status1, sortOrder]);
+  }, [page, limit, status1]);
 
-  const fetData = async () => {
+  const fetData = async (email) => {
     setLoader(true);
     try {
-      const res = await GetAdminDashboardAllUserData(page, limit, query, status1);
+      const res = await GetAdminDashboardAllUserData(page, limit, email.trim(), status1);
 
       if (!res || !res.body || !res.body.data) {
         throw new Error("Invalid response from server");
@@ -29,10 +30,10 @@ const ManageUsers = () => {
 
       let userData = res.body.data.map(user => ({
         name: user.firstName || '',
-        lastName: user.lastName || '',
-        userName: user.userName || '',
+        lastName: user.lastName || '', 
         phoneNumber: user.phoneNumber || '',
-        dateOfJoining: user.dateOfJoining ? new Date(user.dateOfJoining).toLocaleDateString() : '',
+        dateOfJoining: user.dateOfJoining ? user.dateOfJoining: '',
+         lastActivityDate: user.lastActivityDate ? user.lastActivityDate: '',
         email: user.email || '',
         registrationType: user.registrationType || '',
         videos: user.videoCount || 0,
@@ -68,17 +69,18 @@ const ManageUsers = () => {
     setLoader(true);
 
     const headers = [
-      "First Name", "Last Name", "Username", "Phone Number",
-      "Email", "Registration Type", "Videos", "Status"
+      "First Name", "Last Name",  "Phone Number",
+      "Email", "Registration Type","Registration Date","Last Activity Date", "Videos", "Status"
     ];
 
     const rows = users.map(user => [
       user.name || "",
-      user.lastName || "",
-      user.userName || "",
+      user.lastName || "", 
       user.phoneNumber || "",
       user.email || "",
       user.registrationType || "",
+        user.dateOfJoining|| "",
+       user.lastActivityDate|| "",
       user.videos || 0,
       user.status === 1 ? "Activated" : "Deactivated"
     ]);
@@ -156,8 +158,15 @@ const ManageUsers = () => {
   };
 
   const redirectToUserCount = (videos, email) => {
-    history.push(`/admin-vedio?email=${email}`)
+    history.push(`/admin-video?email=${encryptString(email)}`)
   }
+
+  const handleSorting=(obj)=>{
+    setSortOrder(obj)
+     
+  }
+  console.log(users,"api wala ");
+  
 
   return (
     <>
@@ -187,10 +196,17 @@ const ManageUsers = () => {
                   />
                   <button
                     type="submit"
-                    onClick={() => { setPage(1); fetData(); }}
+                    onClick={() => { setPage(1); fetData(query); }}
                     className="px-4 text-sm py-3 font-medium text-primary bg-white border border-primary rounded hover:bg-primary-dark group hover:text-white transition duration-150 ml-3"
                   >
                     Search
+                  </button>
+                   <button
+                    type="submit"
+                    onClick={() => {   setPage(1); fetData(''); }}
+                    className="clearbtn px-4 text-sm py-3 font-medium text-primary bg-white border border-primary rounded hover:bg-primary-dark group hover:text-white transition duration-150 ml-3"
+                  >
+                    Clear
                   </button>
                 </div>
               </div>
@@ -216,7 +232,7 @@ const ManageUsers = () => {
                   <option value="1">Activated</option>
                   <option value="0">Deactivated</option>
                 </select>
-
+ 
               </div>
             </div>
           </form>
@@ -224,7 +240,7 @@ const ManageUsers = () => {
           <table className="min-w-full table-auto border-collapse border border-gray-300">
             <thead className="bg-gray-100">
               <tr>
-                <th className="border p-2 text-left cursor-pointer">
+                <th className="border p-2 text-left  "  onClick={()=>{handleSorting("name")}}>
                   First Name
                   {/* <span className="ml-2">
                     {sortOrder === 'asc' && <i className="fas fa-arrow-up"></i>}
@@ -232,14 +248,16 @@ const ManageUsers = () => {
                     {sortOrder === null && <i className="fas fa-arrow-down"></i>}
                   </span> */}
                 </th>
-                <th className="border p-2 text-left">Last Name</th>
-                <th className="border p-2 text-left">Username</th>
-                <th className="border p-2 text-left">Phone Number</th>
-                <th className="border p-2 text-left">Email</th>
-                <th className="border p-2 text-left">Registration Type</th>
-                <th className="border p-2 text-left">Registration Date</th>
-                <th className="border p-2 text-left">Videos</th>
-                <th className="border p-2 text-left">Action</th>
+                <th className="border p-2 text-left" onClick={()=>{handleSorting("lastName")}}>Last Name</th>
+                {/* <th className="border p-2 text-left" onClick={()=>{handleSorting("userName")}}>Username</th> */}
+                <th className="border p-2 text-left" onClick={()=>{handleSorting("phoneNumber")}}>Phone Number</th>
+                <th className="border p-2 text-left" onClick={()=>{handleSorting("email")}}>Email</th>
+                <th className="border p-2 text-left" onClick={()=>{handleSorting("registrationType")}}>Registration Type</th>
+                <th className="border p-2 text-left" onClick={()=>{handleSorting("dateOfJoining")}}>Registration Date</th>
+              <th className="border p-2 text-left" onClick={()=>{handleSorting("dateOfJoining")}}>Last Activity Date</th>
+
+                <th className="border p-2 text-left" onClick={()=>{handleSorting("videos")}}>Videos</th>
+                <th className="border p-2 text-left"  >Action</th>
               </tr>
             </thead>
             <tbody>
@@ -252,11 +270,12 @@ const ManageUsers = () => {
                   <tr key={index}>
                     <td className="border p-2">{user?.name}</td>
                     <td className="border p-2">{user?.lastName}</td>
-                    <td className="border p-2">{user?.userName}</td>
+                    {/* <td className="border p-2">{user?.userName}</td> */}
                     <td className="border p-2">{user?.phoneNumber}</td>
                     <td className="border p-2">{user?.email}</td>
                     <td className="border p-2">{user?.registrationType}</td>
-                    <td className="border p-2">{new Date(user?.dateOfJoining).toDateString()}</td>
+                    <td className="border p-2">{user?.dateOfJoining}</td>
+                     <td className="border p-2">{user?.lastActivityDate}</td>
                     <td className="border p-2 pointerAction" onClick={() => redirectToUserCount(user?.videos, user?.email)}> {user?.videos}</td>
                     <td className="border p-2">
                       <div className="flex flex-wrap gap-x-3 gap-y-3 sm:gap-x-5">

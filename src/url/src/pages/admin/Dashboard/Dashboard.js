@@ -41,7 +41,7 @@ const fetData = async () => {
             <h1 className="text-3xl font-bold">{user}</h1>
           </div>
         </Link>
-        <Link to="/admin-vedio">
+        <Link to="/admin-video">
           <div className='border border-gray-200 rounded p-8 md:p-10'>
             <p className="font-bold text-lg mb-2">Media</p>
             <h1 className="text-3xl font-bold">{video}</h1>
