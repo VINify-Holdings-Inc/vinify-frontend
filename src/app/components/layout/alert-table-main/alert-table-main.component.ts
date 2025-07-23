@@ -15,7 +15,7 @@ export class AlertTableMainComponent {
   constructor(private userData: userData,private router: Router) {}
 
   vin :string= "";
-  limit: number = 14;
+  limit: number = 13;
   page: number = 1;
   totalPages: number = 0;
   status: string = "current";
