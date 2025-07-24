@@ -13,6 +13,10 @@ const AdminLayout = ({ component: Component, ...rest }) => {
    const [userClick,setuserClick]=useState(false)
   useEffect(() => {
     fetchUser()
+
+     return () => {
+    window.removeEventListener("beforeunload", handleBeforeUnload);
+  };
   }, [])
 
   const fetchUser = async () => {
@@ -26,6 +30,7 @@ const AdminLayout = ({ component: Component, ...rest }) => {
     setShowProfileOptions(!showProfileOptions);
   };
 
+
   const handleSignOut = async () => {
     let response = await SignOutAction();
     if (response.result) {
@@ -36,7 +41,10 @@ const AdminLayout = ({ component: Component, ...rest }) => {
       alert.error('Unable to sign out');
     }
   }
-
+const handleBeforeUnload = (e) => {
+  navigator.sendBeacon('/accounts/signout'); // Optional safe logout
+  handleSignOut(); // Trigger logout logic
+};
   return (
     <Route
       {...rest}
