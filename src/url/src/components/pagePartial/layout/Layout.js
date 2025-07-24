@@ -42,7 +42,7 @@ class Layout extends Component {
 
   tryLogIn = async () => {
     let response = await TryLogInAction();
-    if(response?.body.emailAddress=="mom@eyemailinc.com"){
+    if(response?.body?.emailAddress=="mom@eyemailinc.com"){
       history.push('/admin-dashboard')
     }
     if (response.result) {
