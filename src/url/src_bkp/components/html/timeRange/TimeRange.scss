@@ -1,0 +1,10 @@
+.time-range-cmp {
+  display: flex;
+  justify-content: space-between;
+  .field {
+    width: 48%;
+    input {
+      width: 100%;
+    }
+  }
+}

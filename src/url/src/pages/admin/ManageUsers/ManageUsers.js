@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { GetAdminDashboardAllUserData, AdminUserActiveInactive } from "../../../actions/account";
 import { Loading } from '../../../components/shared/loading/Loading';
 import history from '../../../history';
-import {encryptString} from '../helpers'
+import { encryptString } from '../helpers'
 const ManageUsers = (props) => {
   const [query, setQuery] = useState('');
   const [status1, setStatus] = useState('all');
@@ -12,46 +12,47 @@ const ManageUsers = (props) => {
   const [totalPages, setTotalPages] = useState(1);
   const [total, setTotal] = useState(1);
   const [loader, setLoader] = useState(false);
-  const [sortOrder, setSortOrder] = useState(null); // 'asc' | 'desc' | null
+  const [sortOrder, setSortOrder] = useState({
+    firstName: 0,
+    lastName: 0,
+    phoneNumber: 0,
+    email: 0,
+    registrationType: 0,
+    dateOfJoining: 0,
+    lastActivityDate: 0,
+    videos: 0,
+    activeColumn: 'dateOfJoining'
+  });
 
   useEffect(() => {
-    fetData(''); 
+    fetData('');
+  }, [page, limit, status1, sortOrder]);
 
-  }, [page, limit, status1]);
+  useEffect(() => {
+    if (props?.userClick) {
+      setQuery('');
+      fetData('');
+    }
+  }, [props?.userClick]);
 
-  useEffect(()=>{
-  if(props?.userClick){
-    setQuery('')
-     fetData(''); 
-  }
-  },[props?.userClick])
-
-  const fetData = async (email) => {
+  const fetData = async (email = '') => {
     setLoader(true);
     try {
-      const res = await GetAdminDashboardAllUserData(page, limit, email.trim(), status1);
+      const res = await GetAdminDashboardAllUserData(page, limit, email.trim(), status1, sortOrder);
 
-      if (!res || !res.body || !res.body.data) {
-        throw new Error("Invalid response from server");
-      }
+      const responseData = res?.body?.data || [];
 
-      let userData = res.body.data.map(user => ({
-        name: user.firstName || '',
-        lastName: user.lastName || '', 
+      const userData = responseData.map(user => ({
+        firstName: user.firstName || '',
+        lastName: user.lastName || '',
         phoneNumber: user.phoneNumber || '',
-        dateOfJoining: user.dateOfJoining ? user.dateOfJoining: '',
-         lastActivityDate: user.lastActivityDate ? user.lastActivityDate: '',
+        dateOfJoining: user.dateOfJoining || '',
+        lastActivityDate: user.lastActivityDate || '',
         email: user.email || '',
         registrationType: user.registrationType || '',
         videos: user.videoCount || 0,
         status: user.status
       }));
-
-      if (sortOrder === 'asc') {
-        userData.sort((a, b) => a.name.localeCompare(b.name));
-      } else if (sortOrder === 'desc') {
-        userData.sort((a, b) => b.name.localeCompare(a.name));
-      }
 
       setUsers(userData);
       setPage(res.body.currentPage);
@@ -67,6 +68,14 @@ const ManageUsers = (props) => {
     }
   };
 
+  const handleSorting = (column) => {
+    setSortOrder((prev) => ({
+      ...prev,
+      [column]: prev[column] === 0 ? 1 : 0,
+      activeColumn: column
+    }));
+  };
+
   const exportToCSV = () => {
     if (!users || users.length === 0) {
       alert("No user data available to export.");
@@ -76,18 +85,18 @@ const ManageUsers = (props) => {
     setLoader(true);
 
     const headers = [
-      "First Name", "Last Name",  "Phone Number",
-      "Email", "Registration Type","Registration Date","Last Activity Date", "Videos", "Status"
+      "First Name", "Last Name", "Phone Number",
+      "Email", "Registration Type", "Registration Date", "Last Activity Date", "Videos", "Status"
     ];
 
     const rows = users.map(user => [
-      user.name || "",
-      user.lastName || "", 
+      user.firstName || "",
+      user.lastName || "",
       user.phoneNumber || "",
       user.email || "",
       user.registrationType || "",
-        user.dateOfJoining|| "",
-       user.lastActivityDate|| "",
+      user.dateOfJoining || "",
+      user.lastActivityDate || "",
       user.videos || 0,
       user.status === 1 ? "Activated" : "Deactivated"
     ]);
@@ -135,11 +144,6 @@ const ManageUsers = (props) => {
     return pages;
   };
 
-  const toggleSortOrder = () => {
-    if (sortOrder === 'asc') setSortOrder('desc');
-    else if (sortOrder === 'desc') setSortOrder(null);
-    else setSortOrder('asc');
-  };
 
   const updateUserStatus = async (email, newStatus) => {
     try {
@@ -168,12 +172,7 @@ const ManageUsers = (props) => {
     history.push(`/admin-video?email=${encryptString(email)}`)
   }
 
-  const handleSorting=(obj)=>{
-    setSortOrder(obj)
-     
-  }
-  console.log(users,"api wala ");
-  
+
 
   return (
     <>
@@ -208,9 +207,9 @@ const ManageUsers = (props) => {
                   >
                     Search
                   </button>
-                   <button
+                  <button
                     type="submit"
-                    onClick={() => {   setPage(1); fetData(''); }}
+                    onClick={() => { setPage(1); fetData(''); }}
                     className="clearbtn px-4 text-sm py-3 font-medium text-primary bg-white border border-primary rounded hover:bg-primary-dark group hover:text-white transition duration-150 ml-3"
                   >
                     Clear
@@ -239,7 +238,7 @@ const ManageUsers = (props) => {
                   <option value="1">Activated</option>
                   <option value="0">Deactivated</option>
                 </select>
- 
+
               </div>
             </div>
           </form>
@@ -247,25 +246,34 @@ const ManageUsers = (props) => {
           <table className="min-w-full table-auto border-collapse border border-gray-300">
             <thead className="bg-gray-100">
               <tr>
-                <th className="border p-2 text-left  "  onClick={()=>{handleSorting("name")}}>
-                  First Name
-                  {/* <span className="ml-2">
-                    {sortOrder === 'asc' && <i className="fas fa-arrow-up"></i>}
-                    {sortOrder === 'desc' && <i className="fas fa-arrow-down"></i>}
-                    {sortOrder === null && <i className="fas fa-arrow-down"></i>}
-                  </span> */}
+                <th className="border p-2 text-left cursorPointer" onClick={() => handleSorting("firstName")}>
+                  First Name {sortOrder.activeColumn === "name" && (sortOrder.firstName === 0 ? '▼' : '▲')}
                 </th>
-                <th className="border p-2 text-left" onClick={()=>{handleSorting("lastName")}}>Last Name</th>
-                {/* <th className="border p-2 text-left" onClick={()=>{handleSorting("userName")}}>Username</th> */}
-                <th className="border p-2 text-left" onClick={()=>{handleSorting("phoneNumber")}}>Phone Number</th>
-                <th className="border p-2 text-left" onClick={()=>{handleSorting("email")}}>Email</th>
-                <th className="border p-2 text-left" onClick={()=>{handleSorting("registrationType")}}>Registration Type</th>
-                <th className="border p-2 text-left" onClick={()=>{handleSorting("dateOfJoining")}}>Registration Date</th>
-              <th className="border p-2 text-left" onClick={()=>{handleSorting("dateOfJoining")}}>Last Activity Date</th>
-
-                <th className="border p-2 text-left" onClick={()=>{handleSorting("videos")}}>Videos</th>
-                <th className="border p-2 text-left"  >Action</th>
+                <th className="border p-2 text-left cursorPointer" onClick={() => handleSorting("lastName")}>
+                  Last Name {sortOrder.activeColumn === "lastName" && (sortOrder.lastName === 0 ? '▼' : '▲')}
+                </th>
+                <th className="border p-2 text-left cursorPointer" onClick={() => handleSorting("phoneNumber")}>
+                  Phone Number {sortOrder.activeColumn === "phoneNumber" && (sortOrder.phoneNumber === 0 ? '▼' : '▲')}
+                </th>
+                <th className="border p-2 text-left cursorPointer" onClick={() => handleSorting("email")}>
+                  Email {sortOrder.activeColumn === "email" && (sortOrder.email === 0 ? '▼' : '▲')}
+                </th>
+                <th className="border p-2 text-left cursorPointer" onClick={() => handleSorting("registrationType")}>
+                  Registration Type {sortOrder.activeColumn === "registrationType" && (sortOrder.registrationType === 0 ? '▼' : '▲')}
+                </th>
+                <th className="border p-2 text-left cursorPointer" onClick={() => handleSorting("dateOfJoining")}>
+                  Registration Date {sortOrder.activeColumn === "dateOfJoining" && (sortOrder.dateOfJoining === 0 ? '▼' : '▲')}
+                </th>
+                <th className="border p-2 text-left cursorPointer" onClick={() => handleSorting("lastActivityDate")}>
+                  Last Activity Date {sortOrder.activeColumn === "lastActivityDate" && (sortOrder.lastActivityDate === 0 ? '▼' : '▲')}
+                </th>
+                <th className="border p-2 text-left cursorPointer" onClick={() => handleSorting("videos")}>
+                  Videos {sortOrder.activeColumn === "videos" && (sortOrder.videos === 0 ? '▼' : '▲')}
+                </th>
+                <th className="border p-2 text-left ">Action</th>
               </tr>
+
+
             </thead>
             <tbody>
               {users.length === 0 ? (
@@ -275,14 +283,13 @@ const ManageUsers = (props) => {
               ) : (
                 users.map((user, index) => (
                   <tr key={index}>
-                    <td className="border p-2">{user?.name}</td>
+                    <td className="border p-2">{user?.firstName}</td>
                     <td className="border p-2">{user?.lastName}</td>
-                    {/* <td className="border p-2">{user?.userName}</td> */}
                     <td className="border p-2">{user?.phoneNumber}</td>
                     <td className="border p-2">{user?.email}</td>
                     <td className="border p-2">{user?.registrationType}</td>
                     <td className="border p-2">{user?.dateOfJoining}</td>
-                     <td className="border p-2">{user?.lastActivityDate}</td>
+                    <td className="border p-2">{user?.lastActivityDate}</td>
                     <td className="border p-2 pointerAction" onClick={() => redirectToUserCount(user?.videos, user?.email)}> {user?.videos}</td>
                     <td className="border p-2">
                       <div className="flex flex-wrap gap-x-3 gap-y-3 sm:gap-x-5">

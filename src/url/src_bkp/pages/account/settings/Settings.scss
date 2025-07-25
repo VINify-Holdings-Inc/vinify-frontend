@@ -1,0 +1,14 @@
+@import '../../../content/scss/styles.scss';
+
+.page-settings {
+  .body {
+    .ui.segment {
+      background: inherit;
+      box-shadow: none;
+      margin: 1rem 0em;
+      padding: 1em 1em;
+      border-radius: 0.28571429rem;
+      border: none;
+    }
+  }
+}

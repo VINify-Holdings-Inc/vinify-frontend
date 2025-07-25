@@ -20,8 +20,8 @@
 
 
 .cmp-button .button-secondary {
-    min-width: 141px !important;
-    padding: 8px 16px;
+    min-width: 128px !important;
+    padding: 8px 5px;
 }
 
 .video-blocks video{
@@ -56,4 +56,8 @@ button.clearbtn {
 .cmp-button button.butdisabled:hover, button.clearbtn:hover{
     color: #000 !important;
     background-color: rgb(156 163 175 / 79%);
+}
+
+.cursorPointer{
+    cursor: pointer;
 }

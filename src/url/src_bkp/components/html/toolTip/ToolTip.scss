@@ -1,0 +1,101 @@
+@import '../../../content/scss/styles.scss';
+
+.cmp-tool-tip {
+  background-color: $sec-clr;
+  border: 1px solid $border-clr;
+  width: max-content;
+  max-width: 200px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: 0px 0px 2px -1px $shadow-dark-clr;
+  -moz-box-shadow: 0px 0px 2px -1px $shadow-dark-clr;
+  -webkit-box-shadow: 0px 0px 2px -1px $shadow-dark-clr;
+  overflow-wrap: break-word;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: none;
+
+  .message {
+    font-weight: normal;
+    color: $form-text-clr;
+    font-size: 0.9em;
+    line-height: 1em;
+    margin-bottom: 0;
+    padding: 14px;
+  }
+
+  .tail-shadow {
+    border: solid 2px $border-clr;
+    position: absolute;
+    z-index: -1;
+    background-color: transparent;
+  }
+
+  .tail {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 10px solid;
+    z-index: 10;
+  }
+
+  .tail-overlay {
+    position: absolute;
+    border-width: 10px;
+    border-style: solid;
+    z-index: 10;
+    width: 0;
+    height: 0;
+    border: 10px solid;
+  }
+
+  &.left {
+    margin-left: 32px;
+    margin-top: -12px;
+
+    .tail-shadow {
+      width: 4px;
+      height: 4px;
+      top: 16px;
+      left: -8px;
+    }
+
+    .tail {
+      border-color: transparent $border-clr transparent transparent;
+      top: 8px;
+      left: -20px;
+    }
+
+    .tail-overlay {
+      border-color: transparent $sec-clr transparent transparent;
+      left: -18px;
+      top: 8px;
+    }
+  }
+
+  &.top {
+    margin-top: -40px;
+
+    .tail-shadow {
+      bottom: -8px;
+      left: 28px;
+      width: 0;
+      height: 0;
+    }
+
+    .tail {
+      left: 20px;
+      bottom: -20px;
+      border-color: $border-clr transparent transparent transparent;
+    }
+
+    .tail-overlay {
+      bottom: -18px;
+      left: 20px;
+      border-color: $sec-clr transparent transparent transparent;
+    }
+  }
+}

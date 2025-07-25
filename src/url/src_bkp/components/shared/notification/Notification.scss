@@ -1,0 +1,81 @@
+@import '../../../content/scss/styles.scss';
+
+.notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  min-width: 300px;
+  max-width: 500px;
+  min-height: 24px;
+  box-shadow: 0px 1px 10px 0px $shadow-light-clr;
+  color: $pri-clr;
+  cursor: default;
+  background-color: $sec-clr;
+
+  .body {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      margin-right: auto;
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+
+    .message {
+      max-width: 250px;
+      overflow-wrap: break-word;
+      margin-right: auto;
+      font-size: 1em;
+      color: $form-text-clr;
+    }
+  }
+
+  &.success {
+    border-left: 4px solid $success-clr;
+  }
+
+  &.error {
+    border-left: 4px solid $brand-clr;
+  }
+
+  &.info {
+    border-left: 4px solid $info-clr;
+  }
+
+  &.warning {
+    border-left: 4px solid $warn-clr;
+  }
+
+  .type {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    .icon {
+      &.success {
+        color: $success-clr;
+      }
+
+      &.error {
+        color: $brand-clr;
+      }
+
+      &.info {
+        color: $info-clr;
+      }
+
+      &.warning {
+        color: $warn-clr;
+      }
+    }
+  }
+
+  .dismiss {
+    padding-left: 10px;
+    padding-right: 10px;
+    .icon {
+      cursor: pointer;
+    }
+  }
+}

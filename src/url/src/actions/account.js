@@ -86,20 +86,16 @@ export const GetAdminDashboardTotalDataForKpi = async () => {
   );
 
   return res;
+}; 
+export const GetAdminDashboardAllUserData = async (page = 1, limit = 12, query = '', status, sortOrder) => {
+  let url = `Admin/GetAllUserData?Page=${page}&size=${limit}&sortcolumn=${sortOrder.activeColumn}&sorttype=${sortOrder[sortOrder.activeColumn]}`;
+
+  if (status) url += `&status=${status}`;
+  if (query) url += `&key=${query}`;
+
+  return await serviceHandler.get(url);
 };
 
-export const GetAdminDashboardAllUserData = async (page = 1, limit = 12, query, status,sort) => {
-  let url = `Admin/GetAllUserData?Page=${page}&size=${limit}`;
-  if (status) {
-    url += `&&status=${status}`
-  }
-  if (query) {
-    url += `&key=${query}`;
-  }
-  let res = await serviceHandler.get(url);
-
-  return res;
-};
 
 export const GetAdminDashboardAllVedio = async (emailId) => {
   if (emailId && typeof emailId === 'string' && emailId.trim() !== '') {
