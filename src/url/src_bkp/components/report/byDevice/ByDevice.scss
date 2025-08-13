@@ -1,0 +1,16 @@
+.by-device {
+  border: 1px solid #efeeee;
+  padding: 40px;
+  box-shadow: 1px 1px #efeeee;
+  .title {
+    text-transform: capitalize;
+  }
+  .detail {
+    padding: 8px 0px;
+    .per {
+      padding: 0px 10px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}

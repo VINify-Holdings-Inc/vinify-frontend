@@ -1,0 +1,59 @@
+.loader-component {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    right: 0;
+    height: 100%;
+    background: #00000030;
+    align-items: center;
+    justify-content: center;
+    
+}
+.cmp-button button.butdisabled{
+	background-color: rgb(156, 163, 175);
+	border-color: rgb(156, 163, 175);
+	color: #000;
+}
+
+
+.cmp-button .button-secondary {
+    min-width: 141px !important;
+    padding: 8px 16px;
+}
+
+.video-blocks video{
+ height: 180px;
+ width: 100%; 
+ background-color:#333333 ;
+
+}
+
+.pointerAction{
+    cursor: pointer;
+    color:blue;
+    text-decoration: underline;
+    
+}
+.movetheposition{
+    top: -45px !important;
+}
+
+.cmp-select.showingNumber {
+    min-width: 200px;
+    text-align: right;
+}
+
+button.clearbtn {
+    background-color: #9ca3af;
+    color: #000;
+    border-color: #9ca3af;
+}
+
+
+.cmp-button button.butdisabled:hover, button.clearbtn:hover{
+    color: #000 !important;
+    background-color: rgb(156 163 175 / 79%);
+}

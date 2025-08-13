@@ -26,11 +26,11 @@ export class FileUploadComponent {
         this.showError("No file selected");
         return;
       } 
-      const validFileNamePattern = /^MY\.T\.CINQ\.INPUT\d*\.TXT$/;
+      const validFileNamePattern = /^MY\.P\.CINQ\.INPUT\d*\.TXT$/;
 
       if (!validFileNamePattern.test(file.name)) {
         this.resetFileInput();
-        this.showError("Invalid file name. It must be in the format MY.T.CINQ.INPUT#.TXT where # is optional or a number.");
+        this.showError("Invalid file name. It must be in the format MY.P.CINQ.INPUT#.TXT where # is optional or a number.");
         return;
       }
       const reader = new FileReader();

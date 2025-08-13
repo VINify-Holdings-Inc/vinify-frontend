@@ -1,0 +1,27 @@
+@import '../../../content/scss/styles.scss';
+
+.cmp-text-box {
+  label {
+    font-weight: 600;
+    display: block !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .invalid-message {
+    width: 100%;
+    margin-top: 0.25rem !important;
+    font-size: 80%;
+    color: $brand-clr;
+  }
+
+  .button {
+    padding-top: 20px !important;
+    padding-bottom: 20x !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+  }
+
+  small[id*='HelpBlock'] {
+    display: block;
+  }
+}

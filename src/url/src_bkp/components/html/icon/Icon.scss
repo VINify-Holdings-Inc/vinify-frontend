@@ -1,0 +1,11 @@
+@import '../../../content/scss/styles.scss';
+
+.cmp-icon {
+  display: inline-block;
+
+  &:hover {
+    .cmp-tool-tip {
+      display: block;
+    }
+  }
+}

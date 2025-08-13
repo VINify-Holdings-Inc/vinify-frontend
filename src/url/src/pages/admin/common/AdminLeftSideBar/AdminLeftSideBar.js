@@ -98,7 +98,7 @@ const handleSignOut=async()=>{
             </NavLink>
 
             <NavLink
-              to="/admin-vedio"
+              to="/admin-video"
               activeClassName="bg-light-rose-active text-white font-bold"
               className="hover:bg-light-rose-hover text-light-rose-dark group flex items-center px-2 py-2 text-base rounded-md"
             >

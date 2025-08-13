@@ -1,0 +1,58 @@
+@import '../../../content/scss/styles.scss';
+
+.cmp-getting-started {
+
+  .tutorial-video-thumbnail {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+
+  h2 {
+    font-size: 1.8em !important;
+    margin: 5px auto;
+  }
+
+  .option-buttons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    .button {
+      margin: 4px !important;
+    }
+  }
+
+  .icon-processing-video {
+    padding: 6px !important;
+  }
+
+  .form {
+    position: relative;
+    border-radius: 2px;
+
+    .form-group {
+      margin-bottom: 26px;
+
+      .form-control {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: $form-text-clr;
+        background-color: $sec-clr;
+        background-clip: padding-box;
+        border: 1px solid $border-clr;
+        border-radius: 0px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      }
+    }
+
+    .button {
+      margin-left: 0 !important;
+      //   align-content: left;
+    }
+  }
+}

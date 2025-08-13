@@ -1,0 +1,76 @@
+@import '../../../content/scss/styles.scss';
+
+.top-nav {
+
+    // @media #{$md-up-screen} {
+    //     display: none;
+    // }
+
+    // @media #{$sm-screen} {
+    //     position: fixed;
+    //     top: 0px;
+    //     left: 0px;
+    //     width: 100vw;
+    //     height: 60px;
+    //     background: #f8f8f8;
+    //     box-shadow: 3px 0px 4px 2px #0002;
+    //     z-index: 5;
+    // }
+
+    padding: 16px 64px;
+    background-color: #f4f4f4;
+
+    .top-nav-container {
+        position: relative;
+
+        .brand {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            margin-right: 16px;
+            top: 0px;
+            left: 0px;
+
+            img {
+                width: 140px;
+            }
+        }
+
+        .sidenav-toggle {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            padding: 20px;
+        }
+
+        .top-nav-menu {
+            vertical-align: top;
+            margin-top: 18px;
+            display: inline-block;
+
+            &>div {
+                display: inline-block;
+                margin-right: 12px;
+                margin-left: 12px;
+                cursor: pointer;
+
+                &.active {
+                    color: #e00000;
+                }
+
+                &>.shortcut {
+                    background-color: #e00000;
+                    color: #fff;
+                    padding: 1px 16px;
+                    padding-top: 3px;
+                    text-align: center;
+                }
+            }
+
+            &.right {
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
+}

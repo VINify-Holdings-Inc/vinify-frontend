@@ -1,0 +1,37 @@
+@import '../../../content/scss/styles.scss';
+
+.cmp-video-modal {
+  .thumbnail-container {
+    position: relative;
+
+    .thumbnail {
+      width: 100%;
+      height: auto;
+    }
+
+    .video-play-icon-overlay {
+      cursor: pointer;
+      display: none;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      text-align: center;
+      z-index: 100;
+      color: $brand-clr;
+
+      .cmp-icon {
+        position: relative;
+        top: 28%;
+      }
+    }
+
+    &:hover {
+      .video-play-icon-overlay {
+        display: block;
+        transition: display ease-in 1s;
+      }
+    }
+  }
+}
