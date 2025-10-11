@@ -180,7 +180,7 @@ export class SidebarComponent implements OnInit {
             return;
           }
 
-          // Map data to desired column order and rename keys with first char uppercase
+          // Map data to desired column order and rename keys with first char uppercase  ...
           const mappedData = data.map((item: any) => ({
             Vin: item.vin || '',
             Brand: item.brand ? item.brand.split(' ')[0] : '',
