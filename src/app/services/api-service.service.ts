@@ -192,4 +192,11 @@ export class userData {
     });
   }
 
+    getVinDataForCSVDownload(data: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/fetch-csv-data-source-2?`+ data, {
+      headers: this.getHeaders(),
+    });
+  }
+
+
 }
