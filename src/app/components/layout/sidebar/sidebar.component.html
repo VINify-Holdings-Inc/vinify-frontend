@@ -54,7 +54,7 @@
           <span>Help</span>
         </a>
       </li>
-      
+
       <!-- <li class="nav-item helpicon">
         <a class="nav-link d-flex" aria-label="Download the NMVTS Brand Code PDF document"
           (click)="downloadCsvButton()">
@@ -63,10 +63,16 @@
         </a>
       </li> -->
 
-      <li class="nav-item bulk-Upload" *ngIf="canShowUpload">
+      <li class="nav-item bulk-Upload">
         <a routerLink="/file-upload" routerLinkActive="active sideBarUpload" class="nav-link d-flex">
           <img [src]="icon8" class="img-fluid" alt="BulkUploadIcon" />
           <span>Bulk Upload</span>
+        </a>
+      </li>
+      <li class="nav-item bulk-Upload">
+        <a class="nav-link d-flex" data-bs-toggle="modal" data-bs-target="#exampleModalExport" style="cursor: pointer;">
+          <img [src]="icon9" class="img-fluid" alt="VINRequestIcon" />
+          <span>VIN Request</span>
         </a>
       </li>
     </ul>

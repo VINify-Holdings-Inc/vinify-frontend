@@ -58,9 +58,9 @@ export class FileUploadComponent implements OnInit {
   }
 
   processTxtFile(file: File) {
-    const validPattern = /^MY\.T\.CINQ\.INPUT\d*\.TXT$/;
+    const validPattern = /^MY\.[TP]\.CINQ\.INPUT\d*\.TXT$/;
     if (!validPattern.test(file.name.toUpperCase())) {
-      this.showError('TXT file name should follow MY.T.CINQ.INPUT#.TXT format.');
+      this.showError('TXT file name should follow MY.P.CINQ.INPUT.TXT or MY.T.CINQ.INPUT.TXT format.');
       return;
     }
 
