@@ -55,20 +55,20 @@
         </a>
       </li>
       
-      <li class="nav-item helpicon">
+      <!-- <li class="nav-item helpicon">
         <a class="nav-link d-flex" aria-label="Download the NMVTS Brand Code PDF document"
           (click)="downloadCsvButton()">
           <img [src]="icon7" class="img-fluid" alt="HelpIcon" />
           <span>DownloadCSV</span>
         </a>
-      </li>
+      </li> -->
 
-      <!-- <li class="nav-item bulk-Upload">
+      <li class="nav-item bulk-Upload" *ngIf="canShowUpload">
         <a routerLink="/file-upload" routerLinkActive="active sideBarUpload" class="nav-link d-flex">
           <img [src]="icon8" class="img-fluid" alt="BulkUploadIcon" />
           <span>Bulk Upload</span>
         </a>
-      </li> -->
+      </li>
     </ul>
   </nav>
 </aside>

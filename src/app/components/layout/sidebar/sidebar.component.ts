@@ -56,7 +56,7 @@ export class SidebarComponent implements OnInit {
   isClick = false;
   isExportOpen = false;
   isLoading = false;
-
+canShowUpload = false;
   vin: any = '';
   modalTableData: any[] = [];
   modalSearchValue = '';
@@ -75,6 +75,21 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.modifyLabelText();
+     const data = sessionStorage.getItem('data');
+
+  if (data) {
+    try {
+      const parsedData = JSON.parse(data);
+      const email = parsedData?.email;
+
+      // email match check karo
+      if (email === 'amit.chauhan@techwagger.com' || 'bethanie@marleynonami.com') {
+        this.canShowUpload = true;
+      }
+    } catch (e) {
+      console.error('Invalid session data:', e);
+    }
+  }
   }
 
   openExportModal() {
