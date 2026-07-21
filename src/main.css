@@ -2440,7 +2440,7 @@ h2.tabSummaryHead {
   width: 200px;
   display: flex;
   justify-content: center;
-  margin: 20px auto;
+  margin: 20px 0;
 }
 
 .file-upload-contain input {
