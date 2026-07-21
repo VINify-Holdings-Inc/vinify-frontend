@@ -1,11 +1,12 @@
 <!--top header -->
 <app-dashboard-header (sidebarToggle)="toggleSidebar()" class="sticky-top"></app-dashboard-header>
 <div class="wrapper">
-    <div id="content" [class.active] = "!isSidebarActive">
+    <div id="content" [class.active]="!isSidebarActive">
         <!-- sidebar -->
-        <app-sidebar [isSidebarActive]="isSidebarActive"></app-sidebar> 
-        <div id="main-content" [class.active] = "!isSidebarActive" class="main-content">
+        <app-sidebar [isSidebarActive]="isSidebarActive"></app-sidebar>
+        <div id="main-content" [class.active]="!isSidebarActive" class="main-content">
             <router-outlet></router-outlet>
         </div>
     </div>
 </div>
+<app-file-export></app-file-export>

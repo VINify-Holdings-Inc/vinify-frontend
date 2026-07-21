@@ -4,3 +4,8 @@
   .success {
     color: green;
   }
+
+  .download-smaple {
+	color: #456791;
+	text-decoration: underline;
+}
