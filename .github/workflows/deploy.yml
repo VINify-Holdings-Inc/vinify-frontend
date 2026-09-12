@@ -54,7 +54,7 @@ jobs:
             --comment "vinify-frontend deploy from ${{ github.sha }}" \
             --parameters 'commands=[
               "set -e",
-              "sudo aws s3 sync s3://vinify-frontend-deploy-artifacts/ /var/www/web --delete",
+              "sudo aws s3 sync s3://vinify-frontend-deploy-artifacts/ /var/www/web --delete --exact-timestamps",
               "sudo chown -R ubuntu:ubuntu /var/www/web"
             ]' \
             --output text --query "Command.CommandId")
