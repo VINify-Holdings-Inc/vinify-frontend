@@ -1,3 +1,5 @@
+import { environment } from '../environments/environment.prod';
+
 export const API_URL = {
     URL: 'http://localhost:4800/api',
     IMAGE_URL: 'http://localhost:4800/api/uploads',
@@ -15,5 +17,5 @@ export const API_URL = {
     DISCLAIMER : 'This is a disclaimer text.', 
   }
   export const UPLOAD_FOLDER ={
-    UPLOAD : 'https://mvmapi2.techwagger.com/api/uploads/',
+    UPLOAD : environment.img_url + '/',
   }
